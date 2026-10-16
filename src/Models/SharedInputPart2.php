@@ -117,7 +117,9 @@ class InputFileContentParam implements FunctionCallOutputItemParamOutputItem, Us
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, InputFileContentParamTypeEnum::class),
             fileId: (property_exists($data, "file_id") ? ($data->file_id === null ? null : SdkClient::stringValue($data->file_id)) : SdkNotGiven::Value),
@@ -222,8 +224,12 @@ class InputImageContent implements Content, FunctionAndCustomToolCallOutput, Inp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "detail") || $data->detail === null) { throw new SdkValidationError("detail", 'required', "Required property 'detail' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "detail") || $data->detail === null) {
+            throw new SdkValidationError("detail", 'required', "Required property 'detail' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, InputImageContentTypeEnum::class),
             detail: SdkClient::hydrateStringEnumOrString($data->detail, ImageDetail::class),
@@ -328,7 +334,9 @@ class InputImageContentParamAutoParam implements FunctionCallOutputItemParamOutp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, InputImageContentParamAutoParamTypeEnum::class),
             imageUrl: (property_exists($data, "image_url") ? ($data->image_url === null ? null : SdkClient::stringValue($data->image_url)) : SdkNotGiven::Value),

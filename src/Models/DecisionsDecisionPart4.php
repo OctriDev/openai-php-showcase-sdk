@@ -14,11 +14,26 @@ final readonly class DecisionInputTextPromptCacheBreakpointModeEnum implements S
 {
     public const EXPLICIT = "explicit";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -59,7 +74,9 @@ class DecisionInputTextPromptCacheBreakpoint implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
+        if (!property_exists($data, "mode") || $data->mode === null) {
+            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
+        }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, DecisionInputTextPromptCacheBreakpointModeEnum::class),
         );
@@ -126,8 +143,12 @@ class DecisionInputText implements DecisionInputContentPartsItem, DecisionInputT
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, DecisionInputTextTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -143,11 +164,26 @@ final readonly class DecisionRequestPromptCacheOptionsTtlEnum implements SdkOpen
 {
     public const _30M = "30m";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -158,11 +194,26 @@ final readonly class DecisionRequestPromptCacheOptionsModeEnum implements SdkOpe
     public const IMPLICIT = "implicit";
     public const EXPLICIT = "explicit";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -318,9 +369,15 @@ class DecisionRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
-        if (!property_exists($data, "questions") || $data->questions === null) { throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
+        if (!property_exists($data, "questions") || $data->questions === null) {
+            throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null");
+        }
         return new self(
             model: SdkClient::stringValue($data->model),
             input: (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, DecisionInputItem::class, [DecisionInputMessage::class, DecisionInputFunctionCall::class, DecisionInputFunctionCallOutput::class, DecisionInputCustomToolCall::class, DecisionInputCustomToolCallOutput::class], "type", ["message" => DecisionInputMessage::class, "function_call" => DecisionInputFunctionCall::class, "function_call_output" => DecisionInputFunctionCallOutput::class, "custom_tool_call" => DecisionInputCustomToolCall::class, "custom_tool_call_output" => DecisionInputCustomToolCallOutput::class], UnknownDecisionInputItem::class), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input)),

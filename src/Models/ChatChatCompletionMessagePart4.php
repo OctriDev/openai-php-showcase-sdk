@@ -81,7 +81,9 @@ class ChatCompletionMessageToolCallChunk implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
+        if (!property_exists($data, "index") || $data->index === null) {
+            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
+        }
         return new self(
             index: SdkClient::intValue($data->index),
             id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),

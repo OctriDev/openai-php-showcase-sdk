@@ -95,12 +95,24 @@ class CreateEvalLabelModelGrader implements CreateEvalRequestTestingCriteriaItem
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
-        if (!property_exists($data, "labels") || $data->labels === null) { throw new SdkValidationError("labels", 'required', "Required property 'labels' is missing or null"); }
-        if (!property_exists($data, "passing_labels") || $data->passing_labels === null) { throw new SdkValidationError("passing_labels", 'required', "Required property 'passing_labels' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
+        if (!property_exists($data, "labels") || $data->labels === null) {
+            throw new SdkValidationError("labels", 'required', "Required property 'labels' is missing or null");
+        }
+        if (!property_exists($data, "passing_labels") || $data->passing_labels === null) {
+            throw new SdkValidationError("passing_labels", 'required', "Required property 'passing_labels' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalLabelModelGraderTypeEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -170,7 +182,9 @@ class CreateEvalLogsDataSourceConfig implements CreateEvalRequestDataSourceConfi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalLogsDataSourceConfigTypeEnum::class),
             metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
@@ -250,8 +264,12 @@ class CreateEvalRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data_source_config") || $data->data_source_config === null) { throw new SdkValidationError("data_source_config", 'required', "Required property 'data_source_config' is missing or null"); }
-        if (!property_exists($data, "testing_criteria") || $data->testing_criteria === null) { throw new SdkValidationError("testing_criteria", 'required', "Required property 'testing_criteria' is missing or null"); }
+        if (!property_exists($data, "data_source_config") || $data->data_source_config === null) {
+            throw new SdkValidationError("data_source_config", 'required', "Required property 'data_source_config' is missing or null");
+        }
+        if (!property_exists($data, "testing_criteria") || $data->testing_criteria === null) {
+            throw new SdkValidationError("testing_criteria", 'required', "Required property 'testing_criteria' is missing or null");
+        }
         return new self(
             dataSourceConfig: SdkClient::hydrateUnionAs($data->data_source_config, CreateEvalRequestDataSourceConfig::class, [CreateEvalCustomDataSourceConfig::class, CreateEvalLogsDataSourceConfig::class, CreateEvalStoredCompletionsDataSourceConfig::class], "type", ["custom" => CreateEvalCustomDataSourceConfig::class, "logs" => CreateEvalLogsDataSourceConfig::class, "stored_completions" => CreateEvalStoredCompletionsDataSourceConfig::class], UnknownCreateEvalRequestDataSourceConfig::class),
             testingCriteria: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateEvalRequestTestingCriteriaItem::class, [CreateEvalLabelModelGrader::class, EvalGraderStringCheck::class, EvalGraderTextSimilarity::class, EvalGraderPython::class, EvalGraderScoreModel::class], "type", ["label_model" => CreateEvalLabelModelGrader::class, "string_check" => EvalGraderStringCheck::class, "text_similarity" => EvalGraderTextSimilarity::class, "python" => EvalGraderPython::class, "score_model" => EvalGraderScoreModel::class], UnknownCreateEvalRequestTestingCriteriaItem::class), SdkClient::arrayValue($data->testing_criteria))),
@@ -279,11 +297,26 @@ final readonly class CreateEvalResponsesRunDataSourceSamplingParamsReasoningEffo
     public const XHIGH = "xhigh";
     public const MAX = "max";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**

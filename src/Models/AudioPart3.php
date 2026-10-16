@@ -153,7 +153,9 @@ class CreateTranscriptionResponseJson implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             text: SdkClient::stringValue($data->text),
             languages: (property_exists($data, "languages") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionLanguage::class), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
@@ -257,9 +259,15 @@ class CreateTranscriptionResponseVerboseJson implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "language") || $data->language === null) { throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null"); }
-        if (!property_exists($data, "duration") || $data->duration === null) { throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "language") || $data->language === null) {
+            throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null");
+        }
+        if (!property_exists($data, "duration") || $data->duration === null) {
+            throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             language: SdkClient::stringValue($data->language),
             duration: SdkClient::floatValue($data->duration),
@@ -282,9 +290,24 @@ final readonly class CreateTranslationRequestResponseFormatEnum implements SdkOp
     public const VERBOSE_JSON = "verbose_json";
     public const VTT = "vtt";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

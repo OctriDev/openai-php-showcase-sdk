@@ -315,10 +315,18 @@ class DecisionsUsageResult implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) { throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null"); }
-        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) { throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null"); }
-        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) { throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) {
+            throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null");
+        }
+        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) {
+            throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null");
+        }
+        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) {
+            throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, DecisionsUsageResultObjectEnum::class),
             inputTokens: SdkClient::intValue($data->input_tokens),

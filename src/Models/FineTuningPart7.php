@@ -235,20 +235,48 @@ class FineTuningJob implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "error")) { throw new SdkValidationError("error", 'required', "Missing required property 'error'"); }
-        if (!property_exists($data, "fine_tuned_model")) { throw new SdkValidationError("fine_tuned_model", 'required', "Missing required property 'fine_tuned_model'"); }
-        if (!property_exists($data, "finished_at")) { throw new SdkValidationError("finished_at", 'required', "Missing required property 'finished_at'"); }
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "organization_id") || $data->organization_id === null) { throw new SdkValidationError("organization_id", 'required', "Required property 'organization_id' is missing or null"); }
-        if (!property_exists($data, "result_files") || $data->result_files === null) { throw new SdkValidationError("result_files", 'required', "Required property 'result_files' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "trained_tokens")) { throw new SdkValidationError("trained_tokens", 'required', "Missing required property 'trained_tokens'"); }
-        if (!property_exists($data, "training_file") || $data->training_file === null) { throw new SdkValidationError("training_file", 'required', "Required property 'training_file' is missing or null"); }
-        if (!property_exists($data, "validation_file")) { throw new SdkValidationError("validation_file", 'required', "Missing required property 'validation_file'"); }
-        if (!property_exists($data, "seed")) { throw new SdkValidationError("seed", 'required', "Missing required property 'seed'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "error")) {
+            throw new SdkValidationError("error", 'required', "Missing required property 'error'");
+        }
+        if (!property_exists($data, "fine_tuned_model")) {
+            throw new SdkValidationError("fine_tuned_model", 'required', "Missing required property 'fine_tuned_model'");
+        }
+        if (!property_exists($data, "finished_at")) {
+            throw new SdkValidationError("finished_at", 'required', "Missing required property 'finished_at'");
+        }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "organization_id") || $data->organization_id === null) {
+            throw new SdkValidationError("organization_id", 'required', "Required property 'organization_id' is missing or null");
+        }
+        if (!property_exists($data, "result_files") || $data->result_files === null) {
+            throw new SdkValidationError("result_files", 'required', "Required property 'result_files' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "trained_tokens")) {
+            throw new SdkValidationError("trained_tokens", 'required', "Missing required property 'trained_tokens'");
+        }
+        if (!property_exists($data, "training_file") || $data->training_file === null) {
+            throw new SdkValidationError("training_file", 'required', "Required property 'training_file' is missing or null");
+        }
+        if (!property_exists($data, "validation_file")) {
+            throw new SdkValidationError("validation_file", 'required', "Missing required property 'validation_file'");
+        }
+        if (!property_exists($data, "seed")) {
+            throw new SdkValidationError("seed", 'required', "Missing required property 'seed'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             createdAt: SdkClient::intValue($data->created_at),

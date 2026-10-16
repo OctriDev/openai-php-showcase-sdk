@@ -181,7 +181,9 @@ class FineTuneReinforcementMethod implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "grader") || $data->grader === null) { throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null"); }
+        if (!property_exists($data, "grader") || $data->grader === null) {
+            throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null");
+        }
         return new self(
             grader: SdkClient::hydrateUnionAs($data->grader, FineTuneReinforcementMethodGrader::class, [GraderStringCheck::class, GraderTextSimilarity::class, GraderPython::class, GraderScoreModel::class, GraderMulti::class], "type", ["string_check" => GraderStringCheck::class, "text_similarity" => GraderTextSimilarity::class, "python" => GraderPython::class, "score_model" => GraderScoreModel::class, "multi" => GraderMulti::class], UnknownFineTuneReinforcementMethodGrader::class),
             hyperparameters: (property_exists($data, "hyperparameters") ? SdkClient::hydrateClass($data->hyperparameters, FineTuneReinforcementHyperparameters::class) : SdkNotGiven::Value),
@@ -196,11 +198,26 @@ final readonly class FineTuneSupervisedHyperparametersBatchSizeEnum implements S
 {
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -210,11 +227,26 @@ final readonly class FineTuneSupervisedHyperparametersLearningRateMultiplierEnum
 {
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -224,11 +256,26 @@ final readonly class FineTuneSupervisedHyperparametersNEpochsEnum implements Sdk
 {
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**

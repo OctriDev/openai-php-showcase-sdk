@@ -85,11 +85,21 @@ class UrlCitationBody implements Annotation, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
-        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
-        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
-        if (!property_exists($data, "title") || $data->title === null) { throw new SdkValidationError("title", 'required', "Required property 'title' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "url") || $data->url === null) {
+            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
+        }
+        if (!property_exists($data, "start_index") || $data->start_index === null) {
+            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
+        }
+        if (!property_exists($data, "end_index") || $data->end_index === null) {
+            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
+        }
+        if (!property_exists($data, "title") || $data->title === null) {
+            throw new SdkValidationError("title", 'required', "Required property 'title' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, UrlCitationBodyTypeEnum::class),
             url: SdkClient::stringValue($data->url),
@@ -146,7 +156,9 @@ class WaitParam implements ComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, WaitParamTypeEnum::class),
         );
@@ -160,11 +172,26 @@ final readonly class WebhookEndpointWithSecretResourceObjectEnum implements SdkO
 {
     public const WEBHOOK_ENDPOINT = "webhook_endpoint";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -287,14 +314,30 @@ class WebhookEndpointWithSecretResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
-        if (!property_exists($data, "event_types") || $data->event_types === null) { throw new SdkValidationError("event_types", 'required', "Required property 'event_types' is missing or null"); }
-        if (!property_exists($data, "signing_secret_hint")) { throw new SdkValidationError("signing_secret_hint", 'required', "Missing required property 'signing_secret_hint'"); }
-        if (!property_exists($data, "signing_secret") || $data->signing_secret === null) { throw new SdkValidationError("signing_secret", 'required', "Required property 'signing_secret' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "url") || $data->url === null) {
+            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
+        }
+        if (!property_exists($data, "event_types") || $data->event_types === null) {
+            throw new SdkValidationError("event_types", 'required', "Required property 'event_types' is missing or null");
+        }
+        if (!property_exists($data, "signing_secret_hint")) {
+            throw new SdkValidationError("signing_secret_hint", 'required', "Missing required property 'signing_secret_hint'");
+        }
+        if (!property_exists($data, "signing_secret") || $data->signing_secret === null) {
+            throw new SdkValidationError("signing_secret", 'required', "Required property 'signing_secret' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, WebhookEndpointWithSecretResourceObjectEnum::class),

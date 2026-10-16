@@ -85,9 +85,15 @@ class RealtimeMCPListTools implements RealtimeConversationItem, \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "server_label") || $data->server_label === null) { throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null"); }
-        if (!property_exists($data, "tools") || $data->tools === null) { throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "server_label") || $data->server_label === null) {
+            throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null");
+        }
+        if (!property_exists($data, "tools") || $data->tools === null) {
+            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeMCPListToolsTypeEnum::class),
             serverLabel: SdkClient::stringValue($data->server_label),
@@ -163,9 +169,15 @@ class RealtimeMCPProtocolError implements RealtimeMCPToolCallError, \JsonSeriali
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
-        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "code") || $data->code === null) {
+            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
+        }
+        if (!property_exists($data, "message") || $data->message === null) {
+            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeMCPProtocolErrorTypeEnum::class),
             code: SdkClient::intValue($data->code),
@@ -181,11 +193,26 @@ final readonly class RealtimeTruncationVariant1TypeEnum implements SdkOpenEnum
 {
     public const RETENTION_RATIO = "retention_ratio";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -291,8 +318,12 @@ class RealtimeTruncationVariant1 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "retention_ratio") || $data->retention_ratio === null) { throw new SdkValidationError("retention_ratio", 'required', "Required property 'retention_ratio' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "retention_ratio") || $data->retention_ratio === null) {
+            throw new SdkValidationError("retention_ratio", 'required', "Required property 'retention_ratio' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeTruncationVariant1TypeEnum::class),
             retentionRatio: SdkClient::floatValue($data->retention_ratio),

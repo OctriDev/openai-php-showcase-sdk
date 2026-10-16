@@ -57,7 +57,9 @@ class RealtimeCallCreateRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "sdp") || $data->sdp === null) { throw new SdkValidationError("sdp", 'required', "Required property 'sdp' is missing or null"); }
+        if (!property_exists($data, "sdp") || $data->sdp === null) {
+            throw new SdkValidationError("sdp", 'required', "Required property 'sdp' is missing or null");
+        }
         return new self(
             sdp: SdkClient::stringValue($data->sdp),
             session: (property_exists($data, "session") ? SdkClient::hydrateClass($data->session, RealtimeSessionCreateRequestGA::class) : SdkNotGiven::Value),
@@ -103,7 +105,9 @@ class RealtimeCallReferRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "target_uri") || $data->target_uri === null) { throw new SdkValidationError("target_uri", 'required', "Required property 'target_uri' is missing or null"); }
+        if (!property_exists($data, "target_uri") || $data->target_uri === null) {
+            throw new SdkValidationError("target_uri", 'required', "Required property 'target_uri' is missing or null");
+        }
         return new self(
             targetUri: SdkClient::stringValue($data->target_uri),
         );

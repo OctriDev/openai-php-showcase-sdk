@@ -101,7 +101,9 @@ class ContainerAutoParam implements FunctionShellToolParamEnvironment, \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ContainerAutoParamTypeEnum::class),
             fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
@@ -208,12 +210,24 @@ class ContainerFileCitationBody implements Annotation, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
-        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
-        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
-        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
-        if (!property_exists($data, "filename") || $data->filename === null) { throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "container_id") || $data->container_id === null) {
+            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
+        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) {
+            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
+        }
+        if (!property_exists($data, "start_index") || $data->start_index === null) {
+            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
+        }
+        if (!property_exists($data, "end_index") || $data->end_index === null) {
+            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
+        }
+        if (!property_exists($data, "filename") || $data->filename === null) {
+            throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ContainerFileCitationBodyTypeEnum::class),
             containerId: SdkClient::stringValue($data->container_id),
@@ -235,11 +249,26 @@ final readonly class ContainerMemoryLimit implements SdkOpenEnum
     public const _16G = "16g";
     public const _64G = "64g";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -310,8 +339,12 @@ class ContainerNetworkPolicyAllowlistParam implements AutoCodeInterpreterToolPar
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "allowed_domains") || $data->allowed_domains === null) { throw new SdkValidationError("allowed_domains", 'required', "Required property 'allowed_domains' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "allowed_domains") || $data->allowed_domains === null) {
+            throw new SdkValidationError("allowed_domains", 'required', "Required property 'allowed_domains' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ContainerNetworkPolicyAllowlistParamTypeEnum::class),
             allowedDomains: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains))),

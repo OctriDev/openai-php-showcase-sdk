@@ -63,8 +63,12 @@ class LiveInputAudioAppend implements LiveServerEvent2, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "audio") || $data->audio === null) { throw new SdkValidationError("audio", 'required', "Required property 'audio' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "audio") || $data->audio === null) {
+            throw new SdkValidationError("audio", 'required', "Required property 'audio' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveInputAudioAppendTypeEnum::class),
             audio: SdkClient::stringValue($data->audio),
@@ -140,8 +144,12 @@ class LiveInputAudioAppendEvent implements LiveClientEvent, LiveForkClientEvent,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "audio") || $data->audio === null) { throw new SdkValidationError("audio", 'required', "Required property 'audio' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "audio") || $data->audio === null) {
+            throw new SdkValidationError("audio", 'required', "Required property 'audio' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveInputAudioAppendEventTypeEnum::class),
             audio: SdkClient::stringValue($data->audio),
@@ -218,8 +226,12 @@ class LiveInputAudioMuted implements LiveSidebandServerEvent, LiveServerEvent2, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveInputAudioMutedTypeEnum::class),
@@ -286,7 +298,9 @@ class LiveInputAudioMuteParam implements LiveClientEvent, LiveForkClientEvent, L
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveInputAudioMuteParamTypeEnum::class),
             eventId: (property_exists($data, "event_id") ? ($data->event_id === null ? null : SdkClient::stringValue($data->event_id)) : SdkNotGiven::Value),

@@ -67,8 +67,12 @@ class CreateFileRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file") || $data->file === null) { throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null"); }
-        if (!property_exists($data, "purpose") || $data->purpose === null) { throw new SdkValidationError("purpose", 'required', "Required property 'purpose' is missing or null"); }
+        if (!property_exists($data, "file") || $data->file === null) {
+            throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null");
+        }
+        if (!property_exists($data, "purpose") || $data->purpose === null) {
+            throw new SdkValidationError("purpose", 'required', "Required property 'purpose' is missing or null");
+        }
         return new self(
             file: SdkClient::stringValue($data->file),
             purpose: SdkClient::hydrateStringEnumOrString($data->purpose, CreateFileRequestPurposeEnum::class),
@@ -84,11 +88,26 @@ final readonly class DeleteFileResponseObjectEnum implements SdkOpenEnum
 {
     public const FILE = "file";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -149,9 +168,15 @@ class DeleteFileResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "deleted") || $data->deleted === null) {
+            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, DeleteFileResponseObjectEnum::class),
@@ -238,11 +263,21 @@ class ListFilesResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "first_id") || $data->first_id === null) { throw new SdkValidationError("first_id", 'required', "Required property 'first_id' is missing or null"); }
-        if (!property_exists($data, "last_id") || $data->last_id === null) { throw new SdkValidationError("last_id", 'required', "Required property 'last_id' is missing or null"); }
-        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "first_id") || $data->first_id === null) {
+            throw new SdkValidationError("first_id", 'required', "Required property 'first_id' is missing or null");
+        }
+        if (!property_exists($data, "last_id") || $data->last_id === null) {
+            throw new SdkValidationError("last_id", 'required', "Required property 'last_id' is missing or null");
+        }
+        if (!property_exists($data, "has_more") || $data->has_more === null) {
+            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
+        }
         return new self(
             object_: SdkClient::stringValue($data->object),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, OpenAIFile::class), SdkClient::arrayValue($data->data))),

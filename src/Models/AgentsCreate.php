@@ -57,7 +57,9 @@ class CreateAgentEnvironmentParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
+        if (!property_exists($data, "environment") || $data->environment === null) {
+            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
+        }
         return new self(
             environment: SdkClient::hydrateClass($data->environment, CreateEnvironmentParam::class),
             vaultIds: (property_exists($data, "vault_ids") ? ($data->vault_ids === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vault_ids)))) : SdkNotGiven::Value),
@@ -199,7 +201,9 @@ class CreateAgentParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
         return new self(
             model: SdkClient::stringValue($data->model),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
@@ -336,7 +340,9 @@ class CreateAgentSessionParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
+        if (!property_exists($data, "environment") || $data->environment === null) {
+            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
+        }
         return new self(
             environment: SdkClient::hydrateUnionAs($data->environment, EnvironmentParam::class, [EnvironmentParamNone::class, EnvironmentParamOpenaiHosted::class, EnvironmentParamSelfHosted::class], "type", ["none" => EnvironmentParamNone::class, "openai_hosted" => EnvironmentParamOpenaiHosted::class, "self_hosted" => EnvironmentParamSelfHosted::class], UnknownEnvironmentParam::class),
             spendControl: (property_exists($data, "spend_control") ? ($data->spend_control === null ? null : SdkClient::hydrateClass($data->spend_control, SessionSpendControlParam::class)) : SdkNotGiven::Value),

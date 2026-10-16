@@ -16,11 +16,26 @@ final readonly class BetaFunctionCallItemStatus implements SdkOpenEnum
     public const COMPLETED = "completed";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -163,8 +178,12 @@ class BetaFunctionCallOutputItemParam implements BetaInputItem, BetaItem, BetaRe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "output") || $data->output === null) {
+            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaFunctionCallOutputItemParamTypeEnum::class),
             output: (is_array($data->output) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaFunctionCallOutputItemParamOutputItem::class, [BetaInputTextContentParam::class, BetaInputImageContentParamAutoParam::class, BetaInputFileContentParam::class], "type", ["input_text" => BetaInputTextContentParam::class, "input_image" => BetaInputImageContentParamAutoParam::class, "input_file" => BetaInputFileContentParam::class], UnknownBetaFunctionCallOutputItemParamOutputItem::class), SdkClient::arrayValue($data->output))) : SdkClient::stringValue($data->output)),
@@ -188,11 +207,26 @@ final readonly class BetaFunctionCallOutputStatusEnum implements SdkOpenEnum
     public const COMPLETED = "completed";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -204,11 +238,26 @@ final readonly class BetaFunctionCallStatus implements SdkOpenEnum
     public const COMPLETED = "completed";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -269,9 +318,15 @@ class BetaFunctionShellAction implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "commands") || $data->commands === null) { throw new SdkValidationError("commands", 'required', "Required property 'commands' is missing or null"); }
-        if (!property_exists($data, "timeout_ms")) { throw new SdkValidationError("timeout_ms", 'required', "Missing required property 'timeout_ms'"); }
-        if (!property_exists($data, "max_output_length")) { throw new SdkValidationError("max_output_length", 'required', "Missing required property 'max_output_length'"); }
+        if (!property_exists($data, "commands") || $data->commands === null) {
+            throw new SdkValidationError("commands", 'required', "Required property 'commands' is missing or null");
+        }
+        if (!property_exists($data, "timeout_ms")) {
+            throw new SdkValidationError("timeout_ms", 'required', "Missing required property 'timeout_ms'");
+        }
+        if (!property_exists($data, "max_output_length")) {
+            throw new SdkValidationError("max_output_length", 'required', "Missing required property 'max_output_length'");
+        }
         return new self(
             commands: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->commands))),
             timeoutMs: ($data->timeout_ms === null ? null : SdkClient::intValue($data->timeout_ms)),
@@ -342,7 +397,9 @@ class BetaFunctionShellActionParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "commands") || $data->commands === null) { throw new SdkValidationError("commands", 'required', "Required property 'commands' is missing or null"); }
+        if (!property_exists($data, "commands") || $data->commands === null) {
+            throw new SdkValidationError("commands", 'required', "Required property 'commands' is missing or null");
+        }
         return new self(
             commands: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->commands))),
             timeoutMs: (property_exists($data, "timeout_ms") ? ($data->timeout_ms === null ? null : SdkClient::intValue($data->timeout_ms)) : SdkNotGiven::Value),

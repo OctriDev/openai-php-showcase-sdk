@@ -89,9 +89,15 @@ class CustomToolCallOutput implements ConversationItem, InputItem, Item, ItemFie
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
-        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) {
+            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
+        }
+        if (!property_exists($data, "output") || $data->output === null) {
+            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CustomToolCallOutputTypeEnum::class),
             callId: SdkClient::stringValue($data->call_id),
@@ -218,8 +224,12 @@ class CustomToolParam implements Tool, ToolSearchOutputTool, NamespaceToolParamT
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CustomToolParamTypeEnum::class),
             name: SdkClient::stringValue($data->name),

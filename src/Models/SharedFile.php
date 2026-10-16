@@ -83,10 +83,18 @@ class FileCitationBody implements Annotation, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
-        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
-        if (!property_exists($data, "filename") || $data->filename === null) { throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) {
+            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
+        }
+        if (!property_exists($data, "index") || $data->index === null) {
+            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
+        }
+        if (!property_exists($data, "filename") || $data->filename === null) {
+            throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FileCitationBodyTypeEnum::class),
             fileId: SdkClient::stringValue($data->file_id),
@@ -105,11 +113,26 @@ final readonly class FileDetailEnum implements SdkOpenEnum
     public const LOW = "low";
     public const HIGH = "high";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -119,11 +142,26 @@ final readonly class FileExpirationAfterAnchorEnum implements SdkOpenEnum
 {
     public const CREATED_AT = "created_at";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -174,8 +212,12 @@ class FileExpirationAfter implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "anchor") || $data->anchor === null) { throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null"); }
-        if (!property_exists($data, "seconds") || $data->seconds === null) { throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null"); }
+        if (!property_exists($data, "anchor") || $data->anchor === null) {
+            throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null");
+        }
+        if (!property_exists($data, "seconds") || $data->seconds === null) {
+            throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null");
+        }
         return new self(
             anchor: SdkClient::hydrateStringEnumOrString($data->anchor, FileExpirationAfterAnchorEnum::class),
             seconds: SdkClient::intValue($data->seconds),
@@ -192,11 +234,26 @@ final readonly class FileInputDetail implements SdkOpenEnum
     public const LOW = "low";
     public const HIGH = "high";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -265,9 +322,15 @@ class FilePath implements Annotation, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
-        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) {
+            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
+        }
+        if (!property_exists($data, "index") || $data->index === null) {
+            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FilePathTypeEnum::class),
             fileId: SdkClient::stringValue($data->file_id),

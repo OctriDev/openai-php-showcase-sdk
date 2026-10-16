@@ -52,8 +52,12 @@ class CreateEvalCompletionsRunDataSourceInputMessagesVariant1 implements CreateE
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_reference") || $data->item_reference === null) { throw new SdkValidationError("item_reference", 'required', "Required property 'item_reference' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_reference") || $data->item_reference === null) {
+            throw new SdkValidationError("item_reference", 'required', "Required property 'item_reference' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalCompletionsRunDataSourceInputMessagesVariant1TypeEnum::class),
             itemReference: SdkClient::stringValue($data->item_reference),
@@ -129,8 +133,12 @@ class CreateEvalCustomDataSourceConfig implements CreateEvalRequestDataSourceCon
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_schema") || $data->item_schema === null) { throw new SdkValidationError("item_schema", 'required', "Required property 'item_schema' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_schema") || $data->item_schema === null) {
+            throw new SdkValidationError("item_schema", 'required', "Required property 'item_schema' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalCustomDataSourceConfigTypeEnum::class),
             itemSchema: SdkClient::stringMapValue($data->item_schema),
@@ -184,8 +192,12 @@ class CreateEvalItemVariant0 implements CreateEvalItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
         return new self(
             role: SdkClient::stringValue($data->role),
             content: SdkClient::stringValue($data->content),
@@ -249,8 +261,12 @@ class CreateEvalJsonlRunDataSource implements CreateEvalRunRequestDataSource, Ev
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "source") || $data->source === null) { throw new SdkValidationError("source", 'required', "Required property 'source' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "source") || $data->source === null) {
+            throw new SdkValidationError("source", 'required', "Required property 'source' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalJsonlRunDataSourceTypeEnum::class),
             source: SdkClient::hydrateUnionAs($data->source, CreateEvalJsonlRunDataSourceSource::class, [EvalJsonlFileContentSource::class, EvalJsonlFileIdSource::class], "type", ["file_content" => EvalJsonlFileContentSource::class, "file_id" => EvalJsonlFileIdSource::class], UnknownCreateEvalJsonlRunDataSourceSource::class),

@@ -57,7 +57,9 @@ class PersistedAgentToolConfigParamProgrammaticToolCalling implements PersistedA
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolConfigParamProgrammaticToolCallingTypeEnum::class),
             enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
@@ -111,7 +113,9 @@ class PersistedAgentToolConfigParamToolSearch implements PersistedAgentToolConfi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolConfigParamToolSearchTypeEnum::class),
         );
@@ -212,7 +216,9 @@ class PersistedAgentToolConfigParamWebSearch implements PersistedAgentToolConfig
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolConfigParamWebSearchTypeEnum::class),
             mode: (property_exists($data, "mode") ? ($data->mode === null ? null : SdkClient::hydrateStringEnumOrString($data->mode, WebSearchModeParam::class)) : SdkNotGiven::Value),
@@ -279,8 +285,12 @@ class PersistedAgentToolResourceComputerUse implements PersistedAgentToolResourc
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "include_screenshots") || $data->include_screenshots === null) { throw new SdkValidationError("include_screenshots", 'required', "Required property 'include_screenshots' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "include_screenshots") || $data->include_screenshots === null) {
+            throw new SdkValidationError("include_screenshots", 'required', "Required property 'include_screenshots' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolResourceComputerUseTypeEnum::class),
             includeScreenshots: SdkClient::boolValue($data->include_screenshots),

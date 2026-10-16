@@ -23,7 +23,7 @@ trait EvalsMethodsPart1
     public static function listEvals(ClientConfig $clientConfig, string|SdkNotGiven $after = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, ListEvalsOrder|SdkNotGiven $order = SdkNotGiven::Value, ListEvalsOrderBy|SdkNotGiven $orderBy = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): EvalList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/evals", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true)], returnType: EvalList::class, decoder: 'json', operationId: 'listEvals', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/evals", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'order_by' => new SdkQueryValue($orderBy, "form", true)], returnType: EvalList::class, decoder: 'json', operationId: 'listEvals', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EvalList::class));
     }
 
@@ -109,7 +109,7 @@ trait EvalsMethodsPart1
     public static function createEval(ClientConfig $clientConfig, CreateEvalRequestDataSourceConfig $dataSourceConfig, array $testingCriteria, string|SdkNotGiven $name = SdkNotGiven::Value, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): EvalResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/evals", $clientConfig, body: ['data_source_config' => $dataSourceConfig, 'testing_criteria' => $testingCriteria, 'name' => $name, 'metadata' => $metadata], returnType: EvalResource::class, decoder: 'json', operationId: 'createEval', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/evals", $clientConfig, body: ['data_source_config' => $dataSourceConfig, 'testing_criteria' => $testingCriteria, 'name' => $name, 'metadata' => $metadata], returnType: EvalResource::class, decoder: 'json', operationId: 'createEval', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EvalResource::class));
     }
 
@@ -125,7 +125,7 @@ trait EvalsMethodsPart1
     public static function getEval(ClientConfig $clientConfig, string $evalId, ?RequestOptions $requestOptions = null): EvalResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/evals/" . SdkClient::encodePathSegment($evalId) . "", $clientConfig, returnType: EvalResource::class, decoder: 'json', operationId: 'getEval', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/evals/" . SdkClient::encodePathSegment($evalId) . "", $clientConfig, returnType: EvalResource::class, decoder: 'json', operationId: 'getEval', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EvalResource::class));
     }
 
@@ -143,7 +143,7 @@ trait EvalsMethodsPart1
     public static function updateEval(ClientConfig $clientConfig, string $evalId, string|SdkNotGiven $name = SdkNotGiven::Value, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): EvalResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/evals/" . SdkClient::encodePathSegment($evalId) . "", $clientConfig, body: ['name' => $name, 'metadata' => $metadata], returnType: EvalResource::class, decoder: 'json', operationId: 'updateEval', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/evals/" . SdkClient::encodePathSegment($evalId) . "", $clientConfig, body: ['name' => $name, 'metadata' => $metadata], returnType: EvalResource::class, decoder: 'json', operationId: 'updateEval', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EvalResource::class));
     }
 
@@ -159,7 +159,7 @@ trait EvalsMethodsPart1
     public static function deleteEval(ClientConfig $clientConfig, string $evalId, ?RequestOptions $requestOptions = null): DeleteEvalResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/evals/" . SdkClient::encodePathSegment($evalId) . "", $clientConfig, returnType: DeleteEvalResponse::class, decoder: 'json', operationId: 'deleteEval', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/evals/" . SdkClient::encodePathSegment($evalId) . "", $clientConfig, returnType: DeleteEvalResponse::class, decoder: 'json', operationId: 'deleteEval', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteEvalResponse::class));
     }
 
@@ -179,7 +179,7 @@ trait EvalsMethodsPart1
     public static function getEvalRuns(ClientConfig $clientConfig, string $evalId, string|SdkNotGiven $after = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, GetEvalRunsOrder|SdkNotGiven $order = SdkNotGiven::Value, GetEvalRunsStatus|SdkNotGiven $status = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): EvalRunList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'status' => new SdkQueryValue($status, "form", true)], returnType: EvalRunList::class, decoder: 'json', operationId: 'getEvalRuns', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'status' => new SdkQueryValue($status, "form", true)], returnType: EvalRunList::class, decoder: 'json', operationId: 'getEvalRuns', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EvalRunList::class));
     }
 
@@ -267,7 +267,7 @@ trait EvalsMethodsPart1
     public static function createEvalRun(ClientConfig $clientConfig, string $evalId, CreateEvalRunRequestDataSource $dataSource, string|SdkNotGiven $name = SdkNotGiven::Value, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): EvalRun
     {
 
-        $sdkResponse = SdkClient::request('POST', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs", $clientConfig, body: ['data_source' => $dataSource, 'name' => $name, 'metadata' => $metadata], returnType: EvalRun::class, decoder: 'json', operationId: 'createEvalRun', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs", $clientConfig, body: ['data_source' => $dataSource, 'name' => $name, 'metadata' => $metadata], returnType: EvalRun::class, decoder: 'json', operationId: 'createEvalRun', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EvalRun::class));
     }
 
@@ -284,7 +284,7 @@ trait EvalsMethodsPart1
     public static function getEvalRun(ClientConfig $clientConfig, string $evalId, string $runId, ?RequestOptions $requestOptions = null): EvalRun
     {
 
-        $sdkResponse = SdkClient::request('GET', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs/" . SdkClient::encodePathSegment($runId) . "", $clientConfig, returnType: EvalRun::class, decoder: 'json', operationId: 'getEvalRun', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs/" . SdkClient::encodePathSegment($runId) . "", $clientConfig, returnType: EvalRun::class, decoder: 'json', operationId: 'getEvalRun', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EvalRun::class));
     }
 
@@ -301,7 +301,7 @@ trait EvalsMethodsPart1
     public static function deleteEvalRun(ClientConfig $clientConfig, string $evalId, string $runId, ?RequestOptions $requestOptions = null): DeleteEvalRunResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs/" . SdkClient::encodePathSegment($runId) . "", $clientConfig, returnType: DeleteEvalRunResponse::class, decoder: 'json', operationId: 'deleteEvalRun', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs/" . SdkClient::encodePathSegment($runId) . "", $clientConfig, returnType: DeleteEvalRunResponse::class, decoder: 'json', operationId: 'deleteEvalRun', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteEvalRunResponse::class));
     }
 
@@ -318,7 +318,7 @@ trait EvalsMethodsPart1
     public static function cancelEvalRun(ClientConfig $clientConfig, string $evalId, string $runId, ?RequestOptions $requestOptions = null): EvalRun
     {
 
-        $sdkResponse = SdkClient::request('POST', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs/" . SdkClient::encodePathSegment($runId) . "/cancel", $clientConfig, returnType: EvalRun::class, decoder: 'json', operationId: 'cancelEvalRun', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/evals/" . SdkClient::encodePathSegment($evalId) . "/runs/" . SdkClient::encodePathSegment($runId) . "/cancel", $clientConfig, returnType: EvalRun::class, decoder: 'json', operationId: 'cancelEvalRun', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, EvalRun::class));
     }
 }

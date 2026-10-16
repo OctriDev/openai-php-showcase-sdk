@@ -60,11 +60,26 @@ final readonly class RealtimeTranscriptionSessionCreateRequestGAIncludeItemEnum 
 {
     public const ITEM_INPUT_AUDIO_TRANSCRIPTION_LOGPROBS = "item.input_audio_transcription.logprobs";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -129,7 +144,9 @@ class RealtimeTranscriptionSessionCreateRequestGA implements RealtimeClientEvent
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeTranscriptionSessionCreateRequestGATypeEnum::class),
             audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, RealtimeTranscriptionSessionCreateRequestGAAudio::class) : SdkNotGiven::Value),
@@ -186,8 +203,12 @@ class RealtimeTranscriptionSessionCreateResponseClientSecret implements \JsonSer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
-        if (!property_exists($data, "expires_at") || $data->expires_at === null) { throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null"); }
+        if (!property_exists($data, "value") || $data->value === null) {
+            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
+        }
+        if (!property_exists($data, "expires_at") || $data->expires_at === null) {
+            throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null");
+        }
         return new self(
             value: SdkClient::stringValue($data->value),
             expiresAt: SdkClient::intValue($data->expires_at),
@@ -203,11 +224,26 @@ final readonly class RealtimeTranscriptionSessionCreateResponseModalitiesItemEnu
     public const TEXT = "text";
     public const AUDIO = "audio";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**

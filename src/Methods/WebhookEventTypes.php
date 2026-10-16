@@ -17,7 +17,7 @@ class WebhookEventTypes
     public static function listWebhookEventTypes(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): WebhookEventTypeListResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/webhook_event_types", $clientConfig, returnType: WebhookEventTypeListResource::class, decoder: 'json', operationId: 'listWebhookEventTypes', requestOptions: $requestOptions, errors: [401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/webhook_event_types", $clientConfig, returnType: WebhookEventTypeListResource::class, decoder: 'json', operationId: 'listWebhookEventTypes', requestOptions: $requestOptions, errors: [401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WebhookEventTypeListResource::class));
     }
 }

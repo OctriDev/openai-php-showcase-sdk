@@ -85,11 +85,21 @@ class MessageContentTextAnnotationsFilePathObject implements MessageContentTextO
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
-        if (!property_exists($data, "file_path") || $data->file_path === null) { throw new SdkValidationError("file_path", 'required', "Required property 'file_path' is missing or null"); }
-        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
-        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
+        if (!property_exists($data, "file_path") || $data->file_path === null) {
+            throw new SdkValidationError("file_path", 'required', "Required property 'file_path' is missing or null");
+        }
+        if (!property_exists($data, "start_index") || $data->start_index === null) {
+            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
+        }
+        if (!property_exists($data, "end_index") || $data->end_index === null) {
+            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, MessageContentTextAnnotationsFilePathObjectTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -156,8 +166,12 @@ class MessageContentTextObjectText implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
-        if (!property_exists($data, "annotations") || $data->annotations === null) { throw new SdkValidationError("annotations", 'required', "Required property 'annotations' is missing or null"); }
+        if (!property_exists($data, "value") || $data->value === null) {
+            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
+        }
+        if (!property_exists($data, "annotations") || $data->annotations === null) {
+            throw new SdkValidationError("annotations", 'required', "Required property 'annotations' is missing or null");
+        }
         return new self(
             value: SdkClient::stringValue($data->value),
             annotations: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, MessageContentTextObjectTextAnnotationsItem::class, [MessageContentTextAnnotationsFileCitationObject::class, MessageContentTextAnnotationsFilePathObject::class], "type", ["file_citation" => MessageContentTextAnnotationsFileCitationObject::class, "file_path" => MessageContentTextAnnotationsFilePathObject::class], UnknownMessageContentTextObjectTextAnnotationsItem::class), SdkClient::arrayValue($data->annotations))),
@@ -213,8 +227,12 @@ class MessageContentTextObject implements MessageObjectContentItem, \JsonSeriali
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, MessageContentTextObjectTypeEnum::class),
             text: SdkClient::hydrateClass($data->text, MessageContentTextObjectText::class),
@@ -239,11 +257,26 @@ final readonly class MessageDeltaContentImageFileObjectImageFileDetailEnum imple
     public const LOW = "low";
     public const HIGH = "high";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**

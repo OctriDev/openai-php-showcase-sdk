@@ -55,8 +55,12 @@ class FunctionShellCallOutputExitOutcome implements FunctionShellCallOutputConte
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "exit_code") || $data->exit_code === null) { throw new SdkValidationError("exit_code", 'required', "Required property 'exit_code' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "exit_code") || $data->exit_code === null) {
+            throw new SdkValidationError("exit_code", 'required', "Required property 'exit_code' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionShellCallOutputExitOutcomeTypeEnum::class),
             exitCode: SdkClient::intValue($data->exit_code),
@@ -120,8 +124,12 @@ class FunctionShellCallOutputExitOutcomeParam implements FunctionShellCallOutput
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "exit_code") || $data->exit_code === null) { throw new SdkValidationError("exit_code", 'required', "Required property 'exit_code' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "exit_code") || $data->exit_code === null) {
+            throw new SdkValidationError("exit_code", 'required', "Required property 'exit_code' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionShellCallOutputExitOutcomeParamTypeEnum::class),
             exitCode: SdkClient::intValue($data->exit_code),
@@ -243,9 +251,15 @@ class FunctionShellCallOutputItemParam implements InputItem, Item, \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
+        if (!property_exists($data, "call_id") || $data->call_id === null) {
+            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "output") || $data->output === null) {
+            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
+        }
         return new self(
             callId: SdkClient::stringValue($data->call_id),
             type: SdkClient::hydrateEnum($data->type, FunctionShellCallOutputItemParamTypeEnum::class),
@@ -267,11 +281,26 @@ final readonly class FunctionShellCallOutputStatusEnum implements SdkOpenEnum
     public const COMPLETED = "completed";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -320,7 +349,9 @@ class FunctionShellCallOutputTimeoutOutcome implements FunctionShellCallOutputCo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionShellCallOutputTimeoutOutcomeTypeEnum::class),
         );

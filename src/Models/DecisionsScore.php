@@ -57,7 +57,9 @@ class ScoreLevelParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "label") || $data->label === null) { throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null"); }
+        if (!property_exists($data, "label") || $data->label === null) {
+            throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null");
+        }
         return new self(
             label: SdkClient::stringValue($data->label),
             description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
@@ -123,9 +125,15 @@ class ScoreProbabilityResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
-        if (!property_exists($data, "label") || $data->label === null) { throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null"); }
-        if (!property_exists($data, "probability") || $data->probability === null) { throw new SdkValidationError("probability", 'required', "Required property 'probability' is missing or null"); }
+        if (!property_exists($data, "value") || $data->value === null) {
+            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
+        }
+        if (!property_exists($data, "label") || $data->label === null) {
+            throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null");
+        }
+        if (!property_exists($data, "probability") || $data->probability === null) {
+            throw new SdkValidationError("probability", 'required', "Required property 'probability' is missing or null");
+        }
         return new self(
             value: SdkClient::intValue($data->value),
             label: SdkClient::stringValue($data->label),

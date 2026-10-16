@@ -18,11 +18,26 @@ final readonly class CreateChatCompletionResponseChoicesItemFinishReasonEnum imp
     public const CONTENT_FILTER = "content_filter";
     public const FUNCTION_CALL = "function_call";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -73,8 +88,12 @@ class CreateChatCompletionResponseChoicesItemLogprobs implements \JsonSerializab
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "content")) { throw new SdkValidationError("content", 'required', "Missing required property 'content'"); }
-        if (!property_exists($data, "refusal")) { throw new SdkValidationError("refusal", 'required', "Missing required property 'refusal'"); }
+        if (!property_exists($data, "content")) {
+            throw new SdkValidationError("content", 'required', "Missing required property 'content'");
+        }
+        if (!property_exists($data, "refusal")) {
+            throw new SdkValidationError("refusal", 'required', "Missing required property 'refusal'");
+        }
         return new self(
             content: ($data->content === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionTokenLogprob::class), SdkClient::arrayValue($data->content)))),
             refusal: ($data->refusal === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionTokenLogprob::class), SdkClient::arrayValue($data->refusal)))),
@@ -150,10 +169,18 @@ class CreateChatCompletionResponseChoicesItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "finish_reason") || $data->finish_reason === null) { throw new SdkValidationError("finish_reason", 'required', "Required property 'finish_reason' is missing or null"); }
-        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
-        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
-        if (!property_exists($data, "logprobs")) { throw new SdkValidationError("logprobs", 'required', "Missing required property 'logprobs'"); }
+        if (!property_exists($data, "finish_reason") || $data->finish_reason === null) {
+            throw new SdkValidationError("finish_reason", 'required', "Required property 'finish_reason' is missing or null");
+        }
+        if (!property_exists($data, "index") || $data->index === null) {
+            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
+        }
+        if (!property_exists($data, "message") || $data->message === null) {
+            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
+        }
+        if (!property_exists($data, "logprobs")) {
+            throw new SdkValidationError("logprobs", 'required', "Missing required property 'logprobs'");
+        }
         return new self(
             finishReason: SdkClient::hydrateStringEnumOrString($data->finish_reason, CreateChatCompletionResponseChoicesItemFinishReasonEnum::class),
             index: SdkClient::intValue($data->index),
@@ -172,11 +199,26 @@ final readonly class CreateChatCompletionResponseServiceTierEnum implements SdkO
     public const PRIORITY = "priority";
     public const FAST = "fast";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -186,11 +228,26 @@ final readonly class CreateChatCompletionResponseObjectEnum implements SdkOpenEn
 {
     public const CHAT_COMPLETION = "chat.completion";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -331,11 +388,21 @@ class CreateChatCompletionResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "choices") || $data->choices === null) { throw new SdkValidationError("choices", 'required', "Required property 'choices' is missing or null"); }
-        if (!property_exists($data, "created") || $data->created === null) { throw new SdkValidationError("created", 'required', "Required property 'created' is missing or null"); }
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "choices") || $data->choices === null) {
+            throw new SdkValidationError("choices", 'required', "Required property 'choices' is missing or null");
+        }
+        if (!property_exists($data, "created") || $data->created === null) {
+            throw new SdkValidationError("created", 'required', "Required property 'created' is missing or null");
+        }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             choices: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateChatCompletionResponseChoicesItem::class), SdkClient::arrayValue($data->choices))),

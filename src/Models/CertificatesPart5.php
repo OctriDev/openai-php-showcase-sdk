@@ -57,7 +57,9 @@ class UploadCertificateRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "certificate") || $data->certificate === null) { throw new SdkValidationError("certificate", 'required', "Required property 'certificate' is missing or null"); }
+        if (!property_exists($data, "certificate") || $data->certificate === null) {
+            throw new SdkValidationError("certificate", 'required', "Required property 'certificate' is missing or null");
+        }
         return new self(
             certificate: SdkClient::stringValue($data->certificate),
             name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),

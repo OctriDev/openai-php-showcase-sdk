@@ -55,8 +55,12 @@ class LiveSessionCreateResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
-        if (!property_exists($data, "transport") || $data->transport === null) { throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null"); }
+        if (!property_exists($data, "session") || $data->session === null) {
+            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
+        }
+        if (!property_exists($data, "transport") || $data->transport === null) {
+            throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null");
+        }
         return new self(
             session: SdkClient::hydrateClass($data->session, Session::class),
             transport: SdkClient::hydrateUnionAs($data->transport, LiveSessionCreateResponseTransport::class, [LiveWebRTCTransport::class], "type", ["webrtc" => LiveWebRTCTransport::class], UnknownLiveSessionCreateResponseTransport::class),
@@ -107,7 +111,9 @@ class LiveSessionCreateResponseTransportVariant1 implements LiveSessionCreateRes
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSessionCreateResponseTransportVariant1TypeEnum::class),
         );
@@ -118,11 +124,26 @@ final readonly class LiveSessionResourceParamModelEnum implements SdkOpenEnum
 {
     public const GPT_LIVE_1 = "gpt-live-1";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -132,11 +153,26 @@ final readonly class LiveSessionResourceParamStatusEnum implements SdkOpenEnum
 {
     public const ACTIVE = "active";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -291,10 +327,18 @@ class LiveSessionResourceParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "expires_at") || $data->expires_at === null) { throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "expires_at") || $data->expires_at === null) {
+            throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
         return new self(
             model: SdkClient::hydrateStringEnumOrString($data->model, LiveSessionResourceParamModelEnum::class),
             id: SdkClient::stringValue($data->id),

@@ -113,9 +113,15 @@ class UsageAudioSpeechesResult implements UsageTimeBucketResultsItem, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "characters") || $data->characters === null) { throw new SdkValidationError("characters", 'required', "Required property 'characters' is missing or null"); }
-        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) { throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "characters") || $data->characters === null) {
+            throw new SdkValidationError("characters", 'required', "Required property 'characters' is missing or null");
+        }
+        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) {
+            throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, UsageAudioSpeechesResultObjectEnum::class),
             characters: SdkClient::intValue($data->characters),
@@ -242,9 +248,15 @@ class UsageAudioTranscriptionsResult implements UsageTimeBucketResultsItem, \Jso
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "seconds") || $data->seconds === null) { throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null"); }
-        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) { throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "seconds") || $data->seconds === null) {
+            throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null");
+        }
+        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) {
+            throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, UsageAudioTranscriptionsResultObjectEnum::class),
             seconds: SdkClient::intValue($data->seconds),
@@ -325,8 +337,12 @@ class UsageCodeInterpreterSessionsResult implements UsageTimeBucketResultsItem, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "num_sessions") || $data->num_sessions === null) { throw new SdkValidationError("num_sessions", 'required', "Required property 'num_sessions' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "num_sessions") || $data->num_sessions === null) {
+            throw new SdkValidationError("num_sessions", 'required', "Required property 'num_sessions' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, UsageCodeInterpreterSessionsResultObjectEnum::class),
             numSessions: SdkClient::intValue($data->num_sessions),
@@ -340,9 +356,24 @@ final readonly class UsageCompletionsResultApiSourceEnum implements SdkOpenEnum
     public const AGENTS_API = "agents_api";
     public const UNLABELED = "unlabeled";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

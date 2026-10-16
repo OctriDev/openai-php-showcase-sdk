@@ -22,11 +22,26 @@ final readonly class InlineCapabilitySourceParamBase64MediaTypeEnum implements S
 {
     public const APPLICATION_ZIP = "application/zip";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -87,9 +102,15 @@ class InlineCapabilitySourceParamBase64 implements InlineCapabilitySourceParam, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "media_type") || $data->media_type === null) { throw new SdkValidationError("media_type", 'required', "Required property 'media_type' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "media_type") || $data->media_type === null) {
+            throw new SdkValidationError("media_type", 'required', "Required property 'media_type' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, InlineCapabilitySourceParamBase64TypeEnum::class),
             mediaType: SdkClient::hydrateStringEnumOrString($data->media_type, InlineCapabilitySourceParamBase64MediaTypeEnum::class),

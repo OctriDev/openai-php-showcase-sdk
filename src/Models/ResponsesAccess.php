@@ -45,7 +45,9 @@ class AccessProgramsBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "cyber") || $data->cyber === null) { throw new SdkValidationError("cyber", 'required', "Required property 'cyber' is missing or null"); }
+        if (!property_exists($data, "cyber") || $data->cyber === null) {
+            throw new SdkValidationError("cyber", 'required', "Required property 'cyber' is missing or null");
+        }
         return new self(
             cyber: SdkClient::hydrateStringEnumOrString($data->cyber, CyberAccessProgramEnum::class),
         );

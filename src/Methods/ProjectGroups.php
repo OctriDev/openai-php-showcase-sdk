@@ -12,11 +12,26 @@ final readonly class ListProjectGroupsOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class RetrieveProjectGroupGroupType implements SdkOpenEnum
@@ -24,11 +39,26 @@ final readonly class RetrieveProjectGroupGroupType implements SdkOpenEnum
     public const GROUP = "group";
     public const TENANT_GROUP = "tenant_group";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class ProjectGroups
@@ -51,7 +81,7 @@ class ProjectGroups
             Validation::validateRange('limit', $limit, min: 0, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/groups", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ProjectGroupListResource::class, decoder: 'json', operationId: 'listProjectGroups', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/groups", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ProjectGroupListResource::class, decoder: 'json', operationId: 'listProjectGroups', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectGroupListResource::class));
     }
 
@@ -139,7 +169,7 @@ class ProjectGroups
     public static function addProjectGroup(ClientConfig $clientConfig, string $projectId, string $groupId, string $role, ?RequestOptions $requestOptions = null): ProjectGroup
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/groups", $clientConfig, body: ['group_id' => $groupId, 'role' => $role], returnType: ProjectGroup::class, decoder: 'json', operationId: 'addProjectGroup', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/groups", $clientConfig, body: ['group_id' => $groupId, 'role' => $role], returnType: ProjectGroup::class, decoder: 'json', operationId: 'addProjectGroup', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectGroup::class));
     }
 
@@ -157,7 +187,7 @@ class ProjectGroups
     public static function retrieveProjectGroup(ClientConfig $clientConfig, string $projectId, string $groupId, RetrieveProjectGroupGroupType|SdkNotGiven $groupType = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ProjectGroup
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/groups/" . SdkClient::encodePathSegment($groupId) . "", $clientConfig, query: ['group_type' => new SdkQueryValue($groupType, "form", true)], returnType: ProjectGroup::class, decoder: 'json', operationId: 'retrieveProjectGroup', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/groups/" . SdkClient::encodePathSegment($groupId) . "", $clientConfig, query: ['group_type' => new SdkQueryValue($groupType, "form", true)], returnType: ProjectGroup::class, decoder: 'json', operationId: 'retrieveProjectGroup', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectGroup::class));
     }
 
@@ -174,7 +204,7 @@ class ProjectGroups
     public static function removeProjectGroup(ClientConfig $clientConfig, string $projectId, string $groupId, ?RequestOptions $requestOptions = null): ProjectGroupDeletedResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/groups/" . SdkClient::encodePathSegment($groupId) . "", $clientConfig, returnType: ProjectGroupDeletedResource::class, decoder: 'json', operationId: 'removeProjectGroup', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/groups/" . SdkClient::encodePathSegment($groupId) . "", $clientConfig, returnType: ProjectGroupDeletedResource::class, decoder: 'json', operationId: 'removeProjectGroup', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectGroupDeletedResource::class));
     }
 }

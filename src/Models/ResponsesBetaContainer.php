@@ -101,7 +101,9 @@ class BetaContainerAutoParam implements BetaFunctionShellToolParamEnvironment, \
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaContainerAutoParamTypeEnum::class),
             fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
@@ -208,12 +210,24 @@ class BetaContainerFileCitationBody implements BetaAnnotation, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
-        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
-        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
-        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
-        if (!property_exists($data, "filename") || $data->filename === null) { throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "container_id") || $data->container_id === null) {
+            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
+        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) {
+            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
+        }
+        if (!property_exists($data, "start_index") || $data->start_index === null) {
+            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
+        }
+        if (!property_exists($data, "end_index") || $data->end_index === null) {
+            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
+        }
+        if (!property_exists($data, "filename") || $data->filename === null) {
+            throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaContainerFileCitationBodyTypeEnum::class),
             containerId: SdkClient::stringValue($data->container_id),
@@ -321,12 +335,24 @@ class BetaContainerFileCitationParam implements BetaOutputTextContentParamAnnota
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
-        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
-        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
-        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
-        if (!property_exists($data, "filename") || $data->filename === null) { throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "start_index") || $data->start_index === null) {
+            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
+        }
+        if (!property_exists($data, "end_index") || $data->end_index === null) {
+            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
+        }
+        if (!property_exists($data, "container_id") || $data->container_id === null) {
+            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
+        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) {
+            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
+        }
+        if (!property_exists($data, "filename") || $data->filename === null) {
+            throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaContainerFileCitationParamTypeEnum::class),
             startIndex: SdkClient::intValue($data->start_index),

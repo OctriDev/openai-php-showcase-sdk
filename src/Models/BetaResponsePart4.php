@@ -97,11 +97,21 @@ class BetaResponseSteerPendingEvent implements BetaResponsesServerEvent, \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
-        if (!property_exists($data, "steer") || $data->steer === null) { throw new SdkValidationError("steer", 'required', "Required property 'steer' is missing or null"); }
-        if (!property_exists($data, "reason") || $data->reason === null) { throw new SdkValidationError("reason", 'required', "Required property 'reason' is missing or null"); }
-        if (!property_exists($data, "required_input") || $data->required_input === null) { throw new SdkValidationError("required_input", 'required', "Required property 'required_input' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
+        if (!property_exists($data, "steer") || $data->steer === null) {
+            throw new SdkValidationError("steer", 'required', "Required property 'steer' is missing or null");
+        }
+        if (!property_exists($data, "reason") || $data->reason === null) {
+            throw new SdkValidationError("reason", 'required', "Required property 'reason' is missing or null");
+        }
+        if (!property_exists($data, "required_input") || $data->required_input === null) {
+            throw new SdkValidationError("required_input", 'required', "Required property 'required_input' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseSteerPendingEventTypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
@@ -176,9 +186,15 @@ class BetaResponseSteerRequiredInputVariant0 implements BetaResponseSteerRequire
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) {
+            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseSteerRequiredInputVariant0TypeEnum::class),
             callId: SdkClient::stringValue($data->call_id),
@@ -240,8 +256,12 @@ class BetaResponseSteerRequiredInputVariant1 implements BetaResponseSteerRequire
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) {
+            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseSteerRequiredInputVariant1TypeEnum::class),
             callId: SdkClient::stringValue($data->call_id),
@@ -302,8 +322,12 @@ class BetaResponseSteerRequiredInputVariant2 implements BetaResponseSteerRequire
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) {
+            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseSteerRequiredInputVariant2TypeEnum::class),
             callId: SdkClient::stringValue($data->call_id),

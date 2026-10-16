@@ -15,11 +15,26 @@ final readonly class FileSearchRanker implements SdkOpenEnum
     public const AUTO = "auto";
     public const DEFAULT_2024_08_21 = "default_2024_08_21";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -72,7 +87,9 @@ class FileSearchRankingOptions implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "score_threshold") || $data->score_threshold === null) { throw new SdkValidationError("score_threshold", 'required', "Required property 'score_threshold' is missing or null"); }
+        if (!property_exists($data, "score_threshold") || $data->score_threshold === null) {
+            throw new SdkValidationError("score_threshold", 'required', "Required property 'score_threshold' is missing or null");
+        }
         return new self(
             scoreThreshold: SdkClient::floatValue($data->score_threshold),
             ranker: (property_exists($data, "ranker") ? SdkClient::hydrateStringEnumOrString($data->ranker, FileSearchRanker::class) : SdkNotGiven::Value),

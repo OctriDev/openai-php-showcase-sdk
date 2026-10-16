@@ -55,8 +55,12 @@ class RunStepDetailsToolCallsCodeOutputImageObject implements RunStepDetailsTool
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "image") || $data->image === null) { throw new SdkValidationError("image", 'required', "Required property 'image' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "image") || $data->image === null) {
+            throw new SdkValidationError("image", 'required', "Required property 'image' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum::class),
             image: SdkClient::hydrateClass($data->image, RunStepDetailsToolCallsCodeOutputImageObjectImage::class),
@@ -120,8 +124,12 @@ class RunStepDetailsToolCallsCodeOutputLogsObject implements RunStepDetailsToolC
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "logs") || $data->logs === null) { throw new SdkValidationError("logs", 'required', "Required property 'logs' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "logs") || $data->logs === null) {
+            throw new SdkValidationError("logs", 'required', "Required property 'logs' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum::class),
             logs: SdkClient::stringValue($data->logs),
@@ -254,9 +262,15 @@ class RunStepDetailsToolCallsFileSearchObject implements RunStepDetailsToolCalls
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "file_search") || $data->file_search === null) { throw new SdkValidationError("file_search", 'required', "Required property 'file_search' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "file_search") || $data->file_search === null) {
+            throw new SdkValidationError("file_search", 'required', "Required property 'file_search' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             type: SdkClient::hydrateEnum($data->type, RunStepDetailsToolCallsFileSearchObjectTypeEnum::class),
@@ -313,8 +327,12 @@ class RunStepDetailsToolCallsFileSearchRankingOptionsObject implements \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "ranker") || $data->ranker === null) { throw new SdkValidationError("ranker", 'required', "Required property 'ranker' is missing or null"); }
-        if (!property_exists($data, "score_threshold") || $data->score_threshold === null) { throw new SdkValidationError("score_threshold", 'required', "Required property 'score_threshold' is missing or null"); }
+        if (!property_exists($data, "ranker") || $data->ranker === null) {
+            throw new SdkValidationError("ranker", 'required', "Required property 'ranker' is missing or null");
+        }
+        if (!property_exists($data, "score_threshold") || $data->score_threshold === null) {
+            throw new SdkValidationError("score_threshold", 'required', "Required property 'score_threshold' is missing or null");
+        }
         return new self(
             ranker: SdkClient::hydrateStringEnumOrString($data->ranker, FileSearchRanker::class),
             scoreThreshold: SdkClient::floatValue($data->score_threshold),
@@ -329,9 +347,24 @@ final readonly class RunStepDetailsToolCallsFileSearchResultObjectContentItemTyp
 {
     public const TEXT = "text";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

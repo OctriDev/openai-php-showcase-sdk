@@ -348,8 +348,12 @@ class RealtimeSessionCreateRequestClientSecret implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
-        if (!property_exists($data, "expires_at") || $data->expires_at === null) { throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null"); }
+        if (!property_exists($data, "value") || $data->value === null) {
+            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
+        }
+        if (!property_exists($data, "expires_at") || $data->expires_at === null) {
+            throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null");
+        }
         return new self(
             value: SdkClient::stringValue($data->value),
             expiresAt: SdkClient::intValue($data->expires_at),

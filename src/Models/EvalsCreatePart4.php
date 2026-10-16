@@ -215,8 +215,12 @@ class CreateEvalResponsesRunDataSource implements CreateEvalRunRequestDataSource
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "source") || $data->source === null) { throw new SdkValidationError("source", 'required', "Required property 'source' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "source") || $data->source === null) {
+            throw new SdkValidationError("source", 'required', "Required property 'source' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalResponsesRunDataSourceTypeEnum::class),
             source: SdkClient::hydrateUnionAs($data->source, CreateEvalResponsesRunDataSourceSource::class, [EvalJsonlFileContentSource::class, EvalJsonlFileIdSource::class, EvalResponsesSource::class], "type", ["file_content" => EvalJsonlFileContentSource::class, "file_id" => EvalJsonlFileIdSource::class, "responses" => EvalResponsesSource::class], UnknownCreateEvalResponsesRunDataSourceSource::class),
@@ -280,8 +284,12 @@ class CreateEvalResponsesRunDataSourceInputMessagesVariant0 implements CreateEva
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "template") || $data->template === null) { throw new SdkValidationError("template", 'required', "Required property 'template' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "template") || $data->template === null) {
+            throw new SdkValidationError("template", 'required', "Required property 'template' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalResponsesRunDataSourceInputMessagesVariant0TypeEnum::class),
             template: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, TemplateItem2::class, [EvalItem::class], null, []), SdkClient::arrayValue($data->template))),
@@ -342,8 +350,12 @@ class CreateEvalResponsesRunDataSourceInputMessagesVariant1 implements CreateEva
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_reference") || $data->item_reference === null) { throw new SdkValidationError("item_reference", 'required', "Required property 'item_reference' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_reference") || $data->item_reference === null) {
+            throw new SdkValidationError("item_reference", 'required', "Required property 'item_reference' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum::class),
             itemReference: SdkClient::stringValue($data->item_reference),

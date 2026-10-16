@@ -77,9 +77,15 @@ class BetaPromptCacheMissDiagnosticsBody implements BetaPromptCacheDiagnostics, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "reason") || $data->reason === null) { throw new SdkValidationError("reason", 'required', "Required property 'reason' is missing or null"); }
-        if (!property_exists($data, "cache_missed_tokens") || $data->cache_missed_tokens === null) { throw new SdkValidationError("cache_missed_tokens", 'required', "Required property 'cache_missed_tokens' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "reason") || $data->reason === null) {
+            throw new SdkValidationError("reason", 'required', "Required property 'reason' is missing or null");
+        }
+        if (!property_exists($data, "cache_missed_tokens") || $data->cache_missed_tokens === null) {
+            throw new SdkValidationError("cache_missed_tokens", 'required', "Required property 'cache_missed_tokens' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaPromptCacheMissDiagnosticsBodyTypeEnum::class),
             reason: SdkClient::hydrateStringEnumOrString($data->reason, BetaCacheMissReasonTypeEnum::class),
@@ -97,11 +103,26 @@ final readonly class BetaPromptCacheModeEnum implements SdkOpenEnum
     public const IMPLICIT = "implicit";
     public const EXPLICIT = "explicit";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -164,8 +185,12 @@ class BetaPromptCacheOptions implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "ttl") || $data->ttl === null) { throw new SdkValidationError("ttl", 'required', "Required property 'ttl' is missing or null"); }
-        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
+        if (!property_exists($data, "ttl") || $data->ttl === null) {
+            throw new SdkValidationError("ttl", 'required', "Required property 'ttl' is missing or null");
+        }
+        if (!property_exists($data, "mode") || $data->mode === null) {
+            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
+        }
         return new self(
             ttl: SdkClient::hydrateStringEnumOrString($data->ttl, BetaPromptCacheTTLEnum::class),
             mode: SdkClient::hydrateStringEnumOrString($data->mode, BetaPromptCacheModeEnum::class),
@@ -241,11 +266,26 @@ final readonly class BetaPromptCacheRetentionEnum implements SdkOpenEnum
     public const IN_MEMORY = "in_memory";
     public const _24H = "24h";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -255,11 +295,26 @@ final readonly class BetaPromptCacheTTLEnum implements SdkOpenEnum
 {
     public const _30M = "30m";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -308,7 +363,9 @@ class BetaPromptCacheUnavailableDiagnosticsBody implements BetaPromptCacheDiagno
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaPromptCacheUnavailableDiagnosticsBodyTypeEnum::class),
         );

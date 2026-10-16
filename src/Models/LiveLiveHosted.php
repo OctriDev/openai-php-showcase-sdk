@@ -101,7 +101,9 @@ class LiveHostedShellContainerAutoParam implements LiveHostedShellToolInputParam
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveHostedShellContainerAutoParamTypeEnum::class),
             fileIds: (property_exists($data, "file_ids") ? ($data->file_ids === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids)))) : SdkNotGiven::Value),
@@ -168,8 +170,12 @@ class LiveHostedShellNetworkPolicyAllowlistParam implements LiveHostedShellConta
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "allowed_domains") || $data->allowed_domains === null) { throw new SdkValidationError("allowed_domains", 'required', "Required property 'allowed_domains' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "allowed_domains") || $data->allowed_domains === null) {
+            throw new SdkValidationError("allowed_domains", 'required', "Required property 'allowed_domains' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveHostedShellNetworkPolicyAllowlistParamTypeEnum::class),
             allowedDomains: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains))),
@@ -235,7 +241,9 @@ class LiveHostedShellToolInputParam implements LiveResponsesDelegationSettingsIn
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveHostedShellToolInputParamTypeEnum::class),
             environment: (property_exists($data, "environment") ? ($data->environment === null ? null : SdkClient::hydrateUnionAs($data->environment, LiveHostedShellToolInputParamEnvironment::class, [LiveHostedShellContainerAutoParam::class, LiveContainerReferenceParam::class, LiveLocalEnvironmentParam::class], "type", ["container_auto" => LiveHostedShellContainerAutoParam::class, "container_reference" => LiveContainerReferenceParam::class, "local" => LiveLocalEnvironmentParam::class], UnknownLiveHostedShellToolInputParamEnvironment::class)) : SdkNotGiven::Value),

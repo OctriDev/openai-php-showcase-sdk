@@ -165,7 +165,9 @@ class CreateAssistantRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
         return new self(
             model: SdkClient::hydrateStringEnumOrString($data->model, AssistantSupportedModels::class),
             name: (property_exists($data, "name") ? ($data->name === null ? null : SdkClient::stringValue($data->name)) : SdkNotGiven::Value),
@@ -225,7 +227,9 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresItemChunkingStrat
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateAssistantRequestToolResourcesFileSearchVectorStoresItemChunkingStrategyVariant0TypeEnum::class),
         );
@@ -288,8 +292,12 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresItemChunkingStrat
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "max_chunk_size_tokens") || $data->max_chunk_size_tokens === null) { throw new SdkValidationError("max_chunk_size_tokens", 'required', "Required property 'max_chunk_size_tokens' is missing or null"); }
-        if (!property_exists($data, "chunk_overlap_tokens") || $data->chunk_overlap_tokens === null) { throw new SdkValidationError("chunk_overlap_tokens", 'required', "Required property 'chunk_overlap_tokens' is missing or null"); }
+        if (!property_exists($data, "max_chunk_size_tokens") || $data->max_chunk_size_tokens === null) {
+            throw new SdkValidationError("max_chunk_size_tokens", 'required', "Required property 'max_chunk_size_tokens' is missing or null");
+        }
+        if (!property_exists($data, "chunk_overlap_tokens") || $data->chunk_overlap_tokens === null) {
+            throw new SdkValidationError("chunk_overlap_tokens", 'required', "Required property 'chunk_overlap_tokens' is missing or null");
+        }
         return new self(
             maxChunkSizeTokens: SdkClient::intValue($data->max_chunk_size_tokens),
             chunkOverlapTokens: SdkClient::intValue($data->chunk_overlap_tokens),
@@ -342,8 +350,12 @@ class CreateAssistantRequestToolResourcesFileSearchVectorStoresItemChunkingStrat
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "static") || $data->static === null) { throw new SdkValidationError("static", 'required', "Required property 'static' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "static") || $data->static === null) {
+            throw new SdkValidationError("static", 'required', "Required property 'static' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateAssistantRequestToolResourcesFileSearchVectorStoresItemChunkingStrategyVariant1TypeEnum::class),
             static_: SdkClient::hydrateClass($data->static, CreateAssistantRequestToolResourcesFileSearchVectorStoresItemChunkingStrategyVariant1Static::class),

@@ -16,11 +16,26 @@ final readonly class NetworkAccessParam implements SdkOpenEnum
     public const DISABLED = "disabled";
     public const RESTRICTED = "restricted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -32,11 +47,26 @@ final readonly class NetworkAccessResource implements SdkOpenEnum
     public const DISABLED = "disabled";
     public const RESTRICTED = "restricted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -101,7 +131,9 @@ class NetworkPolicyParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "access") || $data->access === null) { throw new SdkValidationError("access", 'required', "Required property 'access' is missing or null"); }
+        if (!property_exists($data, "access") || $data->access === null) {
+            throw new SdkValidationError("access", 'required', "Required property 'access' is missing or null");
+        }
         return new self(
             access: SdkClient::hydrateStringEnumOrString($data->access, NetworkAccessParam::class),
             allowedDomains: (property_exists($data, "allowed_domains") ? ($data->allowed_domains === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains)))) : SdkNotGiven::Value),
@@ -158,8 +190,12 @@ class NetworkPolicyResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "access") || $data->access === null) { throw new SdkValidationError("access", 'required', "Required property 'access' is missing or null"); }
-        if (!property_exists($data, "allowed_domains") || $data->allowed_domains === null) { throw new SdkValidationError("allowed_domains", 'required', "Required property 'allowed_domains' is missing or null"); }
+        if (!property_exists($data, "access") || $data->access === null) {
+            throw new SdkValidationError("access", 'required', "Required property 'access' is missing or null");
+        }
+        if (!property_exists($data, "allowed_domains") || $data->allowed_domains === null) {
+            throw new SdkValidationError("allowed_domains", 'required', "Required property 'allowed_domains' is missing or null");
+        }
         return new self(
             access: SdkClient::hydrateStringEnumOrString($data->access, NetworkAccessResource::class),
             allowedDomains: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains))),

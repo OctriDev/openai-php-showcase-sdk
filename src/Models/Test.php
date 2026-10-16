@@ -45,7 +45,9 @@ class PublicTestEndpointBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_type") || $data->event_type === null) { throw new SdkValidationError("event_type", 'required', "Required property 'event_type' is missing or null"); }
+        if (!property_exists($data, "event_type") || $data->event_type === null) {
+            throw new SdkValidationError("event_type", 'required', "Required property 'event_type' is missing or null");
+        }
         return new self(
             eventType: SdkClient::hydrateStringEnumOrString($data->event_type, ProjectEventTypeEnum::class),
         );
@@ -59,11 +61,26 @@ final readonly class WebhookEndpointTestResultResourceObjectEnum implements SdkO
 {
     public const WEBHOOK_ENDPOINT_TEST = "webhook_endpoint.test";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -144,11 +161,21 @@ class WebhookEndpointTestResultResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "webhook_endpoint_id") || $data->webhook_endpoint_id === null) { throw new SdkValidationError("webhook_endpoint_id", 'required', "Required property 'webhook_endpoint_id' is missing or null"); }
-        if (!property_exists($data, "event_type") || $data->event_type === null) { throw new SdkValidationError("event_type", 'required', "Required property 'event_type' is missing or null"); }
-        if (!property_exists($data, "status_code") || $data->status_code === null) { throw new SdkValidationError("status_code", 'required', "Required property 'status_code' is missing or null"); }
-        if (!property_exists($data, "success") || $data->success === null) { throw new SdkValidationError("success", 'required', "Required property 'success' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "webhook_endpoint_id") || $data->webhook_endpoint_id === null) {
+            throw new SdkValidationError("webhook_endpoint_id", 'required', "Required property 'webhook_endpoint_id' is missing or null");
+        }
+        if (!property_exists($data, "event_type") || $data->event_type === null) {
+            throw new SdkValidationError("event_type", 'required', "Required property 'event_type' is missing or null");
+        }
+        if (!property_exists($data, "status_code") || $data->status_code === null) {
+            throw new SdkValidationError("status_code", 'required', "Required property 'status_code' is missing or null");
+        }
+        if (!property_exists($data, "success") || $data->success === null) {
+            throw new SdkValidationError("success", 'required', "Required property 'success' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, WebhookEndpointTestResultResourceObjectEnum::class),
             webhookEndpointId: SdkClient::stringValue($data->webhook_endpoint_id),

@@ -195,22 +195,54 @@ class RunStepObject implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "assistant_id") || $data->assistant_id === null) { throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null"); }
-        if (!property_exists($data, "thread_id") || $data->thread_id === null) { throw new SdkValidationError("thread_id", 'required', "Required property 'thread_id' is missing or null"); }
-        if (!property_exists($data, "run_id") || $data->run_id === null) { throw new SdkValidationError("run_id", 'required', "Required property 'run_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "step_details") || $data->step_details === null) { throw new SdkValidationError("step_details", 'required', "Required property 'step_details' is missing or null"); }
-        if (!property_exists($data, "last_error")) { throw new SdkValidationError("last_error", 'required', "Missing required property 'last_error'"); }
-        if (!property_exists($data, "expired_at")) { throw new SdkValidationError("expired_at", 'required', "Missing required property 'expired_at'"); }
-        if (!property_exists($data, "cancelled_at")) { throw new SdkValidationError("cancelled_at", 'required', "Missing required property 'cancelled_at'"); }
-        if (!property_exists($data, "failed_at")) { throw new SdkValidationError("failed_at", 'required', "Missing required property 'failed_at'"); }
-        if (!property_exists($data, "completed_at")) { throw new SdkValidationError("completed_at", 'required', "Missing required property 'completed_at'"); }
-        if (!property_exists($data, "metadata")) { throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'"); }
-        if (!property_exists($data, "usage")) { throw new SdkValidationError("usage", 'required', "Missing required property 'usage'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "assistant_id") || $data->assistant_id === null) {
+            throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null");
+        }
+        if (!property_exists($data, "thread_id") || $data->thread_id === null) {
+            throw new SdkValidationError("thread_id", 'required', "Required property 'thread_id' is missing or null");
+        }
+        if (!property_exists($data, "run_id") || $data->run_id === null) {
+            throw new SdkValidationError("run_id", 'required', "Required property 'run_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "step_details") || $data->step_details === null) {
+            throw new SdkValidationError("step_details", 'required', "Required property 'step_details' is missing or null");
+        }
+        if (!property_exists($data, "last_error")) {
+            throw new SdkValidationError("last_error", 'required', "Missing required property 'last_error'");
+        }
+        if (!property_exists($data, "expired_at")) {
+            throw new SdkValidationError("expired_at", 'required', "Missing required property 'expired_at'");
+        }
+        if (!property_exists($data, "cancelled_at")) {
+            throw new SdkValidationError("cancelled_at", 'required', "Missing required property 'cancelled_at'");
+        }
+        if (!property_exists($data, "failed_at")) {
+            throw new SdkValidationError("failed_at", 'required', "Missing required property 'failed_at'");
+        }
+        if (!property_exists($data, "completed_at")) {
+            throw new SdkValidationError("completed_at", 'required', "Missing required property 'completed_at'");
+        }
+        if (!property_exists($data, "metadata")) {
+            throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'");
+        }
+        if (!property_exists($data, "usage")) {
+            throw new SdkValidationError("usage", 'required', "Missing required property 'usage'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, RunStepObjectObjectEnum::class),
@@ -278,8 +310,12 @@ class RunStepStreamEventThreadRunStepCreated implements AssistantStreamEvent, Ru
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, RunStepStreamEventThreadRunStepCreatedEventEnum::class),
             data: SdkClient::hydrateClass($data->data, RunStepObject::class),
@@ -333,8 +369,12 @@ class RunStepStreamEventThreadRunStepInProgress implements AssistantStreamEvent,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, RunStepStreamEventThreadRunStepInProgressEventEnum::class),
             data: SdkClient::hydrateClass($data->data, RunStepObject::class),

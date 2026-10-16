@@ -99,11 +99,26 @@ final readonly class BatchFileExpirationAfterAnchorEnum implements SdkOpenEnum
 {
     public const CREATED_AT = "created_at";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -154,8 +169,12 @@ class BatchFileExpirationAfter implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "anchor") || $data->anchor === null) { throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null"); }
-        if (!property_exists($data, "seconds") || $data->seconds === null) { throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null"); }
+        if (!property_exists($data, "anchor") || $data->anchor === null) {
+            throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null");
+        }
+        if (!property_exists($data, "seconds") || $data->seconds === null) {
+            throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null");
+        }
         return new self(
             anchor: SdkClient::hydrateStringEnumOrString($data->anchor, BatchFileExpirationAfterAnchorEnum::class),
             seconds: SdkClient::intValue($data->seconds),
@@ -221,9 +240,15 @@ class BatchRequestCounts implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "total") || $data->total === null) { throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null"); }
-        if (!property_exists($data, "completed") || $data->completed === null) { throw new SdkValidationError("completed", 'required', "Required property 'completed' is missing or null"); }
-        if (!property_exists($data, "failed") || $data->failed === null) { throw new SdkValidationError("failed", 'required', "Required property 'failed' is missing or null"); }
+        if (!property_exists($data, "total") || $data->total === null) {
+            throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null");
+        }
+        if (!property_exists($data, "completed") || $data->completed === null) {
+            throw new SdkValidationError("completed", 'required', "Required property 'completed' is missing or null");
+        }
+        if (!property_exists($data, "failed") || $data->failed === null) {
+            throw new SdkValidationError("failed", 'required', "Required property 'failed' is missing or null");
+        }
         return new self(
             total: SdkClient::intValue($data->total),
             completed: SdkClient::intValue($data->completed),
@@ -246,11 +271,26 @@ final readonly class CreateBatchRequestEndpointEnum implements SdkOpenEnum
     public const V1_IMAGES_EDITS = "/v1/images/edits";
     public const V1_VIDEOS = "/v1/videos";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -260,9 +300,24 @@ final readonly class CreateBatchRequestCompletionWindowEnum implements SdkOpenEn
 {
     public const _24H = "24h";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

@@ -65,7 +65,9 @@ class PersistedAgentToolConfigParamComputerUse implements PersistedAgentToolConf
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolConfigParamComputerUseTypeEnum::class),
             includeScreenshots: (property_exists($data, "include_screenshots") ? SdkClient::boolValue($data->include_screenshots) : SdkNotGiven::Value),
@@ -161,10 +163,18 @@ class PersistedAgentToolConfigParamFunction implements PersistedAgentToolConfigP
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "description") || $data->description === null) { throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null"); }
-        if (!property_exists($data, "parameters") || $data->parameters === null) { throw new SdkValidationError("parameters", 'required', "Required property 'parameters' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "description") || $data->description === null) {
+            throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null");
+        }
+        if (!property_exists($data, "parameters") || $data->parameters === null) {
+            throw new SdkValidationError("parameters", 'required', "Required property 'parameters' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolConfigParamFunctionTypeEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -301,9 +311,15 @@ class PersistedAgentToolConfigParamMcp implements PersistedAgentToolConfigParam,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "server_label") || $data->server_label === null) { throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null"); }
-        if (!property_exists($data, "transport") || $data->transport === null) { throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "server_label") || $data->server_label === null) {
+            throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null");
+        }
+        if (!property_exists($data, "transport") || $data->transport === null) {
+            throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolConfigParamMcpTypeEnum::class),
             serverLabel: SdkClient::stringValue($data->server_label),

@@ -14,11 +14,26 @@ final readonly class ConversationItemListObjectEnum implements SdkOpenEnum
 {
     public const LIST = "list";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -99,11 +114,21 @@ class ConversationItemList implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
-        if (!property_exists($data, "first_id") || $data->first_id === null) { throw new SdkValidationError("first_id", 'required', "Required property 'first_id' is missing or null"); }
-        if (!property_exists($data, "last_id") || $data->last_id === null) { throw new SdkValidationError("last_id", 'required', "Required property 'last_id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "has_more") || $data->has_more === null) {
+            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
+        }
+        if (!property_exists($data, "first_id") || $data->first_id === null) {
+            throw new SdkValidationError("first_id", 'required', "Required property 'first_id' is missing or null");
+        }
+        if (!property_exists($data, "last_id") || $data->last_id === null) {
+            throw new SdkValidationError("last_id", 'required', "Required property 'last_id' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ConversationItemListObjectEnum::class),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ConversationItem::class, [Message::class, FunctionToolCallResource::class, FunctionToolCallOutputResource::class, FileSearchToolCall::class, WebSearchToolCall::class, ImageGenToolCall::class, ComputerToolCall::class, ComputerToolCallOutputResource::class, ToolSearchCall::class, ToolSearchOutput::class, AdditionalTools::class, ResponseConfigurationUpdate::class, ReasoningItem::class, Program::class, ProgramOutput::class, CompactionBody::class, CodeInterpreterToolCall::class, LocalShellToolCall::class, LocalShellToolCallOutput::class, FunctionShellCall::class, FunctionShellCallOutput::class, ApplyPatchToolCall::class, ApplyPatchToolCallOutput::class, MCPListTools::class, MCPApprovalRequest::class, MCPApprovalResponseResource::class, MCPToolCall::class, CustomToolCall::class, CustomToolCallOutput::class], "type", ["message" => Message::class, "function_call" => FunctionToolCallResource::class, "function_call_output" => FunctionToolCallOutputResource::class, "file_search_call" => FileSearchToolCall::class, "web_search_call" => WebSearchToolCall::class, "image_generation_call" => ImageGenToolCall::class, "computer_call" => ComputerToolCall::class, "computer_call_output" => ComputerToolCallOutputResource::class, "tool_search_call" => ToolSearchCall::class, "tool_search_output" => ToolSearchOutput::class, "additional_tools" => AdditionalTools::class, "configuration_update" => ResponseConfigurationUpdate::class, "reasoning" => ReasoningItem::class, "program" => Program::class, "program_output" => ProgramOutput::class, "compaction" => CompactionBody::class, "code_interpreter_call" => CodeInterpreterToolCall::class, "local_shell_call" => LocalShellToolCall::class, "local_shell_call_output" => LocalShellToolCallOutput::class, "shell_call" => FunctionShellCall::class, "shell_call_output" => FunctionShellCallOutput::class, "apply_patch_call" => ApplyPatchToolCall::class, "apply_patch_call_output" => ApplyPatchToolCallOutput::class, "mcp_list_tools" => MCPListTools::class, "mcp_approval_request" => MCPApprovalRequest::class, "mcp_approval_response" => MCPApprovalResponseResource::class, "mcp_call" => MCPToolCall::class, "custom_tool_call" => CustomToolCall::class, "custom_tool_call_output" => CustomToolCallOutput::class], UnknownConversationItem::class), SdkClient::arrayValue($data->data))),
@@ -121,11 +146,26 @@ final readonly class ConversationResourceObjectEnum implements SdkOpenEnum
 {
     public const CONVERSATION = "conversation";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -196,10 +236,18 @@ class ConversationResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "metadata") || $data->metadata === null) { throw new SdkValidationError("metadata", 'required', "Required property 'metadata' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "metadata") || $data->metadata === null) {
+            throw new SdkValidationError("metadata", 'required', "Required property 'metadata' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, ConversationResourceObjectEnum::class),
@@ -275,11 +323,26 @@ final readonly class DeletedConversationResourceObjectEnum implements SdkOpenEnu
 {
     public const CONVERSATION_DELETED = "conversation.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -340,9 +403,15 @@ class DeletedConversationResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "deleted") || $data->deleted === null) {
+            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, DeletedConversationResourceObjectEnum::class),
             deleted: SdkClient::boolValue($data->deleted),

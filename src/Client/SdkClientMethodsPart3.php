@@ -315,7 +315,8 @@ trait SdkClientMethodsPart3
             return false;
         }
 
-        return match ($scheme) {"ApiKeyAuth" => $auth->apiKeyAuth !== null,"AdminApiKeyAuth" => $auth->adminApiKeyAuth !== null,default => false,
+        return match ($scheme) {
+            "ApiKeyAuth" => $auth->apiKeyAuth !== null,"AdminApiKeyAuth" => $auth->adminApiKeyAuth !== null,default => false,
         };
     }
 }

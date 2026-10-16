@@ -165,7 +165,9 @@ class ChatCompletionMessageListDataItemContentPartsItem implements \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ChatCompletionMessageListDataItemContentPartsItemTypeEnum::class),
             text: (property_exists($data, "text") ? ($data->text === null ? null : SdkClient::stringValue($data->text)) : SdkNotGiven::Value),
@@ -256,10 +258,18 @@ class ChatCompletionMessageListDataItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
-        if (!property_exists($data, "content")) { throw new SdkValidationError("content", 'required', "Missing required property 'content'"); }
-        if (!property_exists($data, "content_parts")) { throw new SdkValidationError("content_parts", 'required', "Missing required property 'content_parts'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
+        if (!property_exists($data, "content")) {
+            throw new SdkValidationError("content", 'required', "Missing required property 'content'");
+        }
+        if (!property_exists($data, "content_parts")) {
+            throw new SdkValidationError("content_parts", 'required', "Missing required property 'content_parts'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             role: SdkClient::hydrateStringEnumOrString($data->role, ChatCompletionMessageListDataItemRoleEnum::class),

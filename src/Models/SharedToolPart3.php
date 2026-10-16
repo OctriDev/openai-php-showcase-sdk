@@ -139,8 +139,12 @@ class ToolSearchOutputFunctionToolParam implements ToolSearchOutputNamespaceTool
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             name: SdkClient::stringValue($data->name),
             type: SdkClient::hydrateEnum($data->type, ToolSearchOutputFunctionToolParamTypeEnum::class),
@@ -259,8 +263,12 @@ class ToolSearchOutputItemParam implements InputItem, Item, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "tools") || $data->tools === null) { throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "tools") || $data->tools === null) {
+            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ToolSearchOutputItemParamTypeEnum::class),
             tools: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ToolSearchOutputTool::class, [FunctionTool::class, FileSearchTool::class, ComputerTool::class, ComputerUsePreviewTool::class, WebSearchTool::class, MCPTool::class, CodeInterpreterTool::class, ProgrammaticToolCallingParam::class, ImageGenTool::class, LocalShellToolParam::class, FunctionShellToolParam::class, CustomToolParam::class, ToolSearchOutputNamespaceToolParam::class, ToolSearchToolParam::class, WebSearchPreviewTool::class, ApplyPatchToolParam::class], "type", ["function" => FunctionTool::class, "file_search" => FileSearchTool::class, "computer" => ComputerTool::class, "computer_use_preview" => ComputerUsePreviewTool::class, "web_search" => WebSearchTool::class, "web_search_2025_08_26" => WebSearchTool::class, "mcp" => MCPTool::class, "code_interpreter" => CodeInterpreterTool::class, "programmatic_tool_calling" => ProgrammaticToolCallingParam::class, "image_generation" => ImageGenTool::class, "local_shell" => LocalShellToolParam::class, "shell" => FunctionShellToolParam::class, "custom" => CustomToolParam::class, "namespace" => ToolSearchOutputNamespaceToolParam::class, "tool_search" => ToolSearchToolParam::class, "web_search_preview" => WebSearchPreviewTool::class, "web_search_preview_2025_03_11" => WebSearchPreviewTool::class, "apply_patch" => ApplyPatchToolParam::class], UnknownToolSearchOutputTool::class), SdkClient::arrayValue($data->tools))),

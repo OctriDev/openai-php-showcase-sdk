@@ -63,8 +63,12 @@ class BetaTextContent implements BetaAgentMessageContentItem, BetaMessageContent
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaTextContentTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -162,9 +166,15 @@ class BetaTextResponseFormatJsonSchema implements BetaTextResponseFormatConfigur
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "schema") || $data->schema === null) { throw new SdkValidationError("schema", 'required', "Required property 'schema' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "schema") || $data->schema === null) {
+            throw new SdkValidationError("schema", 'required', "Required property 'schema' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaTextResponseFormatJsonSchemaTypeEnum::class),
             name: SdkClient::stringValue($data->name),

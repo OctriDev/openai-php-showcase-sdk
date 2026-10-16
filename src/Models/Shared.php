@@ -14,11 +14,26 @@ final readonly class ApproximateLocationTypeEnum implements SdkOpenEnum
 {
     public const APPROXIMATE = "approximate";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -107,7 +122,9 @@ class ApproximateLocation implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ApproximateLocationTypeEnum::class),
             country: (property_exists($data, "country") ? ($data->country === null ? null : SdkClient::stringValue($data->country)) : SdkNotGiven::Value),
@@ -166,8 +183,12 @@ class AssignedRoleDetailsAssignmentSourcesItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "principal_id") || $data->principal_id === null) { throw new SdkValidationError("principal_id", 'required', "Required property 'principal_id' is missing or null"); }
-        if (!property_exists($data, "principal_type") || $data->principal_type === null) { throw new SdkValidationError("principal_type", 'required', "Required property 'principal_type' is missing or null"); }
+        if (!property_exists($data, "principal_id") || $data->principal_id === null) {
+            throw new SdkValidationError("principal_id", 'required', "Required property 'principal_id' is missing or null");
+        }
+        if (!property_exists($data, "principal_type") || $data->principal_type === null) {
+            throw new SdkValidationError("principal_type", 'required', "Required property 'principal_type' is missing or null");
+        }
         return new self(
             principalId: SdkClient::stringValue($data->principal_id),
             principalType: SdkClient::stringValue($data->principal_type),
@@ -323,18 +344,42 @@ class AssignedRoleDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "permissions") || $data->permissions === null) { throw new SdkValidationError("permissions", 'required', "Required property 'permissions' is missing or null"); }
-        if (!property_exists($data, "resource_type") || $data->resource_type === null) { throw new SdkValidationError("resource_type", 'required', "Required property 'resource_type' is missing or null"); }
-        if (!property_exists($data, "predefined_role") || $data->predefined_role === null) { throw new SdkValidationError("predefined_role", 'required', "Required property 'predefined_role' is missing or null"); }
-        if (!property_exists($data, "description")) { throw new SdkValidationError("description", 'required', "Missing required property 'description'"); }
-        if (!property_exists($data, "created_at")) { throw new SdkValidationError("created_at", 'required', "Missing required property 'created_at'"); }
-        if (!property_exists($data, "updated_at")) { throw new SdkValidationError("updated_at", 'required', "Missing required property 'updated_at'"); }
-        if (!property_exists($data, "created_by")) { throw new SdkValidationError("created_by", 'required', "Missing required property 'created_by'"); }
-        if (!property_exists($data, "created_by_user_obj")) { throw new SdkValidationError("created_by_user_obj", 'required', "Missing required property 'created_by_user_obj'"); }
-        if (!property_exists($data, "metadata")) { throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'"); }
-        if (!property_exists($data, "assignment_sources")) { throw new SdkValidationError("assignment_sources", 'required', "Missing required property 'assignment_sources'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "permissions") || $data->permissions === null) {
+            throw new SdkValidationError("permissions", 'required', "Required property 'permissions' is missing or null");
+        }
+        if (!property_exists($data, "resource_type") || $data->resource_type === null) {
+            throw new SdkValidationError("resource_type", 'required', "Required property 'resource_type' is missing or null");
+        }
+        if (!property_exists($data, "predefined_role") || $data->predefined_role === null) {
+            throw new SdkValidationError("predefined_role", 'required', "Required property 'predefined_role' is missing or null");
+        }
+        if (!property_exists($data, "description")) {
+            throw new SdkValidationError("description", 'required', "Missing required property 'description'");
+        }
+        if (!property_exists($data, "created_at")) {
+            throw new SdkValidationError("created_at", 'required', "Missing required property 'created_at'");
+        }
+        if (!property_exists($data, "updated_at")) {
+            throw new SdkValidationError("updated_at", 'required', "Missing required property 'updated_at'");
+        }
+        if (!property_exists($data, "created_by")) {
+            throw new SdkValidationError("created_by", 'required', "Missing required property 'created_by'");
+        }
+        if (!property_exists($data, "created_by_user_obj")) {
+            throw new SdkValidationError("created_by_user_obj", 'required', "Missing required property 'created_by_user_obj'");
+        }
+        if (!property_exists($data, "metadata")) {
+            throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'");
+        }
+        if (!property_exists($data, "assignment_sources")) {
+            throw new SdkValidationError("assignment_sources", 'required', "Missing required property 'assignment_sources'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             name: SdkClient::stringValue($data->name),
