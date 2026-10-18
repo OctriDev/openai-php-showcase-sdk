@@ -104,10 +104,10 @@ class ContainerAutoParam implements FunctionShellToolParamEnvironment, \JsonSeri
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ContainerAutoParamTypeEnum::class),
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
             memoryLimit: (property_exists($data, "memory_limit") ? ($data->memory_limit === null ? null : SdkClient::hydrateStringEnumOrString($data->memory_limit, ContainerMemoryLimit::class)) : SdkNotGiven::Value),
-            networkPolicy: (property_exists($data, "network_policy") ? SdkClient::hydrateUnionAs($data->network_policy, ContainerAutoParamNetworkPolicy::class, [ContainerNetworkPolicyDisabledParam::class, ContainerNetworkPolicyAllowlistParam::class], "type", ["disabled" => ContainerNetworkPolicyDisabledParam::class, "allowlist" => ContainerNetworkPolicyAllowlistParam::class], UnknownContainerAutoParamNetworkPolicy::class) : SdkNotGiven::Value),
-            skills: (property_exists($data, "skills") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ContainerAutoParamSkillsItem::class, [SkillReferenceParam::class, InlineSkillParam::class], "type", ["skill_reference" => SkillReferenceParam::class, "inline" => InlineSkillParam::class], UnknownContainerAutoParamSkillsItem::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
+            networkPolicy: (property_exists($data, "network_policy") && $data->network_policy !== null ? SdkClient::hydrateUnionAs($data->network_policy, ContainerAutoParamNetworkPolicy::class, [ContainerNetworkPolicyDisabledParam::class, ContainerNetworkPolicyAllowlistParam::class], "type", ["disabled" => ContainerNetworkPolicyDisabledParam::class, "allowlist" => ContainerNetworkPolicyAllowlistParam::class], UnknownContainerAutoParamNetworkPolicy::class) : SdkNotGiven::Value),
+            skills: (property_exists($data, "skills") && $data->skills !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ContainerAutoParamSkillsItem::class, [SkillReferenceParam::class, InlineSkillParam::class], "type", ["skill_reference" => SkillReferenceParam::class, "inline" => InlineSkillParam::class], UnknownContainerAutoParamSkillsItem::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
         );
     }
 }
@@ -315,7 +315,7 @@ class ContainerNetworkPolicyAllowlistParam implements AutoCodeInterpreterToolPar
         return new self(
             type: SdkClient::hydrateEnum($data->type, ContainerNetworkPolicyAllowlistParamTypeEnum::class),
             allowedDomains: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains))),
-            domainSecrets: (property_exists($data, "domain_secrets") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ContainerNetworkPolicyDomainSecretParam::class), SdkClient::arrayValue($data->domain_secrets))) : SdkNotGiven::Value),
+            domainSecrets: (property_exists($data, "domain_secrets") && $data->domain_secrets !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ContainerNetworkPolicyDomainSecretParam::class), SdkClient::arrayValue($data->domain_secrets))) : SdkNotGiven::Value),
         );
     }
 }

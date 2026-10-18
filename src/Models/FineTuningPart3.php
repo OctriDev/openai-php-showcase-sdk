@@ -84,10 +84,10 @@ class FineTuneDPOHyperparameters implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            beta: (property_exists($data, "beta") ? (is_float($data->beta) || is_int($data->beta) ? SdkClient::floatValue($data->beta) : SdkClient::hydrateStringEnumOrString($data->beta, FineTuneDPOHyperparametersBetaEnum::class)) : SdkNotGiven::Value),
-            batchSize: (property_exists($data, "batch_size") ? (is_int($data->batch_size) ? SdkClient::intValue($data->batch_size) : SdkClient::hydrateStringEnumOrString($data->batch_size, FineTuneDPOHyperparametersBatchSizeEnum::class)) : SdkNotGiven::Value),
-            learningRateMultiplier: (property_exists($data, "learning_rate_multiplier") ? (is_float($data->learning_rate_multiplier) || is_int($data->learning_rate_multiplier) ? SdkClient::floatValue($data->learning_rate_multiplier) : SdkClient::hydrateStringEnumOrString($data->learning_rate_multiplier, FineTuneDPOHyperparametersLearningRateMultiplierEnum::class)) : SdkNotGiven::Value),
-            nEpochs: (property_exists($data, "n_epochs") ? (is_int($data->n_epochs) ? SdkClient::intValue($data->n_epochs) : SdkClient::hydrateStringEnumOrString($data->n_epochs, FineTuneDPOHyperparametersNEpochsEnum::class)) : SdkNotGiven::Value),
+            beta: (property_exists($data, "beta") && $data->beta !== null ? (is_float($data->beta) || is_int($data->beta) ? SdkClient::floatValue($data->beta) : SdkClient::hydrateStringEnumOrString($data->beta, FineTuneDPOHyperparametersBetaEnum::class)) : SdkNotGiven::Value),
+            batchSize: (property_exists($data, "batch_size") && $data->batch_size !== null ? (is_int($data->batch_size) ? SdkClient::intValue($data->batch_size) : SdkClient::hydrateStringEnumOrString($data->batch_size, FineTuneDPOHyperparametersBatchSizeEnum::class)) : SdkNotGiven::Value),
+            learningRateMultiplier: (property_exists($data, "learning_rate_multiplier") && $data->learning_rate_multiplier !== null ? (is_float($data->learning_rate_multiplier) || is_int($data->learning_rate_multiplier) ? SdkClient::floatValue($data->learning_rate_multiplier) : SdkClient::hydrateStringEnumOrString($data->learning_rate_multiplier, FineTuneDPOHyperparametersLearningRateMultiplierEnum::class)) : SdkNotGiven::Value),
+            nEpochs: (property_exists($data, "n_epochs") && $data->n_epochs !== null ? (is_int($data->n_epochs) ? SdkClient::intValue($data->n_epochs) : SdkClient::hydrateStringEnumOrString($data->n_epochs, FineTuneDPOHyperparametersNEpochsEnum::class)) : SdkNotGiven::Value),
         );
     }
 }
@@ -133,7 +133,7 @@ class FineTuneDPOMethod implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            hyperparameters: (property_exists($data, "hyperparameters") ? SdkClient::hydrateClass($data->hyperparameters, FineTuneDPOHyperparameters::class) : SdkNotGiven::Value),
+            hyperparameters: (property_exists($data, "hyperparameters") && $data->hyperparameters !== null ? SdkClient::hydrateClass($data->hyperparameters, FineTuneDPOHyperparameters::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -231,9 +231,9 @@ class FineTuneMethod implements \JsonSerializable
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, FineTuneMethodTypeEnum::class),
-            supervised: (property_exists($data, "supervised") ? SdkClient::hydrateClass($data->supervised, FineTuneSupervisedMethod::class) : SdkNotGiven::Value),
-            dpo: (property_exists($data, "dpo") ? SdkClient::hydrateClass($data->dpo, FineTuneDPOMethod::class) : SdkNotGiven::Value),
-            reinforcement: (property_exists($data, "reinforcement") ? SdkClient::hydrateClass($data->reinforcement, FineTuneReinforcementMethod::class) : SdkNotGiven::Value),
+            supervised: (property_exists($data, "supervised") && $data->supervised !== null ? SdkClient::hydrateClass($data->supervised, FineTuneSupervisedMethod::class) : SdkNotGiven::Value),
+            dpo: (property_exists($data, "dpo") && $data->dpo !== null ? SdkClient::hydrateClass($data->dpo, FineTuneDPOMethod::class) : SdkNotGiven::Value),
+            reinforcement: (property_exists($data, "reinforcement") && $data->reinforcement !== null ? SdkClient::hydrateClass($data->reinforcement, FineTuneReinforcementMethod::class) : SdkNotGiven::Value),
         );
     }
 }

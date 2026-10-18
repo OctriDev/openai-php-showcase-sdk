@@ -149,9 +149,9 @@ class TranscriptTextDeltaEventLogprobsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            token: (property_exists($data, "token") ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
-            logprob: (property_exists($data, "logprob") ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
-            bytes: (property_exists($data, "bytes") ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->bytes))) : SdkNotGiven::Value),
+            token: (property_exists($data, "token") && $data->token !== null ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
+            logprob: (property_exists($data, "logprob") && $data->logprob !== null ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
+            bytes: (property_exists($data, "bytes") && $data->bytes !== null ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->bytes))) : SdkNotGiven::Value),
         );
     }
 }
@@ -233,8 +233,8 @@ class TranscriptTextDeltaEvent implements CreateTranscriptionResponseStreamEvent
         return new self(
             type: SdkClient::hydrateEnum($data->type, TranscriptTextDeltaEventTypeEnum::class),
             delta: SdkClient::stringValue($data->delta),
-            logprobs: (property_exists($data, "logprobs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptTextDeltaEventLogprobsItem::class), SdkClient::arrayValue($data->logprobs))) : SdkNotGiven::Value),
-            segmentId: (property_exists($data, "segment_id") ? SdkClient::stringValue($data->segment_id) : SdkNotGiven::Value),
+            logprobs: (property_exists($data, "logprobs") && $data->logprobs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptTextDeltaEventLogprobsItem::class), SdkClient::arrayValue($data->logprobs))) : SdkNotGiven::Value),
+            segmentId: (property_exists($data, "segment_id") && $data->segment_id !== null ? SdkClient::stringValue($data->segment_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -312,9 +312,9 @@ class TranscriptTextDoneEventLogprobsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            token: (property_exists($data, "token") ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
-            logprob: (property_exists($data, "logprob") ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
-            bytes: (property_exists($data, "bytes") ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->bytes))) : SdkNotGiven::Value),
+            token: (property_exists($data, "token") && $data->token !== null ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
+            logprob: (property_exists($data, "logprob") && $data->logprob !== null ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
+            bytes: (property_exists($data, "bytes") && $data->bytes !== null ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->bytes))) : SdkNotGiven::Value),
         );
     }
 }

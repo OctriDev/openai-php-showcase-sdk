@@ -60,8 +60,8 @@ class MessageDeltaContentTextObjectText implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            value: (property_exists($data, "value") ? SdkClient::stringValue($data->value) : SdkNotGiven::Value),
-            annotations: (property_exists($data, "annotations") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, MessageDeltaContentTextObjectTextAnnotationsItem::class, [MessageDeltaContentTextAnnotationsFileCitationObject::class, MessageDeltaContentTextAnnotationsFilePathObject::class], "type", ["file_citation" => MessageDeltaContentTextAnnotationsFileCitationObject::class, "file_path" => MessageDeltaContentTextAnnotationsFilePathObject::class], UnknownMessageDeltaContentTextObjectTextAnnotationsItem::class), SdkClient::arrayValue($data->annotations))) : SdkNotGiven::Value),
+            value: (property_exists($data, "value") && $data->value !== null ? SdkClient::stringValue($data->value) : SdkNotGiven::Value),
+            annotations: (property_exists($data, "annotations") && $data->annotations !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, MessageDeltaContentTextObjectTextAnnotationsItem::class, [MessageDeltaContentTextAnnotationsFileCitationObject::class, MessageDeltaContentTextAnnotationsFilePathObject::class], "type", ["file_citation" => MessageDeltaContentTextAnnotationsFileCitationObject::class, "file_path" => MessageDeltaContentTextAnnotationsFilePathObject::class], UnknownMessageDeltaContentTextObjectTextAnnotationsItem::class), SdkClient::arrayValue($data->annotations))) : SdkNotGiven::Value),
         );
     }
 }
@@ -131,7 +131,7 @@ class MessageDeltaContentTextObject implements MessageDeltaObjectDeltaContentIte
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, MessageDeltaContentTextObjectTypeEnum::class),
-            text: (property_exists($data, "text") ? SdkClient::hydrateClass($data->text, MessageDeltaContentTextObjectText::class) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::hydrateClass($data->text, MessageDeltaContentTextObjectText::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -218,8 +218,8 @@ class MessageDeltaObjectDelta implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            role: (property_exists($data, "role") ? SdkClient::hydrateStringEnumOrString($data->role, MessageDeltaObjectDeltaRoleEnum::class) : SdkNotGiven::Value),
-            content: (property_exists($data, "content") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, MessageDeltaObjectDeltaContentItem::class, [MessageDeltaContentImageFileObject::class, MessageDeltaContentTextObject::class, MessageDeltaContentRefusalObject::class, MessageDeltaContentImageUrlObject::class], "type", ["image_file" => MessageDeltaContentImageFileObject::class, "text" => MessageDeltaContentTextObject::class, "refusal" => MessageDeltaContentRefusalObject::class, "image_url" => MessageDeltaContentImageUrlObject::class], UnknownMessageDeltaObjectDeltaContentItem::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
+            role: (property_exists($data, "role") && $data->role !== null ? SdkClient::hydrateStringEnumOrString($data->role, MessageDeltaObjectDeltaRoleEnum::class) : SdkNotGiven::Value),
+            content: (property_exists($data, "content") && $data->content !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, MessageDeltaObjectDeltaContentItem::class, [MessageDeltaContentImageFileObject::class, MessageDeltaContentTextObject::class, MessageDeltaContentRefusalObject::class, MessageDeltaContentImageUrlObject::class], "type", ["image_file" => MessageDeltaContentImageFileObject::class, "text" => MessageDeltaContentTextObject::class, "refusal" => MessageDeltaContentRefusalObject::class, "image_url" => MessageDeltaContentImageUrlObject::class], UnknownMessageDeltaObjectDeltaContentItem::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
         );
     }
 }

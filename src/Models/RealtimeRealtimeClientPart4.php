@@ -72,7 +72,7 @@ class RealtimeClientEventTranscriptionSessionUpdate implements \JsonSerializable
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeClientEventTranscriptionSessionUpdateTypeEnum::class),
             session: SdkClient::hydrateClass($data->session, RealtimeTranscriptionSessionCreateRequest::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }

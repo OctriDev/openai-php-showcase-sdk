@@ -40,7 +40,7 @@ trait ImagesMethodsPart1
     {
         foreach (SdkClient::stream(
             'POST',
-            '/images/edits',
+            "/images/edits",
             config: $clientConfig,
             body: SdkClient::formValue($body, [CreateImageEditRequest::class => ['image', 'mask']]),
             contentType: SdkClient::bodyContentType($contentType, $body, 'application/json'),
@@ -122,7 +122,7 @@ trait ImagesMethodsPart1
     {
         foreach (SdkClient::stream(
             'POST',
-            '/images/generations',
+            "/images/generations",
             config: $clientConfig,
             body: ['prompt' => $prompt, 'model' => $model, 'stream' => $stream, 'n' => $n, 'quality' => $quality, 'response_format' => $responseFormat, 'output_format' => $outputFormat, 'output_compression' => $outputCompression, 'partial_images' => $partialImages, 'size' => $size, 'moderation' => $moderation, 'background' => $background, 'style' => $style, 'safety_identifier' => $safetyIdentifier, 'user' => $user],
             contentType: 'application/json',

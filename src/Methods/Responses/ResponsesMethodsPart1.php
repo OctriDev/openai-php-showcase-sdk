@@ -38,7 +38,7 @@ trait ResponsesMethodsPart1
     {
         foreach (SdkClient::stream(
             'POST',
-            '/responses',
+            "/responses",
             config: $clientConfig,
             body: $body,
             contentType: 'application/json',
@@ -92,7 +92,7 @@ trait ResponsesMethodsPart1
     {
         foreach (SdkClient::stream(
             'GET',
-            '/responses/" . SdkClient::encodePathSegment($responseId) . "',
+            "/responses/" . SdkClient::encodePathSegment($responseId) . "",
             config: $clientConfig,
             query: [
             'include' => new SdkQueryValue($include, "form", true),

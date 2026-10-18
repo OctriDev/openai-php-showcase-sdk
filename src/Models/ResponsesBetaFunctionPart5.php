@@ -292,10 +292,10 @@ class BetaFunctionTool implements BetaTool, BetaToolSearchOutputTool, \JsonSeria
             name: SdkClient::stringValue($data->name),
             parameters: ($data->parameters === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->parameters), static fn($item) => $item)),
             strict: ($data->strict === null ? null : SdkClient::boolValue($data->strict)),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
             description: (property_exists($data, "description") ? ($data->description === null ? null : SdkClient::stringValue($data->description)) : SdkNotGiven::Value),
             outputSchema: (property_exists($data, "output_schema") ? ($data->output_schema === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->output_schema), static fn($item) => $item)) : SdkNotGiven::Value),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
             allowedCallers: (property_exists($data, "allowed_callers") ? ($data->allowed_callers === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, BetaCallableToolAllowedCaller::class), SdkClient::arrayValue($data->allowed_callers)))) : SdkNotGiven::Value),
         );
     }

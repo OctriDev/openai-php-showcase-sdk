@@ -96,8 +96,8 @@ class LiveLiveError implements \JsonSerializable
             type: SdkClient::stringValue($data->type),
             code: SdkClient::stringValue($data->code),
             message: SdkClient::stringValue($data->message),
-            param: (property_exists($data, "param") ? SdkClient::stringValue($data->param) : SdkNotGiven::Value),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            param: (property_exists($data, "param") && $data->param !== null ? SdkClient::stringValue($data->param) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }

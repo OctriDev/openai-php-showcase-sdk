@@ -152,9 +152,9 @@ class BetaFunctionShellCall implements BetaItemResource, BetaItemField, BetaOutp
             action: SdkClient::hydrateClass($data->action, BetaFunctionShellAction::class),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionShellCallStatus::class),
             environment: ($data->environment === null ? null : SdkClient::hydrateUnionAs($data->environment, BetaFunctionShellCallEnvironment::class, [BetaLocalEnvironmentResource::class, BetaContainerReferenceResource::class], "type", ["local" => BetaLocalEnvironmentResource::class, "container_reference" => BetaContainerReferenceResource::class], UnknownBetaFunctionShellCallEnvironment::class)),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCaller::class, [BetaDirectToolCallCaller::class, BetaProgramToolCallCaller::class], "type", ["direct" => BetaDirectToolCallCaller::class, "program" => BetaProgramToolCallCaller::class], UnknownBetaToolCallCaller::class)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

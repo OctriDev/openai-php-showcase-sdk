@@ -104,7 +104,7 @@ class BetaResponseCompactionCompactingStreamingEvent implements BetaResponseStre
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             outputIndex: SdkClient::intValue($data->output_index),
             itemId: SdkClient::stringValue($data->item_id),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }

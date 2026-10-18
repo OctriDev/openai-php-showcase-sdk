@@ -48,7 +48,7 @@ class RealtimeReasoning implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            effort: (property_exists($data, "effort") ? SdkClient::hydrateStringEnumOrString($data->effort, RealtimeReasoningEffort::class) : SdkNotGiven::Value),
+            effort: (property_exists($data, "effort") && $data->effort !== null ? SdkClient::hydrateStringEnumOrString($data->effort, RealtimeReasoningEffort::class) : SdkNotGiven::Value),
         );
     }
 }

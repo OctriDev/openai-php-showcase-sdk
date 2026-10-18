@@ -120,7 +120,7 @@ class ResponseReasoningSummaryPartDoneEvent implements ResponseStreamEvent, \Jso
             summaryIndex: SdkClient::intValue($data->summary_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             part: SdkClient::hydrateClass($data->part, ResponseReasoningSummaryPartDoneEventPart::class),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, ResponseReasoningSummaryPartDoneEventStatusEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, ResponseReasoningSummaryPartDoneEventStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

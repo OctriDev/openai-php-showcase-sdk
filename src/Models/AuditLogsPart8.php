@@ -60,8 +60,8 @@ class AuditLogProjectUpdated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            changesRequested: (property_exists($data, "changes_requested") ? SdkClient::hydrateClass($data->changes_requested, AuditLogProjectUpdatedChangesRequested::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            changesRequested: (property_exists($data, "changes_requested") && $data->changes_requested !== null ? SdkClient::hydrateClass($data->changes_requested, AuditLogProjectUpdatedChangesRequested::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -107,7 +107,7 @@ class AuditLogProjectArchived implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -153,7 +153,7 @@ class AuditLogProjectDeleted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -259,12 +259,12 @@ class AuditLogRateLimitUpdatedChangesRequested implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            maxRequestsPer1Minute: (property_exists($data, "max_requests_per_1_minute") ? SdkClient::intValue($data->max_requests_per_1_minute) : SdkNotGiven::Value),
-            maxTokensPer1Minute: (property_exists($data, "max_tokens_per_1_minute") ? SdkClient::intValue($data->max_tokens_per_1_minute) : SdkNotGiven::Value),
-            maxImagesPer1Minute: (property_exists($data, "max_images_per_1_minute") ? SdkClient::intValue($data->max_images_per_1_minute) : SdkNotGiven::Value),
-            maxAudioMegabytesPer1Minute: (property_exists($data, "max_audio_megabytes_per_1_minute") ? SdkClient::intValue($data->max_audio_megabytes_per_1_minute) : SdkNotGiven::Value),
-            maxRequestsPer1Day: (property_exists($data, "max_requests_per_1_day") ? SdkClient::intValue($data->max_requests_per_1_day) : SdkNotGiven::Value),
-            batch1DayMaxInputTokens: (property_exists($data, "batch_1_day_max_input_tokens") ? SdkClient::intValue($data->batch_1_day_max_input_tokens) : SdkNotGiven::Value),
+            maxRequestsPer1Minute: (property_exists($data, "max_requests_per_1_minute") && $data->max_requests_per_1_minute !== null ? SdkClient::intValue($data->max_requests_per_1_minute) : SdkNotGiven::Value),
+            maxTokensPer1Minute: (property_exists($data, "max_tokens_per_1_minute") && $data->max_tokens_per_1_minute !== null ? SdkClient::intValue($data->max_tokens_per_1_minute) : SdkNotGiven::Value),
+            maxImagesPer1Minute: (property_exists($data, "max_images_per_1_minute") && $data->max_images_per_1_minute !== null ? SdkClient::intValue($data->max_images_per_1_minute) : SdkNotGiven::Value),
+            maxAudioMegabytesPer1Minute: (property_exists($data, "max_audio_megabytes_per_1_minute") && $data->max_audio_megabytes_per_1_minute !== null ? SdkClient::intValue($data->max_audio_megabytes_per_1_minute) : SdkNotGiven::Value),
+            maxRequestsPer1Day: (property_exists($data, "max_requests_per_1_day") && $data->max_requests_per_1_day !== null ? SdkClient::intValue($data->max_requests_per_1_day) : SdkNotGiven::Value),
+            batch1DayMaxInputTokens: (property_exists($data, "batch_1_day_max_input_tokens") && $data->batch_1_day_max_input_tokens !== null ? SdkClient::intValue($data->batch_1_day_max_input_tokens) : SdkNotGiven::Value),
         );
     }
 }
@@ -322,8 +322,8 @@ class AuditLogRateLimitUpdated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            changesRequested: (property_exists($data, "changes_requested") ? SdkClient::hydrateClass($data->changes_requested, AuditLogRateLimitUpdatedChangesRequested::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            changesRequested: (property_exists($data, "changes_requested") && $data->changes_requested !== null ? SdkClient::hydrateClass($data->changes_requested, AuditLogRateLimitUpdatedChangesRequested::class) : SdkNotGiven::Value),
         );
     }
 }

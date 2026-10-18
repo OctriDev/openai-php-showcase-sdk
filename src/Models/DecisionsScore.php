@@ -60,7 +60,7 @@ class ScoreLevelParam implements \JsonSerializable
         if (!property_exists($data, "label") || $data->label === null) { throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null"); }
         return new self(
             label: SdkClient::stringValue($data->label),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
         );
     }
 }

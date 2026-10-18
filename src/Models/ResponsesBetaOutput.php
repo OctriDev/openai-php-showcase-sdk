@@ -332,7 +332,7 @@ class BetaOutputTextContentParam implements \JsonSerializable
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, BetaOutputTextContentParamTypeEnum::class),
             text: SdkClient::stringValue($data->text),
-            annotations: (property_exists($data, "annotations") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaOutputTextContentParamAnnotationsItem::class, [BetaFileCitationParam::class, BetaUrlCitationParam::class, BetaContainerFileCitationParam::class], "type", ["file_citation" => BetaFileCitationParam::class, "url_citation" => BetaUrlCitationParam::class, "container_file_citation" => BetaContainerFileCitationParam::class], UnknownBetaOutputTextContentParamAnnotationsItem::class), SdkClient::arrayValue($data->annotations))) : SdkNotGiven::Value),
+            annotations: (property_exists($data, "annotations") && $data->annotations !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaOutputTextContentParamAnnotationsItem::class, [BetaFileCitationParam::class, BetaUrlCitationParam::class, BetaContainerFileCitationParam::class], "type", ["file_citation" => BetaFileCitationParam::class, "url_citation" => BetaUrlCitationParam::class, "container_file_citation" => BetaContainerFileCitationParam::class], UnknownBetaOutputTextContentParamAnnotationsItem::class), SdkClient::arrayValue($data->annotations))) : SdkNotGiven::Value),
         );
     }
 }

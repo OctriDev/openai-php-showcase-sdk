@@ -96,7 +96,7 @@ class BetaError implements \JsonSerializable
             message: SdkClient::stringValue($data->message),
             param: ($data->param === null ? null : SdkClient::stringValue($data->param)),
             type: SdkClient::stringValue($data->type),
-            misalignment: (property_exists($data, "misalignment") ? SdkClient::hydrateClass($data->misalignment, BetaMisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
+            misalignment: (property_exists($data, "misalignment") && $data->misalignment !== null ? SdkClient::hydrateClass($data->misalignment, BetaMisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
         );
     }
 }

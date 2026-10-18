@@ -39,7 +39,7 @@ final readonly class BetaMCPToolConnectorIdEnum implements SdkOpenEnum
 /**
  * Specify which of the MCP server's tools require approval. Can be `always`, `never`, or a filter object associated with tools that require approval.
  */
-class BetaMCPToolRequireApprovalMCPToolApprovalFilter implements \JsonSerializable
+class BetaMCPToolRequireApprovalModelMCPToolApprovalFilter implements \JsonSerializable
 {
     /**
      * A filter object to specify which tools are allowed.
@@ -89,8 +89,8 @@ class BetaMCPToolRequireApprovalMCPToolApprovalFilter implements \JsonSerializab
     public static function fromObject(object $data): self
     {
         return new self(
-            always: (property_exists($data, "always") ? SdkClient::hydrateClass($data->always, BetaMCPToolFilter::class) : SdkNotGiven::Value),
-            never_: (property_exists($data, "never") ? SdkClient::hydrateClass($data->never, BetaMCPToolFilter::class) : SdkNotGiven::Value),
+            always: (property_exists($data, "always") && $data->always !== null ? SdkClient::hydrateClass($data->always, BetaMCPToolFilter::class) : SdkNotGiven::Value),
+            never_: (property_exists($data, "never") && $data->never !== null ? SdkClient::hydrateClass($data->never, BetaMCPToolFilter::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -98,7 +98,7 @@ class BetaMCPToolRequireApprovalMCPToolApprovalFilter implements \JsonSerializab
 /**
  * Specify a single approval policy for all tools. One of `always` or `never`. When set to `always`, all tools will require approval. When set to `never`, all tools will not require approval.
  */
-final readonly class BetaMCPToolRequireApprovalEnum implements SdkOpenEnum
+final readonly class BetaMCPToolRequireApprovalModelEnum implements SdkOpenEnum
 {
     public const ALWAYS = "always";
     public const NEVER = "never";
@@ -178,9 +178,9 @@ class BetaMCPTool implements BetaTool, BetaToolSearchOutputTool, \JsonSerializab
     /**
      * Specify which of the MCP server's tools require approval.
      *
-     * @var BetaMCPToolRequireApprovalMCPToolApprovalFilter|BetaMCPToolRequireApprovalEnum|string|null|SdkNotGiven
+     * @var BetaMCPToolRequireApprovalModelMCPToolApprovalFilter|BetaMCPToolRequireApprovalModelEnum|string|null|SdkNotGiven
      */
-    public readonly BetaMCPToolRequireApprovalMCPToolApprovalFilter|BetaMCPToolRequireApprovalEnum|string|null|SdkNotGiven $requireApproval;
+    public readonly BetaMCPToolRequireApprovalModelMCPToolApprovalFilter|BetaMCPToolRequireApprovalModelEnum|string|null|SdkNotGiven $requireApproval;
     /**
      * Whether this MCP tool is deferred and discovered via tool search.
      *
@@ -199,7 +199,7 @@ class BetaMCPTool implements BetaTool, BetaToolSearchOutputTool, \JsonSerializab
      * @param array<string,string>|null|SdkNotGiven $headers
      * @param list<string>|BetaMCPToolFilter|null|SdkNotGiven $allowedTools
      * @param list<BetaCallableToolAllowedCaller|string>|null|SdkNotGiven $allowedCallers
-     * @param BetaMCPToolRequireApprovalMCPToolApprovalFilter|BetaMCPToolRequireApprovalEnum|string|null|SdkNotGiven $requireApproval
+     * @param BetaMCPToolRequireApprovalModelMCPToolApprovalFilter|BetaMCPToolRequireApprovalModelEnum|string|null|SdkNotGiven $requireApproval
      * @param bool|SdkNotGiven $deferLoading
      */
     public function __construct(
@@ -213,7 +213,7 @@ class BetaMCPTool implements BetaTool, BetaToolSearchOutputTool, \JsonSerializab
         array|null|SdkNotGiven $headers = SdkNotGiven::Value,
         array|BetaMCPToolFilter|null|SdkNotGiven $allowedTools = SdkNotGiven::Value,
         array|null|SdkNotGiven $allowedCallers = SdkNotGiven::Value,
-        BetaMCPToolRequireApprovalMCPToolApprovalFilter|BetaMCPToolRequireApprovalEnum|string|null|SdkNotGiven $requireApproval = SdkNotGiven::Value,
+        BetaMCPToolRequireApprovalModelMCPToolApprovalFilter|BetaMCPToolRequireApprovalModelEnum|string|null|SdkNotGiven $requireApproval = SdkNotGiven::Value,
         bool|SdkNotGiven $deferLoading = SdkNotGiven::Value,
     ) {
         $this->type = $type;
@@ -283,16 +283,16 @@ class BetaMCPTool implements BetaTool, BetaToolSearchOutputTool, \JsonSerializab
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaMCPToolTypeEnum::class),
             serverLabel: SdkClient::stringValue($data->server_label),
-            serverUrl: (property_exists($data, "server_url") ? SdkClient::stringValue($data->server_url) : SdkNotGiven::Value),
-            connectorId: (property_exists($data, "connector_id") ? SdkClient::hydrateStringEnumOrString($data->connector_id, BetaMCPToolConnectorIdEnum::class) : SdkNotGiven::Value),
-            tunnelId: (property_exists($data, "tunnel_id") ? SdkClient::stringValue($data->tunnel_id) : SdkNotGiven::Value),
-            authorization: (property_exists($data, "authorization") ? SdkClient::stringValue($data->authorization) : SdkNotGiven::Value),
-            serverDescription: (property_exists($data, "server_description") ? SdkClient::stringValue($data->server_description) : SdkNotGiven::Value),
+            serverUrl: (property_exists($data, "server_url") && $data->server_url !== null ? SdkClient::stringValue($data->server_url) : SdkNotGiven::Value),
+            connectorId: (property_exists($data, "connector_id") && $data->connector_id !== null ? SdkClient::hydrateStringEnumOrString($data->connector_id, BetaMCPToolConnectorIdEnum::class) : SdkNotGiven::Value),
+            tunnelId: (property_exists($data, "tunnel_id") && $data->tunnel_id !== null ? SdkClient::stringValue($data->tunnel_id) : SdkNotGiven::Value),
+            authorization: (property_exists($data, "authorization") && $data->authorization !== null ? SdkClient::stringValue($data->authorization) : SdkNotGiven::Value),
+            serverDescription: (property_exists($data, "server_description") && $data->server_description !== null ? SdkClient::stringValue($data->server_description) : SdkNotGiven::Value),
             headers: (property_exists($data, "headers") ? ($data->headers === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->headers), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
             allowedTools: (property_exists($data, "allowed_tools") ? ($data->allowed_tools === null ? null : (is_object($data->allowed_tools) ? SdkClient::hydrateClass($data->allowed_tools, BetaMCPToolFilter::class) : (is_array($data->allowed_tools) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_tools))) : SdkClient::hydrateClass($data->allowed_tools, BetaMCPToolFilter::class)))) : SdkNotGiven::Value),
             allowedCallers: (property_exists($data, "allowed_callers") ? ($data->allowed_callers === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, BetaCallableToolAllowedCaller::class), SdkClient::arrayValue($data->allowed_callers)))) : SdkNotGiven::Value),
-            requireApproval: (property_exists($data, "require_approval") ? ($data->require_approval === null ? null : (is_object($data->require_approval) ? SdkClient::hydrateClass($data->require_approval, BetaMCPToolRequireApprovalMCPToolApprovalFilter::class) : (is_string($data->require_approval) ? SdkClient::hydrateStringEnumOrString($data->require_approval, BetaMCPToolRequireApprovalEnum::class) : SdkClient::hydrateClass($data->require_approval, BetaMCPToolRequireApprovalMCPToolApprovalFilter::class)))) : SdkNotGiven::Value),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            requireApproval: (property_exists($data, "require_approval") ? ($data->require_approval === null ? null : (is_object($data->require_approval) ? SdkClient::hydrateClass($data->require_approval, BetaMCPToolRequireApprovalModelMCPToolApprovalFilter::class) : (is_string($data->require_approval) ? SdkClient::hydrateStringEnumOrString($data->require_approval, BetaMCPToolRequireApprovalModelEnum::class) : SdkClient::hydrateClass($data->require_approval, BetaMCPToolRequireApprovalModelMCPToolApprovalFilter::class)))) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
         );
     }
 }

@@ -72,7 +72,7 @@ class MessageDeltaContentImageFileObject implements MessageDeltaObjectDeltaConte
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, MessageDeltaContentImageFileObjectTypeEnum::class),
-            imageFile: (property_exists($data, "image_file") ? SdkClient::hydrateClass($data->image_file, MessageDeltaContentImageFileObjectImageFile::class) : SdkNotGiven::Value),
+            imageFile: (property_exists($data, "image_file") && $data->image_file !== null ? SdkClient::hydrateClass($data->image_file, MessageDeltaContentImageFileObjectImageFile::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -154,8 +154,8 @@ class MessageDeltaContentImageUrlObjectImageUrl implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            url: (property_exists($data, "url") ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, MessageDeltaContentImageUrlObjectImageUrlDetailEnum::class) : SdkNotGiven::Value),
+            url: (property_exists($data, "url") && $data->url !== null ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, MessageDeltaContentImageUrlObjectImageUrlDetailEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -225,7 +225,7 @@ class MessageDeltaContentImageUrlObject implements MessageDeltaObjectDeltaConten
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, MessageDeltaContentImageUrlObjectTypeEnum::class),
-            imageUrl: (property_exists($data, "image_url") ? SdkClient::hydrateClass($data->image_url, MessageDeltaContentImageUrlObjectImageUrl::class) : SdkNotGiven::Value),
+            imageUrl: (property_exists($data, "image_url") && $data->image_url !== null ? SdkClient::hydrateClass($data->image_url, MessageDeltaContentImageUrlObjectImageUrl::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -303,7 +303,7 @@ class MessageDeltaContentRefusalObject implements MessageDeltaObjectDeltaContent
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, MessageDeltaContentRefusalObjectTypeEnum::class),
-            refusal: (property_exists($data, "refusal") ? SdkClient::stringValue($data->refusal) : SdkNotGiven::Value),
+            refusal: (property_exists($data, "refusal") && $data->refusal !== null ? SdkClient::stringValue($data->refusal) : SdkNotGiven::Value),
         );
     }
 }

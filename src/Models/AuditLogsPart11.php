@@ -156,16 +156,16 @@ class AuditLogRoleBoundToResource implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            roleId: (property_exists($data, "role_id") ? SdkClient::stringValue($data->role_id) : SdkNotGiven::Value),
-            resourceId: (property_exists($data, "resource_id") ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
-            resourceType: (property_exists($data, "resource_type") ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
-            permissions: (property_exists($data, "permissions") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions))) : SdkNotGiven::Value),
-            workspaceId: (property_exists($data, "workspace_id") ? SdkClient::stringValue($data->workspace_id) : SdkNotGiven::Value),
-            connectorId: (property_exists($data, "connector_id") ? SdkClient::stringValue($data->connector_id) : SdkNotGiven::Value),
-            connectorName: (property_exists($data, "connector_name") ? SdkClient::stringValue($data->connector_name) : SdkNotGiven::Value),
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
-            source: (property_exists($data, "source") ? SdkClient::hydrateStringEnumOrString($data->source, AuditLogRoleBoundToResourceSourceEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            roleId: (property_exists($data, "role_id") && $data->role_id !== null ? SdkClient::stringValue($data->role_id) : SdkNotGiven::Value),
+            resourceId: (property_exists($data, "resource_id") && $data->resource_id !== null ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
+            resourceType: (property_exists($data, "resource_type") && $data->resource_type !== null ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
+            permissions: (property_exists($data, "permissions") && $data->permissions !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions))) : SdkNotGiven::Value),
+            workspaceId: (property_exists($data, "workspace_id") && $data->workspace_id !== null ? SdkClient::stringValue($data->workspace_id) : SdkNotGiven::Value),
+            connectorId: (property_exists($data, "connector_id") && $data->connector_id !== null ? SdkClient::stringValue($data->connector_id) : SdkNotGiven::Value),
+            connectorName: (property_exists($data, "connector_name") && $data->connector_name !== null ? SdkClient::stringValue($data->connector_name) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            source: (property_exists($data, "source") && $data->source !== null ? SdkClient::hydrateStringEnumOrString($data->source, AuditLogRoleBoundToResourceSourceEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -337,16 +337,16 @@ class AuditLogRoleUnboundFromResource implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            roleId: (property_exists($data, "role_id") ? SdkClient::stringValue($data->role_id) : SdkNotGiven::Value),
-            resourceId: (property_exists($data, "resource_id") ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
-            resourceType: (property_exists($data, "resource_type") ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
-            permissions: (property_exists($data, "permissions") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions))) : SdkNotGiven::Value),
-            workspaceId: (property_exists($data, "workspace_id") ? SdkClient::stringValue($data->workspace_id) : SdkNotGiven::Value),
-            connectorId: (property_exists($data, "connector_id") ? SdkClient::stringValue($data->connector_id) : SdkNotGiven::Value),
-            connectorName: (property_exists($data, "connector_name") ? SdkClient::stringValue($data->connector_name) : SdkNotGiven::Value),
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
-            source: (property_exists($data, "source") ? SdkClient::hydrateStringEnumOrString($data->source, AuditLogRoleUnboundFromResourceSourceEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            roleId: (property_exists($data, "role_id") && $data->role_id !== null ? SdkClient::stringValue($data->role_id) : SdkNotGiven::Value),
+            resourceId: (property_exists($data, "resource_id") && $data->resource_id !== null ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
+            resourceType: (property_exists($data, "resource_type") && $data->resource_type !== null ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
+            permissions: (property_exists($data, "permissions") && $data->permissions !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions))) : SdkNotGiven::Value),
+            workspaceId: (property_exists($data, "workspace_id") && $data->workspace_id !== null ? SdkClient::stringValue($data->workspace_id) : SdkNotGiven::Value),
+            connectorId: (property_exists($data, "connector_id") && $data->connector_id !== null ? SdkClient::stringValue($data->connector_id) : SdkNotGiven::Value),
+            connectorName: (property_exists($data, "connector_name") && $data->connector_name !== null ? SdkClient::stringValue($data->connector_name) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            source: (property_exists($data, "source") && $data->source !== null ? SdkClient::hydrateStringEnumOrString($data->source, AuditLogRoleUnboundFromResourceSourceEnum::class) : SdkNotGiven::Value),
         );
     }
 }

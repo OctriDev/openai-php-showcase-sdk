@@ -96,9 +96,9 @@ class CreateTranslationRequest implements \JsonSerializable
         return new self(
             file: SdkClient::stringValue($data->file),
             model: SdkClient::stringValue($data->model),
-            prompt: (property_exists($data, "prompt") ? SdkClient::stringValue($data->prompt) : SdkNotGiven::Value),
-            responseFormat: (property_exists($data, "response_format") ? SdkClient::hydrateStringEnumOrString($data->response_format, CreateTranslationRequestResponseFormatEnum::class) : SdkNotGiven::Value),
-            temperature: (property_exists($data, "temperature") ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
+            prompt: (property_exists($data, "prompt") && $data->prompt !== null ? SdkClient::stringValue($data->prompt) : SdkNotGiven::Value),
+            responseFormat: (property_exists($data, "response_format") && $data->response_format !== null ? SdkClient::hydrateStringEnumOrString($data->response_format, CreateTranslationRequestResponseFormatEnum::class) : SdkNotGiven::Value),
+            temperature: (property_exists($data, "temperature") && $data->temperature !== null ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
         );
     }
 }
@@ -106,7 +106,7 @@ class CreateTranslationRequest implements \JsonSerializable
 /**
  * Typed representation of the `CreateTranslationResponseJson` API schema.
  */
-class CreateTranslationResponseJson implements \JsonSerializable
+class CreateTranslationResponseJson implements CreateTranslationResponse, \JsonSerializable
 {
     /**
      * Required `string` value serialized in the `text` wire field.
@@ -151,7 +151,7 @@ class CreateTranslationResponseJson implements \JsonSerializable
 /**
  * Typed representation of the `CreateTranslationResponseVerboseJson` API schema.
  */
-class CreateTranslationResponseVerboseJson implements \JsonSerializable
+class CreateTranslationResponseVerboseJson implements CreateTranslationResponse, \JsonSerializable
 {
     /**
      * The language of the output translation (always `english`).
@@ -225,7 +225,7 @@ class CreateTranslationResponseVerboseJson implements \JsonSerializable
             language: SdkClient::stringValue($data->language),
             duration: SdkClient::floatValue($data->duration),
             text: SdkClient::stringValue($data->text),
-            segments: (property_exists($data, "segments") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionSegment::class), SdkClient::arrayValue($data->segments))) : SdkNotGiven::Value),
+            segments: (property_exists($data, "segments") && $data->segments !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionSegment::class), SdkClient::arrayValue($data->segments))) : SdkNotGiven::Value),
         );
     }
 }

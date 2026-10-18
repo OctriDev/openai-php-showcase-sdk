@@ -186,9 +186,9 @@ class DeleteEvalRunResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            object_: (property_exists($data, "object") ? SdkClient::stringValue($data->object) : SdkNotGiven::Value),
-            deleted: (property_exists($data, "deleted") ? SdkClient::boolValue($data->deleted) : SdkNotGiven::Value),
-            runId: (property_exists($data, "run_id") ? SdkClient::stringValue($data->run_id) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::stringValue($data->object) : SdkNotGiven::Value),
+            deleted: (property_exists($data, "deleted") && $data->deleted !== null ? SdkClient::boolValue($data->deleted) : SdkNotGiven::Value),
+            runId: (property_exists($data, "run_id") && $data->run_id !== null ? SdkClient::stringValue($data->run_id) : SdkNotGiven::Value),
         );
     }
 }

@@ -74,8 +74,8 @@ class RealtimeCreateClientSecretRequestExpiresAfter implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            anchor: (property_exists($data, "anchor") ? SdkClient::hydrateStringEnumOrString($data->anchor, RealtimeCreateClientSecretRequestExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
-            seconds: (property_exists($data, "seconds") ? SdkClient::intValue($data->seconds) : SdkNotGiven::Value),
+            anchor: (property_exists($data, "anchor") && $data->anchor !== null ? SdkClient::hydrateStringEnumOrString($data->anchor, RealtimeCreateClientSecretRequestExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
+            seconds: (property_exists($data, "seconds") && $data->seconds !== null ? SdkClient::intValue($data->seconds) : SdkNotGiven::Value),
         );
     }
 }
@@ -133,8 +133,8 @@ class RealtimeCreateClientSecretRequest implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, RealtimeCreateClientSecretRequestExpiresAfter::class) : SdkNotGiven::Value),
-            session: (property_exists($data, "session") ? SdkClient::hydrateUnionAs($data->session, RealtimeCreateClientSecretRequestSession::class, [RealtimeSessionCreateRequestGA::class, RealtimeTranscriptionSessionCreateRequestGA::class], "type", ["realtime" => RealtimeSessionCreateRequestGA::class, "transcription" => RealtimeTranscriptionSessionCreateRequestGA::class], UnknownRealtimeCreateClientSecretRequestSession::class) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, RealtimeCreateClientSecretRequestExpiresAfter::class) : SdkNotGiven::Value),
+            session: (property_exists($data, "session") && $data->session !== null ? SdkClient::hydrateUnionAs($data->session, RealtimeCreateClientSecretRequestSession::class, [RealtimeSessionCreateRequestGA::class, RealtimeTranscriptionSessionCreateRequestGA::class], "type", ["realtime" => RealtimeSessionCreateRequestGA::class, "transcription" => RealtimeTranscriptionSessionCreateRequestGA::class], UnknownRealtimeCreateClientSecretRequestSession::class) : SdkNotGiven::Value),
         );
     }
 }

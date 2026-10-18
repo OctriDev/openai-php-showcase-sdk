@@ -65,8 +65,8 @@ class RealtimeAudioFormatsVariant0 implements RealtimeAudioFormats, \JsonSeriali
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, RealtimeAudioFormatsVariant0TypeEnum::class) : SdkNotGiven::Value),
-            rate: (property_exists($data, "rate") ? SdkClient::intValue($data->rate) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, RealtimeAudioFormatsVariant0TypeEnum::class) : SdkNotGiven::Value),
+            rate: (property_exists($data, "rate") && $data->rate !== null ? SdkClient::intValue($data->rate) : SdkNotGiven::Value),
         );
     }
 }
@@ -117,7 +117,7 @@ class RealtimeAudioFormatsVariant1 implements RealtimeAudioFormats, \JsonSeriali
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, RealtimeAudioFormatsVariant1TypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, RealtimeAudioFormatsVariant1TypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -168,7 +168,7 @@ class RealtimeAudioFormatsVariant2 implements RealtimeAudioFormats, \JsonSeriali
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, RealtimeAudioFormatsVariant2TypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, RealtimeAudioFormatsVariant2TypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -258,10 +258,10 @@ class RealtimeFunctionTool implements RealtimeSessionCreateRequestGAToolsItem, R
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, RealtimeFunctionToolTypeEnum::class) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            parameters: (property_exists($data, "parameters") ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, RealtimeFunctionToolTypeEnum::class) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            parameters: (property_exists($data, "parameters") && $data->parameters !== null ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
         );
     }
 }

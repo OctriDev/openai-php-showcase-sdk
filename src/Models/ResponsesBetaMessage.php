@@ -128,7 +128,7 @@ class BetaMessage implements BetaItemField, \JsonSerializable
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaMessageStatus::class),
             role: SdkClient::hydrateStringEnumOrString($data->role, BetaMessageRole::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaMessageContentItem::class, [BetaInputTextContent::class, BetaOutputTextContent::class, BetaTextContent::class, BetaSummaryTextContent::class, BetaReasoningTextContent::class, BetaRefusalContent::class, BetaInputImageContent::class, BetaComputerScreenshotContent::class, BetaInputFileContent::class, BetaEncryptedContent::class], "type", ["input_text" => BetaInputTextContent::class, "output_text" => BetaOutputTextContent::class, "text" => BetaTextContent::class, "summary_text" => BetaSummaryTextContent::class, "reasoning_text" => BetaReasoningTextContent::class, "refusal" => BetaRefusalContent::class, "input_image" => BetaInputImageContent::class, "computer_screenshot" => BetaComputerScreenshotContent::class, "input_file" => BetaInputFileContent::class, "encrypted_content" => BetaEncryptedContent::class], UnknownBetaMessageContentItem::class), SdkClient::arrayValue($data->content))),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
             phase: (property_exists($data, "phase") ? ($data->phase === null ? null : SdkClient::hydrateStringEnumOrString($data->phase, BetaMessagePhase2::class)) : SdkNotGiven::Value),
         );
     }

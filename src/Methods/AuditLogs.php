@@ -81,10 +81,10 @@ class ListAuditLogsEffectiveAt implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            gt: (property_exists($data, "gt") ? SdkClient::intValue($data->gt) : SdkNotGiven::Value),
-            gte: (property_exists($data, "gte") ? SdkClient::intValue($data->gte) : SdkNotGiven::Value),
-            lt: (property_exists($data, "lt") ? SdkClient::intValue($data->lt) : SdkNotGiven::Value),
-            lte: (property_exists($data, "lte") ? SdkClient::intValue($data->lte) : SdkNotGiven::Value),
+            gt: (property_exists($data, "gt") && $data->gt !== null ? SdkClient::intValue($data->gt) : SdkNotGiven::Value),
+            gte: (property_exists($data, "gte") && $data->gte !== null ? SdkClient::intValue($data->gte) : SdkNotGiven::Value),
+            lt: (property_exists($data, "lt") && $data->lt !== null ? SdkClient::intValue($data->lt) : SdkNotGiven::Value),
+            lte: (property_exists($data, "lte") && $data->lte !== null ? SdkClient::intValue($data->lte) : SdkNotGiven::Value),
         );
     }
 }

@@ -144,8 +144,8 @@ class OpenAIFile implements \JsonSerializable
             object_: SdkClient::hydrateStringEnumOrString($data->object, OpenAIFileObjectEnum::class),
             purpose: SdkClient::hydrateStringEnumOrString($data->purpose, OpenAIFilePurposeEnum::class),
             status: SdkClient::hydrateStringEnumOrString($data->status, OpenAIFileStatusEnum::class),
-            expiresAt: (property_exists($data, "expires_at") ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
-            statusDetails: (property_exists($data, "status_details") ? SdkClient::stringValue($data->status_details) : SdkNotGiven::Value),
+            expiresAt: (property_exists($data, "expires_at") && $data->expires_at !== null ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
+            statusDetails: (property_exists($data, "status_details") && $data->status_details !== null ? SdkClient::stringValue($data->status_details) : SdkNotGiven::Value),
         );
     }
 }
@@ -163,51 +163,6 @@ final readonly class OrderEnum implements SdkOpenEnum
     public function getValue(): string { return $this->value; }
     public function jsonSerialize(): string { return $this->value; }
     public function __toString(): string { return (string) $this->value; }
-}
-
-/**
- * Typed representation of the `PermissionErrorResponse` API schema.
- */
-class PermissionErrorResponse implements \JsonSerializable
-{
-    /**
-     * Details about the permission error.
-     *
-     * @var Error3|string
-     */
-    public readonly Error3|string $error;
-
-    /**
-     * @param Error3|string $error
-     */
-    public function __construct(
-        Error3|string $error,
-    ) {
-        $this->error = $error;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "error" => $this->error,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "error") || $data->error === null) { throw new SdkValidationError("error", 'required', "Required property 'error' is missing or null"); }
-        return new self(
-            error: (is_object($data->error) ? SdkClient::hydrateClass($data->error, Error3::class) : (is_string($data->error) ? SdkClient::stringValue($data->error) : SdkClient::hydrateClass($data->error, Error3::class))),
-        );
-    }
 }
 
 /**
@@ -346,4 +301,19 @@ class PublicAssignOrganizationGroupRoleBody implements \JsonSerializable
             roleId: SdkClient::stringValue($data->role_id),
         );
     }
+}
+
+/**
+ * Typed representation of the `RankerVersionType` API schema.
+ */
+final readonly class RankerVersionType implements SdkOpenEnum
+{
+    public const AUTO = "auto";
+    public const DEFAULT_2024_11_15 = "default-2024-11-15";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

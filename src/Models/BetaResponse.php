@@ -92,7 +92,7 @@ class BetaResponseInjectCreatedEvent implements BetaResponsesServerEvent, \JsonS
             type: SdkClient::hydrateEnum($data->type, BetaResponseInjectCreatedEventTypeEnum::class),
             responseId: SdkClient::stringValue($data->response_id),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

@@ -190,8 +190,8 @@ class RunStepDetailsToolCallsFileSearchObjectFileSearch implements \JsonSerializ
     public static function fromObject(object $data): self
     {
         return new self(
-            rankingOptions: (property_exists($data, "ranking_options") ? SdkClient::hydrateClass($data->ranking_options, RunStepDetailsToolCallsFileSearchRankingOptionsObject::class) : SdkNotGiven::Value),
-            results: (property_exists($data, "results") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RunStepDetailsToolCallsFileSearchResultObject::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
+            rankingOptions: (property_exists($data, "ranking_options") && $data->ranking_options !== null ? SdkClient::hydrateClass($data->ranking_options, RunStepDetailsToolCallsFileSearchRankingOptionsObject::class) : SdkNotGiven::Value),
+            results: (property_exists($data, "results") && $data->results !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RunStepDetailsToolCallsFileSearchResultObject::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
         );
     }
 }

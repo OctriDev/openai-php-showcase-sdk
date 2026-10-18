@@ -224,9 +224,9 @@ class PublicUpdateEndpointBody implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            url: (property_exists($data, "url") ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
-            eventTypes: (property_exists($data, "event_types") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, ProjectEventTypeEnum::class), SdkClient::arrayValue($data->event_types))) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            url: (property_exists($data, "url") && $data->url !== null ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
+            eventTypes: (property_exists($data, "event_types") && $data->event_types !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, ProjectEventTypeEnum::class), SdkClient::arrayValue($data->event_types))) : SdkNotGiven::Value),
         );
     }
 }

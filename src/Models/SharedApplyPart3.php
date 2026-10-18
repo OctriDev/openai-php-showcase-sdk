@@ -122,7 +122,7 @@ class ApplyPatchToolCallOutput implements ConversationItem, ItemResource, Output
             status: SdkClient::hydrateStringEnumOrString($data->status, ApplyPatchCallOutputStatus::class),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, ToolCallCaller::class, [DirectToolCallCaller::class, ProgramToolCallCaller::class], "type", ["direct" => DirectToolCallCaller::class, "program" => ProgramToolCallCaller::class], UnknownToolCallCaller::class)) : SdkNotGiven::Value),
             output: (property_exists($data, "output") ? ($data->output === null ? null : SdkClient::stringValue($data->output)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

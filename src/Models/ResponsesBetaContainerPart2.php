@@ -97,7 +97,7 @@ class BetaContainerNetworkPolicyAllowlistParam implements BetaAutoCodeInterprete
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaContainerNetworkPolicyAllowlistParamTypeEnum::class),
             allowedDomains: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains))),
-            domainSecrets: (property_exists($data, "domain_secrets") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaContainerNetworkPolicyDomainSecretParam::class), SdkClient::arrayValue($data->domain_secrets))) : SdkNotGiven::Value),
+            domainSecrets: (property_exists($data, "domain_secrets") && $data->domain_secrets !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaContainerNetworkPolicyDomainSecretParam::class), SdkClient::arrayValue($data->domain_secrets))) : SdkNotGiven::Value),
         );
     }
 }

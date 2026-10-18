@@ -76,8 +76,8 @@ class ShellCallOutputDelta implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            stdout: (property_exists($data, "stdout") ? SdkClient::stringValue($data->stdout) : SdkNotGiven::Value),
-            stderr: (property_exists($data, "stderr") ? SdkClient::stringValue($data->stderr) : SdkNotGiven::Value),
+            stdout: (property_exists($data, "stdout") && $data->stdout !== null ? SdkClient::stringValue($data->stdout) : SdkNotGiven::Value),
+            stderr: (property_exists($data, "stderr") && $data->stderr !== null ? SdkClient::stringValue($data->stderr) : SdkNotGiven::Value),
         );
     }
 }

@@ -120,7 +120,7 @@ class SessionAgentConfigParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
             reasoning: (property_exists($data, "reasoning") ? ($data->reasoning === null ? null : SdkClient::hydrateClass($data->reasoning, ReasoningParam::class)) : SdkNotGiven::Value),
             text: (property_exists($data, "text") ? ($data->text === null ? null : SdkClient::hydrateClass($data->text, TextParam::class)) : SdkNotGiven::Value),
             serviceTier: (property_exists($data, "service_tier") ? ($data->service_tier === null ? null : SdkClient::hydrateStringEnumOrString($data->service_tier, ServiceTierParam::class)) : SdkNotGiven::Value),

@@ -72,7 +72,7 @@ class SkillReferenceParam implements ContainerAutoParamSkillsItem, CreateContain
         return new self(
             type: SdkClient::hydrateEnum($data->type, SkillReferenceParamTypeEnum::class),
             skillId: SdkClient::stringValue($data->skill_id),
-            version: (property_exists($data, "version") ? SdkClient::stringValue($data->version) : SdkNotGiven::Value),
+            version: (property_exists($data, "version") && $data->version !== null ? SdkClient::stringValue($data->version) : SdkNotGiven::Value),
         );
     }
 }

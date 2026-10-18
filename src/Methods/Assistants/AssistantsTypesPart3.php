@@ -48,7 +48,7 @@ class ModifyThreadToolResourcesCodeInterpreter implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
         );
     }
 }
@@ -94,7 +94,7 @@ class ModifyThreadToolResourcesFileSearch implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            vectorStoreIds: (property_exists($data, "vector_store_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
+            vectorStoreIds: (property_exists($data, "vector_store_ids") && $data->vector_store_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
         );
     }
 }
@@ -152,8 +152,8 @@ class ModifyThreadToolResources implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            codeInterpreter: (property_exists($data, "code_interpreter") ? SdkClient::hydrateClass($data->code_interpreter, ModifyThreadToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
-            fileSearch: (property_exists($data, "file_search") ? SdkClient::hydrateClass($data->file_search, ModifyThreadToolResourcesFileSearch::class) : SdkNotGiven::Value),
+            codeInterpreter: (property_exists($data, "code_interpreter") && $data->code_interpreter !== null ? SdkClient::hydrateClass($data->code_interpreter, ModifyThreadToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
+            fileSearch: (property_exists($data, "file_search") && $data->file_search !== null ? SdkClient::hydrateClass($data->file_search, ModifyThreadToolResourcesFileSearch::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -211,8 +211,8 @@ class CreateMessageAttachmentsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateMessageRequestAttachmentsItemToolsItem::class, [AssistantToolsCode::class, AssistantToolsFileSearchTypeOnly::class], "type", ["code_interpreter" => AssistantToolsCode::class, "file_search" => AssistantToolsFileSearchTypeOnly::class], UnknownCreateMessageRequestAttachmentsItemToolsItem::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            tools: (property_exists($data, "tools") && $data->tools !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateMessageRequestAttachmentsItemToolsItem::class, [AssistantToolsCode::class, AssistantToolsFileSearchTypeOnly::class], "type", ["code_interpreter" => AssistantToolsCode::class, "file_search" => AssistantToolsFileSearchTypeOnly::class], UnknownCreateMessageRequestAttachmentsItemToolsItem::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
         );
     }
 }
@@ -270,8 +270,8 @@ class SubmitAssistantsToolOutputsToRunToolOutputsItem implements \JsonSerializab
     public static function fromObject(object $data): self
     {
         return new self(
-            toolCallId: (property_exists($data, "tool_call_id") ? SdkClient::stringValue($data->tool_call_id) : SdkNotGiven::Value),
-            output: (property_exists($data, "output") ? SdkClient::stringValue($data->output) : SdkNotGiven::Value),
+            toolCallId: (property_exists($data, "tool_call_id") && $data->tool_call_id !== null ? SdkClient::stringValue($data->tool_call_id) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? SdkClient::stringValue($data->output) : SdkNotGiven::Value),
         );
     }
 }
@@ -329,8 +329,8 @@ class SubmitAssistantsToolOutputsToRunStreamToolOutputsItem implements \JsonSeri
     public static function fromObject(object $data): self
     {
         return new self(
-            toolCallId: (property_exists($data, "tool_call_id") ? SdkClient::stringValue($data->tool_call_id) : SdkNotGiven::Value),
-            output: (property_exists($data, "output") ? SdkClient::stringValue($data->output) : SdkNotGiven::Value),
+            toolCallId: (property_exists($data, "tool_call_id") && $data->tool_call_id !== null ? SdkClient::stringValue($data->tool_call_id) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? SdkClient::stringValue($data->output) : SdkNotGiven::Value),
         );
     }
 }

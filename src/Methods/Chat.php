@@ -154,7 +154,7 @@ class Chat
     {
         foreach (SdkClient::stream(
             'POST',
-            '/chat/completions',
+            "/chat/completions",
             config: $clientConfig,
             body: $body,
             contentType: 'application/json',

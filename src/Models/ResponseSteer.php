@@ -149,7 +149,7 @@ class ResponseSteerAcceptedEvent implements ResponsesServerEvent, \JsonSerializa
             type: SdkClient::hydrateEnum($data->type, ResponseSteerAcceptedEventTypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             steer: SdkClient::hydrateClass($data->steer, ResponseSteerAcceptedEventSteer::class),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -304,7 +304,7 @@ class ResponseSteerFailedEventSteer implements \JsonSerializable
         return new self(
             previousResponseId: SdkClient::stringValue($data->previous_response_id),
             input: (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ResponseSteerInputItem::class, [UserMessageItemParam::class, FunctionCallOutputItemParam::class], "type", ["message" => UserMessageItemParam::class, "function_call_output" => FunctionCallOutputItemParam::class], UnknownResponseSteerInputItem::class), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input)),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }

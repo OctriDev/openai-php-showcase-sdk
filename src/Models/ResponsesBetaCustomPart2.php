@@ -109,7 +109,7 @@ class BetaCustomToolCallOutput implements BetaInputItem, BetaItem, BetaItemField
             callId: SdkClient::stringValue($data->call_id),
             output: (is_array($data->output) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaFunctionAndCustomToolCallOutput::class, [BetaInputTextContent::class, BetaInputImageContent::class, BetaInputFileContent::class], "type", ["input_text" => BetaInputTextContent::class, "input_image" => BetaInputImageContent::class, "input_file" => BetaInputFileContent::class], UnknownBetaFunctionAndCustomToolCallOutput::class), SdkClient::arrayValue($data->output))) : SdkClient::stringValue($data->output)),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCallerParam::class, [BetaDirectToolCallCallerParam::class, BetaProgramToolCallCallerParam::class], "type", ["direct" => BetaDirectToolCallCallerParam::class, "program" => BetaProgramToolCallCallerParam::class], UnknownBetaToolCallCallerParam::class)) : SdkNotGiven::Value),
         );
     }
@@ -177,7 +177,7 @@ class BetaCustomToolCallOutputResourceVariant1 implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallOutputStatusEnum::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -317,7 +317,7 @@ class BetaCustomToolCallOutputResource implements BetaItemResource, BetaOutputIt
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallOutputStatusEnum::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCallerParam::class, [BetaDirectToolCallCallerParam::class, BetaProgramToolCallCallerParam::class], "type", ["direct" => BetaDirectToolCallCallerParam::class, "program" => BetaProgramToolCallCallerParam::class], UnknownBetaToolCallCallerParam::class)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

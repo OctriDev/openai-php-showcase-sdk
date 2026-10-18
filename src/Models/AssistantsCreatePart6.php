@@ -48,7 +48,7 @@ class CreateThreadRequestToolResourcesCodeInterpreter implements \JsonSerializab
     public static function fromObject(object $data): self
     {
         return new self(
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
         );
     }
 }
@@ -118,8 +118,8 @@ class CreateThreadRequestToolResourcesFileSearchVectorStoresItem implements \Jso
     public static function fromObject(object $data): self
     {
         return new self(
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
-            chunkingStrategy: (property_exists($data, "chunking_strategy") ? SdkClient::hydrateUnionAs($data->chunking_strategy, CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategy::class, [CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategyVariant0::class, CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategyVariant1::class], null, []) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            chunkingStrategy: (property_exists($data, "chunking_strategy") && $data->chunking_strategy !== null ? SdkClient::hydrateUnionAs($data->chunking_strategy, CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategy::class, [CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategyVariant0::class, CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategyVariant1::class], null, []) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );
     }
@@ -178,8 +178,8 @@ class CreateThreadRequestToolResourcesFileSearch implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            vectorStoreIds: (property_exists($data, "vector_store_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
-            vectorStores: (property_exists($data, "vector_stores") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateThreadRequestToolResourcesFileSearchVectorStoresItem::class), SdkClient::arrayValue($data->vector_stores))) : SdkNotGiven::Value),
+            vectorStoreIds: (property_exists($data, "vector_store_ids") && $data->vector_store_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
+            vectorStores: (property_exists($data, "vector_stores") && $data->vector_stores !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateThreadRequestToolResourcesFileSearchVectorStoresItem::class), SdkClient::arrayValue($data->vector_stores))) : SdkNotGiven::Value),
         );
     }
 }
@@ -237,8 +237,8 @@ class CreateThreadRequestToolResources implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            codeInterpreter: (property_exists($data, "code_interpreter") ? SdkClient::hydrateClass($data->code_interpreter, CreateThreadRequestToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
-            fileSearch: (property_exists($data, "file_search") ? SdkClient::hydrateClass($data->file_search, CreateThreadRequestToolResourcesFileSearch::class) : SdkNotGiven::Value),
+            codeInterpreter: (property_exists($data, "code_interpreter") && $data->code_interpreter !== null ? SdkClient::hydrateClass($data->code_interpreter, CreateThreadRequestToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
+            fileSearch: (property_exists($data, "file_search") && $data->file_search !== null ? SdkClient::hydrateClass($data->file_search, CreateThreadRequestToolResourcesFileSearch::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -308,7 +308,7 @@ class CreateThreadRequest implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            messages: (property_exists($data, "messages") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateMessageRequest::class), SdkClient::arrayValue($data->messages))) : SdkNotGiven::Value),
+            messages: (property_exists($data, "messages") && $data->messages !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateMessageRequest::class), SdkClient::arrayValue($data->messages))) : SdkNotGiven::Value),
             toolResources: (property_exists($data, "tool_resources") ? ($data->tool_resources === null ? null : SdkClient::hydrateClass($data->tool_resources, CreateThreadRequestToolResources::class)) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );

@@ -8,91 +8,6 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
- * Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.
- */
-class CreateRealtimeTranscriptionSessionTurnDetection implements \JsonSerializable
-{
-    /**
-     * Type of turn detection. Only `server_vad` is currently supported for transcription sessions.
-     *
-     * @var CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum|string|SdkNotGiven
-     */
-    public readonly CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum|string|SdkNotGiven $type;
-    /**
-     * Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments.
-     *
-     * @var float|SdkNotGiven
-     */
-    public readonly float|SdkNotGiven $threshold;
-    /**
-     * Amount of audio to include before the VAD detected speech (in milliseconds). Defaults to 300ms.
-     *
-     * @var int|SdkNotGiven
-     */
-    public readonly int|SdkNotGiven $prefixPaddingMs;
-    /**
-     * Duration of silence to detect speech stop (in milliseconds). Defaults to 500ms. With shorter values the model will respond more quickly, but may jump in on short pauses from the user.
-     *
-     * @var int|SdkNotGiven
-     */
-    public readonly int|SdkNotGiven $silenceDurationMs;
-
-    /**
-     * @param CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum|string|SdkNotGiven $type
-     * @param float|SdkNotGiven $threshold
-     * @param int|SdkNotGiven $prefixPaddingMs
-     * @param int|SdkNotGiven $silenceDurationMs
-     */
-    public function __construct(
-        CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum|string|SdkNotGiven $type = SdkNotGiven::Value,
-        float|SdkNotGiven $threshold = SdkNotGiven::Value,
-        int|SdkNotGiven $prefixPaddingMs = SdkNotGiven::Value,
-        int|SdkNotGiven $silenceDurationMs = SdkNotGiven::Value,
-    ) {
-        $this->type = $type;
-        $this->threshold = $threshold;
-        $this->prefixPaddingMs = $prefixPaddingMs;
-        $this->silenceDurationMs = $silenceDurationMs;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-        ];
-        if ($this->type !== SdkNotGiven::Value) {
-            $values["type"] = $this->type;
-        }
-        if ($this->threshold !== SdkNotGiven::Value) {
-            $values["threshold"] = $this->threshold;
-        }
-        if ($this->prefixPaddingMs !== SdkNotGiven::Value) {
-            $values["prefix_padding_ms"] = $this->prefixPaddingMs;
-        }
-        if ($this->silenceDurationMs !== SdkNotGiven::Value) {
-            $values["silence_duration_ms"] = $this->silenceDurationMs;
-        }
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum::class) : SdkNotGiven::Value),
-            threshold: (property_exists($data, "threshold") ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
-            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
-            silenceDurationMs: (property_exists($data, "silence_duration_ms") ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
-        );
-    }
-}
-
-/**
  * The anchor point for the client secret expiration, meaning that `seconds` will be added to the `created_at` time of the client secret to produce an expiration timestamp. Only `created_at` is currently supported.
  */
 final readonly class CreateRealtimeTranslationClientSecretExpiresAfterAnchorEnum implements SdkOpenEnum
@@ -159,8 +74,8 @@ class CreateRealtimeTranslationClientSecretExpiresAfter implements \JsonSerializ
     public static function fromObject(object $data): self
     {
         return new self(
-            anchor: (property_exists($data, "anchor") ? SdkClient::hydrateStringEnumOrString($data->anchor, CreateRealtimeTranslationClientSecretExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
-            seconds: (property_exists($data, "seconds") ? SdkClient::intValue($data->seconds) : SdkNotGiven::Value),
+            anchor: (property_exists($data, "anchor") && $data->anchor !== null ? SdkClient::hydrateStringEnumOrString($data->anchor, CreateRealtimeTranslationClientSecretExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
+            seconds: (property_exists($data, "seconds") && $data->seconds !== null ? SdkClient::intValue($data->seconds) : SdkNotGiven::Value),
         );
     }
 }

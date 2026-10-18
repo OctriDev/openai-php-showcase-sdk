@@ -26,6 +26,52 @@ final readonly class CreateRealtimeTranscriptionSessionInputAudioFormat implemen
 }
 
 /**
+ * Configuration for input audio noise reduction. This can be set to `null` to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
+ */
+class AcceptRealtimeCallAudioInputNoiseReduction implements \JsonSerializable
+{
+    /**
+     * Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.
+     *
+     * @var NoiseReductionType|string|SdkNotGiven
+     */
+    public readonly NoiseReductionType|string|SdkNotGiven $type;
+
+    /**
+     * @param NoiseReductionType|string|SdkNotGiven $type
+     */
+    public function __construct(
+        NoiseReductionType|string|SdkNotGiven $type = SdkNotGiven::Value,
+    ) {
+        $this->type = $type;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+        ];
+        if ($this->type !== SdkNotGiven::Value) {
+            $values["type"] = $this->type;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        return new self(
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, NoiseReductionType::class) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
  * Optional object value serialized in the `input` wire field.
  */
 class AcceptRealtimeCallAudioInput implements \JsonSerializable
@@ -45,9 +91,9 @@ class AcceptRealtimeCallAudioInput implements \JsonSerializable
     /**
      * Configuration for input audio noise reduction. This can be set to `null` to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
      *
-     * @var mixed
+     * @var AcceptRealtimeCallAudioInputNoiseReduction|SdkNotGiven
      */
-    public readonly mixed $noiseReduction;
+    public readonly AcceptRealtimeCallAudioInputNoiseReduction|SdkNotGiven $noiseReduction;
     /**
      * Configuration for turn detection, ether Server VAD or Semantic VAD. This can be set to `null` to turn off, in which case the client must manually trigger model response. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech. Semantic VAD is more advanced and uses a turn detection model (in conjunction with VAD) to semantically estimate whether the user has finished speaking, then dynamically sets a timeout based on this probability. For example, if user audio trails off with "uhhm", the model will score a low probability of turn end and wait longer for the user to continue speaking. This can be useful for more natural conversations, but may have a higher latency. For `gpt-realtime-whisper` transcription sessions, turn detection must be set to `null`; VAD is not supported.
      *
@@ -58,13 +104,13 @@ class AcceptRealtimeCallAudioInput implements \JsonSerializable
     /**
      * @param RealtimeAudioFormats|SdkNotGiven $format
      * @param AudioTranscription|SdkNotGiven $transcription
-     * @param mixed $noiseReduction
+     * @param AcceptRealtimeCallAudioInputNoiseReduction|SdkNotGiven $noiseReduction
      * @param RealtimeTurnDetection|null|SdkNotGiven $turnDetection
      */
     public function __construct(
         RealtimeAudioFormats|SdkNotGiven $format = SdkNotGiven::Value,
         AudioTranscription|SdkNotGiven $transcription = SdkNotGiven::Value,
-        mixed $noiseReduction = SdkNotGiven::Value,
+        AcceptRealtimeCallAudioInputNoiseReduction|SdkNotGiven $noiseReduction = SdkNotGiven::Value,
         RealtimeTurnDetection|null|SdkNotGiven $turnDetection = SdkNotGiven::Value,
     ) {
         $this->format = $format;
@@ -102,9 +148,9 @@ class AcceptRealtimeCallAudioInput implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
-            transcription: (property_exists($data, "transcription") ? SdkClient::hydrateClass($data->transcription, AudioTranscription::class) : SdkNotGiven::Value),
-            noiseReduction: (property_exists($data, "noise_reduction") ? $data->noise_reduction : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
+            transcription: (property_exists($data, "transcription") && $data->transcription !== null ? SdkClient::hydrateClass($data->transcription, AudioTranscription::class) : SdkNotGiven::Value),
+            noiseReduction: (property_exists($data, "noise_reduction") && $data->noise_reduction !== null ? SdkClient::hydrateClass($data->noise_reduction, AcceptRealtimeCallAudioInputNoiseReduction::class) : SdkNotGiven::Value),
             turnDetection: (property_exists($data, "turn_detection") ? ($data->turn_detection === null ? null : SdkClient::hydrateUnionAs($data->turn_detection, RealtimeTurnDetection::class, [RealtimeTurnDetectionVariant0::class, RealtimeTurnDetectionVariant1::class], "type", ["server_vad" => RealtimeTurnDetectionVariant0::class, "semantic_vad" => RealtimeTurnDetectionVariant1::class], UnknownRealtimeTurnDetection::class)) : SdkNotGiven::Value),
         );
     }
@@ -220,9 +266,9 @@ class AcceptRealtimeCallAudioOutput implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
-            voice: (property_exists($data, "voice") ? (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, AcceptRealtimeCallAudioOutputVoiceVariant1::class) : (is_string($data->voice) ? SdkClient::stringValue($data->voice) : SdkClient::hydrateClass($data->voice, AcceptRealtimeCallAudioOutputVoiceVariant1::class))) : SdkNotGiven::Value),
-            speed: (property_exists($data, "speed") ? SdkClient::floatValue($data->speed) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
+            voice: (property_exists($data, "voice") && $data->voice !== null ? (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, AcceptRealtimeCallAudioOutputVoiceVariant1::class) : (is_string($data->voice) ? SdkClient::stringValue($data->voice) : SdkClient::hydrateClass($data->voice, AcceptRealtimeCallAudioOutputVoiceVariant1::class))) : SdkNotGiven::Value),
+            speed: (property_exists($data, "speed") && $data->speed !== null ? SdkClient::floatValue($data->speed) : SdkNotGiven::Value),
         );
     }
 }
@@ -280,8 +326,8 @@ class AcceptRealtimeCallAudio implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            input: (property_exists($data, "input") ? SdkClient::hydrateClass($data->input, AcceptRealtimeCallAudioInput::class) : SdkNotGiven::Value),
-            output: (property_exists($data, "output") ? SdkClient::hydrateClass($data->output, AcceptRealtimeCallAudioOutput::class) : SdkNotGiven::Value),
+            input: (property_exists($data, "input") && $data->input !== null ? SdkClient::hydrateClass($data->input, AcceptRealtimeCallAudioInput::class) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? SdkClient::hydrateClass($data->output, AcceptRealtimeCallAudioOutput::class) : SdkNotGiven::Value),
         );
     }
 }

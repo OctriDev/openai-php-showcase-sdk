@@ -93,7 +93,7 @@ class ResponsesServerEventVariant16 implements ResponsesServerEvent, \JsonSerial
             outputIndex: SdkClient::intValue($data->output_index),
             itemId: SdkClient::stringValue($data->item_id),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -204,7 +204,7 @@ class ResponsesServerEventVariant17 implements ResponsesServerEvent, \JsonSerial
             outputIndex: SdkClient::intValue($data->output_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             delta: SdkClient::stringValue($data->delta),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -315,7 +315,7 @@ class ResponsesServerEventVariant18 implements ResponsesServerEvent, \JsonSerial
             outputIndex: SdkClient::intValue($data->output_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             arguments: SdkClient::stringValue($data->arguments),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

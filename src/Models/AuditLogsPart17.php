@@ -87,9 +87,9 @@ class AuditLogActor implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, AuditLogActorTypeEnum::class) : SdkNotGiven::Value),
-            session: (property_exists($data, "session") ? SdkClient::hydrateClass($data->session, AuditLogActorSession::class) : SdkNotGiven::Value),
-            apiKey: (property_exists($data, "api_key") ? SdkClient::hydrateClass($data->api_key, AuditLogActorApiKey::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, AuditLogActorTypeEnum::class) : SdkNotGiven::Value),
+            session: (property_exists($data, "session") && $data->session !== null ? SdkClient::hydrateClass($data->session, AuditLogActorSession::class) : SdkNotGiven::Value),
+            apiKey: (property_exists($data, "api_key") && $data->api_key !== null ? SdkClient::hydrateClass($data->api_key, AuditLogActorApiKey::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -186,10 +186,10 @@ class AuditLogActorApiKey implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, AuditLogActorApiKeyTypeEnum::class) : SdkNotGiven::Value),
-            user: (property_exists($data, "user") ? SdkClient::hydrateClass($data->user, AuditLogActorUser::class) : SdkNotGiven::Value),
-            serviceAccount: (property_exists($data, "service_account") ? SdkClient::hydrateClass($data->service_account, AuditLogActorServiceAccount::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, AuditLogActorApiKeyTypeEnum::class) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::hydrateClass($data->user, AuditLogActorUser::class) : SdkNotGiven::Value),
+            serviceAccount: (property_exists($data, "service_account") && $data->service_account !== null ? SdkClient::hydrateClass($data->service_account, AuditLogActorServiceAccount::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -235,7 +235,7 @@ class AuditLogActorServiceAccount implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -293,8 +293,8 @@ class AuditLogActorSession implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            user: (property_exists($data, "user") ? SdkClient::hydrateClass($data->user, AuditLogActorUser::class) : SdkNotGiven::Value),
-            ipAddress: (property_exists($data, "ip_address") ? SdkClient::stringValue($data->ip_address) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::hydrateClass($data->user, AuditLogActorUser::class) : SdkNotGiven::Value),
+            ipAddress: (property_exists($data, "ip_address") && $data->ip_address !== null ? SdkClient::stringValue($data->ip_address) : SdkNotGiven::Value),
         );
     }
 }

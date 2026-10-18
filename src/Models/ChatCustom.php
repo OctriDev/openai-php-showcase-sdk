@@ -80,8 +80,8 @@ class CustomToolChatCompletionsCustom implements \JsonSerializable
         if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, CustomToolChatCompletionsCustomFormat::class, [CustomToolChatCompletionsCustomFormatVariant0::class, CustomToolChatCompletionsCustomFormatVariant1::class], null, []) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, CustomToolChatCompletionsCustomFormat::class, [CustomToolChatCompletionsCustomFormatVariant0::class, CustomToolChatCompletionsCustomFormatVariant1::class], null, []) : SdkNotGiven::Value),
         );
     }
 }
@@ -89,7 +89,7 @@ class CustomToolChatCompletionsCustom implements \JsonSerializable
 /**
  * A custom tool that processes input using a specified format.
  */
-class CustomToolChatCompletions implements ToolsItem, \JsonSerializable
+class CustomToolChatCompletions implements \JsonSerializable
 {
     /**
      * The type of the custom tool. Always `custom`.

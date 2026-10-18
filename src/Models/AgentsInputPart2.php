@@ -72,7 +72,7 @@ class InputMessageParam implements \JsonSerializable
         return new self(
             role: SdkClient::hydrateStringEnumOrString($data->role, InputMessageParamRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, InputContentParam::class, [InputContentParamInputText::class, InputContentParamInputImage::class], "type", ["input_text" => InputContentParamInputText::class, "input_image" => InputContentParamInputImage::class], UnknownInputContentParam::class), SdkClient::arrayValue($data->content))),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, InputMessageParamTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, InputMessageParamTypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }

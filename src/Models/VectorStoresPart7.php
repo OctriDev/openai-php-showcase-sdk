@@ -168,7 +168,7 @@ class VectorStoreObject implements \JsonSerializable
             status: SdkClient::hydrateStringEnumOrString($data->status, VectorStoreObjectStatusEnum::class),
             lastActiveAt: ($data->last_active_at === null ? null : SdkClient::intValue($data->last_active_at)),
             metadata: ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, VectorStoreExpirationAfter::class) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, VectorStoreExpirationAfter::class) : SdkNotGiven::Value),
             expiresAt: (property_exists($data, "expires_at") ? ($data->expires_at === null ? null : SdkClient::intValue($data->expires_at)) : SdkNotGiven::Value),
         );
     }
@@ -243,8 +243,8 @@ class VectorStoreSearchRequestRankingOptions implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            ranker: (property_exists($data, "ranker") ? SdkClient::hydrateStringEnumOrString($data->ranker, VectorStoreSearchRequestRankingOptionsRankerEnum::class) : SdkNotGiven::Value),
-            scoreThreshold: (property_exists($data, "score_threshold") ? SdkClient::floatValue($data->score_threshold) : SdkNotGiven::Value),
+            ranker: (property_exists($data, "ranker") && $data->ranker !== null ? SdkClient::hydrateStringEnumOrString($data->ranker, VectorStoreSearchRequestRankingOptionsRankerEnum::class) : SdkNotGiven::Value),
+            scoreThreshold: (property_exists($data, "score_threshold") && $data->score_threshold !== null ? SdkClient::floatValue($data->score_threshold) : SdkNotGiven::Value),
         );
     }
 }
@@ -338,10 +338,10 @@ class VectorStoreSearchRequest implements \JsonSerializable
         if (!property_exists($data, "query") || $data->query === null) { throw new SdkValidationError("query", 'required', "Required property 'query' is missing or null"); }
         return new self(
             query: (is_array($data->query) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->query))) : SdkClient::stringValue($data->query)),
-            rewriteQuery: (property_exists($data, "rewrite_query") ? SdkClient::boolValue($data->rewrite_query) : SdkNotGiven::Value),
-            maxNumResults: (property_exists($data, "max_num_results") ? SdkClient::intValue($data->max_num_results) : SdkNotGiven::Value),
-            filters: (property_exists($data, "filters") ? SdkClient::hydrateUnionAs($data->filters, VectorStoreSearchRequestFilters::class, [ComparisonFilter::class, CompoundFilter::class], "type", ["eq" => ComparisonFilter::class, "ne" => ComparisonFilter::class, "gt" => ComparisonFilter::class, "gte" => ComparisonFilter::class, "lt" => ComparisonFilter::class, "lte" => ComparisonFilter::class, "in" => ComparisonFilter::class, "nin" => ComparisonFilter::class, "and" => CompoundFilter::class, "or" => CompoundFilter::class], UnknownVectorStoreSearchRequestFilters::class) : SdkNotGiven::Value),
-            rankingOptions: (property_exists($data, "ranking_options") ? SdkClient::hydrateClass($data->ranking_options, VectorStoreSearchRequestRankingOptions::class) : SdkNotGiven::Value),
+            rewriteQuery: (property_exists($data, "rewrite_query") && $data->rewrite_query !== null ? SdkClient::boolValue($data->rewrite_query) : SdkNotGiven::Value),
+            maxNumResults: (property_exists($data, "max_num_results") && $data->max_num_results !== null ? SdkClient::intValue($data->max_num_results) : SdkNotGiven::Value),
+            filters: (property_exists($data, "filters") && $data->filters !== null ? SdkClient::hydrateUnionAs($data->filters, VectorStoreSearchRequestFilters::class, [ComparisonFilter::class, CompoundFilter::class], "type", ["eq" => ComparisonFilter::class, "ne" => ComparisonFilter::class, "gt" => ComparisonFilter::class, "gte" => ComparisonFilter::class, "lt" => ComparisonFilter::class, "lte" => ComparisonFilter::class, "in" => ComparisonFilter::class, "nin" => ComparisonFilter::class, "and" => CompoundFilter::class, "or" => CompoundFilter::class], UnknownVectorStoreSearchRequestFilters::class) : SdkNotGiven::Value),
+            rankingOptions: (property_exists($data, "ranking_options") && $data->ranking_options !== null ? SdkClient::hydrateClass($data->ranking_options, VectorStoreSearchRequestRankingOptions::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -69,7 +69,7 @@ class BetaFunctionToolCallOutputResourceVariant1 implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallOutputStatusEnum::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -232,11 +232,11 @@ class BetaFunctionToolCallOutputResource implements BetaItemResource, BetaOutput
             output: (is_array($data->output) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaFunctionAndCustomToolCallOutput::class, [BetaInputTextContent::class, BetaInputImageContent::class, BetaInputFileContent::class], "type", ["input_text" => BetaInputTextContent::class, "input_image" => BetaInputImageContent::class, "input_file" => BetaInputFileContent::class], UnknownBetaFunctionAndCustomToolCallOutput::class), SdkClient::arrayValue($data->output))) : SdkClient::stringValue($data->output)),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallOutputStatusEnum::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            callId: (property_exists($data, "call_id") ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            namespace_: (property_exists($data, "namespace") ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
+            callId: (property_exists($data, "call_id") && $data->call_id !== null ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            namespace_: (property_exists($data, "namespace") && $data->namespace !== null ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCallerParam::class, [BetaDirectToolCallCallerParam::class, BetaProgramToolCallCallerParam::class], "type", ["direct" => BetaDirectToolCallCallerParam::class, "program" => BetaProgramToolCallCallerParam::class], UnknownBetaToolCallCallerParam::class)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -303,7 +303,7 @@ class BetaFunctionToolCallResourceVariant1 implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallStatus::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

@@ -84,10 +84,10 @@ class RealtimeSessionCreateRequestToolsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeSessionCreateRequestToolsItemTypeEnum::class) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            parameters: (property_exists($data, "parameters") ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeSessionCreateRequestToolsItemTypeEnum::class) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            parameters: (property_exists($data, "parameters") && $data->parameters !== null ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
         );
     }
 }
@@ -176,7 +176,7 @@ class RealtimeSessionCreateRequestTruncationRetentionRatioTruncationTokenLimits 
     public static function fromObject(object $data): self
     {
         return new self(
-            postInstructions: (property_exists($data, "post_instructions") ? SdkClient::intValue($data->post_instructions) : SdkNotGiven::Value),
+            postInstructions: (property_exists($data, "post_instructions") && $data->post_instructions !== null ? SdkClient::intValue($data->post_instructions) : SdkNotGiven::Value),
         );
     }
 }
@@ -246,7 +246,7 @@ class RealtimeSessionCreateRequestTruncationRetentionRatioTruncation implements 
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeSessionCreateRequestTruncationRetentionRatioTruncationTypeEnum::class),
             retentionRatio: SdkClient::floatValue($data->retention_ratio),
-            tokenLimits: (property_exists($data, "token_limits") ? SdkClient::hydrateClass($data->token_limits, RealtimeSessionCreateRequestTruncationRetentionRatioTruncationTokenLimits::class) : SdkNotGiven::Value),
+            tokenLimits: (property_exists($data, "token_limits") && $data->token_limits !== null ? SdkClient::hydrateClass($data->token_limits, RealtimeSessionCreateRequestTruncationRetentionRatioTruncationTokenLimits::class) : SdkNotGiven::Value),
         );
     }
 }

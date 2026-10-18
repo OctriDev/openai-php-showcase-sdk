@@ -150,7 +150,7 @@ class LiveDecisionPredicateQuestionParam implements LiveDecisionQuestion, \JsonS
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionPredicateQuestionParamTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -298,7 +298,7 @@ class LiveDecisionScoreLevelParam implements \JsonSerializable
         if (!property_exists($data, "label") || $data->label === null) { throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null"); }
         return new self(
             label: SdkClient::stringValue($data->label),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
         );
     }
 }

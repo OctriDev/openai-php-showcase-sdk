@@ -81,7 +81,7 @@ class ResponsesServerEventVariant55 implements ResponsesServerEvent, \JsonSerial
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant55TypeEnum::class),
             response: SdkClient::hydrateClass($data->response, Response::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -192,7 +192,7 @@ class ResponsesServerEventVariant56 implements ResponsesServerEvent, \JsonSerial
             outputIndex: SdkClient::intValue($data->output_index),
             itemId: SdkClient::stringValue($data->item_id),
             delta: SdkClient::stringValue($data->delta),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -303,7 +303,7 @@ class ResponsesServerEventVariant57 implements ResponsesServerEvent, \JsonSerial
             outputIndex: SdkClient::intValue($data->output_index),
             itemId: SdkClient::stringValue($data->item_id),
             input: SdkClient::stringValue($data->input),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -346,7 +346,7 @@ class ResponsesWebSocketStreamEventVariant1 implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

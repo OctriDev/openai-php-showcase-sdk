@@ -333,7 +333,7 @@ class RunGraderRequest implements \JsonSerializable
         return new self(
             grader: SdkClient::hydrateUnionAs($data->grader, RunGraderRequestGrader::class, [GraderStringCheck::class, GraderTextSimilarity::class, GraderPython::class, GraderScoreModel::class, GraderMulti::class], "type", ["string_check" => GraderStringCheck::class, "text_similarity" => GraderTextSimilarity::class, "python" => GraderPython::class, "score_model" => GraderScoreModel::class, "multi" => GraderMulti::class], UnknownRunGraderRequestGrader::class),
             modelSample: SdkClient::stringValue($data->model_sample),
-            item: (property_exists($data, "item") ? SdkClient::stringMapValue($data->item) : SdkNotGiven::Value),
+            item: (property_exists($data, "item") && $data->item !== null ? SdkClient::stringMapValue($data->item) : SdkNotGiven::Value),
         );
     }
 }

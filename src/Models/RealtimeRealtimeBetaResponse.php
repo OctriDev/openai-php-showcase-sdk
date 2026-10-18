@@ -138,9 +138,9 @@ class RealtimeBetaResponseStatusDetailsError implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            code: (property_exists($data, "code") ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
-            message: (property_exists($data, "message") ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            code: (property_exists($data, "code") && $data->code !== null ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
+            message: (property_exists($data, "message") && $data->message !== null ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
         );
     }
 }
@@ -210,9 +210,9 @@ class RealtimeBetaResponseStatusDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaResponseStatusDetailsTypeEnum::class) : SdkNotGiven::Value),
-            reason: (property_exists($data, "reason") ? SdkClient::hydrateStringEnumOrString($data->reason, RealtimeBetaResponseStatusDetailsReasonEnum::class) : SdkNotGiven::Value),
-            error: (property_exists($data, "error") ? SdkClient::hydrateClass($data->error, RealtimeBetaResponseStatusDetailsError::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaResponseStatusDetailsTypeEnum::class) : SdkNotGiven::Value),
+            reason: (property_exists($data, "reason") && $data->reason !== null ? SdkClient::hydrateStringEnumOrString($data->reason, RealtimeBetaResponseStatusDetailsReasonEnum::class) : SdkNotGiven::Value),
+            error: (property_exists($data, "error") && $data->error !== null ? SdkClient::hydrateClass($data->error, RealtimeBetaResponseStatusDetailsError::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -282,9 +282,9 @@ class RealtimeBetaResponseUsageInputTokenDetailsCachedTokensDetails implements \
     public static function fromObject(object $data): self
     {
         return new self(
-            textTokens: (property_exists($data, "text_tokens") ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
-            imageTokens: (property_exists($data, "image_tokens") ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
-            audioTokens: (property_exists($data, "audio_tokens") ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
+            textTokens: (property_exists($data, "text_tokens") && $data->text_tokens !== null ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
+            imageTokens: (property_exists($data, "image_tokens") && $data->image_tokens !== null ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
+            audioTokens: (property_exists($data, "audio_tokens") && $data->audio_tokens !== null ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
         );
     }
 }

@@ -182,17 +182,17 @@ class RealtimeResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeResponseObjectEnum::class) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeResponseStatusEnum::class) : SdkNotGiven::Value),
-            statusDetails: (property_exists($data, "status_details") ? SdkClient::hydrateClass($data->status_details, RealtimeResponseStatusDetails::class) : SdkNotGiven::Value),
-            output: (property_exists($data, "output") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RealtimeConversationItem::class, [RealtimeConversationItemMessageSystem::class, RealtimeConversationItemMessageUser::class, RealtimeConversationItemMessageAssistant::class, RealtimeConversationItemFunctionCall::class, RealtimeConversationItemFunctionCallOutput::class, RealtimeMCPApprovalResponse::class, RealtimeMCPListTools::class, RealtimeMCPToolCall::class, RealtimeMCPApprovalRequest::class], "type", ["function_call" => RealtimeConversationItemFunctionCall::class, "function_call_output" => RealtimeConversationItemFunctionCallOutput::class, "mcp_approval_response" => RealtimeMCPApprovalResponse::class, "mcp_list_tools" => RealtimeMCPListTools::class, "mcp_call" => RealtimeMCPToolCall::class, "mcp_approval_request" => RealtimeMCPApprovalRequest::class], UnknownRealtimeConversationItem::class), SdkClient::arrayValue($data->output))) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeResponseObjectEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeResponseStatusEnum::class) : SdkNotGiven::Value),
+            statusDetails: (property_exists($data, "status_details") && $data->status_details !== null ? SdkClient::hydrateClass($data->status_details, RealtimeResponseStatusDetails::class) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RealtimeConversationItem::class, [RealtimeConversationItemMessageSystem::class, RealtimeConversationItemMessageUser::class, RealtimeConversationItemMessageAssistant::class, RealtimeConversationItemFunctionCall::class, RealtimeConversationItemFunctionCallOutput::class, RealtimeMCPApprovalResponse::class, RealtimeMCPListTools::class, RealtimeMCPToolCall::class, RealtimeMCPApprovalRequest::class], "type", ["function_call" => RealtimeConversationItemFunctionCall::class, "function_call_output" => RealtimeConversationItemFunctionCallOutput::class, "mcp_approval_response" => RealtimeMCPApprovalResponse::class, "mcp_list_tools" => RealtimeMCPListTools::class, "mcp_call" => RealtimeMCPToolCall::class, "mcp_approval_request" => RealtimeMCPApprovalRequest::class], UnknownRealtimeConversationItem::class), SdkClient::arrayValue($data->output))) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
-            audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, RealtimeResponseAudio::class) : SdkNotGiven::Value),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateClass($data->usage, RealtimeResponseUsage::class) : SdkNotGiven::Value),
-            conversationId: (property_exists($data, "conversation_id") ? SdkClient::stringValue($data->conversation_id) : SdkNotGiven::Value),
-            outputModalities: (property_exists($data, "output_modalities") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeResponseOutputModalitiesItemEnum::class), SdkClient::arrayValue($data->output_modalities))) : SdkNotGiven::Value),
-            maxOutputTokens: (property_exists($data, "max_output_tokens") ? (is_int($data->max_output_tokens) ? SdkClient::intValue($data->max_output_tokens) : SdkClient::hydrateStringEnumOrString($data->max_output_tokens, RealtimeResponseMaxOutputTokensEnum::class)) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::hydrateClass($data->audio, RealtimeResponseAudio::class) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, RealtimeResponseUsage::class) : SdkNotGiven::Value),
+            conversationId: (property_exists($data, "conversation_id") && $data->conversation_id !== null ? SdkClient::stringValue($data->conversation_id) : SdkNotGiven::Value),
+            outputModalities: (property_exists($data, "output_modalities") && $data->output_modalities !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeResponseOutputModalitiesItemEnum::class), SdkClient::arrayValue($data->output_modalities))) : SdkNotGiven::Value),
+            maxOutputTokens: (property_exists($data, "max_output_tokens") && $data->max_output_tokens !== null ? (is_int($data->max_output_tokens) ? SdkClient::intValue($data->max_output_tokens) : SdkClient::hydrateStringEnumOrString($data->max_output_tokens, RealtimeResponseMaxOutputTokensEnum::class)) : SdkNotGiven::Value),
         );
     }
 }
@@ -310,8 +310,8 @@ class RealtimeResponseCreateParamsAudioOutput implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
-            voice: (property_exists($data, "voice") ? (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, RealtimeResponseCreateParamsAudioOutputVoiceVariant1::class) : (is_string($data->voice) ? SdkClient::stringValue($data->voice) : SdkClient::hydrateClass($data->voice, RealtimeResponseCreateParamsAudioOutputVoiceVariant1::class))) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
+            voice: (property_exists($data, "voice") && $data->voice !== null ? (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, RealtimeResponseCreateParamsAudioOutputVoiceVariant1::class) : (is_string($data->voice) ? SdkClient::stringValue($data->voice) : SdkClient::hydrateClass($data->voice, RealtimeResponseCreateParamsAudioOutputVoiceVariant1::class))) : SdkNotGiven::Value),
         );
     }
 }

@@ -105,7 +105,7 @@ class CompleteUploadRequest implements \JsonSerializable
         if (!property_exists($data, "part_ids") || $data->part_ids === null) { throw new SdkValidationError("part_ids", 'required', "Required property 'part_ids' is missing or null"); }
         return new self(
             partIds: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->part_ids))),
-            md5: (property_exists($data, "md5") ? SdkClient::stringValue($data->md5) : SdkNotGiven::Value),
+            md5: (property_exists($data, "md5") && $data->md5 !== null ? SdkClient::stringValue($data->md5) : SdkNotGiven::Value),
         );
     }
 }
@@ -216,7 +216,7 @@ class CreateUploadRequest implements \JsonSerializable
             purpose: SdkClient::hydrateStringEnumOrString($data->purpose, CreateUploadRequestPurposeEnum::class),
             bytes: SdkClient::intValue($data->bytes),
             mimeType: SdkClient::stringValue($data->mime_type),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, FileExpirationAfter::class) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, FileExpirationAfter::class) : SdkNotGiven::Value),
         );
     }
 }

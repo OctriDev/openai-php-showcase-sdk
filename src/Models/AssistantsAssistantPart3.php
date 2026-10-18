@@ -60,8 +60,8 @@ class AssistantToolsFileSearchFileSearch implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            maxNumResults: (property_exists($data, "max_num_results") ? SdkClient::intValue($data->max_num_results) : SdkNotGiven::Value),
-            rankingOptions: (property_exists($data, "ranking_options") ? SdkClient::hydrateClass($data->ranking_options, FileSearchRankingOptions::class) : SdkNotGiven::Value),
+            maxNumResults: (property_exists($data, "max_num_results") && $data->max_num_results !== null ? SdkClient::intValue($data->max_num_results) : SdkNotGiven::Value),
+            rankingOptions: (property_exists($data, "ranking_options") && $data->ranking_options !== null ? SdkClient::hydrateClass($data->ranking_options, FileSearchRankingOptions::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -119,7 +119,7 @@ class AssistantToolsFileSearch implements AssistantObjectToolsItem, RunObjectToo
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AssistantToolsFileSearchTypeEnum::class),
-            fileSearch: (property_exists($data, "file_search") ? SdkClient::hydrateClass($data->file_search, AssistantToolsFileSearchFileSearch::class) : SdkNotGiven::Value),
+            fileSearch: (property_exists($data, "file_search") && $data->file_search !== null ? SdkClient::hydrateClass($data->file_search, AssistantToolsFileSearchFileSearch::class) : SdkNotGiven::Value),
         );
     }
 }

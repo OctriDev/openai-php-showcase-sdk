@@ -96,8 +96,8 @@ class BetaFileSearchTool implements BetaTool, BetaToolSearchOutputTool, \JsonSer
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaFileSearchToolTypeEnum::class),
             vectorStoreIds: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))),
-            maxNumResults: (property_exists($data, "max_num_results") ? SdkClient::intValue($data->max_num_results) : SdkNotGiven::Value),
-            rankingOptions: (property_exists($data, "ranking_options") ? SdkClient::hydrateClass($data->ranking_options, BetaRankingOptions::class) : SdkNotGiven::Value),
+            maxNumResults: (property_exists($data, "max_num_results") && $data->max_num_results !== null ? SdkClient::intValue($data->max_num_results) : SdkNotGiven::Value),
+            rankingOptions: (property_exists($data, "ranking_options") && $data->ranking_options !== null ? SdkClient::hydrateClass($data->ranking_options, BetaRankingOptions::class) : SdkNotGiven::Value),
             filters: (property_exists($data, "filters") ? ($data->filters === null ? null : SdkClient::hydrateUnionAs($data->filters, BetaFilters::class, [BetaComparisonFilter::class, BetaCompoundFilter::class], "type", ["eq" => BetaComparisonFilter::class, "ne" => BetaComparisonFilter::class, "gt" => BetaComparisonFilter::class, "gte" => BetaComparisonFilter::class, "lt" => BetaComparisonFilter::class, "lte" => BetaComparisonFilter::class, "in" => BetaComparisonFilter::class, "nin" => BetaComparisonFilter::class, "and" => BetaCompoundFilter::class, "or" => BetaCompoundFilter::class], UnknownBetaFilters::class)) : SdkNotGiven::Value),
         );
     }
@@ -218,11 +218,11 @@ class BetaFileSearchToolCallResultsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
-            text: (property_exists($data, "text") ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
-            filename: (property_exists($data, "filename") ? SdkClient::stringValue($data->filename) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
+            filename: (property_exists($data, "filename") && $data->filename !== null ? SdkClient::stringValue($data->filename) : SdkNotGiven::Value),
             attributes: (property_exists($data, "attributes") ? ($data->attributes === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->attributes), static fn($item) => (is_bool($item) ? SdkClient::boolValue($item) : (is_float($item) || is_int($item) ? SdkClient::floatValue($item) : SdkClient::stringValue($item))))) : SdkNotGiven::Value),
-            score: (property_exists($data, "score") ? SdkClient::floatValue($data->score) : SdkNotGiven::Value),
+            score: (property_exists($data, "score") && $data->score !== null ? SdkClient::floatValue($data->score) : SdkNotGiven::Value),
         );
     }
 }

@@ -60,8 +60,8 @@ class AuditLogCheckpointPermissionCreatedData implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            projectId: (property_exists($data, "project_id") ? SdkClient::stringValue($data->project_id) : SdkNotGiven::Value),
-            fineTunedModelCheckpoint: (property_exists($data, "fine_tuned_model_checkpoint") ? SdkClient::stringValue($data->fine_tuned_model_checkpoint) : SdkNotGiven::Value),
+            projectId: (property_exists($data, "project_id") && $data->project_id !== null ? SdkClient::stringValue($data->project_id) : SdkNotGiven::Value),
+            fineTunedModelCheckpoint: (property_exists($data, "fine_tuned_model_checkpoint") && $data->fine_tuned_model_checkpoint !== null ? SdkClient::stringValue($data->fine_tuned_model_checkpoint) : SdkNotGiven::Value),
         );
     }
 }
@@ -119,8 +119,8 @@ class AuditLogCheckpointPermissionCreated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") ? SdkClient::hydrateClass($data->data, AuditLogCheckpointPermissionCreatedData::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") && $data->data !== null ? SdkClient::hydrateClass($data->data, AuditLogCheckpointPermissionCreatedData::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -166,7 +166,7 @@ class AuditLogCheckpointPermissionDeleted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -224,8 +224,8 @@ class AuditLogExternalKeyRegistered implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") ? SdkClient::stringMapValue($data->data) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") && $data->data !== null ? SdkClient::stringMapValue($data->data) : SdkNotGiven::Value),
         );
     }
 }
@@ -271,7 +271,7 @@ class AuditLogExternalKeyRemoved implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -329,8 +329,8 @@ class AuditLogExternalStorageRegisteredData implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            provider: (property_exists($data, "provider") ? SdkClient::hydrateUnionAs($data->provider, Provider::class, [AwsExternalStorageProviderResponse::class, AzureExternalStorageProviderResponse::class, GcpExternalStorageProviderResponse::class, OciExternalStorageProviderResponse::class], "type", ["aws" => AwsExternalStorageProviderResponse::class, "azure" => AzureExternalStorageProviderResponse::class, "gcp" => GcpExternalStorageProviderResponse::class, "oci" => OciExternalStorageProviderResponse::class], UnknownProvider::class) : SdkNotGiven::Value),
-            geography: (property_exists($data, "geography") ? SdkClient::stringValue($data->geography) : SdkNotGiven::Value),
+            provider: (property_exists($data, "provider") && $data->provider !== null ? SdkClient::hydrateUnionAs($data->provider, Provider::class, [AwsExternalStorageProviderResponse::class, AzureExternalStorageProviderResponse::class, GcpExternalStorageProviderResponse::class, OciExternalStorageProviderResponse::class], "type", ["aws" => AwsExternalStorageProviderResponse::class, "azure" => AzureExternalStorageProviderResponse::class, "gcp" => GcpExternalStorageProviderResponse::class, "oci" => OciExternalStorageProviderResponse::class], UnknownProvider::class) : SdkNotGiven::Value),
+            geography: (property_exists($data, "geography") && $data->geography !== null ? SdkClient::stringValue($data->geography) : SdkNotGiven::Value),
         );
     }
 }

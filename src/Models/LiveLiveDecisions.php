@@ -198,7 +198,7 @@ class LiveDecisionsDelegationUpdateParam implements LiveSessionUpdateParamsDeleg
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionsDelegationUpdateParamTypeEnum::class),
-            decisions: (property_exists($data, "decisions") ? SdkClient::hydrateClass($data->decisions, LiveDecisionsSettingsUpdateParam::class) : SdkNotGiven::Value),
+            decisions: (property_exists($data, "decisions") && $data->decisions !== null ? SdkClient::hydrateClass($data->decisions, LiveDecisionsSettingsUpdateParam::class) : SdkNotGiven::Value),
         );
     }
 }

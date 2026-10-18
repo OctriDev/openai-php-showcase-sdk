@@ -123,7 +123,7 @@ class BetaToolSearchOutputItemParam implements BetaInputItem, BetaItem, \JsonSer
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, Beta_AgentTagParam::class)) : SdkNotGiven::Value),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
             callId: (property_exists($data, "call_id") ? ($data->call_id === null ? null : SdkClient::stringValue($data->call_id)) : SdkNotGiven::Value),
-            execution: (property_exists($data, "execution") ? SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class) : SdkNotGiven::Value),
+            execution: (property_exists($data, "execution") && $data->execution !== null ? SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? ($data->status === null ? null : SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallItemStatus::class)) : SdkNotGiven::Value),
         );
     }
@@ -303,7 +303,7 @@ class BetaToolSearchToolParam implements BetaTool, BetaToolSearchOutputTool, \Js
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaToolSearchToolParamTypeEnum::class),
-            execution: (property_exists($data, "execution") ? SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class) : SdkNotGiven::Value),
+            execution: (property_exists($data, "execution") && $data->execution !== null ? SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class) : SdkNotGiven::Value),
             description: (property_exists($data, "description") ? ($data->description === null ? null : SdkClient::stringValue($data->description)) : SdkNotGiven::Value),
             parameters: (property_exists($data, "parameters") ? ($data->parameters === null ? null : SdkClient::hydrateClass($data->parameters, BetaEmptyModelParam::class)) : SdkNotGiven::Value),
         );

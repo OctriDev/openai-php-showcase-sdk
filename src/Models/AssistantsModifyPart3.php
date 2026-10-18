@@ -48,7 +48,7 @@ class ModifyThreadRequestToolResourcesFileSearch implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            vectorStoreIds: (property_exists($data, "vector_store_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
+            vectorStoreIds: (property_exists($data, "vector_store_ids") && $data->vector_store_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
         );
     }
 }
@@ -106,8 +106,8 @@ class ModifyThreadRequestToolResources implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            codeInterpreter: (property_exists($data, "code_interpreter") ? SdkClient::hydrateClass($data->code_interpreter, ModifyThreadRequestToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
-            fileSearch: (property_exists($data, "file_search") ? SdkClient::hydrateClass($data->file_search, ModifyThreadRequestToolResourcesFileSearch::class) : SdkNotGiven::Value),
+            codeInterpreter: (property_exists($data, "code_interpreter") && $data->code_interpreter !== null ? SdkClient::hydrateClass($data->code_interpreter, ModifyThreadRequestToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
+            fileSearch: (property_exists($data, "file_search") && $data->file_search !== null ? SdkClient::hydrateClass($data->file_search, ModifyThreadRequestToolResourcesFileSearch::class) : SdkNotGiven::Value),
         );
     }
 }

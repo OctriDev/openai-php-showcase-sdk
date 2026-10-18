@@ -60,7 +60,7 @@ trait AgentsMethodsPart5
     {
         foreach (SdkClient::stream(
             'POST',
-            '/agents/sessions',
+            "/agents/sessions",
             config: $clientConfig,
             body: ['environment' => $environment, 'stream' => $stream, 'spend_control' => $spendControl, 'metadata' => $metadata, 'agent' => $agent, 'agent_id' => $agentId, 'vault_ids' => $vaultIds, 'input' => $input],
             contentType: 'application/json',
@@ -316,7 +316,7 @@ trait AgentsMethodsPart5
     {
         foreach (SdkClient::stream(
             'GET',
-            '/agents/sessions/" . SdkClient::encodePathSegment($sessionId) . "/events',
+            "/agents/sessions/" . SdkClient::encodePathSegment($sessionId) . "/events",
             config: $clientConfig,
             operationId: 'listAgentSessionEvents',
             streamFormat: 'sse',

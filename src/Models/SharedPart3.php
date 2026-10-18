@@ -96,11 +96,11 @@ class CompletionUsageCompletionTokensDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            acceptedPredictionTokens: (property_exists($data, "accepted_prediction_tokens") ? SdkClient::intValue($data->accepted_prediction_tokens) : SdkNotGiven::Value),
-            audioTokens: (property_exists($data, "audio_tokens") ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
-            reasoningTokens: (property_exists($data, "reasoning_tokens") ? SdkClient::intValue($data->reasoning_tokens) : SdkNotGiven::Value),
-            textTokens: (property_exists($data, "text_tokens") ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
-            rejectedPredictionTokens: (property_exists($data, "rejected_prediction_tokens") ? SdkClient::intValue($data->rejected_prediction_tokens) : SdkNotGiven::Value),
+            acceptedPredictionTokens: (property_exists($data, "accepted_prediction_tokens") && $data->accepted_prediction_tokens !== null ? SdkClient::intValue($data->accepted_prediction_tokens) : SdkNotGiven::Value),
+            audioTokens: (property_exists($data, "audio_tokens") && $data->audio_tokens !== null ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
+            reasoningTokens: (property_exists($data, "reasoning_tokens") && $data->reasoning_tokens !== null ? SdkClient::intValue($data->reasoning_tokens) : SdkNotGiven::Value),
+            textTokens: (property_exists($data, "text_tokens") && $data->text_tokens !== null ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
+            rejectedPredictionTokens: (property_exists($data, "rejected_prediction_tokens") && $data->rejected_prediction_tokens !== null ? SdkClient::intValue($data->rejected_prediction_tokens) : SdkNotGiven::Value),
         );
     }
 }
@@ -194,11 +194,11 @@ class CompletionUsagePromptTokensDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            audioTokens: (property_exists($data, "audio_tokens") ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
-            cachedTokens: (property_exists($data, "cached_tokens") ? SdkClient::intValue($data->cached_tokens) : SdkNotGiven::Value),
-            textTokens: (property_exists($data, "text_tokens") ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
-            imageTokens: (property_exists($data, "image_tokens") ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
-            cacheWriteTokens: (property_exists($data, "cache_write_tokens") ? SdkClient::intValue($data->cache_write_tokens) : SdkNotGiven::Value),
+            audioTokens: (property_exists($data, "audio_tokens") && $data->audio_tokens !== null ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
+            cachedTokens: (property_exists($data, "cached_tokens") && $data->cached_tokens !== null ? SdkClient::intValue($data->cached_tokens) : SdkNotGiven::Value),
+            textTokens: (property_exists($data, "text_tokens") && $data->text_tokens !== null ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
+            imageTokens: (property_exists($data, "image_tokens") && $data->image_tokens !== null ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
+            cacheWriteTokens: (property_exists($data, "cache_write_tokens") && $data->cache_write_tokens !== null ? SdkClient::intValue($data->cache_write_tokens) : SdkNotGiven::Value),
         );
     }
 }
@@ -292,8 +292,8 @@ class CompletionUsage implements \JsonSerializable
             completionTokens: SdkClient::intValue($data->completion_tokens),
             promptTokens: SdkClient::intValue($data->prompt_tokens),
             totalTokens: SdkClient::intValue($data->total_tokens),
-            completionTokensDetails: (property_exists($data, "completion_tokens_details") ? SdkClient::hydrateClass($data->completion_tokens_details, CompletionUsageCompletionTokensDetails::class) : SdkNotGiven::Value),
-            promptTokensDetails: (property_exists($data, "prompt_tokens_details") ? SdkClient::hydrateClass($data->prompt_tokens_details, CompletionUsagePromptTokensDetails::class) : SdkNotGiven::Value),
+            completionTokensDetails: (property_exists($data, "completion_tokens_details") && $data->completion_tokens_details !== null ? SdkClient::hydrateClass($data->completion_tokens_details, CompletionUsageCompletionTokensDetails::class) : SdkNotGiven::Value),
+            promptTokensDetails: (property_exists($data, "prompt_tokens_details") && $data->prompt_tokens_details !== null ? SdkClient::hydrateClass($data->prompt_tokens_details, CompletionUsagePromptTokensDetails::class) : SdkNotGiven::Value),
         );
     }
 }

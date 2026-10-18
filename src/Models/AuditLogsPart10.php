@@ -48,7 +48,7 @@ class AuditLogRoleDeleted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -142,11 +142,11 @@ class AuditLogRoleAssignmentCreated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            principalId: (property_exists($data, "principal_id") ? SdkClient::stringValue($data->principal_id) : SdkNotGiven::Value),
-            principalType: (property_exists($data, "principal_type") ? SdkClient::stringValue($data->principal_type) : SdkNotGiven::Value),
-            resourceId: (property_exists($data, "resource_id") ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
-            resourceType: (property_exists($data, "resource_type") ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            principalId: (property_exists($data, "principal_id") && $data->principal_id !== null ? SdkClient::stringValue($data->principal_id) : SdkNotGiven::Value),
+            principalType: (property_exists($data, "principal_type") && $data->principal_type !== null ? SdkClient::stringValue($data->principal_type) : SdkNotGiven::Value),
+            resourceId: (property_exists($data, "resource_id") && $data->resource_id !== null ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
+            resourceType: (property_exists($data, "resource_type") && $data->resource_type !== null ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
         );
     }
 }
@@ -240,11 +240,11 @@ class AuditLogRoleAssignmentDeleted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            principalId: (property_exists($data, "principal_id") ? SdkClient::stringValue($data->principal_id) : SdkNotGiven::Value),
-            principalType: (property_exists($data, "principal_type") ? SdkClient::stringValue($data->principal_type) : SdkNotGiven::Value),
-            resourceId: (property_exists($data, "resource_id") ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
-            resourceType: (property_exists($data, "resource_type") ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            principalId: (property_exists($data, "principal_id") && $data->principal_id !== null ? SdkClient::stringValue($data->principal_id) : SdkNotGiven::Value),
+            principalType: (property_exists($data, "principal_type") && $data->principal_type !== null ? SdkClient::stringValue($data->principal_type) : SdkNotGiven::Value),
+            resourceId: (property_exists($data, "resource_id") && $data->resource_id !== null ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
+            resourceType: (property_exists($data, "resource_type") && $data->resource_type !== null ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
         );
     }
 }

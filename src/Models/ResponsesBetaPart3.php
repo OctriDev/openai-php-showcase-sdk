@@ -85,7 +85,7 @@ class BetaEasyInputMessage implements BetaInputItem, \JsonSerializable
             role: SdkClient::hydrateStringEnumOrString($data->role, BetaEasyInputMessageRoleEnum::class),
             content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaInputContent::class, [BetaInputTextContent::class, BetaInputImageContent::class, BetaInputFileContent::class], "type", ["input_text" => BetaInputTextContent::class, "input_image" => BetaInputImageContent::class, "input_file" => BetaInputFileContent::class], UnknownBetaInputContent::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
             phase: (property_exists($data, "phase") ? ($data->phase === null ? null : SdkClient::hydrateStringEnumOrString($data->phase, BetaMessagePhase::class)) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, BetaEasyInputMessageTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, BetaEasyInputMessageTypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }

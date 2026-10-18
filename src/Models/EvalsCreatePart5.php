@@ -8,6 +8,68 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
+ * The type of input messages. Always `item_reference`.
+ */
+enum CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum: string implements SdkWireEnum
+{
+    case ITEM_REFERENCE = "item_reference";
+}
+
+class CreateEvalResponsesRunDataSourceInputMessagesVariant1 implements CreateEvalResponsesRunDataSourceInputMessages, \JsonSerializable
+{
+    /**
+     * The type of input messages. Always `item_reference`.
+     *
+     * @var CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum
+     */
+    public readonly CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum $type;
+    /**
+     * A reference to a variable in the `item` namespace. Ie, "item.name"
+     *
+     * @var string
+     */
+    public readonly string $itemReference;
+
+    /**
+     * @param CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum $type
+     * @param string $itemReference
+     */
+    public function __construct(
+        CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum $type,
+        string $itemReference,
+    ) {
+        $this->type = $type;
+        $this->itemReference = $itemReference;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "type" => $this->type,
+            "item_reference" => $this->itemReference,
+        ];
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_reference") || $data->item_reference === null) { throw new SdkValidationError("item_reference", 'required', "Required property 'item_reference' is missing or null"); }
+        return new self(
+            type: SdkClient::hydrateEnum($data->type, CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum::class),
+            itemReference: SdkClient::stringValue($data->item_reference),
+        );
+    }
+}
+
+/**
  * Typed representation of the `CreateEvalRunRequest` API schema.
  */
 class CreateEvalRunRequest implements \JsonSerializable
@@ -72,7 +134,7 @@ class CreateEvalRunRequest implements \JsonSerializable
         if (!property_exists($data, "data_source") || $data->data_source === null) { throw new SdkValidationError("data_source", 'required', "Required property 'data_source' is missing or null"); }
         return new self(
             dataSource: SdkClient::hydrateUnionAs($data->data_source, CreateEvalRunRequestDataSource::class, [CreateEvalJsonlRunDataSource::class, CreateEvalCompletionsRunDataSource::class, CreateEvalResponsesRunDataSource::class], "type", ["jsonl" => CreateEvalJsonlRunDataSource::class, "completions" => CreateEvalCompletionsRunDataSource::class, "responses" => CreateEvalResponsesRunDataSource::class], UnknownCreateEvalRunRequestDataSource::class),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );
     }
@@ -139,7 +201,7 @@ class CreateEvalStoredCompletionsDataSourceConfig implements CreateEvalRequestDa
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalStoredCompletionsDataSourceConfigTypeEnum::class),
-            metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
         );
     }
 }

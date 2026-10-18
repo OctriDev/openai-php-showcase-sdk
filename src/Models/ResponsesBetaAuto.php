@@ -98,9 +98,9 @@ class BetaAutoCodeInterpreterToolParam implements \JsonSerializable
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, BetaAutoCodeInterpreterToolParamTypeEnum::class),
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
             memoryLimit: (property_exists($data, "memory_limit") ? ($data->memory_limit === null ? null : SdkClient::hydrateStringEnumOrString($data->memory_limit, BetaContainerMemoryLimit::class)) : SdkNotGiven::Value),
-            networkPolicy: (property_exists($data, "network_policy") ? SdkClient::hydrateUnionAs($data->network_policy, BetaAutoCodeInterpreterToolParamNetworkPolicy::class, [BetaContainerNetworkPolicyDisabledParam::class, BetaContainerNetworkPolicyAllowlistParam::class], "type", ["disabled" => BetaContainerNetworkPolicyDisabledParam::class, "allowlist" => BetaContainerNetworkPolicyAllowlistParam::class], UnknownBetaAutoCodeInterpreterToolParamNetworkPolicy::class) : SdkNotGiven::Value),
+            networkPolicy: (property_exists($data, "network_policy") && $data->network_policy !== null ? SdkClient::hydrateUnionAs($data->network_policy, BetaAutoCodeInterpreterToolParamNetworkPolicy::class, [BetaContainerNetworkPolicyDisabledParam::class, BetaContainerNetworkPolicyAllowlistParam::class], "type", ["disabled" => BetaContainerNetworkPolicyDisabledParam::class, "allowlist" => BetaContainerNetworkPolicyAllowlistParam::class], UnknownBetaAutoCodeInterpreterToolParamNetworkPolicy::class) : SdkNotGiven::Value),
         );
     }
 }

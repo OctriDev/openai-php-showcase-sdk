@@ -185,8 +185,8 @@ class BetaToolSearchCall implements BetaItemResource, BetaItemField, BetaOutputI
             execution: SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class),
             arguments: $data->arguments,
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallStatus::class),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -315,7 +315,7 @@ class BetaToolSearchCallItemParam implements BetaInputItem, BetaItem, \JsonSeria
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, Beta_AgentTagParam::class)) : SdkNotGiven::Value),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
             callId: (property_exists($data, "call_id") ? ($data->call_id === null ? null : SdkClient::stringValue($data->call_id)) : SdkNotGiven::Value),
-            execution: (property_exists($data, "execution") ? SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class) : SdkNotGiven::Value),
+            execution: (property_exists($data, "execution") && $data->execution !== null ? SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? ($data->status === null ? null : SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallItemStatus::class)) : SdkNotGiven::Value),
         );
     }

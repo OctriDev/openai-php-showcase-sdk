@@ -8,6 +8,91 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
+ * Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.
+ */
+class RealtimeTranscriptionSessionCreateResponseTurnDetection implements \JsonSerializable
+{
+    /**
+     * Type of turn detection, only `server_vad` is currently supported.
+     *
+     * @var string|SdkNotGiven
+     */
+    public readonly string|SdkNotGiven $type;
+    /**
+     * Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments.
+     *
+     * @var float|SdkNotGiven
+     */
+    public readonly float|SdkNotGiven $threshold;
+    /**
+     * Amount of audio to include before the VAD detected speech (in milliseconds). Defaults to 300ms.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $prefixPaddingMs;
+    /**
+     * Duration of silence to detect speech stop (in milliseconds). Defaults to 500ms. With shorter values the model will respond more quickly, but may jump in on short pauses from the user.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $silenceDurationMs;
+
+    /**
+     * @param string|SdkNotGiven $type
+     * @param float|SdkNotGiven $threshold
+     * @param int|SdkNotGiven $prefixPaddingMs
+     * @param int|SdkNotGiven $silenceDurationMs
+     */
+    public function __construct(
+        string|SdkNotGiven $type = SdkNotGiven::Value,
+        float|SdkNotGiven $threshold = SdkNotGiven::Value,
+        int|SdkNotGiven $prefixPaddingMs = SdkNotGiven::Value,
+        int|SdkNotGiven $silenceDurationMs = SdkNotGiven::Value,
+    ) {
+        $this->type = $type;
+        $this->threshold = $threshold;
+        $this->prefixPaddingMs = $prefixPaddingMs;
+        $this->silenceDurationMs = $silenceDurationMs;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+        ];
+        if ($this->type !== SdkNotGiven::Value) {
+            $values["type"] = $this->type;
+        }
+        if ($this->threshold !== SdkNotGiven::Value) {
+            $values["threshold"] = $this->threshold;
+        }
+        if ($this->prefixPaddingMs !== SdkNotGiven::Value) {
+            $values["prefix_padding_ms"] = $this->prefixPaddingMs;
+        }
+        if ($this->silenceDurationMs !== SdkNotGiven::Value) {
+            $values["silence_duration_ms"] = $this->silenceDurationMs;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        return new self(
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            threshold: (property_exists($data, "threshold") && $data->threshold !== null ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
+            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
+            silenceDurationMs: (property_exists($data, "silence_duration_ms") && $data->silence_duration_ms !== null ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
  * A new Realtime transcription session configuration. When a session is created on the server via REST API, the session object also contains an ephemeral key. Default TTL for keys is 10 minutes. This property is not present when a session is updated via the WebSocket API.
  */
 class RealtimeTranscriptionSessionCreateResponse implements \JsonSerializable
@@ -96,10 +181,10 @@ class RealtimeTranscriptionSessionCreateResponse implements \JsonSerializable
         if (!property_exists($data, "client_secret") || $data->client_secret === null) { throw new SdkValidationError("client_secret", 'required', "Required property 'client_secret' is missing or null"); }
         return new self(
             clientSecret: SdkClient::hydrateClass($data->client_secret, RealtimeTranscriptionSessionCreateResponseClientSecret::class),
-            modalities: (property_exists($data, "modalities") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeTranscriptionSessionCreateResponseModalitiesItemEnum::class), SdkClient::arrayValue($data->modalities))) : SdkNotGiven::Value),
-            inputAudioFormat: (property_exists($data, "input_audio_format") ? SdkClient::stringValue($data->input_audio_format) : SdkNotGiven::Value),
-            inputAudioTranscription: (property_exists($data, "input_audio_transcription") ? SdkClient::hydrateClass($data->input_audio_transcription, AudioTranscriptionResponse::class) : SdkNotGiven::Value),
-            turnDetection: (property_exists($data, "turn_detection") ? SdkClient::hydrateClass($data->turn_detection, RealtimeTranscriptionSessionCreateResponseTurnDetection::class) : SdkNotGiven::Value),
+            modalities: (property_exists($data, "modalities") && $data->modalities !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeTranscriptionSessionCreateResponseModalitiesItemEnum::class), SdkClient::arrayValue($data->modalities))) : SdkNotGiven::Value),
+            inputAudioFormat: (property_exists($data, "input_audio_format") && $data->input_audio_format !== null ? SdkClient::stringValue($data->input_audio_format) : SdkNotGiven::Value),
+            inputAudioTranscription: (property_exists($data, "input_audio_transcription") && $data->input_audio_transcription !== null ? SdkClient::hydrateClass($data->input_audio_transcription, AudioTranscriptionResponse::class) : SdkNotGiven::Value),
+            turnDetection: (property_exists($data, "turn_detection") && $data->turn_detection !== null ? SdkClient::hydrateClass($data->turn_detection, RealtimeTranscriptionSessionCreateResponseTurnDetection::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -167,7 +252,7 @@ class RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction imple
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, NoiseReductionType::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, NoiseReductionType::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -249,95 +334,10 @@ class RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection implem
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            threshold: (property_exists($data, "threshold") ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
-            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
-            silenceDurationMs: (property_exists($data, "silence_duration_ms") ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
-        );
-    }
-}
-
-/**
- * Optional object value serialized in the `input` wire field.
- */
-class RealtimeTranscriptionSessionCreateResponseGAAudioInput implements \JsonSerializable
-{
-    /**
-     * Optional API value serialized in the `format` wire field.
-     *
-     * @var RealtimeAudioFormats|SdkNotGiven
-     */
-    public readonly RealtimeAudioFormats|SdkNotGiven $format;
-    /**
-     * Configuration of the transcription model.
-     *
-     * @var AudioTranscriptionResponse|null|SdkNotGiven
-     */
-    public readonly AudioTranscriptionResponse|null|SdkNotGiven $transcription;
-    /**
-     * Configuration for input audio noise reduction.
-     *
-     * @var RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction|null|SdkNotGiven
-     */
-    public readonly RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction|null|SdkNotGiven $noiseReduction;
-    /**
-     * Configuration for turn detection. For `gpt-realtime-whisper`, this must be `null`; VAD is not supported.
-     *
-     * @var RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection|null|SdkNotGiven
-     */
-    public readonly RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection|null|SdkNotGiven $turnDetection;
-
-    /**
-     * @param RealtimeAudioFormats|SdkNotGiven $format
-     * @param AudioTranscriptionResponse|null|SdkNotGiven $transcription
-     * @param RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction|null|SdkNotGiven $noiseReduction
-     * @param RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection|null|SdkNotGiven $turnDetection
-     */
-    public function __construct(
-        RealtimeAudioFormats|SdkNotGiven $format = SdkNotGiven::Value,
-        AudioTranscriptionResponse|null|SdkNotGiven $transcription = SdkNotGiven::Value,
-        RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction|null|SdkNotGiven $noiseReduction = SdkNotGiven::Value,
-        RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection|null|SdkNotGiven $turnDetection = SdkNotGiven::Value,
-    ) {
-        $this->format = $format;
-        $this->transcription = $transcription;
-        $this->noiseReduction = $noiseReduction;
-        $this->turnDetection = $turnDetection;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-        ];
-        if ($this->format !== SdkNotGiven::Value) {
-            $values["format"] = $this->format;
-        }
-        if ($this->transcription !== SdkNotGiven::Value) {
-            $values["transcription"] = $this->transcription;
-        }
-        if ($this->noiseReduction !== SdkNotGiven::Value) {
-            $values["noise_reduction"] = $this->noiseReduction;
-        }
-        if ($this->turnDetection !== SdkNotGiven::Value) {
-            $values["turn_detection"] = $this->turnDetection;
-        }
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
-            transcription: (property_exists($data, "transcription") ? ($data->transcription === null ? null : SdkClient::hydrateClass($data->transcription, AudioTranscriptionResponse::class)) : SdkNotGiven::Value),
-            noiseReduction: (property_exists($data, "noise_reduction") ? ($data->noise_reduction === null ? null : SdkClient::hydrateClass($data->noise_reduction, RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction::class)) : SdkNotGiven::Value),
-            turnDetection: (property_exists($data, "turn_detection") ? ($data->turn_detection === null ? null : SdkClient::hydrateClass($data->turn_detection, RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection::class)) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            threshold: (property_exists($data, "threshold") && $data->threshold !== null ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
+            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
+            silenceDurationMs: (property_exists($data, "silence_duration_ms") && $data->silence_duration_ms !== null ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
         );
     }
 }

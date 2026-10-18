@@ -29,6 +29,73 @@ trait VectorStoresMethodsPart1
 
 
     /**
+     * Lists vector stores, which are collections of processed files that you can use with the `file_search` tool. Use the cursor parameters to move forward or backward through the results, and set `order` to control sorting by creation time.
+     *
+     * Returns a list of vector stores. limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     *
+     * @param int|SdkNotGiven $limit
+     * @param ListVectorStoresOrder|SdkNotGiven $order
+     * @param string|SdkNotGiven $after
+     * @param string|SdkNotGiven $before
+     * @return \Generator<int,
+     *   VectorStoreObject>
+     */
+    public static function listVectorStoresPaginated(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, ListVectorStoresOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    {
+        $_cursor = $after;
+        while (true) {
+            $_page = self::listVectorStores($clientConfig, $limit, $order, $_cursor, $before, $requestOptions);
+            $_items = $_page->data ?? [];
+            if (count($_items) === 0) {
+                return;
+            }
+            foreach ($_items as $_item) {
+                yield $_item;
+            }
+            if (!$_page->hasMore) {
+                return;
+            }
+            $_next = $_page->lastId;
+            if ($_next === $_cursor) {
+                return;
+            }
+            $_cursor = $_next;
+        }
+    }
+
+    /**
+     * Lists vector stores, which are collections of processed files that you can use with the `file_search` tool. Use the cursor parameters to move forward or backward through the results, and set `order` to control sorting by creation time.
+     *
+     * Returns a list of vector stores. limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     *
+     * @param int|SdkNotGiven $limit
+     * @param ListVectorStoresOrder|SdkNotGiven $order
+     * @param string|SdkNotGiven $after
+     * @param string|SdkNotGiven $before
+     * @return \Generator<int,array{data:ListVectorStoresResponse,items:list<VectorStoreObject>,hasMore:bool}>
+     */
+
+    public static function listVectorStoresPages(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, ListVectorStoresOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    {
+        $_cursor = $after;
+        while (true) {
+            $_page = self::listVectorStores($clientConfig, $limit, $order, $_cursor, $before, $requestOptions);
+            $_items = $_page->data ?? [];
+            if (count($_items) === 0) {
+                return;
+            }
+            $_next = $_page->lastId;
+            $_hasMore = $_page->hasMore && $_next !== $_cursor;
+            yield ['data' => $_page, 'items' => $_items, 'hasMore' => $_hasMore];
+            if (!$_hasMore) {
+                return;
+            }
+            $_cursor = $_next;
+        }
+    }
+
+
+    /**
      * Creates a vector store to collect processed files for use with the `file_search` tool. Supply `file_ids` to add files at creation, and optionally set a name, description, expiration policy, chunking strategy, or metadata.
      *
      * Create a vector store. fileIds: A list of [File](https://developers.openai.com/api/reference/resources/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files. · name: The name of the vector store. · description: A description for the vector store. Can be used to describe the vector store's purpose. · expiresAfter: The expiration policy for a vector store. · chunkingStrategy: The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty. · metadata: Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
@@ -189,110 +256,74 @@ trait VectorStoresMethodsPart1
 
 
     /**
-     * Lists files attached to a vector store, with pagination and an optional status filter. Use `after` or `before` to navigate the list, and `filter` to select files by processing status.
+     * Lists the files in a vector store file batch. Use `filter` to limit results by processing status and the cursor parameters to navigate through the batch's files.
      *
-     * Returns a list of vector store files. vectorStoreId: The ID of the vector store that the files belong to. · limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. · filter: Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
+     * Returns a list of vector store files in a batch. vectorStoreId: The ID of the vector store that the files belong to. · batchId: The ID of the file batch that the files belong to. · limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. · filter: Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
      *
      * @param string $vectorStoreId
+     * @param string $batchId
      * @param int|SdkNotGiven $limit
-     * @param ListVectorStoreFilesOrder|SdkNotGiven $order
+     * @param ListFilesInVectorStoreBatchOrder|SdkNotGiven $order
      * @param string|SdkNotGiven $after
      * @param string|SdkNotGiven $before
-     * @param ListVectorStoreFilesFilter|SdkNotGiven $filter
-     * @return ListVectorStoreFilesResponse
+     * @param ListFilesInVectorStoreBatchFilter|SdkNotGiven $filter
+     * @return \Generator<int,
+     *   VectorStoreFileObject>
      */
-    public static function listVectorStoreFiles(ClientConfig $clientConfig, string $vectorStoreId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListVectorStoreFilesOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ListVectorStoreFilesFilter|SdkNotGiven $filter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListVectorStoreFilesResponse
+    public static function listFilesInVectorStoreBatchPaginated(ClientConfig $clientConfig, string $vectorStoreId, string $batchId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListFilesInVectorStoreBatchOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ListFilesInVectorStoreBatchFilter|SdkNotGiven $filter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
     {
-
-        $sdkResponse = SdkClient::request('GET', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "/files", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true), 'filter' => new SdkQueryValue($filter, "form", true)], returnType: ListVectorStoreFilesResponse::class, decoder: 'json', operationId: 'listVectorStoreFiles', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListVectorStoreFilesResponse::class));
+        $_cursor = $after;
+        while (true) {
+            $_page = self::listFilesInVectorStoreBatch($clientConfig, $vectorStoreId, $batchId, $limit, $order, $_cursor, $before, $filter, $requestOptions);
+            $_items = $_page->data ?? [];
+            if (count($_items) === 0) {
+                return;
+            }
+            foreach ($_items as $_item) {
+                yield $_item;
+            }
+            if (!$_page->hasMore) {
+                return;
+            }
+            $_next = $_page->lastId;
+            if ($_next === $_cursor) {
+                return;
+            }
+            $_cursor = $_next;
+        }
     }
 
-
     /**
-     * Creates an attachment between a file and a vector store. Supply the file's `file_id` and optionally configure `chunking_strategy` or attach `attributes`; use file batches for multi-file ingestion. The response includes the attached file's processing status.
+     * Lists the files in a vector store file batch. Use `filter` to limit results by processing status and the cursor parameters to navigate through the batch's files.
      *
-     * Create a vector store file by attaching a [File](https://developers.openai.com/api/reference/resources/files) to a [vector store](https://developers.openai.com/api/reference/resources/vector_stores). vectorStoreId: The ID of the vector store for which to create a File. · fileId: A [File](https://developers.openai.com/api/reference/resources/files) ID that the vector store should use. Useful for tools like `file_search` that can access files. For multi-file ingestion, we recommend [`file_batches`](https://developers.openai.com/api/reference/resources/vector_stores/subresources/file_batches/methods/create) to minimize per-vector-store write requests. · chunkingStrategy: The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. · attributes: Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers.
+     * Returns a list of vector store files in a batch. vectorStoreId: The ID of the vector store that the files belong to. · batchId: The ID of the file batch that the files belong to. · limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. · filter: Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
      *
      * @param string $vectorStoreId
-     * @param string $fileId
-     * @param ChunkingStrategyRequestParam|SdkNotGiven $chunkingStrategy
-     * @param array<string,string|float|bool>|null|SdkNotGiven $attributes
-     * @return VectorStoreFileObject
+     * @param string $batchId
+     * @param int|SdkNotGiven $limit
+     * @param ListFilesInVectorStoreBatchOrder|SdkNotGiven $order
+     * @param string|SdkNotGiven $after
+     * @param string|SdkNotGiven $before
+     * @param ListFilesInVectorStoreBatchFilter|SdkNotGiven $filter
+     * @return \Generator<int,array{data:ListVectorStoreFilesResponse,items:list<VectorStoreFileObject>,hasMore:bool}>
      */
-    public static function createVectorStoreFile(ClientConfig $clientConfig, string $vectorStoreId, string $fileId, ChunkingStrategyRequestParam|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|null|SdkNotGiven $attributes = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): VectorStoreFileObject
+
+    public static function listFilesInVectorStoreBatchPages(ClientConfig $clientConfig, string $vectorStoreId, string $batchId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListFilesInVectorStoreBatchOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ListFilesInVectorStoreBatchFilter|SdkNotGiven $filter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
     {
-
-        $sdkResponse = SdkClient::request('POST', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "/files", $clientConfig, body: ['file_id' => $fileId, 'chunking_strategy' => $chunkingStrategy, 'attributes' => $attributes], returnType: VectorStoreFileObject::class, decoder: 'json', operationId: 'createVectorStoreFile', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VectorStoreFileObject::class));
-    }
-
-
-    /**
-     * Retrieves a file attachment and its processing details from a vector store. Use `vector_store_id` and `file_id` to identify the attachment whose status and configuration you need.
-     *
-     * Retrieves a vector store file. vectorStoreId: The ID of the vector store that the file belongs to. · fileId: The ID of the file being retrieved.
-     *
-     * @param string $vectorStoreId
-     * @param string $fileId
-     * @return VectorStoreFileObject
-     */
-    public static function getVectorStoreFile(ClientConfig $clientConfig, string $vectorStoreId, string $fileId, ?RequestOptions $requestOptions = null): VectorStoreFileObject
-    {
-
-        $sdkResponse = SdkClient::request('GET', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: VectorStoreFileObject::class, decoder: 'json', operationId: 'getVectorStoreFile', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VectorStoreFileObject::class));
-    }
-
-
-    /**
-     * Deletes a file attachment from a vector store without deleting the underlying file. Use the file deletion operation separately if you also need to delete the file itself.
-     *
-     * Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](https://developers.openai.com/api/reference/resources/files/methods/delete) endpoint. vectorStoreId: The ID of the vector store that the file belongs to. · fileId: The ID of the file to delete.
-     *
-     * @param string $vectorStoreId
-     * @param string $fileId
-     * @return DeleteVectorStoreFileResponse
-     */
-    public static function deleteVectorStoreFile(ClientConfig $clientConfig, string $vectorStoreId, string $fileId, ?RequestOptions $requestOptions = null): DeleteVectorStoreFileResponse
-    {
-
-        $sdkResponse = SdkClient::request('DELETE', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: DeleteVectorStoreFileResponse::class, decoder: 'json', operationId: 'deleteVectorStoreFile', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteVectorStoreFileResponse::class));
-    }
-
-
-    /**
-     * Updates the attributes attached to a file in a vector store. Supply `attributes` to replace the file's attribute set, or use `null` to clear it.
-     *
-     * Update attributes on a vector store file. vectorStoreId: The ID of the vector store the file belongs to. · fileId: The ID of the file to update attributes. · attributes: Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters, booleans, or numbers.
-     *
-     * @param string $vectorStoreId
-     * @param string $fileId
-     * @param array<string,string|float|bool>|null $attributes
-     * @return VectorStoreFileObject
-     */
-    public static function updateVectorStoreFileAttributes(ClientConfig $clientConfig, string $vectorStoreId, string $fileId, ?array $attributes, ?RequestOptions $requestOptions = null): VectorStoreFileObject
-    {
-
-        $sdkResponse = SdkClient::request('POST', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, body: ['attributes' => $attributes], returnType: VectorStoreFileObject::class, decoder: 'json', operationId: 'updateVectorStoreFileAttributes', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VectorStoreFileObject::class));
-    }
-
-
-    /**
-     * Retrieves parsed content from a file attached to a vector store. Use `vector_store_id` and `file_id` to identify the file, then follow `next_page` when `has_more` indicates that additional content pages are available.
-     *
-     * Retrieve the parsed contents of a vector store file. vectorStoreId: The ID of the vector store. · fileId: The ID of the file within the vector store.
-     *
-     * @param string $vectorStoreId
-     * @param string $fileId
-     * @return VectorStoreFileContentResponse
-     */
-    public static function retrieveVectorStoreFileContent(ClientConfig $clientConfig, string $vectorStoreId, string $fileId, ?RequestOptions $requestOptions = null): VectorStoreFileContentResponse
-    {
-
-        $sdkResponse = SdkClient::request('GET', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "/files/" . SdkClient::encodePathSegment($fileId) . "/content", $clientConfig, returnType: VectorStoreFileContentResponse::class, decoder: 'json', operationId: 'retrieveVectorStoreFileContent', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VectorStoreFileContentResponse::class));
+        $_cursor = $after;
+        while (true) {
+            $_page = self::listFilesInVectorStoreBatch($clientConfig, $vectorStoreId, $batchId, $limit, $order, $_cursor, $before, $filter, $requestOptions);
+            $_items = $_page->data ?? [];
+            if (count($_items) === 0) {
+                return;
+            }
+            $_next = $_page->lastId;
+            $_hasMore = $_page->hasMore && $_next !== $_cursor;
+            yield ['data' => $_page, 'items' => $_items, 'hasMore' => $_hasMore];
+            if (!$_hasMore) {
+                return;
+            }
+            $_cursor = $_next;
+        }
     }
 }

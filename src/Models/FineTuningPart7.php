@@ -252,7 +252,7 @@ class FineTuningJob implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             createdAt: SdkClient::intValue($data->created_at),
-            error: ($data->error === null ? null : (is_object($data->error) ? SdkClient::hydrateClass($data->error, FineTuningJobErrorVariant0::class) : (is_array($data->error) ? SdkClient::arrayValue($data->error) : SdkClient::hydrateClass($data->error, FineTuningJobErrorVariant0::class)))),
+            error: ($data->error === null ? null : ((is_array($data->error) || is_object($data->error)) ? SdkClient::hydrateObjectUnionOrMap($data->error, static fn($value) => SdkClient::hydrateClass($value, FineTuningJobErrorVariant0::class), static fn($value) => SdkClient::stringMapValue($value)) : SdkClient::hydrateObjectUnionOrMap($data->error, static fn($value) => SdkClient::hydrateClass($value, FineTuningJobErrorVariant0::class), static fn($value) => SdkClient::stringMapValue($value)))),
             fineTunedModel: ($data->fine_tuned_model === null ? null : SdkClient::stringValue($data->fine_tuned_model)),
             finishedAt: ($data->finished_at === null ? null : SdkClient::intValue($data->finished_at)),
             model: SdkClient::stringValue($data->model),

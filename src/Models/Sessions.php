@@ -48,7 +48,7 @@ class AutomaticThreadTitlingParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
         );
     }
 }
@@ -118,9 +118,9 @@ class ChatkitConfigurationParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            automaticThreadTitling: (property_exists($data, "automatic_thread_titling") ? SdkClient::hydrateClass($data->automatic_thread_titling, AutomaticThreadTitlingParam::class) : SdkNotGiven::Value),
-            fileUpload: (property_exists($data, "file_upload") ? SdkClient::hydrateClass($data->file_upload, FileUploadParam::class) : SdkNotGiven::Value),
-            history: (property_exists($data, "history") ? SdkClient::hydrateClass($data->history, HistoryParam::class) : SdkNotGiven::Value),
+            automaticThreadTitling: (property_exists($data, "automatic_thread_titling") && $data->automatic_thread_titling !== null ? SdkClient::hydrateClass($data->automatic_thread_titling, AutomaticThreadTitlingParam::class) : SdkNotGiven::Value),
+            fileUpload: (property_exists($data, "file_upload") && $data->file_upload !== null ? SdkClient::hydrateClass($data->file_upload, FileUploadParam::class) : SdkNotGiven::Value),
+            history: (property_exists($data, "history") && $data->history !== null ? SdkClient::hydrateClass($data->history, HistoryParam::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -214,9 +214,9 @@ class CreateChatSessionBody implements \JsonSerializable
         return new self(
             workflow: SdkClient::hydrateClass($data->workflow, WorkflowParam::class),
             user: SdkClient::stringValue($data->user),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, ExpiresAfterParam::class) : SdkNotGiven::Value),
-            rateLimits: (property_exists($data, "rate_limits") ? SdkClient::hydrateClass($data->rate_limits, RateLimitsParam::class) : SdkNotGiven::Value),
-            chatkitConfiguration: (property_exists($data, "chatkit_configuration") ? SdkClient::hydrateClass($data->chatkit_configuration, ChatkitConfigurationParam::class) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, ExpiresAfterParam::class) : SdkNotGiven::Value),
+            rateLimits: (property_exists($data, "rate_limits") && $data->rate_limits !== null ? SdkClient::hydrateClass($data->rate_limits, RateLimitsParam::class) : SdkNotGiven::Value),
+            chatkitConfiguration: (property_exists($data, "chatkit_configuration") && $data->chatkit_configuration !== null ? SdkClient::hydrateClass($data->chatkit_configuration, ChatkitConfigurationParam::class) : SdkNotGiven::Value),
         );
     }
 }

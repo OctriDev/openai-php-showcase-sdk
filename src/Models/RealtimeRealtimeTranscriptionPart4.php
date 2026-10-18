@@ -8,6 +8,91 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
+ * Optional object value serialized in the `input` wire field.
+ */
+class RealtimeTranscriptionSessionCreateResponseGAAudioInput implements \JsonSerializable
+{
+    /**
+     * Optional API value serialized in the `format` wire field.
+     *
+     * @var RealtimeAudioFormats|SdkNotGiven
+     */
+    public readonly RealtimeAudioFormats|SdkNotGiven $format;
+    /**
+     * Configuration of the transcription model.
+     *
+     * @var AudioTranscriptionResponse|null|SdkNotGiven
+     */
+    public readonly AudioTranscriptionResponse|null|SdkNotGiven $transcription;
+    /**
+     * Configuration for input audio noise reduction.
+     *
+     * @var RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction|null|SdkNotGiven
+     */
+    public readonly RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction|null|SdkNotGiven $noiseReduction;
+    /**
+     * Configuration for turn detection. For `gpt-realtime-whisper`, this must be `null`; VAD is not supported.
+     *
+     * @var RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection|null|SdkNotGiven
+     */
+    public readonly RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection|null|SdkNotGiven $turnDetection;
+
+    /**
+     * @param RealtimeAudioFormats|SdkNotGiven $format
+     * @param AudioTranscriptionResponse|null|SdkNotGiven $transcription
+     * @param RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction|null|SdkNotGiven $noiseReduction
+     * @param RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection|null|SdkNotGiven $turnDetection
+     */
+    public function __construct(
+        RealtimeAudioFormats|SdkNotGiven $format = SdkNotGiven::Value,
+        AudioTranscriptionResponse|null|SdkNotGiven $transcription = SdkNotGiven::Value,
+        RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction|null|SdkNotGiven $noiseReduction = SdkNotGiven::Value,
+        RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection|null|SdkNotGiven $turnDetection = SdkNotGiven::Value,
+    ) {
+        $this->format = $format;
+        $this->transcription = $transcription;
+        $this->noiseReduction = $noiseReduction;
+        $this->turnDetection = $turnDetection;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+        ];
+        if ($this->format !== SdkNotGiven::Value) {
+            $values["format"] = $this->format;
+        }
+        if ($this->transcription !== SdkNotGiven::Value) {
+            $values["transcription"] = $this->transcription;
+        }
+        if ($this->noiseReduction !== SdkNotGiven::Value) {
+            $values["noise_reduction"] = $this->noiseReduction;
+        }
+        if ($this->turnDetection !== SdkNotGiven::Value) {
+            $values["turn_detection"] = $this->turnDetection;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        return new self(
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
+            transcription: (property_exists($data, "transcription") ? ($data->transcription === null ? null : SdkClient::hydrateClass($data->transcription, AudioTranscriptionResponse::class)) : SdkNotGiven::Value),
+            noiseReduction: (property_exists($data, "noise_reduction") ? ($data->noise_reduction === null ? null : SdkClient::hydrateClass($data->noise_reduction, RealtimeTranscriptionSessionCreateResponseGAAudioInputNoiseReduction::class)) : SdkNotGiven::Value),
+            turnDetection: (property_exists($data, "turn_detection") ? ($data->turn_detection === null ? null : SdkClient::hydrateClass($data->turn_detection, RealtimeTranscriptionSessionCreateResponseGAAudioInputTurnDetection::class)) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
  * Configuration for input audio for the session.
  */
 class RealtimeTranscriptionSessionCreateResponseGAAudio implements \JsonSerializable
@@ -48,7 +133,7 @@ class RealtimeTranscriptionSessionCreateResponseGAAudio implements \JsonSerializ
     public static function fromObject(object $data): self
     {
         return new self(
-            input: (property_exists($data, "input") ? SdkClient::hydrateClass($data->input, RealtimeTranscriptionSessionCreateResponseGAAudioInput::class) : SdkNotGiven::Value),
+            input: (property_exists($data, "input") && $data->input !== null ? SdkClient::hydrateClass($data->input, RealtimeTranscriptionSessionCreateResponseGAAudioInput::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -154,9 +239,9 @@ class RealtimeTranscriptionSessionCreateResponseGA implements RealtimeCreateClie
             type: SdkClient::hydrateEnum($data->type, RealtimeTranscriptionSessionCreateResponseGATypeEnum::class),
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::stringValue($data->object),
-            expiresAt: (property_exists($data, "expires_at") ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
+            expiresAt: (property_exists($data, "expires_at") && $data->expires_at !== null ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
             include_: (property_exists($data, "include") ? ($data->include === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeTranscriptionSessionCreateResponseGAIncludeItemEnum::class), SdkClient::arrayValue($data->include)))) : SdkNotGiven::Value),
-            audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, RealtimeTranscriptionSessionCreateResponseGAAudio::class) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::hydrateClass($data->audio, RealtimeTranscriptionSessionCreateResponseGAAudio::class) : SdkNotGiven::Value),
         );
     }
 }

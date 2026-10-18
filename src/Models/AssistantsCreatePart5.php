@@ -60,8 +60,8 @@ class CreateThreadAndRunRequestToolResources implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            codeInterpreter: (property_exists($data, "code_interpreter") ? SdkClient::hydrateClass($data->code_interpreter, CreateThreadAndRunRequestToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
-            fileSearch: (property_exists($data, "file_search") ? SdkClient::hydrateClass($data->file_search, CreateThreadAndRunRequestToolResourcesFileSearch::class) : SdkNotGiven::Value),
+            codeInterpreter: (property_exists($data, "code_interpreter") && $data->code_interpreter !== null ? SdkClient::hydrateClass($data->code_interpreter, CreateThreadAndRunRequestToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
+            fileSearch: (property_exists($data, "file_search") && $data->file_search !== null ? SdkClient::hydrateClass($data->file_search, CreateThreadAndRunRequestToolResourcesFileSearch::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -317,7 +317,7 @@ class CreateThreadAndRunRequest implements \JsonSerializable
         if (!property_exists($data, "assistant_id") || $data->assistant_id === null) { throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null"); }
         return new self(
             assistantId: SdkClient::stringValue($data->assistant_id),
-            thread: (property_exists($data, "thread") ? SdkClient::hydrateClass($data->thread, CreateThreadRequest::class) : SdkNotGiven::Value),
+            thread: (property_exists($data, "thread") && $data->thread !== null ? SdkClient::hydrateClass($data->thread, CreateThreadRequest::class) : SdkNotGiven::Value),
             model: (property_exists($data, "model") ? ($data->model === null ? null : SdkClient::stringValue($data->model)) : SdkNotGiven::Value),
             instructions: (property_exists($data, "instructions") ? ($data->instructions === null ? null : SdkClient::stringValue($data->instructions)) : SdkNotGiven::Value),
             tools: (property_exists($data, "tools") ? ($data->tools === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateThreadAndRunRequestToolsItem::class, [AssistantToolsCode::class, AssistantToolsFileSearch::class, AssistantToolsFunction::class], "type", ["code_interpreter" => AssistantToolsCode::class, "file_search" => AssistantToolsFileSearch::class, "function" => AssistantToolsFunction::class], UnknownCreateThreadAndRunRequestToolsItem::class), SdkClient::arrayValue($data->tools)))) : SdkNotGiven::Value),
@@ -330,7 +330,7 @@ class CreateThreadAndRunRequest implements \JsonSerializable
             maxCompletionTokens: (property_exists($data, "max_completion_tokens") ? ($data->max_completion_tokens === null ? null : SdkClient::intValue($data->max_completion_tokens)) : SdkNotGiven::Value),
             truncationStrategy: (property_exists($data, "truncation_strategy") ? ($data->truncation_strategy === null ? null : SdkClient::hydrateClass($data->truncation_strategy, TruncationObject::class)) : SdkNotGiven::Value),
             toolChoice: (property_exists($data, "tool_choice") ? ($data->tool_choice === null ? null : (is_object($data->tool_choice) ? SdkClient::hydrateClass($data->tool_choice, AssistantsNamedToolChoice::class) : (is_string($data->tool_choice) ? SdkClient::hydrateStringEnumOrString($data->tool_choice, CreateThreadAndRunRequestToolChoiceEnum::class) : SdkClient::hydrateClass($data->tool_choice, AssistantsNamedToolChoice::class)))) : SdkNotGiven::Value),
-            parallelToolCalls: (property_exists($data, "parallel_tool_calls") ? SdkClient::boolValue($data->parallel_tool_calls) : SdkNotGiven::Value),
+            parallelToolCalls: (property_exists($data, "parallel_tool_calls") && $data->parallel_tool_calls !== null ? SdkClient::boolValue($data->parallel_tool_calls) : SdkNotGiven::Value),
             responseFormat: (property_exists($data, "response_format") ? ($data->response_format === null ? null : (is_object($data->response_format) ? SdkClient::hydrateUnion($data->response_format, [ResponseFormatText::class, ResponseFormatJsonObject::class, ResponseFormatJsonSchema::class], "type", ["text" => ResponseFormatText::class, "json_object" => ResponseFormatJsonObject::class, "json_schema" => ResponseFormatJsonSchema::class]) : (is_string($data->response_format) ? SdkClient::hydrateStringEnumOrString($data->response_format, CreateThreadAndRunRequestResponseFormatEnum::class) : SdkClient::hydrateUnion($data->response_format, [ResponseFormatText::class, ResponseFormatJsonObject::class, ResponseFormatJsonSchema::class], "type", ["text" => ResponseFormatText::class, "json_object" => ResponseFormatJsonObject::class, "json_schema" => ResponseFormatJsonSchema::class])))) : SdkNotGiven::Value),
         );
     }

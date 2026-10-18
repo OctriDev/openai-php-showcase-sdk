@@ -10,15 +10,9 @@ namespace octridev_openai;
 /**
  * Required enumerated value serialized in the `type` wire field.
  */
-final readonly class ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum implements SdkOpenEnum
+enum ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum: string implements SdkWireEnum
 {
-    public const BROWSER_AUTHENTICATION = "browser_authentication";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    case BROWSER_AUTHENTICATION = "browser_authentication";
 }
 
 /**
@@ -37,9 +31,9 @@ class ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParam implement
     /**
      * Required enumerated value serialized in the `type` wire field.
      *
-     * @var ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum|string
+     * @var ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum
      */
-    public readonly ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum|string $type;
+    public readonly ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum $type;
     /**
      * Required enumerated value serialized in the `action` wire field.
      *
@@ -60,13 +54,13 @@ class ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParam implement
     public readonly string|null|SdkNotGiven $selectedOption;
 
     /**
-     * @param ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum|string $type
+     * @param ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum $type
      * @param ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamActionEnum $action
      * @param list<BrowserAuthenticationFieldValueParam> $fields
      * @param string|null|SdkNotGiven $selectedOption
      */
     public function __construct(
-        ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum|string $type,
+        ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum $type,
         ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamActionEnum $action,
         array $fields,
         string|null|SdkNotGiven $selectedOption = SdkNotGiven::Value,
@@ -103,7 +97,7 @@ class ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParam implement
         if (!property_exists($data, "action") || $data->action === null) { throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null"); }
         if (!property_exists($data, "fields") || $data->fields === null) { throw new SdkValidationError("fields", 'required', "Required property 'fields' is missing or null"); }
         return new self(
-            type: SdkClient::hydrateStringEnumOrString($data->type, ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum::class),
+            type: SdkClient::hydrateEnum($data->type, ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum::class),
             action: SdkClient::hydrateEnum($data->action, ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamActionEnum::class),
             fields: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BrowserAuthenticationFieldValueParam::class), SdkClient::arrayValue($data->fields))),
             selectedOption: (property_exists($data, "selected_option") ? ($data->selected_option === null ? null : SdkClient::stringValue($data->selected_option)) : SdkNotGiven::Value),

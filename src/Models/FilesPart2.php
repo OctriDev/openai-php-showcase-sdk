@@ -72,7 +72,7 @@ class CreateFileRequest implements \JsonSerializable
         return new self(
             file: SdkClient::stringValue($data->file),
             purpose: SdkClient::hydrateStringEnumOrString($data->purpose, CreateFileRequestPurposeEnum::class),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, FileExpirationAfter::class) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, FileExpirationAfter::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -133,7 +133,7 @@ class BetaResponseReasoningSummaryPartDoneEvent implements BetaResponseStreamEve
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             part: SdkClient::hydrateClass($data->part, BetaResponseReasoningSummaryPartDoneEventPart::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, BetaResponseReasoningSummaryPartDoneEventStatusEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, BetaResponseReasoningSummaryPartDoneEventStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

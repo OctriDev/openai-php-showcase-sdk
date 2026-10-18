@@ -60,7 +60,7 @@ class BetaResponseTextParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, BetaTextResponseFormatConfiguration::class, [BetaResponseFormatText::class, BetaTextResponseFormatJsonSchema::class, BetaResponseFormatJsonObject::class], "type", ["text" => BetaResponseFormatText::class, "json_schema" => BetaTextResponseFormatJsonSchema::class, "json_object" => BetaResponseFormatJsonObject::class], UnknownBetaTextResponseFormatConfiguration::class) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, BetaTextResponseFormatConfiguration::class, [BetaResponseFormatText::class, BetaTextResponseFormatJsonSchema::class, BetaResponseFormatJsonObject::class], "type", ["text" => BetaResponseFormatText::class, "json_schema" => BetaTextResponseFormatJsonSchema::class, "json_object" => BetaResponseFormatJsonObject::class], UnknownBetaTextResponseFormatConfiguration::class) : SdkNotGiven::Value),
             verbosity: (property_exists($data, "verbosity") ? ($data->verbosity === null ? null : SdkClient::hydrateEnum($data->verbosity, BetaResponseTextParamVerbosityEnum::class)) : SdkNotGiven::Value),
         );
     }

@@ -187,7 +187,7 @@ class BetaResponsesServerEventVariant29 implements BetaResponsesServerEvent, \Js
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             part: SdkClient::hydrateClass($data->part, BetaResponsesServerEventVariant29Part::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

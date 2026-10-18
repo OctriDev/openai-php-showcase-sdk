@@ -92,7 +92,7 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject implements RunStepDeltaSt
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum::class),
             fileSearch: SdkClient::stringMapValue($data->file_search),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -170,8 +170,8 @@ class RunStepDeltaStepDetailsToolCallsFunctionObjectFunction implements \JsonSer
     public static function fromObject(object $data): self
     {
         return new self(
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            arguments: (property_exists($data, "arguments") ? SdkClient::stringValue($data->arguments) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            arguments: (property_exists($data, "arguments") && $data->arguments !== null ? SdkClient::stringValue($data->arguments) : SdkNotGiven::Value),
             output: (property_exists($data, "output") ? ($data->output === null ? null : SdkClient::stringValue($data->output)) : SdkNotGiven::Value),
         );
     }
@@ -254,8 +254,8 @@ class RunStepDeltaStepDetailsToolCallsFunctionObject implements RunStepDeltaStep
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum::class),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            function_: (property_exists($data, "function") ? SdkClient::hydrateClass($data->function, RunStepDeltaStepDetailsToolCallsFunctionObjectFunction::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            function_: (property_exists($data, "function") && $data->function !== null ? SdkClient::hydrateClass($data->function, RunStepDeltaStepDetailsToolCallsFunctionObjectFunction::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -321,7 +321,7 @@ class RunStepDeltaStepDetailsToolCallsObject implements RunStepDeltaObjectDeltaS
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsObjectTypeEnum::class),
-            toolCalls: (property_exists($data, "tool_calls") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RunStepDeltaStepDetailsToolCallsObjectToolCallsItem::class, [RunStepDeltaStepDetailsToolCallsCodeObject::class, RunStepDeltaStepDetailsToolCallsFileSearchObject::class, RunStepDeltaStepDetailsToolCallsFunctionObject::class], "type", ["code_interpreter" => RunStepDeltaStepDetailsToolCallsCodeObject::class, "file_search" => RunStepDeltaStepDetailsToolCallsFileSearchObject::class, "function" => RunStepDeltaStepDetailsToolCallsFunctionObject::class], UnknownRunStepDeltaStepDetailsToolCallsObjectToolCallsItem::class), SdkClient::arrayValue($data->tool_calls))) : SdkNotGiven::Value),
+            toolCalls: (property_exists($data, "tool_calls") && $data->tool_calls !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RunStepDeltaStepDetailsToolCallsObjectToolCallsItem::class, [RunStepDeltaStepDetailsToolCallsCodeObject::class, RunStepDeltaStepDetailsToolCallsFileSearchObject::class, RunStepDeltaStepDetailsToolCallsFunctionObject::class], "type", ["code_interpreter" => RunStepDeltaStepDetailsToolCallsCodeObject::class, "file_search" => RunStepDeltaStepDetailsToolCallsFileSearchObject::class, "function" => RunStepDeltaStepDetailsToolCallsFunctionObject::class], UnknownRunStepDeltaStepDetailsToolCallsObjectToolCallsItem::class), SdkClient::arrayValue($data->tool_calls))) : SdkNotGiven::Value),
         );
     }
 }

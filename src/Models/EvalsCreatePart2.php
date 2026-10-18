@@ -134,7 +134,7 @@ class CreateEvalCustomDataSourceConfig implements CreateEvalRequestDataSourceCon
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalCustomDataSourceConfigTypeEnum::class),
             itemSchema: SdkClient::stringMapValue($data->item_schema),
-            includeSampleSchema: (property_exists($data, "include_sample_schema") ? SdkClient::boolValue($data->include_sample_schema) : SdkNotGiven::Value),
+            includeSampleSchema: (property_exists($data, "include_sample_schema") && $data->include_sample_schema !== null ? SdkClient::boolValue($data->include_sample_schema) : SdkNotGiven::Value),
         );
     }
 }

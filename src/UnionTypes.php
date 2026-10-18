@@ -112,9 +112,11 @@ interface CreateRunRequestToolsItem {}
 interface CreateSpeechResponseStreamEvent {}
 interface CreateThreadAndRunRequestToolsItem {}
 interface CreateThreadRequestToolResourcesFileSearchVectorStoresItemChunkingStrategy {}
+interface CreateTranscriptionResponse {}
 interface CreateTranscriptionResponseDiarizedJsonUsage {}
 interface CreateTranscriptionResponseJsonUsage {}
 interface CreateTranscriptionResponseStreamEvent {}
+interface CreateTranslationResponse {}
 interface CreateVaultCredentialAuthParam {}
 interface CreateVectorStoreRequestChunkingStrategy {}
 interface CreateVoiceRequest {}
@@ -225,7 +227,6 @@ interface RealtimeSessionCreateResponseGAToolsItem {}
 interface RealtimeTranslationClientEvent {}
 interface RealtimeTranslationServerEvent {}
 interface RealtimeTurnDetection {}
-interface ResponseFormat {}
 interface ResponseOutputTextAnnotationsItem {}
 interface ResponsesClientEvent {}
 interface ResponsesServerEvent {}
@@ -248,20 +249,16 @@ interface SessionEvent {}
 interface SessionInputParam {}
 interface SessionRequiredActionResource {}
 interface SessionTurnItemResource {}
-interface TemplateItem {}
-interface TemplateItem2 {}
 interface TextFormatParam {}
 interface TextFormatResource {}
 interface TextResponseFormatConfiguration {}
 interface ThreadItem {}
 interface ThreadResourceStatus {}
-interface ThreadStreamEvent {}
 interface Tool {}
 interface ToolCallCaller {}
 interface ToolCallCallerParam {}
 interface ToolSearchOutputNamespaceToolParamToolsItem {}
 interface ToolSearchOutputTool {}
-interface ToolsItem {}
 interface UsageTimeBucketResultsItem {}
 interface UserMessageItemContentItem {}
 interface UserMessageItemParamContentItem {}
@@ -1060,16 +1057,6 @@ final class UnknownApplyPatchToolCallOperation extends SdkUnknownMember implemen
 
 /** A `CreateAssistantRequestToolsItem` whose tag names no branch this SDK knows, kept as received. */
 final class UnknownCreateAssistantRequestToolsItem extends SdkUnknownMember implements CreateAssistantRequestToolsItem
-{
-}
-
-/** A `ResponseFormat` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownResponseFormat extends SdkUnknownMember implements ResponseFormat
-{
-}
-
-/** A `ToolsItem` whose tag names no branch this SDK knows, kept as received. */
-final class UnknownToolsItem extends SdkUnknownMember implements ToolsItem
 {
 }
 

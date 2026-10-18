@@ -124,7 +124,7 @@ class InputFileContentParam implements FunctionCallOutputItemParamOutputItem, Us
             filename: (property_exists($data, "filename") ? ($data->filename === null ? null : SdkClient::stringValue($data->filename)) : SdkNotGiven::Value),
             fileData: (property_exists($data, "file_data") ? ($data->file_data === null ? null : SdkClient::stringValue($data->file_data)) : SdkNotGiven::Value),
             fileUrl: (property_exists($data, "file_url") ? ($data->file_url === null ? null : SdkClient::stringValue($data->file_url)) : SdkNotGiven::Value),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, FileDetailEnum::class) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, FileDetailEnum::class) : SdkNotGiven::Value),
             promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? ($data->prompt_cache_breakpoint === null ? null : SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class)) : SdkNotGiven::Value),
         );
     }
@@ -229,7 +229,7 @@ class InputImageContent implements Content, FunctionAndCustomToolCallOutput, Inp
             detail: SdkClient::hydrateStringEnumOrString($data->detail, ImageDetail::class),
             imageUrl: (property_exists($data, "image_url") ? ($data->image_url === null ? null : SdkClient::stringValue($data->image_url)) : SdkNotGiven::Value),
             fileId: (property_exists($data, "file_id") ? ($data->file_id === null ? null : SdkClient::stringValue($data->file_id)) : SdkNotGiven::Value),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -60,7 +60,7 @@ class RealtimeTranslationClientSecretCreateRequest implements \JsonSerializable
         if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
         return new self(
             session: SdkClient::hydrateClass($data->session, RealtimeTranslationSessionCreateRequest::class),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, RealtimeTranslationClientSecretCreateRequestExpiresAfter::class) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, RealtimeTranslationClientSecretCreateRequestExpiresAfter::class) : SdkNotGiven::Value),
         );
     }
 }

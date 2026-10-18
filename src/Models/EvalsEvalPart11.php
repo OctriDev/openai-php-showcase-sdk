@@ -195,7 +195,7 @@ class EvalRunOutputItemResult implements \JsonSerializable
             name: SdkClient::stringValue($data->name),
             score: SdkClient::floatValue($data->score),
             passed: SdkClient::boolValue($data->passed),
-            type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
             sample: (property_exists($data, "sample") ? ($data->sample === null ? null : SdkClient::stringMapValue($data->sample)) : SdkNotGiven::Value),
             additionalProperties: array_diff_key(SdkClient::stringMapValue($data), array_flip(["name", "type", "score", "passed", "sample"])),
         );

@@ -308,7 +308,7 @@ class LiveDecisionInputItemParam implements \JsonSerializable
             role: SdkClient::hydrateStringEnumOrString($data->role, LiveDecisionInputItemParamRoleEnum::class),
             content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, LiveDecisionInputItemParamContentItem::class, [LiveDecisionInputTextParam::class, LiveDecisionInputImageParam::class], "type", ["input_text" => LiveDecisionInputTextParam::class, "input_image" => LiveDecisionInputImageParam::class], UnknownLiveDecisionInputItemParamContentItem::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, LiveDecisionInputItemParamTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, LiveDecisionInputItemParamTypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }

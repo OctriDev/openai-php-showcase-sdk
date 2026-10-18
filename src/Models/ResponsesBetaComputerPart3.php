@@ -121,9 +121,9 @@ class BetaComputerToolCallOutput implements \JsonSerializable
             callId: SdkClient::stringValue($data->call_id),
             output: SdkClient::hydrateClass($data->output, BetaComputerScreenshotImage::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            acknowledgedSafetyChecks: (property_exists($data, "acknowledged_safety_checks") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaComputerCallSafetyCheckParam::class), SdkClient::arrayValue($data->acknowledged_safety_checks))) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, BetaComputerToolCallOutputStatusEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            acknowledgedSafetyChecks: (property_exists($data, "acknowledged_safety_checks") && $data->acknowledged_safety_checks !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaComputerCallSafetyCheckParam::class), SdkClient::arrayValue($data->acknowledged_safety_checks))) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, BetaComputerToolCallOutputStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -178,7 +178,7 @@ class BetaComputerToolCallOutputResourceVariant1 implements \JsonSerializable
         if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
         return new self(
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaComputerCallOutputStatus::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -317,8 +317,8 @@ class BetaComputerToolCallOutputResource implements BetaItemResource, BetaItemFi
             output: SdkClient::hydrateClass($data->output, BetaComputerScreenshotImage::class),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaComputerCallOutputStatus::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            acknowledgedSafetyChecks: (property_exists($data, "acknowledged_safety_checks") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaComputerCallSafetyCheckParam::class), SdkClient::arrayValue($data->acknowledged_safety_checks))) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            acknowledgedSafetyChecks: (property_exists($data, "acknowledged_safety_checks") && $data->acknowledged_safety_checks !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaComputerCallSafetyCheckParam::class), SdkClient::arrayValue($data->acknowledged_safety_checks))) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

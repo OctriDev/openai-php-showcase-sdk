@@ -195,7 +195,7 @@ class FineTuningIntegrationWandb implements \JsonSerializable
             project: SdkClient::stringValue($data->project),
             name: (property_exists($data, "name") ? ($data->name === null ? null : SdkClient::stringValue($data->name)) : SdkNotGiven::Value),
             entity: (property_exists($data, "entity") ? ($data->entity === null ? null : SdkClient::stringValue($data->entity)) : SdkNotGiven::Value),
-            tags: (property_exists($data, "tags") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
+            tags: (property_exists($data, "tags") && $data->tags !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
         );
     }
 }

@@ -273,15 +273,9 @@ class ComputerUseApprovalResponseKindResourceBrowserAuthenticationSubmitResource
 /**
  * Required enumerated value serialized in the `type` wire field.
  */
-final readonly class ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum implements SdkOpenEnum
+enum ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum: string implements SdkWireEnum
 {
-    public const BROWSER_AUTHENTICATION = "browser_authentication";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    case BROWSER_AUTHENTICATION = "browser_authentication";
 }
 
 /**
@@ -300,9 +294,9 @@ class ComputerUseApprovalResponseParamBrowserAuthenticationCancelParam implement
     /**
      * Required enumerated value serialized in the `type` wire field.
      *
-     * @var ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum|string
+     * @var ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum
      */
-    public readonly ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum|string $type;
+    public readonly ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum $type;
     /**
      * Required enumerated value serialized in the `action` wire field.
      *
@@ -311,11 +305,11 @@ class ComputerUseApprovalResponseParamBrowserAuthenticationCancelParam implement
     public readonly ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamActionEnum $action;
 
     /**
-     * @param ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum|string $type
+     * @param ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum $type
      * @param ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamActionEnum $action
      */
     public function __construct(
-        ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum|string $type,
+        ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum $type,
         ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamActionEnum $action,
     ) {
         $this->type = $type;
@@ -343,7 +337,7 @@ class ComputerUseApprovalResponseParamBrowserAuthenticationCancelParam implement
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         if (!property_exists($data, "action") || $data->action === null) { throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null"); }
         return new self(
-            type: SdkClient::hydrateStringEnumOrString($data->type, ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum::class),
+            type: SdkClient::hydrateEnum($data->type, ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum::class),
             action: SdkClient::hydrateEnum($data->action, ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamActionEnum::class),
         );
     }

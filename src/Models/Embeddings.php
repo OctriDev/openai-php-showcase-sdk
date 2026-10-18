@@ -111,9 +111,9 @@ class CreateEmbeddingRequest implements \JsonSerializable
         return new self(
             input: (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input)),
             model: SdkClient::stringValue($data->model),
-            encodingFormat: (property_exists($data, "encoding_format") ? SdkClient::hydrateStringEnumOrString($data->encoding_format, CreateEmbeddingRequestEncodingFormatEnum::class) : SdkNotGiven::Value),
-            dimensions: (property_exists($data, "dimensions") ? SdkClient::intValue($data->dimensions) : SdkNotGiven::Value),
-            user: (property_exists($data, "user") ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
+            encodingFormat: (property_exists($data, "encoding_format") && $data->encoding_format !== null ? SdkClient::hydrateStringEnumOrString($data->encoding_format, CreateEmbeddingRequestEncodingFormatEnum::class) : SdkNotGiven::Value),
+            dimensions: (property_exists($data, "dimensions") && $data->dimensions !== null ? SdkClient::intValue($data->dimensions) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
         );
     }
 }

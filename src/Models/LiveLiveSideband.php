@@ -48,7 +48,7 @@ class LiveSidebandConnectParams implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            gracefulClose: (property_exists($data, "graceful_close") ? SdkClient::boolValue($data->graceful_close) : SdkNotGiven::Value),
+            gracefulClose: (property_exists($data, "graceful_close") && $data->graceful_close !== null ? SdkClient::boolValue($data->graceful_close) : SdkNotGiven::Value),
         );
     }
 }

@@ -169,7 +169,7 @@ class WebhookEvalRunSucceeded implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             data: SdkClient::hydrateClass($data->data, WebhookEvalRunSucceededData::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, WebhookEvalRunSucceededTypeEnum::class),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, WebhookEvalRunSucceededObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, WebhookEvalRunSucceededObjectEnum::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -108,7 +108,7 @@ class BetaMultiAgentCallOutput implements BetaItemResource, BetaItemField, BetaO
             callId: SdkClient::stringValue($data->call_id),
             action: SdkClient::hydrateStringEnumOrString($data->action, BetaMultiAgentAction::class),
             output: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaOutputTextContent::class), SdkClient::arrayValue($data->output))),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -281,7 +281,7 @@ class BetaMultiAgentParam implements \JsonSerializable
         if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
-            maxConcurrentSubagents: (property_exists($data, "max_concurrent_subagents") ? SdkClient::intValue($data->max_concurrent_subagents) : SdkNotGiven::Value),
+            maxConcurrentSubagents: (property_exists($data, "max_concurrent_subagents") && $data->max_concurrent_subagents !== null ? SdkClient::intValue($data->max_concurrent_subagents) : SdkNotGiven::Value),
         );
     }
 }

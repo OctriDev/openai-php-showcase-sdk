@@ -60,8 +60,8 @@ class ResponseLogProbTopLogprobsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            token: (property_exists($data, "token") ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
-            logprob: (property_exists($data, "logprob") ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
+            token: (property_exists($data, "token") && $data->token !== null ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
+            logprob: (property_exists($data, "logprob") && $data->logprob !== null ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
         );
     }
 }
@@ -131,7 +131,7 @@ class ResponseLogProb implements \JsonSerializable
         return new self(
             token: SdkClient::stringValue($data->token),
             logprob: SdkClient::floatValue($data->logprob),
-            topLogprobs: (property_exists($data, "top_logprobs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ResponseLogProbTopLogprobsItem::class), SdkClient::arrayValue($data->top_logprobs))) : SdkNotGiven::Value),
+            topLogprobs: (property_exists($data, "top_logprobs") && $data->top_logprobs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ResponseLogProbTopLogprobsItem::class), SdkClient::arrayValue($data->top_logprobs))) : SdkNotGiven::Value),
         );
     }
 }
@@ -213,9 +213,9 @@ class ResponsePromptCacheOptionsParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            ttl: (property_exists($data, "ttl") ? SdkClient::hydrateStringEnumOrString($data->ttl, PromptCacheTTLEnum::class) : SdkNotGiven::Value),
-            mode: (property_exists($data, "mode") ? SdkClient::hydrateStringEnumOrString($data->mode, PromptCacheModeEnum::class) : SdkNotGiven::Value),
-            prewarm: (property_exists($data, "prewarm") ? SdkClient::boolValue($data->prewarm) : SdkNotGiven::Value),
+            ttl: (property_exists($data, "ttl") && $data->ttl !== null ? SdkClient::hydrateStringEnumOrString($data->ttl, PromptCacheTTLEnum::class) : SdkNotGiven::Value),
+            mode: (property_exists($data, "mode") && $data->mode !== null ? SdkClient::hydrateStringEnumOrString($data->mode, PromptCacheModeEnum::class) : SdkNotGiven::Value),
+            prewarm: (property_exists($data, "prewarm") && $data->prewarm !== null ? SdkClient::boolValue($data->prewarm) : SdkNotGiven::Value),
             comparisonResponseId: (property_exists($data, "comparison_response_id") ? ($data->comparison_response_id === null ? null : SdkClient::stringValue($data->comparison_response_id)) : SdkNotGiven::Value),
         );
     }

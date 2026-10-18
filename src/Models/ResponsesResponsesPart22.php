@@ -93,7 +93,7 @@ class ResponsesServerEventVariant52 implements ResponsesServerEvent, \JsonSerial
             itemId: SdkClient::stringValue($data->item_id),
             outputIndex: SdkClient::intValue($data->output_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -192,7 +192,7 @@ class ResponsesServerEventVariant53 implements ResponsesServerEvent, \JsonSerial
             itemId: SdkClient::stringValue($data->item_id),
             outputIndex: SdkClient::intValue($data->output_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -327,7 +327,7 @@ class ResponsesServerEventVariant54 implements ResponsesServerEvent, \JsonSerial
             annotationIndex: SdkClient::intValue($data->annotation_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             annotation: ($data->annotation === null ? null : SdkClient::hydrateUnionAs($data->annotation, Annotation::class, [FileCitationBody::class, UrlCitationBody::class, ContainerFileCitationBody::class, FilePath::class], "type", ["file_citation" => FileCitationBody::class, "url_citation" => UrlCitationBody::class, "container_file_citation" => ContainerFileCitationBody::class, "file_path" => FilePath::class], UnknownAnnotation::class)),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

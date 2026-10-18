@@ -48,7 +48,7 @@ class RunObjectIncompleteDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            reason: (property_exists($data, "reason") ? SdkClient::hydrateStringEnumOrString($data->reason, RunObjectIncompleteDetailsReasonEnum::class) : SdkNotGiven::Value),
+            reason: (property_exists($data, "reason") && $data->reason !== null ? SdkClient::hydrateStringEnumOrString($data->reason, RunObjectIncompleteDetailsReasonEnum::class) : SdkNotGiven::Value),
         );
     }
 }

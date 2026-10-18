@@ -60,8 +60,8 @@ class LiveDecisionsSettingsUpdateParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            questions: (property_exists($data, "questions") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, QuestionParam::class, [QuestionParamPredicate::class, QuestionParamChoice::class, QuestionParamScore::class], "type", ["predicate" => QuestionParamPredicate::class, "choice" => QuestionParamChoice::class, "score" => QuestionParamScore::class], UnknownQuestionParam::class), SdkClient::arrayValue($data->questions))) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            questions: (property_exists($data, "questions") && $data->questions !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, QuestionParam::class, [QuestionParamPredicate::class, QuestionParamChoice::class, QuestionParamScore::class], "type", ["predicate" => QuestionParamPredicate::class, "choice" => QuestionParamChoice::class, "score" => QuestionParamScore::class], UnknownQuestionParam::class), SdkClient::arrayValue($data->questions))) : SdkNotGiven::Value),
         );
     }
 }

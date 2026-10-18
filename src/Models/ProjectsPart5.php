@@ -158,10 +158,10 @@ class ProjectRateLimit implements \JsonSerializable
             model: SdkClient::stringValue($data->model),
             maxRequestsPer1Minute: SdkClient::intValue($data->max_requests_per_1_minute),
             maxTokensPer1Minute: SdkClient::intValue($data->max_tokens_per_1_minute),
-            maxImagesPer1Minute: (property_exists($data, "max_images_per_1_minute") ? SdkClient::intValue($data->max_images_per_1_minute) : SdkNotGiven::Value),
-            maxAudioMegabytesPer1Minute: (property_exists($data, "max_audio_megabytes_per_1_minute") ? SdkClient::intValue($data->max_audio_megabytes_per_1_minute) : SdkNotGiven::Value),
-            maxRequestsPer1Day: (property_exists($data, "max_requests_per_1_day") ? SdkClient::intValue($data->max_requests_per_1_day) : SdkNotGiven::Value),
-            batch1DayMaxInputTokens: (property_exists($data, "batch_1_day_max_input_tokens") ? SdkClient::intValue($data->batch_1_day_max_input_tokens) : SdkNotGiven::Value),
+            maxImagesPer1Minute: (property_exists($data, "max_images_per_1_minute") && $data->max_images_per_1_minute !== null ? SdkClient::intValue($data->max_images_per_1_minute) : SdkNotGiven::Value),
+            maxAudioMegabytesPer1Minute: (property_exists($data, "max_audio_megabytes_per_1_minute") && $data->max_audio_megabytes_per_1_minute !== null ? SdkClient::intValue($data->max_audio_megabytes_per_1_minute) : SdkNotGiven::Value),
+            maxRequestsPer1Day: (property_exists($data, "max_requests_per_1_day") && $data->max_requests_per_1_day !== null ? SdkClient::intValue($data->max_requests_per_1_day) : SdkNotGiven::Value),
+            batch1DayMaxInputTokens: (property_exists($data, "batch_1_day_max_input_tokens") && $data->batch_1_day_max_input_tokens !== null ? SdkClient::intValue($data->batch_1_day_max_input_tokens) : SdkNotGiven::Value),
         );
     }
 }

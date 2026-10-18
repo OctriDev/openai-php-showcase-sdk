@@ -72,9 +72,9 @@ class RealtimeResponseUsageInputTokenDetailsCachedTokensDetails implements \Json
     public static function fromObject(object $data): self
     {
         return new self(
-            textTokens: (property_exists($data, "text_tokens") ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
-            imageTokens: (property_exists($data, "image_tokens") ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
-            audioTokens: (property_exists($data, "audio_tokens") ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
+            textTokens: (property_exists($data, "text_tokens") && $data->text_tokens !== null ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
+            imageTokens: (property_exists($data, "image_tokens") && $data->image_tokens !== null ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
+            audioTokens: (property_exists($data, "audio_tokens") && $data->audio_tokens !== null ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
         );
     }
 }
@@ -168,11 +168,11 @@ class RealtimeResponseUsageInputTokenDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            cachedTokens: (property_exists($data, "cached_tokens") ? SdkClient::intValue($data->cached_tokens) : SdkNotGiven::Value),
-            textTokens: (property_exists($data, "text_tokens") ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
-            imageTokens: (property_exists($data, "image_tokens") ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
-            audioTokens: (property_exists($data, "audio_tokens") ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
-            cachedTokensDetails: (property_exists($data, "cached_tokens_details") ? SdkClient::hydrateClass($data->cached_tokens_details, RealtimeResponseUsageInputTokenDetailsCachedTokensDetails::class) : SdkNotGiven::Value),
+            cachedTokens: (property_exists($data, "cached_tokens") && $data->cached_tokens !== null ? SdkClient::intValue($data->cached_tokens) : SdkNotGiven::Value),
+            textTokens: (property_exists($data, "text_tokens") && $data->text_tokens !== null ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
+            imageTokens: (property_exists($data, "image_tokens") && $data->image_tokens !== null ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
+            audioTokens: (property_exists($data, "audio_tokens") && $data->audio_tokens !== null ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
+            cachedTokensDetails: (property_exists($data, "cached_tokens_details") && $data->cached_tokens_details !== null ? SdkClient::hydrateClass($data->cached_tokens_details, RealtimeResponseUsageInputTokenDetailsCachedTokensDetails::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -230,8 +230,8 @@ class RealtimeResponseUsageOutputTokenDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            textTokens: (property_exists($data, "text_tokens") ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
-            audioTokens: (property_exists($data, "audio_tokens") ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
+            textTokens: (property_exists($data, "text_tokens") && $data->text_tokens !== null ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
+            audioTokens: (property_exists($data, "audio_tokens") && $data->audio_tokens !== null ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
         );
     }
 }
@@ -325,11 +325,11 @@ class RealtimeResponseUsage implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            totalTokens: (property_exists($data, "total_tokens") ? SdkClient::intValue($data->total_tokens) : SdkNotGiven::Value),
-            inputTokens: (property_exists($data, "input_tokens") ? SdkClient::intValue($data->input_tokens) : SdkNotGiven::Value),
-            outputTokens: (property_exists($data, "output_tokens") ? SdkClient::intValue($data->output_tokens) : SdkNotGiven::Value),
-            inputTokenDetails: (property_exists($data, "input_token_details") ? SdkClient::hydrateClass($data->input_token_details, RealtimeResponseUsageInputTokenDetails::class) : SdkNotGiven::Value),
-            outputTokenDetails: (property_exists($data, "output_token_details") ? SdkClient::hydrateClass($data->output_token_details, RealtimeResponseUsageOutputTokenDetails::class) : SdkNotGiven::Value),
+            totalTokens: (property_exists($data, "total_tokens") && $data->total_tokens !== null ? SdkClient::intValue($data->total_tokens) : SdkNotGiven::Value),
+            inputTokens: (property_exists($data, "input_tokens") && $data->input_tokens !== null ? SdkClient::intValue($data->input_tokens) : SdkNotGiven::Value),
+            outputTokens: (property_exists($data, "output_tokens") && $data->output_tokens !== null ? SdkClient::intValue($data->output_tokens) : SdkNotGiven::Value),
+            inputTokenDetails: (property_exists($data, "input_token_details") && $data->input_token_details !== null ? SdkClient::hydrateClass($data->input_token_details, RealtimeResponseUsageInputTokenDetails::class) : SdkNotGiven::Value),
+            outputTokenDetails: (property_exists($data, "output_token_details") && $data->output_token_details !== null ? SdkClient::hydrateClass($data->output_token_details, RealtimeResponseUsageOutputTokenDetails::class) : SdkNotGiven::Value),
         );
     }
 }

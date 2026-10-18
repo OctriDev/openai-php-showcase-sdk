@@ -48,7 +48,7 @@ class AuditLogRateLimitDeleted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -142,11 +142,11 @@ class AuditLogRoleCreated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            roleName: (property_exists($data, "role_name") ? SdkClient::stringValue($data->role_name) : SdkNotGiven::Value),
-            permissions: (property_exists($data, "permissions") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions))) : SdkNotGiven::Value),
-            resourceType: (property_exists($data, "resource_type") ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
-            resourceId: (property_exists($data, "resource_id") ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            roleName: (property_exists($data, "role_name") && $data->role_name !== null ? SdkClient::stringValue($data->role_name) : SdkNotGiven::Value),
+            permissions: (property_exists($data, "permissions") && $data->permissions !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions))) : SdkNotGiven::Value),
+            resourceType: (property_exists($data, "resource_type") && $data->resource_type !== null ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
+            resourceId: (property_exists($data, "resource_id") && $data->resource_id !== null ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -264,13 +264,13 @@ class AuditLogRoleUpdatedChangesRequested implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            roleName: (property_exists($data, "role_name") ? SdkClient::stringValue($data->role_name) : SdkNotGiven::Value),
-            resourceId: (property_exists($data, "resource_id") ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
-            resourceType: (property_exists($data, "resource_type") ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
-            permissionsAdded: (property_exists($data, "permissions_added") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions_added))) : SdkNotGiven::Value),
-            permissionsRemoved: (property_exists($data, "permissions_removed") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions_removed))) : SdkNotGiven::Value),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
+            roleName: (property_exists($data, "role_name") && $data->role_name !== null ? SdkClient::stringValue($data->role_name) : SdkNotGiven::Value),
+            resourceId: (property_exists($data, "resource_id") && $data->resource_id !== null ? SdkClient::stringValue($data->resource_id) : SdkNotGiven::Value),
+            resourceType: (property_exists($data, "resource_type") && $data->resource_type !== null ? SdkClient::stringValue($data->resource_type) : SdkNotGiven::Value),
+            permissionsAdded: (property_exists($data, "permissions_added") && $data->permissions_added !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions_added))) : SdkNotGiven::Value),
+            permissionsRemoved: (property_exists($data, "permissions_removed") && $data->permissions_removed !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->permissions_removed))) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
         );
     }
 }
@@ -328,8 +328,8 @@ class AuditLogRoleUpdated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            changesRequested: (property_exists($data, "changes_requested") ? SdkClient::hydrateClass($data->changes_requested, AuditLogRoleUpdatedChangesRequested::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            changesRequested: (property_exists($data, "changes_requested") && $data->changes_requested !== null ? SdkClient::hydrateClass($data->changes_requested, AuditLogRoleUpdatedChangesRequested::class) : SdkNotGiven::Value),
         );
     }
 }

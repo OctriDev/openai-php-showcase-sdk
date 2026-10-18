@@ -131,7 +131,7 @@ class RunStepDeltaObjectDelta implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            stepDetails: (property_exists($data, "step_details") ? SdkClient::hydrateUnionAs($data->step_details, RunStepDeltaObjectDeltaStepDetails::class, [RunStepDeltaStepDetailsMessageCreationObject::class, RunStepDeltaStepDetailsToolCallsObject::class], "type", ["message_creation" => RunStepDeltaStepDetailsMessageCreationObject::class, "tool_calls" => RunStepDeltaStepDetailsToolCallsObject::class], UnknownRunStepDeltaObjectDeltaStepDetails::class) : SdkNotGiven::Value),
+            stepDetails: (property_exists($data, "step_details") && $data->step_details !== null ? SdkClient::hydrateUnionAs($data->step_details, RunStepDeltaObjectDeltaStepDetails::class, [RunStepDeltaStepDetailsMessageCreationObject::class, RunStepDeltaStepDetailsToolCallsObject::class], "type", ["message_creation" => RunStepDeltaStepDetailsMessageCreationObject::class, "tool_calls" => RunStepDeltaStepDetailsToolCallsObject::class], UnknownRunStepDeltaObjectDeltaStepDetails::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -254,7 +254,7 @@ class RunStepDeltaStepDetailsMessageCreationObjectMessageCreation implements \Js
     public static function fromObject(object $data): self
     {
         return new self(
-            messageId: (property_exists($data, "message_id") ? SdkClient::stringValue($data->message_id) : SdkNotGiven::Value),
+            messageId: (property_exists($data, "message_id") && $data->message_id !== null ? SdkClient::stringValue($data->message_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -312,7 +312,7 @@ class RunStepDeltaStepDetailsMessageCreationObject implements RunStepDeltaObject
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsMessageCreationObjectTypeEnum::class),
-            messageCreation: (property_exists($data, "message_creation") ? SdkClient::hydrateClass($data->message_creation, RunStepDeltaStepDetailsMessageCreationObjectMessageCreation::class) : SdkNotGiven::Value),
+            messageCreation: (property_exists($data, "message_creation") && $data->message_creation !== null ? SdkClient::hydrateClass($data->message_creation, RunStepDeltaStepDetailsMessageCreationObjectMessageCreation::class) : SdkNotGiven::Value),
         );
     }
 }

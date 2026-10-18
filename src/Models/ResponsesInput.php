@@ -178,7 +178,7 @@ class InputMessageResource implements ItemResource, \JsonSerializable
             role: SdkClient::hydrateStringEnumOrString($data->role, InputMessageResourceRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, InputContent::class, [InputTextContent::class, InputImageContent::class, InputFileContent::class], "type", ["input_text" => InputTextContent::class, "input_image" => InputImageContent::class, "input_file" => InputFileContent::class], UnknownInputContent::class), SdkClient::arrayValue($data->content))),
             id: SdkClient::stringValue($data->id),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, InputMessageResourceStatusEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, InputMessageResourceStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

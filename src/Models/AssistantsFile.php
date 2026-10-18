@@ -75,7 +75,7 @@ class FileSearchRankingOptions implements \JsonSerializable
         if (!property_exists($data, "score_threshold") || $data->score_threshold === null) { throw new SdkValidationError("score_threshold", 'required', "Required property 'score_threshold' is missing or null"); }
         return new self(
             scoreThreshold: SdkClient::floatValue($data->score_threshold),
-            ranker: (property_exists($data, "ranker") ? SdkClient::hydrateStringEnumOrString($data->ranker, FileSearchRanker::class) : SdkNotGiven::Value),
+            ranker: (property_exists($data, "ranker") && $data->ranker !== null ? SdkClient::hydrateStringEnumOrString($data->ranker, FileSearchRanker::class) : SdkNotGiven::Value),
         );
     }
 }

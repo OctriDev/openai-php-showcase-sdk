@@ -117,7 +117,7 @@ class ResponsesServerEventVariant36 implements ResponsesServerEvent, \JsonSerial
             contentIndex: SdkClient::intValue($data->content_index),
             refusal: SdkClient::stringValue($data->refusal),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -252,7 +252,7 @@ class ResponsesServerEventVariant37 implements ResponsesServerEvent, \JsonSerial
             delta: SdkClient::stringValue($data->delta),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             logprobs: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ResponseLogProb::class), SdkClient::arrayValue($data->logprobs))),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

@@ -108,8 +108,8 @@ class ErrorPayload implements \JsonSerializable
             code: ($data->code === null ? null : SdkClient::stringValue($data->code)),
             message: SdkClient::stringValue($data->message),
             param: ($data->param === null ? null : SdkClient::stringValue($data->param)),
-            headers: (property_exists($data, "headers") ? SdkClient::mapValues(SdkClient::stringMapValue($data->headers), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
-            misalignment: (property_exists($data, "misalignment") ? SdkClient::hydrateClass($data->misalignment, MisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
+            headers: (property_exists($data, "headers") && $data->headers !== null ? SdkClient::mapValues(SdkClient::stringMapValue($data->headers), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
+            misalignment: (property_exists($data, "misalignment") && $data->misalignment !== null ? SdkClient::hydrateClass($data->misalignment, MisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -247,7 +247,7 @@ class FineTuneChatCompletionRequestAssistantMessageVariant0 implements \JsonSeri
     public static function fromObject(object $data): self
     {
         return new self(
-            weight: (property_exists($data, "weight") ? SdkClient::intValue($data->weight) : SdkNotGiven::Value),
+            weight: (property_exists($data, "weight") && $data->weight !== null ? SdkClient::intValue($data->weight) : SdkNotGiven::Value),
         );
     }
 }

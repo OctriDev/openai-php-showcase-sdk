@@ -224,9 +224,9 @@ class RealtimeTranslationServerEventSessionOutputAudioDelta implements RealtimeT
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeTranslationServerEventSessionOutputAudioDeltaTypeEnum::class),
             delta: SdkClient::stringValue($data->delta),
-            sampleRate: (property_exists($data, "sample_rate") ? SdkClient::intValue($data->sample_rate) : SdkNotGiven::Value),
-            channels: (property_exists($data, "channels") ? SdkClient::intValue($data->channels) : SdkNotGiven::Value),
-            format: (property_exists($data, "format") ? SdkClient::hydrateStringEnumOrString($data->format, RealtimeTranslationServerEventSessionOutputAudioDeltaFormatEnum::class) : SdkNotGiven::Value),
+            sampleRate: (property_exists($data, "sample_rate") && $data->sample_rate !== null ? SdkClient::intValue($data->sample_rate) : SdkNotGiven::Value),
+            channels: (property_exists($data, "channels") && $data->channels !== null ? SdkClient::intValue($data->channels) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateStringEnumOrString($data->format, RealtimeTranslationServerEventSessionOutputAudioDeltaFormatEnum::class) : SdkNotGiven::Value),
             elapsedMs: (property_exists($data, "elapsed_ms") ? ($data->elapsed_ms === null ? null : SdkClient::intValue($data->elapsed_ms)) : SdkNotGiven::Value),
         );
     }

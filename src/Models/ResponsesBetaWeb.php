@@ -307,9 +307,9 @@ class BetaWebSearchActionSearch implements BetaWebSearchToolCallAction, \JsonSer
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaWebSearchActionSearchTypeEnum::class),
-            query: (property_exists($data, "query") ? SdkClient::stringValue($data->query) : SdkNotGiven::Value),
-            queries: (property_exists($data, "queries") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->queries))) : SdkNotGiven::Value),
-            sources: (property_exists($data, "sources") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaWebSearchActionSearchSourcesItem::class), SdkClient::arrayValue($data->sources))) : SdkNotGiven::Value),
+            query: (property_exists($data, "query") && $data->query !== null ? SdkClient::stringValue($data->query) : SdkNotGiven::Value),
+            queries: (property_exists($data, "queries") && $data->queries !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->queries))) : SdkNotGiven::Value),
+            sources: (property_exists($data, "sources") && $data->sources !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaWebSearchActionSearchSourcesItem::class), SdkClient::arrayValue($data->sources))) : SdkNotGiven::Value),
         );
     }
 }

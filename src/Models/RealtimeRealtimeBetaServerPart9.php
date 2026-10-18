@@ -84,10 +84,10 @@ class RealtimeBetaServerEventResponseContentPartAddedPart implements \JsonSerial
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventResponseContentPartAddedPartTypeEnum::class) : SdkNotGiven::Value),
-            text: (property_exists($data, "text") ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
-            audio: (property_exists($data, "audio") ? SdkClient::stringValue($data->audio) : SdkNotGiven::Value),
-            transcript: (property_exists($data, "transcript") ? SdkClient::stringValue($data->transcript) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventResponseContentPartAddedPartTypeEnum::class) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::stringValue($data->audio) : SdkNotGiven::Value),
+            transcript: (property_exists($data, "transcript") && $data->transcript !== null ? SdkClient::stringValue($data->transcript) : SdkNotGiven::Value),
         );
     }
 }
@@ -315,10 +315,10 @@ class RealtimeBetaServerEventResponseContentPartDonePart implements \JsonSeriali
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventResponseContentPartDonePartTypeEnum::class) : SdkNotGiven::Value),
-            text: (property_exists($data, "text") ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
-            audio: (property_exists($data, "audio") ? SdkClient::stringValue($data->audio) : SdkNotGiven::Value),
-            transcript: (property_exists($data, "transcript") ? SdkClient::stringValue($data->transcript) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventResponseContentPartDonePartTypeEnum::class) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::stringValue($data->audio) : SdkNotGiven::Value),
+            transcript: (property_exists($data, "transcript") && $data->transcript !== null ? SdkClient::stringValue($data->transcript) : SdkNotGiven::Value),
         );
     }
 }

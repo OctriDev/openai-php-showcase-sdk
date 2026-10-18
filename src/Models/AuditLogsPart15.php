@@ -60,8 +60,8 @@ class AuditLogCertificateUpdated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -131,9 +131,9 @@ class AuditLogCertificateDeleted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            certificate: (property_exists($data, "certificate") ? SdkClient::stringValue($data->certificate) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            certificate: (property_exists($data, "certificate") && $data->certificate !== null ? SdkClient::stringValue($data->certificate) : SdkNotGiven::Value),
         );
     }
 }
@@ -191,8 +191,8 @@ class AuditLogCertificatesActivatedCertificatesItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -238,7 +238,7 @@ class AuditLogCertificatesActivated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            certificates: (property_exists($data, "certificates") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AuditLogCertificatesActivatedCertificatesItem::class), SdkClient::arrayValue($data->certificates))) : SdkNotGiven::Value),
+            certificates: (property_exists($data, "certificates") && $data->certificates !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AuditLogCertificatesActivatedCertificatesItem::class), SdkClient::arrayValue($data->certificates))) : SdkNotGiven::Value),
         );
     }
 }
@@ -296,8 +296,8 @@ class AuditLogCertificatesDeactivatedCertificatesItem implements \JsonSerializab
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -343,7 +343,7 @@ class AuditLogCertificatesDeactivated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            certificates: (property_exists($data, "certificates") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AuditLogCertificatesDeactivatedCertificatesItem::class), SdkClient::arrayValue($data->certificates))) : SdkNotGiven::Value),
+            certificates: (property_exists($data, "certificates") && $data->certificates !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AuditLogCertificatesDeactivatedCertificatesItem::class), SdkClient::arrayValue($data->certificates))) : SdkNotGiven::Value),
         );
     }
 }

@@ -96,10 +96,10 @@ class WebSearchTool implements Tool, ToolSearchOutputTool, \JsonSerializable
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, WebSearchToolTypeEnum::class),
-            externalWebAccess: (property_exists($data, "external_web_access") ? SdkClient::boolValue($data->external_web_access) : SdkNotGiven::Value),
+            externalWebAccess: (property_exists($data, "external_web_access") && $data->external_web_access !== null ? SdkClient::boolValue($data->external_web_access) : SdkNotGiven::Value),
             filters: (property_exists($data, "filters") ? ($data->filters === null ? null : SdkClient::hydrateClass($data->filters, WebSearchToolFilters::class)) : SdkNotGiven::Value),
             userLocation: (property_exists($data, "user_location") ? ($data->user_location === null ? null : SdkClient::hydrateClass($data->user_location, WebSearchApproximateLocation::class)) : SdkNotGiven::Value),
-            searchContextSize: (property_exists($data, "search_context_size") ? SdkClient::hydrateStringEnumOrString($data->search_context_size, WebSearchToolSearchContextSizeEnum::class) : SdkNotGiven::Value),
+            searchContextSize: (property_exists($data, "search_context_size") && $data->search_context_size !== null ? SdkClient::hydrateStringEnumOrString($data->search_context_size, WebSearchToolSearchContextSizeEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -189,7 +189,7 @@ class WebSearchToolCall implements ConversationItem, InputItem, Item, ItemResour
             id: SdkClient::stringValue($data->id),
             type: SdkClient::hydrateEnum($data->type, WebSearchToolCallTypeEnum::class),
             status: SdkClient::hydrateStringEnumOrString($data->status, WebSearchCallStatus::class),
-            action: (property_exists($data, "action") ? SdkClient::hydrateUnionAs($data->action, WebSearchToolCallAction::class, [WebSearchActionSearch::class, WebSearchActionOpenPage::class, WebSearchActionFind::class], "type", ["search" => WebSearchActionSearch::class, "open_page" => WebSearchActionOpenPage::class, "find_in_page" => WebSearchActionFind::class], UnknownWebSearchToolCallAction::class) : SdkNotGiven::Value),
+            action: (property_exists($data, "action") && $data->action !== null ? SdkClient::hydrateUnionAs($data->action, WebSearchToolCallAction::class, [WebSearchActionSearch::class, WebSearchActionOpenPage::class, WebSearchActionFind::class], "type", ["search" => WebSearchActionSearch::class, "open_page" => WebSearchActionOpenPage::class, "find_in_page" => WebSearchActionFind::class], UnknownWebSearchToolCallAction::class) : SdkNotGiven::Value),
         );
     }
 }

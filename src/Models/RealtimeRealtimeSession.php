@@ -69,9 +69,55 @@ final readonly class RealtimeSessionOutputAudioFormatEnum implements SdkOpenEnum
 }
 
 /**
+ * Configuration for input audio noise reduction. This can be set to `null` to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
+ */
+class RealtimeSessionInputAudioNoiseReduction implements \JsonSerializable
+{
+    /**
+     * Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.
+     *
+     * @var NoiseReductionType|string|SdkNotGiven
+     */
+    public readonly NoiseReductionType|string|SdkNotGiven $type;
+
+    /**
+     * @param NoiseReductionType|string|SdkNotGiven $type
+     */
+    public function __construct(
+        NoiseReductionType|string|SdkNotGiven $type = SdkNotGiven::Value,
+    ) {
+        $this->type = $type;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+        ];
+        if ($this->type !== SdkNotGiven::Value) {
+            $values["type"] = $this->type;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        return new self(
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, NoiseReductionType::class) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
  * Default tracing mode for the session.
  */
-final readonly class RealtimeSessionTracingEnum implements SdkOpenEnum
+final readonly class RealtimeSessionTracingModelEnum implements SdkOpenEnum
 {
     public const AUTO = "auto";
     private function __construct(public string $value) {}
@@ -85,7 +131,7 @@ final readonly class RealtimeSessionTracingEnum implements SdkOpenEnum
 /**
  * Granular configuration for tracing.
  */
-class RealtimeSessionTracingTracingConfiguration implements \JsonSerializable
+class RealtimeSessionTracingModelTracingConfiguration implements \JsonSerializable
 {
     /**
      * The name of the workflow to attach to this trace. This is used to name the trace in the traces dashboard.
@@ -147,9 +193,9 @@ class RealtimeSessionTracingTracingConfiguration implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            workflowName: (property_exists($data, "workflow_name") ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
-            groupId: (property_exists($data, "group_id") ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
-            metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
+            workflowName: (property_exists($data, "workflow_name") && $data->workflow_name !== null ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
+            groupId: (property_exists($data, "group_id") && $data->group_id !== null ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
         );
     }
 }

@@ -257,7 +257,7 @@ class AgentToolConfigParamComputerUse implements AgentToolConfigParam, \JsonSeri
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolConfigParamComputerUseTypeEnum::class),
-            includeScreenshots: (property_exists($data, "include_screenshots") ? SdkClient::boolValue($data->include_screenshots) : SdkNotGiven::Value),
+            includeScreenshots: (property_exists($data, "include_screenshots") && $data->include_screenshots !== null ? SdkClient::boolValue($data->include_screenshots) : SdkNotGiven::Value),
         );
     }
 }

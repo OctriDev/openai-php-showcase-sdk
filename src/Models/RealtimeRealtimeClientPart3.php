@@ -60,7 +60,7 @@ class RealtimeClientEventOutputAudioBufferClear implements RealtimeClientEvent, 
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventOutputAudioBufferClearTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -138,8 +138,8 @@ class RealtimeClientEventResponseCancel implements RealtimeClientEvent, \JsonSer
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventResponseCancelTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
-            responseId: (property_exists($data, "response_id") ? SdkClient::stringValue($data->response_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            responseId: (property_exists($data, "response_id") && $data->response_id !== null ? SdkClient::stringValue($data->response_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -217,8 +217,8 @@ class RealtimeClientEventResponseCreate implements RealtimeClientEvent, \JsonSer
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventResponseCreateTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
-            response: (property_exists($data, "response") ? SdkClient::hydrateClass($data->response, RealtimeResponseCreateParams::class) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            response: (property_exists($data, "response") && $data->response !== null ? SdkClient::hydrateClass($data->response, RealtimeResponseCreateParams::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -296,7 +296,7 @@ class RealtimeClientEventSessionUpdate implements RealtimeClientEvent, \JsonSeri
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventSessionUpdateTypeEnum::class),
             session: SdkClient::hydrateUnionAs($data->session, RealtimeClientEventSessionUpdateSession::class, [RealtimeSessionCreateRequestGA::class, RealtimeTranscriptionSessionCreateRequestGA::class], "type", ["realtime" => RealtimeSessionCreateRequestGA::class, "transcription" => RealtimeTranscriptionSessionCreateRequestGA::class], UnknownRealtimeClientEventSessionUpdateSession::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }

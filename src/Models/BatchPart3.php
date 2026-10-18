@@ -84,8 +84,8 @@ class BatchError implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            code: (property_exists($data, "code") ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
-            message: (property_exists($data, "message") ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
+            code: (property_exists($data, "code") && $data->code !== null ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
+            message: (property_exists($data, "message") && $data->message !== null ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
             param: (property_exists($data, "param") ? ($data->param === null ? null : SdkClient::stringValue($data->param)) : SdkNotGiven::Value),
             line: (property_exists($data, "line") ? ($data->line === null ? null : SdkClient::intValue($data->line)) : SdkNotGiven::Value),
         );

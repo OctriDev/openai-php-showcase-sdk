@@ -205,7 +205,7 @@ class GraderPython implements FineTuneReinforcementMethodGrader, RunGraderReques
             type: SdkClient::hydrateEnum($data->type, GraderPythonTypeEnum::class),
             name: SdkClient::stringValue($data->name),
             source: SdkClient::stringValue($data->source),
-            imageTag: (property_exists($data, "image_tag") ? SdkClient::stringValue($data->image_tag) : SdkNotGiven::Value),
+            imageTag: (property_exists($data, "image_tag") && $data->image_tag !== null ? SdkClient::stringValue($data->image_tag) : SdkNotGiven::Value),
         );
     }
 }

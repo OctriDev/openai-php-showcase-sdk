@@ -60,7 +60,7 @@ class RealtimeBetaClientEventOutputAudioBufferClear implements \JsonSerializable
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventOutputAudioBufferClearTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -144,8 +144,8 @@ class RealtimeBetaClientEventResponseCancel implements \JsonSerializable
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventResponseCancelTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
-            responseId: (property_exists($data, "response_id") ? SdkClient::stringValue($data->response_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            responseId: (property_exists($data, "response_id") && $data->response_id !== null ? SdkClient::stringValue($data->response_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -229,8 +229,8 @@ class RealtimeBetaClientEventResponseCreate implements \JsonSerializable
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventResponseCreateTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
-            response: (property_exists($data, "response") ? SdkClient::hydrateClass($data->response, RealtimeBetaResponseCreateParams::class) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            response: (property_exists($data, "response") && $data->response !== null ? SdkClient::hydrateClass($data->response, RealtimeBetaResponseCreateParams::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -314,7 +314,7 @@ class RealtimeBetaClientEventSessionUpdate implements \JsonSerializable
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventSessionUpdateTypeEnum::class),
             session: SdkClient::hydrateClass($data->session, RealtimeSessionCreateRequest::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }

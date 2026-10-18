@@ -120,13 +120,13 @@ class FineTuneReinforcementHyperparameters implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            batchSize: (property_exists($data, "batch_size") ? (is_int($data->batch_size) ? SdkClient::intValue($data->batch_size) : SdkClient::hydrateStringEnumOrString($data->batch_size, FineTuneReinforcementHyperparametersBatchSizeEnum::class)) : SdkNotGiven::Value),
-            learningRateMultiplier: (property_exists($data, "learning_rate_multiplier") ? (is_float($data->learning_rate_multiplier) || is_int($data->learning_rate_multiplier) ? SdkClient::floatValue($data->learning_rate_multiplier) : SdkClient::hydrateStringEnumOrString($data->learning_rate_multiplier, FineTuneReinforcementHyperparametersLearningRateMultiplierEnum::class)) : SdkNotGiven::Value),
-            nEpochs: (property_exists($data, "n_epochs") ? (is_int($data->n_epochs) ? SdkClient::intValue($data->n_epochs) : SdkClient::hydrateStringEnumOrString($data->n_epochs, FineTuneReinforcementHyperparametersNEpochsEnum::class)) : SdkNotGiven::Value),
-            reasoningEffort: (property_exists($data, "reasoning_effort") ? SdkClient::hydrateStringEnumOrString($data->reasoning_effort, FineTuneReinforcementHyperparametersReasoningEffortEnum::class) : SdkNotGiven::Value),
-            computeMultiplier: (property_exists($data, "compute_multiplier") ? (is_float($data->compute_multiplier) || is_int($data->compute_multiplier) ? SdkClient::floatValue($data->compute_multiplier) : SdkClient::hydrateStringEnumOrString($data->compute_multiplier, FineTuneReinforcementHyperparametersComputeMultiplierEnum::class)) : SdkNotGiven::Value),
-            evalInterval: (property_exists($data, "eval_interval") ? (is_int($data->eval_interval) ? SdkClient::intValue($data->eval_interval) : SdkClient::hydrateStringEnumOrString($data->eval_interval, FineTuneReinforcementHyperparametersEvalIntervalEnum::class)) : SdkNotGiven::Value),
-            evalSamples: (property_exists($data, "eval_samples") ? (is_int($data->eval_samples) ? SdkClient::intValue($data->eval_samples) : SdkClient::hydrateStringEnumOrString($data->eval_samples, FineTuneReinforcementHyperparametersEvalSamplesEnum::class)) : SdkNotGiven::Value),
+            batchSize: (property_exists($data, "batch_size") && $data->batch_size !== null ? (is_int($data->batch_size) ? SdkClient::intValue($data->batch_size) : SdkClient::hydrateStringEnumOrString($data->batch_size, FineTuneReinforcementHyperparametersBatchSizeEnum::class)) : SdkNotGiven::Value),
+            learningRateMultiplier: (property_exists($data, "learning_rate_multiplier") && $data->learning_rate_multiplier !== null ? (is_float($data->learning_rate_multiplier) || is_int($data->learning_rate_multiplier) ? SdkClient::floatValue($data->learning_rate_multiplier) : SdkClient::hydrateStringEnumOrString($data->learning_rate_multiplier, FineTuneReinforcementHyperparametersLearningRateMultiplierEnum::class)) : SdkNotGiven::Value),
+            nEpochs: (property_exists($data, "n_epochs") && $data->n_epochs !== null ? (is_int($data->n_epochs) ? SdkClient::intValue($data->n_epochs) : SdkClient::hydrateStringEnumOrString($data->n_epochs, FineTuneReinforcementHyperparametersNEpochsEnum::class)) : SdkNotGiven::Value),
+            reasoningEffort: (property_exists($data, "reasoning_effort") && $data->reasoning_effort !== null ? SdkClient::hydrateStringEnumOrString($data->reasoning_effort, FineTuneReinforcementHyperparametersReasoningEffortEnum::class) : SdkNotGiven::Value),
+            computeMultiplier: (property_exists($data, "compute_multiplier") && $data->compute_multiplier !== null ? (is_float($data->compute_multiplier) || is_int($data->compute_multiplier) ? SdkClient::floatValue($data->compute_multiplier) : SdkClient::hydrateStringEnumOrString($data->compute_multiplier, FineTuneReinforcementHyperparametersComputeMultiplierEnum::class)) : SdkNotGiven::Value),
+            evalInterval: (property_exists($data, "eval_interval") && $data->eval_interval !== null ? (is_int($data->eval_interval) ? SdkClient::intValue($data->eval_interval) : SdkClient::hydrateStringEnumOrString($data->eval_interval, FineTuneReinforcementHyperparametersEvalIntervalEnum::class)) : SdkNotGiven::Value),
+            evalSamples: (property_exists($data, "eval_samples") && $data->eval_samples !== null ? (is_int($data->eval_samples) ? SdkClient::intValue($data->eval_samples) : SdkClient::hydrateStringEnumOrString($data->eval_samples, FineTuneReinforcementHyperparametersEvalSamplesEnum::class)) : SdkNotGiven::Value),
         );
     }
 }
@@ -184,7 +184,7 @@ class FineTuneReinforcementMethod implements \JsonSerializable
         if (!property_exists($data, "grader") || $data->grader === null) { throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null"); }
         return new self(
             grader: SdkClient::hydrateUnionAs($data->grader, FineTuneReinforcementMethodGrader::class, [GraderStringCheck::class, GraderTextSimilarity::class, GraderPython::class, GraderScoreModel::class, GraderMulti::class], "type", ["string_check" => GraderStringCheck::class, "text_similarity" => GraderTextSimilarity::class, "python" => GraderPython::class, "score_model" => GraderScoreModel::class, "multi" => GraderMulti::class], UnknownFineTuneReinforcementMethodGrader::class),
-            hyperparameters: (property_exists($data, "hyperparameters") ? SdkClient::hydrateClass($data->hyperparameters, FineTuneReinforcementHyperparameters::class) : SdkNotGiven::Value),
+            hyperparameters: (property_exists($data, "hyperparameters") && $data->hyperparameters !== null ? SdkClient::hydrateClass($data->hyperparameters, FineTuneReinforcementHyperparameters::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -296,9 +296,9 @@ class FineTuneSupervisedHyperparameters implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            batchSize: (property_exists($data, "batch_size") ? (is_int($data->batch_size) ? SdkClient::intValue($data->batch_size) : SdkClient::hydrateStringEnumOrString($data->batch_size, FineTuneSupervisedHyperparametersBatchSizeEnum::class)) : SdkNotGiven::Value),
-            learningRateMultiplier: (property_exists($data, "learning_rate_multiplier") ? (is_float($data->learning_rate_multiplier) || is_int($data->learning_rate_multiplier) ? SdkClient::floatValue($data->learning_rate_multiplier) : SdkClient::hydrateStringEnumOrString($data->learning_rate_multiplier, FineTuneSupervisedHyperparametersLearningRateMultiplierEnum::class)) : SdkNotGiven::Value),
-            nEpochs: (property_exists($data, "n_epochs") ? (is_int($data->n_epochs) ? SdkClient::intValue($data->n_epochs) : SdkClient::hydrateStringEnumOrString($data->n_epochs, FineTuneSupervisedHyperparametersNEpochsEnum::class)) : SdkNotGiven::Value),
+            batchSize: (property_exists($data, "batch_size") && $data->batch_size !== null ? (is_int($data->batch_size) ? SdkClient::intValue($data->batch_size) : SdkClient::hydrateStringEnumOrString($data->batch_size, FineTuneSupervisedHyperparametersBatchSizeEnum::class)) : SdkNotGiven::Value),
+            learningRateMultiplier: (property_exists($data, "learning_rate_multiplier") && $data->learning_rate_multiplier !== null ? (is_float($data->learning_rate_multiplier) || is_int($data->learning_rate_multiplier) ? SdkClient::floatValue($data->learning_rate_multiplier) : SdkClient::hydrateStringEnumOrString($data->learning_rate_multiplier, FineTuneSupervisedHyperparametersLearningRateMultiplierEnum::class)) : SdkNotGiven::Value),
+            nEpochs: (property_exists($data, "n_epochs") && $data->n_epochs !== null ? (is_int($data->n_epochs) ? SdkClient::intValue($data->n_epochs) : SdkClient::hydrateStringEnumOrString($data->n_epochs, FineTuneSupervisedHyperparametersNEpochsEnum::class)) : SdkNotGiven::Value),
         );
     }
 }
@@ -344,7 +344,7 @@ class FineTuneSupervisedMethod implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            hyperparameters: (property_exists($data, "hyperparameters") ? SdkClient::hydrateClass($data->hyperparameters, FineTuneSupervisedHyperparameters::class) : SdkNotGiven::Value),
+            hyperparameters: (property_exists($data, "hyperparameters") && $data->hyperparameters !== null ? SdkClient::hydrateClass($data->hyperparameters, FineTuneSupervisedHyperparameters::class) : SdkNotGiven::Value),
         );
     }
 }

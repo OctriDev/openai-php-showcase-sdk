@@ -120,7 +120,7 @@ class BetaResponseShellCallOutputContentDoneStreamingEvent implements BetaRespon
             outputIndex: SdkClient::intValue($data->output_index),
             commandIndex: SdkClient::intValue($data->command_index),
             output: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaFunctionShellCallOutputContent::class), SdkClient::arrayValue($data->output))),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }

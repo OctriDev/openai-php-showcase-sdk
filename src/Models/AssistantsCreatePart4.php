@@ -254,7 +254,7 @@ class CreateRunRequest implements \JsonSerializable
             maxCompletionTokens: (property_exists($data, "max_completion_tokens") ? ($data->max_completion_tokens === null ? null : SdkClient::intValue($data->max_completion_tokens)) : SdkNotGiven::Value),
             truncationStrategy: (property_exists($data, "truncation_strategy") ? ($data->truncation_strategy === null ? null : SdkClient::hydrateClass($data->truncation_strategy, TruncationObject::class)) : SdkNotGiven::Value),
             toolChoice: (property_exists($data, "tool_choice") ? ($data->tool_choice === null ? null : (is_object($data->tool_choice) ? SdkClient::hydrateClass($data->tool_choice, AssistantsNamedToolChoice::class) : (is_string($data->tool_choice) ? SdkClient::hydrateStringEnumOrString($data->tool_choice, CreateRunRequestToolChoiceEnum::class) : SdkClient::hydrateClass($data->tool_choice, AssistantsNamedToolChoice::class)))) : SdkNotGiven::Value),
-            parallelToolCalls: (property_exists($data, "parallel_tool_calls") ? SdkClient::boolValue($data->parallel_tool_calls) : SdkNotGiven::Value),
+            parallelToolCalls: (property_exists($data, "parallel_tool_calls") && $data->parallel_tool_calls !== null ? SdkClient::boolValue($data->parallel_tool_calls) : SdkNotGiven::Value),
             responseFormat: (property_exists($data, "response_format") ? ($data->response_format === null ? null : (is_object($data->response_format) ? SdkClient::hydrateUnion($data->response_format, [ResponseFormatText::class, ResponseFormatJsonObject::class, ResponseFormatJsonSchema::class], "type", ["text" => ResponseFormatText::class, "json_object" => ResponseFormatJsonObject::class, "json_schema" => ResponseFormatJsonSchema::class]) : (is_string($data->response_format) ? SdkClient::hydrateStringEnumOrString($data->response_format, CreateRunRequestResponseFormatEnum::class) : SdkClient::hydrateUnion($data->response_format, [ResponseFormatText::class, ResponseFormatJsonObject::class, ResponseFormatJsonSchema::class], "type", ["text" => ResponseFormatText::class, "json_object" => ResponseFormatJsonObject::class, "json_schema" => ResponseFormatJsonSchema::class])))) : SdkNotGiven::Value),
         );
     }
@@ -301,7 +301,7 @@ class CreateThreadAndRunRequestToolResourcesCodeInterpreter implements \JsonSeri
     public static function fromObject(object $data): self
     {
         return new self(
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
         );
     }
 }
@@ -347,7 +347,7 @@ class CreateThreadAndRunRequestToolResourcesFileSearch implements \JsonSerializa
     public static function fromObject(object $data): self
     {
         return new self(
-            vectorStoreIds: (property_exists($data, "vector_store_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
+            vectorStoreIds: (property_exists($data, "vector_store_ids") && $data->vector_store_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
         );
     }
 }

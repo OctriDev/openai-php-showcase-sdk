@@ -106,7 +106,7 @@ class BetaResponsesServerEventVariant53 implements BetaResponsesServerEvent, \Js
             outputIndex: SdkClient::intValue($data->output_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -254,7 +254,7 @@ class BetaResponsesServerEventVariant54 implements BetaResponsesServerEvent, \Js
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             annotation: ($data->annotation === null ? null : SdkClient::hydrateUnionAs($data->annotation, BetaAnnotation::class, [BetaFileCitationBody::class, BetaUrlCitationBody::class, BetaContainerFileCitationBody::class, BetaFilePath::class], "type", ["file_citation" => BetaFileCitationBody::class, "url_citation" => BetaUrlCitationBody::class, "container_file_citation" => BetaContainerFileCitationBody::class, "file_path" => BetaFilePath::class], UnknownBetaAnnotation::class)),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

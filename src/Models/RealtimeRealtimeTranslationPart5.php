@@ -290,7 +290,7 @@ class RealtimeTranslationSessionCreateRequestAudioOutput implements \JsonSeriali
     public static function fromObject(object $data): self
     {
         return new self(
-            language: (property_exists($data, "language") ? SdkClient::stringValue($data->language) : SdkNotGiven::Value),
+            language: (property_exists($data, "language") && $data->language !== null ? SdkClient::stringValue($data->language) : SdkNotGiven::Value),
         );
     }
 }

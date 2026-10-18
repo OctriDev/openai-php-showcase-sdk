@@ -60,8 +60,8 @@ class AuditLogExternalStorageRegistered implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") ? SdkClient::hydrateClass($data->data, AuditLogExternalStorageRegisteredData::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") && $data->data !== null ? SdkClient::hydrateClass($data->data, AuditLogExternalStorageRegisteredData::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -107,7 +107,7 @@ class AuditLogExternalStorageRemoved implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -153,7 +153,7 @@ class AuditLogGroupCreatedData implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            groupName: (property_exists($data, "group_name") ? SdkClient::stringValue($data->group_name) : SdkNotGiven::Value),
+            groupName: (property_exists($data, "group_name") && $data->group_name !== null ? SdkClient::stringValue($data->group_name) : SdkNotGiven::Value),
         );
     }
 }
@@ -211,8 +211,8 @@ class AuditLogGroupCreated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") ? SdkClient::hydrateClass($data->data, AuditLogGroupCreatedData::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") && $data->data !== null ? SdkClient::hydrateClass($data->data, AuditLogGroupCreatedData::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -258,7 +258,7 @@ class AuditLogGroupUpdatedChangesRequested implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            groupName: (property_exists($data, "group_name") ? SdkClient::stringValue($data->group_name) : SdkNotGiven::Value),
+            groupName: (property_exists($data, "group_name") && $data->group_name !== null ? SdkClient::stringValue($data->group_name) : SdkNotGiven::Value),
         );
     }
 }
@@ -316,8 +316,8 @@ class AuditLogGroupUpdated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            changesRequested: (property_exists($data, "changes_requested") ? SdkClient::hydrateClass($data->changes_requested, AuditLogGroupUpdatedChangesRequested::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            changesRequested: (property_exists($data, "changes_requested") && $data->changes_requested !== null ? SdkClient::hydrateClass($data->changes_requested, AuditLogGroupUpdatedChangesRequested::class) : SdkNotGiven::Value),
         );
     }
 }

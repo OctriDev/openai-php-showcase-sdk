@@ -10,6 +10,60 @@ namespace octridev_openai;
 trait SdkClientMethodsPart5
 {
     /**
+     * Builds schema-aware multipart data, including repeated file fields.
+     * @param array<string, mixed> $fields
+     */
+    private static function encodeMultipart(array $fields, string $boundary): string
+    {
+        $out = '';
+        $append = function (string $key, mixed $value) use (&$append, &$out, $boundary): void {
+            $contentType = null;
+            if ($value instanceof SdkMultipartPart) {
+                $contentType = $value->contentType;
+                $value = $value->value;
+            }
+            if ($value === SdkNotGiven::Value) {
+                return;
+            }
+            if (is_array($value) && array_is_list($value)) {
+                foreach ($value as $item) {
+                    $append($key, $item);
+                }
+                return;
+            }
+            $safeKey = addcslashes($key, "\\\"");
+            $disposition = "Content-Disposition: form-data; name=\"{$safeKey}\"";
+            if ($value instanceof SdkUploadFile) {
+                $safeFilename = addcslashes($value->filename, "\\\"");
+                $disposition .= "; filename=\"{$safeFilename}\"";
+                $contentType = $value->contentType;
+                $payload = $value->data;
+            } elseif (
+                $contentType !== null ||
+                is_array($value) ||
+                (is_object($value) && !($value instanceof \BackedEnum) && !($value instanceof SdkOpenEnum))
+            ) {
+                $contentType ??= 'application/json';
+                $payload = json_encode(self::normalizeJson($value, true), JSON_THROW_ON_ERROR);
+            } elseif ($value === null) {
+                $payload = 'null';
+            } else {
+                $payload = self::scalarString($value);
+            }
+            $out .= "--{$boundary}\r\n{$disposition}\r\n";
+            if ($contentType !== null) {
+                $out .= "Content-Type: {$contentType}\r\n";
+            }
+            $out .= "\r\n{$payload}\r\n";
+        };
+        foreach ($fields as $key => $value) {
+            $append((string) $key, $value);
+        }
+        $out .= "--{$boundary}--\r\n";
+        return $out;
+    }
+
+    /**
      * @param list<string> $headers
      * @return array{status: int, headers: array<string, string>, body: string}
      */
@@ -287,54 +341,5 @@ trait SdkClientMethodsPart5
         if ($waitSec > 0) {
             usleep((int) round($waitSec * 1_000_000));
         }
-    }
-
-    /**
-     * The decoded body of a 2xx response; one that does not decode raises
-     * SdkResponseDecodeError carrying the response.
-     *
-     * @template T
-     * @param SdkResponse<mixed> $response
-     * @param callable(): T $decode
-     * @return T
-     */
-    public static function decoded(SdkResponse $response, callable $decode): mixed
-    {
-        try {
-            return $decode();
-        } catch (SdkValidationError|\UnexpectedValueException|\TypeError|\ValueError $error) {
-            throw self::decodeError($response->statusCode, $response->headers, $response->data, $response->requestId, $error);
-        }
-    }
-
-    /**
-     * A stream event decoded into its type; one that does not decode raises
-     * SdkResponseDecodeError with its data.
-     *
-     * @template T
-     * @param callable(): T $decode
-     * @return T
-     */
-    public static function decodedEvent(string $data, callable $decode): mixed
-    {
-        try {
-            return $decode();
-        } catch (SdkValidationError|\UnexpectedValueException|\TypeError|\ValueError $error) {
-            throw self::decodeError(200, [], $data, null, $error);
-        }
-    }
-
-    /** @param array<string,string> $headers */
-    private static function decodeError(int $status, array $headers, mixed $body, ?string $requestId, \Throwable $error): SdkResponseDecodeError
-    {
-        return new SdkResponseDecodeError(
-            $error->getMessage(),
-            $status,
-            $headers,
-            $body,
-            $requestId,
-            $error instanceof SdkValidationError ? $error->field : null,
-            $error,
-        );
     }
 }

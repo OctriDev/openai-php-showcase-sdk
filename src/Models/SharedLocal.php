@@ -68,7 +68,7 @@ class LocalEnvironmentParam implements FunctionShellToolParamEnvironment, Functi
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LocalEnvironmentParamTypeEnum::class),
-            skills: (property_exists($data, "skills") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LocalSkillParam::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
+            skills: (property_exists($data, "skills") && $data->skills !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LocalSkillParam::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
         );
     }
 }

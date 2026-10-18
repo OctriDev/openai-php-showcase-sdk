@@ -60,8 +60,8 @@ class ChatCompletionStreamOptions implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            includeUsage: (property_exists($data, "include_usage") ? SdkClient::boolValue($data->include_usage) : SdkNotGiven::Value),
-            includeObfuscation: (property_exists($data, "include_obfuscation") ? SdkClient::boolValue($data->include_obfuscation) : SdkNotGiven::Value),
+            includeUsage: (property_exists($data, "include_usage") && $data->include_usage !== null ? SdkClient::boolValue($data->include_usage) : SdkNotGiven::Value),
+            includeObfuscation: (property_exists($data, "include_obfuscation") && $data->include_obfuscation !== null ? SdkClient::boolValue($data->include_obfuscation) : SdkNotGiven::Value),
         );
     }
 }
@@ -77,7 +77,7 @@ enum ChatCompletionToolTypeEnum: string implements SdkWireEnum
 /**
  * A function tool that can be used to generate a response.
  */
-class ChatCompletionTool implements ToolsItem, \JsonSerializable
+class ChatCompletionTool implements \JsonSerializable
 {
     /**
      * The type of the tool. Currently, only `function` is supported.

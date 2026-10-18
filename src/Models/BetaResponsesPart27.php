@@ -45,7 +45,7 @@ class BetaResponsesWebSocketStreamEventVariant1 implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -91,7 +91,7 @@ class BetaResponsesWebSocketStreamEvent implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

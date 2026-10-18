@@ -166,8 +166,8 @@ class BetaShellCallOutputDelta implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            stdout: (property_exists($data, "stdout") ? SdkClient::stringValue($data->stdout) : SdkNotGiven::Value),
-            stderr: (property_exists($data, "stderr") ? SdkClient::stringValue($data->stderr) : SdkNotGiven::Value),
+            stdout: (property_exists($data, "stdout") && $data->stdout !== null ? SdkClient::stringValue($data->stdout) : SdkNotGiven::Value),
+            stderr: (property_exists($data, "stderr") && $data->stderr !== null ? SdkClient::stringValue($data->stderr) : SdkNotGiven::Value),
         );
     }
 }
@@ -245,7 +245,7 @@ class BetaSkillReferenceParam implements BetaContainerAutoParamSkillsItem, \Json
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaSkillReferenceParamTypeEnum::class),
             skillId: SdkClient::stringValue($data->skill_id),
-            version: (property_exists($data, "version") ? SdkClient::stringValue($data->version) : SdkNotGiven::Value),
+            version: (property_exists($data, "version") && $data->version !== null ? SdkClient::stringValue($data->version) : SdkNotGiven::Value),
         );
     }
 }

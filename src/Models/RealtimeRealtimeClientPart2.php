@@ -96,7 +96,7 @@ class RealtimeClientEventConversationItemTruncate implements RealtimeClientEvent
             itemId: SdkClient::stringValue($data->item_id),
             contentIndex: SdkClient::intValue($data->content_index),
             audioEndMs: SdkClient::intValue($data->audio_end_ms),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -174,7 +174,7 @@ class RealtimeClientEventInputAudioBufferAppend implements RealtimeClientEvent, 
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventInputAudioBufferAppendTypeEnum::class),
             audio: SdkClient::stringValue($data->audio),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -240,7 +240,7 @@ class RealtimeClientEventInputAudioBufferClear implements RealtimeClientEvent, \
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventInputAudioBufferClearTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -306,7 +306,7 @@ class RealtimeClientEventInputAudioBufferCommit implements RealtimeClientEvent, 
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventInputAudioBufferCommitTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }

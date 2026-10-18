@@ -170,7 +170,7 @@ class LiveResponseEvent implements LiveSidebandServerEvent, LiveServerEvent2, \J
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveResponseEventTypeEnum::class),
             event: SdkClient::mapValues(SdkClient::stringMapValue($data->event), static fn($item) => $item),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
             delegationId: (property_exists($data, "delegation_id") ? ($data->delegation_id === null ? null : SdkClient::stringValue($data->delegation_id)) : SdkNotGiven::Value),
         );
     }

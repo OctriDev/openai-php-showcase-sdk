@@ -93,7 +93,7 @@ class ResponsesServerEventVariant28 implements ResponsesServerEvent, \JsonSerial
             outputIndex: SdkClient::intValue($data->output_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             item: SdkClient::hydrateUnionAs($data->item, OutputItem::class, [OutputMessage::class, FileSearchToolCall::class, FunctionToolCall::class, FunctionToolCallOutputResource::class, WebSearchToolCall::class, ComputerToolCall::class, ComputerToolCallOutputResource::class, ReasoningItem::class, Program::class, ProgramOutput::class, ToolSearchCall::class, ToolSearchOutput::class, AdditionalTools::class, CompactionBody::class, ImageGenToolCall::class, CodeInterpreterToolCall::class, LocalShellToolCall::class, LocalShellToolCallOutput::class, FunctionShellCall::class, FunctionShellCallOutput::class, ApplyPatchToolCall::class, ApplyPatchToolCallOutput::class, MCPToolCall::class, MCPListTools::class, MCPApprovalRequest::class, MCPApprovalResponseResource::class, CustomToolCall::class, CustomToolCallOutputResource::class], "type", ["message" => OutputMessage::class, "file_search_call" => FileSearchToolCall::class, "function_call" => FunctionToolCall::class, "function_call_output" => FunctionToolCallOutputResource::class, "web_search_call" => WebSearchToolCall::class, "computer_call" => ComputerToolCall::class, "computer_call_output" => ComputerToolCallOutputResource::class, "reasoning" => ReasoningItem::class, "program" => Program::class, "program_output" => ProgramOutput::class, "tool_search_call" => ToolSearchCall::class, "tool_search_output" => ToolSearchOutput::class, "additional_tools" => AdditionalTools::class, "compaction" => CompactionBody::class, "image_generation_call" => ImageGenToolCall::class, "code_interpreter_call" => CodeInterpreterToolCall::class, "local_shell_call" => LocalShellToolCall::class, "local_shell_call_output" => LocalShellToolCallOutput::class, "shell_call" => FunctionShellCall::class, "shell_call_output" => FunctionShellCallOutput::class, "apply_patch_call" => ApplyPatchToolCall::class, "apply_patch_call_output" => ApplyPatchToolCallOutput::class, "mcp_call" => MCPToolCall::class, "mcp_list_tools" => MCPListTools::class, "mcp_approval_request" => MCPApprovalRequest::class, "mcp_approval_response" => MCPApprovalResponseResource::class, "custom_tool_call" => CustomToolCall::class, "custom_tool_call_output" => CustomToolCallOutputResource::class], UnknownOutputItem::class),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -287,7 +287,7 @@ class ResponsesServerEventVariant29 implements ResponsesServerEvent, \JsonSerial
             summaryIndex: SdkClient::intValue($data->summary_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             part: SdkClient::hydrateClass($data->part, ResponsesServerEventVariant29Part::class),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

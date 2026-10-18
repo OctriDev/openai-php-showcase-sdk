@@ -92,7 +92,7 @@ class CompactionBody implements ConversationItem, ItemResource, OutputItem, Item
             type: SdkClient::hydrateEnum($data->type, CompactionBodyTypeEnum::class),
             id: SdkClient::stringValue($data->id),
             encryptedContent: SdkClient::stringValue($data->encrypted_content),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

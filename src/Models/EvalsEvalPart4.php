@@ -247,7 +247,7 @@ class EvalJsonlFileContentSourceContentItem implements \JsonSerializable
         if (!property_exists($data, "item") || $data->item === null) { throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null"); }
         return new self(
             item: SdkClient::stringMapValue($data->item),
-            sample: (property_exists($data, "sample") ? SdkClient::stringMapValue($data->sample) : SdkNotGiven::Value),
+            sample: (property_exists($data, "sample") && $data->sample !== null ? SdkClient::stringMapValue($data->sample) : SdkNotGiven::Value),
         );
     }
 }

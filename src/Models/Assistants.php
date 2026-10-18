@@ -204,8 +204,8 @@ class SubmitToolOutputsRunRequestToolOutputsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            toolCallId: (property_exists($data, "tool_call_id") ? SdkClient::stringValue($data->tool_call_id) : SdkNotGiven::Value),
-            output: (property_exists($data, "output") ? SdkClient::stringValue($data->output) : SdkNotGiven::Value),
+            toolCallId: (property_exists($data, "tool_call_id") && $data->tool_call_id !== null ? SdkClient::stringValue($data->tool_call_id) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? SdkClient::stringValue($data->output) : SdkNotGiven::Value),
         );
     }
 }

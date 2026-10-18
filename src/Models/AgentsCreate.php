@@ -59,7 +59,7 @@ class CreateAgentEnvironmentParams implements \JsonSerializable
     {
         if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
         return new self(
-            environment: SdkClient::hydrateClass($data->environment, CreateEnvironmentParam::class),
+            environment: SdkClient::hydrateClass($data->environment, CreateEnvironmentParamOpenaiHosted::class),
             vaultIds: (property_exists($data, "vault_ids") ? ($data->vault_ids === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vault_ids)))) : SdkNotGiven::Value),
         );
     }
@@ -341,11 +341,11 @@ class CreateAgentSessionParams implements \JsonSerializable
             environment: SdkClient::hydrateUnionAs($data->environment, EnvironmentParam::class, [EnvironmentParamNone::class, EnvironmentParamOpenaiHosted::class, EnvironmentParamSelfHosted::class], "type", ["none" => EnvironmentParamNone::class, "openai_hosted" => EnvironmentParamOpenaiHosted::class, "self_hosted" => EnvironmentParamSelfHosted::class], UnknownEnvironmentParam::class),
             spendControl: (property_exists($data, "spend_control") ? ($data->spend_control === null ? null : SdkClient::hydrateClass($data->spend_control, SessionSpendControlParam::class)) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, SessionAgentConfigParam::class) : SdkNotGiven::Value),
-            agentId: (property_exists($data, "agent_id") ? SdkClient::stringValue($data->agent_id) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, SessionAgentConfigParam::class) : SdkNotGiven::Value),
+            agentId: (property_exists($data, "agent_id") && $data->agent_id !== null ? SdkClient::stringValue($data->agent_id) : SdkNotGiven::Value),
             vaultIds: (property_exists($data, "vault_ids") ? ($data->vault_ids === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vault_ids)))) : SdkNotGiven::Value),
             input: (property_exists($data, "input") ? ($data->input === null ? null : (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, InputMessageParam::class), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input))) : SdkNotGiven::Value),
-            stream: (property_exists($data, "stream") ? SdkClient::boolValue($data->stream) : SdkNotGiven::Value),
+            stream: (property_exists($data, "stream") && $data->stream !== null ? SdkClient::boolValue($data->stream) : SdkNotGiven::Value),
         );
     }
 }

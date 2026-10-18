@@ -89,7 +89,7 @@ class ResponsesServerEventVariant0 implements ResponsesServerEvent, \JsonSeriali
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant0TypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             delta: SdkClient::stringValue($data->delta),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -164,7 +164,7 @@ class ResponsesServerEventVariant1 implements ResponsesServerEvent, \JsonSeriali
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant1TypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -251,7 +251,7 @@ class ResponsesServerEventVariant2 implements ResponsesServerEvent, \JsonSeriali
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant2TypeEnum::class),
             delta: SdkClient::stringValue($data->delta),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -326,7 +326,7 @@ class ResponsesServerEventVariant3 implements ResponsesServerEvent, \JsonSeriali
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant3TypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

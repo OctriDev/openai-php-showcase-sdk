@@ -218,7 +218,7 @@ class DecisionRequestPromptCacheOptions implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            ttl: (property_exists($data, "ttl") ? SdkClient::hydrateStringEnumOrString($data->ttl, DecisionRequestPromptCacheOptionsTtlEnum::class) : SdkNotGiven::Value),
+            ttl: (property_exists($data, "ttl") && $data->ttl !== null ? SdkClient::hydrateStringEnumOrString($data->ttl, DecisionRequestPromptCacheOptionsTtlEnum::class) : SdkNotGiven::Value),
             mode: (property_exists($data, "mode") ? ($data->mode === null ? null : SdkClient::hydrateStringEnumOrString($data->mode, DecisionRequestPromptCacheOptionsModeEnum::class)) : SdkNotGiven::Value),
         );
     }

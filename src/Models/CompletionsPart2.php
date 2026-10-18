@@ -84,10 +84,10 @@ class CreateCompletionResponseChoicesItemLogprobs implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            textOffset: (property_exists($data, "text_offset") ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->text_offset))) : SdkNotGiven::Value),
-            tokenLogprobs: (property_exists($data, "token_logprobs") ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->token_logprobs))) : SdkNotGiven::Value),
-            tokens: (property_exists($data, "tokens") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tokens))) : SdkNotGiven::Value),
-            topLogprobs: (property_exists($data, "top_logprobs") ? array_values(array_map(static fn($item) => SdkClient::mapValues(SdkClient::stringMapValue($item), static fn($item) => SdkClient::floatValue($item)), SdkClient::arrayValue($data->top_logprobs))) : SdkNotGiven::Value),
+            textOffset: (property_exists($data, "text_offset") && $data->text_offset !== null ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->text_offset))) : SdkNotGiven::Value),
+            tokenLogprobs: (property_exists($data, "token_logprobs") && $data->token_logprobs !== null ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->token_logprobs))) : SdkNotGiven::Value),
+            tokens: (property_exists($data, "tokens") && $data->tokens !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tokens))) : SdkNotGiven::Value),
+            topLogprobs: (property_exists($data, "top_logprobs") && $data->top_logprobs !== null ? array_values(array_map(static fn($item) => SdkClient::mapValues(SdkClient::stringMapValue($item), static fn($item2) => SdkClient::floatValue($item2)), SdkClient::arrayValue($data->top_logprobs))) : SdkNotGiven::Value),
         );
     }
 }
@@ -300,8 +300,8 @@ class CreateCompletionResponse implements \JsonSerializable
             created: SdkClient::intValue($data->created),
             model: SdkClient::stringValue($data->model),
             object_: SdkClient::hydrateStringEnumOrString($data->object, CreateCompletionResponseObjectEnum::class),
-            systemFingerprint: (property_exists($data, "system_fingerprint") ? SdkClient::stringValue($data->system_fingerprint) : SdkNotGiven::Value),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateClass($data->usage, CompletionUsage::class) : SdkNotGiven::Value),
+            systemFingerprint: (property_exists($data, "system_fingerprint") && $data->system_fingerprint !== null ? SdkClient::stringValue($data->system_fingerprint) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, CompletionUsage::class) : SdkNotGiven::Value),
         );
     }
 }

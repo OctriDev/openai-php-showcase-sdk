@@ -108,8 +108,8 @@ class GraderScoreModel implements FineTuneReinforcementMethodGrader, RunGraderRe
             name: SdkClient::stringValue($data->name),
             model: SdkClient::stringValue($data->model),
             input: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EvalItem::class), SdkClient::arrayValue($data->input))),
-            samplingParams: (property_exists($data, "sampling_params") ? SdkClient::hydrateClass($data->sampling_params, GraderScoreModelSamplingParams::class) : SdkNotGiven::Value),
-            range: (property_exists($data, "range") ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->range))) : SdkNotGiven::Value),
+            samplingParams: (property_exists($data, "sampling_params") && $data->sampling_params !== null ? SdkClient::hydrateClass($data->sampling_params, GraderScoreModelSamplingParams::class) : SdkNotGiven::Value),
+            range: (property_exists($data, "range") && $data->range !== null ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->range))) : SdkNotGiven::Value),
         );
     }
 }

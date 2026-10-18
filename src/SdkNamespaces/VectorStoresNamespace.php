@@ -30,6 +30,22 @@ class VectorStoresNamespace
         return VectorStores::listVectorStores($this->clientConfig, $limit, $order, $after, $before, $requestOptions);
     }
     /**
+     * Lists vector stores, which are collections of processed files that you can use with the `file_search` tool. Use the cursor parameters to move forward or backward through the results, and set `order` to control sorting by creation time.
+     *
+     * Returns a list of vector stores. limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     *
+     * @param int|SdkNotGiven $limit
+     * @param ListVectorStoresOrder|SdkNotGiven $order
+     * @param string|SdkNotGiven $after
+     * @param string|SdkNotGiven $before
+     * @return \Generator<int,
+     *   VectorStoreObject>
+     */
+    public function listPaginated(int|SdkNotGiven $limit = SdkNotGiven::Value, ListVectorStoresOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    {
+        yield from VectorStores::listVectorStoresPaginated($this->clientConfig, $limit, $order, $after, $before, $requestOptions);
+    }
+    /**
      * Creates a vector store to collect processed files for use with the `file_search` tool. Supply `file_ids` to add files at creation, and optionally set a name, description, expiration policy, chunking strategy, or metadata.
      *
      * Create a vector store. fileIds: A list of [File](https://developers.openai.com/api/reference/resources/files) IDs that the vector store should use. Useful for tools like `file_search` that can access files. · name: The name of the vector store. · description: A description for the vector store. Can be used to describe the vector store's purpose. · expiresAfter: The expiration policy for a vector store. · chunkingStrategy: The chunking strategy used to chunk the file(s). If not set, will use the `auto` strategy. Only applicable if `file_ids` is non-empty. · metadata: Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
@@ -146,6 +162,25 @@ class VectorStoresNamespace
         return VectorStores::listFilesInVectorStoreBatch($this->clientConfig, $vectorStoreId, $batchId, $limit, $order, $after, $before, $filter, $requestOptions);
     }
     /**
+     * Lists the files in a vector store file batch. Use `filter` to limit results by processing status and the cursor parameters to navigate through the batch's files.
+     *
+     * Returns a list of vector store files in a batch. vectorStoreId: The ID of the vector store that the files belong to. · batchId: The ID of the file batch that the files belong to. · limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. · filter: Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
+     *
+     * @param string $vectorStoreId
+     * @param string $batchId
+     * @param int|SdkNotGiven $limit
+     * @param ListFilesInVectorStoreBatchOrder|SdkNotGiven $order
+     * @param string|SdkNotGiven $after
+     * @param string|SdkNotGiven $before
+     * @param ListFilesInVectorStoreBatchFilter|SdkNotGiven $filter
+     * @return \Generator<int,
+     *   VectorStoreFileObject>
+     */
+    public function listFilesInBatchPaginated(string $vectorStoreId, string $batchId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListFilesInVectorStoreBatchOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ListFilesInVectorStoreBatchFilter|SdkNotGiven $filter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    {
+        yield from VectorStores::listFilesInVectorStoreBatchPaginated($this->clientConfig, $vectorStoreId, $batchId, $limit, $order, $after, $before, $filter, $requestOptions);
+    }
+    /**
      * Lists files attached to a vector store, with pagination and an optional status filter. Use `after` or `before` to navigate the list, and `filter` to select files by processing status.
      *
      * Returns a list of vector store files. vectorStoreId: The ID of the vector store that the files belong to. · limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. · filter: Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
@@ -161,6 +196,24 @@ class VectorStoresNamespace
     public function listFiles(string $vectorStoreId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListVectorStoreFilesOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ListVectorStoreFilesFilter|SdkNotGiven $filter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListVectorStoreFilesResponse
     {
         return VectorStores::listVectorStoreFiles($this->clientConfig, $vectorStoreId, $limit, $order, $after, $before, $filter, $requestOptions);
+    }
+    /**
+     * Lists files attached to a vector store, with pagination and an optional status filter. Use `after` or `before` to navigate the list, and `filter` to select files by processing status.
+     *
+     * Returns a list of vector store files. vectorStoreId: The ID of the vector store that the files belong to. · limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. · order: Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. · after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. · before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. · filter: Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
+     *
+     * @param string $vectorStoreId
+     * @param int|SdkNotGiven $limit
+     * @param ListVectorStoreFilesOrder|SdkNotGiven $order
+     * @param string|SdkNotGiven $after
+     * @param string|SdkNotGiven $before
+     * @param ListVectorStoreFilesFilter|SdkNotGiven $filter
+     * @return \Generator<int,
+     *   VectorStoreFileObject>
+     */
+    public function listFilesPaginated(string $vectorStoreId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListVectorStoreFilesOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ListVectorStoreFilesFilter|SdkNotGiven $filter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    {
+        yield from VectorStores::listVectorStoreFilesPaginated($this->clientConfig, $vectorStoreId, $limit, $order, $after, $before, $filter, $requestOptions);
     }
     /**
      * Creates an attachment between a file and a vector store. Supply the file's `file_id` and optionally configure `chunking_strategy` or attach `attributes`; use file batches for multi-file ingestion. The response includes the attached file's processing status.

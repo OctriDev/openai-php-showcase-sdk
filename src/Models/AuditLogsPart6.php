@@ -48,7 +48,7 @@ class AuditLogIpAllowlistConfigActivated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            configs: (property_exists($data, "configs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AuditLogIpAllowlistConfigActivatedConfigsItem::class), SdkClient::arrayValue($data->configs))) : SdkNotGiven::Value),
+            configs: (property_exists($data, "configs") && $data->configs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AuditLogIpAllowlistConfigActivatedConfigsItem::class), SdkClient::arrayValue($data->configs))) : SdkNotGiven::Value),
         );
     }
 }
@@ -106,8 +106,8 @@ class AuditLogIpAllowlistConfigDeactivatedConfigsItem implements \JsonSerializab
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -153,7 +153,7 @@ class AuditLogIpAllowlistConfigDeactivated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            configs: (property_exists($data, "configs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AuditLogIpAllowlistConfigDeactivatedConfigsItem::class), SdkClient::arrayValue($data->configs))) : SdkNotGiven::Value),
+            configs: (property_exists($data, "configs") && $data->configs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, AuditLogIpAllowlistConfigDeactivatedConfigsItem::class), SdkClient::arrayValue($data->configs))) : SdkNotGiven::Value),
         );
     }
 }
@@ -211,8 +211,8 @@ class AuditLogLoginFailed implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            errorCode: (property_exists($data, "error_code") ? SdkClient::stringValue($data->error_code) : SdkNotGiven::Value),
-            errorMessage: (property_exists($data, "error_message") ? SdkClient::stringValue($data->error_message) : SdkNotGiven::Value),
+            errorCode: (property_exists($data, "error_code") && $data->error_code !== null ? SdkClient::stringValue($data->error_code) : SdkNotGiven::Value),
+            errorMessage: (property_exists($data, "error_message") && $data->error_message !== null ? SdkClient::stringValue($data->error_message) : SdkNotGiven::Value),
         );
     }
 }
@@ -270,8 +270,8 @@ class AuditLogLogoutFailed implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            errorCode: (property_exists($data, "error_code") ? SdkClient::stringValue($data->error_code) : SdkNotGiven::Value),
-            errorMessage: (property_exists($data, "error_message") ? SdkClient::stringValue($data->error_message) : SdkNotGiven::Value),
+            errorCode: (property_exists($data, "error_code") && $data->error_code !== null ? SdkClient::stringValue($data->error_code) : SdkNotGiven::Value),
+            errorMessage: (property_exists($data, "error_message") && $data->error_message !== null ? SdkClient::stringValue($data->error_message) : SdkNotGiven::Value),
         );
     }
 }

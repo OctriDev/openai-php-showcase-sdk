@@ -232,9 +232,9 @@ class ChatCompletionRequestAssistantMessage implements ChatCompletionRequestMess
             role: SdkClient::hydrateEnum($data->role, ChatCompletionRequestAssistantMessageRoleEnum::class),
             content: (property_exists($data, "content") ? ($data->content === null ? null : (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ChatCompletionRequestAssistantMessageContentPart::class, [ChatCompletionRequestMessageContentPartText::class, ChatCompletionRequestMessageContentPartRefusal::class], "type", ["text" => ChatCompletionRequestMessageContentPartText::class, "refusal" => ChatCompletionRequestMessageContentPartRefusal::class], UnknownChatCompletionRequestAssistantMessageContentPart::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content))) : SdkNotGiven::Value),
             refusal: (property_exists($data, "refusal") ? ($data->refusal === null ? null : SdkClient::stringValue($data->refusal)) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             audio: (property_exists($data, "audio") ? ($data->audio === null ? null : SdkClient::hydrateClass($data->audio, ChatCompletionRequestAssistantMessageAudio::class)) : SdkNotGiven::Value),
-            toolCalls: (property_exists($data, "tool_calls") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ChatCompletionMessageToolCallsItem::class, [ChatCompletionMessageToolCall::class, ChatCompletionMessageCustomToolCall::class], "type", ["function" => ChatCompletionMessageToolCall::class, "custom" => ChatCompletionMessageCustomToolCall::class], UnknownChatCompletionMessageToolCallsItem::class), SdkClient::arrayValue($data->tool_calls))) : SdkNotGiven::Value),
+            toolCalls: (property_exists($data, "tool_calls") && $data->tool_calls !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ChatCompletionMessageToolCallsItem::class, [ChatCompletionMessageToolCall::class, ChatCompletionMessageCustomToolCall::class], "type", ["function" => ChatCompletionMessageToolCall::class, "custom" => ChatCompletionMessageCustomToolCall::class], UnknownChatCompletionMessageToolCallsItem::class), SdkClient::arrayValue($data->tool_calls))) : SdkNotGiven::Value),
             functionCall: (property_exists($data, "function_call") ? ($data->function_call === null ? null : SdkClient::hydrateClass($data->function_call, ChatCompletionRequestAssistantMessageFunctionCall::class)) : SdkNotGiven::Value),
         );
     }
@@ -313,7 +313,7 @@ class ChatCompletionRequestDeveloperMessage implements ChatCompletionRequestMess
         return new self(
             content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionRequestMessageContentPartText::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
             role: SdkClient::hydrateEnum($data->role, ChatCompletionRequestDeveloperMessageRoleEnum::class),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }

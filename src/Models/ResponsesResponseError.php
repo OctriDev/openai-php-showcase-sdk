@@ -98,7 +98,7 @@ class ResponseError implements \JsonSerializable
             message: SdkClient::stringValue($data->message),
             type: (property_exists($data, "type") ? ($data->type === null ? null : SdkClient::stringValue($data->type)) : SdkNotGiven::Value),
             param: (property_exists($data, "param") ? ($data->param === null ? null : SdkClient::stringValue($data->param)) : SdkNotGiven::Value),
-            misalignment: (property_exists($data, "misalignment") ? SdkClient::hydrateClass($data->misalignment, MisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
+            misalignment: (property_exists($data, "misalignment") && $data->misalignment !== null ? SdkClient::hydrateClass($data->misalignment, MisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
         );
     }
 }

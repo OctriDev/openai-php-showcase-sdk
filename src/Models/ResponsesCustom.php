@@ -69,7 +69,7 @@ class CustomToolCallOutputResourceVariant1 implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             status: SdkClient::hydrateStringEnumOrString($data->status, FunctionCallOutputStatusEnum::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -196,7 +196,7 @@ class CustomToolCallOutputResource implements ItemResource, OutputItem, \JsonSer
             output: (is_array($data->output) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, FunctionAndCustomToolCallOutput::class, [InputTextContent::class, InputImageContent::class, InputFileContent::class], "type", ["input_text" => InputTextContent::class, "input_image" => InputImageContent::class, "input_file" => InputFileContent::class], UnknownFunctionAndCustomToolCallOutput::class), SdkClient::arrayValue($data->output))) : SdkClient::stringValue($data->output)),
             status: SdkClient::hydrateStringEnumOrString($data->status, FunctionCallOutputStatusEnum::class),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, ToolCallCallerParam::class, [DirectToolCallCallerParam::class, ProgramToolCallCallerParam::class], "type", ["direct" => DirectToolCallCallerParam::class, "program" => ProgramToolCallCallerParam::class], UnknownToolCallCallerParam::class)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -263,7 +263,7 @@ class CustomToolCallResourceVariant1 implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             status: SdkClient::hydrateStringEnumOrString($data->status, FunctionCallStatus::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

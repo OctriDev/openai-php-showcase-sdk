@@ -173,7 +173,7 @@ class CreateEvalLogsDataSourceConfig implements CreateEvalRequestDataSourceConfi
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalLogsDataSourceConfigTypeEnum::class),
-            metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
         );
     }
 }
@@ -255,7 +255,7 @@ class CreateEvalRequest implements \JsonSerializable
         return new self(
             dataSourceConfig: SdkClient::hydrateUnionAs($data->data_source_config, CreateEvalRequestDataSourceConfig::class, [CreateEvalCustomDataSourceConfig::class, CreateEvalLogsDataSourceConfig::class, CreateEvalStoredCompletionsDataSourceConfig::class], "type", ["custom" => CreateEvalCustomDataSourceConfig::class, "logs" => CreateEvalLogsDataSourceConfig::class, "stored_completions" => CreateEvalStoredCompletionsDataSourceConfig::class], UnknownCreateEvalRequestDataSourceConfig::class),
             testingCriteria: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateEvalRequestTestingCriteriaItem::class, [CreateEvalLabelModelGrader::class, EvalGraderStringCheck::class, EvalGraderTextSimilarity::class, EvalGraderPython::class, EvalGraderScoreModel::class], "type", ["label_model" => CreateEvalLabelModelGrader::class, "string_check" => EvalGraderStringCheck::class, "text_similarity" => EvalGraderTextSimilarity::class, "python" => EvalGraderPython::class, "score_model" => EvalGraderScoreModel::class], UnknownCreateEvalRequestTestingCriteriaItem::class), SdkClient::arrayValue($data->testing_criteria))),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );
     }
@@ -327,7 +327,7 @@ class CreateEvalResponsesRunDataSourceSamplingParamsText implements \JsonSeriali
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, TextResponseFormatConfiguration::class, [ResponseFormatText::class, TextResponseFormatJsonSchema::class, ResponseFormatJsonObject::class], "type", ["text" => ResponseFormatText::class, "json_schema" => TextResponseFormatJsonSchema::class, "json_object" => ResponseFormatJsonObject::class], UnknownTextResponseFormatConfiguration::class) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, TextResponseFormatConfiguration::class, [ResponseFormatText::class, TextResponseFormatJsonSchema::class, ResponseFormatJsonObject::class], "type", ["text" => ResponseFormatText::class, "json_schema" => TextResponseFormatJsonSchema::class, "json_object" => ResponseFormatJsonObject::class], UnknownTextResponseFormatConfiguration::class) : SdkNotGiven::Value),
         );
     }
 }

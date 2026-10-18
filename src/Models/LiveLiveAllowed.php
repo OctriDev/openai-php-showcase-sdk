@@ -60,7 +60,7 @@ class LiveAllowedServerEventParam implements \JsonSerializable
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::stringValue($data->type),
-            responseEvent: (property_exists($data, "response_event") ? SdkClient::stringValue($data->response_event) : SdkNotGiven::Value),
+            responseEvent: (property_exists($data, "response_event") && $data->response_event !== null ? SdkClient::stringValue($data->response_event) : SdkNotGiven::Value),
         );
     }
 }

@@ -291,7 +291,7 @@ class ValidateGraderResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            grader: (property_exists($data, "grader") ? SdkClient::hydrateUnionAs($data->grader, ValidateGraderResponseGrader::class, [GraderStringCheck::class, GraderTextSimilarity::class, GraderPython::class, GraderScoreModel::class, GraderMulti::class], "type", ["string_check" => GraderStringCheck::class, "text_similarity" => GraderTextSimilarity::class, "python" => GraderPython::class, "score_model" => GraderScoreModel::class, "multi" => GraderMulti::class], UnknownValidateGraderResponseGrader::class) : SdkNotGiven::Value),
+            grader: (property_exists($data, "grader") && $data->grader !== null ? SdkClient::hydrateUnionAs($data->grader, ValidateGraderResponseGrader::class, [GraderStringCheck::class, GraderTextSimilarity::class, GraderPython::class, GraderScoreModel::class, GraderMulti::class], "type", ["string_check" => GraderStringCheck::class, "text_similarity" => GraderTextSimilarity::class, "python" => GraderPython::class, "score_model" => GraderScoreModel::class, "multi" => GraderMulti::class], UnknownValidateGraderResponseGrader::class) : SdkNotGiven::Value),
         );
     }
 }

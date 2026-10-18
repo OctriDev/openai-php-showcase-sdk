@@ -8,159 +8,117 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
- * A Realtime session configuration object.
+ * The truncation strategy to use for the session. `auto` is the default truncation strategy. `disabled` will disable truncation and emit errors when the conversation exceeds the input token limit.
  */
-class RealtimeSessionCreateResponseGA implements RealtimeCreateClientSecretResponseSession, RealtimeServerEventSessionCreatedSession, RealtimeServerEventSessionUpdatedSession, \JsonSerializable
+final readonly class RealtimeSessionCreateResponseGATruncationEnum implements SdkOpenEnum
+{
+    public const AUTO = "auto";
+    public const DISABLED = "disabled";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
+}
+
+/**
+ * Use retention ratio truncation.
+ */
+final readonly class RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTypeEnum implements SdkOpenEnum
+{
+    public const RETENTION_RATIO = "retention_ratio";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
+}
+
+/**
+ * Optional custom token limits for this truncation strategy. If not provided, the model's default token limits will be used.
+ */
+class RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTokenLimits implements \JsonSerializable
 {
     /**
-     * The type of session to create. Always `realtime` for the Realtime API.
-     *
-     * @var RealtimeSessionCreateResponseGATypeEnum
-     */
-    public readonly RealtimeSessionCreateResponseGATypeEnum $type;
-    /**
-     * Unique identifier for the session that looks like `sess_1234567890abcdef`.
-     *
-     * @var string
-     */
-    public readonly string $id;
-    /**
-     * The object type. Always `realtime.session`.
-     *
-     * @var RealtimeSessionCreateResponseGAObjectEnum|string
-     */
-    public readonly RealtimeSessionCreateResponseGAObjectEnum|string $object_;
-    /**
-     * Expiration timestamp for the session, in seconds since epoch.
+     * Maximum tokens allowed in the conversation after instructions (which including tool definitions). For example, setting this to 5,000 would mean that truncation would occur when the conversation exceeds 5,000 tokens after instructions. This cannot be higher than the model's context window size minus the maximum output tokens.
      *
      * @var int|SdkNotGiven
      */
-    public readonly int|SdkNotGiven $expiresAt;
-    /**
-     * The set of modalities the model can respond with. It defaults to `["audio"]`, indicating that the model will respond with audio plus a transcript. `["text"]` can be used to make the model respond with text only. It is not possible to request both `text` and `audio` at the same time.
-     *
-     * @var list<RealtimeSessionCreateResponseGAOutputModalitiesItemEnum|string>|SdkNotGiven
-     */
-    public readonly array|SdkNotGiven $outputModalities;
-    /**
-     * The Realtime model used for this session.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $model;
-    /**
-     * The default system instructions (i.e. system message) prepended to model calls. This field allows the client to guide the model on desired responses. The model can be instructed on response content and format, (e.g. "be extremely succinct", "act friendly", "here are examples of good responses") and on audio behavior (e.g. "talk quickly", "inject emotion into your voice", "laugh frequently"). The instructions are not guaranteed to be followed by the model, but they provide guidance to the model on the desired behavior. Note that the server sets default instructions which will be used if this field is not set and are visible in the `session.created` event at the start of the session.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $instructions;
-    /**
-     * Configuration for input and output audio.
-     *
-     * @var RealtimeSessionCreateResponseGAAudio|SdkNotGiven
-     */
-    public readonly RealtimeSessionCreateResponseGAAudio|SdkNotGiven $audio;
-    /**
-     * Additional fields to include in server outputs. `item.input_audio_transcription.logprobs`: Include logprobs for input audio transcription.
-     *
-     * @var list<RealtimeSessionCreateResponseGAIncludeItemEnum|string>|null|SdkNotGiven
-     */
-    public readonly array|null|SdkNotGiven $include_;
-    /**
-     * Realtime API can write session traces to the [Traces Dashboard](https://platform.openai.com/logs?api=traces). Set to null to disable tracing. Once tracing is enabled for a session, the configuration cannot be modified. `auto` will create a trace for the session with default values for the workflow name, group id, and metadata.
-     *
-     * @var RealtimeSessionCreateResponseGATracingEnum|string|RealtimeSessionCreateResponseGATracingTracingConfiguration|null|SdkNotGiven
-     */
-    public readonly RealtimeSessionCreateResponseGATracingEnum|string|RealtimeSessionCreateResponseGATracingTracingConfiguration|null|SdkNotGiven $tracing;
-    /**
-     * Tools available to the model.
-     *
-     * @var list<RealtimeSessionCreateResponseGAToolsItem>|SdkNotGiven
-     */
-    public readonly array|SdkNotGiven $tools;
-    /**
-     * How the model chooses tools. Provide one of the string modes or force a specific function/MCP tool.
-     *
-     * @var ToolChoiceOptions|ToolChoiceFunction|ToolChoiceMCP|SdkNotGiven
-     */
-    public readonly ToolChoiceOptions|ToolChoiceFunction|ToolChoiceMCP|SdkNotGiven $toolChoice;
-    /**
-     * Configuration for reasoning-capable Realtime models such as `gpt-realtime-2`.
-     *
-     * @var RealtimeReasoning|SdkNotGiven
-     */
-    public readonly RealtimeReasoning|SdkNotGiven $reasoning;
-    /**
-     * Maximum number of output tokens for a single assistant response, inclusive of tool calls. Provide an integer between 1 and 4096 to limit output tokens, or `inf` for the maximum available tokens for a given model. Defaults to `inf`.
-     *
-     * @var int|RealtimeSessionCreateResponseGAMaxOutputTokensEnum|string|SdkNotGiven
-     */
-    public readonly int|RealtimeSessionCreateResponseGAMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens;
-    /**
-     * When the number of tokens in a conversation exceeds the model's input token limit, the conversation be truncated, meaning messages (starting from the oldest) will not be included in the model's context. A 32k context model with 4,096 max output tokens can only include 28,224 tokens in the context before truncation occurs. Clients can configure truncation behavior to truncate with a lower max token limit, which is an effective way to control token usage and cost. Truncation will reduce the number of cached tokens on the next turn (busting the cache), since messages are dropped from the beginning of the context. However, clients can also configure truncation to retain messages up to a fraction of the maximum context size, which will reduce the need for future truncations and thus improve the cache rate. Truncation can be disabled entirely, which means the server will never truncate but would instead return an error if the conversation exceeds the model's input token limit.
-     *
-     * @var RealtimeSessionCreateResponseGATruncationEnum|string|RealtimeSessionCreateResponseGATruncationRetentionRatioTruncation|SdkNotGiven
-     */
-    public readonly RealtimeSessionCreateResponseGATruncationEnum|string|RealtimeSessionCreateResponseGATruncationRetentionRatioTruncation|SdkNotGiven $truncation;
-    /**
-     * Reference to a prompt template and its variables. [Learn more](https://developers.openai.com/api/docs/guides/text?api-mode=responses#version-prompts-in-code).
-     *
-     * @var Prompt|null|SdkNotGiven
-     */
-    public readonly Prompt|null|SdkNotGiven $prompt;
+    public readonly int|SdkNotGiven $postInstructions;
 
     /**
-     * @param RealtimeSessionCreateResponseGATypeEnum $type
-     * @param string $id
-     * @param RealtimeSessionCreateResponseGAObjectEnum|string $object_
-     * @param int|SdkNotGiven $expiresAt
-     * @param list<RealtimeSessionCreateResponseGAOutputModalitiesItemEnum|string>|SdkNotGiven $outputModalities
-     * @param string|SdkNotGiven $model
-     * @param string|SdkNotGiven $instructions
-     * @param RealtimeSessionCreateResponseGAAudio|SdkNotGiven $audio
-     * @param list<RealtimeSessionCreateResponseGAIncludeItemEnum|string>|null|SdkNotGiven $include_
-     * @param RealtimeSessionCreateResponseGATracingEnum|string|RealtimeSessionCreateResponseGATracingTracingConfiguration|null|SdkNotGiven $tracing
-     * @param list<RealtimeSessionCreateResponseGAToolsItem>|SdkNotGiven $tools
-     * @param ToolChoiceOptions|ToolChoiceFunction|ToolChoiceMCP|SdkNotGiven $toolChoice
-     * @param RealtimeReasoning|SdkNotGiven $reasoning
-     * @param int|RealtimeSessionCreateResponseGAMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens
-     * @param RealtimeSessionCreateResponseGATruncationEnum|string|RealtimeSessionCreateResponseGATruncationRetentionRatioTruncation|SdkNotGiven $truncation
-     * @param Prompt|null|SdkNotGiven $prompt
+     * @param int|SdkNotGiven $postInstructions
      */
     public function __construct(
-        RealtimeSessionCreateResponseGATypeEnum $type,
-        string $id,
-        RealtimeSessionCreateResponseGAObjectEnum|string $object_,
-        int|SdkNotGiven $expiresAt = SdkNotGiven::Value,
-        array|SdkNotGiven $outputModalities = SdkNotGiven::Value,
-        string|SdkNotGiven $model = SdkNotGiven::Value,
-        string|SdkNotGiven $instructions = SdkNotGiven::Value,
-        RealtimeSessionCreateResponseGAAudio|SdkNotGiven $audio = SdkNotGiven::Value,
-        array|null|SdkNotGiven $include_ = SdkNotGiven::Value,
-        RealtimeSessionCreateResponseGATracingEnum|string|RealtimeSessionCreateResponseGATracingTracingConfiguration|null|SdkNotGiven $tracing = SdkNotGiven::Value,
-        array|SdkNotGiven $tools = SdkNotGiven::Value,
-        ToolChoiceOptions|ToolChoiceFunction|ToolChoiceMCP|SdkNotGiven $toolChoice = SdkNotGiven::Value,
-        RealtimeReasoning|SdkNotGiven $reasoning = SdkNotGiven::Value,
-        int|RealtimeSessionCreateResponseGAMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens = SdkNotGiven::Value,
-        RealtimeSessionCreateResponseGATruncationEnum|string|RealtimeSessionCreateResponseGATruncationRetentionRatioTruncation|SdkNotGiven $truncation = SdkNotGiven::Value,
-        Prompt|null|SdkNotGiven $prompt = SdkNotGiven::Value,
+        int|SdkNotGiven $postInstructions = SdkNotGiven::Value,
+    ) {
+        $this->postInstructions = $postInstructions;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+        ];
+        if ($this->postInstructions !== SdkNotGiven::Value) {
+            $values["post_instructions"] = $this->postInstructions;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        return new self(
+            postInstructions: (property_exists($data, "post_instructions") && $data->post_instructions !== null ? SdkClient::intValue($data->post_instructions) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
+ * Retain a fraction of the conversation tokens when the conversation exceeds the input token limit. This allows you to amortize truncations across multiple turns, which can help improve cached token usage.
+ */
+class RealtimeSessionCreateResponseGATruncationRetentionRatioTruncation implements \JsonSerializable
+{
+    /**
+     * Use retention ratio truncation.
+     *
+     * @var RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTypeEnum|string
+     */
+    public readonly RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTypeEnum|string $type;
+    /**
+     * Fraction of post-instruction conversation tokens to retain (`0.0` - `1.0`) when the conversation exceeds the input token limit. Setting this to `0.8` means that messages will be dropped until 80% of the maximum allowed tokens are used. This helps reduce the frequency of truncations and improve cache rates.
+     *
+     * @var float
+     */
+    public readonly float $retentionRatio;
+    /**
+     * Optional custom token limits for this truncation strategy. If not provided, the model's default token limits will be used.
+     *
+     * @var RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTokenLimits|SdkNotGiven
+     */
+    public readonly RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTokenLimits|SdkNotGiven $tokenLimits;
+
+    /**
+     * @param RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTypeEnum|string $type
+     * @param float $retentionRatio
+     * @param RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTokenLimits|SdkNotGiven $tokenLimits
+     */
+    public function __construct(
+        RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTypeEnum|string $type,
+        float $retentionRatio,
+        RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTokenLimits|SdkNotGiven $tokenLimits = SdkNotGiven::Value,
     ) {
         $this->type = $type;
-        $this->id = $id;
-        $this->object_ = $object_;
-        $this->expiresAt = $expiresAt;
-        $this->outputModalities = $outputModalities;
-        $this->model = $model;
-        $this->instructions = $instructions;
-        $this->audio = $audio;
-        $this->include_ = $include_;
-        $this->tracing = $tracing;
-        $this->tools = $tools;
-        $this->toolChoice = $toolChoice;
-        $this->reasoning = $reasoning;
-        $this->maxOutputTokens = $maxOutputTokens;
-        $this->truncation = $truncation;
-        $this->prompt = $prompt;
+        $this->retentionRatio = $retentionRatio;
+        $this->tokenLimits = $tokenLimits;
     }
 
     /** @return array<array-key, mixed> */
@@ -168,47 +126,10 @@ class RealtimeSessionCreateResponseGA implements RealtimeCreateClientSecretRespo
     {
         $values = [
             "type" => $this->type,
-            "id" => $this->id,
-            "object" => $this->object_,
+            "retention_ratio" => $this->retentionRatio,
         ];
-        if ($this->expiresAt !== SdkNotGiven::Value) {
-            $values["expires_at"] = $this->expiresAt;
-        }
-        if ($this->outputModalities !== SdkNotGiven::Value) {
-            $values["output_modalities"] = $this->outputModalities;
-        }
-        if ($this->model !== SdkNotGiven::Value) {
-            $values["model"] = $this->model;
-        }
-        if ($this->instructions !== SdkNotGiven::Value) {
-            $values["instructions"] = $this->instructions;
-        }
-        if ($this->audio !== SdkNotGiven::Value) {
-            $values["audio"] = $this->audio;
-        }
-        if ($this->include_ !== SdkNotGiven::Value) {
-            $values["include"] = $this->include_;
-        }
-        if ($this->tracing !== SdkNotGiven::Value) {
-            $values["tracing"] = $this->tracing;
-        }
-        if ($this->tools !== SdkNotGiven::Value) {
-            $values["tools"] = $this->tools;
-        }
-        if ($this->toolChoice !== SdkNotGiven::Value) {
-            $values["tool_choice"] = $this->toolChoice;
-        }
-        if ($this->reasoning !== SdkNotGiven::Value) {
-            $values["reasoning"] = $this->reasoning;
-        }
-        if ($this->maxOutputTokens !== SdkNotGiven::Value) {
-            $values["max_output_tokens"] = $this->maxOutputTokens;
-        }
-        if ($this->truncation !== SdkNotGiven::Value) {
-            $values["truncation"] = $this->truncation;
-        }
-        if ($this->prompt !== SdkNotGiven::Value) {
-            $values["prompt"] = $this->prompt;
+        if ($this->tokenLimits !== SdkNotGiven::Value) {
+            $values["token_limits"] = $this->tokenLimits;
         }
         return $values;
     }
@@ -222,25 +143,11 @@ class RealtimeSessionCreateResponseGA implements RealtimeCreateClientSecretRespo
     public static function fromObject(object $data): self
     {
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "retention_ratio") || $data->retention_ratio === null) { throw new SdkValidationError("retention_ratio", 'required', "Required property 'retention_ratio' is missing or null"); }
         return new self(
-            type: SdkClient::hydrateEnum($data->type, RealtimeSessionCreateResponseGATypeEnum::class),
-            id: SdkClient::stringValue($data->id),
-            object_: SdkClient::hydrateStringEnumOrString($data->object, RealtimeSessionCreateResponseGAObjectEnum::class),
-            expiresAt: (property_exists($data, "expires_at") ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
-            outputModalities: (property_exists($data, "output_modalities") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeSessionCreateResponseGAOutputModalitiesItemEnum::class), SdkClient::arrayValue($data->output_modalities))) : SdkNotGiven::Value),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            instructions: (property_exists($data, "instructions") ? SdkClient::stringValue($data->instructions) : SdkNotGiven::Value),
-            audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, RealtimeSessionCreateResponseGAAudio::class) : SdkNotGiven::Value),
-            include_: (property_exists($data, "include") ? ($data->include === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeSessionCreateResponseGAIncludeItemEnum::class), SdkClient::arrayValue($data->include)))) : SdkNotGiven::Value),
-            tracing: (property_exists($data, "tracing") ? ($data->tracing === null ? null : (is_object($data->tracing) ? SdkClient::hydrateClass($data->tracing, RealtimeSessionCreateResponseGATracingTracingConfiguration::class) : (is_string($data->tracing) ? SdkClient::hydrateStringEnumOrString($data->tracing, RealtimeSessionCreateResponseGATracingEnum::class) : SdkClient::hydrateClass($data->tracing, RealtimeSessionCreateResponseGATracingTracingConfiguration::class)))) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RealtimeSessionCreateResponseGAToolsItem::class, [RealtimeFunctionTool::class, MCPTool::class], null, []), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
-            toolChoice: (property_exists($data, "tool_choice") ? (is_object($data->tool_choice) ? SdkClient::hydrateUnion($data->tool_choice, [ToolChoiceFunction::class, ToolChoiceMCP::class], "type", ["function" => ToolChoiceFunction::class, "mcp" => ToolChoiceMCP::class]) : (is_string($data->tool_choice) ? SdkClient::hydrateEnum($data->tool_choice, ToolChoiceOptions::class) : SdkClient::hydrateUnion($data->tool_choice, [ToolChoiceFunction::class, ToolChoiceMCP::class], "type", ["function" => ToolChoiceFunction::class, "mcp" => ToolChoiceMCP::class]))) : SdkNotGiven::Value),
-            reasoning: (property_exists($data, "reasoning") ? SdkClient::hydrateClass($data->reasoning, RealtimeReasoning::class) : SdkNotGiven::Value),
-            maxOutputTokens: (property_exists($data, "max_output_tokens") ? (is_int($data->max_output_tokens) ? SdkClient::intValue($data->max_output_tokens) : SdkClient::hydrateStringEnumOrString($data->max_output_tokens, RealtimeSessionCreateResponseGAMaxOutputTokensEnum::class)) : SdkNotGiven::Value),
-            truncation: (property_exists($data, "truncation") ? (is_object($data->truncation) ? SdkClient::hydrateClass($data->truncation, RealtimeSessionCreateResponseGATruncationRetentionRatioTruncation::class) : (is_string($data->truncation) ? SdkClient::hydrateStringEnumOrString($data->truncation, RealtimeSessionCreateResponseGATruncationEnum::class) : SdkClient::hydrateClass($data->truncation, RealtimeSessionCreateResponseGATruncationRetentionRatioTruncation::class))) : SdkNotGiven::Value),
-            prompt: (property_exists($data, "prompt") ? ($data->prompt === null ? null : SdkClient::hydrateClass($data->prompt, Prompt::class)) : SdkNotGiven::Value),
+            type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTypeEnum::class),
+            retentionRatio: SdkClient::floatValue($data->retention_ratio),
+            tokenLimits: (property_exists($data, "token_limits") && $data->token_limits !== null ? SdkClient::hydrateClass($data->token_limits, RealtimeSessionCreateResponseGATruncationRetentionRatioTruncationTokenLimits::class) : SdkNotGiven::Value),
         );
     }
 }

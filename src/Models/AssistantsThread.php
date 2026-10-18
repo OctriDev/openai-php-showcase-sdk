@@ -62,7 +62,7 @@ class ThreadObjectToolResourcesCodeInterpreter implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
         );
     }
 }
@@ -108,7 +108,7 @@ class ThreadObjectToolResourcesFileSearch implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            vectorStoreIds: (property_exists($data, "vector_store_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
+            vectorStoreIds: (property_exists($data, "vector_store_ids") && $data->vector_store_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vector_store_ids))) : SdkNotGiven::Value),
         );
     }
 }
@@ -166,8 +166,8 @@ class ThreadObjectToolResources implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            codeInterpreter: (property_exists($data, "code_interpreter") ? SdkClient::hydrateClass($data->code_interpreter, ThreadObjectToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
-            fileSearch: (property_exists($data, "file_search") ? SdkClient::hydrateClass($data->file_search, ThreadObjectToolResourcesFileSearch::class) : SdkNotGiven::Value),
+            codeInterpreter: (property_exists($data, "code_interpreter") && $data->code_interpreter !== null ? SdkClient::hydrateClass($data->code_interpreter, ThreadObjectToolResourcesCodeInterpreter::class) : SdkNotGiven::Value),
+            fileSearch: (property_exists($data, "file_search") && $data->file_search !== null ? SdkClient::hydrateClass($data->file_search, ThreadObjectToolResourcesFileSearch::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -265,18 +265,18 @@ class ThreadObject implements \JsonSerializable
     }
 }
 
-final readonly class ThreadStreamEventThreadCreatedEventEnum implements SdkOpenEnum
+/**
+ * Required enumerated value serialized in the `event` wire field.
+ */
+enum ThreadStreamEventEventEnum: string implements SdkWireEnum
 {
-    public const THREAD_CREATED = "thread.created";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    case THREAD_CREATED = "thread.created";
 }
 
-class ThreadStreamEventThreadCreated implements AssistantStreamEvent, ThreadStreamEvent, \JsonSerializable
+/**
+ * Occurs when a new [thread](https://developers.openai.com/api/docs/assistants/migration) is created.
+ */
+class ThreadStreamEvent implements AssistantStreamEvent, \JsonSerializable
 {
     /**
      * Whether to enable input audio transcription.
@@ -284,8 +284,12 @@ class ThreadStreamEventThreadCreated implements AssistantStreamEvent, ThreadStre
      * @var bool|SdkNotGiven
      */
     public readonly bool|SdkNotGiven $enabled;
-    /** @var ThreadStreamEventThreadCreatedEventEnum|string */
-    public readonly ThreadStreamEventThreadCreatedEventEnum|string $event;
+    /**
+     * Required enumerated value serialized in the `event` wire field.
+     *
+     * @var ThreadStreamEventEventEnum
+     */
+    public readonly ThreadStreamEventEventEnum $event;
     /**
      * Represents a thread that contains [messages](https://developers.openai.com/api/docs/assistants/migration).
      *
@@ -294,12 +298,12 @@ class ThreadStreamEventThreadCreated implements AssistantStreamEvent, ThreadStre
     public readonly ThreadObject $data;
 
     /**
-     * @param ThreadStreamEventThreadCreatedEventEnum|string $event
+     * @param ThreadStreamEventEventEnum $event
      * @param ThreadObject $data
      * @param bool|SdkNotGiven $enabled
      */
     public function __construct(
-        ThreadStreamEventThreadCreatedEventEnum|string $event,
+        ThreadStreamEventEventEnum $event,
         ThreadObject $data,
         bool|SdkNotGiven $enabled = SdkNotGiven::Value,
     ) {
@@ -332,9 +336,9 @@ class ThreadStreamEventThreadCreated implements AssistantStreamEvent, ThreadStre
         if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
         if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
         return new self(
-            event: SdkClient::hydrateStringEnumOrString($data->event, ThreadStreamEventThreadCreatedEventEnum::class),
+            event: SdkClient::hydrateEnum($data->event, ThreadStreamEventEventEnum::class),
             data: SdkClient::hydrateClass($data->data, ThreadObject::class),
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
         );
     }
 }

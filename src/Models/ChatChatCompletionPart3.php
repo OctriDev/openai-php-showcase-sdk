@@ -122,7 +122,7 @@ class ChatCompletionResponseMessage implements \JsonSerializable
             role: SdkClient::hydrateStringEnumOrString($data->role, ChatCompletionResponseMessageRoleEnum::class),
             refusal: (property_exists($data, "refusal") ? ($data->refusal === null ? null : SdkClient::stringValue($data->refusal)) : SdkNotGiven::Value),
             toolCalls: (property_exists($data, "tool_calls") ? ($data->tool_calls === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ChatCompletionMessageToolCallsItem::class, [ChatCompletionMessageToolCall::class, ChatCompletionMessageCustomToolCall::class], "type", ["function" => ChatCompletionMessageToolCall::class, "custom" => ChatCompletionMessageCustomToolCall::class], UnknownChatCompletionMessageToolCallsItem::class), SdkClient::arrayValue($data->tool_calls)))) : SdkNotGiven::Value),
-            annotations: (property_exists($data, "annotations") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionResponseMessageAnnotationsItem::class), SdkClient::arrayValue($data->annotations))) : SdkNotGiven::Value),
+            annotations: (property_exists($data, "annotations") && $data->annotations !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionResponseMessageAnnotationsItem::class), SdkClient::arrayValue($data->annotations))) : SdkNotGiven::Value),
             functionCall: (property_exists($data, "function_call") ? ($data->function_call === null ? null : SdkClient::hydrateClass($data->function_call, ChatCompletionResponseMessageFunctionCall::class)) : SdkNotGiven::Value),
             audio: (property_exists($data, "audio") ? ($data->audio === null ? null : SdkClient::hydrateClass($data->audio, ChatCompletionResponseMessageAudio::class)) : SdkNotGiven::Value),
         );
@@ -225,10 +225,10 @@ class ChatCompletionStreamResponseDeltaAudio implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            expiresAt: (property_exists($data, "expires_at") ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") ? SdkClient::stringValue($data->data) : SdkNotGiven::Value),
-            transcript: (property_exists($data, "transcript") ? SdkClient::stringValue($data->transcript) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            expiresAt: (property_exists($data, "expires_at") && $data->expires_at !== null ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") && $data->data !== null ? SdkClient::stringValue($data->data) : SdkNotGiven::Value),
+            transcript: (property_exists($data, "transcript") && $data->transcript !== null ? SdkClient::stringValue($data->transcript) : SdkNotGiven::Value),
         );
     }
 }
@@ -286,8 +286,8 @@ class ChatCompletionStreamResponseDeltaFunctionCall implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            arguments: (property_exists($data, "arguments") ? SdkClient::stringValue($data->arguments) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            arguments: (property_exists($data, "arguments") && $data->arguments !== null ? SdkClient::stringValue($data->arguments) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }

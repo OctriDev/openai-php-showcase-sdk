@@ -108,7 +108,7 @@ class LiveOutputTranscriptDelta implements LiveSidebandServerEvent, LiveServerEv
             endMs: SdkClient::intValue($data->end_ms),
             delta: SdkClient::stringValue($data->delta),
             type: SdkClient::hydrateEnum($data->type, LiveOutputTranscriptDeltaTypeEnum::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }

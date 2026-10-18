@@ -84,7 +84,7 @@ class MessageContentImageFileObjectImageFile implements \JsonSerializable
         if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, MessageContentImageFileObjectImageFileDetailEnum::class) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, MessageContentImageFileObjectImageFileDetailEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -223,7 +223,7 @@ class MessageContentImageUrlObjectImageUrl implements \JsonSerializable
         if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
         return new self(
             url: SdkClient::stringValue($data->url),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, MessageContentImageUrlObjectImageUrlDetailEnum::class) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, MessageContentImageUrlObjectImageUrlDetailEnum::class) : SdkNotGiven::Value),
         );
     }
 }

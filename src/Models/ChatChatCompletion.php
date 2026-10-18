@@ -200,8 +200,8 @@ class ChatCompletionFunctions implements \JsonSerializable
         if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            parameters: (property_exists($data, "parameters") ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            parameters: (property_exists($data, "parameters") && $data->parameters !== null ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
         );
     }
 }

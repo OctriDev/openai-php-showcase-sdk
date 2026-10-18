@@ -121,7 +121,7 @@ class AssistantsNamedToolChoice implements \JsonSerializable
         if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, AssistantsNamedToolChoiceTypeEnum::class),
-            function_: (property_exists($data, "function") ? SdkClient::hydrateClass($data->function, AssistantsNamedToolChoiceFunction::class) : SdkNotGiven::Value),
+            function_: (property_exists($data, "function") && $data->function !== null ? SdkClient::hydrateClass($data->function, AssistantsNamedToolChoiceFunction::class) : SdkNotGiven::Value),
         );
     }
 }

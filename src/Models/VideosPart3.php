@@ -110,8 +110,8 @@ class Error2 implements \JsonSerializable
             message: SdkClient::stringValue($data->message),
             type: (property_exists($data, "type") ? ($data->type === null ? null : SdkClient::stringValue($data->type)) : SdkNotGiven::Value),
             param: (property_exists($data, "param") ? ($data->param === null ? null : SdkClient::stringValue($data->param)) : SdkNotGiven::Value),
-            headers: (property_exists($data, "headers") ? SdkClient::mapValues(SdkClient::stringMapValue($data->headers), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
-            misalignment: (property_exists($data, "misalignment") ? SdkClient::hydrateClass($data->misalignment, MisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
+            headers: (property_exists($data, "headers") && $data->headers !== null ? SdkClient::mapValues(SdkClient::stringMapValue($data->headers), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
+            misalignment: (property_exists($data, "misalignment") && $data->misalignment !== null ? SdkClient::hydrateClass($data->misalignment, MisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -169,8 +169,8 @@ class ImageRefParam2 implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            imageUrl: (property_exists($data, "image_url") ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            imageUrl: (property_exists($data, "image_url") && $data->image_url !== null ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
         );
     }
 }

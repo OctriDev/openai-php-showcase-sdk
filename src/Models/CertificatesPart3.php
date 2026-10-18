@@ -321,8 +321,8 @@ class OrganizationProjectCertificateCertificateDetails implements \JsonSerializa
     public static function fromObject(object $data): self
     {
         return new self(
-            validAt: (property_exists($data, "valid_at") ? SdkClient::intValue($data->valid_at) : SdkNotGiven::Value),
-            expiresAt: (property_exists($data, "expires_at") ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
+            validAt: (property_exists($data, "valid_at") && $data->valid_at !== null ? SdkClient::intValue($data->valid_at) : SdkNotGiven::Value),
+            expiresAt: (property_exists($data, "expires_at") && $data->expires_at !== null ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
         );
     }
 }

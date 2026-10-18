@@ -109,7 +109,7 @@ class LiveErrorEvent implements LiveSidebandServerEvent, LiveServerEvent2, \Json
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveErrorEventTypeEnum::class),
             error: SdkClient::hydrateClass($data->error, LiveLiveError::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -317,7 +317,7 @@ class LiveInfoEvent implements LiveSidebandServerEvent, LiveServerEvent2, \JsonS
             type: SdkClient::hydrateEnum($data->type, LiveInfoEventTypeEnum::class),
             code: SdkClient::stringValue($data->code),
             message: SdkClient::stringValue($data->message),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }

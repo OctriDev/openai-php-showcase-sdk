@@ -72,8 +72,8 @@ class CreateProjectServiceAccountApiKeyBody implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            scopes: (property_exists($data, "scopes") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->scopes))) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            scopes: (property_exists($data, "scopes") && $data->scopes !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->scopes))) : SdkNotGiven::Value),
             expiresInSeconds: (property_exists($data, "expires_in_seconds") ? ($data->expires_in_seconds === null ? null : SdkClient::intValue($data->expires_in_seconds)) : SdkNotGiven::Value),
         );
     }

@@ -169,7 +169,7 @@ class WebhookBatchCompleted implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             data: SdkClient::hydrateClass($data->data, WebhookBatchCompletedData::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, WebhookBatchCompletedTypeEnum::class),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, WebhookBatchCompletedObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, WebhookBatchCompletedObjectEnum::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -132,9 +132,9 @@ class BetaRankingOptions implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            ranker: (property_exists($data, "ranker") ? SdkClient::hydrateStringEnumOrString($data->ranker, BetaRankerVersionType::class) : SdkNotGiven::Value),
-            scoreThreshold: (property_exists($data, "score_threshold") ? SdkClient::floatValue($data->score_threshold) : SdkNotGiven::Value),
-            hybridSearch: (property_exists($data, "hybrid_search") ? SdkClient::hydrateClass($data->hybrid_search, BetaHybridSearchOptions::class) : SdkNotGiven::Value),
+            ranker: (property_exists($data, "ranker") && $data->ranker !== null ? SdkClient::hydrateStringEnumOrString($data->ranker, BetaRankerVersionType::class) : SdkNotGiven::Value),
+            scoreThreshold: (property_exists($data, "score_threshold") && $data->score_threshold !== null ? SdkClient::floatValue($data->score_threshold) : SdkNotGiven::Value),
+            hybridSearch: (property_exists($data, "hybrid_search") && $data->hybrid_search !== null ? SdkClient::hydrateClass($data->hybrid_search, BetaHybridSearchOptions::class) : SdkNotGiven::Value),
         );
     }
 }

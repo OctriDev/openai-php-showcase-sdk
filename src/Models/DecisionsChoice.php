@@ -60,7 +60,7 @@ class ChoiceOptionParam implements \JsonSerializable
         if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
         return new self(
             value: (is_bool($data->value) ? SdkClient::boolValue($data->value) : SdkClient::stringValue($data->value)),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
         );
     }
 }
