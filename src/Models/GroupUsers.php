@@ -45,9 +45,7 @@ class CreateGroupUserBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "user_id") || $data->user_id === null) {
-            throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null");
-        }
+        if (!property_exists($data, "user_id") || $data->user_id === null) { throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null"); }
         return new self(
             userId: SdkClient::stringValue($data->user_id),
         );
@@ -62,26 +60,11 @@ final readonly class GroupMemberUserUserTypeEnum implements SdkOpenEnum
     public const USER = "user";
     public const TENANT_USER = "tenant_user";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -172,24 +155,12 @@ class GroupMemberUser implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "email")) {
-            throw new SdkValidationError("email", 'required', "Missing required property 'email'");
-        }
-        if (!property_exists($data, "picture")) {
-            throw new SdkValidationError("picture", 'required', "Missing required property 'picture'");
-        }
-        if (!property_exists($data, "is_service_account")) {
-            throw new SdkValidationError("is_service_account", 'required', "Missing required property 'is_service_account'");
-        }
-        if (!property_exists($data, "user_type") || $data->user_type === null) {
-            throw new SdkValidationError("user_type", 'required', "Required property 'user_type' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "email")) { throw new SdkValidationError("email", 'required', "Missing required property 'email'"); }
+        if (!property_exists($data, "picture")) { throw new SdkValidationError("picture", 'required', "Missing required property 'picture'"); }
+        if (!property_exists($data, "is_service_account")) { throw new SdkValidationError("is_service_account", 'required', "Missing required property 'is_service_account'"); }
+        if (!property_exists($data, "user_type") || $data->user_type === null) { throw new SdkValidationError("user_type", 'required', "Required property 'user_type' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             name: SdkClient::stringValue($data->name),
@@ -259,15 +230,9 @@ class GroupUser implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "email")) {
-            throw new SdkValidationError("email", 'required', "Missing required property 'email'");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "email")) { throw new SdkValidationError("email", 'required', "Missing required property 'email'"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             name: SdkClient::stringValue($data->name),
@@ -283,26 +248,11 @@ final readonly class GroupUserAssignmentObjectEnum implements SdkOpenEnum
 {
     public const GROUP_USER = "group.user";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -363,15 +313,9 @@ class GroupUserAssignment implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "user_id") || $data->user_id === null) {
-            throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null");
-        }
-        if (!property_exists($data, "group_id") || $data->group_id === null) {
-            throw new SdkValidationError("group_id", 'required', "Required property 'group_id' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "user_id") || $data->user_id === null) { throw new SdkValidationError("user_id", 'required', "Required property 'user_id' is missing or null"); }
+        if (!property_exists($data, "group_id") || $data->group_id === null) { throw new SdkValidationError("group_id", 'required', "Required property 'group_id' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, GroupUserAssignmentObjectEnum::class),
             userId: SdkClient::stringValue($data->user_id),
@@ -387,24 +331,9 @@ final readonly class GroupUserDeletedResourceObjectEnum implements SdkOpenEnum
 {
     public const GROUP_USER_DELETED = "group.user.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

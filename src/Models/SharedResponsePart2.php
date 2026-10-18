@@ -89,9 +89,7 @@ class ResponseFormatJsonSchemaJsonSchema implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
@@ -149,12 +147,8 @@ class ResponseFormatJsonSchema implements CreateEvalCompletionsRunDataSourceSamp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "json_schema") || $data->json_schema === null) {
-            throw new SdkValidationError("json_schema", 'required', "Required property 'json_schema' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "json_schema") || $data->json_schema === null) { throw new SdkValidationError("json_schema", 'required', "Required property 'json_schema' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseFormatJsonSchemaTypeEnum::class),
             jsonSchema: SdkClient::hydrateClass($data->json_schema, ResponseFormatJsonSchemaJsonSchema::class),
@@ -208,9 +202,7 @@ class ResponseFormatText implements TextResponseFormatConfiguration, CreateEvalC
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseFormatTextTypeEnum::class),
         );

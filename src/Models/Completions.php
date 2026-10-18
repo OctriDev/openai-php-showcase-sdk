@@ -247,12 +247,8 @@ class CreateCompletionRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "prompt")) {
-            throw new SdkValidationError("prompt", 'required', "Missing required property 'prompt'");
-        }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "prompt")) { throw new SdkValidationError("prompt", 'required', "Missing required property 'prompt'"); }
         return new self(
             model: SdkClient::stringValue($data->model),
             prompt: ($data->prompt === null ? null : (is_array($data->prompt) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->prompt))) : SdkClient::stringValue($data->prompt))),
@@ -282,24 +278,9 @@ final readonly class CreateCompletionResponseChoicesItemFinishReasonEnum impleme
     public const LENGTH = "length";
     public const CONTENT_FILTER = "content_filter";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

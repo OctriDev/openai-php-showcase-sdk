@@ -65,15 +65,9 @@ class SessionEventAgentSessionRequiresAction implements SessionEvent, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "session") || $data->session === null) {
-            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionRequiresActionTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -148,15 +142,9 @@ class SessionEventAgentSessionSubagentActive implements SessionEvent, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "subagent") || $data->subagent === null) {
-            throw new SdkValidationError("subagent", 'required', "Required property 'subagent' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "subagent") || $data->subagent === null) { throw new SdkValidationError("subagent", 'required', "Required property 'subagent' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionSubagentActiveTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -231,15 +219,9 @@ class SessionEventAgentSessionSubagentClosed implements SessionEvent, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "subagent") || $data->subagent === null) {
-            throw new SdkValidationError("subagent", 'required', "Required property 'subagent' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "subagent") || $data->subagent === null) { throw new SdkValidationError("subagent", 'required', "Required property 'subagent' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionSubagentClosedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -314,15 +296,9 @@ class SessionEventAgentSessionSubagentCreated implements SessionEvent, \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "subagent") || $data->subagent === null) {
-            throw new SdkValidationError("subagent", 'required', "Required property 'subagent' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "subagent") || $data->subagent === null) { throw new SdkValidationError("subagent", 'required', "Required property 'subagent' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionSubagentCreatedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),

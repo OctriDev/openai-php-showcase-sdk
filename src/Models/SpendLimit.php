@@ -14,26 +14,11 @@ final readonly class OrganizationSpendLimitDeletedResourceObjectEnum implements 
 {
     public const ORGANIZATION_SPEND_LIMIT_DELETED = "organization.spend_limit.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -84,12 +69,8 @@ class OrganizationSpendLimitDeletedResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "deleted") || $data->deleted === null) {
-            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OrganizationSpendLimitDeletedResourceObjectEnum::class),
             deleted: SdkClient::boolValue($data->deleted),
@@ -104,26 +85,11 @@ final readonly class OrganizationSpendLimitResourceObjectEnum implements SdkOpen
 {
     public const ORGANIZATION_SPEND_LIMIT = "organization.spend_limit";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -204,21 +170,11 @@ class OrganizationSpendLimitResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "threshold_amount") || $data->threshold_amount === null) {
-            throw new SdkValidationError("threshold_amount", 'required', "Required property 'threshold_amount' is missing or null");
-        }
-        if (!property_exists($data, "currency") || $data->currency === null) {
-            throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null");
-        }
-        if (!property_exists($data, "interval") || $data->interval === null) {
-            throw new SdkValidationError("interval", 'required', "Required property 'interval' is missing or null");
-        }
-        if (!property_exists($data, "enforcement") || $data->enforcement === null) {
-            throw new SdkValidationError("enforcement", 'required', "Required property 'enforcement' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "threshold_amount") || $data->threshold_amount === null) { throw new SdkValidationError("threshold_amount", 'required', "Required property 'threshold_amount' is missing or null"); }
+        if (!property_exists($data, "currency") || $data->currency === null) { throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null"); }
+        if (!property_exists($data, "interval") || $data->interval === null) { throw new SdkValidationError("interval", 'required', "Required property 'interval' is missing or null"); }
+        if (!property_exists($data, "enforcement") || $data->enforcement === null) { throw new SdkValidationError("enforcement", 'required', "Required property 'enforcement' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OrganizationSpendLimitResourceObjectEnum::class),
             thresholdAmount: SdkClient::intValue($data->threshold_amount),
@@ -236,26 +192,11 @@ final readonly class ProjectSpendLimitDeletedResourceObjectEnum implements SdkOp
 {
     public const PROJECT_SPEND_LIMIT_DELETED = "project.spend_limit.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -306,12 +247,8 @@ class ProjectSpendLimitDeletedResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "deleted") || $data->deleted === null) {
-            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ProjectSpendLimitDeletedResourceObjectEnum::class),
             deleted: SdkClient::boolValue($data->deleted),
@@ -326,24 +263,9 @@ final readonly class ProjectSpendLimitResourceObjectEnum implements SdkOpenEnum
 {
     public const PROJECT_SPEND_LIMIT = "project.spend_limit";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

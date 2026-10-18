@@ -121,15 +121,9 @@ class UsageEmbeddingsResult implements UsageTimeBucketResultsItem, \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) {
-            throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null");
-        }
-        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) {
-            throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) { throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null"); }
+        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) { throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, UsageEmbeddingsResultObjectEnum::class),
             inputTokens: SdkClient::intValue($data->input_tokens),
@@ -246,12 +240,8 @@ class UsageFileSearchCallsResult implements UsageTimeBucketResultsItem, \JsonSer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "num_requests") || $data->num_requests === null) {
-            throw new SdkValidationError("num_requests", 'required', "Required property 'num_requests' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "num_requests") || $data->num_requests === null) { throw new SdkValidationError("num_requests", 'required', "Required property 'num_requests' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, UsageFileSearchCallsResultObjectEnum::class),
             numRequests: SdkClient::intValue($data->num_requests),

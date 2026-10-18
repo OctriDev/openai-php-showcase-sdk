@@ -65,15 +65,9 @@ class ApplyPatchUpdateFileOperation implements ApplyPatchToolCallOperation, \Jso
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
-        if (!property_exists($data, "diff") || $data->diff === null) {
-            throw new SdkValidationError("diff", 'required', "Required property 'diff' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
+        if (!property_exists($data, "diff") || $data->diff === null) { throw new SdkValidationError("diff", 'required', "Required property 'diff' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ApplyPatchUpdateFileOperationTypeEnum::class),
             path: SdkClient::stringValue($data->path),
@@ -148,15 +142,9 @@ class ApplyPatchUpdateFileOperationParam implements ApplyPatchOperationParam, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
-        if (!property_exists($data, "diff") || $data->diff === null) {
-            throw new SdkValidationError("diff", 'required', "Required property 'diff' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
+        if (!property_exists($data, "diff") || $data->diff === null) { throw new SdkValidationError("diff", 'required', "Required property 'diff' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ApplyPatchUpdateFileOperationParamTypeEnum::class),
             path: SdkClient::stringValue($data->path),

@@ -115,12 +115,8 @@ class BetaToolSearchOutputItemParam implements BetaInputItem, BetaItem, \JsonSer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "tools") || $data->tools === null) {
-            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "tools") || $data->tools === null) { throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaToolSearchOutputItemParamTypeEnum::class),
             tools: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaToolSearchOutputTool::class, [BetaFunctionTool::class, BetaFileSearchTool::class, BetaComputerTool::class, BetaComputerUsePreviewTool::class, BetaWebSearchTool::class, BetaMCPTool::class, BetaCodeInterpreterTool::class, BetaProgrammaticToolCallingParam::class, BetaImageGenTool::class, BetaLocalShellToolParam::class, BetaFunctionShellToolParam::class, BetaCustomToolParam::class, BetaToolSearchOutputNamespaceToolParam::class, BetaToolSearchToolParam::class, BetaWebSearchPreviewTool::class, BetaApplyPatchToolParam::class], "type", ["function" => BetaFunctionTool::class, "file_search" => BetaFileSearchTool::class, "computer" => BetaComputerTool::class, "computer_use_preview" => BetaComputerUsePreviewTool::class, "web_search" => BetaWebSearchTool::class, "web_search_2025_08_26" => BetaWebSearchTool::class, "mcp" => BetaMCPTool::class, "code_interpreter" => BetaCodeInterpreterTool::class, "programmatic_tool_calling" => BetaProgrammaticToolCallingParam::class, "image_generation" => BetaImageGenTool::class, "local_shell" => BetaLocalShellToolParam::class, "shell" => BetaFunctionShellToolParam::class, "custom" => BetaCustomToolParam::class, "namespace" => BetaToolSearchOutputNamespaceToolParam::class, "tool_search" => BetaToolSearchToolParam::class, "web_search_preview" => BetaWebSearchPreviewTool::class, "web_search_preview_2025_03_11" => BetaWebSearchPreviewTool::class, "apply_patch" => BetaApplyPatchToolParam::class], UnknownBetaToolSearchOutputTool::class), SdkClient::arrayValue($data->tools))),
@@ -209,18 +205,10 @@ class BetaToolSearchOutputNamespaceToolParam implements BetaToolSearchOutputTool
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "description") || $data->description === null) {
-            throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null");
-        }
-        if (!property_exists($data, "tools") || $data->tools === null) {
-            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "description") || $data->description === null) { throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null"); }
+        if (!property_exists($data, "tools") || $data->tools === null) { throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaToolSearchOutputNamespaceToolParamTypeEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -312,9 +300,7 @@ class BetaToolSearchToolParam implements BetaTool, BetaToolSearchOutputTool, \Js
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaToolSearchToolParamTypeEnum::class),
             execution: (property_exists($data, "execution") && $data->execution !== null ? SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class) : SdkNotGiven::Value),

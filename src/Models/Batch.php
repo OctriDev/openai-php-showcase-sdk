@@ -14,26 +14,11 @@ final readonly class BatchObjectEnum implements SdkOpenEnum
 {
     public const BATCH = "batch";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -109,26 +94,11 @@ final readonly class BatchStatusEnum implements SdkOpenEnum
     public const CANCELLING = "cancelling";
     public const CANCELLED = "cancelled";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -169,9 +139,7 @@ class BatchUsageInputTokensDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) {
-            throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null");
-        }
+        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) { throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null"); }
         return new self(
             cachedTokens: SdkClient::intValue($data->cached_tokens),
         );
@@ -216,9 +184,7 @@ class BatchUsageOutputTokensDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "reasoning_tokens") || $data->reasoning_tokens === null) {
-            throw new SdkValidationError("reasoning_tokens", 'required', "Required property 'reasoning_tokens' is missing or null");
-        }
+        if (!property_exists($data, "reasoning_tokens") || $data->reasoning_tokens === null) { throw new SdkValidationError("reasoning_tokens", 'required', "Required property 'reasoning_tokens' is missing or null"); }
         return new self(
             reasoningTokens: SdkClient::intValue($data->reasoning_tokens),
         );
@@ -303,21 +269,11 @@ class BatchUsage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) {
-            throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null");
-        }
-        if (!property_exists($data, "input_tokens_details") || $data->input_tokens_details === null) {
-            throw new SdkValidationError("input_tokens_details", 'required', "Required property 'input_tokens_details' is missing or null");
-        }
-        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) {
-            throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null");
-        }
-        if (!property_exists($data, "output_tokens_details") || $data->output_tokens_details === null) {
-            throw new SdkValidationError("output_tokens_details", 'required', "Required property 'output_tokens_details' is missing or null");
-        }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
-            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
-        }
+        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) { throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null"); }
+        if (!property_exists($data, "input_tokens_details") || $data->input_tokens_details === null) { throw new SdkValidationError("input_tokens_details", 'required', "Required property 'input_tokens_details' is missing or null"); }
+        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) { throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null"); }
+        if (!property_exists($data, "output_tokens_details") || $data->output_tokens_details === null) { throw new SdkValidationError("output_tokens_details", 'required', "Required property 'output_tokens_details' is missing or null"); }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
         return new self(
             inputTokens: SdkClient::intValue($data->input_tokens),
             inputTokensDetails: SdkClient::hydrateClass($data->input_tokens_details, BatchUsageInputTokensDetails::class),

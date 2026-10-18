@@ -119,18 +119,10 @@ class DecisionInputCustomToolCall implements DecisionInputItem, \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "input") || $data->input === null) {
-            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             callId: SdkClient::stringValue($data->call_id),
             name: SdkClient::stringValue($data->name),
@@ -233,15 +225,9 @@ class DecisionInputCustomToolCallOutput implements DecisionInputItem, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "output") || $data->output === null) {
-            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             callId: SdkClient::stringValue($data->call_id),
             output: (is_array($data->output) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, DecisionInputToolOutputContentPartsItem::class, [DecisionInputText::class, DecisionInputImage::class], "type", ["input_text" => DecisionInputText::class, "input_image" => DecisionInputImage::class], UnknownDecisionInputToolOutputContentPartsItem::class), SdkClient::arrayValue($data->output))) : SdkClient::stringValue($data->output)),

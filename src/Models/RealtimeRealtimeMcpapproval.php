@@ -93,21 +93,11 @@ class RealtimeMCPApprovalRequest implements RealtimeConversationItem, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "server_label") || $data->server_label === null) {
-            throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "arguments") || $data->arguments === null) {
-            throw new SdkValidationError("arguments", 'required', "Required property 'arguments' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "server_label") || $data->server_label === null) { throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "arguments") || $data->arguments === null) { throw new SdkValidationError("arguments", 'required', "Required property 'arguments' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeMCPApprovalRequestTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -206,18 +196,10 @@ class RealtimeMCPApprovalResponse implements RealtimeConversationItem, \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "approval_request_id") || $data->approval_request_id === null) {
-            throw new SdkValidationError("approval_request_id", 'required', "Required property 'approval_request_id' is missing or null");
-        }
-        if (!property_exists($data, "approve") || $data->approve === null) {
-            throw new SdkValidationError("approve", 'required', "Required property 'approve' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "approval_request_id") || $data->approval_request_id === null) { throw new SdkValidationError("approval_request_id", 'required', "Required property 'approval_request_id' is missing or null"); }
+        if (!property_exists($data, "approve") || $data->approve === null) { throw new SdkValidationError("approve", 'required', "Required property 'approve' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeMCPApprovalResponseTypeEnum::class),
             id: SdkClient::stringValue($data->id),

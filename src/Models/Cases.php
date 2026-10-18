@@ -45,9 +45,7 @@ class SafetyCaseNotice implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, SafetyCaseNoticeType::class),
         );
@@ -62,26 +60,11 @@ final readonly class SafetyCaseNoticeType implements SdkOpenEnum
     public const WARNING = "warning";
     public const DEACTIVATION = "deactivation";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -91,26 +74,11 @@ final readonly class SafetyCaseResourceObjectEnum implements SdkOpenEnum
 {
     public const SAFETY_CASE = "safety.case";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -201,24 +169,12 @@ class SafetyCaseResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "entity_identifier") || $data->entity_identifier === null) {
-            throw new SdkValidationError("entity_identifier", 'required', "Required property 'entity_identifier' is missing or null");
-        }
-        if (!property_exists($data, "reason")) {
-            throw new SdkValidationError("reason", 'required', "Missing required property 'reason'");
-        }
-        if (!property_exists($data, "notice") || $data->notice === null) {
-            throw new SdkValidationError("notice", 'required', "Required property 'notice' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "entity_identifier") || $data->entity_identifier === null) { throw new SdkValidationError("entity_identifier", 'required', "Required property 'entity_identifier' is missing or null"); }
+        if (!property_exists($data, "reason")) { throw new SdkValidationError("reason", 'required', "Missing required property 'reason'"); }
+        if (!property_exists($data, "notice") || $data->notice === null) { throw new SdkValidationError("notice", 'required', "Required property 'notice' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, SafetyCaseResourceObjectEnum::class),

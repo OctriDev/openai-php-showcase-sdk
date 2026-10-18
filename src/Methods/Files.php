@@ -12,26 +12,11 @@ final readonly class ListFilesOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class CreateFilePurpose implements SdkOpenEnum
@@ -43,26 +28,11 @@ final readonly class CreateFilePurpose implements SdkOpenEnum
     public const USER_DATA = "user_data";
     public const EVALS = "evals";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class Files
@@ -81,7 +51,7 @@ class Files
     public static function listFiles(ClientConfig $clientConfig, string|SdkNotGiven $purpose = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, ListFilesOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListFilesResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/files", $clientConfig, query: ['purpose' => new SdkQueryValue($purpose, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: ListFilesResponse::class, decoder: 'json', operationId: 'listFiles', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/files", $clientConfig, query: ['purpose' => new SdkQueryValue($purpose, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: ListFilesResponse::class, decoder: 'json', operationId: 'listFiles', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListFilesResponse::class));
     }
 
@@ -166,7 +136,7 @@ class Files
     public static function createFile(ClientConfig $clientConfig, SdkUploadFile $file, CreateFilePurpose $purpose, FileExpirationAfter|SdkNotGiven $expiresAfter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): OpenAIFile
     {
 
-        $sdkResponse = SdkClient::request('POST', "/files", $clientConfig, body: ['file' => $file, 'purpose' => $purpose, 'expires_after' => new SdkMultipartPart($expiresAfter, "application/json")], contentType: 'multipart/form-data', returnType: OpenAIFile::class, decoder: 'json', operationId: 'createFile', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/files", $clientConfig, body: ['file' => $file, 'purpose' => $purpose, 'expires_after' => new SdkMultipartPart($expiresAfter, "application/json")], contentType: 'multipart/form-data', returnType: OpenAIFile::class, decoder: 'json', operationId: 'createFile', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OpenAIFile::class));
     }
 
@@ -182,7 +152,7 @@ class Files
     public static function deleteFile(ClientConfig $clientConfig, string $fileId, ?RequestOptions $requestOptions = null): DeleteFileResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: DeleteFileResponse::class, decoder: 'json', operationId: 'deleteFile', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: DeleteFileResponse::class, decoder: 'json', operationId: 'deleteFile', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteFileResponse::class));
     }
 
@@ -198,7 +168,7 @@ class Files
     public static function retrieveFile(ClientConfig $clientConfig, string $fileId, ?RequestOptions $requestOptions = null): OpenAIFile
     {
 
-        $sdkResponse = SdkClient::request('GET', "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: OpenAIFile::class, decoder: 'json', operationId: 'retrieveFile', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: OpenAIFile::class, decoder: 'json', operationId: 'retrieveFile', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OpenAIFile::class));
     }
 
@@ -214,7 +184,7 @@ class Files
     public static function downloadFile(ClientConfig $clientConfig, string $fileId, ?RequestOptions $requestOptions = null): string
     {
 
-        $sdkResponse = SdkClient::request('GET', "/files/" . SdkClient::encodePathSegment($fileId) . "/content", $clientConfig, decoder: 'bytes', operationId: 'downloadFile', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/files/" . SdkClient::encodePathSegment($fileId) . "/content", $clientConfig, decoder: 'bytes', operationId: 'downloadFile', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::stringValue($sdkResponse->data));
     }
 }

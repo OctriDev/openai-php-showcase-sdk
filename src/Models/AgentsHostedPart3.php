@@ -65,15 +65,9 @@ class HostedSkillResourceInline implements HostedSkillResource, \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "description") || $data->description === null) {
-            throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "description") || $data->description === null) { throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, HostedSkillResourceInlineTypeEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -168,21 +162,11 @@ class HostedSkillResourceSkillReference implements HostedSkillResource, \JsonSer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "skill_id") || $data->skill_id === null) {
-            throw new SdkValidationError("skill_id", 'required', "Required property 'skill_id' is missing or null");
-        }
-        if (!property_exists($data, "version") || $data->version === null) {
-            throw new SdkValidationError("version", 'required', "Required property 'version' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "description") || $data->description === null) {
-            throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "skill_id") || $data->skill_id === null) { throw new SdkValidationError("skill_id", 'required', "Required property 'skill_id' is missing or null"); }
+        if (!property_exists($data, "version") || $data->version === null) { throw new SdkValidationError("version", 'required', "Required property 'version' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "description") || $data->description === null) { throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, HostedSkillResourceSkillReferenceTypeEnum::class),
             skillId: SdkClient::stringValue($data->skill_id),
@@ -259,15 +243,9 @@ class HostedTemplateFileResourceFileId implements HostedTemplateFileResource, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, HostedTemplateFileResourceFileIdTypeEnum::class),
             fileId: SdkClient::stringValue($data->file_id),
@@ -342,15 +320,9 @@ class HostedTemplateFileResourceInline implements HostedTemplateFileResource, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
-        if (!property_exists($data, "size_bytes") || $data->size_bytes === null) {
-            throw new SdkValidationError("size_bytes", 'required', "Required property 'size_bytes' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
+        if (!property_exists($data, "size_bytes") || $data->size_bytes === null) { throw new SdkValidationError("size_bytes", 'required', "Required property 'size_bytes' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, HostedTemplateFileResourceInlineTypeEnum::class),
             path: SdkClient::stringValue($data->path),

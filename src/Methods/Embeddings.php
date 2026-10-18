@@ -12,26 +12,11 @@ final readonly class CreateEmbeddingEncodingFormat implements SdkOpenEnum
     public const FLOAT = "float";
     public const BASE64 = "base64";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class Embeddings
@@ -55,7 +40,7 @@ class Embeddings
             Validation::validateRange('dimensions', $dimensions, min: 1);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/embeddings", $clientConfig, body: ['input' => $input, 'model' => $model, 'encoding_format' => $encodingFormat, 'dimensions' => $dimensions, 'user' => $user], returnType: CreateEmbeddingResponse::class, decoder: 'json', operationId: 'createEmbedding', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/embeddings", $clientConfig, body: ['input' => $input, 'model' => $model, 'encoding_format' => $encodingFormat, 'dimensions' => $dimensions, 'user' => $user], returnType: CreateEmbeddingResponse::class, decoder: 'json', operationId: 'createEmbedding', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CreateEmbeddingResponse::class));
     }
 }

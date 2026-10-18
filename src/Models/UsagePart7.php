@@ -137,15 +137,9 @@ class UsageWebSearchCallsResult implements UsageTimeBucketResultsItem, \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) {
-            throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null");
-        }
-        if (!property_exists($data, "num_requests") || $data->num_requests === null) {
-            throw new SdkValidationError("num_requests", 'required', "Required property 'num_requests' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "num_model_requests") || $data->num_model_requests === null) { throw new SdkValidationError("num_model_requests", 'required', "Required property 'num_model_requests' is missing or null"); }
+        if (!property_exists($data, "num_requests") || $data->num_requests === null) { throw new SdkValidationError("num_requests", 'required', "Required property 'num_requests' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, UsageWebSearchCallsResultObjectEnum::class),
             numModelRequests: SdkClient::intValue($data->num_model_requests),

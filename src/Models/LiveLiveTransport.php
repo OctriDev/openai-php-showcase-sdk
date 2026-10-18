@@ -73,15 +73,9 @@ class LiveTransportAnswered implements LiveSidebandServerEvent, LiveServerEvent2
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "session_id") || $data->session_id === null) {
-            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             sessionId: SdkClient::stringValue($data->session_id),
@@ -97,26 +91,11 @@ final readonly class LiveTransportCallErrorTypeEnum implements SdkOpenEnum
 {
     public const CALL_ERROR = "call_error";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -189,15 +168,9 @@ class LiveTransportCallError implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "code") || $data->code === null) {
-            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
-        }
-        if (!property_exists($data, "message") || $data->message === null) {
-            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
+        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, LiveTransportCallErrorTypeEnum::class),
             code: SdkClient::stringValue($data->code),
@@ -273,15 +246,9 @@ class LiveTransportDTMFReceived implements LiveServerEvent2, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "event") || $data->event === null) {
-            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveTransportDTMFReceivedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -368,15 +335,9 @@ class LiveTransportDTMFSend implements LiveServerEvent2, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "event") || $data->event === null) {
-            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveTransportDTMFSendTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),

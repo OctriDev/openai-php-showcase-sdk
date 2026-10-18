@@ -45,9 +45,7 @@ class BetaProgrammaticToolCallingParam implements BetaTool, BetaToolSearchOutput
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaProgrammaticToolCallingParamTypeEnum::class),
         );
@@ -62,26 +60,11 @@ final readonly class BetaRankerVersionType implements SdkOpenEnum
     public const AUTO = "auto";
     public const DEFAULT_2024_11_15 = "default-2024-11-15";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -212,12 +195,8 @@ class BetaRefusalContent implements BetaOutputMessageContent, BetaOutputContent,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "refusal") || $data->refusal === null) {
-            throw new SdkValidationError("refusal", 'required', "Required property 'refusal' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "refusal") || $data->refusal === null) { throw new SdkValidationError("refusal", 'required', "Required property 'refusal' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaRefusalContentTypeEnum::class),
             refusal: SdkClient::stringValue($data->refusal),
@@ -271,9 +250,7 @@ class BetaScreenshotParam implements BetaComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaScreenshotParamTypeEnum::class),
         );

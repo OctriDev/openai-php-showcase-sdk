@@ -115,30 +115,14 @@ class SessionEventAgentSessionTurnContentPartAdded implements SessionEvent, \Jso
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "session_id") || $data->session_id === null) {
-            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
-        }
-        if (!property_exists($data, "turn_id")) {
-            throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "content_index") || $data->content_index === null) {
-            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
-        }
-        if (!property_exists($data, "part") || $data->part === null) {
-            throw new SdkValidationError("part", 'required', "Required property 'part' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
+        if (!property_exists($data, "turn_id")) { throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
+        if (!property_exists($data, "part") || $data->part === null) { throw new SdkValidationError("part", 'required', "Required property 'part' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionTurnContentPartAddedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -268,30 +252,14 @@ class SessionEventAgentSessionTurnContentPartDone implements SessionEvent, \Json
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "session_id") || $data->session_id === null) {
-            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
-        }
-        if (!property_exists($data, "turn_id")) {
-            throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "content_index") || $data->content_index === null) {
-            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
-        }
-        if (!property_exists($data, "part") || $data->part === null) {
-            throw new SdkValidationError("part", 'required', "Required property 'part' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
+        if (!property_exists($data, "turn_id")) { throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
+        if (!property_exists($data, "part") || $data->part === null) { throw new SdkValidationError("part", 'required', "Required property 'part' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionTurnContentPartDoneTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),

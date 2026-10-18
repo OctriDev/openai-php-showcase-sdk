@@ -77,15 +77,9 @@ class CreateVoiceFromConsentRequest implements CreateVoiceRequest, \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "audio_sample") || $data->audio_sample === null) {
-            throw new SdkValidationError("audio_sample", 'required', "Required property 'audio_sample' is missing or null");
-        }
-        if (!property_exists($data, "consent") || $data->consent === null) {
-            throw new SdkValidationError("consent", 'required', "Required property 'consent' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "audio_sample") || $data->audio_sample === null) { throw new SdkValidationError("audio_sample", 'required', "Required property 'audio_sample' is missing or null"); }
+        if (!property_exists($data, "consent") || $data->consent === null) { throw new SdkValidationError("consent", 'required', "Required property 'consent' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             audioSample: SdkClient::stringValue($data->audio_sample),
@@ -151,12 +145,8 @@ class SpeechAudioDeltaEvent implements CreateSpeechResponseStreamEvent, \JsonSer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "audio") || $data->audio === null) {
-            throw new SdkValidationError("audio", 'required', "Required property 'audio' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "audio") || $data->audio === null) { throw new SdkValidationError("audio", 'required', "Required property 'audio' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SpeechAudioDeltaEventTypeEnum::class),
             audio: SdkClient::stringValue($data->audio),
@@ -230,15 +220,9 @@ class SpeechAudioDoneEventUsage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) {
-            throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null");
-        }
-        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) {
-            throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null");
-        }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
-            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
-        }
+        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) { throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null"); }
+        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) { throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null"); }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
         return new self(
             inputTokens: SdkClient::intValue($data->input_tokens),
             outputTokens: SdkClient::intValue($data->output_tokens),
@@ -295,12 +279,8 @@ class SpeechAudioDoneEvent implements CreateSpeechResponseStreamEvent, \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "usage") || $data->usage === null) {
-            throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "usage") || $data->usage === null) { throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SpeechAudioDoneEventTypeEnum::class),
             usage: SdkClient::hydrateClass($data->usage, SpeechAudioDoneEventUsage::class),
@@ -315,24 +295,9 @@ final readonly class TranscriptionDiarizedSegmentTypeEnum implements SdkOpenEnum
 {
     public const TRANSCRIPT_TEXT_SEGMENT = "transcript.text.segment";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

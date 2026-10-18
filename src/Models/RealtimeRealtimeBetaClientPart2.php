@@ -87,18 +87,10 @@ class RealtimeBetaClientEventConversationItemTruncate implements \JsonSerializab
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
-        if (!property_exists($data, "content_index") || $data->content_index === null) {
-            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
-        }
-        if (!property_exists($data, "audio_end_ms") || $data->audio_end_ms === null) {
-            throw new SdkValidationError("audio_end_ms", 'required', "Required property 'audio_end_ms' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
+        if (!property_exists($data, "audio_end_ms") || $data->audio_end_ms === null) { throw new SdkValidationError("audio_end_ms", 'required', "Required property 'audio_end_ms' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventConversationItemTruncateTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -116,26 +108,11 @@ final readonly class RealtimeBetaClientEventInputAudioBufferAppendTypeEnum imple
 {
     public const INPUT_AUDIO_BUFFER_APPEND = "input_audio_buffer.append";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -198,12 +175,8 @@ class RealtimeBetaClientEventInputAudioBufferAppend implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "audio") || $data->audio === null) {
-            throw new SdkValidationError("audio", 'required', "Required property 'audio' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "audio") || $data->audio === null) { throw new SdkValidationError("audio", 'required', "Required property 'audio' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventInputAudioBufferAppendTypeEnum::class),
             audio: SdkClient::stringValue($data->audio),
@@ -219,26 +192,11 @@ final readonly class RealtimeBetaClientEventInputAudioBufferClearTypeEnum implem
 {
     public const INPUT_AUDIO_BUFFER_CLEAR = "input_audio_buffer.clear";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -291,9 +249,7 @@ class RealtimeBetaClientEventInputAudioBufferClear implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventInputAudioBufferClearTypeEnum::class),
             eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
@@ -308,26 +264,11 @@ final readonly class RealtimeBetaClientEventInputAudioBufferCommitTypeEnum imple
 {
     public const INPUT_AUDIO_BUFFER_COMMIT = "input_audio_buffer.commit";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -380,9 +321,7 @@ class RealtimeBetaClientEventInputAudioBufferCommit implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventInputAudioBufferCommitTypeEnum::class),
             eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
@@ -397,24 +336,9 @@ final readonly class RealtimeBetaClientEventOutputAudioBufferClearTypeEnum imple
 {
     public const OUTPUT_AUDIO_BUFFER_CLEAR = "output_audio_buffer.clear";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

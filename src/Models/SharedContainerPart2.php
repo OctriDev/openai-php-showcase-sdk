@@ -45,9 +45,7 @@ class ContainerNetworkPolicyDisabledParam implements AutoCodeInterpreterToolPara
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ContainerNetworkPolicyDisabledParamTypeEnum::class),
         );
@@ -112,15 +110,9 @@ class ContainerNetworkPolicyDomainSecretParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "domain") || $data->domain === null) {
-            throw new SdkValidationError("domain", 'required', "Required property 'domain' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "value") || $data->value === null) {
-            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
-        }
+        if (!property_exists($data, "domain") || $data->domain === null) { throw new SdkValidationError("domain", 'required', "Required property 'domain' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
         return new self(
             domain: SdkClient::stringValue($data->domain),
             name: SdkClient::stringValue($data->name),
@@ -185,12 +177,8 @@ class ContainerReferenceParam implements FunctionShellToolParamEnvironment, Func
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "container_id") || $data->container_id === null) {
-            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ContainerReferenceParamTypeEnum::class),
             containerId: SdkClient::stringValue($data->container_id),
@@ -254,12 +242,8 @@ class ContainerReferenceResource implements FunctionShellCallEnvironment, \JsonS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "container_id") || $data->container_id === null) {
-            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ContainerReferenceResourceTypeEnum::class),
             containerId: SdkClient::stringValue($data->container_id),

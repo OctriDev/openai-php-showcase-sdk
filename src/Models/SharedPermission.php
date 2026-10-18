@@ -45,9 +45,7 @@ class PermissionErrorResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "error") || $data->error === null) {
-            throw new SdkValidationError("error", 'required', "Required property 'error' is missing or null");
-        }
+        if (!property_exists($data, "error") || $data->error === null) { throw new SdkValidationError("error", 'required', "Required property 'error' is missing or null"); }
         return new self(
             error: (is_object($data->error) ? SdkClient::hydrateClass($data->error, Error3::class) : (is_string($data->error) ? SdkClient::stringValue($data->error) : SdkClient::hydrateClass($data->error, Error3::class))),
         );

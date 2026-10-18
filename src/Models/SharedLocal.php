@@ -65,9 +65,7 @@ class LocalEnvironmentParam implements FunctionShellToolParamEnvironment, Functi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LocalEnvironmentParamTypeEnum::class),
             skills: (property_exists($data, "skills") && $data->skills !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LocalSkillParam::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
@@ -121,9 +119,7 @@ class LocalEnvironmentResource implements FunctionShellCallEnvironment, \JsonSer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LocalEnvironmentResourceTypeEnum::class),
         );
@@ -137,26 +133,11 @@ final readonly class LocalShellExecActionTypeEnum implements SdkOpenEnum
 {
     public const EXEC = "exec";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -253,15 +234,9 @@ class LocalShellExecAction implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "command") || $data->command === null) {
-            throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null");
-        }
-        if (!property_exists($data, "env") || $data->env === null) {
-            throw new SdkValidationError("env", 'required', "Required property 'env' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "command") || $data->command === null) { throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null"); }
+        if (!property_exists($data, "env") || $data->env === null) { throw new SdkValidationError("env", 'required', "Required property 'env' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, LocalShellExecActionTypeEnum::class),
             command: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->command))),
@@ -290,24 +265,9 @@ final readonly class LocalShellToolCallStatusEnum implements SdkOpenEnum
     public const COMPLETED = "completed";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

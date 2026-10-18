@@ -55,12 +55,8 @@ class InferenceOptions implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "tool_choice")) {
-            throw new SdkValidationError("tool_choice", 'required', "Missing required property 'tool_choice'");
-        }
-        if (!property_exists($data, "model")) {
-            throw new SdkValidationError("model", 'required', "Missing required property 'model'");
-        }
+        if (!property_exists($data, "tool_choice")) { throw new SdkValidationError("tool_choice", 'required', "Missing required property 'tool_choice'"); }
+        if (!property_exists($data, "model")) { throw new SdkValidationError("model", 'required', "Missing required property 'model'"); }
         return new self(
             toolChoice: ($data->tool_choice === null ? null : SdkClient::hydrateClass($data->tool_choice, ToolChoice::class)),
             model: ($data->model === null ? null : SdkClient::stringValue($data->model)),
@@ -75,26 +71,11 @@ final readonly class ResponseOutputTextTypeEnum implements SdkOpenEnum
 {
     public const OUTPUT_TEXT = "output_text";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -155,15 +136,9 @@ class ResponseOutputText implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
-        if (!property_exists($data, "annotations") || $data->annotations === null) {
-            throw new SdkValidationError("annotations", 'required', "Required property 'annotations' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "annotations") || $data->annotations === null) { throw new SdkValidationError("annotations", 'required', "Required property 'annotations' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ResponseOutputTextTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -179,26 +154,11 @@ final readonly class TaskGroupItemObjectEnum implements SdkOpenEnum
 {
     public const CHATKIT_THREAD_ITEM = "chatkit.thread_item";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -297,24 +257,12 @@ class TaskGroupItem implements ThreadItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "thread_id") || $data->thread_id === null) {
-            throw new SdkValidationError("thread_id", 'required', "Required property 'thread_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "tasks") || $data->tasks === null) {
-            throw new SdkValidationError("tasks", 'required', "Required property 'tasks' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "thread_id") || $data->thread_id === null) { throw new SdkValidationError("thread_id", 'required', "Required property 'thread_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "tasks") || $data->tasks === null) { throw new SdkValidationError("tasks", 'required', "Required property 'tasks' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, TaskGroupItemObjectEnum::class),
@@ -384,15 +332,9 @@ class TaskGroupTask implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "heading")) {
-            throw new SdkValidationError("heading", 'required', "Missing required property 'heading'");
-        }
-        if (!property_exists($data, "summary")) {
-            throw new SdkValidationError("summary", 'required', "Missing required property 'summary'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "heading")) { throw new SdkValidationError("heading", 'required', "Missing required property 'heading'"); }
+        if (!property_exists($data, "summary")) { throw new SdkValidationError("summary", 'required', "Missing required property 'summary'"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, TaskType::class),
             heading: ($data->heading === null ? null : SdkClient::stringValue($data->heading)),

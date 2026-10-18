@@ -93,21 +93,11 @@ class BetaUrlCitationBody implements BetaAnnotation, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "url") || $data->url === null) {
-            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
-        }
-        if (!property_exists($data, "start_index") || $data->start_index === null) {
-            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
-        }
-        if (!property_exists($data, "end_index") || $data->end_index === null) {
-            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
-        }
-        if (!property_exists($data, "title") || $data->title === null) {
-            throw new SdkValidationError("title", 'required', "Required property 'title' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
+        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
+        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
+        if (!property_exists($data, "title") || $data->title === null) { throw new SdkValidationError("title", 'required', "Required property 'title' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaUrlCitationBodyTypeEnum::class),
             url: SdkClient::stringValue($data->url),
@@ -204,21 +194,11 @@ class BetaUrlCitationParam implements BetaOutputTextContentParamAnnotationsItem,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "start_index") || $data->start_index === null) {
-            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
-        }
-        if (!property_exists($data, "end_index") || $data->end_index === null) {
-            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
-        }
-        if (!property_exists($data, "url") || $data->url === null) {
-            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
-        }
-        if (!property_exists($data, "title") || $data->title === null) {
-            throw new SdkValidationError("title", 'required', "Required property 'title' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
+        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
+        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
+        if (!property_exists($data, "title") || $data->title === null) { throw new SdkValidationError("title", 'required', "Required property 'title' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaUrlCitationParamTypeEnum::class),
             startIndex: SdkClient::intValue($data->start_index),

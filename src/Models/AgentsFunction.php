@@ -113,27 +113,13 @@ class FunctionCallItemResource implements SessionTurnItemResource, AgentOutputIt
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
-            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
-        }
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "arguments")) {
-            throw new SdkValidationError("arguments", 'required', "Missing required property 'arguments'");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "arguments")) { throw new SdkValidationError("arguments", 'required', "Missing required property 'arguments'"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionCallItemResourceTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -252,27 +238,13 @@ class FunctionCallOutputItemResource implements SessionTurnItemResource, \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
-            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "output")) {
-            throw new SdkValidationError("output", 'required', "Missing required property 'output'");
-        }
-        if (!property_exists($data, "error")) {
-            throw new SdkValidationError("error", 'required', "Missing required property 'error'");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "output")) { throw new SdkValidationError("output", 'required', "Missing required property 'output'"); }
+        if (!property_exists($data, "error")) { throw new SdkValidationError("error", 'required', "Missing required property 'error'"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             turnId: SdkClient::stringValue($data->turn_id),
@@ -295,24 +267,9 @@ final readonly class FunctionCallStatusResource implements SdkOpenEnum
     public const FAILED = "failed";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

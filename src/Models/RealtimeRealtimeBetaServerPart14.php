@@ -85,21 +85,11 @@ class RealtimeBetaServerEventResponseOutputItemDone implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "response_id") || $data->response_id === null) {
-            throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "item") || $data->item === null) {
-            throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "response_id") || $data->response_id === null) { throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "item") || $data->item === null) { throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventResponseOutputItemDoneTypeEnum::class),
@@ -117,26 +107,11 @@ final readonly class RealtimeBetaServerEventResponseTextDeltaTypeEnum implements
 {
     public const RESPONSE_OUTPUT_TEXT_DELTA = "response.output_text.delta";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -237,27 +212,13 @@ class RealtimeBetaServerEventResponseTextDelta implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "response_id") || $data->response_id === null) {
-            throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "content_index") || $data->content_index === null) {
-            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
-        }
-        if (!property_exists($data, "delta") || $data->delta === null) {
-            throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "response_id") || $data->response_id === null) { throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
+        if (!property_exists($data, "delta") || $data->delta === null) { throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventResponseTextDeltaTypeEnum::class),
@@ -277,24 +238,9 @@ final readonly class RealtimeBetaServerEventResponseTextDoneTypeEnum implements 
 {
     public const RESPONSE_OUTPUT_TEXT_DONE = "response.output_text.done";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

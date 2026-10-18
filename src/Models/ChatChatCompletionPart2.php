@@ -75,18 +75,10 @@ class ChatCompletionResponseMessageAnnotationsItemUrlCitation implements \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "end_index") || $data->end_index === null) {
-            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
-        }
-        if (!property_exists($data, "start_index") || $data->start_index === null) {
-            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
-        }
-        if (!property_exists($data, "url") || $data->url === null) {
-            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
-        }
-        if (!property_exists($data, "title") || $data->title === null) {
-            throw new SdkValidationError("title", 'required', "Required property 'title' is missing or null");
-        }
+        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
+        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
+        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
+        if (!property_exists($data, "title") || $data->title === null) { throw new SdkValidationError("title", 'required', "Required property 'title' is missing or null"); }
         return new self(
             endIndex: SdkClient::intValue($data->end_index),
             startIndex: SdkClient::intValue($data->start_index),
@@ -144,12 +136,8 @@ class ChatCompletionResponseMessageAnnotationsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "url_citation") || $data->url_citation === null) {
-            throw new SdkValidationError("url_citation", 'required', "Required property 'url_citation' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "url_citation") || $data->url_citation === null) { throw new SdkValidationError("url_citation", 'required', "Required property 'url_citation' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ChatCompletionResponseMessageAnnotationsItemTypeEnum::class),
             urlCitation: SdkClient::hydrateClass($data->url_citation, ChatCompletionResponseMessageAnnotationsItemUrlCitation::class),
@@ -164,26 +152,11 @@ final readonly class ChatCompletionResponseMessageRoleEnum implements SdkOpenEnu
 {
     public const ASSISTANT = "assistant";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -234,12 +207,8 @@ class ChatCompletionResponseMessageFunctionCall implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "arguments") || $data->arguments === null) {
-            throw new SdkValidationError("arguments", 'required', "Required property 'arguments' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
+        if (!property_exists($data, "arguments") || $data->arguments === null) { throw new SdkValidationError("arguments", 'required', "Required property 'arguments' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
         return new self(
             arguments: SdkClient::stringValue($data->arguments),
             name: SdkClient::stringValue($data->name),
@@ -315,18 +284,10 @@ class ChatCompletionResponseMessageAudio implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "expires_at") || $data->expires_at === null) {
-            throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null");
-        }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "transcript") || $data->transcript === null) {
-            throw new SdkValidationError("transcript", 'required', "Required property 'transcript' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "expires_at") || $data->expires_at === null) { throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "transcript") || $data->transcript === null) { throw new SdkValidationError("transcript", 'required', "Required property 'transcript' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             expiresAt: SdkClient::intValue($data->expires_at),

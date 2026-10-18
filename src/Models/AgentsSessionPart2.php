@@ -167,42 +167,18 @@ class SessionResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "metadata") || $data->metadata === null) {
-            throw new SdkValidationError("metadata", 'required', "Required property 'metadata' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "last_active_at") || $data->last_active_at === null) {
-            throw new SdkValidationError("last_active_at", 'required', "Required property 'last_active_at' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "required_actions") || $data->required_actions === null) {
-            throw new SdkValidationError("required_actions", 'required', "Required property 'required_actions' is missing or null");
-        }
-        if (!property_exists($data, "error")) {
-            throw new SdkValidationError("error", 'required', "Missing required property 'error'");
-        }
-        if (!property_exists($data, "agent") || $data->agent === null) {
-            throw new SdkValidationError("agent", 'required', "Required property 'agent' is missing or null");
-        }
-        if (!property_exists($data, "environment") || $data->environment === null) {
-            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
-        }
-        if (!property_exists($data, "vault_ids") || $data->vault_ids === null) {
-            throw new SdkValidationError("vault_ids", 'required', "Required property 'vault_ids' is missing or null");
-        }
-        if (!property_exists($data, "usage")) {
-            throw new SdkValidationError("usage", 'required', "Missing required property 'usage'");
-        }
+        if (!property_exists($data, "metadata") || $data->metadata === null) { throw new SdkValidationError("metadata", 'required', "Required property 'metadata' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "last_active_at") || $data->last_active_at === null) { throw new SdkValidationError("last_active_at", 'required', "Required property 'last_active_at' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "required_actions") || $data->required_actions === null) { throw new SdkValidationError("required_actions", 'required', "Required property 'required_actions' is missing or null"); }
+        if (!property_exists($data, "error")) { throw new SdkValidationError("error", 'required', "Missing required property 'error'"); }
+        if (!property_exists($data, "agent") || $data->agent === null) { throw new SdkValidationError("agent", 'required', "Required property 'agent' is missing or null"); }
+        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
+        if (!property_exists($data, "vault_ids") || $data->vault_ids === null) { throw new SdkValidationError("vault_ids", 'required', "Required property 'vault_ids' is missing or null"); }
+        if (!property_exists($data, "usage")) { throw new SdkValidationError("usage", 'required', "Missing required property 'usage'"); }
         return new self(
             metadata: SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item)),
             id: SdkClient::stringValue($data->id),
@@ -231,26 +207,11 @@ final readonly class SessionStatusResource implements SdkOpenEnum
     public const REQUIRES_ACTION = "requires_action";
     public const FAILED = "failed";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -260,26 +221,11 @@ final readonly class SessionTraceListResourceObjectEnum implements SdkOpenEnum
 {
     public const LIST = "list";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -360,21 +306,11 @@ class SessionTraceListResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "first_id")) {
-            throw new SdkValidationError("first_id", 'required', "Missing required property 'first_id'");
-        }
-        if (!property_exists($data, "last_id")) {
-            throw new SdkValidationError("last_id", 'required', "Missing required property 'last_id'");
-        }
-        if (!property_exists($data, "has_more") || $data->has_more === null) {
-            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "first_id")) { throw new SdkValidationError("first_id", 'required', "Missing required property 'first_id'"); }
+        if (!property_exists($data, "last_id")) { throw new SdkValidationError("last_id", 'required', "Missing required property 'last_id'"); }
+        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, SessionTraceListResourceObjectEnum::class),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SessionTurnTraceResource::class), SdkClient::arrayValue($data->data))),

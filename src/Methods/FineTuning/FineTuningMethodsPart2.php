@@ -22,7 +22,7 @@ trait FineTuningMethodsPart2
     public static function listFineTuningJobCheckpoints(ClientConfig $clientConfig, string $fineTuningJobId, string|SdkNotGiven $after = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListFineTuningJobCheckpointsResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/fine_tuning/jobs/" . SdkClient::encodePathSegment($fineTuningJobId) . "/checkpoints", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ListFineTuningJobCheckpointsResponse::class, decoder: 'json', operationId: 'listFineTuningJobCheckpoints', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/fine_tuning/jobs/" . SdkClient::encodePathSegment($fineTuningJobId) . "/checkpoints", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ListFineTuningJobCheckpointsResponse::class, decoder: 'json', operationId: 'listFineTuningJobCheckpoints', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListFineTuningJobCheckpointsResponse::class));
     }
 
@@ -108,7 +108,7 @@ trait FineTuningMethodsPart2
     public static function listFineTuningEvents(ClientConfig $clientConfig, string $fineTuningJobId, string|SdkNotGiven $after = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListFineTuningJobEventsResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/fine_tuning/jobs/" . SdkClient::encodePathSegment($fineTuningJobId) . "/events", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ListFineTuningJobEventsResponse::class, decoder: 'json', operationId: 'listFineTuningEvents', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/fine_tuning/jobs/" . SdkClient::encodePathSegment($fineTuningJobId) . "/events", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ListFineTuningJobEventsResponse::class, decoder: 'json', operationId: 'listFineTuningEvents', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListFineTuningJobEventsResponse::class));
     }
 
@@ -124,7 +124,7 @@ trait FineTuningMethodsPart2
     public static function pauseFineTuningJob(ClientConfig $clientConfig, string $fineTuningJobId, ?RequestOptions $requestOptions = null): FineTuningJob
     {
 
-        $sdkResponse = SdkClient::request('POST', "/fine_tuning/jobs/" . SdkClient::encodePathSegment($fineTuningJobId) . "/pause", $clientConfig, returnType: FineTuningJob::class, decoder: 'json', operationId: 'pauseFineTuningJob', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/fine_tuning/jobs/" . SdkClient::encodePathSegment($fineTuningJobId) . "/pause", $clientConfig, returnType: FineTuningJob::class, decoder: 'json', operationId: 'pauseFineTuningJob', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, FineTuningJob::class));
     }
 
@@ -140,7 +140,7 @@ trait FineTuningMethodsPart2
     public static function resumeFineTuningJob(ClientConfig $clientConfig, string $fineTuningJobId, ?RequestOptions $requestOptions = null): FineTuningJob
     {
 
-        $sdkResponse = SdkClient::request('POST', "/fine_tuning/jobs/" . SdkClient::encodePathSegment($fineTuningJobId) . "/resume", $clientConfig, returnType: FineTuningJob::class, decoder: 'json', operationId: 'resumeFineTuningJob', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/fine_tuning/jobs/" . SdkClient::encodePathSegment($fineTuningJobId) . "/resume", $clientConfig, returnType: FineTuningJob::class, decoder: 'json', operationId: 'resumeFineTuningJob', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, FineTuningJob::class));
     }
 }

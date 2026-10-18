@@ -63,12 +63,8 @@ class LiveDecisionsDelegationParam implements Delegation, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "decisions") || $data->decisions === null) {
-            throw new SdkValidationError("decisions", 'required', "Required property 'decisions' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "decisions") || $data->decisions === null) { throw new SdkValidationError("decisions", 'required', "Required property 'decisions' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionsDelegationParamTypeEnum::class),
             decisions: SdkClient::hydrateClass($data->decisions, LiveDecisionsSettingsInputParam::class),
@@ -132,12 +128,8 @@ class LiveDecisionsDelegationParam2 implements LiveSessionCreateParamsDelegation
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "decisions") || $data->decisions === null) {
-            throw new SdkValidationError("decisions", 'required', "Required property 'decisions' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "decisions") || $data->decisions === null) { throw new SdkValidationError("decisions", 'required', "Required property 'decisions' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionsDelegationParam2TypeEnum::class),
             decisions: SdkClient::hydrateClass($data->decisions, LiveDecisionsSettingsInputParam2::class),
@@ -203,9 +195,7 @@ class LiveDecisionsDelegationUpdateParam implements LiveSessionUpdateParamsDeleg
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionsDelegationUpdateParamTypeEnum::class),
             decisions: (property_exists($data, "decisions") && $data->decisions !== null ? SdkClient::hydrateClass($data->decisions, LiveDecisionsSettingsUpdateParam::class) : SdkNotGiven::Value),
@@ -261,12 +251,8 @@ class LiveDecisionsSettingsInputParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "questions") || $data->questions === null) {
-            throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
+        if (!property_exists($data, "questions") || $data->questions === null) { throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
         return new self(
             questions: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, LiveDecisionQuestion::class, [LiveDecisionChoiceQuestionParam::class, LiveDecisionPredicateQuestionParam::class, LiveDecisionScoreQuestionParam::class], "type", ["choice" => LiveDecisionChoiceQuestionParam::class, "predicate" => LiveDecisionPredicateQuestionParam::class, "score" => LiveDecisionScoreQuestionParam::class], UnknownLiveDecisionQuestion::class), SdkClient::arrayValue($data->questions))),
             model: SdkClient::stringValue($data->model),
@@ -322,12 +308,8 @@ class LiveDecisionsSettingsInputParam2 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "questions") || $data->questions === null) {
-            throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
+        if (!property_exists($data, "questions") || $data->questions === null) { throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
         return new self(
             questions: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, QuestionParam::class, [QuestionParamPredicate::class, QuestionParamChoice::class, QuestionParamScore::class], "type", ["predicate" => QuestionParamPredicate::class, "choice" => QuestionParamChoice::class, "score" => QuestionParamScore::class], UnknownQuestionParam::class), SdkClient::arrayValue($data->questions))),
             model: SdkClient::stringValue($data->model),

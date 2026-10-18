@@ -65,9 +65,7 @@ class LiveResponseCreateParam implements LiveClientEvent, LiveForkClientEvent, L
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveResponseCreateParamTypeEnum::class),
             eventId: (property_exists($data, "event_id") ? ($data->event_id === null ? null : SdkClient::stringValue($data->event_id)) : SdkNotGiven::Value),
@@ -165,15 +163,9 @@ class LiveResponseEvent implements LiveSidebandServerEvent, LiveServerEvent2, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event") || $data->event === null) {
-            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveResponseEventTypeEnum::class),
@@ -252,12 +244,8 @@ class LiveResponseItemCreateParam implements LiveClientEvent, LiveForkClientEven
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item") || $data->item === null) {
-            throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item") || $data->item === null) { throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveResponseItemCreateParamTypeEnum::class),
             item: SdkClient::hydrateUnionAs($data->item, InputItem::class, [EasyInputMessage::class, InputMessage::class, OutputMessage::class, FileSearchToolCall::class, ComputerToolCall::class, ComputerCallOutputItemParam::class, WebSearchToolCall::class, FunctionToolCall::class, FunctionCallOutputItemParam::class, ToolSearchCallItemParam::class, ToolSearchOutputItemParam::class, AdditionalToolsItemParam::class, ResponseConfigurationUpdateItemParam::class, ReasoningItem::class, CompactionSummaryItemParam::class, ImageGenToolCall::class, CodeInterpreterToolCall::class, LocalShellToolCall::class, LocalShellToolCallOutput::class, FunctionShellCallItemParam::class, FunctionShellCallOutputItemParam::class, ApplyPatchToolCallItemParam::class, ApplyPatchToolCallOutputItemParam::class, MCPListTools::class, MCPApprovalRequest::class, MCPApprovalResponse::class, MCPToolCall::class, CustomToolCallOutput::class, CustomToolCall::class, CompactionTriggerItemParam::class, ItemReferenceParam::class, ProgramItemParam::class, ProgramOutputItemParam::class], "type", ["file_search_call" => FileSearchToolCall::class, "computer_call" => ComputerToolCall::class, "computer_call_output" => ComputerCallOutputItemParam::class, "web_search_call" => WebSearchToolCall::class, "function_call" => FunctionToolCall::class, "function_call_output" => FunctionCallOutputItemParam::class, "tool_search_call" => ToolSearchCallItemParam::class, "tool_search_output" => ToolSearchOutputItemParam::class, "additional_tools" => AdditionalToolsItemParam::class, "configuration_update" => ResponseConfigurationUpdateItemParam::class, "reasoning" => ReasoningItem::class, "compaction" => CompactionSummaryItemParam::class, "image_generation_call" => ImageGenToolCall::class, "code_interpreter_call" => CodeInterpreterToolCall::class, "local_shell_call" => LocalShellToolCall::class, "local_shell_call_output" => LocalShellToolCallOutput::class, "shell_call" => FunctionShellCallItemParam::class, "shell_call_output" => FunctionShellCallOutputItemParam::class, "apply_patch_call" => ApplyPatchToolCallItemParam::class, "apply_patch_call_output" => ApplyPatchToolCallOutputItemParam::class, "mcp_list_tools" => MCPListTools::class, "mcp_approval_request" => MCPApprovalRequest::class, "mcp_approval_response" => MCPApprovalResponse::class, "mcp_call" => MCPToolCall::class, "custom_tool_call_output" => CustomToolCallOutput::class, "custom_tool_call" => CustomToolCall::class, "compaction_trigger" => CompactionTriggerItemParam::class, "program" => ProgramItemParam::class, "program_output" => ProgramOutputItemParam::class]),

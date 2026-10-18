@@ -14,26 +14,11 @@ final readonly class SubagentObjectResource implements SdkOpenEnum
 {
     public const AGENT_SESSION_SUBAGENT = "agent.session.subagent";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -154,33 +139,15 @@ class SubagentResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "session_id") || $data->session_id === null) {
-            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
-        }
-        if (!property_exists($data, "name")) {
-            throw new SdkValidationError("name", 'required', "Missing required property 'name'");
-        }
-        if (!property_exists($data, "instructions")) {
-            throw new SdkValidationError("instructions", 'required', "Missing required property 'instructions'");
-        }
-        if (!property_exists($data, "parent_agent_id") || $data->parent_agent_id === null) {
-            throw new SdkValidationError("parent_agent_id", 'required', "Required property 'parent_agent_id' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "opened_at") || $data->opened_at === null) {
-            throw new SdkValidationError("opened_at", 'required', "Required property 'opened_at' is missing or null");
-        }
-        if (!property_exists($data, "closed_at")) {
-            throw new SdkValidationError("closed_at", 'required', "Missing required property 'closed_at'");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
+        if (!property_exists($data, "name")) { throw new SdkValidationError("name", 'required', "Missing required property 'name'"); }
+        if (!property_exists($data, "instructions")) { throw new SdkValidationError("instructions", 'required', "Missing required property 'instructions'"); }
+        if (!property_exists($data, "parent_agent_id") || $data->parent_agent_id === null) { throw new SdkValidationError("parent_agent_id", 'required', "Required property 'parent_agent_id' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "opened_at") || $data->opened_at === null) { throw new SdkValidationError("opened_at", 'required', "Required property 'opened_at' is missing or null"); }
+        if (!property_exists($data, "closed_at")) { throw new SdkValidationError("closed_at", 'required', "Missing required property 'closed_at'"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, SubagentObjectResource::class),
@@ -203,24 +170,9 @@ final readonly class SubagentStatusResource implements SdkOpenEnum
     public const ACTIVE = "active";
     public const CLOSED = "closed";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

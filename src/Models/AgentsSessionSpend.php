@@ -45,9 +45,7 @@ class SessionSpendControlParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "limit")) {
-            throw new SdkValidationError("limit", 'required', "Missing required property 'limit'");
-        }
+        if (!property_exists($data, "limit")) { throw new SdkValidationError("limit", 'required', "Missing required property 'limit'"); }
         return new self(
             limit: ($data->limit === null ? null : SdkClient::intValue($data->limit)),
         );
@@ -102,12 +100,8 @@ class SessionSpendControlResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "limit") || $data->limit === null) {
-            throw new SdkValidationError("limit", 'required', "Required property 'limit' is missing or null");
-        }
-        if (!property_exists($data, "consumed")) {
-            throw new SdkValidationError("consumed", 'required', "Missing required property 'consumed'");
-        }
+        if (!property_exists($data, "limit") || $data->limit === null) { throw new SdkValidationError("limit", 'required', "Required property 'limit' is missing or null"); }
+        if (!property_exists($data, "consumed")) { throw new SdkValidationError("consumed", 'required', "Missing required property 'consumed'"); }
         return new self(
             limit: SdkClient::intValue($data->limit),
             consumed: ($data->consumed === null ? null : SdkClient::intValue($data->consumed)),

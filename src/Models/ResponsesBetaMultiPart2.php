@@ -97,21 +97,11 @@ class BetaMultiAgentCallOutput implements BetaItemResource, BetaItemField, BetaO
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "action") || $data->action === null) {
-            throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null");
-        }
-        if (!property_exists($data, "output") || $data->output === null) {
-            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "action") || $data->action === null) { throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null"); }
+        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaMultiAgentCallOutputTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -223,18 +213,10 @@ class BetaMultiAgentCallOutputItemParam implements BetaInputItem, BetaItem, \Jso
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "action") || $data->action === null) {
-            throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null");
-        }
-        if (!property_exists($data, "output") || $data->output === null) {
-            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
-        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "action") || $data->action === null) { throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null"); }
+        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
         return new self(
             callId: SdkClient::stringValue($data->call_id),
             type: SdkClient::hydrateEnum($data->type, BetaMultiAgentCallOutputItemParamTypeEnum::class),
@@ -296,9 +278,7 @@ class BetaMultiAgentParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "enabled") || $data->enabled === null) {
-            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
-        }
+        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
             maxConcurrentSubagents: (property_exists($data, "max_concurrent_subagents") && $data->max_concurrent_subagents !== null ? SdkClient::intValue($data->max_concurrent_subagents) : SdkNotGiven::Value),

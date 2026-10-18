@@ -101,15 +101,9 @@ class McpTransportConfigParamStdio implements McpTransportConfigParam, \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "command") || $data->command === null) {
-            throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null");
-        }
-        if (!property_exists($data, "cwd") || $data->cwd === null) {
-            throw new SdkValidationError("cwd", 'required', "Required property 'cwd' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "command") || $data->command === null) { throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null"); }
+        if (!property_exists($data, "cwd") || $data->cwd === null) { throw new SdkValidationError("cwd", 'required', "Required property 'cwd' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, McpTransportConfigParamStdioTypeEnum::class),
             command: SdkClient::stringValue($data->command),
@@ -177,12 +171,8 @@ class McpTransportResourceHttp implements McpTransportResource, \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "server_url") || $data->server_url === null) {
-            throw new SdkValidationError("server_url", 'required', "Required property 'server_url' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "server_url") || $data->server_url === null) { throw new SdkValidationError("server_url", 'required', "Required property 'server_url' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, McpTransportResourceHttpTypeEnum::class),
             serverUrl: SdkClient::stringValue($data->server_url),
@@ -276,21 +266,11 @@ class McpTransportResourceStdio implements McpTransportResource, \JsonSerializab
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "command") || $data->command === null) {
-            throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null");
-        }
-        if (!property_exists($data, "args") || $data->args === null) {
-            throw new SdkValidationError("args", 'required', "Required property 'args' is missing or null");
-        }
-        if (!property_exists($data, "cwd") || $data->cwd === null) {
-            throw new SdkValidationError("cwd", 'required', "Required property 'cwd' is missing or null");
-        }
-        if (!property_exists($data, "env_vars") || $data->env_vars === null) {
-            throw new SdkValidationError("env_vars", 'required', "Required property 'env_vars' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "command") || $data->command === null) { throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null"); }
+        if (!property_exists($data, "args") || $data->args === null) { throw new SdkValidationError("args", 'required', "Required property 'args' is missing or null"); }
+        if (!property_exists($data, "cwd") || $data->cwd === null) { throw new SdkValidationError("cwd", 'required', "Required property 'cwd' is missing or null"); }
+        if (!property_exists($data, "env_vars") || $data->env_vars === null) { throw new SdkValidationError("env_vars", 'required', "Required property 'env_vars' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, McpTransportResourceStdioTypeEnum::class),
             command: SdkClient::stringValue($data->command),

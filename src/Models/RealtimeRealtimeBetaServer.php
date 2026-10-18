@@ -14,26 +14,11 @@ final readonly class RealtimeBetaServerEventConversationItemCreatedTypeEnum impl
 {
     public const CONVERSATION_ITEM_CREATED = "conversation.item.created";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -106,15 +91,9 @@ class RealtimeBetaServerEventConversationItemCreated implements \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item") || $data->item === null) {
-            throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item") || $data->item === null) { throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventConversationItemCreatedTypeEnum::class),
@@ -131,26 +110,11 @@ final readonly class RealtimeBetaServerEventConversationItemDeletedTypeEnum impl
 {
     public const CONVERSATION_ITEM_DELETED = "conversation.item.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -211,15 +175,9 @@ class RealtimeBetaServerEventConversationItemDeleted implements \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventConversationItemDeletedTypeEnum::class),
@@ -235,26 +193,11 @@ final readonly class RealtimeBetaServerEventConversationItemInputAudioTranscript
 {
     public const CONVERSATION_ITEM_INPUT_AUDIO_TRANSCRIPTION_COMPLETED = "conversation.item.input_audio_transcription.completed";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -369,24 +312,12 @@ class RealtimeBetaServerEventConversationItemInputAudioTranscriptionCompleted im
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
-        if (!property_exists($data, "content_index") || $data->content_index === null) {
-            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
-        }
-        if (!property_exists($data, "transcript") || $data->transcript === null) {
-            throw new SdkValidationError("transcript", 'required', "Required property 'transcript' is missing or null");
-        }
-        if (!property_exists($data, "usage") || $data->usage === null) {
-            throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
+        if (!property_exists($data, "transcript") || $data->transcript === null) { throw new SdkValidationError("transcript", 'required', "Required property 'transcript' is missing or null"); }
+        if (!property_exists($data, "usage") || $data->usage === null) { throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum::class),
@@ -407,24 +338,9 @@ final readonly class RealtimeBetaServerEventConversationItemInputAudioTranscript
 {
     public const CONVERSATION_ITEM_INPUT_AUDIO_TRANSCRIPTION_DELTA = "conversation.item.input_audio_transcription.delta";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

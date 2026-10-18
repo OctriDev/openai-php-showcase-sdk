@@ -14,26 +14,11 @@ final readonly class UpdateOrganizationDataRetentionRetentionType implements Sdk
     public const ENHANCED_ZERO_DATA_RETENTION = "enhanced_zero_data_retention";
     public const ENHANCED_MODIFIED_ABUSE_MONITORING = "enhanced_modified_abuse_monitoring";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class UpdateProjectDataRetentionRetentionType implements SdkOpenEnum
@@ -45,26 +30,11 @@ final readonly class UpdateProjectDataRetentionRetentionType implements SdkOpenE
     public const ENHANCED_ZERO_DATA_RETENTION = "enhanced_zero_data_retention";
     public const ENHANCED_MODIFIED_ABUSE_MONITORING = "enhanced_modified_abuse_monitoring";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class DataRetention
@@ -79,7 +49,7 @@ class DataRetention
     public static function retrieveOrganizationDataRetention(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): OrganizationDataRetention
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/data_retention", $clientConfig, returnType: OrganizationDataRetention::class, decoder: 'json', operationId: 'retrieveOrganizationDataRetention', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/data_retention", $clientConfig, returnType: OrganizationDataRetention::class, decoder: 'json', operationId: 'retrieveOrganizationDataRetention', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationDataRetention::class));
     }
 
@@ -95,7 +65,7 @@ class DataRetention
     public static function updateOrganizationDataRetention(ClientConfig $clientConfig, UpdateOrganizationDataRetentionRetentionType $retentionType, ?RequestOptions $requestOptions = null): OrganizationDataRetention
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/data_retention", $clientConfig, body: ['retention_type' => $retentionType], returnType: OrganizationDataRetention::class, decoder: 'json', operationId: 'updateOrganizationDataRetention', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/data_retention", $clientConfig, body: ['retention_type' => $retentionType], returnType: OrganizationDataRetention::class, decoder: 'json', operationId: 'updateOrganizationDataRetention', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationDataRetention::class));
     }
 
@@ -111,7 +81,7 @@ class DataRetention
     public static function retrieveProjectDataRetention(ClientConfig $clientConfig, string $projectId, ?RequestOptions $requestOptions = null): ProjectDataRetention
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/data_retention", $clientConfig, returnType: ProjectDataRetention::class, decoder: 'json', operationId: 'retrieveProjectDataRetention', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/data_retention", $clientConfig, returnType: ProjectDataRetention::class, decoder: 'json', operationId: 'retrieveProjectDataRetention', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectDataRetention::class));
     }
 
@@ -128,7 +98,7 @@ class DataRetention
     public static function updateProjectDataRetention(ClientConfig $clientConfig, string $projectId, UpdateProjectDataRetentionRetentionType $retentionType, ?RequestOptions $requestOptions = null): ProjectDataRetention
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/data_retention", $clientConfig, body: ['retention_type' => $retentionType], returnType: ProjectDataRetention::class, decoder: 'json', operationId: 'updateProjectDataRetention', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/data_retention", $clientConfig, body: ['retention_type' => $retentionType], returnType: ProjectDataRetention::class, decoder: 'json', operationId: 'updateProjectDataRetention', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectDataRetention::class));
     }
 }

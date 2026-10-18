@@ -65,15 +65,9 @@ class DecisionResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "answers") || $data->answers === null) {
-            throw new SdkValidationError("answers", 'required', "Required property 'answers' is missing or null");
-        }
-        if (!property_exists($data, "usage") || $data->usage === null) {
-            throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null");
-        }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "answers") || $data->answers === null) { throw new SdkValidationError("answers", 'required', "Required property 'answers' is missing or null"); }
+        if (!property_exists($data, "usage") || $data->usage === null) { throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null"); }
         return new self(
             model: SdkClient::stringValue($data->model),
             answers: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, AnswerResource::class, [AnswerResourcePredicate::class, AnswerResourceChoice::class, AnswerResourceScore::class, AnswerResourceRefusal::class], "type", ["predicate" => AnswerResourcePredicate::class, "choice" => AnswerResourceChoice::class, "score" => AnswerResourceScore::class, "refusal" => AnswerResourceRefusal::class], UnknownAnswerResource::class), SdkClient::arrayValue($data->answers))),

@@ -19,7 +19,7 @@ class Models
     public static function listModels(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): ListModelsResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/models", $clientConfig, returnType: ListModelsResponse::class, decoder: 'json', operationId: 'listModels', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/models", $clientConfig, returnType: ListModelsResponse::class, decoder: 'json', operationId: 'listModels', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListModelsResponse::class));
     }
 
@@ -35,7 +35,7 @@ class Models
     public static function retrieveModel(ClientConfig $clientConfig, string $model, ?RequestOptions $requestOptions = null): Model
     {
 
-        $sdkResponse = SdkClient::request('GET', "/models/" . SdkClient::encodePathSegment($model) . "", $clientConfig, returnType: Model::class, decoder: 'json', operationId: 'retrieveModel', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/models/" . SdkClient::encodePathSegment($model) . "", $clientConfig, returnType: Model::class, decoder: 'json', operationId: 'retrieveModel', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Model::class));
     }
 
@@ -51,7 +51,7 @@ class Models
     public static function deleteModel(ClientConfig $clientConfig, string $model, ?RequestOptions $requestOptions = null): DeleteModelResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/models/" . SdkClient::encodePathSegment($model) . "", $clientConfig, returnType: DeleteModelResponse::class, decoder: 'json', operationId: 'deleteModel', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/models/" . SdkClient::encodePathSegment($model) . "", $clientConfig, returnType: DeleteModelResponse::class, decoder: 'json', operationId: 'deleteModel', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteModelResponse::class));
     }
 }

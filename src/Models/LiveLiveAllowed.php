@@ -57,9 +57,7 @@ class LiveAllowedServerEventParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::stringValue($data->type),
             responseEvent: (property_exists($data, "response_event") && $data->response_event !== null ? SdkClient::stringValue($data->response_event) : SdkNotGiven::Value),
@@ -74,26 +72,11 @@ final readonly class LiveAllowedToolsChoiceParamTypeEnum implements SdkOpenEnum
 {
     public const ALLOWED_TOOLS = "allowed_tools";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -156,12 +139,8 @@ class LiveAllowedToolsChoiceParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "tools") || $data->tools === null) {
-            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "tools") || $data->tools === null) { throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, LiveAllowedToolsChoiceParamTypeEnum::class),
             tools: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, LiveAllowedToolsChoiceParamToolsItem::class, [LiveFunctionToolChoiceParam::class, LiveMCPToolChoiceParam::class, LiveSpecificFileSearchParam::class, LiveSpecificWebSearchParam::class, LiveSpecificWebSearchPreviewParam::class, LiveSpecificImageGenParam::class, LiveSpecificComputerParam::class, LiveSpecificCodeInterpreterParam::class, LiveSpecificProgrammaticToolCallingParam::class, LiveSpecificFunctionShellParam::class, LiveSpecificCustomToolParam::class, LiveSpecificApplyPatchParam::class], "type", ["function" => LiveFunctionToolChoiceParam::class, "mcp" => LiveMCPToolChoiceParam::class, "file_search" => LiveSpecificFileSearchParam::class, "web_search" => LiveSpecificWebSearchParam::class, "web_search_preview" => LiveSpecificWebSearchPreviewParam::class, "image_generation" => LiveSpecificImageGenParam::class, "computer" => LiveSpecificComputerParam::class, "code_interpreter" => LiveSpecificCodeInterpreterParam::class, "programmatic_tool_calling" => LiveSpecificProgrammaticToolCallingParam::class, "shell" => LiveSpecificFunctionShellParam::class, "custom" => LiveSpecificCustomToolParam::class, "apply_patch" => LiveSpecificApplyPatchParam::class], UnknownLiveAllowedToolsChoiceParamToolsItem::class), SdkClient::arrayValue($data->tools))),

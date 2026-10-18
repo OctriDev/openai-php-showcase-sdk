@@ -32,7 +32,7 @@ trait ResponsesMethodsPart2
             streamFormat: 'sse',
             streamMediaType: 'text/event-stream',
             requestOptions: $requestOptions,
-            errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)],
+            errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]
         ) as $_ev) {
             if ($_ev->data === '[DONE]') {
                 return;
@@ -57,7 +57,7 @@ trait ResponsesMethodsPart2
     public static function betaGetResponse(ClientConfig $clientConfig, string $responseId, array|SdkNotGiven $include = SdkNotGiven::Value, bool|SdkNotGiven $stream = SdkNotGiven::Value, int|SdkNotGiven $startingAfter = SdkNotGiven::Value, bool|SdkNotGiven $includeObfuscation = SdkNotGiven::Value, array|SdkNotGiven $openaiBeta = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): BetaResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/responses/" . SdkClient::encodePathSegment($responseId) . "?beta=true", $clientConfig, query: ['include' => new SdkQueryValue($include, "form", true), 'stream' => new SdkQueryValue($stream, "form", true), 'starting_after' => new SdkQueryValue($startingAfter, "form", true), 'include_obfuscation' => new SdkQueryValue($includeObfuscation, "form", true)], returnType: BetaResponse::class, decoder: 'json', operationId: 'betaGetResponse', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/responses/" . SdkClient::encodePathSegment($responseId) . "?beta=true", $clientConfig, query: ['include' => new SdkQueryValue($include, "form", true), 'stream' => new SdkQueryValue($stream, "form", true), 'starting_after' => new SdkQueryValue($startingAfter, "form", true), 'include_obfuscation' => new SdkQueryValue($includeObfuscation, "form", true)], returnType: BetaResponse::class, decoder: 'json', operationId: 'betaGetResponse', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BetaResponse::class));
     }
 
@@ -83,17 +83,17 @@ trait ResponsesMethodsPart2
             "/responses/" . SdkClient::encodePathSegment($responseId) . "?beta=true",
             config: $clientConfig,
             query: [
-                'include' => new SdkQueryValue($include, "form", true),
-                'stream' => new SdkQueryValue($stream, "form", true),
-                'starting_after' => new SdkQueryValue($startingAfter, "form", true),
-                'include_obfuscation' => new SdkQueryValue($includeObfuscation, "form", true),
-            ],
+            'include' => new SdkQueryValue($include, "form", true),
+            'stream' => new SdkQueryValue($stream, "form", true),
+            'starting_after' => new SdkQueryValue($startingAfter, "form", true),
+            'include_obfuscation' => new SdkQueryValue($includeObfuscation, "form", true),
+        ],
             extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)],
             operationId: 'betaGetResponseStream',
             streamFormat: 'sse',
             streamMediaType: 'text/event-stream',
             requestOptions: $requestOptions,
-            errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)],
+            errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]
         ) as $_ev) {
             if ($_ev->data === '[DONE]') {
                 return;
@@ -114,7 +114,7 @@ trait ResponsesMethodsPart2
     public static function betaDeleteResponse(ClientConfig $clientConfig, string $responseId, array|SdkNotGiven $openaiBeta = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): BetaDeleteResponseResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/responses/" . SdkClient::encodePathSegment($responseId) . "?beta=true", $clientConfig, returnType: BetaDeleteResponseResponse::class, decoder: 'json', operationId: 'betaDeleteResponse', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/responses/" . SdkClient::encodePathSegment($responseId) . "?beta=true", $clientConfig, returnType: BetaDeleteResponseResponse::class, decoder: 'json', operationId: 'betaDeleteResponse', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BetaDeleteResponseResponse::class));
     }
 
@@ -131,7 +131,7 @@ trait ResponsesMethodsPart2
     public static function betaCancelResponse(ClientConfig $clientConfig, string $responseId, array|SdkNotGiven $openaiBeta = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): BetaResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/responses/" . SdkClient::encodePathSegment($responseId) . "/cancel?beta=true", $clientConfig, returnType: BetaResponse::class, decoder: 'json', operationId: 'betaCancelResponse', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/responses/" . SdkClient::encodePathSegment($responseId) . "/cancel?beta=true", $clientConfig, returnType: BetaResponse::class, decoder: 'json', operationId: 'betaCancelResponse', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BetaResponse::class));
     }
 
@@ -155,7 +155,7 @@ trait ResponsesMethodsPart2
     public static function betaResponsesCompact(ClientConfig $clientConfig, ?string $model, array|SdkNotGiven $openaiBeta = SdkNotGiven::Value, string|array|null|SdkNotGiven $input = SdkNotGiven::Value, string|null|SdkNotGiven $previousResponseId = SdkNotGiven::Value, string|null|SdkNotGiven $instructions = SdkNotGiven::Value, string|null|SdkNotGiven $promptCacheKey = SdkNotGiven::Value, BetaPromptCacheRetentionEnum|null|SdkNotGiven $promptCacheRetention = SdkNotGiven::Value, BetaPromptCacheOptionsParam|null|SdkNotGiven $promptCacheOptions = SdkNotGiven::Value, BetaServiceTierEnum|null|SdkNotGiven $serviceTier = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): BetaCompactResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/responses/compact?beta=true", $clientConfig, body: ['model' => $model, 'input' => $input, 'previous_response_id' => $previousResponseId, 'instructions' => $instructions, 'prompt_cache_key' => $promptCacheKey, 'prompt_cache_retention' => $promptCacheRetention, 'prompt_cache_options' => $promptCacheOptions, 'service_tier' => $serviceTier], returnType: BetaCompactResource::class, decoder: 'json', operationId: 'betaResponsesCompact', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/responses/compact?beta=true", $clientConfig, body: ['model' => $model, 'input' => $input, 'previous_response_id' => $previousResponseId, 'instructions' => $instructions, 'prompt_cache_key' => $promptCacheKey, 'prompt_cache_retention' => $promptCacheRetention, 'prompt_cache_options' => $promptCacheOptions, 'service_tier' => $serviceTier], returnType: BetaCompactResource::class, decoder: 'json', operationId: 'betaResponsesCompact', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BetaCompactResource::class));
     }
 
@@ -176,7 +176,7 @@ trait ResponsesMethodsPart2
     public static function betaListInputItems(ClientConfig $clientConfig, string $responseId, int|SdkNotGiven $limit = SdkNotGiven::Value, BetaListInputItemsOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $openaiBeta = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): BetaResponseItemList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/responses/" . SdkClient::encodePathSegment($responseId) . "/input_items?beta=true", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'include' => new SdkQueryValue($include, "form", true)], returnType: BetaResponseItemList::class, decoder: 'json', operationId: 'betaListInputItems', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/responses/" . SdkClient::encodePathSegment($responseId) . "/input_items?beta=true", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'include' => new SdkQueryValue($include, "form", true)], returnType: BetaResponseItemList::class, decoder: 'json', operationId: 'betaListInputItems', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BetaResponseItemList::class));
     }
 
@@ -275,7 +275,7 @@ trait ResponsesMethodsPart2
     public static function betaResponsesCountInputTokens(ClientConfig $clientConfig, array|SdkNotGiven $openaiBeta = SdkNotGiven::Value, string|null|SdkNotGiven $model = SdkNotGiven::Value, string|array|null|SdkNotGiven $input = SdkNotGiven::Value, string|null|SdkNotGiven $previousResponseId = SdkNotGiven::Value, array|null|SdkNotGiven $tools = SdkNotGiven::Value, BetaResponseTextParam|null|SdkNotGiven $text = SdkNotGiven::Value, BetaReasoning|null|SdkNotGiven $reasoning = SdkNotGiven::Value, BetaTruncationEnum|SdkNotGiven $truncation = SdkNotGiven::Value, string|null|SdkNotGiven $instructions = SdkNotGiven::Value, string|SdkNotGiven $personality = SdkNotGiven::Value, string|BetaConversationParam2|null|SdkNotGiven $conversation = SdkNotGiven::Value, BetaToolChoiceOptions|BetaToolChoiceAllowed|BetaToolChoiceTypes|BetaToolChoiceFunction|BetaToolChoiceMCP|BetaToolChoiceCustom|BetaSpecificProgrammaticToolCallingParam|BetaSpecificApplyPatchParam|BetaSpecificFunctionShellParam|null|SdkNotGiven $toolChoice = SdkNotGiven::Value, bool|null|SdkNotGiven $parallelToolCalls = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): BetaTokenCountsResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/responses/input_tokens?beta=true", $clientConfig, body: ['model' => $model, 'input' => $input, 'previous_response_id' => $previousResponseId, 'tools' => $tools, 'text' => $text, 'reasoning' => $reasoning, 'truncation' => $truncation, 'instructions' => $instructions, 'personality' => $personality, 'conversation' => $conversation, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls], returnType: BetaTokenCountsResource::class, decoder: 'json', operationId: 'betaResponsesCountInputTokens', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/responses/input_tokens?beta=true", $clientConfig, body: ['model' => $model, 'input' => $input, 'previous_response_id' => $previousResponseId, 'tools' => $tools, 'text' => $text, 'reasoning' => $reasoning, 'truncation' => $truncation, 'instructions' => $instructions, 'personality' => $personality, 'conversation' => $conversation, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls], returnType: BetaTokenCountsResource::class, decoder: 'json', operationId: 'betaResponsesCountInputTokens', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BetaTokenCountsResource::class));
     }
 }

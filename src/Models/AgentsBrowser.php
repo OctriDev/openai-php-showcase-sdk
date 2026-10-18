@@ -75,18 +75,10 @@ class BrowserAuthenticationFieldResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "label") || $data->label === null) {
-            throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "required") || $data->required === null) {
-            throw new SdkValidationError("required", 'required', "Required property 'required' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "label") || $data->label === null) { throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "required") || $data->required === null) { throw new SdkValidationError("required", 'required', "Required property 'required' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             label: SdkClient::stringValue($data->label),
@@ -144,12 +136,8 @@ class BrowserAuthenticationFieldValueParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "field_id") || $data->field_id === null) {
-            throw new SdkValidationError("field_id", 'required', "Required property 'field_id' is missing or null");
-        }
-        if (!property_exists($data, "value") || $data->value === null) {
-            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
-        }
+        if (!property_exists($data, "field_id") || $data->field_id === null) { throw new SdkValidationError("field_id", 'required', "Required property 'field_id' is missing or null"); }
+        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
         return new self(
             fieldId: SdkClient::stringValue($data->field_id),
             value: SdkClient::stringValue($data->value),
@@ -243,21 +231,11 @@ class BrowserAuthenticationHistoryRequestKindResourceBrowserAuthentication imple
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "reason")) {
-            throw new SdkValidationError("reason", 'required', "Missing required property 'reason'");
-        }
-        if (!property_exists($data, "credential_origin")) {
-            throw new SdkValidationError("credential_origin", 'required', "Missing required property 'credential_origin'");
-        }
-        if (!property_exists($data, "fields") || $data->fields === null) {
-            throw new SdkValidationError("fields", 'required', "Required property 'fields' is missing or null");
-        }
-        if (!property_exists($data, "options") || $data->options === null) {
-            throw new SdkValidationError("options", 'required', "Required property 'options' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "reason")) { throw new SdkValidationError("reason", 'required', "Missing required property 'reason'"); }
+        if (!property_exists($data, "credential_origin")) { throw new SdkValidationError("credential_origin", 'required', "Missing required property 'credential_origin'"); }
+        if (!property_exists($data, "fields") || $data->fields === null) { throw new SdkValidationError("fields", 'required', "Required property 'fields' is missing or null"); }
+        if (!property_exists($data, "options") || $data->options === null) { throw new SdkValidationError("options", 'required', "Required property 'options' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BrowserAuthenticationHistoryRequestKindResourceBrowserAuthenticationTypeEnum::class),
             reason: ($data->reason === null ? null : SdkClient::stringValue($data->reason)),
@@ -326,15 +304,9 @@ class BrowserAuthenticationOptionResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "label") || $data->label === null) {
-            throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null");
-        }
-        if (!property_exists($data, "field_ids") || $data->field_ids === null) {
-            throw new SdkValidationError("field_ids", 'required', "Required property 'field_ids' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "label") || $data->label === null) { throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null"); }
+        if (!property_exists($data, "field_ids") || $data->field_ids === null) { throw new SdkValidationError("field_ids", 'required', "Required property 'field_ids' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             label: SdkClient::stringValue($data->label),

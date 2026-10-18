@@ -57,9 +57,7 @@ class LiveSessionCloseParam implements LiveClientEvent, LiveForkClientEvent, Liv
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSessionCloseParamTypeEnum::class),
             eventId: (property_exists($data, "event_id") ? ($data->event_id === null ? null : SdkClient::stringValue($data->event_id)) : SdkNotGiven::Value),
@@ -189,9 +187,7 @@ class LiveSessionCreateParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
         return new self(
             model: SdkClient::stringValue($data->model),
             instructions: (property_exists($data, "instructions") ? ($data->instructions === null ? null : SdkClient::stringValue($data->instructions)) : SdkNotGiven::Value),
@@ -253,12 +249,8 @@ class LiveSessionCreateRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "session") || $data->session === null) {
-            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
-        }
-        if (!property_exists($data, "transport") || $data->transport === null) {
-            throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null");
-        }
+        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
+        if (!property_exists($data, "transport") || $data->transport === null) { throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null"); }
         return new self(
             session: SdkClient::hydrateClass($data->session, LiveMediaSessionCreateParams::class),
             transport: SdkClient::hydrateUnionAs($data->transport, LiveSessionCreateRequestTransport::class, [LiveWebRTCTransport::class, LiveSIPTransport::class], "type", ["webrtc" => LiveWebRTCTransport::class, "sip" => LiveSIPTransport::class], UnknownLiveSessionCreateRequestTransport::class),
@@ -314,12 +306,8 @@ class LiveSessionCreateRequestRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "session") || $data->session === null) {
-            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
-        }
-        if (!property_exists($data, "transport") || $data->transport === null) {
-            throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null");
-        }
+        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
+        if (!property_exists($data, "transport") || $data->transport === null) { throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null"); }
         return new self(
             session: SdkClient::hydrateClass($data->session, LiveMediaSessionCreateParams::class),
             transport: SdkClient::hydrateUnionAs($data->transport, LiveSessionCreateRequestTransportRequest::class, [LiveWebRTCTransport::class, LiveSIPTransportRequest::class], "type", ["webrtc" => LiveWebRTCTransport::class], UnknownLiveSessionCreateRequestTransportRequest::class),

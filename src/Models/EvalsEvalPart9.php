@@ -55,12 +55,8 @@ class EvalRunOutputItemSampleInputItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role") || $data->role === null) {
-            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
-        }
-        if (!property_exists($data, "content") || $data->content === null) {
-            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
-        }
+        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
         return new self(
             role: SdkClient::stringValue($data->role),
             content: SdkClient::stringValue($data->content),
@@ -195,18 +191,10 @@ class EvalRunOutputItemSampleUsage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
-            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
-        }
-        if (!property_exists($data, "completion_tokens") || $data->completion_tokens === null) {
-            throw new SdkValidationError("completion_tokens", 'required', "Required property 'completion_tokens' is missing or null");
-        }
-        if (!property_exists($data, "prompt_tokens") || $data->prompt_tokens === null) {
-            throw new SdkValidationError("prompt_tokens", 'required', "Required property 'prompt_tokens' is missing or null");
-        }
-        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) {
-            throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null");
-        }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
+        if (!property_exists($data, "completion_tokens") || $data->completion_tokens === null) { throw new SdkValidationError("completion_tokens", 'required', "Required property 'completion_tokens' is missing or null"); }
+        if (!property_exists($data, "prompt_tokens") || $data->prompt_tokens === null) { throw new SdkValidationError("prompt_tokens", 'required', "Required property 'prompt_tokens' is missing or null"); }
+        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) { throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null"); }
         return new self(
             totalTokens: SdkClient::intValue($data->total_tokens),
             completionTokens: SdkClient::intValue($data->completion_tokens),

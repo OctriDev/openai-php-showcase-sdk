@@ -117,27 +117,13 @@ class WebhookEndpointBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "url") || $data->url === null) {
-            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
-        }
-        if (!property_exists($data, "event_types") || $data->event_types === null) {
-            throw new SdkValidationError("event_types", 'required', "Required property 'event_types' is missing or null");
-        }
-        if (!property_exists($data, "signing_secret_hint")) {
-            throw new SdkValidationError("signing_secret_hint", 'required', "Missing required property 'signing_secret_hint'");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
+        if (!property_exists($data, "event_types") || $data->event_types === null) { throw new SdkValidationError("event_types", 'required', "Required property 'event_types' is missing or null"); }
+        if (!property_exists($data, "signing_secret_hint")) { throw new SdkValidationError("signing_secret_hint", 'required', "Missing required property 'signing_secret_hint'"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, WebhookEndpointBodyObjectEnum::class),
@@ -158,26 +144,11 @@ final readonly class WebhookEndpointListResourceObjectEnum implements SdkOpenEnu
 {
     public const LIST = "list";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -258,21 +229,11 @@ class WebhookEndpointListResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "first_id")) {
-            throw new SdkValidationError("first_id", 'required', "Missing required property 'first_id'");
-        }
-        if (!property_exists($data, "last_id")) {
-            throw new SdkValidationError("last_id", 'required', "Missing required property 'last_id'");
-        }
-        if (!property_exists($data, "has_more") || $data->has_more === null) {
-            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "first_id")) { throw new SdkValidationError("first_id", 'required', "Missing required property 'first_id'"); }
+        if (!property_exists($data, "last_id")) { throw new SdkValidationError("last_id", 'required', "Missing required property 'last_id'"); }
+        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, WebhookEndpointListResourceObjectEnum::class),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, WebhookEndpointBody::class), SdkClient::arrayValue($data->data))),

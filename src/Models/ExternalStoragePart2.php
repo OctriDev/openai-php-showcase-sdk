@@ -85,21 +85,11 @@ class ExternalStorageListResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "first_id")) {
-            throw new SdkValidationError("first_id", 'required', "Missing required property 'first_id'");
-        }
-        if (!property_exists($data, "last_id")) {
-            throw new SdkValidationError("last_id", 'required', "Missing required property 'last_id'");
-        }
-        if (!property_exists($data, "has_more") || $data->has_more === null) {
-            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "first_id")) { throw new SdkValidationError("first_id", 'required', "Missing required property 'first_id'"); }
+        if (!property_exists($data, "last_id")) { throw new SdkValidationError("last_id", 'required', "Missing required property 'last_id'"); }
+        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ExternalStorageListResourceObjectEnum::class),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ExternalStorageResponse::class), SdkClient::arrayValue($data->data))),
@@ -118,26 +108,11 @@ final readonly class ExternalStorageOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -226,21 +201,11 @@ class GcpExternalStorageProviderParams implements CreateExternalStorageBodyProvi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "bucket") || $data->bucket === null) {
-            throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null");
-        }
-        if (!property_exists($data, "workload_identity_project_number") || $data->workload_identity_project_number === null) {
-            throw new SdkValidationError("workload_identity_project_number", 'required', "Required property 'workload_identity_project_number' is missing or null");
-        }
-        if (!property_exists($data, "workload_identity_pool_id") || $data->workload_identity_pool_id === null) {
-            throw new SdkValidationError("workload_identity_pool_id", 'required', "Required property 'workload_identity_pool_id' is missing or null");
-        }
-        if (!property_exists($data, "workload_identity_provider_id") || $data->workload_identity_provider_id === null) {
-            throw new SdkValidationError("workload_identity_provider_id", 'required', "Required property 'workload_identity_provider_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "bucket") || $data->bucket === null) { throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null"); }
+        if (!property_exists($data, "workload_identity_project_number") || $data->workload_identity_project_number === null) { throw new SdkValidationError("workload_identity_project_number", 'required', "Required property 'workload_identity_project_number' is missing or null"); }
+        if (!property_exists($data, "workload_identity_pool_id") || $data->workload_identity_pool_id === null) { throw new SdkValidationError("workload_identity_pool_id", 'required', "Required property 'workload_identity_pool_id' is missing or null"); }
+        if (!property_exists($data, "workload_identity_provider_id") || $data->workload_identity_provider_id === null) { throw new SdkValidationError("workload_identity_provider_id", 'required', "Required property 'workload_identity_provider_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, GcpExternalStorageProviderParamsTypeEnum::class),
             bucket: SdkClient::stringValue($data->bucket),
@@ -327,18 +292,10 @@ class OciExternalStorageProviderParams implements CreateExternalStorageBodyProvi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "tenancy_ocid") || $data->tenancy_ocid === null) {
-            throw new SdkValidationError("tenancy_ocid", 'required', "Required property 'tenancy_ocid' is missing or null");
-        }
-        if (!property_exists($data, "region") || $data->region === null) {
-            throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null");
-        }
-        if (!property_exists($data, "bucket") || $data->bucket === null) {
-            throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "tenancy_ocid") || $data->tenancy_ocid === null) { throw new SdkValidationError("tenancy_ocid", 'required', "Required property 'tenancy_ocid' is missing or null"); }
+        if (!property_exists($data, "region") || $data->region === null) { throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null"); }
+        if (!property_exists($data, "bucket") || $data->bucket === null) { throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, OciExternalStorageProviderParamsTypeEnum::class),
             tenancyOcid: SdkClient::stringValue($data->tenancy_ocid),

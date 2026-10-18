@@ -14,26 +14,11 @@ final readonly class ComputerScreenshotResourceTypeEnum implements SdkOpenEnum
 {
     public const COMPUTER_SCREENSHOT = "computer_screenshot";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -84,12 +69,8 @@ class ComputerScreenshotResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "image_url") || $data->image_url === null) {
-            throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "image_url") || $data->image_url === null) { throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ComputerScreenshotResourceTypeEnum::class),
             imageUrl: SdkClient::stringValue($data->image_url),
@@ -183,21 +164,11 @@ class ComputerUseApprovalRequestKindResourceBrowserAuthentication implements Com
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "reason")) {
-            throw new SdkValidationError("reason", 'required', "Missing required property 'reason'");
-        }
-        if (!property_exists($data, "credential_origin")) {
-            throw new SdkValidationError("credential_origin", 'required', "Missing required property 'credential_origin'");
-        }
-        if (!property_exists($data, "fields") || $data->fields === null) {
-            throw new SdkValidationError("fields", 'required', "Required property 'fields' is missing or null");
-        }
-        if (!property_exists($data, "options") || $data->options === null) {
-            throw new SdkValidationError("options", 'required', "Required property 'options' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "reason")) { throw new SdkValidationError("reason", 'required', "Missing required property 'reason'"); }
+        if (!property_exists($data, "credential_origin")) { throw new SdkValidationError("credential_origin", 'required', "Missing required property 'credential_origin'"); }
+        if (!property_exists($data, "fields") || $data->fields === null) { throw new SdkValidationError("fields", 'required', "Required property 'fields' is missing or null"); }
+        if (!property_exists($data, "options") || $data->options === null) { throw new SdkValidationError("options", 'required', "Required property 'options' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ComputerUseApprovalRequestKindResourceBrowserAuthenticationTypeEnum::class),
             reason: ($data->reason === null ? null : SdkClient::stringValue($data->reason)),
@@ -274,15 +245,9 @@ class ComputerUseApprovalRequestKindResourceBrowserOriginAccess implements Compu
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "reason")) {
-            throw new SdkValidationError("reason", 'required', "Missing required property 'reason'");
-        }
-        if (!property_exists($data, "origin") || $data->origin === null) {
-            throw new SdkValidationError("origin", 'required', "Required property 'origin' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "reason")) { throw new SdkValidationError("reason", 'required', "Missing required property 'reason'"); }
+        if (!property_exists($data, "origin") || $data->origin === null) { throw new SdkValidationError("origin", 'required', "Required property 'origin' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ComputerUseApprovalRequestKindResourceBrowserOriginAccessTypeEnum::class),
             reason: ($data->reason === null ? null : SdkClient::stringValue($data->reason)),

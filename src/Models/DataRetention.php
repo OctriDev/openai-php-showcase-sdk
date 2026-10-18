@@ -14,26 +14,11 @@ final readonly class OrganizationDataRetentionObjectEnum implements SdkOpenEnum
 {
     public const ORGANIZATION_DATA_RETENTION = "organization.data_retention";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -46,26 +31,11 @@ final readonly class OrganizationDataRetentionTypeEnum implements SdkOpenEnum
     public const ENHANCED_ZERO_DATA_RETENTION = "enhanced_zero_data_retention";
     public const ENHANCED_MODIFIED_ABUSE_MONITORING = "enhanced_modified_abuse_monitoring";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -116,12 +86,8 @@ class OrganizationDataRetention implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, OrganizationDataRetentionObjectEnum::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, OrganizationDataRetentionTypeEnum::class),
@@ -136,26 +102,11 @@ final readonly class ProjectDataRetentionObjectEnum implements SdkOpenEnum
 {
     public const PROJECT_DATA_RETENTION = "project.data_retention";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -170,26 +121,11 @@ final readonly class ProjectDataRetentionTypeEnum implements SdkOpenEnum
     public const ENHANCED_ZERO_DATA_RETENTION = "enhanced_zero_data_retention";
     public const ENHANCED_MODIFIED_ABUSE_MONITORING = "enhanced_modified_abuse_monitoring";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -240,12 +176,8 @@ class ProjectDataRetention implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ProjectDataRetentionObjectEnum::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, ProjectDataRetentionTypeEnum::class),
@@ -263,26 +195,11 @@ final readonly class UpdateOrganizationDataRetentionBodyRetentionTypeEnum implem
     public const ENHANCED_ZERO_DATA_RETENTION = "enhanced_zero_data_retention";
     public const ENHANCED_MODIFIED_ABUSE_MONITORING = "enhanced_modified_abuse_monitoring";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -323,9 +240,7 @@ class UpdateOrganizationDataRetentionBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "retention_type") || $data->retention_type === null) {
-            throw new SdkValidationError("retention_type", 'required', "Required property 'retention_type' is missing or null");
-        }
+        if (!property_exists($data, "retention_type") || $data->retention_type === null) { throw new SdkValidationError("retention_type", 'required', "Required property 'retention_type' is missing or null"); }
         return new self(
             retentionType: SdkClient::hydrateStringEnumOrString($data->retention_type, UpdateOrganizationDataRetentionBodyRetentionTypeEnum::class),
         );
@@ -344,26 +259,11 @@ final readonly class UpdateProjectDataRetentionBodyRetentionTypeEnum implements 
     public const ENHANCED_ZERO_DATA_RETENTION = "enhanced_zero_data_retention";
     public const ENHANCED_MODIFIED_ABUSE_MONITORING = "enhanced_modified_abuse_monitoring";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -404,9 +304,7 @@ class UpdateProjectDataRetentionBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "retention_type") || $data->retention_type === null) {
-            throw new SdkValidationError("retention_type", 'required', "Required property 'retention_type' is missing or null");
-        }
+        if (!property_exists($data, "retention_type") || $data->retention_type === null) { throw new SdkValidationError("retention_type", 'required', "Required property 'retention_type' is missing or null"); }
         return new self(
             retentionType: SdkClient::hydrateStringEnumOrString($data->retention_type, UpdateProjectDataRetentionBodyRetentionTypeEnum::class),
         );

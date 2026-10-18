@@ -136,15 +136,9 @@ class RunStepDetailsToolCallsFileSearchResultObject implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
-        if (!property_exists($data, "file_name") || $data->file_name === null) {
-            throw new SdkValidationError("file_name", 'required', "Required property 'file_name' is missing or null");
-        }
-        if (!property_exists($data, "score") || $data->score === null) {
-            throw new SdkValidationError("score", 'required', "Required property 'score' is missing or null");
-        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
+        if (!property_exists($data, "file_name") || $data->file_name === null) { throw new SdkValidationError("file_name", 'required', "Required property 'file_name' is missing or null"); }
+        if (!property_exists($data, "score") || $data->score === null) { throw new SdkValidationError("score", 'required', "Required property 'score' is missing or null"); }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
             fileName: SdkClient::stringValue($data->file_name),
@@ -220,15 +214,9 @@ class RunStepDetailsToolCallsFunctionObjectFunction implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "arguments") || $data->arguments === null) {
-            throw new SdkValidationError("arguments", 'required', "Required property 'arguments' is missing or null");
-        }
-        if (!property_exists($data, "output")) {
-            throw new SdkValidationError("output", 'required', "Missing required property 'output'");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "arguments") || $data->arguments === null) { throw new SdkValidationError("arguments", 'required', "Required property 'arguments' is missing or null"); }
+        if (!property_exists($data, "output")) { throw new SdkValidationError("output", 'required', "Missing required property 'output'"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             arguments: SdkClient::stringValue($data->arguments),
@@ -295,15 +283,9 @@ class RunStepDetailsToolCallsFunctionObject implements RunStepDetailsToolCallsOb
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "function") || $data->function === null) {
-            throw new SdkValidationError("function", 'required', "Required property 'function' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "function") || $data->function === null) { throw new SdkValidationError("function", 'required', "Required property 'function' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             type: SdkClient::hydrateEnum($data->type, RunStepDetailsToolCallsFunctionObjectTypeEnum::class),

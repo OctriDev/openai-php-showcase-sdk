@@ -84,18 +84,10 @@ class ResponsesServerEventVariant49 implements ResponsesServerEvent, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant49TypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -191,18 +183,10 @@ class ResponsesServerEventVariant50 implements ResponsesServerEvent, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant50TypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
@@ -298,18 +282,10 @@ class ResponsesServerEventVariant51 implements ResponsesServerEvent, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant51TypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),

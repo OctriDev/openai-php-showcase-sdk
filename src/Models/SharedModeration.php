@@ -45,9 +45,7 @@ class ModerationConfigParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "mode") || $data->mode === null) {
-            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
-        }
+        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, ModerationMode::class),
         );
@@ -62,26 +60,11 @@ final readonly class ModerationInputType implements SdkOpenEnum
     public const TEXT = "text";
     public const IMAGE = "image";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -92,26 +75,11 @@ final readonly class ModerationMode implements SdkOpenEnum
     public const SCORE = "score";
     public const BLOCK = "block";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -164,9 +132,7 @@ class ModerationParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
         return new self(
             model: SdkClient::stringValue($data->model),
             policy: (property_exists($data, "policy") ? ($data->policy === null ? null : SdkClient::hydrateClass($data->policy, ModerationPolicyParam::class)) : SdkNotGiven::Value),
@@ -329,24 +295,12 @@ class ModerationResultBody implements ModerationInput, ModerationOutput, \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "flagged") || $data->flagged === null) {
-            throw new SdkValidationError("flagged", 'required', "Required property 'flagged' is missing or null");
-        }
-        if (!property_exists($data, "categories") || $data->categories === null) {
-            throw new SdkValidationError("categories", 'required', "Required property 'categories' is missing or null");
-        }
-        if (!property_exists($data, "category_scores") || $data->category_scores === null) {
-            throw new SdkValidationError("category_scores", 'required', "Required property 'category_scores' is missing or null");
-        }
-        if (!property_exists($data, "category_applied_input_types") || $data->category_applied_input_types === null) {
-            throw new SdkValidationError("category_applied_input_types", 'required', "Required property 'category_applied_input_types' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "flagged") || $data->flagged === null) { throw new SdkValidationError("flagged", 'required', "Required property 'flagged' is missing or null"); }
+        if (!property_exists($data, "categories") || $data->categories === null) { throw new SdkValidationError("categories", 'required', "Required property 'categories' is missing or null"); }
+        if (!property_exists($data, "category_scores") || $data->category_scores === null) { throw new SdkValidationError("category_scores", 'required', "Required property 'category_scores' is missing or null"); }
+        if (!property_exists($data, "category_applied_input_types") || $data->category_applied_input_types === null) { throw new SdkValidationError("category_applied_input_types", 'required', "Required property 'category_applied_input_types' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ModerationResultBodyTypeEnum::class),
             model: SdkClient::stringValue($data->model),

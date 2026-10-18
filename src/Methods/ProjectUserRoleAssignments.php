@@ -12,26 +12,11 @@ final readonly class ListProjectUserRoleAssignmentsOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class ProjectUserRoleAssignments
@@ -55,7 +40,7 @@ class ProjectUserRoleAssignments
             Validation::validateRange('limit', $limit, min: 0, max: 1000);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/projects/" . SdkClient::encodePathSegment($projectId) . "/users/" . SdkClient::encodePathSegment($userId) . "/roles", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: RoleListResource::class, decoder: 'json', operationId: 'listProjectUserRoleAssignments', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/projects/" . SdkClient::encodePathSegment($projectId) . "/users/" . SdkClient::encodePathSegment($userId) . "/roles", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: RoleListResource::class, decoder: 'json', operationId: 'listProjectUserRoleAssignments', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleListResource::class));
     }
 
@@ -145,7 +130,7 @@ class ProjectUserRoleAssignments
     public static function assignProjectUserRole(ClientConfig $clientConfig, string $projectId, string $userId, string $roleId, ?RequestOptions $requestOptions = null): UserRoleAssignment
     {
 
-        $sdkResponse = SdkClient::request('POST', "/projects/" . SdkClient::encodePathSegment($projectId) . "/users/" . SdkClient::encodePathSegment($userId) . "/roles", $clientConfig, body: ['role_id' => $roleId], returnType: UserRoleAssignment::class, decoder: 'json', operationId: 'assignProjectUserRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/projects/" . SdkClient::encodePathSegment($projectId) . "/users/" . SdkClient::encodePathSegment($userId) . "/roles", $clientConfig, body: ['role_id' => $roleId], returnType: UserRoleAssignment::class, decoder: 'json', operationId: 'assignProjectUserRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, UserRoleAssignment::class));
     }
 
@@ -163,7 +148,7 @@ class ProjectUserRoleAssignments
     public static function retrieveProjectUserRole(ClientConfig $clientConfig, string $projectId, string $userId, string $roleId, ?RequestOptions $requestOptions = null): AssignedRoleDetails
     {
 
-        $sdkResponse = SdkClient::request('GET', "/projects/" . SdkClient::encodePathSegment($projectId) . "/users/" . SdkClient::encodePathSegment($userId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: AssignedRoleDetails::class, decoder: 'json', operationId: 'retrieveProjectUserRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/projects/" . SdkClient::encodePathSegment($projectId) . "/users/" . SdkClient::encodePathSegment($userId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: AssignedRoleDetails::class, decoder: 'json', operationId: 'retrieveProjectUserRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AssignedRoleDetails::class));
     }
 
@@ -181,7 +166,7 @@ class ProjectUserRoleAssignments
     public static function unassignProjectUserRole(ClientConfig $clientConfig, string $projectId, string $userId, string $roleId, ?RequestOptions $requestOptions = null): DeletedRoleAssignmentResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/projects/" . SdkClient::encodePathSegment($projectId) . "/users/" . SdkClient::encodePathSegment($userId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: DeletedRoleAssignmentResource::class, decoder: 'json', operationId: 'unassignProjectUserRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/projects/" . SdkClient::encodePathSegment($projectId) . "/users/" . SdkClient::encodePathSegment($userId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: DeletedRoleAssignmentResource::class, decoder: 'json', operationId: 'unassignProjectUserRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedRoleAssignmentResource::class));
     }
 }

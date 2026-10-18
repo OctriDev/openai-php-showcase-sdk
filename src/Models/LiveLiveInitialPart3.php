@@ -91,12 +91,8 @@ class LiveInitialUserMessageItemParam implements LiveInitialItem, \JsonSerializa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role") || $data->role === null) {
-            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
-        }
-        if (!property_exists($data, "content") || $data->content === null) {
-            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
-        }
+        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
         return new self(
             role: SdkClient::hydrateEnum($data->role, LiveInitialUserMessageItemParamRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveInitialInputTextContentPartParam::class), SdkClient::arrayValue($data->content))),
