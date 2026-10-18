@@ -17,11 +17,26 @@ final readonly class EvalItemRoleEnum implements SdkOpenEnum
     public const SYSTEM = "system";
     public const DEVELOPER = "developer";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -31,11 +46,26 @@ final readonly class EvalItemTypeEnum implements SdkOpenEnum
 {
     public const MESSAGE = "message";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -98,8 +128,12 @@ class EvalItem implements CreateEvalItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
         return new self(
             role: SdkClient::hydrateStringEnumOrString($data->role, EvalItemRoleEnum::class),
             content: (is_object($data->content) ? SdkClient::hydrateUnion($data->content, [InputTextContent::class, EvalItemContentOutputText::class, EvalItemInputImage::class, InputAudio::class], null, []) : (is_array($data->content) ? array_values(array_map(static fn($item) => (is_object($item) ? SdkClient::hydrateUnion($item, [InputTextContent::class, EvalItemContentOutputText::class, EvalItemInputImage::class, InputAudio::class], "type", ["input_text" => InputTextContent::class, "output_text" => EvalItemContentOutputText::class, "input_image" => EvalItemInputImage::class, "input_audio" => InputAudio::class]) : (is_string($item) ? SdkClient::stringValue($item) : SdkClient::hydrateUnion($item, [InputTextContent::class, EvalItemContentOutputText::class, EvalItemInputImage::class, InputAudio::class], "type", ["input_text" => InputTextContent::class, "output_text" => EvalItemContentOutputText::class, "input_image" => EvalItemInputImage::class, "input_audio" => InputAudio::class]))), SdkClient::arrayValue($data->content))) : (is_string($data->content) ? SdkClient::stringValue($data->content) : SdkClient::hydrateUnion($data->content, [InputTextContent::class, EvalItemContentOutputText::class, EvalItemInputImage::class, InputAudio::class], null, [])))),
@@ -164,8 +198,12 @@ class EvalItemContentOutputText implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EvalItemContentOutputTextTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -241,8 +279,12 @@ class EvalItemInputImage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "image_url") || $data->image_url === null) { throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "image_url") || $data->image_url === null) {
+            throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EvalItemInputImageTypeEnum::class),
             imageUrl: SdkClient::stringValue($data->image_url),

@@ -85,11 +85,21 @@ class SessionEventAgentSessionEnvironmentDisconnected implements SessionEvent, \
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
-        if (!property_exists($data, "turn_id")) { throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'"); }
-        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "session_id") || $data->session_id === null) {
+            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id")) {
+            throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'");
+        }
+        if (!property_exists($data, "environment") || $data->environment === null) {
+            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionEnvironmentDisconnectedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -186,11 +196,21 @@ class SessionEventAgentSessionEnvironmentExpired implements SessionEvent, \JsonS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
-        if (!property_exists($data, "turn_id")) { throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'"); }
-        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "session_id") || $data->session_id === null) {
+            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id")) {
+            throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'");
+        }
+        if (!property_exists($data, "environment") || $data->environment === null) {
+            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionEnvironmentExpiredTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -287,11 +307,21 @@ class SessionEventAgentSessionEnvironmentFailed implements SessionEvent, \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
-        if (!property_exists($data, "turn_id")) { throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'"); }
-        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "session_id") || $data->session_id === null) {
+            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id")) {
+            throw new SdkValidationError("turn_id", 'required', "Missing required property 'turn_id'");
+        }
+        if (!property_exists($data, "environment") || $data->environment === null) {
+            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionEnvironmentFailedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),

@@ -75,10 +75,18 @@ class ComputerUsePreviewTool implements Tool, ToolSearchOutputTool, \JsonSeriali
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
-        if (!property_exists($data, "display_width") || $data->display_width === null) { throw new SdkValidationError("display_width", 'required', "Required property 'display_width' is missing or null"); }
-        if (!property_exists($data, "display_height") || $data->display_height === null) { throw new SdkValidationError("display_height", 'required', "Required property 'display_height' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "environment") || $data->environment === null) {
+            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
+        }
+        if (!property_exists($data, "display_width") || $data->display_width === null) {
+            throw new SdkValidationError("display_width", 'required', "Required property 'display_width' is missing or null");
+        }
+        if (!property_exists($data, "display_height") || $data->display_height === null) {
+            throw new SdkValidationError("display_height", 'required', "Required property 'display_height' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ComputerUsePreviewToolTypeEnum::class),
             environment: SdkClient::hydrateStringEnumOrString($data->environment, ComputerEnvironment::class),

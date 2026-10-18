@@ -85,9 +85,15 @@ class BetaResponseAudioDeltaEvent implements BetaResponseStreamEvent, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
-        if (!property_exists($data, "delta") || $data->delta === null) { throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
+        if (!property_exists($data, "delta") || $data->delta === null) {
+            throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseAudioDeltaEventTypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
@@ -165,8 +171,12 @@ class BetaResponseAudioDoneEvent implements BetaResponseStreamEvent, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseAudioDoneEventTypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
@@ -253,9 +263,15 @@ class BetaResponseAudioTranscriptDeltaEvent implements BetaResponseStreamEvent, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "delta") || $data->delta === null) { throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "delta") || $data->delta === null) {
+            throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseAudioTranscriptDeltaEventTypeEnum::class),
             delta: SdkClient::stringValue($data->delta),
@@ -333,8 +349,12 @@ class BetaResponseAudioTranscriptDoneEvent implements BetaResponseStreamEvent, \
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseAudioTranscriptDoneEventTypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),

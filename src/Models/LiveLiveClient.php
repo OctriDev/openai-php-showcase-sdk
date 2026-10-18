@@ -45,7 +45,9 @@ class LiveClientConfigParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data_channel") || $data->data_channel === null) { throw new SdkValidationError("data_channel", 'required', "Required property 'data_channel' is missing or null"); }
+        if (!property_exists($data, "data_channel") || $data->data_channel === null) {
+            throw new SdkValidationError("data_channel", 'required', "Required property 'data_channel' is missing or null");
+        }
         return new self(
             dataChannel: SdkClient::hydrateClass($data->data_channel, LiveDataChannelConfigParam::class),
         );
@@ -98,7 +100,9 @@ class LiveClientDelegationParam implements Delegation, LiveSessionCreateParamsDe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveClientDelegationParamTypeEnum::class),
         );

@@ -23,7 +23,7 @@ class Skills
 
         Validation::validateItems('files', $files, max: 500);
 
-        $sdkResponse = SdkClient::request('POST', "/skills", $clientConfig, body: new SdkFormValue(['files' => $files], ['files']), contentType: SdkClient::bodyContentType($contentType, null, 'application/json'), returnType: SkillResource::class, decoder: 'json', operationId: 'createSkill', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/skills", $clientConfig, body: new SdkFormValue(['files' => $files], ['files']), contentType: SdkClient::bodyContentType($contentType, null, 'application/json'), returnType: SkillResource::class, decoder: 'json', operationId: 'createSkill', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SkillResource::class));
     }
 
@@ -45,7 +45,7 @@ class Skills
             Validation::validateRange('limit', $limit, min: 0, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/skills", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: SkillListResource::class, decoder: 'json', operationId: 'listSkills', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/skills", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: SkillListResource::class, decoder: 'json', operationId: 'listSkills', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SkillListResource::class));
     }
 
@@ -129,7 +129,7 @@ class Skills
     public static function deleteSkill(ClientConfig $clientConfig, string $skillId, ?RequestOptions $requestOptions = null): DeletedSkillResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/skills/" . SdkClient::encodePathSegment($skillId) . "", $clientConfig, returnType: DeletedSkillResource::class, decoder: 'json', operationId: 'deleteSkill', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/skills/" . SdkClient::encodePathSegment($skillId) . "", $clientConfig, returnType: DeletedSkillResource::class, decoder: 'json', operationId: 'deleteSkill', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedSkillResource::class));
     }
 
@@ -145,7 +145,7 @@ class Skills
     public static function getSkill(ClientConfig $clientConfig, string $skillId, ?RequestOptions $requestOptions = null): SkillResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "", $clientConfig, returnType: SkillResource::class, decoder: 'json', operationId: 'getSkill', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "", $clientConfig, returnType: SkillResource::class, decoder: 'json', operationId: 'getSkill', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SkillResource::class));
     }
 
@@ -162,7 +162,7 @@ class Skills
     public static function updateSkillDefaultVersion(ClientConfig $clientConfig, string $skillId, string $defaultVersion, ?RequestOptions $requestOptions = null): SkillResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/skills/" . SdkClient::encodePathSegment($skillId) . "", $clientConfig, body: ['default_version' => $defaultVersion], returnType: SkillResource::class, decoder: 'json', operationId: 'updateSkillDefaultVersion', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/skills/" . SdkClient::encodePathSegment($skillId) . "", $clientConfig, body: ['default_version' => $defaultVersion], returnType: SkillResource::class, decoder: 'json', operationId: 'updateSkillDefaultVersion', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SkillResource::class));
     }
 
@@ -178,7 +178,7 @@ class Skills
     public static function getSkillContent(ClientConfig $clientConfig, string $skillId, ?RequestOptions $requestOptions = null): string
     {
 
-        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "/content", $clientConfig, decoder: 'bytes', operationId: 'getSkillContent', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "/content", $clientConfig, decoder: 'bytes', operationId: 'getSkillContent', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::stringValue($sdkResponse->data));
     }
 
@@ -199,7 +199,7 @@ class Skills
 
         Validation::validateItems('files', $files, max: 500);
 
-        $sdkResponse = SdkClient::request('POST', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions", $clientConfig, body: new SdkFormValue(['files' => $files, 'default' => $default], ['files']), contentType: SdkClient::bodyContentType($contentType, null, 'application/json'), returnType: SkillVersionResource::class, decoder: 'json', operationId: 'createSkillVersion', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions", $clientConfig, body: new SdkFormValue(['files' => $files, 'default' => $default], ['files']), contentType: SdkClient::bodyContentType($contentType, null, 'application/json'), returnType: SkillVersionResource::class, decoder: 'json', operationId: 'createSkillVersion', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SkillVersionResource::class));
     }
 
@@ -222,7 +222,7 @@ class Skills
             Validation::validateRange('limit', $limit, min: 0, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: SkillVersionListResource::class, decoder: 'json', operationId: 'listSkillVersions', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: SkillVersionListResource::class, decoder: 'json', operationId: 'listSkillVersions', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SkillVersionListResource::class));
     }
 
@@ -309,7 +309,7 @@ class Skills
     public static function getSkillVersion(ClientConfig $clientConfig, string $skillId, string $version, ?RequestOptions $requestOptions = null): SkillVersionResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions/" . SdkClient::encodePathSegment($version) . "", $clientConfig, returnType: SkillVersionResource::class, decoder: 'json', operationId: 'getSkillVersion', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions/" . SdkClient::encodePathSegment($version) . "", $clientConfig, returnType: SkillVersionResource::class, decoder: 'json', operationId: 'getSkillVersion', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SkillVersionResource::class));
     }
 
@@ -326,7 +326,7 @@ class Skills
     public static function deleteSkillVersion(ClientConfig $clientConfig, string $skillId, string $version, ?RequestOptions $requestOptions = null): DeletedSkillVersionResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions/" . SdkClient::encodePathSegment($version) . "", $clientConfig, returnType: DeletedSkillVersionResource::class, decoder: 'json', operationId: 'deleteSkillVersion', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions/" . SdkClient::encodePathSegment($version) . "", $clientConfig, returnType: DeletedSkillVersionResource::class, decoder: 'json', operationId: 'deleteSkillVersion', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedSkillVersionResource::class));
     }
 
@@ -343,7 +343,7 @@ class Skills
     public static function getSkillVersionContent(ClientConfig $clientConfig, string $skillId, string $version, ?RequestOptions $requestOptions = null): string
     {
 
-        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions/" . SdkClient::encodePathSegment($version) . "/content", $clientConfig, decoder: 'bytes', operationId: 'getSkillVersionContent', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/skills/" . SdkClient::encodePathSegment($skillId) . "/versions/" . SdkClient::encodePathSegment($version) . "/content", $clientConfig, decoder: 'bytes', operationId: 'getSkillVersionContent', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::stringValue($sdkResponse->data));
     }
 }

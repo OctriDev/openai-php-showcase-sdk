@@ -237,7 +237,9 @@ class CreateRunRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "assistant_id") || $data->assistant_id === null) { throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null"); }
+        if (!property_exists($data, "assistant_id") || $data->assistant_id === null) {
+            throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null");
+        }
         return new self(
             assistantId: SdkClient::stringValue($data->assistant_id),
             model: (property_exists($data, "model") ? ($data->model === null ? null : SdkClient::hydrateStringEnumOrString($data->model, AssistantSupportedModels::class)) : SdkNotGiven::Value),

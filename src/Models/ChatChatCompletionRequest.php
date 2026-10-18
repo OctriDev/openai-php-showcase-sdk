@@ -53,7 +53,9 @@ class ChatCompletionRequestAssistantMessageAudio implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
         );
@@ -108,8 +110,12 @@ class ChatCompletionRequestAssistantMessageFunctionCall implements \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "arguments") || $data->arguments === null) { throw new SdkValidationError("arguments", 'required', "Required property 'arguments' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "arguments") || $data->arguments === null) {
+            throw new SdkValidationError("arguments", 'required', "Required property 'arguments' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
         return new self(
             arguments: SdkClient::stringValue($data->arguments),
             name: SdkClient::stringValue($data->name),
@@ -227,7 +233,9 @@ class ChatCompletionRequestAssistantMessage implements ChatCompletionRequestMess
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
         return new self(
             role: SdkClient::hydrateEnum($data->role, ChatCompletionRequestAssistantMessageRoleEnum::class),
             content: (property_exists($data, "content") ? ($data->content === null ? null : (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ChatCompletionRequestAssistantMessageContentPart::class, [ChatCompletionRequestMessageContentPartText::class, ChatCompletionRequestMessageContentPartRefusal::class], "type", ["text" => ChatCompletionRequestMessageContentPartText::class, "refusal" => ChatCompletionRequestMessageContentPartRefusal::class], UnknownChatCompletionRequestAssistantMessageContentPart::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content))) : SdkNotGiven::Value),
@@ -308,8 +316,12 @@ class ChatCompletionRequestDeveloperMessage implements ChatCompletionRequestMess
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
-        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
         return new self(
             content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionRequestMessageContentPartText::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
             role: SdkClient::hydrateEnum($data->role, ChatCompletionRequestDeveloperMessageRoleEnum::class),

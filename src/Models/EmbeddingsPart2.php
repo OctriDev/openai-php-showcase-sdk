@@ -65,9 +65,15 @@ class Embedding implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
-        if (!property_exists($data, "embedding") || $data->embedding === null) { throw new SdkValidationError("embedding", 'required', "Required property 'embedding' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "index") || $data->index === null) {
+            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
+        }
+        if (!property_exists($data, "embedding") || $data->embedding === null) {
+            throw new SdkValidationError("embedding", 'required', "Required property 'embedding' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
         return new self(
             index: SdkClient::intValue($data->index),
             embedding: (is_array($data->embedding) ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->embedding))) : SdkClient::stringValue($data->embedding)),

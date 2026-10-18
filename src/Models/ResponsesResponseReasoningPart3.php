@@ -103,12 +103,24 @@ class ResponseReasoningTextDeltaEvent implements ResponseStreamEvent, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
-        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
-        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
-        if (!property_exists($data, "delta") || $data->delta === null) { throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
+        if (!property_exists($data, "output_index") || $data->output_index === null) {
+            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
+        }
+        if (!property_exists($data, "content_index") || $data->content_index === null) {
+            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
+        }
+        if (!property_exists($data, "delta") || $data->delta === null) {
+            throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseReasoningTextDeltaEventTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -216,12 +228,24 @@ class ResponseReasoningTextDoneEvent implements ResponseStreamEvent, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
-        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
-        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
+        if (!property_exists($data, "output_index") || $data->output_index === null) {
+            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
+        }
+        if (!property_exists($data, "content_index") || $data->content_index === null) {
+            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseReasoningTextDoneEventTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),

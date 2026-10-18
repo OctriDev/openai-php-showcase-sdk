@@ -67,8 +67,12 @@ class SkillReferenceParam implements ContainerAutoParamSkillsItem, CreateContain
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "skill_id") || $data->skill_id === null) { throw new SdkValidationError("skill_id", 'required', "Required property 'skill_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "skill_id") || $data->skill_id === null) {
+            throw new SdkValidationError("skill_id", 'required', "Required property 'skill_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SkillReferenceParamTypeEnum::class),
             skillId: SdkClient::stringValue($data->skill_id),
@@ -133,8 +137,12 @@ class SummaryTextContent implements MessageContentItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SummaryTextContentTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -200,9 +208,15 @@ class TopLogProb implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
-        if (!property_exists($data, "logprob") || $data->logprob === null) { throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null"); }
-        if (!property_exists($data, "bytes") || $data->bytes === null) { throw new SdkValidationError("bytes", 'required', "Required property 'bytes' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) {
+            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
+        }
+        if (!property_exists($data, "logprob") || $data->logprob === null) {
+            throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null");
+        }
+        if (!property_exists($data, "bytes") || $data->bytes === null) {
+            throw new SdkValidationError("bytes", 'required', "Required property 'bytes' is missing or null");
+        }
         return new self(
             token: SdkClient::stringValue($data->token),
             logprob: SdkClient::floatValue($data->logprob),
@@ -267,8 +281,12 @@ class TypeParam implements ComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TypeParamTypeEnum::class),
             text: SdkClient::stringValue($data->text),

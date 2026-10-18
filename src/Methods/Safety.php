@@ -22,7 +22,7 @@ class Safety
 
         Validation::validateLength('id', $id, max: 128);
 
-        $sdkResponse = SdkClient::request('GET', "/safety/cases/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: SafetyCaseResource::class, decoder: 'json', operationId: 'retrieveSafetyCase', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/safety/cases/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: SafetyCaseResource::class, decoder: 'json', operationId: 'retrieveSafetyCase', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SafetyCaseResource::class));
     }
 
@@ -40,7 +40,7 @@ class Safety
 
         Validation::validateLength('id', $id, max: 38);
 
-        $sdkResponse = SdkClient::request('GET', "/safety/alerts/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: SafetyAlertResource::class, decoder: 'json', operationId: 'retrieveSafetyAlert', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/safety/alerts/" . SdkClient::encodePathSegment($id) . "", $clientConfig, returnType: SafetyAlertResource::class, decoder: 'json', operationId: 'retrieveSafetyAlert', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, SafetyAlertResource::class));
     }
 }

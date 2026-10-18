@@ -125,15 +125,33 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionSegment implemen
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
-        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "speaker") || $data->speaker === null) { throw new SdkValidationError("speaker", 'required', "Required property 'speaker' is missing or null"); }
-        if (!property_exists($data, "start") || $data->start === null) { throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null"); }
-        if (!property_exists($data, "end") || $data->end === null) { throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
+        if (!property_exists($data, "content_index") || $data->content_index === null) {
+            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "speaker") || $data->speaker === null) {
+            throw new SdkValidationError("speaker", 'required', "Required property 'speaker' is missing or null");
+        }
+        if (!property_exists($data, "start") || $data->start === null) {
+            throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null");
+        }
+        if (!property_exists($data, "end") || $data->end === null) {
+            throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventConversationItemInputAudioTranscriptionSegmentTypeEnum::class),
@@ -214,9 +232,15 @@ class RealtimeServerEventConversationItemRetrieved implements RealtimeServerEven
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item") || $data->item === null) { throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item") || $data->item === null) {
+            throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventConversationItemRetrievedTypeEnum::class),
@@ -311,11 +335,21 @@ class RealtimeServerEventConversationItemTruncated implements RealtimeServerEven
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
-        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
-        if (!property_exists($data, "audio_end_ms") || $data->audio_end_ms === null) { throw new SdkValidationError("audio_end_ms", 'required', "Required property 'audio_end_ms' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
+        if (!property_exists($data, "content_index") || $data->content_index === null) {
+            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
+        }
+        if (!property_exists($data, "audio_end_ms") || $data->audio_end_ms === null) {
+            throw new SdkValidationError("audio_end_ms", 'required', "Required property 'audio_end_ms' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventConversationItemTruncatedTypeEnum::class),

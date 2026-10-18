@@ -55,8 +55,12 @@ class LiveCreateRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
-        if (!property_exists($data, "transport") || $data->transport === null) { throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null"); }
+        if (!property_exists($data, "session") || $data->session === null) {
+            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
+        }
+        if (!property_exists($data, "transport") || $data->transport === null) {
+            throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null");
+        }
         return new self(
             session: SdkClient::hydrateClass($data->session, LiveMediaSessionCreateParams::class),
             transport: SdkClient::hydrateClass($data->transport, LiveWebRTCTransport::class),
@@ -102,7 +106,9 @@ class LiveCreateResponseSession implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
         );
@@ -157,8 +163,12 @@ class LiveCreateResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
-        if (!property_exists($data, "transport") || $data->transport === null) { throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null"); }
+        if (!property_exists($data, "session") || $data->session === null) {
+            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
+        }
+        if (!property_exists($data, "transport") || $data->transport === null) {
+            throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null");
+        }
         return new self(
             session: SdkClient::hydrateClass($data->session, LiveCreateResponseSession::class),
             transport: SdkClient::hydrateClass($data->transport, LiveWebRTCTransport::class),

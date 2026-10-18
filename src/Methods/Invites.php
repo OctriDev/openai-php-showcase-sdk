@@ -12,11 +12,26 @@ final readonly class CreateInvitesRole implements SdkOpenEnum
     public const READER = "reader";
     public const OWNER = "owner";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -27,11 +42,26 @@ final readonly class CreateInvitesProjectsItemRoleEnum implements SdkOpenEnum
     public const MEMBER = "member";
     public const OWNER = "owner";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -82,8 +112,12 @@ class CreateInvitesProjectsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             role: SdkClient::hydrateStringEnumOrString($data->role, CreateInvitesProjectsItemRoleEnum::class),
@@ -105,7 +139,7 @@ class Invites
     public static function listInvites(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): InviteListResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/invites", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: InviteListResponse::class, decoder: 'json', operationId: 'listInvites', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/invites", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: InviteListResponse::class, decoder: 'json', operationId: 'listInvites', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InviteListResponse::class));
     }
 
@@ -189,7 +223,7 @@ class Invites
     public static function createInvites(ClientConfig $clientConfig, string $email, CreateInvitesRole $role, array|SdkNotGiven $projects = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Invite
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/invites", $clientConfig, body: ['email' => $email, 'role' => $role, 'projects' => $projects], returnType: Invite::class, decoder: 'json', operationId: 'createInvites', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/invites", $clientConfig, body: ['email' => $email, 'role' => $role, 'projects' => $projects], returnType: Invite::class, decoder: 'json', operationId: 'createInvites', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Invite::class));
     }
 
@@ -205,7 +239,7 @@ class Invites
     public static function retrieveInvite(ClientConfig $clientConfig, string $inviteId, ?RequestOptions $requestOptions = null): Invite
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/invites/" . SdkClient::encodePathSegment($inviteId) . "", $clientConfig, returnType: Invite::class, decoder: 'json', operationId: 'retrieveInvite', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/invites/" . SdkClient::encodePathSegment($inviteId) . "", $clientConfig, returnType: Invite::class, decoder: 'json', operationId: 'retrieveInvite', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Invite::class));
     }
 
@@ -221,7 +255,7 @@ class Invites
     public static function deleteInvite(ClientConfig $clientConfig, string $inviteId, ?RequestOptions $requestOptions = null): InviteDeleteResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/invites/" . SdkClient::encodePathSegment($inviteId) . "", $clientConfig, returnType: InviteDeleteResponse::class, decoder: 'json', operationId: 'deleteInvite', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/invites/" . SdkClient::encodePathSegment($inviteId) . "", $clientConfig, returnType: InviteDeleteResponse::class, decoder: 'json', operationId: 'deleteInvite', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, InviteDeleteResponse::class));
     }
 }

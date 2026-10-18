@@ -14,11 +14,26 @@ final readonly class CreateSpendAlertBodyCurrencyEnum implements SdkOpenEnum
 {
     public const USD = "USD";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -28,11 +43,26 @@ final readonly class CreateSpendAlertBodyIntervalEnum implements SdkOpenEnum
 {
     public const MONTH = "month";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -103,10 +133,18 @@ class CreateSpendAlertBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "threshold_amount") || $data->threshold_amount === null) { throw new SdkValidationError("threshold_amount", 'required', "Required property 'threshold_amount' is missing or null"); }
-        if (!property_exists($data, "currency") || $data->currency === null) { throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null"); }
-        if (!property_exists($data, "interval") || $data->interval === null) { throw new SdkValidationError("interval", 'required', "Required property 'interval' is missing or null"); }
-        if (!property_exists($data, "notification_channel") || $data->notification_channel === null) { throw new SdkValidationError("notification_channel", 'required', "Required property 'notification_channel' is missing or null"); }
+        if (!property_exists($data, "threshold_amount") || $data->threshold_amount === null) {
+            throw new SdkValidationError("threshold_amount", 'required', "Required property 'threshold_amount' is missing or null");
+        }
+        if (!property_exists($data, "currency") || $data->currency === null) {
+            throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null");
+        }
+        if (!property_exists($data, "interval") || $data->interval === null) {
+            throw new SdkValidationError("interval", 'required', "Required property 'interval' is missing or null");
+        }
+        if (!property_exists($data, "notification_channel") || $data->notification_channel === null) {
+            throw new SdkValidationError("notification_channel", 'required', "Required property 'notification_channel' is missing or null");
+        }
         return new self(
             thresholdAmount: SdkClient::intValue($data->threshold_amount),
             currency: SdkClient::hydrateStringEnumOrString($data->currency, CreateSpendAlertBodyCurrencyEnum::class),
@@ -123,11 +161,26 @@ final readonly class OrganizationSpendAlertObjectEnum implements SdkOpenEnum
 {
     public const ORGANIZATION_SPEND_ALERT = "organization.spend_alert";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -137,11 +190,26 @@ final readonly class OrganizationSpendAlertCurrencyEnum implements SdkOpenEnum
 {
     public const USD = "USD";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -151,11 +219,26 @@ final readonly class OrganizationSpendAlertIntervalEnum implements SdkOpenEnum
 {
     public const MONTH = "month";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -246,12 +329,24 @@ class OrganizationSpendAlert implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "threshold_amount") || $data->threshold_amount === null) { throw new SdkValidationError("threshold_amount", 'required', "Required property 'threshold_amount' is missing or null"); }
-        if (!property_exists($data, "currency") || $data->currency === null) { throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null"); }
-        if (!property_exists($data, "interval") || $data->interval === null) { throw new SdkValidationError("interval", 'required', "Required property 'interval' is missing or null"); }
-        if (!property_exists($data, "notification_channel") || $data->notification_channel === null) { throw new SdkValidationError("notification_channel", 'required', "Required property 'notification_channel' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "threshold_amount") || $data->threshold_amount === null) {
+            throw new SdkValidationError("threshold_amount", 'required', "Required property 'threshold_amount' is missing or null");
+        }
+        if (!property_exists($data, "currency") || $data->currency === null) {
+            throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null");
+        }
+        if (!property_exists($data, "interval") || $data->interval === null) {
+            throw new SdkValidationError("interval", 'required', "Required property 'interval' is missing or null");
+        }
+        if (!property_exists($data, "notification_channel") || $data->notification_channel === null) {
+            throw new SdkValidationError("notification_channel", 'required', "Required property 'notification_channel' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, OrganizationSpendAlertObjectEnum::class),
@@ -270,11 +365,26 @@ final readonly class OrganizationSpendAlertDeletedResourceObjectEnum implements 
 {
     public const ORGANIZATION_SPEND_ALERT_DELETED = "organization.spend_alert.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -335,9 +445,15 @@ class OrganizationSpendAlertDeletedResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "deleted") || $data->deleted === null) {
+            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, OrganizationSpendAlertDeletedResourceObjectEnum::class),

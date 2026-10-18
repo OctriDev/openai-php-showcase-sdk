@@ -45,7 +45,9 @@ class RunStepDetailsMessageCreationObjectMessageCreation implements \JsonSeriali
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "message_id") || $data->message_id === null) { throw new SdkValidationError("message_id", 'required', "Required property 'message_id' is missing or null"); }
+        if (!property_exists($data, "message_id") || $data->message_id === null) {
+            throw new SdkValidationError("message_id", 'required', "Required property 'message_id' is missing or null");
+        }
         return new self(
             messageId: SdkClient::stringValue($data->message_id),
         );
@@ -100,8 +102,12 @@ class RunStepDetailsMessageCreationObject implements RunStepObjectStepDetails, \
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "message_creation") || $data->message_creation === null) { throw new SdkValidationError("message_creation", 'required', "Required property 'message_creation' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "message_creation") || $data->message_creation === null) {
+            throw new SdkValidationError("message_creation", 'required', "Required property 'message_creation' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RunStepDetailsMessageCreationObjectTypeEnum::class),
             messageCreation: SdkClient::hydrateClass($data->message_creation, RunStepDetailsMessageCreationObjectMessageCreation::class),
@@ -165,8 +171,12 @@ class RunStepDetailsToolCallsCodeObjectCodeInterpreter implements \JsonSerializa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
-        if (!property_exists($data, "outputs") || $data->outputs === null) { throw new SdkValidationError("outputs", 'required', "Required property 'outputs' is missing or null"); }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
+        if (!property_exists($data, "outputs") || $data->outputs === null) {
+            throw new SdkValidationError("outputs", 'required', "Required property 'outputs' is missing or null");
+        }
         return new self(
             input: SdkClient::stringValue($data->input),
             outputs: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsItem::class, [RunStepDetailsToolCallsCodeOutputLogsObject::class, RunStepDetailsToolCallsCodeOutputImageObject::class], "type", ["logs" => RunStepDetailsToolCallsCodeOutputLogsObject::class, "image" => RunStepDetailsToolCallsCodeOutputImageObject::class], UnknownRunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsItem::class), SdkClient::arrayValue($data->outputs))),
@@ -232,9 +242,15 @@ class RunStepDetailsToolCallsCodeObject implements RunStepDetailsToolCallsObject
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "code_interpreter") || $data->code_interpreter === null) { throw new SdkValidationError("code_interpreter", 'required', "Required property 'code_interpreter' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "code_interpreter") || $data->code_interpreter === null) {
+            throw new SdkValidationError("code_interpreter", 'required', "Required property 'code_interpreter' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             type: SdkClient::hydrateEnum($data->type, RunStepDetailsToolCallsCodeObjectTypeEnum::class),
@@ -289,7 +305,9 @@ class RunStepDetailsToolCallsCodeOutputImageObjectImage implements \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
+        if (!property_exists($data, "file_id") || $data->file_id === null) {
+            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
+        }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
         );

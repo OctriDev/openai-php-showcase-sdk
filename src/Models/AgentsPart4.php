@@ -105,13 +105,27 @@ class SendSubagentInputCallItemResource implements SessionTurnItemResource, Agen
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "sender_agent_id") || $data->sender_agent_id === null) { throw new SdkValidationError("sender_agent_id", 'required', "Required property 'sender_agent_id' is missing or null"); }
-        if (!property_exists($data, "recipient_agent_id") || $data->recipient_agent_id === null) { throw new SdkValidationError("recipient_agent_id", 'required', "Required property 'recipient_agent_id' is missing or null"); }
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
+            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "sender_agent_id") || $data->sender_agent_id === null) {
+            throw new SdkValidationError("sender_agent_id", 'required', "Required property 'sender_agent_id' is missing or null");
+        }
+        if (!property_exists($data, "recipient_agent_id") || $data->recipient_agent_id === null) {
+            throw new SdkValidationError("recipient_agent_id", 'required', "Required property 'recipient_agent_id' is missing or null");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SendSubagentInputCallItemResourceTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -174,7 +188,9 @@ class SetupCommandParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "command") || $data->command === null) { throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null"); }
+        if (!property_exists($data, "command") || $data->command === null) {
+            throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null");
+        }
         return new self(
             command: SdkClient::stringValue($data->command),
             cwd: (property_exists($data, "cwd") ? ($data->cwd === null ? null : SdkClient::stringValue($data->cwd)) : SdkNotGiven::Value),
@@ -189,11 +205,26 @@ final readonly class SummaryTextResourceTypeEnum implements SdkOpenEnum
 {
     public const SUMMARY_TEXT = "summary_text";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -244,8 +275,12 @@ class SummaryTextResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, SummaryTextResourceTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -331,11 +366,21 @@ class TokenUsageResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) { throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null"); }
-        if (!property_exists($data, "input_tokens_details") || $data->input_tokens_details === null) { throw new SdkValidationError("input_tokens_details", 'required', "Required property 'input_tokens_details' is missing or null"); }
-        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) { throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null"); }
-        if (!property_exists($data, "output_tokens_details") || $data->output_tokens_details === null) { throw new SdkValidationError("output_tokens_details", 'required', "Required property 'output_tokens_details' is missing or null"); }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
+        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) {
+            throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null");
+        }
+        if (!property_exists($data, "input_tokens_details") || $data->input_tokens_details === null) {
+            throw new SdkValidationError("input_tokens_details", 'required', "Required property 'input_tokens_details' is missing or null");
+        }
+        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) {
+            throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null");
+        }
+        if (!property_exists($data, "output_tokens_details") || $data->output_tokens_details === null) {
+            throw new SdkValidationError("output_tokens_details", 'required', "Required property 'output_tokens_details' is missing or null");
+        }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
+            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
+        }
         return new self(
             inputTokens: SdkClient::intValue($data->input_tokens),
             inputTokensDetails: SdkClient::hydrateClass($data->input_tokens_details, InputTokensDetailsResource2::class),

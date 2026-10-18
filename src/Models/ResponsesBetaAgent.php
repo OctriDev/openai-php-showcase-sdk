@@ -45,7 +45,9 @@ class Beta_AgentTagParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "agent_name") || $data->agent_name === null) { throw new SdkValidationError("agent_name", 'required', "Required property 'agent_name' is missing or null"); }
+        if (!property_exists($data, "agent_name") || $data->agent_name === null) {
+            throw new SdkValidationError("agent_name", 'required', "Required property 'agent_name' is missing or null");
+        }
         return new self(
             agentName: SdkClient::stringValue($data->agent_name),
         );
@@ -150,11 +152,21 @@ class BetaAgentMessage implements BetaItemResource, BetaItemField, BetaOutputIte
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "author") || $data->author === null) { throw new SdkValidationError("author", 'required', "Required property 'author' is missing or null"); }
-        if (!property_exists($data, "recipient") || $data->recipient === null) { throw new SdkValidationError("recipient", 'required', "Required property 'recipient' is missing or null"); }
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "author") || $data->author === null) {
+            throw new SdkValidationError("author", 'required', "Required property 'author' is missing or null");
+        }
+        if (!property_exists($data, "recipient") || $data->recipient === null) {
+            throw new SdkValidationError("recipient", 'required', "Required property 'recipient' is missing or null");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaAgentMessageTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -266,10 +278,18 @@ class BetaAgentMessageItemParam implements BetaInputItem, BetaItem, \JsonSeriali
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "author") || $data->author === null) { throw new SdkValidationError("author", 'required', "Required property 'author' is missing or null"); }
-        if (!property_exists($data, "recipient") || $data->recipient === null) { throw new SdkValidationError("recipient", 'required', "Required property 'recipient' is missing or null"); }
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "author") || $data->author === null) {
+            throw new SdkValidationError("author", 'required', "Required property 'author' is missing or null");
+        }
+        if (!property_exists($data, "recipient") || $data->recipient === null) {
+            throw new SdkValidationError("recipient", 'required', "Required property 'recipient' is missing or null");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaAgentMessageItemParamTypeEnum::class),
             author: SdkClient::stringValue($data->author),
@@ -319,7 +339,9 @@ class BetaAgentTag implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "agent_name") || $data->agent_name === null) { throw new SdkValidationError("agent_name", 'required', "Required property 'agent_name' is missing or null"); }
+        if (!property_exists($data, "agent_name") || $data->agent_name === null) {
+            throw new SdkValidationError("agent_name", 'required', "Required property 'agent_name' is missing or null");
+        }
         return new self(
             agentName: SdkClient::stringValue($data->agent_name),
         );

@@ -309,31 +309,81 @@ class RunObject implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "thread_id") || $data->thread_id === null) { throw new SdkValidationError("thread_id", 'required', "Required property 'thread_id' is missing or null"); }
-        if (!property_exists($data, "assistant_id") || $data->assistant_id === null) { throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "required_action")) { throw new SdkValidationError("required_action", 'required', "Missing required property 'required_action'"); }
-        if (!property_exists($data, "last_error")) { throw new SdkValidationError("last_error", 'required', "Missing required property 'last_error'"); }
-        if (!property_exists($data, "expires_at")) { throw new SdkValidationError("expires_at", 'required', "Missing required property 'expires_at'"); }
-        if (!property_exists($data, "started_at")) { throw new SdkValidationError("started_at", 'required', "Missing required property 'started_at'"); }
-        if (!property_exists($data, "cancelled_at")) { throw new SdkValidationError("cancelled_at", 'required', "Missing required property 'cancelled_at'"); }
-        if (!property_exists($data, "failed_at")) { throw new SdkValidationError("failed_at", 'required', "Missing required property 'failed_at'"); }
-        if (!property_exists($data, "completed_at")) { throw new SdkValidationError("completed_at", 'required', "Missing required property 'completed_at'"); }
-        if (!property_exists($data, "incomplete_details")) { throw new SdkValidationError("incomplete_details", 'required', "Missing required property 'incomplete_details'"); }
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
-        if (!property_exists($data, "instructions") || $data->instructions === null) { throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null"); }
-        if (!property_exists($data, "tools") || $data->tools === null) { throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null"); }
-        if (!property_exists($data, "metadata")) { throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'"); }
-        if (!property_exists($data, "usage")) { throw new SdkValidationError("usage", 'required', "Missing required property 'usage'"); }
-        if (!property_exists($data, "max_prompt_tokens")) { throw new SdkValidationError("max_prompt_tokens", 'required', "Missing required property 'max_prompt_tokens'"); }
-        if (!property_exists($data, "max_completion_tokens")) { throw new SdkValidationError("max_completion_tokens", 'required', "Missing required property 'max_completion_tokens'"); }
-        if (!property_exists($data, "truncation_strategy")) { throw new SdkValidationError("truncation_strategy", 'required', "Missing required property 'truncation_strategy'"); }
-        if (!property_exists($data, "tool_choice")) { throw new SdkValidationError("tool_choice", 'required', "Missing required property 'tool_choice'"); }
-        if (!property_exists($data, "parallel_tool_calls") || $data->parallel_tool_calls === null) { throw new SdkValidationError("parallel_tool_calls", 'required', "Required property 'parallel_tool_calls' is missing or null"); }
-        if (!property_exists($data, "response_format")) { throw new SdkValidationError("response_format", 'required', "Missing required property 'response_format'"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "thread_id") || $data->thread_id === null) {
+            throw new SdkValidationError("thread_id", 'required', "Required property 'thread_id' is missing or null");
+        }
+        if (!property_exists($data, "assistant_id") || $data->assistant_id === null) {
+            throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "required_action")) {
+            throw new SdkValidationError("required_action", 'required', "Missing required property 'required_action'");
+        }
+        if (!property_exists($data, "last_error")) {
+            throw new SdkValidationError("last_error", 'required', "Missing required property 'last_error'");
+        }
+        if (!property_exists($data, "expires_at")) {
+            throw new SdkValidationError("expires_at", 'required', "Missing required property 'expires_at'");
+        }
+        if (!property_exists($data, "started_at")) {
+            throw new SdkValidationError("started_at", 'required', "Missing required property 'started_at'");
+        }
+        if (!property_exists($data, "cancelled_at")) {
+            throw new SdkValidationError("cancelled_at", 'required', "Missing required property 'cancelled_at'");
+        }
+        if (!property_exists($data, "failed_at")) {
+            throw new SdkValidationError("failed_at", 'required', "Missing required property 'failed_at'");
+        }
+        if (!property_exists($data, "completed_at")) {
+            throw new SdkValidationError("completed_at", 'required', "Missing required property 'completed_at'");
+        }
+        if (!property_exists($data, "incomplete_details")) {
+            throw new SdkValidationError("incomplete_details", 'required', "Missing required property 'incomplete_details'");
+        }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "instructions") || $data->instructions === null) {
+            throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null");
+        }
+        if (!property_exists($data, "tools") || $data->tools === null) {
+            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
+        }
+        if (!property_exists($data, "metadata")) {
+            throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'");
+        }
+        if (!property_exists($data, "usage")) {
+            throw new SdkValidationError("usage", 'required', "Missing required property 'usage'");
+        }
+        if (!property_exists($data, "max_prompt_tokens")) {
+            throw new SdkValidationError("max_prompt_tokens", 'required', "Missing required property 'max_prompt_tokens'");
+        }
+        if (!property_exists($data, "max_completion_tokens")) {
+            throw new SdkValidationError("max_completion_tokens", 'required', "Missing required property 'max_completion_tokens'");
+        }
+        if (!property_exists($data, "truncation_strategy")) {
+            throw new SdkValidationError("truncation_strategy", 'required', "Missing required property 'truncation_strategy'");
+        }
+        if (!property_exists($data, "tool_choice")) {
+            throw new SdkValidationError("tool_choice", 'required', "Missing required property 'tool_choice'");
+        }
+        if (!property_exists($data, "parallel_tool_calls") || $data->parallel_tool_calls === null) {
+            throw new SdkValidationError("parallel_tool_calls", 'required', "Required property 'parallel_tool_calls' is missing or null");
+        }
+        if (!property_exists($data, "response_format")) {
+            throw new SdkValidationError("response_format", 'required', "Missing required property 'response_format'");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, RunObjectObjectEnum::class),

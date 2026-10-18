@@ -67,8 +67,12 @@ class LiveDecisionItemDeleteParam implements LiveClientEvent, LiveForkClientEven
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionItemDeleteParamTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -145,8 +149,12 @@ class LiveDecisionPredicateQuestionParam implements LiveDecisionQuestion, \JsonS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "instructions") || $data->instructions === null) { throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "instructions") || $data->instructions === null) {
+            throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionPredicateQuestionParamTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
@@ -193,7 +201,9 @@ class LiveDecisionQuestionsInputParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "questions") || $data->questions === null) { throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null"); }
+        if (!property_exists($data, "questions") || $data->questions === null) {
+            throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null");
+        }
         return new self(
             questions: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, LiveDecisionQuestion::class, [LiveDecisionChoiceQuestionParam::class, LiveDecisionPredicateQuestionParam::class, LiveDecisionScoreQuestionParam::class], "type", ["choice" => LiveDecisionChoiceQuestionParam::class, "predicate" => LiveDecisionPredicateQuestionParam::class, "score" => LiveDecisionScoreQuestionParam::class], UnknownLiveDecisionQuestion::class), SdkClient::arrayValue($data->questions))),
         );
@@ -238,7 +248,9 @@ class LiveDecisionQuestionsInputParam2 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "questions") || $data->questions === null) { throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null"); }
+        if (!property_exists($data, "questions") || $data->questions === null) {
+            throw new SdkValidationError("questions", 'required', "Required property 'questions' is missing or null");
+        }
         return new self(
             questions: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, QuestionParam::class, [QuestionParamPredicate::class, QuestionParamChoice::class, QuestionParamScore::class], "type", ["predicate" => QuestionParamPredicate::class, "choice" => QuestionParamChoice::class, "score" => QuestionParamScore::class], UnknownQuestionParam::class), SdkClient::arrayValue($data->questions))),
         );
@@ -295,7 +307,9 @@ class LiveDecisionScoreLevelParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "label") || $data->label === null) { throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null"); }
+        if (!property_exists($data, "label") || $data->label === null) {
+            throw new SdkValidationError("label", 'required', "Required property 'label' is missing or null");
+        }
         return new self(
             label: SdkClient::stringValue($data->label),
             description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),

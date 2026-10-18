@@ -17,11 +17,26 @@ final readonly class BetaContainerMemoryLimit implements SdkOpenEnum
     public const _16G = "16g";
     public const _64G = "64g";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -92,8 +107,12 @@ class BetaContainerNetworkPolicyAllowlistParam implements BetaAutoCodeInterprete
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "allowed_domains") || $data->allowed_domains === null) { throw new SdkValidationError("allowed_domains", 'required', "Required property 'allowed_domains' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "allowed_domains") || $data->allowed_domains === null) {
+            throw new SdkValidationError("allowed_domains", 'required', "Required property 'allowed_domains' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaContainerNetworkPolicyAllowlistParamTypeEnum::class),
             allowedDomains: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains))),
@@ -148,7 +167,9 @@ class BetaContainerNetworkPolicyDisabledParam implements BetaAutoCodeInterpreter
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaContainerNetworkPolicyDisabledParamTypeEnum::class),
         );
@@ -213,9 +234,15 @@ class BetaContainerNetworkPolicyDomainSecretParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "domain") || $data->domain === null) { throw new SdkValidationError("domain", 'required', "Required property 'domain' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
+        if (!property_exists($data, "domain") || $data->domain === null) {
+            throw new SdkValidationError("domain", 'required', "Required property 'domain' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "value") || $data->value === null) {
+            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
+        }
         return new self(
             domain: SdkClient::stringValue($data->domain),
             name: SdkClient::stringValue($data->name),
@@ -280,8 +307,12 @@ class BetaContainerReferenceParam implements BetaFunctionShellToolParamEnvironme
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "container_id") || $data->container_id === null) {
+            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaContainerReferenceParamTypeEnum::class),
             containerId: SdkClient::stringValue($data->container_id),
