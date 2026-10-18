@@ -55,8 +55,12 @@ class BetaKeyPressAction implements BetaComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "keys") || $data->keys === null) { throw new SdkValidationError("keys", 'required', "Required property 'keys' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "keys") || $data->keys === null) {
+            throw new SdkValidationError("keys", 'required', "Required property 'keys' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaKeyPressActionTypeEnum::class),
             keys: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->keys))),
@@ -132,10 +136,18 @@ class BetaLogProb implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
-        if (!property_exists($data, "logprob") || $data->logprob === null) { throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null"); }
-        if (!property_exists($data, "bytes") || $data->bytes === null) { throw new SdkValidationError("bytes", 'required', "Required property 'bytes' is missing or null"); }
-        if (!property_exists($data, "top_logprobs") || $data->top_logprobs === null) { throw new SdkValidationError("top_logprobs", 'required', "Required property 'top_logprobs' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) {
+            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
+        }
+        if (!property_exists($data, "logprob") || $data->logprob === null) {
+            throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null");
+        }
+        if (!property_exists($data, "bytes") || $data->bytes === null) {
+            throw new SdkValidationError("bytes", 'required', "Required property 'bytes' is missing or null");
+        }
+        if (!property_exists($data, "top_logprobs") || $data->top_logprobs === null) {
+            throw new SdkValidationError("top_logprobs", 'required', "Required property 'top_logprobs' is missing or null");
+        }
         return new self(
             token: SdkClient::stringValue($data->token),
             logprob: SdkClient::floatValue($data->logprob),
@@ -211,9 +223,15 @@ class BetaMCPProtocolError implements BetaMCPToolCallError, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
-        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "code") || $data->code === null) {
+            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
+        }
+        if (!property_exists($data, "message") || $data->message === null) {
+            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaMCPProtocolErrorTypeEnum::class),
             code: SdkClient::intValue($data->code),
@@ -300,9 +318,15 @@ class BetaMoveParam implements BetaComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "x") || $data->x === null) { throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null"); }
-        if (!property_exists($data, "y") || $data->y === null) { throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "x") || $data->x === null) {
+            throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null");
+        }
+        if (!property_exists($data, "y") || $data->y === null) {
+            throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaMoveParamTypeEnum::class),
             x: SdkClient::intValue($data->x),

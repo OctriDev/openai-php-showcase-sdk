@@ -45,7 +45,9 @@ class LiveSpecificImageGenParam implements LiveAllowedToolsChoiceParamToolsItem,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificImageGenParamTypeEnum::class),
         );
@@ -98,7 +100,9 @@ class LiveSpecificProgrammaticToolCallingParam implements LiveAllowedToolsChoice
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificProgrammaticToolCallingParamTypeEnum::class),
         );
@@ -151,7 +155,9 @@ class LiveSpecificWebSearchParam implements LiveAllowedToolsChoiceParamToolsItem
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificWebSearchParamTypeEnum::class),
         );
@@ -204,7 +210,9 @@ class LiveSpecificWebSearchPreviewParam implements LiveAllowedToolsChoiceParamTo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificWebSearchPreviewParamTypeEnum::class),
         );

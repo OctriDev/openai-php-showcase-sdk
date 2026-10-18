@@ -22,7 +22,7 @@ class Users
     public static function listUsers(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, array|SdkNotGiven $emails = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): UserListResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/users", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'emails' => new SdkQueryValue($emails, "form", true)], returnType: UserListResponse::class, decoder: 'json', operationId: 'listUsers', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/users", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'emails' => new SdkQueryValue($emails, "form", true)], returnType: UserListResponse::class, decoder: 'json', operationId: 'listUsers', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, UserListResponse::class));
     }
 
@@ -106,7 +106,7 @@ class Users
     public static function retrieveUser(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: User::class, decoder: 'json', operationId: 'retrieveUser', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: User::class, decoder: 'json', operationId: 'retrieveUser', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -126,7 +126,7 @@ class Users
     public static function modifyUser(ClientConfig $clientConfig, string $userId, string|null|SdkNotGiven $role = SdkNotGiven::Value, string|null|SdkNotGiven $roleId = SdkNotGiven::Value, string|null|SdkNotGiven $technicalLevel = SdkNotGiven::Value, string|null|SdkNotGiven $developerPersona = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): User
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, body: ['role' => $role, 'role_id' => $roleId, 'technical_level' => $technicalLevel, 'developer_persona' => $developerPersona], returnType: User::class, decoder: 'json', operationId: 'modifyUser', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, body: ['role' => $role, 'role_id' => $roleId, 'technical_level' => $technicalLevel, 'developer_persona' => $developerPersona], returnType: User::class, decoder: 'json', operationId: 'modifyUser', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, User::class));
     }
 
@@ -142,7 +142,7 @@ class Users
     public static function deleteUser(ClientConfig $clientConfig, string $userId, ?RequestOptions $requestOptions = null): UserDeleteResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: UserDeleteResponse::class, decoder: 'json', operationId: 'deleteUser', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: UserDeleteResponse::class, decoder: 'json', operationId: 'deleteUser', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, UserDeleteResponse::class));
     }
 }

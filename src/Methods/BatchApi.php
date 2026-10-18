@@ -18,22 +18,52 @@ final readonly class CreateBatchEndpoint implements SdkOpenEnum
     public const V1_IMAGES_EDITS = "/v1/images/edits";
     public const V1_VIDEOS = "/v1/videos";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class CreateBatchCompletionWindow implements SdkOpenEnum
 {
     public const _24H = "24h";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class BatchApi
@@ -53,7 +83,7 @@ class BatchApi
     public static function createBatch(ClientConfig $clientConfig, string $inputFileId, CreateBatchEndpoint $endpoint, CreateBatchCompletionWindow $completionWindow, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, BatchFileExpirationAfter|SdkNotGiven $outputExpiresAfter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Batch
     {
 
-        $sdkResponse = SdkClient::request('POST', "/batches", $clientConfig, body: ['input_file_id' => $inputFileId, 'endpoint' => $endpoint, 'completion_window' => $completionWindow, 'metadata' => $metadata, 'output_expires_after' => $outputExpiresAfter], returnType: Batch::class, decoder: 'json', operationId: 'createBatch', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/batches", $clientConfig, body: ['input_file_id' => $inputFileId, 'endpoint' => $endpoint, 'completion_window' => $completionWindow, 'metadata' => $metadata, 'output_expires_after' => $outputExpiresAfter], returnType: Batch::class, decoder: 'json', operationId: 'createBatch', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Batch::class));
     }
 
@@ -70,7 +100,7 @@ class BatchApi
     public static function listBatch(ClientConfig $clientConfig, string|SdkNotGiven $after = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListBatchesResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/batches", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ListBatchesResponse::class, decoder: 'json', operationId: 'listBatch', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/batches", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ListBatchesResponse::class, decoder: 'json', operationId: 'listBatch', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListBatchesResponse::class));
     }
 
@@ -152,7 +182,7 @@ class BatchApi
     public static function retrieveBatch(ClientConfig $clientConfig, string $batchId, ?RequestOptions $requestOptions = null): Batch
     {
 
-        $sdkResponse = SdkClient::request('GET', "/batches/" . SdkClient::encodePathSegment($batchId) . "", $clientConfig, returnType: Batch::class, decoder: 'json', operationId: 'retrieveBatch', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/batches/" . SdkClient::encodePathSegment($batchId) . "", $clientConfig, returnType: Batch::class, decoder: 'json', operationId: 'retrieveBatch', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Batch::class));
     }
 
@@ -168,7 +198,7 @@ class BatchApi
     public static function cancelBatch(ClientConfig $clientConfig, string $batchId, ?RequestOptions $requestOptions = null): Batch
     {
 
-        $sdkResponse = SdkClient::request('POST', "/batches/" . SdkClient::encodePathSegment($batchId) . "/cancel", $clientConfig, returnType: Batch::class, decoder: 'json', operationId: 'cancelBatch', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/batches/" . SdkClient::encodePathSegment($batchId) . "/cancel", $clientConfig, returnType: Batch::class, decoder: 'json', operationId: 'cancelBatch', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Batch::class));
     }
 }

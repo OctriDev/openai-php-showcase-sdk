@@ -105,13 +105,27 @@ class RunGraderResponseMetadata implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "errors") || $data->errors === null) { throw new SdkValidationError("errors", 'required', "Required property 'errors' is missing or null"); }
-        if (!property_exists($data, "execution_time") || $data->execution_time === null) { throw new SdkValidationError("execution_time", 'required', "Required property 'execution_time' is missing or null"); }
-        if (!property_exists($data, "scores") || $data->scores === null) { throw new SdkValidationError("scores", 'required', "Required property 'scores' is missing or null"); }
-        if (!property_exists($data, "token_usage")) { throw new SdkValidationError("token_usage", 'required', "Missing required property 'token_usage'"); }
-        if (!property_exists($data, "sampled_model_name")) { throw new SdkValidationError("sampled_model_name", 'required', "Missing required property 'sampled_model_name'"); }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "errors") || $data->errors === null) {
+            throw new SdkValidationError("errors", 'required', "Required property 'errors' is missing or null");
+        }
+        if (!property_exists($data, "execution_time") || $data->execution_time === null) {
+            throw new SdkValidationError("execution_time", 'required', "Required property 'execution_time' is missing or null");
+        }
+        if (!property_exists($data, "scores") || $data->scores === null) {
+            throw new SdkValidationError("scores", 'required', "Required property 'scores' is missing or null");
+        }
+        if (!property_exists($data, "token_usage")) {
+            throw new SdkValidationError("token_usage", 'required', "Missing required property 'token_usage'");
+        }
+        if (!property_exists($data, "sampled_model_name")) {
+            throw new SdkValidationError("sampled_model_name", 'required', "Missing required property 'sampled_model_name'");
+        }
         return new self(
             name: SdkClient::stringValue($data->name),
             type: SdkClient::stringValue($data->type),
@@ -192,10 +206,18 @@ class RunGraderResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "reward") || $data->reward === null) { throw new SdkValidationError("reward", 'required', "Required property 'reward' is missing or null"); }
-        if (!property_exists($data, "metadata") || $data->metadata === null) { throw new SdkValidationError("metadata", 'required', "Required property 'metadata' is missing or null"); }
-        if (!property_exists($data, "sub_rewards") || $data->sub_rewards === null) { throw new SdkValidationError("sub_rewards", 'required', "Required property 'sub_rewards' is missing or null"); }
-        if (!property_exists($data, "model_grader_token_usage_per_model") || $data->model_grader_token_usage_per_model === null) { throw new SdkValidationError("model_grader_token_usage_per_model", 'required', "Required property 'model_grader_token_usage_per_model' is missing or null"); }
+        if (!property_exists($data, "reward") || $data->reward === null) {
+            throw new SdkValidationError("reward", 'required', "Required property 'reward' is missing or null");
+        }
+        if (!property_exists($data, "metadata") || $data->metadata === null) {
+            throw new SdkValidationError("metadata", 'required', "Required property 'metadata' is missing or null");
+        }
+        if (!property_exists($data, "sub_rewards") || $data->sub_rewards === null) {
+            throw new SdkValidationError("sub_rewards", 'required', "Required property 'sub_rewards' is missing or null");
+        }
+        if (!property_exists($data, "model_grader_token_usage_per_model") || $data->model_grader_token_usage_per_model === null) {
+            throw new SdkValidationError("model_grader_token_usage_per_model", 'required', "Required property 'model_grader_token_usage_per_model' is missing or null");
+        }
         return new self(
             reward: SdkClient::floatValue($data->reward),
             metadata: SdkClient::hydrateClass($data->metadata, RunGraderResponseMetadata::class),
@@ -243,7 +265,9 @@ class ValidateGraderRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "grader") || $data->grader === null) { throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null"); }
+        if (!property_exists($data, "grader") || $data->grader === null) {
+            throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null");
+        }
         return new self(
             grader: SdkClient::hydrateUnionAs($data->grader, ValidateGraderRequestGrader::class, [GraderStringCheck::class, GraderTextSimilarity::class, GraderPython::class, GraderScoreModel::class, GraderMulti::class], "type", ["string_check" => GraderStringCheck::class, "text_similarity" => GraderTextSimilarity::class, "python" => GraderPython::class, "score_model" => GraderScoreModel::class, "multi" => GraderMulti::class], UnknownValidateGraderRequestGrader::class),
         );

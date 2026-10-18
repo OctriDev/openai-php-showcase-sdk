@@ -57,7 +57,9 @@ class RealtimeTranslationClientSecretCreateRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
+        if (!property_exists($data, "session") || $data->session === null) {
+            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
+        }
         return new self(
             session: SdkClient::hydrateClass($data->session, RealtimeTranslationSessionCreateRequest::class),
             expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, RealtimeTranslationClientSecretCreateRequestExpiresAfter::class) : SdkNotGiven::Value),
@@ -123,9 +125,15 @@ class RealtimeTranslationClientSecretCreateResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
-        if (!property_exists($data, "expires_at") || $data->expires_at === null) { throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null"); }
-        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
+        if (!property_exists($data, "value") || $data->value === null) {
+            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
+        }
+        if (!property_exists($data, "expires_at") || $data->expires_at === null) {
+            throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null");
+        }
+        if (!property_exists($data, "session") || $data->session === null) {
+            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
+        }
         return new self(
             value: SdkClient::stringValue($data->value),
             expiresAt: SdkClient::intValue($data->expires_at),
@@ -190,8 +198,12 @@ class RealtimeTranslationServerEventSessionClosed implements RealtimeTranslation
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeTranslationServerEventSessionClosedTypeEnum::class),
@@ -265,9 +277,15 @@ class RealtimeTranslationServerEventSessionCreated implements RealtimeTranslatio
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "session") || $data->session === null) {
+            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeTranslationServerEventSessionCreatedTypeEnum::class),

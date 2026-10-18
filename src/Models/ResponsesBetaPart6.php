@@ -97,11 +97,21 @@ class BetaScrollParam implements BetaComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "x") || $data->x === null) { throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null"); }
-        if (!property_exists($data, "y") || $data->y === null) { throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null"); }
-        if (!property_exists($data, "scroll_x") || $data->scroll_x === null) { throw new SdkValidationError("scroll_x", 'required', "Required property 'scroll_x' is missing or null"); }
-        if (!property_exists($data, "scroll_y") || $data->scroll_y === null) { throw new SdkValidationError("scroll_y", 'required', "Required property 'scroll_y' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "x") || $data->x === null) {
+            throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null");
+        }
+        if (!property_exists($data, "y") || $data->y === null) {
+            throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null");
+        }
+        if (!property_exists($data, "scroll_x") || $data->scroll_x === null) {
+            throw new SdkValidationError("scroll_x", 'required', "Required property 'scroll_x' is missing or null");
+        }
+        if (!property_exists($data, "scroll_y") || $data->scroll_y === null) {
+            throw new SdkValidationError("scroll_y", 'required', "Required property 'scroll_y' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaScrollParamTypeEnum::class),
             x: SdkClient::intValue($data->x),
@@ -240,8 +250,12 @@ class BetaSkillReferenceParam implements BetaContainerAutoParamSkillsItem, \Json
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "skill_id") || $data->skill_id === null) { throw new SdkValidationError("skill_id", 'required', "Required property 'skill_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "skill_id") || $data->skill_id === null) {
+            throw new SdkValidationError("skill_id", 'required', "Required property 'skill_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaSkillReferenceParamTypeEnum::class),
             skillId: SdkClient::stringValue($data->skill_id),
@@ -306,8 +320,12 @@ class BetaSummaryTextContent implements BetaAgentMessageContentItem, BetaMessage
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaSummaryTextContentTypeEnum::class),
             text: SdkClient::stringValue($data->text),

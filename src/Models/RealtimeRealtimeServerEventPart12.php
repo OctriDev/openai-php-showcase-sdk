@@ -105,13 +105,27 @@ class RealtimeServerEventResponseContentPartDone implements RealtimeServerEvent,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "response_id") || $data->response_id === null) { throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
-        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
-        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
-        if (!property_exists($data, "part") || $data->part === null) { throw new SdkValidationError("part", 'required', "Required property 'part' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "response_id") || $data->response_id === null) {
+            throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
+        if (!property_exists($data, "output_index") || $data->output_index === null) {
+            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
+        }
+        if (!property_exists($data, "content_index") || $data->content_index === null) {
+            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
+        }
+        if (!property_exists($data, "part") || $data->part === null) {
+            throw new SdkValidationError("part", 'required', "Required property 'part' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventResponseContentPartDoneTypeEnum::class),
@@ -190,9 +204,15 @@ class RealtimeServerEventResponseCreated implements RealtimeServerEvent, \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "response") || $data->response === null) {
+            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventResponseCreatedTypeEnum::class),
@@ -267,9 +287,15 @@ class RealtimeServerEventResponseDone implements RealtimeServerEvent, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "response") || $data->response === null) {
+            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventResponseDoneTypeEnum::class),

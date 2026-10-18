@@ -85,11 +85,21 @@ class GroupResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "is_scim_managed") || $data->is_scim_managed === null) { throw new SdkValidationError("is_scim_managed", 'required', "Required property 'is_scim_managed' is missing or null"); }
-        if (!property_exists($data, "group_type") || $data->group_type === null) { throw new SdkValidationError("group_type", 'required', "Required property 'group_type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "is_scim_managed") || $data->is_scim_managed === null) {
+            throw new SdkValidationError("is_scim_managed", 'required', "Required property 'is_scim_managed' is missing or null");
+        }
+        if (!property_exists($data, "group_type") || $data->group_type === null) {
+            throw new SdkValidationError("group_type", 'required', "Required property 'group_type' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             name: SdkClient::stringValue($data->name),
@@ -138,7 +148,9 @@ class UpdateGroupBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
         return new self(
             name: SdkClient::stringValue($data->name),
         );

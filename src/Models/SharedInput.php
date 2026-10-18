@@ -23,11 +23,26 @@ final readonly class InputAudioInputAudioFormatEnum implements SdkOpenEnum
     public const MP3 = "mp3";
     public const WAV = "wav";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -78,8 +93,12 @@ class InputAudioInputAudio implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "format") || $data->format === null) { throw new SdkValidationError("format", 'required', "Required property 'format' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "format") || $data->format === null) {
+            throw new SdkValidationError("format", 'required', "Required property 'format' is missing or null");
+        }
         return new self(
             data: SdkClient::stringValue($data->data),
             format: SdkClient::hydrateStringEnumOrString($data->format, InputAudioInputAudioFormatEnum::class),
@@ -135,8 +154,12 @@ class InputAudio implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "input_audio") || $data->input_audio === null) { throw new SdkValidationError("input_audio", 'required', "Required property 'input_audio' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "input_audio") || $data->input_audio === null) {
+            throw new SdkValidationError("input_audio", 'required', "Required property 'input_audio' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, InputAudioTypeEnum::class),
             inputAudio: SdkClient::hydrateClass($data->input_audio, InputAudioInputAudio::class),
@@ -152,11 +175,26 @@ final readonly class InputFidelity implements SdkOpenEnum
     public const HIGH = "high";
     public const LOW = "low";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -277,7 +315,9 @@ class InputFileContent implements Content, FunctionAndCustomToolCallOutput, Inpu
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, InputFileContentTypeEnum::class),
             fileId: (property_exists($data, "file_id") ? ($data->file_id === null ? null : SdkClient::stringValue($data->file_id)) : SdkNotGiven::Value),

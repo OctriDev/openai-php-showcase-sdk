@@ -95,10 +95,18 @@ class LiveThinkingAppended implements LiveSidebandServerEvent, LiveServerEvent2,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
-        if (!property_exists($data, "start_ms") || $data->start_ms === null) { throw new SdkValidationError("start_ms", 'required', "Required property 'start_ms' is missing or null"); }
-        if (!property_exists($data, "end_ms") || $data->end_ms === null) { throw new SdkValidationError("end_ms", 'required', "Required property 'end_ms' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) {
+            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
+        }
+        if (!property_exists($data, "start_ms") || $data->start_ms === null) {
+            throw new SdkValidationError("start_ms", 'required', "Required property 'start_ms' is missing or null");
+        }
+        if (!property_exists($data, "end_ms") || $data->end_ms === null) {
+            throw new SdkValidationError("end_ms", 'required', "Required property 'end_ms' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             startMs: SdkClient::intValue($data->start_ms),
@@ -187,9 +195,15 @@ class LiveThinkingAppendParam implements LiveClientEvent, LiveForkClientEvent, L
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "delegation_id")) { throw new SdkValidationError("delegation_id", 'required', "Missing required property 'delegation_id'"); }
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "delegation_id")) {
+            throw new SdkValidationError("delegation_id", 'required', "Missing required property 'delegation_id'");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveThinkingAppendParamTypeEnum::class),
             delegationId: ($data->delegation_id === null ? null : SdkClient::stringValue($data->delegation_id)),

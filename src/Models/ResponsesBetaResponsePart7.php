@@ -85,11 +85,21 @@ class BetaResponseItemList implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
-        if (!property_exists($data, "first_id") || $data->first_id === null) { throw new SdkValidationError("first_id", 'required', "Required property 'first_id' is missing or null"); }
-        if (!property_exists($data, "last_id") || $data->last_id === null) { throw new SdkValidationError("last_id", 'required', "Required property 'last_id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "has_more") || $data->has_more === null) {
+            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
+        }
+        if (!property_exists($data, "first_id") || $data->first_id === null) {
+            throw new SdkValidationError("first_id", 'required', "Required property 'first_id' is missing or null");
+        }
+        if (!property_exists($data, "last_id") || $data->last_id === null) {
+            throw new SdkValidationError("last_id", 'required', "Required property 'last_id' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, BetaResponseItemListObjectEnum::class),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaItemResource::class, [BetaInputMessageResource::class, BetaOutputMessage::class, BetaFileSearchToolCall::class, BetaComputerToolCall::class, BetaComputerToolCallOutputResource::class, BetaWebSearchToolCall::class, BetaFunctionToolCallResource::class, BetaFunctionToolCallOutputResource::class, BetaAgentMessage::class, BetaMultiAgentCall::class, BetaMultiAgentCallOutput::class, BetaToolSearchCall::class, BetaToolSearchOutput::class, BetaAdditionalTools::class, BetaResponseConfigurationUpdate::class, BetaReasoningItem::class, BetaProgram::class, BetaProgramOutput::class, BetaCompactionBody::class, BetaImageGenToolCall::class, BetaCodeInterpreterToolCall::class, BetaLocalShellToolCall::class, BetaLocalShellToolCallOutput::class, BetaFunctionShellCall::class, BetaFunctionShellCallOutput::class, BetaApplyPatchToolCall::class, BetaApplyPatchToolCallOutput::class, BetaMCPListTools::class, BetaMCPApprovalRequest::class, BetaMCPApprovalResponseResource::class, BetaMCPToolCall::class, BetaCustomToolCallResource::class, BetaCustomToolCallOutputResource::class], "type", ["file_search_call" => BetaFileSearchToolCall::class, "computer_call" => BetaComputerToolCall::class, "computer_call_output" => BetaComputerToolCallOutputResource::class, "web_search_call" => BetaWebSearchToolCall::class, "function_call" => BetaFunctionToolCallResource::class, "function_call_output" => BetaFunctionToolCallOutputResource::class, "agent_message" => BetaAgentMessage::class, "multi_agent_call" => BetaMultiAgentCall::class, "multi_agent_call_output" => BetaMultiAgentCallOutput::class, "tool_search_call" => BetaToolSearchCall::class, "tool_search_output" => BetaToolSearchOutput::class, "additional_tools" => BetaAdditionalTools::class, "configuration_update" => BetaResponseConfigurationUpdate::class, "reasoning" => BetaReasoningItem::class, "program" => BetaProgram::class, "program_output" => BetaProgramOutput::class, "compaction" => BetaCompactionBody::class, "image_generation_call" => BetaImageGenToolCall::class, "code_interpreter_call" => BetaCodeInterpreterToolCall::class, "local_shell_call" => BetaLocalShellToolCall::class, "local_shell_call_output" => BetaLocalShellToolCallOutput::class, "shell_call" => BetaFunctionShellCall::class, "shell_call_output" => BetaFunctionShellCallOutput::class, "apply_patch_call" => BetaApplyPatchToolCall::class, "apply_patch_call_output" => BetaApplyPatchToolCallOutput::class, "mcp_list_tools" => BetaMCPListTools::class, "mcp_approval_request" => BetaMCPApprovalRequest::class, "mcp_approval_response" => BetaMCPApprovalResponseResource::class, "mcp_call" => BetaMCPToolCall::class, "custom_tool_call" => BetaCustomToolCallResource::class, "custom_tool_call_output" => BetaCustomToolCallOutputResource::class], UnknownBetaItemResource::class), SdkClient::arrayValue($data->data))),
@@ -219,8 +229,12 @@ class BetaResponseLogProb implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
-        if (!property_exists($data, "logprob") || $data->logprob === null) { throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) {
+            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
+        }
+        if (!property_exists($data, "logprob") || $data->logprob === null) {
+            throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null");
+        }
         return new self(
             token: SdkClient::stringValue($data->token),
             logprob: SdkClient::floatValue($data->logprob),
@@ -252,9 +266,24 @@ final readonly class BetaResponsePropertiesModelEnum implements SdkOpenEnum
     public const GPT_5_6_CYBER = "gpt-5.6-cyber";
     public const GPT_ROSALIND_RESEARCH = "gpt-rosalind-research";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

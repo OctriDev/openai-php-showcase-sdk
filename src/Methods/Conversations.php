@@ -12,11 +12,26 @@ final readonly class ListConversationItemsOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class Conversations
@@ -36,7 +51,7 @@ class Conversations
 
         Validation::validateItems('items', $items, max: 20);
 
-        $sdkResponse = SdkClient::request('POST', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "/items", $clientConfig, query: ['include' => new SdkQueryValue($include, "form", true)], body: ['items' => $items], returnType: ConversationItemList::class, decoder: 'json', operationId: 'createConversationItems', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "/items", $clientConfig, query: ['include' => new SdkQueryValue($include, "form", true)], body: ['items' => $items], returnType: ConversationItemList::class, decoder: 'json', operationId: 'createConversationItems', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ConversationItemList::class));
     }
 
@@ -56,7 +71,7 @@ class Conversations
     public static function listConversationItems(ClientConfig $clientConfig, string $conversationId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListConversationItemsOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ConversationItemList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "/items", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'include' => new SdkQueryValue($include, "form", true)], returnType: ConversationItemList::class, decoder: 'json', operationId: 'listConversationItems', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "/items", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'include' => new SdkQueryValue($include, "form", true)], returnType: ConversationItemList::class, decoder: 'json', operationId: 'listConversationItems', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ConversationItemList::class));
     }
 
@@ -143,7 +158,7 @@ class Conversations
     public static function getConversationItem(ClientConfig $clientConfig, string $conversationId, string $itemId, array|SdkNotGiven $include = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ConversationItem
     {
 
-        $sdkResponse = SdkClient::request('GET', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "/items/" . SdkClient::encodePathSegment($itemId) . "", $clientConfig, query: ['include' => new SdkQueryValue($include, "form", true)], decoder: 'json', operationId: 'getConversationItem', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "/items/" . SdkClient::encodePathSegment($itemId) . "", $clientConfig, query: ['include' => new SdkQueryValue($include, "form", true)], decoder: 'json', operationId: 'getConversationItem', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::hydrateUnionAs($sdkResponse->data, ConversationItem::class, [Message::class, FunctionToolCall::class, FunctionToolCallResourceVariant1::class, FunctionToolCallOutput::class, FunctionToolCallOutputResourceVariant1::class, FileSearchToolCall::class, WebSearchToolCall::class, ImageGenToolCall::class, ComputerToolCall::class, ComputerToolCallOutput::class, ComputerToolCallOutputResourceVariant1::class, ToolSearchCall::class, ToolSearchOutput::class, AdditionalTools::class, ResponseConfigurationUpdate::class, ReasoningItem::class, Program::class, ProgramOutput::class, CompactionBody::class, CodeInterpreterToolCall::class, LocalShellToolCall::class, LocalShellToolCallOutput::class, FunctionShellCall::class, FunctionShellCallOutput::class, ApplyPatchToolCall::class, ApplyPatchToolCallOutput::class, MCPListTools::class, MCPApprovalRequest::class, MCPApprovalResponseResource::class, MCPToolCall::class, CustomToolCall::class, CustomToolCallOutput::class], "type", ["message" => Message::class, "file_search_call" => FileSearchToolCall::class, "web_search_call" => WebSearchToolCall::class, "image_generation_call" => ImageGenToolCall::class, "computer_call" => ComputerToolCall::class, "tool_search_call" => ToolSearchCall::class, "tool_search_output" => ToolSearchOutput::class, "additional_tools" => AdditionalTools::class, "configuration_update" => ResponseConfigurationUpdate::class, "reasoning" => ReasoningItem::class, "program" => Program::class, "program_output" => ProgramOutput::class, "compaction" => CompactionBody::class, "code_interpreter_call" => CodeInterpreterToolCall::class, "local_shell_call" => LocalShellToolCall::class, "local_shell_call_output" => LocalShellToolCallOutput::class, "shell_call" => FunctionShellCall::class, "shell_call_output" => FunctionShellCallOutput::class, "apply_patch_call" => ApplyPatchToolCall::class, "apply_patch_call_output" => ApplyPatchToolCallOutput::class, "mcp_list_tools" => MCPListTools::class, "mcp_approval_request" => MCPApprovalRequest::class, "mcp_approval_response" => MCPApprovalResponseResource::class, "mcp_call" => MCPToolCall::class, "custom_tool_call" => CustomToolCall::class, "custom_tool_call_output" => CustomToolCallOutput::class, "function_call" => static fn($value) => SdkClient::hydrateClass($value, FunctionToolCallResource::class), "function_call_output" => static fn($value) => SdkClient::hydrateClass($value, FunctionToolCallOutputResource::class), "computer_call_output" => static fn($value) => SdkClient::hydrateClass($value, ComputerToolCallOutputResource::class)], UnknownConversationItem::class));
     }
 
@@ -160,7 +175,7 @@ class Conversations
     public static function deleteConversationItem(ClientConfig $clientConfig, string $conversationId, string $itemId, ?RequestOptions $requestOptions = null): ConversationResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "/items/" . SdkClient::encodePathSegment($itemId) . "", $clientConfig, returnType: ConversationResource::class, decoder: 'json', operationId: 'deleteConversationItem', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "/items/" . SdkClient::encodePathSegment($itemId) . "", $clientConfig, returnType: ConversationResource::class, decoder: 'json', operationId: 'deleteConversationItem', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ConversationResource::class));
     }
 
@@ -181,7 +196,7 @@ class Conversations
             Validation::validateItems('items', $items, max: 20);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/conversations", $clientConfig, body: ['metadata' => $metadata, 'items' => $items], returnType: ConversationResource::class, decoder: 'json', operationId: 'createConversation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/conversations", $clientConfig, body: ['metadata' => $metadata, 'items' => $items], returnType: ConversationResource::class, decoder: 'json', operationId: 'createConversation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ConversationResource::class));
     }
 
@@ -197,7 +212,7 @@ class Conversations
     public static function getConversation(ClientConfig $clientConfig, string $conversationId, ?RequestOptions $requestOptions = null): ConversationResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "", $clientConfig, returnType: ConversationResource::class, decoder: 'json', operationId: 'getConversation', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "", $clientConfig, returnType: ConversationResource::class, decoder: 'json', operationId: 'getConversation', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ConversationResource::class));
     }
 
@@ -213,7 +228,7 @@ class Conversations
     public static function deleteConversation(ClientConfig $clientConfig, string $conversationId, ?RequestOptions $requestOptions = null): DeletedConversationResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "", $clientConfig, returnType: DeletedConversationResource::class, decoder: 'json', operationId: 'deleteConversation', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "", $clientConfig, returnType: DeletedConversationResource::class, decoder: 'json', operationId: 'deleteConversation', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedConversationResource::class));
     }
 
@@ -230,7 +245,7 @@ class Conversations
     public static function updateConversation(ClientConfig $clientConfig, string $conversationId, ?array $metadata, ?RequestOptions $requestOptions = null): ConversationResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "", $clientConfig, body: ['metadata' => $metadata], returnType: ConversationResource::class, decoder: 'json', operationId: 'updateConversation', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/conversations/" . SdkClient::encodePathSegment($conversationId) . "", $clientConfig, body: ['metadata' => $metadata], returnType: ConversationResource::class, decoder: 'json', operationId: 'updateConversation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ConversationResource::class));
     }
 }

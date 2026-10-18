@@ -63,8 +63,12 @@ class TextFormatParamJsonSchema implements TextFormatParam, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "schema") || $data->schema === null) { throw new SdkValidationError("schema", 'required', "Required property 'schema' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "schema") || $data->schema === null) {
+            throw new SdkValidationError("schema", 'required', "Required property 'schema' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TextFormatParamJsonSchemaTypeEnum::class),
             schema: SdkClient::mapValues(SdkClient::stringMapValue($data->schema), static fn($item) => $item),
@@ -118,7 +122,9 @@ class TextFormatParamText implements TextFormatParam, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TextFormatParamTextTypeEnum::class),
         );
@@ -181,8 +187,12 @@ class TextFormatResourceJsonSchema implements TextFormatResource, \JsonSerializa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "schema") || $data->schema === null) { throw new SdkValidationError("schema", 'required', "Required property 'schema' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "schema") || $data->schema === null) {
+            throw new SdkValidationError("schema", 'required', "Required property 'schema' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TextFormatResourceJsonSchemaTypeEnum::class),
             schema: SdkClient::mapValues(SdkClient::stringMapValue($data->schema), static fn($item) => $item),
@@ -236,7 +246,9 @@ class TextFormatResourceText implements TextFormatResource, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TextFormatResourceTextTypeEnum::class),
         );

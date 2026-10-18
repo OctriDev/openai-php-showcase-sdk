@@ -85,9 +85,15 @@ class BetaResponseInjectCreatedEvent implements BetaResponsesServerEvent, \JsonS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "response_id") || $data->response_id === null) { throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "response_id") || $data->response_id === null) {
+            throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseInjectCreatedEventTypeEnum::class),
             responseId: SdkClient::stringValue($data->response_id),
@@ -163,9 +169,15 @@ class BetaResponseInjectEvent implements BetaResponsesClientEvent, \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "response_id") || $data->response_id === null) { throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null"); }
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "response_id") || $data->response_id === null) {
+            throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null");
+        }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseInjectEventTypeEnum::class),
             responseId: SdkClient::stringValue($data->response_id),
@@ -190,11 +202,26 @@ final readonly class BetaResponseInjectFailedEventErrorCodeEnum implements SdkOp
     public const RESPONSE_ALREADY_COMPLETED = "response_already_completed";
     public const RESPONSE_NOT_FOUND = "response_not_found";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -245,8 +272,12 @@ class BetaResponseInjectFailedEventError implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
-        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
+        if (!property_exists($data, "code") || $data->code === null) {
+            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
+        }
+        if (!property_exists($data, "message") || $data->message === null) {
+            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
+        }
         return new self(
             code: SdkClient::hydrateStringEnumOrString($data->code, BetaResponseInjectFailedEventErrorCodeEnum::class),
             message: SdkClient::stringValue($data->message),

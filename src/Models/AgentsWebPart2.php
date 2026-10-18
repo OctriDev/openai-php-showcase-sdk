@@ -85,11 +85,21 @@ class WebSearchCallItemResource implements SessionTurnItemResource, AgentOutputI
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "action")) { throw new SdkValidationError("action", 'required', "Missing required property 'action'"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
+            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "action")) {
+            throw new SdkValidationError("action", 'required', "Missing required property 'action'");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, WebSearchCallItemResourceTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -109,11 +119,26 @@ final readonly class WebSearchContextSizeParam implements SdkOpenEnum
     public const MEDIUM = "medium";
     public const HIGH = "high";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -125,11 +150,26 @@ final readonly class WebSearchContextSizeResource implements SdkOpenEnum
     public const MEDIUM = "medium";
     public const HIGH = "high";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -285,10 +325,18 @@ class WebSearchLocationResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "country")) { throw new SdkValidationError("country", 'required', "Missing required property 'country'"); }
-        if (!property_exists($data, "region")) { throw new SdkValidationError("region", 'required', "Missing required property 'region'"); }
-        if (!property_exists($data, "city")) { throw new SdkValidationError("city", 'required', "Missing required property 'city'"); }
-        if (!property_exists($data, "timezone")) { throw new SdkValidationError("timezone", 'required', "Missing required property 'timezone'"); }
+        if (!property_exists($data, "country")) {
+            throw new SdkValidationError("country", 'required', "Missing required property 'country'");
+        }
+        if (!property_exists($data, "region")) {
+            throw new SdkValidationError("region", 'required', "Missing required property 'region'");
+        }
+        if (!property_exists($data, "city")) {
+            throw new SdkValidationError("city", 'required', "Missing required property 'city'");
+        }
+        if (!property_exists($data, "timezone")) {
+            throw new SdkValidationError("timezone", 'required', "Missing required property 'timezone'");
+        }
         return new self(
             country: ($data->country === null ? null : SdkClient::stringValue($data->country)),
             region: ($data->region === null ? null : SdkClient::stringValue($data->region)),
@@ -307,11 +355,26 @@ final readonly class WebSearchModeParam implements SdkOpenEnum
     public const CACHED = "cached";
     public const LIVE = "live";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -323,9 +386,24 @@ final readonly class WebSearchModeResource implements SdkOpenEnum
     public const CACHED = "cached";
     public const LIVE = "live";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

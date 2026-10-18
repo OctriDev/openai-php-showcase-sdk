@@ -64,8 +64,12 @@ class BetaCompoundFilter implements BetaFilters, BetaCompoundFilterFiltersItem, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "filters") || $data->filters === null) { throw new SdkValidationError("filters", 'required', "Required property 'filters' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "filters") || $data->filters === null) {
+            throw new SdkValidationError("filters", 'required', "Required property 'filters' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCompoundFilterTypeEnum::class),
             filters: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaCompoundFilterFiltersItem::class, [BetaComparisonFilter::class, BetaCompoundFilter::class], "type", ["eq" => BetaComparisonFilter::class, "ne" => BetaComparisonFilter::class, "gt" => BetaComparisonFilter::class, "gte" => BetaComparisonFilter::class, "lt" => BetaComparisonFilter::class, "lte" => BetaComparisonFilter::class, "in" => BetaComparisonFilter::class, "nin" => BetaComparisonFilter::class, "and" => BetaCompoundFilter::class, "or" => BetaCompoundFilter::class], UnknownBetaCompoundFilterFiltersItem::class), SdkClient::arrayValue($data->filters))),

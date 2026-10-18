@@ -16,11 +16,26 @@ final readonly class ImageEditCompletedEventBackgroundEnum implements SdkOpenEnu
     public const OPAQUE = "opaque";
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -32,11 +47,26 @@ final readonly class ImageEditCompletedEventOutputFormatEnum implements SdkOpenE
     public const WEBP = "webp";
     public const JPEG = "jpeg";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -159,14 +189,30 @@ class ImageEditCompletedEvent implements ImageEditStreamEvent, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "b64_json") || $data->b64_json === null) { throw new SdkValidationError("b64_json", 'required', "Required property 'b64_json' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "size") || $data->size === null) { throw new SdkValidationError("size", 'required', "Required property 'size' is missing or null"); }
-        if (!property_exists($data, "quality") || $data->quality === null) { throw new SdkValidationError("quality", 'required', "Required property 'quality' is missing or null"); }
-        if (!property_exists($data, "background") || $data->background === null) { throw new SdkValidationError("background", 'required', "Required property 'background' is missing or null"); }
-        if (!property_exists($data, "output_format") || $data->output_format === null) { throw new SdkValidationError("output_format", 'required', "Required property 'output_format' is missing or null"); }
-        if (!property_exists($data, "usage") || $data->usage === null) { throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "b64_json") || $data->b64_json === null) {
+            throw new SdkValidationError("b64_json", 'required', "Required property 'b64_json' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "size") || $data->size === null) {
+            throw new SdkValidationError("size", 'required', "Required property 'size' is missing or null");
+        }
+        if (!property_exists($data, "quality") || $data->quality === null) {
+            throw new SdkValidationError("quality", 'required', "Required property 'quality' is missing or null");
+        }
+        if (!property_exists($data, "background") || $data->background === null) {
+            throw new SdkValidationError("background", 'required', "Required property 'background' is missing or null");
+        }
+        if (!property_exists($data, "output_format") || $data->output_format === null) {
+            throw new SdkValidationError("output_format", 'required', "Required property 'output_format' is missing or null");
+        }
+        if (!property_exists($data, "usage") || $data->usage === null) {
+            throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ImageEditCompletedEventTypeEnum::class),
             b64Json: SdkClient::stringValue($data->b64_json),
@@ -201,11 +247,26 @@ final readonly class ImageEditPartialImageEventQualityEnum implements SdkOpenEnu
     public const MAX = "max";
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -217,11 +278,26 @@ final readonly class ImageEditPartialImageEventBackgroundEnum implements SdkOpen
     public const OPAQUE = "opaque";
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -233,9 +309,24 @@ final readonly class ImageEditPartialImageEventOutputFormatEnum implements SdkOp
     public const WEBP = "webp";
     public const JPEG = "jpeg";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

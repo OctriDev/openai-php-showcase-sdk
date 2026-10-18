@@ -20,7 +20,7 @@ class Chatkit
     public static function cancelChatkitSession(ClientConfig $clientConfig, string $sessionId, ?RequestOptions $requestOptions = null): ChatSessionResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/chatkit/sessions/" . SdkClient::encodePathSegment($sessionId) . "/cancel", $clientConfig, returnType: ChatSessionResource::class, decoder: 'json', operationId: 'cancelChatkitSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/chatkit/sessions/" . SdkClient::encodePathSegment($sessionId) . "/cancel", $clientConfig, returnType: ChatSessionResource::class, decoder: 'json', operationId: 'cancelChatkitSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ChatSessionResource::class));
     }
 
@@ -42,7 +42,7 @@ class Chatkit
 
         Validation::validateLength('user', $user, min: 1);
 
-        $sdkResponse = SdkClient::request('POST', "/chatkit/sessions", $clientConfig, body: ['workflow' => $workflow, 'user' => $user, 'expires_after' => $expiresAfter, 'rate_limits' => $rateLimits, 'chatkit_configuration' => $chatkitConfiguration], returnType: ChatSessionResource::class, decoder: 'json', operationId: 'createChatkitSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/chatkit/sessions", $clientConfig, body: ['workflow' => $workflow, 'user' => $user, 'expires_after' => $expiresAfter, 'rate_limits' => $rateLimits, 'chatkit_configuration' => $chatkitConfiguration], returnType: ChatSessionResource::class, decoder: 'json', operationId: 'createChatkitSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ChatSessionResource::class));
     }
 
@@ -66,7 +66,7 @@ class Chatkit
             Validation::validateRange('limit', $limit, min: 0, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/chatkit/threads/" . SdkClient::encodePathSegment($threadId) . "/items", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ThreadItemListResource::class, decoder: 'json', operationId: 'listChatkitThreadItems', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/chatkit/threads/" . SdkClient::encodePathSegment($threadId) . "/items", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ThreadItemListResource::class, decoder: 'json', operationId: 'listChatkitThreadItems', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ThreadItemListResource::class));
     }
 
@@ -154,7 +154,7 @@ class Chatkit
     public static function retrieveChatkitThread(ClientConfig $clientConfig, string $threadId, ?RequestOptions $requestOptions = null): ThreadResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/chatkit/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, returnType: ThreadResource::class, decoder: 'json', operationId: 'retrieveChatkitThread', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/chatkit/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, returnType: ThreadResource::class, decoder: 'json', operationId: 'retrieveChatkitThread', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ThreadResource::class));
     }
 
@@ -170,7 +170,7 @@ class Chatkit
     public static function deleteChatkitThread(ClientConfig $clientConfig, string $threadId, ?RequestOptions $requestOptions = null): DeletedThreadResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/chatkit/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, returnType: DeletedThreadResource::class, decoder: 'json', operationId: 'deleteChatkitThread', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/chatkit/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, returnType: DeletedThreadResource::class, decoder: 'json', operationId: 'deleteChatkitThread', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedThreadResource::class));
     }
 
@@ -198,7 +198,7 @@ class Chatkit
             Validation::validateLength('user', $user, min: 1, max: 512);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/chatkit/threads", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true), 'user' => new SdkQueryValue($user, "form", true)], returnType: ThreadListResource::class, decoder: 'json', operationId: 'listChatkitThreads', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/chatkit/threads", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true), 'user' => new SdkQueryValue($user, "form", true)], returnType: ThreadListResource::class, decoder: 'json', operationId: 'listChatkitThreads', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ThreadListResource::class));
     }
 
