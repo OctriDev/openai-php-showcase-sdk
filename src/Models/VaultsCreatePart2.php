@@ -357,7 +357,7 @@ class CreateVaultCredentialParams implements \JsonSerializable
         return new self(
             name: SdkClient::stringValue($data->name),
             auth: SdkClient::hydrateUnionAs($data->auth, CreateVaultCredentialAuthParam::class, [CreateVaultCredentialAuthParamMcpOauth::class, CreateVaultCredentialAuthParamStaticBearer::class, CreateVaultCredentialAuthParamEnvironmentVariable::class], "type", ["mcp_oauth" => CreateVaultCredentialAuthParamMcpOauth::class, "static_bearer" => CreateVaultCredentialAuthParamStaticBearer::class, "environment_variable" => CreateVaultCredentialAuthParamEnvironmentVariable::class], UnknownCreateVaultCredentialAuthParam::class),
-            metadata: (property_exists($data, "metadata") ? SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
         );
     }
 }

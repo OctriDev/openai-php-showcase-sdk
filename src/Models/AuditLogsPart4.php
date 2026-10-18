@@ -48,7 +48,7 @@ class AuditLogGroupDeleted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -94,7 +94,7 @@ class AuditLogScimEnabled implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -140,7 +140,7 @@ class AuditLogScimDisabled implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -198,8 +198,8 @@ class AuditLogInviteSentData implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            email: (property_exists($data, "email") ? SdkClient::stringValue($data->email) : SdkNotGiven::Value),
-            role: (property_exists($data, "role") ? SdkClient::stringValue($data->role) : SdkNotGiven::Value),
+            email: (property_exists($data, "email") && $data->email !== null ? SdkClient::stringValue($data->email) : SdkNotGiven::Value),
+            role: (property_exists($data, "role") && $data->role !== null ? SdkClient::stringValue($data->role) : SdkNotGiven::Value),
         );
     }
 }
@@ -257,8 +257,8 @@ class AuditLogInviteSent implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") ? SdkClient::hydrateClass($data->data, AuditLogInviteSentData::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") && $data->data !== null ? SdkClient::hydrateClass($data->data, AuditLogInviteSentData::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -304,7 +304,7 @@ class AuditLogInviteAccepted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }

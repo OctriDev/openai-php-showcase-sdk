@@ -121,8 +121,8 @@ class EvalRunOutputItemSampleOutputItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            role: (property_exists($data, "role") ? SdkClient::stringValue($data->role) : SdkNotGiven::Value),
-            content: (property_exists($data, "content") ? SdkClient::stringValue($data->content) : SdkNotGiven::Value),
+            role: (property_exists($data, "role") && $data->role !== null ? SdkClient::stringValue($data->role) : SdkNotGiven::Value),
+            content: (property_exists($data, "content") && $data->content !== null ? SdkClient::stringValue($data->content) : SdkNotGiven::Value),
         );
     }
 }

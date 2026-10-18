@@ -317,7 +317,7 @@ class CreateImageRequest implements \JsonSerializable
             background: (property_exists($data, "background") ? ($data->background === null ? null : SdkClient::hydrateEnum($data->background, CreateImageRequestBackgroundEnum::class)) : SdkNotGiven::Value),
             style: (property_exists($data, "style") ? ($data->style === null ? null : SdkClient::hydrateStringEnumOrString($data->style, CreateImageRequestStyleEnum::class)) : SdkNotGiven::Value),
             safetyIdentifier: (property_exists($data, "safety_identifier") ? ($data->safety_identifier === null ? null : SdkClient::stringValue($data->safety_identifier)) : SdkNotGiven::Value),
-            user: (property_exists($data, "user") ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
         );
     }
 }

@@ -211,9 +211,9 @@ class BetaApplyPatchToolCall implements BetaItemResource, BetaItemField, BetaOut
             callId: SdkClient::stringValue($data->call_id),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaApplyPatchCallStatus::class),
             operation: SdkClient::hydrateUnionAs($data->operation, BetaApplyPatchToolCallOperation::class, [BetaApplyPatchCreateFileOperation::class, BetaApplyPatchDeleteFileOperation::class, BetaApplyPatchUpdateFileOperation::class], "type", ["create_file" => BetaApplyPatchCreateFileOperation::class, "delete_file" => BetaApplyPatchDeleteFileOperation::class, "update_file" => BetaApplyPatchUpdateFileOperation::class], UnknownBetaApplyPatchToolCallOperation::class),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCaller::class, [BetaDirectToolCallCaller::class, BetaProgramToolCallCaller::class], "type", ["direct" => BetaDirectToolCallCaller::class, "program" => BetaProgramToolCallCaller::class], UnknownBetaToolCallCaller::class)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

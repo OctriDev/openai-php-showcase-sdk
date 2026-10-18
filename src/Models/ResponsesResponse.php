@@ -202,7 +202,7 @@ class ResponseVariant2IncompleteDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            reason: (property_exists($data, "reason") ? SdkClient::hydrateStringEnumOrString($data->reason, ResponseVariant2IncompleteDetailsReasonEnum::class) : SdkNotGiven::Value),
+            reason: (property_exists($data, "reason") && $data->reason !== null ? SdkClient::hydrateStringEnumOrString($data->reason, ResponseVariant2IncompleteDetailsReasonEnum::class) : SdkNotGiven::Value),
         );
     }
 }

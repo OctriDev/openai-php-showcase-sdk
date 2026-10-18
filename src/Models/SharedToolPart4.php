@@ -183,7 +183,7 @@ class ToolSearchToolParam implements Tool, ToolSearchOutputTool, \JsonSerializab
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ToolSearchToolParamTypeEnum::class),
-            execution: (property_exists($data, "execution") ? SdkClient::hydrateStringEnumOrString($data->execution, ToolSearchExecutionType::class) : SdkNotGiven::Value),
+            execution: (property_exists($data, "execution") && $data->execution !== null ? SdkClient::hydrateStringEnumOrString($data->execution, ToolSearchExecutionType::class) : SdkNotGiven::Value),
             description: (property_exists($data, "description") ? ($data->description === null ? null : SdkClient::stringValue($data->description)) : SdkNotGiven::Value),
             parameters: (property_exists($data, "parameters") ? ($data->parameters === null ? null : SdkClient::hydrateClass($data->parameters, EmptyModelParam::class)) : SdkNotGiven::Value),
         );

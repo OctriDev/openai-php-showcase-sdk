@@ -81,9 +81,9 @@ class CreateTranscriptionRequest implements \JsonSerializable
     /**
      * Controls how the audio is cut into chunks. When set to `"auto"`, the server first normalizes loudness and then uses voice activity detection (VAD) to choose boundaries. `server_vad` object can be provided to tweak VAD detection parameters manually. If unset, the audio is transcribed as a single block. Required when using `gpt-4o-transcribe-diarize` for inputs longer than 30 seconds.
      *
-     * @var CreateTranscriptionRequestChunkingStrategyEnum|string|VadConfig|null|SdkNotGiven
+     * @var CreateTranscriptionRequestChunkingStrategyModelEnum|string|VadConfig|null|SdkNotGiven
      */
-    public readonly CreateTranscriptionRequestChunkingStrategyEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy;
+    public readonly CreateTranscriptionRequestChunkingStrategyModelEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy;
     /**
      * Optional list of speaker names that correspond to the audio samples provided in `known_speaker_references[]`. Each entry should be a short identifier (for example `customer` or `agent`). Up to 4 speakers are supported.
      *
@@ -109,7 +109,7 @@ class CreateTranscriptionRequest implements \JsonSerializable
      * @param list<TranscriptionInclude|string>|SdkNotGiven $include_
      * @param list<CreateTranscriptionRequestTimestampGranularitiesItemEnum|string>|SdkNotGiven $timestampGranularities
      * @param bool|null|SdkNotGiven $stream
-     * @param CreateTranscriptionRequestChunkingStrategyEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy
+     * @param CreateTranscriptionRequestChunkingStrategyModelEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy
      * @param list<string>|SdkNotGiven $knownSpeakerNames
      * @param list<string>|SdkNotGiven $knownSpeakerReferences
      */
@@ -125,7 +125,7 @@ class CreateTranscriptionRequest implements \JsonSerializable
         array|SdkNotGiven $include_ = SdkNotGiven::Value,
         array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value,
         bool|null|SdkNotGiven $stream = SdkNotGiven::Value,
-        CreateTranscriptionRequestChunkingStrategyEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value,
+        CreateTranscriptionRequestChunkingStrategyModelEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value,
         array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value,
         array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value,
     ) {
@@ -208,18 +208,18 @@ class CreateTranscriptionRequest implements \JsonSerializable
         return new self(
             file: SdkClient::stringValue($data->file),
             model: SdkClient::stringValue($data->model),
-            language: (property_exists($data, "language") ? SdkClient::stringValue($data->language) : SdkNotGiven::Value),
-            languages: (property_exists($data, "languages") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
-            keywords: (property_exists($data, "keywords") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->keywords))) : SdkNotGiven::Value),
-            prompt: (property_exists($data, "prompt") ? SdkClient::stringValue($data->prompt) : SdkNotGiven::Value),
-            responseFormat: (property_exists($data, "response_format") ? SdkClient::hydrateStringEnumOrString($data->response_format, AudioResponseFormat::class) : SdkNotGiven::Value),
-            temperature: (property_exists($data, "temperature") ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
-            include_: (property_exists($data, "include") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, TranscriptionInclude::class), SdkClient::arrayValue($data->include))) : SdkNotGiven::Value),
-            timestampGranularities: (property_exists($data, "timestamp_granularities") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, CreateTranscriptionRequestTimestampGranularitiesItemEnum::class), SdkClient::arrayValue($data->timestamp_granularities))) : SdkNotGiven::Value),
+            language: (property_exists($data, "language") && $data->language !== null ? SdkClient::stringValue($data->language) : SdkNotGiven::Value),
+            languages: (property_exists($data, "languages") && $data->languages !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
+            keywords: (property_exists($data, "keywords") && $data->keywords !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->keywords))) : SdkNotGiven::Value),
+            prompt: (property_exists($data, "prompt") && $data->prompt !== null ? SdkClient::stringValue($data->prompt) : SdkNotGiven::Value),
+            responseFormat: (property_exists($data, "response_format") && $data->response_format !== null ? SdkClient::hydrateStringEnumOrString($data->response_format, AudioResponseFormat::class) : SdkNotGiven::Value),
+            temperature: (property_exists($data, "temperature") && $data->temperature !== null ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
+            include_: (property_exists($data, "include") && $data->include !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, TranscriptionInclude::class), SdkClient::arrayValue($data->include))) : SdkNotGiven::Value),
+            timestampGranularities: (property_exists($data, "timestamp_granularities") && $data->timestamp_granularities !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, CreateTranscriptionRequestTimestampGranularitiesItemEnum::class), SdkClient::arrayValue($data->timestamp_granularities))) : SdkNotGiven::Value),
             stream: (property_exists($data, "stream") ? ($data->stream === null ? null : SdkClient::boolValue($data->stream)) : SdkNotGiven::Value),
-            chunkingStrategy: (property_exists($data, "chunking_strategy") ? ($data->chunking_strategy === null ? null : (is_object($data->chunking_strategy) ? SdkClient::hydrateClass($data->chunking_strategy, VadConfig::class) : (is_string($data->chunking_strategy) ? SdkClient::hydrateStringEnumOrString($data->chunking_strategy, CreateTranscriptionRequestChunkingStrategyEnum::class) : SdkClient::hydrateClass($data->chunking_strategy, VadConfig::class)))) : SdkNotGiven::Value),
-            knownSpeakerNames: (property_exists($data, "known_speaker_names") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->known_speaker_names))) : SdkNotGiven::Value),
-            knownSpeakerReferences: (property_exists($data, "known_speaker_references") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->known_speaker_references))) : SdkNotGiven::Value),
+            chunkingStrategy: (property_exists($data, "chunking_strategy") ? ($data->chunking_strategy === null ? null : (is_object($data->chunking_strategy) ? SdkClient::hydrateClass($data->chunking_strategy, VadConfig::class) : (is_string($data->chunking_strategy) ? SdkClient::hydrateStringEnumOrString($data->chunking_strategy, CreateTranscriptionRequestChunkingStrategyModelEnum::class) : SdkClient::hydrateClass($data->chunking_strategy, VadConfig::class)))) : SdkNotGiven::Value),
+            knownSpeakerNames: (property_exists($data, "known_speaker_names") && $data->known_speaker_names !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->known_speaker_names))) : SdkNotGiven::Value),
+            knownSpeakerReferences: (property_exists($data, "known_speaker_references") && $data->known_speaker_references !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->known_speaker_references))) : SdkNotGiven::Value),
         );
     }
 }
@@ -256,7 +256,7 @@ final readonly class CreateTranscriptionResponseDiarizedJsonTaskEnum implements 
 /**
  * Represents a diarized transcription response returned by the model, including the combined transcript and speaker-segment annotations.
  */
-class CreateTranscriptionResponseDiarizedJson implements \JsonSerializable
+class CreateTranscriptionResponseDiarizedJson implements CreateTranscriptionResponse, \JsonSerializable
 {
     /**
      * The type of task that was run. Always `transcribe`.
@@ -350,7 +350,7 @@ class CreateTranscriptionResponseDiarizedJson implements \JsonSerializable
             duration: SdkClient::floatValue($data->duration),
             text: SdkClient::stringValue($data->text),
             segments: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionDiarizedSegment::class), SdkClient::arrayValue($data->segments))),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateUnionAs($data->usage, CreateTranscriptionResponseDiarizedJsonUsage::class, [TranscriptTextUsageTokens::class, TranscriptTextUsageDuration::class], "type", ["tokens" => TranscriptTextUsageTokens::class, "duration" => TranscriptTextUsageDuration::class], UnknownCreateTranscriptionResponseDiarizedJsonUsage::class) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateUnionAs($data->usage, CreateTranscriptionResponseDiarizedJsonUsage::class, [TranscriptTextUsageTokens::class, TranscriptTextUsageDuration::class], "type", ["tokens" => TranscriptTextUsageTokens::class, "duration" => TranscriptTextUsageDuration::class], UnknownCreateTranscriptionResponseDiarizedJsonUsage::class) : SdkNotGiven::Value),
         );
     }
 }

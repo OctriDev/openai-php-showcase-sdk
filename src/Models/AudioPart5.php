@@ -90,7 +90,7 @@ class CreateVoiceFromConsentRequest implements CreateVoiceRequest, \JsonSerializ
             name: SdkClient::stringValue($data->name),
             audioSample: SdkClient::stringValue($data->audio_sample),
             consent: SdkClient::stringValue($data->consent),
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, CreateVoiceFromConsentRequestTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, CreateVoiceFromConsentRequestTypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }

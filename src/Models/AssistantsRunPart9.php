@@ -60,8 +60,8 @@ class RunStepDetailsToolCallsFileSearchResultObjectContentItem implements \JsonS
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RunStepDetailsToolCallsFileSearchResultObjectContentItemTypeEnum::class) : SdkNotGiven::Value),
-            text: (property_exists($data, "text") ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RunStepDetailsToolCallsFileSearchResultObjectContentItemTypeEnum::class) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
         );
     }
 }
@@ -149,7 +149,7 @@ class RunStepDetailsToolCallsFileSearchResultObject implements \JsonSerializable
             fileId: SdkClient::stringValue($data->file_id),
             fileName: SdkClient::stringValue($data->file_name),
             score: SdkClient::floatValue($data->score),
-            content: (property_exists($data, "content") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RunStepDetailsToolCallsFileSearchResultObjectContentItem::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
+            content: (property_exists($data, "content") && $data->content !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RunStepDetailsToolCallsFileSearchResultObjectContentItem::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
         );
     }
 }

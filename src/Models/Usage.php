@@ -95,8 +95,8 @@ class CostsResultAmount implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            value: (property_exists($data, "value") ? SdkClient::floatValue($data->value) : SdkNotGiven::Value),
-            currency: (property_exists($data, "currency") ? SdkClient::stringValue($data->currency) : SdkNotGiven::Value),
+            value: (property_exists($data, "value") && $data->value !== null ? SdkClient::floatValue($data->value) : SdkNotGiven::Value),
+            currency: (property_exists($data, "currency") && $data->currency !== null ? SdkClient::stringValue($data->currency) : SdkNotGiven::Value),
         );
     }
 }
@@ -241,7 +241,7 @@ class CostsResult implements UsageTimeBucketResultsItem, \JsonSerializable
         return new self(
             object_: SdkClient::hydrateEnum($data->object, CostsResultObjectEnum::class),
             apiSource: (property_exists($data, "api_source") ? ($data->api_source === null ? null : SdkClient::hydrateEnum($data->api_source, CostsResultApiSourceEnum::class)) : SdkNotGiven::Value),
-            amount: (property_exists($data, "amount") ? SdkClient::hydrateClass($data->amount, CostsResultAmount::class) : SdkNotGiven::Value),
+            amount: (property_exists($data, "amount") && $data->amount !== null ? SdkClient::hydrateClass($data->amount, CostsResultAmount::class) : SdkNotGiven::Value),
             lineItem: (property_exists($data, "line_item") ? ($data->line_item === null ? null : SdkClient::stringValue($data->line_item)) : SdkNotGiven::Value),
             projectId: (property_exists($data, "project_id") ? ($data->project_id === null ? null : SdkClient::stringValue($data->project_id)) : SdkNotGiven::Value),
             userId: (property_exists($data, "user_id") ? ($data->user_id === null ? null : SdkClient::stringValue($data->user_id)) : SdkNotGiven::Value),

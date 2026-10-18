@@ -190,11 +190,11 @@ class BetaResponsesServerEventVariant45 implements BetaResponsesServerEvent, \Js
             partialImageIndex: SdkClient::intValue($data->partial_image_index),
             partialImageB64: SdkClient::stringValue($data->partial_image_b64),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            size: (property_exists($data, "size") ? SdkClient::stringValue($data->size) : SdkNotGiven::Value),
-            quality: (property_exists($data, "quality") ? SdkClient::stringValue($data->quality) : SdkNotGiven::Value),
-            background: (property_exists($data, "background") ? SdkClient::stringValue($data->background) : SdkNotGiven::Value),
-            outputFormat: (property_exists($data, "output_format") ? SdkClient::stringValue($data->output_format) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            size: (property_exists($data, "size") && $data->size !== null ? SdkClient::stringValue($data->size) : SdkNotGiven::Value),
+            quality: (property_exists($data, "quality") && $data->quality !== null ? SdkClient::stringValue($data->quality) : SdkNotGiven::Value),
+            background: (property_exists($data, "background") && $data->background !== null ? SdkClient::stringValue($data->background) : SdkNotGiven::Value),
+            outputFormat: (property_exists($data, "output_format") && $data->output_format !== null ? SdkClient::stringValue($data->output_format) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -328,7 +328,7 @@ class BetaResponsesServerEventVariant46 implements BetaResponsesServerEvent, \Js
             delta: SdkClient::stringValue($data->delta),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

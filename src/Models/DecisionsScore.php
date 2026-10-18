@@ -62,7 +62,7 @@ class ScoreLevelParam implements \JsonSerializable
         }
         return new self(
             label: SdkClient::stringValue($data->label),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
         );
     }
 }

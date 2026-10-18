@@ -141,12 +141,12 @@ class AudioTranscription implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            language: (property_exists($data, "language") ? SdkClient::stringValue($data->language) : SdkNotGiven::Value),
-            languages: (property_exists($data, "languages") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
-            keywords: (property_exists($data, "keywords") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->keywords))) : SdkNotGiven::Value),
-            prompt: (property_exists($data, "prompt") ? SdkClient::stringValue($data->prompt) : SdkNotGiven::Value),
-            delay: (property_exists($data, "delay") ? SdkClient::hydrateStringEnumOrString($data->delay, AudioTranscriptionDelayEnum::class) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            language: (property_exists($data, "language") && $data->language !== null ? SdkClient::stringValue($data->language) : SdkNotGiven::Value),
+            languages: (property_exists($data, "languages") && $data->languages !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
+            keywords: (property_exists($data, "keywords") && $data->keywords !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->keywords))) : SdkNotGiven::Value),
+            prompt: (property_exists($data, "prompt") && $data->prompt !== null ? SdkClient::stringValue($data->prompt) : SdkNotGiven::Value),
+            delay: (property_exists($data, "delay") && $data->delay !== null ? SdkClient::hydrateStringEnumOrString($data->delay, AudioTranscriptionDelayEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -228,10 +228,10 @@ class AudioTranscriptionResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
             language: (property_exists($data, "language") ? ($data->language === null ? null : SdkClient::stringValue($data->language)) : SdkNotGiven::Value),
-            languages: (property_exists($data, "languages") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
-            prompt: (property_exists($data, "prompt") ? SdkClient::stringValue($data->prompt) : SdkNotGiven::Value),
+            languages: (property_exists($data, "languages") && $data->languages !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
+            prompt: (property_exists($data, "prompt") && $data->prompt !== null ? SdkClient::stringValue($data->prompt) : SdkNotGiven::Value),
         );
     }
 }

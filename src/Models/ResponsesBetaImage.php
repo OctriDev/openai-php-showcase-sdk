@@ -288,8 +288,8 @@ class BetaImageGenToolInputImageMask implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            imageUrl: (property_exists($data, "image_url") ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            imageUrl: (property_exists($data, "image_url") && $data->image_url !== null ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
         );
     }
 }

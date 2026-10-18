@@ -182,17 +182,17 @@ class ImageGenTool implements Tool, ToolSearchOutputTool, \JsonSerializable
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ImageGenToolTypeEnum::class),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            quality: (property_exists($data, "quality") ? SdkClient::hydrateStringEnumOrString($data->quality, ImageGenToolQualityEnum::class) : SdkNotGiven::Value),
-            size: (property_exists($data, "size") ? SdkClient::stringValue($data->size) : SdkNotGiven::Value),
-            outputFormat: (property_exists($data, "output_format") ? SdkClient::hydrateStringEnumOrString($data->output_format, ImageGenToolOutputFormatEnum::class) : SdkNotGiven::Value),
-            outputCompression: (property_exists($data, "output_compression") ? SdkClient::intValue($data->output_compression) : SdkNotGiven::Value),
-            moderation: (property_exists($data, "moderation") ? SdkClient::hydrateStringEnumOrString($data->moderation, ImageGenToolModerationEnum::class) : SdkNotGiven::Value),
-            background: (property_exists($data, "background") ? SdkClient::hydrateStringEnumOrString($data->background, ImageGenToolBackgroundEnum::class) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            quality: (property_exists($data, "quality") && $data->quality !== null ? SdkClient::hydrateStringEnumOrString($data->quality, ImageGenToolQualityEnum::class) : SdkNotGiven::Value),
+            size: (property_exists($data, "size") && $data->size !== null ? SdkClient::stringValue($data->size) : SdkNotGiven::Value),
+            outputFormat: (property_exists($data, "output_format") && $data->output_format !== null ? SdkClient::hydrateStringEnumOrString($data->output_format, ImageGenToolOutputFormatEnum::class) : SdkNotGiven::Value),
+            outputCompression: (property_exists($data, "output_compression") && $data->output_compression !== null ? SdkClient::intValue($data->output_compression) : SdkNotGiven::Value),
+            moderation: (property_exists($data, "moderation") && $data->moderation !== null ? SdkClient::hydrateStringEnumOrString($data->moderation, ImageGenToolModerationEnum::class) : SdkNotGiven::Value),
+            background: (property_exists($data, "background") && $data->background !== null ? SdkClient::hydrateStringEnumOrString($data->background, ImageGenToolBackgroundEnum::class) : SdkNotGiven::Value),
             inputFidelity: (property_exists($data, "input_fidelity") ? ($data->input_fidelity === null ? null : SdkClient::hydrateStringEnumOrString($data->input_fidelity, InputFidelity::class)) : SdkNotGiven::Value),
-            inputImageMask: (property_exists($data, "input_image_mask") ? SdkClient::hydrateClass($data->input_image_mask, ImageGenToolInputImageMask::class) : SdkNotGiven::Value),
-            partialImages: (property_exists($data, "partial_images") ? SdkClient::intValue($data->partial_images) : SdkNotGiven::Value),
-            action: (property_exists($data, "action") ? SdkClient::hydrateStringEnumOrString($data->action, ImageGenActionEnum::class) : SdkNotGiven::Value),
+            inputImageMask: (property_exists($data, "input_image_mask") && $data->input_image_mask !== null ? SdkClient::hydrateClass($data->input_image_mask, ImageGenToolInputImageMask::class) : SdkNotGiven::Value),
+            partialImages: (property_exists($data, "partial_images") && $data->partial_images !== null ? SdkClient::intValue($data->partial_images) : SdkNotGiven::Value),
+            action: (property_exists($data, "action") && $data->action !== null ? SdkClient::hydrateStringEnumOrString($data->action, ImageGenActionEnum::class) : SdkNotGiven::Value),
         );
     }
 }

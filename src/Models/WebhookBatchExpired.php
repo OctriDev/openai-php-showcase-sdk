@@ -209,7 +209,7 @@ class WebhookBatchExpired implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             data: SdkClient::hydrateClass($data->data, WebhookBatchExpiredData::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, WebhookBatchExpiredTypeEnum::class),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, WebhookBatchExpiredObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, WebhookBatchExpiredObjectEnum::class) : SdkNotGiven::Value),
         );
     }
 }

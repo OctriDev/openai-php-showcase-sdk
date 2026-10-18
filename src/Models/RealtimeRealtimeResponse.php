@@ -198,9 +198,9 @@ class RealtimeResponseStatusDetailsError implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            code: (property_exists($data, "code") ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
-            message: (property_exists($data, "message") ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            code: (property_exists($data, "code") && $data->code !== null ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
+            message: (property_exists($data, "message") && $data->message !== null ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
         );
     }
 }
@@ -270,9 +270,9 @@ class RealtimeResponseStatusDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeResponseStatusDetailsTypeEnum::class) : SdkNotGiven::Value),
-            reason: (property_exists($data, "reason") ? SdkClient::hydrateStringEnumOrString($data->reason, RealtimeResponseStatusDetailsReasonEnum::class) : SdkNotGiven::Value),
-            error: (property_exists($data, "error") ? SdkClient::hydrateClass($data->error, RealtimeResponseStatusDetailsError::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeResponseStatusDetailsTypeEnum::class) : SdkNotGiven::Value),
+            reason: (property_exists($data, "reason") && $data->reason !== null ? SdkClient::hydrateStringEnumOrString($data->reason, RealtimeResponseStatusDetailsReasonEnum::class) : SdkNotGiven::Value),
+            error: (property_exists($data, "error") && $data->error !== null ? SdkClient::hydrateClass($data->error, RealtimeResponseStatusDetailsError::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -330,8 +330,8 @@ class RealtimeResponseAudioOutput implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
-            voice: (property_exists($data, "voice") ? SdkClient::stringValue($data->voice) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
+            voice: (property_exists($data, "voice") && $data->voice !== null ? SdkClient::stringValue($data->voice) : SdkNotGiven::Value),
         );
     }
 }
@@ -377,7 +377,7 @@ class RealtimeResponseAudio implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            output: (property_exists($data, "output") ? SdkClient::hydrateClass($data->output, RealtimeResponseAudioOutput::class) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? SdkClient::hydrateClass($data->output, RealtimeResponseAudioOutput::class) : SdkNotGiven::Value),
         );
     }
 }

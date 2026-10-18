@@ -110,8 +110,8 @@ class BetaCompactionBody implements BetaItemResource, BetaItemField, BetaOutputI
             type: SdkClient::hydrateEnum($data->type, BetaCompactionBodyTypeEnum::class),
             id: SdkClient::stringValue($data->id),
             encryptedContent: SdkClient::stringValue($data->encrypted_content),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

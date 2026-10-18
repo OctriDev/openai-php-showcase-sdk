@@ -169,9 +169,9 @@ class CustomToolCallResource implements ItemResource, \JsonSerializable
             input: SdkClient::stringValue($data->input),
             status: SdkClient::hydrateStringEnumOrString($data->status, FunctionCallStatus::class),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, ToolCallCaller::class, [DirectToolCallCaller::class, ProgramToolCallCaller::class], "type", ["direct" => DirectToolCallCaller::class, "program" => ProgramToolCallCaller::class], UnknownToolCallCaller::class)) : SdkNotGiven::Value),
-            namespace_: (property_exists($data, "namespace") ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            namespace_: (property_exists($data, "namespace") && $data->namespace !== null ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

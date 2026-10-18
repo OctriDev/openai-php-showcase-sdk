@@ -99,7 +99,7 @@ class HostedPluginParamInline implements HostedPluginParam, \JsonSerializable
             type: SdkClient::hydrateEnum($data->type, HostedPluginParamInlineTypeEnum::class),
             name: SdkClient::stringValue($data->name),
             description: SdkClient::stringValue($data->description),
-            source: SdkClient::hydrateClass($data->source, InlineCapabilitySourceParam::class),
+            source: SdkClient::hydrateClass($data->source, InlineCapabilitySourceParamBase64::class),
         );
     }
 }
@@ -279,7 +279,7 @@ class HostedSkillParamInline implements HostedSkillParam, \JsonSerializable
             type: SdkClient::hydrateEnum($data->type, HostedSkillParamInlineTypeEnum::class),
             name: SdkClient::stringValue($data->name),
             description: SdkClient::stringValue($data->description),
-            source: SdkClient::hydrateClass($data->source, InlineCapabilitySourceParam::class),
+            source: SdkClient::hydrateClass($data->source, InlineCapabilitySourceParamBase64::class),
         );
     }
 }

@@ -271,7 +271,7 @@ class CreateCompletionRequest implements \JsonSerializable
             suffix: (property_exists($data, "suffix") ? ($data->suffix === null ? null : SdkClient::stringValue($data->suffix)) : SdkNotGiven::Value),
             temperature: (property_exists($data, "temperature") ? ($data->temperature === null ? null : SdkClient::floatValue($data->temperature)) : SdkNotGiven::Value),
             topP: (property_exists($data, "top_p") ? ($data->top_p === null ? null : SdkClient::floatValue($data->top_p)) : SdkNotGiven::Value),
-            user: (property_exists($data, "user") ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
         );
     }
 }

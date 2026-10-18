@@ -117,8 +117,8 @@ class RealtimeBetaClientEventConversationItemCreate implements \JsonSerializable
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventConversationItemCreateTypeEnum::class),
             item: SdkClient::hydrateUnionAs($data->item, RealtimeConversationItem::class, [RealtimeConversationItemMessageSystem::class, RealtimeConversationItemMessageUser::class, RealtimeConversationItemMessageAssistant::class, RealtimeConversationItemFunctionCall::class, RealtimeConversationItemFunctionCallOutput::class, RealtimeMCPApprovalResponse::class, RealtimeMCPListTools::class, RealtimeMCPToolCall::class, RealtimeMCPApprovalRequest::class], "type", ["function_call" => RealtimeConversationItemFunctionCall::class, "function_call_output" => RealtimeConversationItemFunctionCallOutput::class, "mcp_approval_response" => RealtimeMCPApprovalResponse::class, "mcp_list_tools" => RealtimeMCPListTools::class, "mcp_call" => RealtimeMCPToolCall::class, "mcp_approval_request" => RealtimeMCPApprovalRequest::class], UnknownRealtimeConversationItem::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
-            previousItemId: (property_exists($data, "previous_item_id") ? SdkClient::stringValue($data->previous_item_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            previousItemId: (property_exists($data, "previous_item_id") && $data->previous_item_id !== null ? SdkClient::stringValue($data->previous_item_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -221,7 +221,7 @@ class RealtimeBetaClientEventConversationItemDelete implements \JsonSerializable
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventConversationItemDeleteTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -324,7 +324,7 @@ class RealtimeBetaClientEventConversationItemRetrieve implements \JsonSerializab
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventConversationItemRetrieveTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }

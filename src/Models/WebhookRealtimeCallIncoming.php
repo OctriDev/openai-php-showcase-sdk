@@ -137,7 +137,7 @@ class WebhookRealtimeCallIncomingData implements \JsonSerializable
         return new self(
             callId: SdkClient::stringValue($data->call_id),
             sipHeaders: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, WebhookRealtimeCallIncomingDataSipHeadersItem::class), SdkClient::arrayValue($data->sip_headers))),
-            sipMediaSecurity: (property_exists($data, "sip_media_security") ? SdkClient::stringValue($data->sip_media_security) : SdkNotGiven::Value),
+            sipMediaSecurity: (property_exists($data, "sip_media_security") && $data->sip_media_security !== null ? SdkClient::stringValue($data->sip_media_security) : SdkNotGiven::Value),
         );
     }
 }
@@ -297,7 +297,7 @@ class WebhookRealtimeCallIncoming implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             data: SdkClient::hydrateClass($data->data, WebhookRealtimeCallIncomingData::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, WebhookRealtimeCallIncomingTypeEnum::class),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, WebhookRealtimeCallIncomingObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, WebhookRealtimeCallIncomingObjectEnum::class) : SdkNotGiven::Value),
         );
     }
 }

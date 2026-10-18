@@ -60,8 +60,8 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter implements \Json
     public static function fromObject(object $data): self
     {
         return new self(
-            input: (property_exists($data, "input") ? SdkClient::stringValue($data->input) : SdkNotGiven::Value),
-            outputs: (property_exists($data, "outputs") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsItem::class, [RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::class, RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::class], "type", ["logs" => RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::class, "image" => RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::class], UnknownRunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsItem::class), SdkClient::arrayValue($data->outputs))) : SdkNotGiven::Value),
+            input: (property_exists($data, "input") && $data->input !== null ? SdkClient::stringValue($data->input) : SdkNotGiven::Value),
+            outputs: (property_exists($data, "outputs") && $data->outputs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsItem::class, [RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::class, RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::class], "type", ["logs" => RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject::class, "image" => RunStepDeltaStepDetailsToolCallsCodeOutputImageObject::class], UnknownRunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsItem::class), SdkClient::arrayValue($data->outputs))) : SdkNotGiven::Value),
         );
     }
 }
@@ -147,8 +147,8 @@ class RunStepDeltaStepDetailsToolCallsCodeObject implements RunStepDeltaStepDeta
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum::class),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            codeInterpreter: (property_exists($data, "code_interpreter") ? SdkClient::hydrateClass($data->code_interpreter, RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            codeInterpreter: (property_exists($data, "code_interpreter") && $data->code_interpreter !== null ? SdkClient::hydrateClass($data->code_interpreter, RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -202,7 +202,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage implements \Jso
     public static function fromObject(object $data): self
     {
         return new self(
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -276,7 +276,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject implements RunStepDe
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum::class),
-            image: (property_exists($data, "image") ? SdkClient::hydrateClass($data->image, RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage::class) : SdkNotGiven::Value),
+            image: (property_exists($data, "image") && $data->image !== null ? SdkClient::hydrateClass($data->image, RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -358,7 +358,7 @@ class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject implements RunStepDel
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum::class),
-            logs: (property_exists($data, "logs") ? SdkClient::stringValue($data->logs) : SdkNotGiven::Value),
+            logs: (property_exists($data, "logs") && $data->logs !== null ? SdkClient::stringValue($data->logs) : SdkNotGiven::Value),
         );
     }
 }

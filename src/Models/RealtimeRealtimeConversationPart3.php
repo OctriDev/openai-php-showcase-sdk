@@ -60,8 +60,8 @@ class RealtimeConversationItemMessageSystemContentItem implements \JsonSerializa
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeConversationItemMessageSystemContentItemTypeEnum::class) : SdkNotGiven::Value),
-            text: (property_exists($data, "text") ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeConversationItemMessageSystemContentItemTypeEnum::class) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
         );
     }
 }
@@ -173,9 +173,9 @@ class RealtimeConversationItemMessageSystem implements RealtimeConversationItem,
             type: SdkClient::hydrateEnum($data->type, RealtimeConversationItemMessageSystemTypeEnum::class),
             role: SdkClient::hydrateStringEnumOrString($data->role, RealtimeConversationItemMessageSystemRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RealtimeConversationItemMessageSystemContentItem::class), SdkClient::arrayValue($data->content))),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeConversationItemMessageSystemObjectEnum::class) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeConversationItemMessageSystemStatusEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeConversationItemMessageSystemObjectEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeConversationItemMessageSystemStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

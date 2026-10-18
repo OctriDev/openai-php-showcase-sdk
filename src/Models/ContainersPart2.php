@@ -154,10 +154,10 @@ class ContainerResource implements \JsonSerializable
             name: SdkClient::stringValue($data->name),
             createdAt: SdkClient::intValue($data->created_at),
             status: SdkClient::stringValue($data->status),
-            lastActiveAt: (property_exists($data, "last_active_at") ? SdkClient::intValue($data->last_active_at) : SdkNotGiven::Value),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, ContainerResourceExpiresAfter::class) : SdkNotGiven::Value),
-            memoryLimit: (property_exists($data, "memory_limit") ? SdkClient::hydrateStringEnumOrString($data->memory_limit, ContainerResourceMemoryLimitEnum::class) : SdkNotGiven::Value),
-            networkPolicy: (property_exists($data, "network_policy") ? SdkClient::hydrateClass($data->network_policy, ContainerResourceNetworkPolicy::class) : SdkNotGiven::Value),
+            lastActiveAt: (property_exists($data, "last_active_at") && $data->last_active_at !== null ? SdkClient::intValue($data->last_active_at) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, ContainerResourceExpiresAfter::class) : SdkNotGiven::Value),
+            memoryLimit: (property_exists($data, "memory_limit") && $data->memory_limit !== null ? SdkClient::hydrateStringEnumOrString($data->memory_limit, ContainerResourceMemoryLimitEnum::class) : SdkNotGiven::Value),
+            networkPolicy: (property_exists($data, "network_policy") && $data->network_policy !== null ? SdkClient::hydrateClass($data->network_policy, ContainerResourceNetworkPolicy::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -387,11 +387,11 @@ class CreateContainerBody implements \JsonSerializable
         }
         return new self(
             name: SdkClient::stringValue($data->name),
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, CreateContainerBodyExpiresAfter::class) : SdkNotGiven::Value),
-            skills: (property_exists($data, "skills") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateContainerBodySkillsItem::class, [SkillReferenceParam::class, InlineSkillParam::class], "type", ["skill_reference" => SkillReferenceParam::class, "inline" => InlineSkillParam::class], UnknownCreateContainerBodySkillsItem::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
-            memoryLimit: (property_exists($data, "memory_limit") ? SdkClient::hydrateStringEnumOrString($data->memory_limit, CreateContainerBodyMemoryLimitEnum::class) : SdkNotGiven::Value),
-            networkPolicy: (property_exists($data, "network_policy") ? SdkClient::hydrateUnionAs($data->network_policy, CreateContainerBodyNetworkPolicy::class, [ContainerNetworkPolicyDisabledParam::class, ContainerNetworkPolicyAllowlistParam::class], "type", ["disabled" => ContainerNetworkPolicyDisabledParam::class, "allowlist" => ContainerNetworkPolicyAllowlistParam::class], UnknownCreateContainerBodyNetworkPolicy::class) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, CreateContainerBodyExpiresAfter::class) : SdkNotGiven::Value),
+            skills: (property_exists($data, "skills") && $data->skills !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateContainerBodySkillsItem::class, [SkillReferenceParam::class, InlineSkillParam::class], "type", ["skill_reference" => SkillReferenceParam::class, "inline" => InlineSkillParam::class], UnknownCreateContainerBodySkillsItem::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
+            memoryLimit: (property_exists($data, "memory_limit") && $data->memory_limit !== null ? SdkClient::hydrateStringEnumOrString($data->memory_limit, CreateContainerBodyMemoryLimitEnum::class) : SdkNotGiven::Value),
+            networkPolicy: (property_exists($data, "network_policy") && $data->network_policy !== null ? SdkClient::hydrateUnionAs($data->network_policy, CreateContainerBodyNetworkPolicy::class, [ContainerNetworkPolicyDisabledParam::class, ContainerNetworkPolicyAllowlistParam::class], "type", ["disabled" => ContainerNetworkPolicyDisabledParam::class, "allowlist" => ContainerNetworkPolicyAllowlistParam::class], UnknownCreateContainerBodyNetworkPolicy::class) : SdkNotGiven::Value),
         );
     }
 }

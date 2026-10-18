@@ -16,14 +16,14 @@ trait AudioMethodsPart1
      *
      * @param string $model
      * @param string $input
-     * @param string|CreateSpeechVoiceEnum $voice
+     * @param string|array<array-key,mixed> $voice
      * @param string|SdkNotGiven $instructions
      * @param CreateSpeechResponseFormat|SdkNotGiven $responseFormat
      * @param float|SdkNotGiven $speed
      * @param CreateSpeechStreamFormat|SdkNotGiven $streamFormat
      * @return string
      */
-    public static function createSpeech(ClientConfig $clientConfig, string $model, string $input, string|CreateSpeechVoiceEnum|CreateSpeechVoiceVariant1 $voice, string|SdkNotGiven $instructions = SdkNotGiven::Value, CreateSpeechResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $speed = SdkNotGiven::Value, CreateSpeechStreamFormat|SdkNotGiven $streamFormat = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): string
+    public static function createSpeech(ClientConfig $clientConfig, string $model, string $input, string|array $voice, string|SdkNotGiven $instructions = SdkNotGiven::Value, CreateSpeechResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $speed = SdkNotGiven::Value, CreateSpeechStreamFormat|SdkNotGiven $streamFormat = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): string
     {
 
         Validation::validateLength('input', $input, max: 4096);
@@ -48,7 +48,7 @@ trait AudioMethodsPart1
      *
      * @param string $model
      * @param string $input
-     * @param string|CreateSpeechStreamVoiceEnum $voice
+     * @param string|array<array-key,mixed> $voice
      * @param string|SdkNotGiven $instructions
      * @param CreateSpeechStreamResponseFormat|SdkNotGiven $responseFormat
      * @param float|SdkNotGiven $speed
@@ -56,11 +56,11 @@ trait AudioMethodsPart1
      * @return \Generator<int,
      *   CreateSpeechResponseStreamEvent>
      */
-    public static function createSpeechStream(ClientConfig $clientConfig, string $model, string $input, string|CreateSpeechStreamVoiceEnum|CreateSpeechStreamVoiceVariant1 $voice, string|SdkNotGiven $instructions = SdkNotGiven::Value, CreateSpeechStreamResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $speed = SdkNotGiven::Value, CreateSpeechStreamStreamFormat|SdkNotGiven $streamFormat = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    public static function createSpeechStream(ClientConfig $clientConfig, string $model, string $input, string|array $voice, string|SdkNotGiven $instructions = SdkNotGiven::Value, CreateSpeechStreamResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $speed = SdkNotGiven::Value, CreateSpeechStreamStreamFormat|SdkNotGiven $streamFormat = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
     {
         foreach (SdkClient::stream(
             'POST',
-            '/audio/speech',
+            "/audio/speech",
             config: $clientConfig,
             body: ['model' => $model, 'input' => $input, 'voice' => $voice, 'instructions' => $instructions, 'response_format' => $responseFormat, 'speed' => $speed, 'stream_format' => $streamFormat],
             contentType: 'application/json',
@@ -93,12 +93,12 @@ trait AudioMethodsPart1
      * @param list<TranscriptionInclude|string>|SdkNotGiven $include
      * @param list<string>|SdkNotGiven $timestampGranularities
      * @param bool|null|SdkNotGiven $stream
-     * @param CreateTranscriptionChunkingStrategyEnum|VadConfig|null|SdkNotGiven $chunkingStrategy
+     * @param VadConfig|null|SdkNotGiven $chunkingStrategy
      * @param list<string>|SdkNotGiven $knownSpeakerNames
      * @param list<string>|SdkNotGiven $knownSpeakerReferences
-     * @return CreateTranscriptionResponseJson|CreateTranscriptionResponseDiarizedJson|CreateTranscriptionResponseVerboseJson
+     * @return CreateTranscriptionResponse
      */
-    public static function createTranscription(ClientConfig $clientConfig, SdkUploadFile $file, string $model, string|SdkNotGiven $language = SdkNotGiven::Value, array|SdkNotGiven $languages = SdkNotGiven::Value, array|SdkNotGiven $keywords = SdkNotGiven::Value, string|SdkNotGiven $prompt = SdkNotGiven::Value, AudioResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value, bool|null|SdkNotGiven $stream = SdkNotGiven::Value, CreateTranscriptionChunkingStrategyEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateTranscriptionResponseJson|CreateTranscriptionResponseDiarizedJson|CreateTranscriptionResponseVerboseJson
+    public static function createTranscription(ClientConfig $clientConfig, SdkUploadFile $file, string $model, string|SdkNotGiven $language = SdkNotGiven::Value, array|SdkNotGiven $languages = SdkNotGiven::Value, array|SdkNotGiven $keywords = SdkNotGiven::Value, string|SdkNotGiven $prompt = SdkNotGiven::Value, AudioResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value, bool|null|SdkNotGiven $stream = SdkNotGiven::Value, string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateTranscriptionResponse
     {
 
         if ($languages !== SdkNotGiven::Value) {
@@ -114,7 +114,7 @@ trait AudioMethodsPart1
         }
 
         $sdkResponse = SdkClient::request('POST', "/audio/transcriptions", $clientConfig, body: ['file' => $file, 'model' => $model, 'language' => $language, 'languages' => $languages, 'keywords' => $keywords, 'prompt' => $prompt, 'response_format' => $responseFormat, 'temperature' => $temperature, 'include' => $include, 'timestamp_granularities' => $timestampGranularities, 'stream' => $stream, 'chunking_strategy' => new SdkMultipartPart($chunkingStrategy, "application/json"), 'known_speaker_names' => $knownSpeakerNames, 'known_speaker_references' => $knownSpeakerReferences], contentType: 'multipart/form-data', decoder: 'json', operationId: 'createTranscription', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 413 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 502 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::hydrateUnion($sdkResponse->data, [CreateTranscriptionResponseJson::class, CreateTranscriptionResponseDiarizedJson::class, CreateTranscriptionResponseVerboseJson::class]));
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::hydrateUnionAs($sdkResponse->data, CreateTranscriptionResponse::class, [CreateTranscriptionResponseJson::class, CreateTranscriptionResponseDiarizedJson::class, CreateTranscriptionResponseVerboseJson::class], null, []));
     }
 
 
@@ -134,17 +134,17 @@ trait AudioMethodsPart1
      * @param float|SdkNotGiven $temperature
      * @param list<TranscriptionInclude|string>|SdkNotGiven $include
      * @param list<string>|SdkNotGiven $timestampGranularities
-     * @param CreateTranscriptionStreamChunkingStrategyEnum|VadConfig|null|SdkNotGiven $chunkingStrategy
+     * @param VadConfig|null|SdkNotGiven $chunkingStrategy
      * @param list<string>|SdkNotGiven $knownSpeakerNames
      * @param list<string>|SdkNotGiven $knownSpeakerReferences
      * @return \Generator<int,
      *   CreateTranscriptionResponseStreamEvent>
      */
-    public static function createTranscriptionStream(ClientConfig $clientConfig, SdkUploadFile $file, string $model, ?bool $stream, string|SdkNotGiven $language = SdkNotGiven::Value, array|SdkNotGiven $languages = SdkNotGiven::Value, array|SdkNotGiven $keywords = SdkNotGiven::Value, string|SdkNotGiven $prompt = SdkNotGiven::Value, AudioResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value, CreateTranscriptionStreamChunkingStrategyEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    public static function createTranscriptionStream(ClientConfig $clientConfig, SdkUploadFile $file, string $model, ?bool $stream, string|SdkNotGiven $language = SdkNotGiven::Value, array|SdkNotGiven $languages = SdkNotGiven::Value, array|SdkNotGiven $keywords = SdkNotGiven::Value, string|SdkNotGiven $prompt = SdkNotGiven::Value, AudioResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value, string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
     {
         foreach (SdkClient::stream(
             'POST',
-            '/audio/transcriptions',
+            "/audio/transcriptions",
             config: $clientConfig,
             body: ['file' => $file, 'model' => $model, 'stream' => $stream, 'language' => $language, 'languages' => $languages, 'keywords' => $keywords, 'prompt' => $prompt, 'response_format' => $responseFormat, 'temperature' => $temperature, 'include' => $include, 'timestamp_granularities' => $timestampGranularities, 'chunking_strategy' => new SdkMultipartPart($chunkingStrategy, "application/json"), 'known_speaker_names' => $knownSpeakerNames, 'known_speaker_references' => $knownSpeakerReferences],
             contentType: 'multipart/form-data',
@@ -171,13 +171,13 @@ trait AudioMethodsPart1
      * @param string|SdkNotGiven $prompt
      * @param CreateTranslationResponseFormat|SdkNotGiven $responseFormat
      * @param float|SdkNotGiven $temperature
-     * @return CreateTranslationResponseJson|CreateTranslationResponseVerboseJson
+     * @return CreateTranslationResponse
      */
-    public static function createTranslation(ClientConfig $clientConfig, SdkUploadFile $file, string $model, string|SdkNotGiven $prompt = SdkNotGiven::Value, CreateTranslationResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateTranslationResponseJson|CreateTranslationResponseVerboseJson
+    public static function createTranslation(ClientConfig $clientConfig, SdkUploadFile $file, string $model, string|SdkNotGiven $prompt = SdkNotGiven::Value, CreateTranslationResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateTranslationResponse
     {
 
         $sdkResponse = SdkClient::request('POST', "/audio/translations", $clientConfig, body: ['file' => $file, 'model' => $model, 'prompt' => $prompt, 'response_format' => $responseFormat, 'temperature' => $temperature], contentType: 'multipart/form-data', decoder: 'json', operationId: 'createTranslation', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 413 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 502 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
-        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::hydrateUnion($sdkResponse->data, [CreateTranslationResponseJson::class, CreateTranslationResponseVerboseJson::class]));
+        return SdkClient::decoded($sdkResponse, static fn() => SdkClient::hydrateUnionAs($sdkResponse->data, CreateTranslationResponse::class, [CreateTranslationResponseJson::class, CreateTranslationResponseVerboseJson::class], null, []));
     }
 
 

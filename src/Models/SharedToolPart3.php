@@ -151,9 +151,9 @@ class ToolSearchOutputFunctionToolParam implements ToolSearchOutputNamespaceTool
             description: (property_exists($data, "description") ? ($data->description === null ? null : SdkClient::stringValue($data->description)) : SdkNotGiven::Value),
             parameters: (property_exists($data, "parameters") ? ($data->parameters === null ? null : SdkClient::hydrateClass($data->parameters, EmptyModelParam::class)) : SdkNotGiven::Value),
             strict: (property_exists($data, "strict") ? ($data->strict === null ? null : SdkClient::boolValue($data->strict)) : SdkNotGiven::Value),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
             outputSchema: (property_exists($data, "output_schema") ? ($data->output_schema === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->output_schema), static fn($item) => $item)) : SdkNotGiven::Value),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
             allowedCallers: (property_exists($data, "allowed_callers") ? ($data->allowed_callers === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, CallableToolAllowedCaller::class), SdkClient::arrayValue($data->allowed_callers)))) : SdkNotGiven::Value),
         );
     }
@@ -274,7 +274,7 @@ class ToolSearchOutputItemParam implements InputItem, Item, \JsonSerializable
             tools: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ToolSearchOutputTool::class, [FunctionTool::class, FileSearchTool::class, ComputerTool::class, ComputerUsePreviewTool::class, WebSearchTool::class, MCPTool::class, CodeInterpreterTool::class, ProgrammaticToolCallingParam::class, ImageGenTool::class, LocalShellToolParam::class, FunctionShellToolParam::class, CustomToolParam::class, ToolSearchOutputNamespaceToolParam::class, ToolSearchToolParam::class, WebSearchPreviewTool::class, ApplyPatchToolParam::class], "type", ["function" => FunctionTool::class, "file_search" => FileSearchTool::class, "computer" => ComputerTool::class, "computer_use_preview" => ComputerUsePreviewTool::class, "web_search" => WebSearchTool::class, "web_search_2025_08_26" => WebSearchTool::class, "mcp" => MCPTool::class, "code_interpreter" => CodeInterpreterTool::class, "programmatic_tool_calling" => ProgrammaticToolCallingParam::class, "image_generation" => ImageGenTool::class, "local_shell" => LocalShellToolParam::class, "shell" => FunctionShellToolParam::class, "custom" => CustomToolParam::class, "namespace" => ToolSearchOutputNamespaceToolParam::class, "tool_search" => ToolSearchToolParam::class, "web_search_preview" => WebSearchPreviewTool::class, "web_search_preview_2025_03_11" => WebSearchPreviewTool::class, "apply_patch" => ApplyPatchToolParam::class], UnknownToolSearchOutputTool::class), SdkClient::arrayValue($data->tools))),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
             callId: (property_exists($data, "call_id") ? ($data->call_id === null ? null : SdkClient::stringValue($data->call_id)) : SdkNotGiven::Value),
-            execution: (property_exists($data, "execution") ? SdkClient::hydrateStringEnumOrString($data->execution, ToolSearchExecutionType::class) : SdkNotGiven::Value),
+            execution: (property_exists($data, "execution") && $data->execution !== null ? SdkClient::hydrateStringEnumOrString($data->execution, ToolSearchExecutionType::class) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? ($data->status === null ? null : SdkClient::hydrateStringEnumOrString($data->status, FunctionCallItemStatus::class)) : SdkNotGiven::Value),
         );
     }

@@ -231,7 +231,7 @@ class BetaInputMessageResource implements BetaItemResource, \JsonSerializable
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaInputContent::class, [BetaInputTextContent::class, BetaInputImageContent::class, BetaInputFileContent::class], "type", ["input_text" => BetaInputTextContent::class, "input_image" => BetaInputImageContent::class, "input_file" => BetaInputFileContent::class], UnknownBetaInputContent::class), SdkClient::arrayValue($data->content))),
             id: SdkClient::stringValue($data->id),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, BetaInputMessageResourceStatusEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, BetaInputMessageResourceStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -313,7 +313,7 @@ class BetaInputTextContent implements BetaFunctionAndCustomToolCallOutput, BetaI
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaInputTextContentTypeEnum::class),
             text: SdkClient::stringValue($data->text),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
         );
     }
 }

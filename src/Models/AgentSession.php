@@ -196,8 +196,8 @@ class AgentSessionCreatedPayloadResource implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             environmentType: SdkClient::stringValue($data->environment_type),
-            environmentId: (property_exists($data, "environment_id") ? SdkClient::stringValue($data->environment_id) : SdkNotGiven::Value),
-            connect: (property_exists($data, "connect") ? SdkClient::hydrateClass($data->connect, AgentSessionConnectPayloadResource::class) : SdkNotGiven::Value),
+            environmentId: (property_exists($data, "environment_id") && $data->environment_id !== null ? SdkClient::stringValue($data->environment_id) : SdkNotGiven::Value),
+            connect: (property_exists($data, "connect") && $data->connect !== null ? SdkClient::hydrateClass($data->connect, AgentSessionConnectPayloadResource::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -271,7 +271,7 @@ class AgentSessionEnvironmentPayloadResource implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             environmentType: SdkClient::stringValue($data->environment_type),
-            environmentId: (property_exists($data, "environment_id") ? SdkClient::stringValue($data->environment_id) : SdkNotGiven::Value),
+            environmentId: (property_exists($data, "environment_id") && $data->environment_id !== null ? SdkClient::stringValue($data->environment_id) : SdkNotGiven::Value),
         );
     }
 }

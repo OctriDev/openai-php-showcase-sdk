@@ -62,7 +62,7 @@ class RealtimeCallCreateRequest implements \JsonSerializable
         }
         return new self(
             sdp: SdkClient::stringValue($data->sdp),
-            session: (property_exists($data, "session") ? SdkClient::hydrateClass($data->session, RealtimeSessionCreateRequestGA::class) : SdkNotGiven::Value),
+            session: (property_exists($data, "session") && $data->session !== null ? SdkClient::hydrateClass($data->session, RealtimeSessionCreateRequestGA::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -155,7 +155,7 @@ class RealtimeCallRejectRequest implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            statusCode: (property_exists($data, "status_code") ? SdkClient::intValue($data->status_code) : SdkNotGiven::Value),
+            statusCode: (property_exists($data, "status_code") && $data->status_code !== null ? SdkClient::intValue($data->status_code) : SdkNotGiven::Value),
         );
     }
 }

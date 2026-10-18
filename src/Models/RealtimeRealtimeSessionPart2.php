@@ -75,9 +75,9 @@ class RealtimeSession implements \JsonSerializable
     /**
      * Configuration for input audio noise reduction. This can be set to `null` to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
      *
-     * @var mixed
+     * @var RealtimeSessionInputAudioNoiseReduction|SdkNotGiven
      */
-    public readonly mixed $inputAudioNoiseReduction;
+    public readonly RealtimeSessionInputAudioNoiseReduction|SdkNotGiven $inputAudioNoiseReduction;
     /**
      * The speed of the model's spoken response. 1.0 is the default speed. 0.25 is the minimum speed. 1.5 is the maximum speed. This value can only be changed in between model turns, not while a response is in progress.
      *
@@ -87,9 +87,9 @@ class RealtimeSession implements \JsonSerializable
     /**
      * Configuration options for tracing. Set to null to disable tracing. Once tracing is enabled for a session, the configuration cannot be modified. `auto` will create a trace for the session with default values for the workflow name, group id, and metadata.
      *
-     * @var RealtimeSessionTracingEnum|string|RealtimeSessionTracingTracingConfiguration|null|SdkNotGiven
+     * @var RealtimeSessionTracingModelEnum|string|RealtimeSessionTracingModelTracingConfiguration|null|SdkNotGiven
      */
-    public readonly RealtimeSessionTracingEnum|string|RealtimeSessionTracingTracingConfiguration|null|SdkNotGiven $tracing;
+    public readonly RealtimeSessionTracingModelEnum|string|RealtimeSessionTracingModelTracingConfiguration|null|SdkNotGiven $tracing;
     /**
      * Tools (functions) available to the model.
      *
@@ -144,9 +144,9 @@ class RealtimeSession implements \JsonSerializable
      * @param RealtimeSessionOutputAudioFormatEnum|string|SdkNotGiven $outputAudioFormat
      * @param AudioTranscriptionResponse|null|SdkNotGiven $inputAudioTranscription
      * @param RealtimeTurnDetection|null|SdkNotGiven $turnDetection
-     * @param mixed $inputAudioNoiseReduction
+     * @param RealtimeSessionInputAudioNoiseReduction|SdkNotGiven $inputAudioNoiseReduction
      * @param float|SdkNotGiven $speed
-     * @param RealtimeSessionTracingEnum|string|RealtimeSessionTracingTracingConfiguration|null|SdkNotGiven $tracing
+     * @param RealtimeSessionTracingModelEnum|string|RealtimeSessionTracingModelTracingConfiguration|null|SdkNotGiven $tracing
      * @param list<RealtimeFunctionTool>|SdkNotGiven $tools
      * @param string|SdkNotGiven $toolChoice
      * @param float|SdkNotGiven $temperature
@@ -166,9 +166,9 @@ class RealtimeSession implements \JsonSerializable
         RealtimeSessionOutputAudioFormatEnum|string|SdkNotGiven $outputAudioFormat = SdkNotGiven::Value,
         AudioTranscriptionResponse|null|SdkNotGiven $inputAudioTranscription = SdkNotGiven::Value,
         RealtimeTurnDetection|null|SdkNotGiven $turnDetection = SdkNotGiven::Value,
-        mixed $inputAudioNoiseReduction = SdkNotGiven::Value,
+        RealtimeSessionInputAudioNoiseReduction|SdkNotGiven $inputAudioNoiseReduction = SdkNotGiven::Value,
         float|SdkNotGiven $speed = SdkNotGiven::Value,
-        RealtimeSessionTracingEnum|string|RealtimeSessionTracingTracingConfiguration|null|SdkNotGiven $tracing = SdkNotGiven::Value,
+        RealtimeSessionTracingModelEnum|string|RealtimeSessionTracingModelTracingConfiguration|null|SdkNotGiven $tracing = SdkNotGiven::Value,
         array|SdkNotGiven $tools = SdkNotGiven::Value,
         string|SdkNotGiven $toolChoice = SdkNotGiven::Value,
         float|SdkNotGiven $temperature = SdkNotGiven::Value,
@@ -276,24 +276,24 @@ class RealtimeSession implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeSessionObjectEnum::class) : SdkNotGiven::Value),
-            modalities: (property_exists($data, "modalities") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeSessionModalitiesItemEnum::class), SdkClient::arrayValue($data->modalities))) : SdkNotGiven::Value),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            instructions: (property_exists($data, "instructions") ? SdkClient::stringValue($data->instructions) : SdkNotGiven::Value),
-            voice: (property_exists($data, "voice") ? SdkClient::stringValue($data->voice) : SdkNotGiven::Value),
-            inputAudioFormat: (property_exists($data, "input_audio_format") ? SdkClient::hydrateStringEnumOrString($data->input_audio_format, RealtimeSessionInputAudioFormatEnum::class) : SdkNotGiven::Value),
-            outputAudioFormat: (property_exists($data, "output_audio_format") ? SdkClient::hydrateStringEnumOrString($data->output_audio_format, RealtimeSessionOutputAudioFormatEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeSessionObjectEnum::class) : SdkNotGiven::Value),
+            modalities: (property_exists($data, "modalities") && $data->modalities !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeSessionModalitiesItemEnum::class), SdkClient::arrayValue($data->modalities))) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            instructions: (property_exists($data, "instructions") && $data->instructions !== null ? SdkClient::stringValue($data->instructions) : SdkNotGiven::Value),
+            voice: (property_exists($data, "voice") && $data->voice !== null ? SdkClient::stringValue($data->voice) : SdkNotGiven::Value),
+            inputAudioFormat: (property_exists($data, "input_audio_format") && $data->input_audio_format !== null ? SdkClient::hydrateStringEnumOrString($data->input_audio_format, RealtimeSessionInputAudioFormatEnum::class) : SdkNotGiven::Value),
+            outputAudioFormat: (property_exists($data, "output_audio_format") && $data->output_audio_format !== null ? SdkClient::hydrateStringEnumOrString($data->output_audio_format, RealtimeSessionOutputAudioFormatEnum::class) : SdkNotGiven::Value),
             inputAudioTranscription: (property_exists($data, "input_audio_transcription") ? ($data->input_audio_transcription === null ? null : SdkClient::hydrateClass($data->input_audio_transcription, AudioTranscriptionResponse::class)) : SdkNotGiven::Value),
             turnDetection: (property_exists($data, "turn_detection") ? ($data->turn_detection === null ? null : SdkClient::hydrateUnionAs($data->turn_detection, RealtimeTurnDetection::class, [RealtimeTurnDetectionVariant0::class, RealtimeTurnDetectionVariant1::class], "type", ["server_vad" => RealtimeTurnDetectionVariant0::class, "semantic_vad" => RealtimeTurnDetectionVariant1::class], UnknownRealtimeTurnDetection::class)) : SdkNotGiven::Value),
-            inputAudioNoiseReduction: (property_exists($data, "input_audio_noise_reduction") ? $data->input_audio_noise_reduction : SdkNotGiven::Value),
-            speed: (property_exists($data, "speed") ? SdkClient::floatValue($data->speed) : SdkNotGiven::Value),
-            tracing: (property_exists($data, "tracing") ? ($data->tracing === null ? null : (is_object($data->tracing) ? SdkClient::hydrateClass($data->tracing, RealtimeSessionTracingTracingConfiguration::class) : (is_string($data->tracing) ? SdkClient::hydrateStringEnumOrString($data->tracing, RealtimeSessionTracingEnum::class) : SdkClient::hydrateClass($data->tracing, RealtimeSessionTracingTracingConfiguration::class)))) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RealtimeFunctionTool::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
-            toolChoice: (property_exists($data, "tool_choice") ? SdkClient::stringValue($data->tool_choice) : SdkNotGiven::Value),
-            temperature: (property_exists($data, "temperature") ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
-            maxResponseOutputTokens: (property_exists($data, "max_response_output_tokens") ? (is_int($data->max_response_output_tokens) ? SdkClient::intValue($data->max_response_output_tokens) : SdkClient::hydrateStringEnumOrString($data->max_response_output_tokens, RealtimeSessionMaxResponseOutputTokensEnum::class)) : SdkNotGiven::Value),
-            expiresAt: (property_exists($data, "expires_at") ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
+            inputAudioNoiseReduction: (property_exists($data, "input_audio_noise_reduction") && $data->input_audio_noise_reduction !== null ? SdkClient::hydrateClass($data->input_audio_noise_reduction, RealtimeSessionInputAudioNoiseReduction::class) : SdkNotGiven::Value),
+            speed: (property_exists($data, "speed") && $data->speed !== null ? SdkClient::floatValue($data->speed) : SdkNotGiven::Value),
+            tracing: (property_exists($data, "tracing") ? ($data->tracing === null ? null : (is_object($data->tracing) ? SdkClient::hydrateClass($data->tracing, RealtimeSessionTracingModelTracingConfiguration::class) : (is_string($data->tracing) ? SdkClient::hydrateStringEnumOrString($data->tracing, RealtimeSessionTracingModelEnum::class) : SdkClient::hydrateClass($data->tracing, RealtimeSessionTracingModelTracingConfiguration::class)))) : SdkNotGiven::Value),
+            tools: (property_exists($data, "tools") && $data->tools !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RealtimeFunctionTool::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
+            toolChoice: (property_exists($data, "tool_choice") && $data->tool_choice !== null ? SdkClient::stringValue($data->tool_choice) : SdkNotGiven::Value),
+            temperature: (property_exists($data, "temperature") && $data->temperature !== null ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
+            maxResponseOutputTokens: (property_exists($data, "max_response_output_tokens") && $data->max_response_output_tokens !== null ? (is_int($data->max_response_output_tokens) ? SdkClient::intValue($data->max_response_output_tokens) : SdkClient::hydrateStringEnumOrString($data->max_response_output_tokens, RealtimeSessionMaxResponseOutputTokensEnum::class)) : SdkNotGiven::Value),
+            expiresAt: (property_exists($data, "expires_at") && $data->expires_at !== null ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
             prompt: (property_exists($data, "prompt") ? ($data->prompt === null ? null : SdkClient::hydrateClass($data->prompt, Prompt::class)) : SdkNotGiven::Value),
             include_: (property_exists($data, "include") ? ($data->include === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeSessionIncludeItemEnum::class), SdkClient::arrayValue($data->include)))) : SdkNotGiven::Value),
         );

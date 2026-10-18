@@ -90,7 +90,7 @@ class LiveDecisionScoreQuestionParam implements LiveDecisionQuestion, \JsonSeria
             type: SdkClient::hydrateEnum($data->type, LiveDecisionScoreQuestionParamTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
             levels: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveDecisionScoreLevelParam::class), SdkClient::arrayValue($data->levels))),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -236,7 +236,7 @@ class LiveDecisionStoredInputItemParam implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             role: SdkClient::hydrateStringEnumOrString($data->role, LiveDecisionStoredInputItemParamRoleEnum::class),
             content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, LiveDecisionStoredInputItemParamContentItem::class, [LiveDecisionInputTextParam::class, LiveDecisionInputImageParam::class], "type", ["input_text" => LiveDecisionInputTextParam::class, "input_image" => LiveDecisionInputImageParam::class], UnknownLiveDecisionStoredInputItemParamContentItem::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, LiveDecisionStoredInputItemParamTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, LiveDecisionStoredInputItemParamTypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }

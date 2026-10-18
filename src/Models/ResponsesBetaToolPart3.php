@@ -144,8 +144,8 @@ class BetaToolSearchOutput implements BetaItemResource, BetaItemField, BetaOutpu
             execution: SdkClient::hydrateStringEnumOrString($data->execution, BetaToolSearchExecutionType::class),
             tools: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaTool::class, [BetaFunctionTool::class, BetaFileSearchTool::class, BetaComputerTool::class, BetaComputerUsePreviewTool::class, BetaWebSearchTool::class, BetaMCPTool::class, BetaCodeInterpreterTool::class, BetaProgrammaticToolCallingParam::class, BetaImageGenTool::class, BetaLocalShellToolParam::class, BetaFunctionShellToolParam::class, BetaCustomToolParam::class, BetaNamespaceToolParam::class, BetaToolSearchToolParam::class, BetaWebSearchPreviewTool::class, BetaApplyPatchToolParam::class], "type", ["function" => BetaFunctionTool::class, "file_search" => BetaFileSearchTool::class, "computer" => BetaComputerTool::class, "computer_use_preview" => BetaComputerUsePreviewTool::class, "web_search" => BetaWebSearchTool::class, "web_search_2025_08_26" => BetaWebSearchTool::class, "mcp" => BetaMCPTool::class, "code_interpreter" => BetaCodeInterpreterTool::class, "programmatic_tool_calling" => BetaProgrammaticToolCallingParam::class, "image_generation" => BetaImageGenTool::class, "local_shell" => BetaLocalShellToolParam::class, "shell" => BetaFunctionShellToolParam::class, "custom" => BetaCustomToolParam::class, "namespace" => BetaNamespaceToolParam::class, "tool_search" => BetaToolSearchToolParam::class, "web_search_preview" => BetaWebSearchPreviewTool::class, "web_search_preview_2025_03_11" => BetaWebSearchPreviewTool::class, "apply_patch" => BetaApplyPatchToolParam::class], UnknownBetaTool::class), SdkClient::arrayValue($data->tools))),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallOutputStatusEnum::class),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -302,9 +302,9 @@ class BetaToolSearchOutputFunctionToolParam implements BetaToolSearchOutputNames
             description: (property_exists($data, "description") ? ($data->description === null ? null : SdkClient::stringValue($data->description)) : SdkNotGiven::Value),
             parameters: (property_exists($data, "parameters") ? ($data->parameters === null ? null : SdkClient::hydrateClass($data->parameters, BetaEmptyModelParam::class)) : SdkNotGiven::Value),
             strict: (property_exists($data, "strict") ? ($data->strict === null ? null : SdkClient::boolValue($data->strict)) : SdkNotGiven::Value),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
             outputSchema: (property_exists($data, "output_schema") ? ($data->output_schema === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->output_schema), static fn($item) => $item)) : SdkNotGiven::Value),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
             allowedCallers: (property_exists($data, "allowed_callers") ? ($data->allowed_callers === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, BetaCallableToolAllowedCaller::class), SdkClient::arrayValue($data->allowed_callers)))) : SdkNotGiven::Value),
         );
     }

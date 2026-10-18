@@ -90,8 +90,8 @@ class CreateMessageRequestAttachmentsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateMessageRequestAttachmentsItemToolsItem::class, [AssistantToolsCode::class, AssistantToolsFileSearchTypeOnly::class], "type", ["code_interpreter" => AssistantToolsCode::class, "file_search" => AssistantToolsFileSearchTypeOnly::class], UnknownCreateMessageRequestAttachmentsItemToolsItem::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            tools: (property_exists($data, "tools") && $data->tools !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateMessageRequestAttachmentsItemToolsItem::class, [AssistantToolsCode::class, AssistantToolsFileSearchTypeOnly::class], "type", ["code_interpreter" => AssistantToolsCode::class, "file_search" => AssistantToolsFileSearchTypeOnly::class], UnknownCreateMessageRequestAttachmentsItemToolsItem::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
         );
     }
 }

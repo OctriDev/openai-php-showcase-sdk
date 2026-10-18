@@ -9,6 +9,55 @@ namespace octridev_openai;
 
 trait SdkClientMethodsPart6
 {
+    /**
+     * The decoded body of a 2xx response; one that does not decode raises
+     * SdkResponseDecodeError carrying the response.
+     *
+     * @template T
+     * @param SdkResponse<mixed> $response
+     * @param callable(): T $decode
+     * @return T
+     */
+    public static function decoded(SdkResponse $response, callable $decode): mixed
+    {
+        try {
+            return $decode();
+        } catch (SdkValidationError|\UnexpectedValueException|\TypeError|\ValueError $error) {
+            throw self::decodeError($response->statusCode, $response->headers, $response->data, $response->requestId, $error);
+        }
+    }
+
+    /**
+     * A stream event decoded into its type; one that does not decode raises
+     * SdkResponseDecodeError with its data.
+     *
+     * @template T
+     * @param callable(): T $decode
+     * @return T
+     */
+    public static function decodedEvent(string $data, callable $decode): mixed
+    {
+        try {
+            return $decode();
+        } catch (SdkValidationError|\UnexpectedValueException|\TypeError|\ValueError $error) {
+            throw self::decodeError(200, [], $data, null, $error);
+        }
+    }
+
+    /** @param array<string,string> $headers */
+    private static function decodeError(int $status, array $headers, mixed $body, ?string $requestId, \Throwable $error): SdkResponseDecodeError
+    {
+        return new SdkResponseDecodeError(
+            $error->getMessage(),
+            $status,
+            $headers,
+            $body,
+            $requestId,
+            $error instanceof SdkValidationError ? $error->field : null,
+            $error,
+        );
+    }
+
     private static function decode(string $body, string $decoder, ?string $returnType): mixed
     {
         if ($decoder === 'empty') {

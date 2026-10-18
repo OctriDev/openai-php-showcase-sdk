@@ -176,7 +176,7 @@ class ImageGenToolCall implements ConversationItem, InputItem, Item, ItemResourc
             id: SdkClient::stringValue($data->id),
             status: SdkClient::hydrateStringEnumOrString($data->status, ImageGenToolCallStatusEnum::class),
             result: ($data->result === null ? null : SdkClient::stringValue($data->result)),
-            error: (property_exists($data, "error") ? SdkClient::hydrateClass($data->error, ImageGenToolCallError::class) : SdkNotGiven::Value),
+            error: (property_exists($data, "error") && $data->error !== null ? SdkClient::hydrateClass($data->error, ImageGenToolCallError::class) : SdkNotGiven::Value),
             size: (property_exists($data, "size") ? ($data->size === null ? null : SdkClient::stringValue($data->size)) : SdkNotGiven::Value),
             quality: (property_exists($data, "quality") ? ($data->quality === null ? null : SdkClient::hydrateEnum($data->quality, ImageGenToolCallQualityEnum::class)) : SdkNotGiven::Value),
             action: (property_exists($data, "action") ? ($data->action === null ? null : SdkClient::hydrateStringEnumOrString($data->action, ImageGenActionEnum::class)) : SdkNotGiven::Value),
@@ -284,7 +284,7 @@ class ImageGenToolCallError implements \JsonSerializable
             type: SdkClient::stringValue($data->type),
             message: SdkClient::stringValue($data->message),
             param: ($data->param === null ? null : SdkClient::stringValue($data->param)),
-            moderationDetails: (property_exists($data, "moderation_details") ? SdkClient::hydrateClass($data->moderation_details, ImageGenToolCallModerationDetails::class) : SdkNotGiven::Value),
+            moderationDetails: (property_exists($data, "moderation_details") && $data->moderation_details !== null ? SdkClient::hydrateClass($data->moderation_details, ImageGenToolCallModerationDetails::class) : SdkNotGiven::Value),
         );
     }
 }

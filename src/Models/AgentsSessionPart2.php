@@ -216,7 +216,7 @@ class SessionResource implements \JsonSerializable
             environment: SdkClient::hydrateUnionAs($data->environment, EnvironmentResource::class, [EnvironmentResourceNone::class, EnvironmentResourceOpenaiHosted::class, EnvironmentResourceSelfHosted::class], "type", ["none" => EnvironmentResourceNone::class, "openai_hosted" => EnvironmentResourceOpenaiHosted::class, "self_hosted" => EnvironmentResourceSelfHosted::class], UnknownEnvironmentResource::class),
             vaultIds: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vault_ids))),
             usage: ($data->usage === null ? null : SdkClient::hydrateClass($data->usage, TokenUsageResource::class)),
-            spendControl: (property_exists($data, "spend_control") ? SdkClient::hydrateClass($data->spend_control, SessionSpendControlResource::class) : SdkNotGiven::Value),
+            spendControl: (property_exists($data, "spend_control") && $data->spend_control !== null ? SdkClient::hydrateClass($data->spend_control, SessionSpendControlResource::class) : SdkNotGiven::Value),
         );
     }
 }

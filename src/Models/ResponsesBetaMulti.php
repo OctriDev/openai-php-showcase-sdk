@@ -194,7 +194,7 @@ class BetaMultiAgentCall implements BetaItemResource, BetaItemField, BetaOutputI
             callId: SdkClient::stringValue($data->call_id),
             action: SdkClient::hydrateStringEnumOrString($data->action, BetaMultiAgentAction::class),
             arguments: SdkClient::stringValue($data->arguments),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }

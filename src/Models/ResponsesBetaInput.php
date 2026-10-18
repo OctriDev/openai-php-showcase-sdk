@@ -161,11 +161,11 @@ class BetaInputFileContent implements BetaFunctionAndCustomToolCallOutput, BetaI
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaInputFileContentTypeEnum::class),
             fileId: (property_exists($data, "file_id") ? ($data->file_id === null ? null : SdkClient::stringValue($data->file_id)) : SdkNotGiven::Value),
-            filename: (property_exists($data, "filename") ? SdkClient::stringValue($data->filename) : SdkNotGiven::Value),
-            fileData: (property_exists($data, "file_data") ? SdkClient::stringValue($data->file_data) : SdkNotGiven::Value),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
-            fileUrl: (property_exists($data, "file_url") ? SdkClient::stringValue($data->file_url) : SdkNotGiven::Value),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, BetaFileInputDetail::class) : SdkNotGiven::Value),
+            filename: (property_exists($data, "filename") && $data->filename !== null ? SdkClient::stringValue($data->filename) : SdkNotGiven::Value),
+            fileData: (property_exists($data, "file_data") && $data->file_data !== null ? SdkClient::stringValue($data->file_data) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
+            fileUrl: (property_exists($data, "file_url") && $data->file_url !== null ? SdkClient::stringValue($data->file_url) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, BetaFileInputDetail::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -297,7 +297,7 @@ class BetaInputFileContentParam implements BetaFunctionCallOutputItemParamOutput
             filename: (property_exists($data, "filename") ? ($data->filename === null ? null : SdkClient::stringValue($data->filename)) : SdkNotGiven::Value),
             fileData: (property_exists($data, "file_data") ? ($data->file_data === null ? null : SdkClient::stringValue($data->file_data)) : SdkNotGiven::Value),
             fileUrl: (property_exists($data, "file_url") ? ($data->file_url === null ? null : SdkClient::stringValue($data->file_url)) : SdkNotGiven::Value),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, BetaFileDetailEnum::class) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, BetaFileDetailEnum::class) : SdkNotGiven::Value),
             promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? ($data->prompt_cache_breakpoint === null ? null : SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointParam::class)) : SdkNotGiven::Value),
         );
     }

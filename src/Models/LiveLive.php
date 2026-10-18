@@ -361,8 +361,8 @@ class LiveDataChannelConfigParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            allowedClientEvents: (property_exists($data, "allowed_client_events") ? (is_array($data->allowed_client_events) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_client_events))) : SdkClient::hydrateStringEnumOrString($data->allowed_client_events, LiveDataChannelConfigParamAllowedClientEventsEnum::class)) : SdkNotGiven::Value),
-            allowedServerEvents: (property_exists($data, "allowed_server_events") ? (is_array($data->allowed_server_events) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveAllowedServerEventParam::class), SdkClient::arrayValue($data->allowed_server_events))) : SdkClient::hydrateStringEnumOrString($data->allowed_server_events, LiveDataChannelConfigParamAllowedServerEventsEnum::class)) : SdkNotGiven::Value),
+            allowedClientEvents: (property_exists($data, "allowed_client_events") && $data->allowed_client_events !== null ? (is_array($data->allowed_client_events) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_client_events))) : SdkClient::hydrateStringEnumOrString($data->allowed_client_events, LiveDataChannelConfigParamAllowedClientEventsEnum::class)) : SdkNotGiven::Value),
+            allowedServerEvents: (property_exists($data, "allowed_server_events") && $data->allowed_server_events !== null ? (is_array($data->allowed_server_events) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveAllowedServerEventParam::class), SdkClient::arrayValue($data->allowed_server_events))) : SdkClient::hydrateStringEnumOrString($data->allowed_server_events, LiveDataChannelConfigParamAllowedServerEventsEnum::class)) : SdkNotGiven::Value),
         );
     }
 }

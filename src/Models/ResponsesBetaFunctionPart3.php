@@ -156,9 +156,9 @@ class BetaFunctionShellCallOutput implements BetaItemResource, BetaItemField, Be
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionShellCallOutputStatusEnum::class),
             output: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaFunctionShellCallOutputContent::class), SdkClient::arrayValue($data->output))),
             maxOutputLength: ($data->max_output_length === null ? null : SdkClient::intValue($data->max_output_length)),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCaller::class, [BetaDirectToolCallCaller::class, BetaProgramToolCallCaller::class], "type", ["direct" => BetaDirectToolCallCaller::class, "program" => BetaProgramToolCallCaller::class], UnknownBetaToolCallCaller::class)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -246,7 +246,7 @@ class BetaFunctionShellCallOutputContent implements \JsonSerializable
             stdout: SdkClient::stringValue($data->stdout),
             stderr: SdkClient::stringValue($data->stderr),
             outcome: SdkClient::hydrateUnionAs($data->outcome, BetaFunctionShellCallOutputContentOutcome::class, [BetaFunctionShellCallOutputTimeoutOutcome::class, BetaFunctionShellCallOutputExitOutcome::class], "type", ["timeout" => BetaFunctionShellCallOutputTimeoutOutcome::class, "exit" => BetaFunctionShellCallOutputExitOutcome::class], UnknownBetaFunctionShellCallOutputContentOutcome::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

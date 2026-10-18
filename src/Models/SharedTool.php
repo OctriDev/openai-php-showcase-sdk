@@ -322,7 +322,7 @@ class ToolSearchCall implements ConversationItem, ItemResource, OutputItem, Item
             execution: SdkClient::hydrateStringEnumOrString($data->execution, ToolSearchExecutionType::class),
             arguments: $data->arguments,
             status: SdkClient::hydrateStringEnumOrString($data->status, FunctionCallStatus::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

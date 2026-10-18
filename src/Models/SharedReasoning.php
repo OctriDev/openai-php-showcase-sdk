@@ -154,8 +154,8 @@ class ReasoningItem implements ConversationItem, InputItem, Item, ItemResource, 
             id: SdkClient::stringValue($data->id),
             summary: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SummaryTextContent::class), SdkClient::arrayValue($data->summary))),
             encryptedContent: (property_exists($data, "encrypted_content") ? ($data->encrypted_content === null ? null : SdkClient::stringValue($data->encrypted_content)) : SdkNotGiven::Value),
-            content: (property_exists($data, "content") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ReasoningTextContent::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, ReasoningItemStatusEnum::class) : SdkNotGiven::Value),
+            content: (property_exists($data, "content") && $data->content !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ReasoningTextContent::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, ReasoningItemStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

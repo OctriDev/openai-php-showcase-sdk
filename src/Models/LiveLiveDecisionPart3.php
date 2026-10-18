@@ -159,7 +159,7 @@ class LiveDecisionItemCreated implements LiveSidebandServerEvent, LiveServerEven
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveDecisionItemCreatedTypeEnum::class),
             item: SdkClient::hydrateClass($data->item, LiveDecisionStoredInputItemParam::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -337,7 +337,7 @@ class LiveDecisionItemDeleted implements LiveSidebandServerEvent, LiveServerEven
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveDecisionItemDeletedTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }

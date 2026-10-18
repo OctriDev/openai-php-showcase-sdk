@@ -208,7 +208,7 @@ class PromptCacheMissDiagnosticsBody implements PromptCacheDiagnostics, \JsonSer
             type: SdkClient::hydrateEnum($data->type, PromptCacheMissDiagnosticsBodyTypeEnum::class),
             reason: SdkClient::hydrateStringEnumOrString($data->reason, CacheMissReasonTypeEnum::class),
             cacheMissedTokens: SdkClient::intValue($data->cache_missed_tokens),
-            comparisonReusableTokens: (property_exists($data, "comparison_reusable_tokens") ? SdkClient::intValue($data->comparison_reusable_tokens) : SdkNotGiven::Value),
+            comparisonReusableTokens: (property_exists($data, "comparison_reusable_tokens") && $data->comparison_reusable_tokens !== null ? SdkClient::intValue($data->comparison_reusable_tokens) : SdkNotGiven::Value),
         );
     }
 }

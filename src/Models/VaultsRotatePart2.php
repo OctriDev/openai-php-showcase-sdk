@@ -215,8 +215,8 @@ class RotateVaultCredentialParams implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            auth: (property_exists($data, "auth") ? SdkClient::hydrateUnionAs($data->auth, RotateVaultCredentialAuthParam::class, [RotateVaultCredentialAuthParamMcpOauth::class, RotateVaultCredentialAuthParamStaticBearer::class, RotateVaultCredentialAuthParamEnvironmentVariable::class], "type", ["mcp_oauth" => RotateVaultCredentialAuthParamMcpOauth::class, "static_bearer" => RotateVaultCredentialAuthParamStaticBearer::class, "environment_variable" => RotateVaultCredentialAuthParamEnvironmentVariable::class], UnknownRotateVaultCredentialAuthParam::class) : SdkNotGiven::Value),
-            metadata: (property_exists($data, "metadata") ? SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
+            auth: (property_exists($data, "auth") && $data->auth !== null ? SdkClient::hydrateUnionAs($data->auth, RotateVaultCredentialAuthParam::class, [RotateVaultCredentialAuthParamMcpOauth::class, RotateVaultCredentialAuthParamStaticBearer::class, RotateVaultCredentialAuthParamEnvironmentVariable::class], "type", ["mcp_oauth" => RotateVaultCredentialAuthParamMcpOauth::class, "static_bearer" => RotateVaultCredentialAuthParamStaticBearer::class, "environment_variable" => RotateVaultCredentialAuthParamEnvironmentVariable::class], UnknownRotateVaultCredentialAuthParam::class) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
         );
     }
 }

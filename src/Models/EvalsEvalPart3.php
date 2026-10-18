@@ -226,9 +226,9 @@ class EvalGraderScoreModel implements CreateEvalRequestTestingCriteriaItem, Eval
             name: SdkClient::stringValue($data->name),
             model: SdkClient::stringValue($data->model),
             input: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EvalItem::class), SdkClient::arrayValue($data->input))),
-            samplingParams: (property_exists($data, "sampling_params") ? SdkClient::hydrateClass($data->sampling_params, EvalGraderScoreModelSamplingParams::class) : SdkNotGiven::Value),
-            range: (property_exists($data, "range") ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->range))) : SdkNotGiven::Value),
-            passThreshold: (property_exists($data, "pass_threshold") ? SdkClient::floatValue($data->pass_threshold) : SdkNotGiven::Value),
+            samplingParams: (property_exists($data, "sampling_params") && $data->sampling_params !== null ? SdkClient::hydrateClass($data->sampling_params, EvalGraderScoreModelSamplingParams::class) : SdkNotGiven::Value),
+            range: (property_exists($data, "range") && $data->range !== null ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->range))) : SdkNotGiven::Value),
+            passThreshold: (property_exists($data, "pass_threshold") && $data->pass_threshold !== null ? SdkClient::floatValue($data->pass_threshold) : SdkNotGiven::Value),
         );
     }
 }

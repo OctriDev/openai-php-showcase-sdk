@@ -104,7 +104,7 @@ class AgentToolConfigParamFunction implements AgentToolConfigParam, \JsonSeriali
             name: SdkClient::stringValue($data->name),
             description: SdkClient::stringValue($data->description),
             parameters: SdkClient::mapValues(SdkClient::stringMapValue($data->parameters), static fn($item) => $item),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
         );
     }
 }
@@ -251,7 +251,7 @@ class AgentToolConfigParamMcp implements AgentToolConfigParam, \JsonSerializable
             credentialId: (property_exists($data, "credential_id") ? ($data->credential_id === null ? null : SdkClient::stringValue($data->credential_id)) : SdkNotGiven::Value),
             requestMetadata: (property_exists($data, "request_metadata") ? ($data->request_metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->request_metadata), static fn($item) => $item)) : SdkNotGiven::Value),
             allowedTools: (property_exists($data, "allowed_tools") ? ($data->allowed_tools === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_tools)))) : SdkNotGiven::Value),
-            required: (property_exists($data, "required") ? SdkClient::boolValue($data->required) : SdkNotGiven::Value),
+            required: (property_exists($data, "required") && $data->required !== null ? SdkClient::boolValue($data->required) : SdkNotGiven::Value),
             connectionOrigin: (property_exists($data, "connection_origin") ? ($data->connection_origin === null ? null : SdkClient::hydrateStringEnumOrString($data->connection_origin, McpConnectionOriginParam::class)) : SdkNotGiven::Value),
         );
     }
@@ -320,7 +320,7 @@ class AgentToolConfigParamProgrammaticToolCalling implements AgentToolConfigPara
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolConfigParamProgrammaticToolCallingTypeEnum::class),
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
         );
     }
 }

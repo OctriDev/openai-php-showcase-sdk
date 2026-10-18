@@ -72,9 +72,9 @@ class AcceptRealtimeCallTracingTracingConfiguration implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            workflowName: (property_exists($data, "workflow_name") ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
-            groupId: (property_exists($data, "group_id") ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
-            metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
+            workflowName: (property_exists($data, "workflow_name") && $data->workflow_name !== null ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
+            groupId: (property_exists($data, "group_id") && $data->group_id !== null ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
         );
     }
 }
@@ -190,8 +190,8 @@ class CreateRealtimeClientSecretExpiresAfter implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            anchor: (property_exists($data, "anchor") ? SdkClient::hydrateStringEnumOrString($data->anchor, CreateRealtimeClientSecretExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
-            seconds: (property_exists($data, "seconds") ? SdkClient::intValue($data->seconds) : SdkNotGiven::Value),
+            anchor: (property_exists($data, "anchor") && $data->anchor !== null ? SdkClient::hydrateStringEnumOrString($data->anchor, CreateRealtimeClientSecretExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
+            seconds: (property_exists($data, "seconds") && $data->seconds !== null ? SdkClient::intValue($data->seconds) : SdkNotGiven::Value),
         );
     }
 }
@@ -298,36 +298,7 @@ class CreateRealtimeSessionInputAudioTranscription implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
         );
-    }
-}
-
-/**
- * Default tracing mode for the session.
- */
-final readonly class CreateRealtimeSessionTracingEnum implements SdkOpenEnum
-{
-    public const AUTO = "auto";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
     }
 }

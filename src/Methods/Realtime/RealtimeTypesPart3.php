@@ -8,78 +8,6 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
- * Granular configuration for tracing.
- */
-class CreateRealtimeSessionTracingTracingConfiguration implements \JsonSerializable
-{
-    /**
-     * The name of the workflow to attach to this trace. This is used to name the trace in the traces dashboard.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $workflowName;
-    /**
-     * The group id to attach to this trace to enable filtering and grouping in the traces dashboard.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $groupId;
-    /**
-     * The arbitrary metadata to attach to this trace to enable filtering in the traces dashboard.
-     *
-     * @var array<array-key,mixed>|SdkNotGiven
-     */
-    public readonly array|SdkNotGiven $metadata;
-
-    /**
-     * @param string|SdkNotGiven $workflowName
-     * @param string|SdkNotGiven $groupId
-     * @param array<array-key,mixed>|SdkNotGiven $metadata
-     */
-    public function __construct(
-        string|SdkNotGiven $workflowName = SdkNotGiven::Value,
-        string|SdkNotGiven $groupId = SdkNotGiven::Value,
-        array|SdkNotGiven $metadata = SdkNotGiven::Value,
-    ) {
-        $this->workflowName = $workflowName;
-        $this->groupId = $groupId;
-        $this->metadata = $metadata;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-        ];
-        if ($this->workflowName !== SdkNotGiven::Value) {
-            $values["workflow_name"] = $this->workflowName;
-        }
-        if ($this->groupId !== SdkNotGiven::Value) {
-            $values["group_id"] = $this->groupId;
-        }
-        if ($this->metadata !== SdkNotGiven::Value) {
-            $values["metadata"] = $this->metadata;
-        }
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        return new self(
-            workflowName: (property_exists($data, "workflow_name") ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
-            groupId: (property_exists($data, "group_id") ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
-            metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
-        );
-    }
-}
-
-/**
  * Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.
  */
 class CreateRealtimeSessionTurnDetection implements \JsonSerializable
@@ -156,10 +84,10 @@ class CreateRealtimeSessionTurnDetection implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            threshold: (property_exists($data, "threshold") ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
-            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
-            silenceDurationMs: (property_exists($data, "silence_duration_ms") ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            threshold: (property_exists($data, "threshold") && $data->threshold !== null ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
+            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
+            silenceDurationMs: (property_exists($data, "silence_duration_ms") && $data->silence_duration_ms !== null ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
         );
     }
 }
@@ -270,10 +198,10 @@ class CreateRealtimeSessionToolsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, CreateRealtimeSessionToolsItemTypeEnum::class) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            parameters: (property_exists($data, "parameters") ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, CreateRealtimeSessionToolsItemTypeEnum::class) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            parameters: (property_exists($data, "parameters") && $data->parameters !== null ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
         );
     }
 }
@@ -333,5 +261,136 @@ final readonly class CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum imp
     public function __toString(): string
     {
         return (string) $this->value;
+    }
+}
+
+/**
+ * Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.
+ */
+class CreateRealtimeTranscriptionSessionTurnDetection implements \JsonSerializable
+{
+    /**
+     * Type of turn detection. Only `server_vad` is currently supported for transcription sessions.
+     *
+     * @var CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum|string|SdkNotGiven
+     */
+    public readonly CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum|string|SdkNotGiven $type;
+    /**
+     * Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments.
+     *
+     * @var float|SdkNotGiven
+     */
+    public readonly float|SdkNotGiven $threshold;
+    /**
+     * Amount of audio to include before the VAD detected speech (in milliseconds). Defaults to 300ms.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $prefixPaddingMs;
+    /**
+     * Duration of silence to detect speech stop (in milliseconds). Defaults to 500ms. With shorter values the model will respond more quickly, but may jump in on short pauses from the user.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $silenceDurationMs;
+
+    /**
+     * @param CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum|string|SdkNotGiven $type
+     * @param float|SdkNotGiven $threshold
+     * @param int|SdkNotGiven $prefixPaddingMs
+     * @param int|SdkNotGiven $silenceDurationMs
+     */
+    public function __construct(
+        CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum|string|SdkNotGiven $type = SdkNotGiven::Value,
+        float|SdkNotGiven $threshold = SdkNotGiven::Value,
+        int|SdkNotGiven $prefixPaddingMs = SdkNotGiven::Value,
+        int|SdkNotGiven $silenceDurationMs = SdkNotGiven::Value,
+    ) {
+        $this->type = $type;
+        $this->threshold = $threshold;
+        $this->prefixPaddingMs = $prefixPaddingMs;
+        $this->silenceDurationMs = $silenceDurationMs;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+        ];
+        if ($this->type !== SdkNotGiven::Value) {
+            $values["type"] = $this->type;
+        }
+        if ($this->threshold !== SdkNotGiven::Value) {
+            $values["threshold"] = $this->threshold;
+        }
+        if ($this->prefixPaddingMs !== SdkNotGiven::Value) {
+            $values["prefix_padding_ms"] = $this->prefixPaddingMs;
+        }
+        if ($this->silenceDurationMs !== SdkNotGiven::Value) {
+            $values["silence_duration_ms"] = $this->silenceDurationMs;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        return new self(
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, CreateRealtimeTranscriptionSessionTurnDetectionTypeEnum::class) : SdkNotGiven::Value),
+            threshold: (property_exists($data, "threshold") && $data->threshold !== null ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
+            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
+            silenceDurationMs: (property_exists($data, "silence_duration_ms") && $data->silence_duration_ms !== null ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
+ * Configuration for input audio noise reduction. This can be set to `null` to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
+ */
+class CreateRealtimeTranscriptionSessionInputAudioNoiseReduction implements \JsonSerializable
+{
+    /**
+     * Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.
+     *
+     * @var NoiseReductionType|string|SdkNotGiven
+     */
+    public readonly NoiseReductionType|string|SdkNotGiven $type;
+
+    /**
+     * @param NoiseReductionType|string|SdkNotGiven $type
+     */
+    public function __construct(
+        NoiseReductionType|string|SdkNotGiven $type = SdkNotGiven::Value,
+    ) {
+        $this->type = $type;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+        ];
+        if ($this->type !== SdkNotGiven::Value) {
+            $values["type"] = $this->type;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        return new self(
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, NoiseReductionType::class) : SdkNotGiven::Value),
+        );
     }
 }

@@ -208,7 +208,7 @@ class LiveDecisionsDelegationUpdateParam implements LiveSessionUpdateParamsDeleg
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionsDelegationUpdateParamTypeEnum::class),
-            decisions: (property_exists($data, "decisions") ? SdkClient::hydrateClass($data->decisions, LiveDecisionsSettingsUpdateParam::class) : SdkNotGiven::Value),
+            decisions: (property_exists($data, "decisions") && $data->decisions !== null ? SdkClient::hydrateClass($data->decisions, LiveDecisionsSettingsUpdateParam::class) : SdkNotGiven::Value),
         );
     }
 }

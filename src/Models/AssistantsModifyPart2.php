@@ -168,12 +168,12 @@ class ModifyAssistantRequest implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::hydrateStringEnumOrString($data->model, AssistantSupportedModels::class) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::hydrateStringEnumOrString($data->model, AssistantSupportedModels::class) : SdkNotGiven::Value),
             reasoningEffort: (property_exists($data, "reasoning_effort") ? ($data->reasoning_effort === null ? null : SdkClient::hydrateEnum($data->reasoning_effort, ModifyAssistantRequestReasoningEffortEnum::class)) : SdkNotGiven::Value),
             name: (property_exists($data, "name") ? ($data->name === null ? null : SdkClient::stringValue($data->name)) : SdkNotGiven::Value),
             description: (property_exists($data, "description") ? ($data->description === null ? null : SdkClient::stringValue($data->description)) : SdkNotGiven::Value),
             instructions: (property_exists($data, "instructions") ? ($data->instructions === null ? null : SdkClient::stringValue($data->instructions)) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ModifyAssistantRequestToolsItem::class, [AssistantToolsCode::class, AssistantToolsFileSearch::class, AssistantToolsFunction::class], "type", ["code_interpreter" => AssistantToolsCode::class, "file_search" => AssistantToolsFileSearch::class, "function" => AssistantToolsFunction::class], UnknownModifyAssistantRequestToolsItem::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
+            tools: (property_exists($data, "tools") && $data->tools !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ModifyAssistantRequestToolsItem::class, [AssistantToolsCode::class, AssistantToolsFileSearch::class, AssistantToolsFunction::class], "type", ["code_interpreter" => AssistantToolsCode::class, "file_search" => AssistantToolsFileSearch::class, "function" => AssistantToolsFunction::class], UnknownModifyAssistantRequestToolsItem::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
             toolResources: (property_exists($data, "tool_resources") ? ($data->tool_resources === null ? null : SdkClient::hydrateClass($data->tool_resources, ModifyAssistantRequestToolResources::class)) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
             temperature: (property_exists($data, "temperature") ? ($data->temperature === null ? null : SdkClient::floatValue($data->temperature)) : SdkNotGiven::Value),
@@ -316,7 +316,7 @@ class ModifyThreadRequestToolResourcesCodeInterpreter implements \JsonSerializab
     public static function fromObject(object $data): self
     {
         return new self(
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
         );
     }
 }

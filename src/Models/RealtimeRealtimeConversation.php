@@ -194,10 +194,10 @@ class RealtimeConversationItemFunctionCall implements RealtimeConversationItem, 
             type: SdkClient::hydrateEnum($data->type, RealtimeConversationItemFunctionCallTypeEnum::class),
             name: SdkClient::stringValue($data->name),
             arguments: SdkClient::stringValue($data->arguments),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeConversationItemFunctionCallObjectEnum::class) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeConversationItemFunctionCallStatusEnum::class) : SdkNotGiven::Value),
-            callId: (property_exists($data, "call_id") ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeConversationItemFunctionCallObjectEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeConversationItemFunctionCallStatusEnum::class) : SdkNotGiven::Value),
+            callId: (property_exists($data, "call_id") && $data->call_id !== null ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -377,9 +377,9 @@ class RealtimeConversationItemFunctionCallOutput implements RealtimeConversation
             type: SdkClient::hydrateEnum($data->type, RealtimeConversationItemFunctionCallOutputTypeEnum::class),
             callId: SdkClient::stringValue($data->call_id),
             output: SdkClient::stringValue($data->output),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeConversationItemFunctionCallOutputObjectEnum::class) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeConversationItemFunctionCallOutputStatusEnum::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeConversationItemFunctionCallOutputObjectEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeConversationItemFunctionCallOutputStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

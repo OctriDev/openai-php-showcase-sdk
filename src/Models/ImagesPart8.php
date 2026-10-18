@@ -104,7 +104,7 @@ class ImageGenUsage implements \JsonSerializable
             totalTokens: SdkClient::intValue($data->total_tokens),
             outputTokens: SdkClient::intValue($data->output_tokens),
             inputTokensDetails: SdkClient::hydrateClass($data->input_tokens_details, ImageGenInputUsageDetails::class),
-            outputTokensDetails: (property_exists($data, "output_tokens_details") ? SdkClient::hydrateClass($data->output_tokens_details, ImageGenOutputTokensDetails::class) : SdkNotGiven::Value),
+            outputTokensDetails: (property_exists($data, "output_tokens_details") && $data->output_tokens_details !== null ? SdkClient::hydrateClass($data->output_tokens_details, ImageGenOutputTokensDetails::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -162,8 +162,8 @@ class ImageRefParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            imageUrl: (property_exists($data, "image_url") ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            imageUrl: (property_exists($data, "image_url") && $data->image_url !== null ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -390,12 +390,12 @@ class ImagesResponse implements \JsonSerializable
         return new self(
             created: SdkClient::intValue($data->created),
             safetyIdentifier: (property_exists($data, "safety_identifier") ? ($data->safety_identifier === null ? null : SdkClient::stringValue($data->safety_identifier)) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Image::class), SdkClient::arrayValue($data->data))) : SdkNotGiven::Value),
-            background: (property_exists($data, "background") ? SdkClient::hydrateStringEnumOrString($data->background, ImagesResponseBackgroundEnum::class) : SdkNotGiven::Value),
-            outputFormat: (property_exists($data, "output_format") ? SdkClient::hydrateStringEnumOrString($data->output_format, ImagesResponseOutputFormatEnum::class) : SdkNotGiven::Value),
-            size: (property_exists($data, "size") ? SdkClient::stringValue($data->size) : SdkNotGiven::Value),
-            quality: (property_exists($data, "quality") ? SdkClient::hydrateStringEnumOrString($data->quality, ImagesResponseQualityEnum::class) : SdkNotGiven::Value),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateClass($data->usage, ImageGenUsage::class) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") && $data->data !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Image::class), SdkClient::arrayValue($data->data))) : SdkNotGiven::Value),
+            background: (property_exists($data, "background") && $data->background !== null ? SdkClient::hydrateStringEnumOrString($data->background, ImagesResponseBackgroundEnum::class) : SdkNotGiven::Value),
+            outputFormat: (property_exists($data, "output_format") && $data->output_format !== null ? SdkClient::hydrateStringEnumOrString($data->output_format, ImagesResponseOutputFormatEnum::class) : SdkNotGiven::Value),
+            size: (property_exists($data, "size") && $data->size !== null ? SdkClient::stringValue($data->size) : SdkNotGiven::Value),
+            quality: (property_exists($data, "quality") && $data->quality !== null ? SdkClient::hydrateStringEnumOrString($data->quality, ImagesResponseQualityEnum::class) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, ImageGenUsage::class) : SdkNotGiven::Value),
         );
     }
 }

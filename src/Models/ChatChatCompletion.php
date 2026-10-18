@@ -225,8 +225,8 @@ class ChatCompletionFunctions implements \JsonSerializable
         }
         return new self(
             name: SdkClient::stringValue($data->name),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            parameters: (property_exists($data, "parameters") ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            parameters: (property_exists($data, "parameters") && $data->parameters !== null ? SdkClient::stringMapValue($data->parameters) : SdkNotGiven::Value),
         );
     }
 }

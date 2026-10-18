@@ -98,10 +98,10 @@ class CreateVideoJsonBody implements \JsonSerializable
         }
         return new self(
             prompt: SdkClient::stringValue($data->prompt),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            inputReference: (property_exists($data, "input_reference") ? SdkClient::hydrateClass($data->input_reference, ImageRefParam2::class) : SdkNotGiven::Value),
-            seconds: (property_exists($data, "seconds") ? SdkClient::hydrateStringEnumOrString($data->seconds, VideoSeconds::class) : SdkNotGiven::Value),
-            size: (property_exists($data, "size") ? SdkClient::hydrateStringEnumOrString($data->size, VideoSize::class) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            inputReference: (property_exists($data, "input_reference") && $data->input_reference !== null ? SdkClient::hydrateClass($data->input_reference, ImageRefParam2::class) : SdkNotGiven::Value),
+            seconds: (property_exists($data, "seconds") && $data->seconds !== null ? SdkClient::hydrateStringEnumOrString($data->seconds, VideoSeconds::class) : SdkNotGiven::Value),
+            size: (property_exists($data, "size") && $data->size !== null ? SdkClient::hydrateStringEnumOrString($data->size, VideoSize::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -197,10 +197,10 @@ class CreateVideoMultipartBody implements \JsonSerializable
         }
         return new self(
             prompt: SdkClient::stringValue($data->prompt),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            inputReference: (property_exists($data, "input_reference") ? (is_object($data->input_reference) ? SdkClient::hydrateClass($data->input_reference, ImageRefParam2::class) : (is_string($data->input_reference) ? SdkClient::stringValue($data->input_reference) : SdkClient::hydrateClass($data->input_reference, ImageRefParam2::class))) : SdkNotGiven::Value),
-            seconds: (property_exists($data, "seconds") ? SdkClient::hydrateStringEnumOrString($data->seconds, VideoSeconds::class) : SdkNotGiven::Value),
-            size: (property_exists($data, "size") ? SdkClient::hydrateStringEnumOrString($data->size, VideoSize::class) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            inputReference: (property_exists($data, "input_reference") && $data->input_reference !== null ? (is_object($data->input_reference) ? SdkClient::hydrateClass($data->input_reference, ImageRefParam2::class) : (is_string($data->input_reference) ? SdkClient::stringValue($data->input_reference) : SdkClient::hydrateClass($data->input_reference, ImageRefParam2::class))) : SdkNotGiven::Value),
+            seconds: (property_exists($data, "seconds") && $data->seconds !== null ? SdkClient::hydrateStringEnumOrString($data->seconds, VideoSeconds::class) : SdkNotGiven::Value),
+            size: (property_exists($data, "size") && $data->size !== null ? SdkClient::hydrateStringEnumOrString($data->size, VideoSize::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -62,7 +62,7 @@ class LiveAllowedServerEventParam implements \JsonSerializable
         }
         return new self(
             type: SdkClient::stringValue($data->type),
-            responseEvent: (property_exists($data, "response_event") ? SdkClient::stringValue($data->response_event) : SdkNotGiven::Value),
+            responseEvent: (property_exists($data, "response_event") && $data->response_event !== null ? SdkClient::stringValue($data->response_event) : SdkNotGiven::Value),
         );
     }
 }

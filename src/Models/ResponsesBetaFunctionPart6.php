@@ -165,11 +165,11 @@ class BetaFunctionToolCall implements BetaInputItem, BetaItem, BetaItemField, Be
             name: SdkClient::stringValue($data->name),
             arguments: SdkClient::stringValue($data->arguments),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCaller::class, [BetaDirectToolCallCaller::class, BetaProgramToolCallCaller::class], "type", ["direct" => BetaDirectToolCallCaller::class, "program" => BetaProgramToolCallCaller::class], UnknownBetaToolCallCaller::class)) : SdkNotGiven::Value),
-            namespace_: (property_exists($data, "namespace") ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionToolCallStatusEnum::class) : SdkNotGiven::Value),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            namespace_: (property_exists($data, "namespace") && $data->namespace !== null ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionToolCallStatusEnum::class) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
         );
     }
 }
@@ -355,12 +355,12 @@ class BetaFunctionToolCallOutput implements BetaItemField, \JsonSerializable
             type: SdkClient::hydrateEnum($data->type, BetaFunctionToolCallOutputTypeEnum::class),
             output: (is_array($data->output) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaFunctionAndCustomToolCallOutput::class, [BetaInputTextContent::class, BetaInputImageContent::class, BetaInputFileContent::class], "type", ["input_text" => BetaInputTextContent::class, "input_image" => BetaInputImageContent::class, "input_file" => BetaInputFileContent::class], UnknownBetaFunctionAndCustomToolCallOutput::class), SdkClient::arrayValue($data->output))) : SdkClient::stringValue($data->output)),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            callId: (property_exists($data, "call_id") ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            namespace_: (property_exists($data, "namespace") ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            callId: (property_exists($data, "call_id") && $data->call_id !== null ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            namespace_: (property_exists($data, "namespace") && $data->namespace !== null ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCallerParam::class, [BetaDirectToolCallCallerParam::class, BetaProgramToolCallCallerParam::class], "type", ["direct" => BetaDirectToolCallCallerParam::class, "program" => BetaProgramToolCallCallerParam::class], UnknownBetaToolCallCallerParam::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionToolCallOutputStatusEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionToolCallOutputStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

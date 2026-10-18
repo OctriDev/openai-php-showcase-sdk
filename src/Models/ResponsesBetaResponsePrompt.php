@@ -84,9 +84,9 @@ class BetaResponsePromptCacheOptionsParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            ttl: (property_exists($data, "ttl") ? SdkClient::hydrateStringEnumOrString($data->ttl, BetaPromptCacheTTLEnum::class) : SdkNotGiven::Value),
-            mode: (property_exists($data, "mode") ? SdkClient::hydrateStringEnumOrString($data->mode, BetaPromptCacheModeEnum::class) : SdkNotGiven::Value),
-            prewarm: (property_exists($data, "prewarm") ? SdkClient::boolValue($data->prewarm) : SdkNotGiven::Value),
+            ttl: (property_exists($data, "ttl") && $data->ttl !== null ? SdkClient::hydrateStringEnumOrString($data->ttl, BetaPromptCacheTTLEnum::class) : SdkNotGiven::Value),
+            mode: (property_exists($data, "mode") && $data->mode !== null ? SdkClient::hydrateStringEnumOrString($data->mode, BetaPromptCacheModeEnum::class) : SdkNotGiven::Value),
+            prewarm: (property_exists($data, "prewarm") && $data->prewarm !== null ? SdkClient::boolValue($data->prewarm) : SdkNotGiven::Value),
             comparisonResponseId: (property_exists($data, "comparison_response_id") ? ($data->comparison_response_id === null ? null : SdkClient::stringValue($data->comparison_response_id)) : SdkNotGiven::Value),
         );
     }

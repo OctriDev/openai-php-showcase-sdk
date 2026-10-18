@@ -323,7 +323,7 @@ class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted implem
             contentIndex: SdkClient::intValue($data->content_index),
             transcript: SdkClient::stringValue($data->transcript),
             usage: SdkClient::hydrateUnionAs($data->usage, RealtimeServerEventConversationItemInputAudioTranscriptionCompletedUsage::class, [TranscriptTextUsageTokens::class, TranscriptTextUsageDuration::class], "type", ["tokens" => TranscriptTextUsageTokens::class, "duration" => TranscriptTextUsageDuration::class], UnknownRealtimeServerEventConversationItemInputAudioTranscriptionCompletedUsage::class),
-            languages: (property_exists($data, "languages") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionLanguage::class), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
+            languages: (property_exists($data, "languages") && $data->languages !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionLanguage::class), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
             logprobs: (property_exists($data, "logprobs") ? ($data->logprobs === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LogProbProperties::class), SdkClient::arrayValue($data->logprobs)))) : SdkNotGiven::Value),
         );
     }

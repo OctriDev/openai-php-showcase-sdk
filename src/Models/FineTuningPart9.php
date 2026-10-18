@@ -130,7 +130,7 @@ class FineTuningJobEvent implements \JsonSerializable
             createdAt: SdkClient::intValue($data->created_at),
             level: SdkClient::hydrateStringEnumOrString($data->level, FineTuningJobEventLevelEnum::class),
             message: SdkClient::stringValue($data->message),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, FineTuningJobEventTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, FineTuningJobEventTypeEnum::class) : SdkNotGiven::Value),
             data: (property_exists($data, "data") ? ($data->data === null ? null : SdkClient::stringMapValue($data->data)) : SdkNotGiven::Value),
         );
     }

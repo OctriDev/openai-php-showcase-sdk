@@ -278,7 +278,7 @@ class EvalJsonlFileContentSourceContentItem implements \JsonSerializable
         }
         return new self(
             item: SdkClient::stringMapValue($data->item),
-            sample: (property_exists($data, "sample") ? SdkClient::stringMapValue($data->sample) : SdkNotGiven::Value),
+            sample: (property_exists($data, "sample") && $data->sample !== null ? SdkClient::stringMapValue($data->sample) : SdkNotGiven::Value),
         );
     }
 }

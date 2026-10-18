@@ -384,7 +384,7 @@ class BetaComputerScreenshotContent implements BetaAgentMessageContentItem, Beta
             imageUrl: ($data->image_url === null ? null : SdkClient::stringValue($data->image_url)),
             fileId: ($data->file_id === null ? null : SdkClient::stringValue($data->file_id)),
             detail: SdkClient::hydrateStringEnumOrString($data->detail, BetaImageDetail::class),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
         );
     }
 }

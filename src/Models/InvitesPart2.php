@@ -327,7 +327,7 @@ class InviteRequest implements \JsonSerializable
         return new self(
             email: SdkClient::stringValue($data->email),
             role: SdkClient::hydrateStringEnumOrString($data->role, InviteRequestRoleEnum::class),
-            projects: (property_exists($data, "projects") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, InviteRequestProjectsItem::class), SdkClient::arrayValue($data->projects))) : SdkNotGiven::Value),
+            projects: (property_exists($data, "projects") && $data->projects !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, InviteRequestProjectsItem::class), SdkClient::arrayValue($data->projects))) : SdkNotGiven::Value),
         );
     }
 }

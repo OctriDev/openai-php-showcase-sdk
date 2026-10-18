@@ -162,7 +162,7 @@ class EvalGraderPythonVariant1 implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            passThreshold: (property_exists($data, "pass_threshold") ? SdkClient::floatValue($data->pass_threshold) : SdkNotGiven::Value),
+            passThreshold: (property_exists($data, "pass_threshold") && $data->pass_threshold !== null ? SdkClient::floatValue($data->pass_threshold) : SdkNotGiven::Value),
         );
     }
 }
@@ -270,8 +270,8 @@ class EvalGraderPython implements CreateEvalRequestTestingCriteriaItem, EvalTest
             type: SdkClient::hydrateEnum($data->type, EvalGraderPythonTypeEnum::class),
             name: SdkClient::stringValue($data->name),
             source: SdkClient::stringValue($data->source),
-            imageTag: (property_exists($data, "image_tag") ? SdkClient::stringValue($data->image_tag) : SdkNotGiven::Value),
-            passThreshold: (property_exists($data, "pass_threshold") ? SdkClient::floatValue($data->pass_threshold) : SdkNotGiven::Value),
+            imageTag: (property_exists($data, "image_tag") && $data->image_tag !== null ? SdkClient::stringValue($data->image_tag) : SdkNotGiven::Value),
+            passThreshold: (property_exists($data, "pass_threshold") && $data->pass_threshold !== null ? SdkClient::floatValue($data->pass_threshold) : SdkNotGiven::Value),
         );
     }
 }
@@ -314,7 +314,7 @@ class EvalGraderScoreModelVariant1 implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            passThreshold: (property_exists($data, "pass_threshold") ? SdkClient::floatValue($data->pass_threshold) : SdkNotGiven::Value),
+            passThreshold: (property_exists($data, "pass_threshold") && $data->pass_threshold !== null ? SdkClient::floatValue($data->pass_threshold) : SdkNotGiven::Value),
         );
     }
 }

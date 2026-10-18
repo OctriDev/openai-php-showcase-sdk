@@ -133,7 +133,7 @@ class PublicEnvironmentResource implements \JsonSerializable
             status: SdkClient::hydrateStringEnumOrString($data->status, EnvironmentStatusResource::class),
             files: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, HostedEnvironmentFileResource::class, [HostedEnvironmentFileResourceFileId::class, HostedEnvironmentFileResourceInline::class], "type", ["file_id" => HostedEnvironmentFileResourceFileId::class, "inline" => HostedEnvironmentFileResourceInline::class], UnknownHostedEnvironmentFileResource::class), SdkClient::arrayValue($data->files))),
             skills: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, HostedSkillResource::class, [HostedSkillResourceSkillReference::class, HostedSkillResourceInline::class], "type", ["skill_reference" => HostedSkillResourceSkillReference::class, "inline" => HostedSkillResourceInline::class], UnknownHostedSkillResource::class), SdkClient::arrayValue($data->skills))),
-            plugins: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, HostedPluginResource::class), SdkClient::arrayValue($data->plugins))),
+            plugins: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, HostedPluginResourceInline::class), SdkClient::arrayValue($data->plugins))),
         );
     }
 }

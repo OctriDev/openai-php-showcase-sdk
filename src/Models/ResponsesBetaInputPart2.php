@@ -102,7 +102,7 @@ class BetaInputImageContent implements BetaFunctionAndCustomToolCallOutput, Beta
             detail: SdkClient::hydrateStringEnumOrString($data->detail, BetaImageDetail::class),
             imageUrl: (property_exists($data, "image_url") ? ($data->image_url === null ? null : SdkClient::stringValue($data->image_url)) : SdkNotGiven::Value),
             fileId: (property_exists($data, "file_id") ? ($data->file_id === null ? null : SdkClient::stringValue($data->file_id)) : SdkNotGiven::Value),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, BetaPromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -378,8 +378,8 @@ class BetaInputMessage implements BetaInputItem, BetaItem, \JsonSerializable
             role: SdkClient::hydrateStringEnumOrString($data->role, BetaInputMessageRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaInputContent::class, [BetaInputTextContent::class, BetaInputImageContent::class, BetaInputFileContent::class], "type", ["input_text" => BetaInputTextContent::class, "input_image" => BetaInputImageContent::class, "input_file" => BetaInputFileContent::class], UnknownBetaInputContent::class), SdkClient::arrayValue($data->content))),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, BetaInputMessageTypeEnum::class) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, BetaInputMessageStatusEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, BetaInputMessageTypeEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, BetaInputMessageStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -62,7 +62,7 @@ class CreateModerationRequest implements \JsonSerializable
         }
         return new self(
             input: (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input)),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
         );
     }
 }

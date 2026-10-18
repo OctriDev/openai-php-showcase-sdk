@@ -139,9 +139,9 @@ class CreateVectorStoreFileBatchRequest implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
-            files: (property_exists($data, "files") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateVectorStoreFileRequest::class), SdkClient::arrayValue($data->files))) : SdkNotGiven::Value),
-            chunkingStrategy: (property_exists($data, "chunking_strategy") ? SdkClient::hydrateUnionAs($data->chunking_strategy, ChunkingStrategyRequestParam::class, [AutoChunkingStrategyRequestParam::class, StaticChunkingStrategyRequestParam::class], "type", ["auto" => AutoChunkingStrategyRequestParam::class, "static" => StaticChunkingStrategyRequestParam::class], UnknownChunkingStrategyRequestParam::class) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            files: (property_exists($data, "files") && $data->files !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateVectorStoreFileRequest::class), SdkClient::arrayValue($data->files))) : SdkNotGiven::Value),
+            chunkingStrategy: (property_exists($data, "chunking_strategy") && $data->chunking_strategy !== null ? SdkClient::hydrateUnionAs($data->chunking_strategy, ChunkingStrategyRequestParam::class, [AutoChunkingStrategyRequestParam::class, StaticChunkingStrategyRequestParam::class], "type", ["auto" => AutoChunkingStrategyRequestParam::class, "static" => StaticChunkingStrategyRequestParam::class], UnknownChunkingStrategyRequestParam::class) : SdkNotGiven::Value),
             attributes: (property_exists($data, "attributes") ? ($data->attributes === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->attributes), static fn($item) => (is_bool($item) ? SdkClient::boolValue($item) : (is_float($item) || is_int($item) ? SdkClient::floatValue($item) : SdkClient::stringValue($item))))) : SdkNotGiven::Value),
         );
     }
@@ -214,7 +214,7 @@ class CreateVectorStoreFileRequest implements \JsonSerializable
         }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
-            chunkingStrategy: (property_exists($data, "chunking_strategy") ? SdkClient::hydrateUnionAs($data->chunking_strategy, ChunkingStrategyRequestParam::class, [AutoChunkingStrategyRequestParam::class, StaticChunkingStrategyRequestParam::class], "type", ["auto" => AutoChunkingStrategyRequestParam::class, "static" => StaticChunkingStrategyRequestParam::class], UnknownChunkingStrategyRequestParam::class) : SdkNotGiven::Value),
+            chunkingStrategy: (property_exists($data, "chunking_strategy") && $data->chunking_strategy !== null ? SdkClient::hydrateUnionAs($data->chunking_strategy, ChunkingStrategyRequestParam::class, [AutoChunkingStrategyRequestParam::class, StaticChunkingStrategyRequestParam::class], "type", ["auto" => AutoChunkingStrategyRequestParam::class, "static" => StaticChunkingStrategyRequestParam::class], UnknownChunkingStrategyRequestParam::class) : SdkNotGiven::Value),
             attributes: (property_exists($data, "attributes") ? ($data->attributes === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->attributes), static fn($item) => (is_bool($item) ? SdkClient::boolValue($item) : (is_float($item) || is_int($item) ? SdkClient::floatValue($item) : SdkClient::stringValue($item))))) : SdkNotGiven::Value),
         );
     }
@@ -321,11 +321,11 @@ class CreateVectorStoreRequest implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileIds: (property_exists($data, "file_ids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, VectorStoreExpirationAfter::class) : SdkNotGiven::Value),
-            chunkingStrategy: (property_exists($data, "chunking_strategy") ? SdkClient::hydrateUnionAs($data->chunking_strategy, CreateVectorStoreRequestChunkingStrategy::class, [AutoChunkingStrategyRequestParam::class, StaticChunkingStrategyRequestParam::class], "type", ["auto" => AutoChunkingStrategyRequestParam::class, "static" => StaticChunkingStrategyRequestParam::class], UnknownCreateVectorStoreRequestChunkingStrategy::class) : SdkNotGiven::Value),
+            fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, VectorStoreExpirationAfter::class) : SdkNotGiven::Value),
+            chunkingStrategy: (property_exists($data, "chunking_strategy") && $data->chunking_strategy !== null ? SdkClient::hydrateUnionAs($data->chunking_strategy, CreateVectorStoreRequestChunkingStrategy::class, [AutoChunkingStrategyRequestParam::class, StaticChunkingStrategyRequestParam::class], "type", ["auto" => AutoChunkingStrategyRequestParam::class, "static" => StaticChunkingStrategyRequestParam::class], UnknownCreateVectorStoreRequestChunkingStrategy::class) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );
     }

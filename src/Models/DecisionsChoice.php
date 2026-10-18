@@ -62,7 +62,7 @@ class ChoiceOptionParam implements \JsonSerializable
         }
         return new self(
             value: (is_bool($data->value) ? SdkClient::boolValue($data->value) : SdkClient::stringValue($data->value)),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
         );
     }
 }

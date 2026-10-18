@@ -113,9 +113,9 @@ class BetaResponseWsError implements BetaResponsesServerEvent, \JsonSerializable
             type: SdkClient::hydrateEnum($data->type, BetaResponseWsErrorTypeEnum::class),
             error: SdkClient::hydrateClass($data->error, BetaErrorPayload::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::intValue($data->status) : SdkNotGiven::Value),
-            sequenceNumber: (property_exists($data, "sequence_number") ? SdkClient::intValue($data->sequence_number) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::intValue($data->status) : SdkNotGiven::Value),
+            sequenceNumber: (property_exists($data, "sequence_number") && $data->sequence_number !== null ? SdkClient::intValue($data->sequence_number) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

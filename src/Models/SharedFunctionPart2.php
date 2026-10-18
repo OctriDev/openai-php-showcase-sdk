@@ -226,7 +226,7 @@ class FunctionShellCall implements ConversationItem, ItemResource, OutputItem, I
             status: SdkClient::hydrateStringEnumOrString($data->status, FunctionShellCallStatus::class),
             environment: ($data->environment === null ? null : SdkClient::hydrateUnionAs($data->environment, FunctionShellCallEnvironment::class, [LocalEnvironmentResource::class, ContainerReferenceResource::class], "type", ["local" => LocalEnvironmentResource::class, "container_reference" => ContainerReferenceResource::class], UnknownFunctionShellCallEnvironment::class)),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, ToolCallCaller::class, [DirectToolCallCaller::class, ProgramToolCallCaller::class], "type", ["direct" => DirectToolCallCaller::class, "program" => ProgramToolCallCaller::class], UnknownToolCallCaller::class)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

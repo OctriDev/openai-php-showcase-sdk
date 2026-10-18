@@ -115,10 +115,10 @@ class WebSearchLocation implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            country: (property_exists($data, "country") ? SdkClient::stringValue($data->country) : SdkNotGiven::Value),
-            region: (property_exists($data, "region") ? SdkClient::stringValue($data->region) : SdkNotGiven::Value),
-            city: (property_exists($data, "city") ? SdkClient::stringValue($data->city) : SdkNotGiven::Value),
-            timezone: (property_exists($data, "timezone") ? SdkClient::stringValue($data->timezone) : SdkNotGiven::Value),
+            country: (property_exists($data, "country") && $data->country !== null ? SdkClient::stringValue($data->country) : SdkNotGiven::Value),
+            region: (property_exists($data, "region") && $data->region !== null ? SdkClient::stringValue($data->region) : SdkNotGiven::Value),
+            city: (property_exists($data, "city") && $data->city !== null ? SdkClient::stringValue($data->city) : SdkNotGiven::Value),
+            timezone: (property_exists($data, "timezone") && $data->timezone !== null ? SdkClient::stringValue($data->timezone) : SdkNotGiven::Value),
         );
     }
 }

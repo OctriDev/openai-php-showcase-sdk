@@ -48,7 +48,7 @@ class LiveForkAudioParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, LiveAudioFormat::class, [LiveSessionAudioFormatPCMParam::class, LiveSessionAudioFormatPCMUParam::class, LiveSessionAudioFormatPCMAParam::class], "type", ["audio/pcm" => LiveSessionAudioFormatPCMParam::class, "audio/pcmu" => LiveSessionAudioFormatPCMUParam::class, "audio/pcma" => LiveSessionAudioFormatPCMAParam::class], UnknownLiveAudioFormat::class) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, LiveAudioFormat::class, [LiveSessionAudioFormatPCMParam::class, LiveSessionAudioFormatPCMUParam::class, LiveSessionAudioFormatPCMAParam::class], "type", ["audio/pcm" => LiveSessionAudioFormatPCMParam::class, "audio/pcmu" => LiveSessionAudioFormatPCMUParam::class, "audio/pcma" => LiveSessionAudioFormatPCMAParam::class], UnknownLiveAudioFormat::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -155,7 +155,7 @@ class LiveForkRequest implements \JsonSerializable
         }
         return new self(
             transport: SdkClient::hydrateClass($data->transport, LiveWebRTCTransport::class),
-            session: (property_exists($data, "session") ? SdkClient::hydrateClass($data->session, LiveMediaSessionForkParams::class) : SdkNotGiven::Value),
+            session: (property_exists($data, "session") && $data->session !== null ? SdkClient::hydrateClass($data->session, LiveMediaSessionForkParams::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -237,10 +237,10 @@ class LiveForkSessionConfigParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, LiveForkAudioParam::class) : SdkNotGiven::Value),
-            delegation: (property_exists($data, "delegation") ? SdkClient::hydrateClass($data->delegation, LiveResponsesDelegationUpdateParam::class) : SdkNotGiven::Value),
-            store: (property_exists($data, "store") ? SdkClient::boolValue($data->store) : SdkNotGiven::Value),
-            client: (property_exists($data, "client") ? SdkClient::hydrateClass($data->client, LiveClientConfigParam::class) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::hydrateClass($data->audio, LiveForkAudioParam::class) : SdkNotGiven::Value),
+            delegation: (property_exists($data, "delegation") && $data->delegation !== null ? SdkClient::hydrateClass($data->delegation, LiveResponsesDelegationUpdateParam::class) : SdkNotGiven::Value),
+            store: (property_exists($data, "store") && $data->store !== null ? SdkClient::boolValue($data->store) : SdkNotGiven::Value),
+            client: (property_exists($data, "client") && $data->client !== null ? SdkClient::hydrateClass($data->client, LiveClientConfigParam::class) : SdkNotGiven::Value),
         );
     }
 }

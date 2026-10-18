@@ -76,7 +76,7 @@ class ChatCompletionRequestMessageContentPartText implements ChatCompletionReque
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionRequestMessageContentPartTextTypeEnum::class),
             text: SdkClient::stringValue($data->text),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -156,9 +156,9 @@ class ChatCompletionRequestSystemMessage implements ChatCompletionRequestMessage
             throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
         }
         return new self(
-            content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionRequestSystemMessageContentPart::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
+            content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionRequestMessageContentPartText::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
             role: SdkClient::hydrateEnum($data->role, ChatCompletionRequestSystemMessageRoleEnum::class),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -240,7 +240,7 @@ class ChatCompletionRequestToolMessage implements ChatCompletionRequestMessage, 
         }
         return new self(
             role: SdkClient::hydrateEnum($data->role, ChatCompletionRequestToolMessageRoleEnum::class),
-            content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionRequestToolMessageContentPart::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
+            content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionRequestMessageContentPartText::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
             toolCallId: SdkClient::stringValue($data->tool_call_id),
         );
     }
@@ -323,7 +323,7 @@ class ChatCompletionRequestUserMessage implements ChatCompletionRequestMessage, 
         return new self(
             content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ChatCompletionRequestUserMessageContentPart::class, [ChatCompletionRequestMessageContentPartText::class, ChatCompletionRequestMessageContentPartImage::class, ChatCompletionRequestMessageContentPartAudio::class, ChatCompletionRequestMessageContentPartFile::class], "type", ["text" => ChatCompletionRequestMessageContentPartText::class, "image_url" => ChatCompletionRequestMessageContentPartImage::class, "input_audio" => ChatCompletionRequestMessageContentPartAudio::class, "file" => ChatCompletionRequestMessageContentPartFile::class], UnknownChatCompletionRequestUserMessageContentPart::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
             role: SdkClient::hydrateEnum($data->role, ChatCompletionRequestUserMessageRoleEnum::class),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }

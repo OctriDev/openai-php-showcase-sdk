@@ -269,7 +269,7 @@ class CreateChatCompletionRequestVariant1WebSearchOptions implements \JsonSerial
     {
         return new self(
             userLocation: (property_exists($data, "user_location") ? ($data->user_location === null ? null : SdkClient::hydrateClass($data->user_location, CreateChatCompletionRequestVariant1WebSearchOptionsUserLocation::class)) : SdkNotGiven::Value),
-            searchContextSize: (property_exists($data, "search_context_size") ? SdkClient::hydrateStringEnumOrString($data->search_context_size, WebSearchContextSize::class) : SdkNotGiven::Value),
+            searchContextSize: (property_exists($data, "search_context_size") && $data->search_context_size !== null ? SdkClient::hydrateStringEnumOrString($data->search_context_size, WebSearchContextSize::class) : SdkNotGiven::Value),
         );
     }
 }

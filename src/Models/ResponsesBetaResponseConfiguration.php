@@ -174,8 +174,8 @@ class BetaResponseConfigurationUpdate implements BetaItemResource, \JsonSerializ
         return new self(
             id: SdkClient::stringValue($data->id),
             type: SdkClient::hydrateEnum($data->type, BetaResponseConfigurationUpdateTypeEnum::class),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
-            reasoning: (property_exists($data, "reasoning") ? SdkClient::hydrateClass($data->reasoning, BetaResponseConfigurationUpdateReasoning::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            reasoning: (property_exists($data, "reasoning") && $data->reasoning !== null ? SdkClient::hydrateClass($data->reasoning, BetaResponseConfigurationUpdateReasoning::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -347,7 +347,7 @@ class BetaResponseConfigurationUpdateItemParam implements BetaInputItem, BetaIte
             type: SdkClient::hydrateEnum($data->type, BetaResponseConfigurationUpdateItemParamTypeEnum::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, Beta_AgentTagParam::class)) : SdkNotGiven::Value),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
-            reasoning: (property_exists($data, "reasoning") ? SdkClient::hydrateClass($data->reasoning, BetaResponseConfigurationUpdateItemParamReasoning::class) : SdkNotGiven::Value),
+            reasoning: (property_exists($data, "reasoning") && $data->reasoning !== null ? SdkClient::hydrateClass($data->reasoning, BetaResponseConfigurationUpdateItemParamReasoning::class) : SdkNotGiven::Value),
         );
     }
 }

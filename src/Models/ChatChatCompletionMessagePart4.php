@@ -86,9 +86,9 @@ class ChatCompletionMessageToolCallChunk implements \JsonSerializable
         }
         return new self(
             index: SdkClient::intValue($data->index),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, ChatCompletionMessageToolCallChunkTypeEnum::class) : SdkNotGiven::Value),
-            function_: (property_exists($data, "function") ? SdkClient::hydrateClass($data->function, ChatCompletionMessageToolCallChunkFunction::class) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, ChatCompletionMessageToolCallChunkTypeEnum::class) : SdkNotGiven::Value),
+            function_: (property_exists($data, "function") && $data->function !== null ? SdkClient::hydrateClass($data->function, ChatCompletionMessageToolCallChunkFunction::class) : SdkNotGiven::Value),
         );
     }
 }

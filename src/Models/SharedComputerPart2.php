@@ -74,8 +74,8 @@ class ComputerScreenshotImage implements \JsonSerializable
         }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ComputerScreenshotImageTypeEnum::class),
-            imageUrl: (property_exists($data, "image_url") ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            imageUrl: (property_exists($data, "image_url") && $data->image_url !== null ? SdkClient::stringValue($data->image_url) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -297,8 +297,8 @@ class ComputerToolCall implements ConversationItem, InputItem, Item, ItemResourc
             callId: SdkClient::stringValue($data->call_id),
             pendingSafetyChecks: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ComputerCallSafetyCheckParam::class), SdkClient::arrayValue($data->pending_safety_checks))),
             status: SdkClient::hydrateStringEnumOrString($data->status, ComputerToolCallStatusEnum::class),
-            action: (property_exists($data, "action") ? SdkClient::hydrateUnionAs($data->action, ComputerAction::class, [ClickParam::class, DoubleClickAction::class, DragParam::class, KeyPressAction::class, MoveParam::class, ScreenshotParam::class, ScrollParam::class, TypeParam::class, WaitParam::class], "type", ["click" => ClickParam::class, "double_click" => DoubleClickAction::class, "drag" => DragParam::class, "keypress" => KeyPressAction::class, "move" => MoveParam::class, "screenshot" => ScreenshotParam::class, "scroll" => ScrollParam::class, "type" => TypeParam::class, "wait" => WaitParam::class], UnknownComputerAction::class) : SdkNotGiven::Value),
-            actions: (property_exists($data, "actions") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ComputerAction::class, [ClickParam::class, DoubleClickAction::class, DragParam::class, KeyPressAction::class, MoveParam::class, ScreenshotParam::class, ScrollParam::class, TypeParam::class, WaitParam::class], "type", ["click" => ClickParam::class, "double_click" => DoubleClickAction::class, "drag" => DragParam::class, "keypress" => KeyPressAction::class, "move" => MoveParam::class, "screenshot" => ScreenshotParam::class, "scroll" => ScrollParam::class, "type" => TypeParam::class, "wait" => WaitParam::class], UnknownComputerAction::class), SdkClient::arrayValue($data->actions))) : SdkNotGiven::Value),
+            action: (property_exists($data, "action") && $data->action !== null ? SdkClient::hydrateUnionAs($data->action, ComputerAction::class, [ClickParam::class, DoubleClickAction::class, DragParam::class, KeyPressAction::class, MoveParam::class, ScreenshotParam::class, ScrollParam::class, TypeParam::class, WaitParam::class], "type", ["click" => ClickParam::class, "double_click" => DoubleClickAction::class, "drag" => DragParam::class, "keypress" => KeyPressAction::class, "move" => MoveParam::class, "screenshot" => ScreenshotParam::class, "scroll" => ScrollParam::class, "type" => TypeParam::class, "wait" => WaitParam::class], UnknownComputerAction::class) : SdkNotGiven::Value),
+            actions: (property_exists($data, "actions") && $data->actions !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ComputerAction::class, [ClickParam::class, DoubleClickAction::class, DragParam::class, KeyPressAction::class, MoveParam::class, ScreenshotParam::class, ScrollParam::class, TypeParam::class, WaitParam::class], "type", ["click" => ClickParam::class, "double_click" => DoubleClickAction::class, "drag" => DragParam::class, "keypress" => KeyPressAction::class, "move" => MoveParam::class, "screenshot" => ScreenshotParam::class, "scroll" => ScrollParam::class, "type" => TypeParam::class, "wait" => WaitParam::class], UnknownComputerAction::class), SdkClient::arrayValue($data->actions))) : SdkNotGiven::Value),
         );
     }
 }

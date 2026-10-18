@@ -98,7 +98,7 @@ class QuestionParamChoice implements QuestionParam, \JsonSerializable
             type: SdkClient::hydrateEnum($data->type, QuestionParamChoiceTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
             choices: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChoiceOptionParam::class), SdkClient::arrayValue($data->choices))),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -180,7 +180,7 @@ class QuestionParamPredicate implements QuestionParam, \JsonSerializable
         return new self(
             type: SdkClient::hydrateEnum($data->type, QuestionParamPredicateTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -276,7 +276,7 @@ class QuestionParamScore implements QuestionParam, \JsonSerializable
             type: SdkClient::hydrateEnum($data->type, QuestionParamScoreTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
             levels: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ScoreLevelParam::class), SdkClient::arrayValue($data->levels))),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }

@@ -150,8 +150,8 @@ class InputMessage implements InputItem, Item, \JsonSerializable
         return new self(
             role: SdkClient::hydrateStringEnumOrString($data->role, InputMessageRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, InputContent::class, [InputTextContent::class, InputImageContent::class, InputFileContent::class], "type", ["input_text" => InputTextContent::class, "input_image" => InputImageContent::class, "input_file" => InputFileContent::class], UnknownInputContent::class), SdkClient::arrayValue($data->content))),
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, InputMessageTypeEnum::class) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, InputMessageStatusEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, InputMessageTypeEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, InputMessageStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -233,7 +233,7 @@ class InputTextContent implements Content, FunctionAndCustomToolCallOutput, Inpu
         return new self(
             type: SdkClient::hydrateEnum($data->type, InputTextContentTypeEnum::class),
             text: SdkClient::stringValue($data->text),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
         );
     }
 }

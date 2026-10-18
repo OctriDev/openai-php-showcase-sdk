@@ -104,7 +104,7 @@ class TranscriptTextUsageTokens implements CreateTranscriptionResponseDiarizedJs
             inputTokens: SdkClient::intValue($data->input_tokens),
             outputTokens: SdkClient::intValue($data->output_tokens),
             totalTokens: SdkClient::intValue($data->total_tokens),
-            inputTokenDetails: (property_exists($data, "input_token_details") ? SdkClient::hydrateClass($data->input_token_details, TranscriptTextUsageTokensInputTokenDetails::class) : SdkNotGiven::Value),
+            inputTokenDetails: (property_exists($data, "input_token_details") && $data->input_token_details !== null ? SdkClient::hydrateClass($data->input_token_details, TranscriptTextUsageTokensInputTokenDetails::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -264,9 +264,9 @@ class VadConfig implements \JsonSerializable
         }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, VadConfigTypeEnum::class),
-            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
-            silenceDurationMs: (property_exists($data, "silence_duration_ms") ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
-            threshold: (property_exists($data, "threshold") ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
+            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
+            silenceDurationMs: (property_exists($data, "silence_duration_ms") && $data->silence_duration_ms !== null ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
+            threshold: (property_exists($data, "threshold") && $data->threshold !== null ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
         );
     }
 }

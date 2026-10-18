@@ -114,7 +114,7 @@ class ToolSearchCallItemParam implements InputItem, Item, \JsonSerializable
             arguments: SdkClient::hydrateClass($data->arguments, EmptyModelParam::class),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
             callId: (property_exists($data, "call_id") ? ($data->call_id === null ? null : SdkClient::stringValue($data->call_id)) : SdkNotGiven::Value),
-            execution: (property_exists($data, "execution") ? SdkClient::hydrateStringEnumOrString($data->execution, ToolSearchExecutionType::class) : SdkNotGiven::Value),
+            execution: (property_exists($data, "execution") && $data->execution !== null ? SdkClient::hydrateStringEnumOrString($data->execution, ToolSearchExecutionType::class) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? ($data->status === null ? null : SdkClient::hydrateStringEnumOrString($data->status, FunctionCallItemStatus::class)) : SdkNotGiven::Value),
         );
     }
@@ -283,7 +283,7 @@ class ToolSearchOutput implements ConversationItem, ItemResource, OutputItem, It
             execution: SdkClient::hydrateStringEnumOrString($data->execution, ToolSearchExecutionType::class),
             tools: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, Tool::class, [FunctionTool::class, FileSearchTool::class, ComputerTool::class, ComputerUsePreviewTool::class, WebSearchTool::class, MCPTool::class, CodeInterpreterTool::class, ProgrammaticToolCallingParam::class, ImageGenTool::class, LocalShellToolParam::class, FunctionShellToolParam::class, CustomToolParam::class, NamespaceToolParam::class, ToolSearchToolParam::class, WebSearchPreviewTool::class, ApplyPatchToolParam::class], "type", ["function" => FunctionTool::class, "file_search" => FileSearchTool::class, "computer" => ComputerTool::class, "computer_use_preview" => ComputerUsePreviewTool::class, "web_search" => WebSearchTool::class, "web_search_2025_08_26" => WebSearchTool::class, "mcp" => MCPTool::class, "code_interpreter" => CodeInterpreterTool::class, "programmatic_tool_calling" => ProgrammaticToolCallingParam::class, "image_generation" => ImageGenTool::class, "local_shell" => LocalShellToolParam::class, "shell" => FunctionShellToolParam::class, "custom" => CustomToolParam::class, "namespace" => NamespaceToolParam::class, "tool_search" => ToolSearchToolParam::class, "web_search_preview" => WebSearchPreviewTool::class, "web_search_preview_2025_03_11" => WebSearchPreviewTool::class, "apply_patch" => ApplyPatchToolParam::class], UnknownTool::class), SdkClient::arrayValue($data->tools))),
             status: SdkClient::hydrateStringEnumOrString($data->status, FunctionCallOutputStatusEnum::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

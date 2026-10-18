@@ -209,7 +209,7 @@ class WebhookFineTuningJobFailed implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             data: SdkClient::hydrateClass($data->data, WebhookFineTuningJobFailedData::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, WebhookFineTuningJobFailedTypeEnum::class),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, WebhookFineTuningJobFailedObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, WebhookFineTuningJobFailedObjectEnum::class) : SdkNotGiven::Value),
         );
     }
 }

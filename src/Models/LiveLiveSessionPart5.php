@@ -61,7 +61,7 @@ class LiveSessionUpdateParams implements \JsonSerializable
     {
         return new self(
             delegation: (property_exists($data, "delegation") ? ($data->delegation === null ? null : SdkClient::hydrateUnionAs($data->delegation, LiveSessionUpdateParamsDelegation::class, [LiveClientDelegationParam::class, LiveResponsesDelegationUpdateParam::class, LiveDecisionsDelegationUpdateParam::class], "type", ["client" => LiveClientDelegationParam::class, "responses" => LiveResponsesDelegationUpdateParam::class, "decisions" => LiveDecisionsDelegationUpdateParam::class], UnknownLiveSessionUpdateParamsDelegation::class)) : SdkNotGiven::Value),
-            triggers: (property_exists($data, "triggers") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveDecisionTriggerInputParam2::class), SdkClient::arrayValue($data->triggers))) : SdkNotGiven::Value),
+            triggers: (property_exists($data, "triggers") && $data->triggers !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveDecisionTriggerInputParam2::class), SdkClient::arrayValue($data->triggers))) : SdkNotGiven::Value),
         );
     }
 }
@@ -216,8 +216,8 @@ class LiveSessionUsageUpdated implements LiveSidebandServerEvent, LiveServerEven
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveSessionUsageUpdatedTypeEnum::class),
             usage: SdkClient::hydrateClass($data->usage, LiveSessionUsage::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
-            contextWindow: (property_exists($data, "context_window") ? SdkClient::hydrateClass($data->context_window, LiveContextWindowUsage::class) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            contextWindow: (property_exists($data, "context_window") && $data->context_window !== null ? SdkClient::hydrateClass($data->context_window, LiveContextWindowUsage::class) : SdkNotGiven::Value),
         );
     }
 }

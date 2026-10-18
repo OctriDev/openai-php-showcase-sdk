@@ -70,7 +70,7 @@ class PersistedAgentToolConfigParamComputerUse implements PersistedAgentToolConf
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolConfigParamComputerUseTypeEnum::class),
-            includeScreenshots: (property_exists($data, "include_screenshots") ? SdkClient::boolValue($data->include_screenshots) : SdkNotGiven::Value),
+            includeScreenshots: (property_exists($data, "include_screenshots") && $data->include_screenshots !== null ? SdkClient::boolValue($data->include_screenshots) : SdkNotGiven::Value),
         );
     }
 }
@@ -180,7 +180,7 @@ class PersistedAgentToolConfigParamFunction implements PersistedAgentToolConfigP
             name: SdkClient::stringValue($data->name),
             description: SdkClient::stringValue($data->description),
             parameters: SdkClient::mapValues(SdkClient::stringMapValue($data->parameters), static fn($item) => $item),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
         );
     }
 }
@@ -327,7 +327,7 @@ class PersistedAgentToolConfigParamMcp implements PersistedAgentToolConfigParam,
             credentialId: (property_exists($data, "credential_id") ? ($data->credential_id === null ? null : SdkClient::stringValue($data->credential_id)) : SdkNotGiven::Value),
             requestMetadata: (property_exists($data, "request_metadata") ? ($data->request_metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->request_metadata), static fn($item) => $item)) : SdkNotGiven::Value),
             allowedTools: (property_exists($data, "allowed_tools") ? ($data->allowed_tools === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_tools)))) : SdkNotGiven::Value),
-            required: (property_exists($data, "required") ? SdkClient::boolValue($data->required) : SdkNotGiven::Value),
+            required: (property_exists($data, "required") && $data->required !== null ? SdkClient::boolValue($data->required) : SdkNotGiven::Value),
             connectionOrigin: (property_exists($data, "connection_origin") ? ($data->connection_origin === null ? null : SdkClient::hydrateStringEnumOrString($data->connection_origin, McpConnectionOriginParam::class)) : SdkNotGiven::Value),
         );
     }

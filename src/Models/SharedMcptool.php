@@ -54,7 +54,7 @@ final readonly class MCPToolConnectorIdEnum implements SdkOpenEnum
 /**
  * Specify which of the MCP server's tools require approval. Can be `always`, `never`, or a filter object associated with tools that require approval.
  */
-class MCPToolRequireApprovalMCPToolApprovalFilter implements \JsonSerializable
+class MCPToolRequireApprovalModelMCPToolApprovalFilter implements \JsonSerializable
 {
     /**
      * A filter object to specify which tools are allowed.
@@ -104,8 +104,8 @@ class MCPToolRequireApprovalMCPToolApprovalFilter implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            always: (property_exists($data, "always") ? SdkClient::hydrateClass($data->always, MCPToolFilter::class) : SdkNotGiven::Value),
-            never_: (property_exists($data, "never") ? SdkClient::hydrateClass($data->never, MCPToolFilter::class) : SdkNotGiven::Value),
+            always: (property_exists($data, "always") && $data->always !== null ? SdkClient::hydrateClass($data->always, MCPToolFilter::class) : SdkNotGiven::Value),
+            never_: (property_exists($data, "never") && $data->never !== null ? SdkClient::hydrateClass($data->never, MCPToolFilter::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -113,7 +113,7 @@ class MCPToolRequireApprovalMCPToolApprovalFilter implements \JsonSerializable
 /**
  * Specify a single approval policy for all tools. One of `always` or `never`. When set to `always`, all tools will require approval. When set to `never`, all tools will not require approval.
  */
-final readonly class MCPToolRequireApprovalEnum implements SdkOpenEnum
+final readonly class MCPToolRequireApprovalModelEnum implements SdkOpenEnum
 {
     public const ALWAYS = "always";
     public const NEVER = "never";
@@ -208,9 +208,9 @@ class MCPTool implements Tool, ToolSearchOutputTool, RealtimeSessionCreateReques
     /**
      * Specify which of the MCP server's tools require approval.
      *
-     * @var MCPToolRequireApprovalMCPToolApprovalFilter|MCPToolRequireApprovalEnum|string|null|SdkNotGiven
+     * @var MCPToolRequireApprovalModelMCPToolApprovalFilter|MCPToolRequireApprovalModelEnum|string|null|SdkNotGiven
      */
-    public readonly MCPToolRequireApprovalMCPToolApprovalFilter|MCPToolRequireApprovalEnum|string|null|SdkNotGiven $requireApproval;
+    public readonly MCPToolRequireApprovalModelMCPToolApprovalFilter|MCPToolRequireApprovalModelEnum|string|null|SdkNotGiven $requireApproval;
     /**
      * Whether this MCP tool is deferred and discovered via tool search.
      *
@@ -229,7 +229,7 @@ class MCPTool implements Tool, ToolSearchOutputTool, RealtimeSessionCreateReques
      * @param array<string,string>|null|SdkNotGiven $headers
      * @param list<string>|MCPToolFilter|null|SdkNotGiven $allowedTools
      * @param list<CallableToolAllowedCaller|string>|null|SdkNotGiven $allowedCallers
-     * @param MCPToolRequireApprovalMCPToolApprovalFilter|MCPToolRequireApprovalEnum|string|null|SdkNotGiven $requireApproval
+     * @param MCPToolRequireApprovalModelMCPToolApprovalFilter|MCPToolRequireApprovalModelEnum|string|null|SdkNotGiven $requireApproval
      * @param bool|SdkNotGiven $deferLoading
      */
     public function __construct(
@@ -243,7 +243,7 @@ class MCPTool implements Tool, ToolSearchOutputTool, RealtimeSessionCreateReques
         array|null|SdkNotGiven $headers = SdkNotGiven::Value,
         array|MCPToolFilter|null|SdkNotGiven $allowedTools = SdkNotGiven::Value,
         array|null|SdkNotGiven $allowedCallers = SdkNotGiven::Value,
-        MCPToolRequireApprovalMCPToolApprovalFilter|MCPToolRequireApprovalEnum|string|null|SdkNotGiven $requireApproval = SdkNotGiven::Value,
+        MCPToolRequireApprovalModelMCPToolApprovalFilter|MCPToolRequireApprovalModelEnum|string|null|SdkNotGiven $requireApproval = SdkNotGiven::Value,
         bool|SdkNotGiven $deferLoading = SdkNotGiven::Value,
     ) {
         $this->type = $type;
@@ -317,16 +317,16 @@ class MCPTool implements Tool, ToolSearchOutputTool, RealtimeSessionCreateReques
         return new self(
             type: SdkClient::hydrateEnum($data->type, MCPToolTypeEnum::class),
             serverLabel: SdkClient::stringValue($data->server_label),
-            serverUrl: (property_exists($data, "server_url") ? SdkClient::stringValue($data->server_url) : SdkNotGiven::Value),
-            connectorId: (property_exists($data, "connector_id") ? SdkClient::hydrateStringEnumOrString($data->connector_id, MCPToolConnectorIdEnum::class) : SdkNotGiven::Value),
-            tunnelId: (property_exists($data, "tunnel_id") ? SdkClient::stringValue($data->tunnel_id) : SdkNotGiven::Value),
-            authorization: (property_exists($data, "authorization") ? SdkClient::stringValue($data->authorization) : SdkNotGiven::Value),
-            serverDescription: (property_exists($data, "server_description") ? SdkClient::stringValue($data->server_description) : SdkNotGiven::Value),
+            serverUrl: (property_exists($data, "server_url") && $data->server_url !== null ? SdkClient::stringValue($data->server_url) : SdkNotGiven::Value),
+            connectorId: (property_exists($data, "connector_id") && $data->connector_id !== null ? SdkClient::hydrateStringEnumOrString($data->connector_id, MCPToolConnectorIdEnum::class) : SdkNotGiven::Value),
+            tunnelId: (property_exists($data, "tunnel_id") && $data->tunnel_id !== null ? SdkClient::stringValue($data->tunnel_id) : SdkNotGiven::Value),
+            authorization: (property_exists($data, "authorization") && $data->authorization !== null ? SdkClient::stringValue($data->authorization) : SdkNotGiven::Value),
+            serverDescription: (property_exists($data, "server_description") && $data->server_description !== null ? SdkClient::stringValue($data->server_description) : SdkNotGiven::Value),
             headers: (property_exists($data, "headers") ? ($data->headers === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->headers), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
             allowedTools: (property_exists($data, "allowed_tools") ? ($data->allowed_tools === null ? null : (is_object($data->allowed_tools) ? SdkClient::hydrateClass($data->allowed_tools, MCPToolFilter::class) : (is_array($data->allowed_tools) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_tools))) : SdkClient::hydrateClass($data->allowed_tools, MCPToolFilter::class)))) : SdkNotGiven::Value),
             allowedCallers: (property_exists($data, "allowed_callers") ? ($data->allowed_callers === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, CallableToolAllowedCaller::class), SdkClient::arrayValue($data->allowed_callers)))) : SdkNotGiven::Value),
-            requireApproval: (property_exists($data, "require_approval") ? ($data->require_approval === null ? null : (is_object($data->require_approval) ? SdkClient::hydrateClass($data->require_approval, MCPToolRequireApprovalMCPToolApprovalFilter::class) : (is_string($data->require_approval) ? SdkClient::hydrateStringEnumOrString($data->require_approval, MCPToolRequireApprovalEnum::class) : SdkClient::hydrateClass($data->require_approval, MCPToolRequireApprovalMCPToolApprovalFilter::class)))) : SdkNotGiven::Value),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            requireApproval: (property_exists($data, "require_approval") ? ($data->require_approval === null ? null : (is_object($data->require_approval) ? SdkClient::hydrateClass($data->require_approval, MCPToolRequireApprovalModelMCPToolApprovalFilter::class) : (is_string($data->require_approval) ? SdkClient::hydrateStringEnumOrString($data->require_approval, MCPToolRequireApprovalModelEnum::class) : SdkClient::hydrateClass($data->require_approval, MCPToolRequireApprovalModelMCPToolApprovalFilter::class)))) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
         );
     }
 }

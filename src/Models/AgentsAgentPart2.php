@@ -285,7 +285,7 @@ class AgentToolConfigParamComputerUse implements AgentToolConfigParam, \JsonSeri
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolConfigParamComputerUseTypeEnum::class),
-            includeScreenshots: (property_exists($data, "include_screenshots") ? SdkClient::boolValue($data->include_screenshots) : SdkNotGiven::Value),
+            includeScreenshots: (property_exists($data, "include_screenshots") && $data->include_screenshots !== null ? SdkClient::boolValue($data->include_screenshots) : SdkNotGiven::Value),
         );
     }
 }

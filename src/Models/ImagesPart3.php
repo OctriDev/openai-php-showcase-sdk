@@ -114,7 +114,7 @@ class CreateImageVariationRequest implements \JsonSerializable
             n: (property_exists($data, "n") ? ($data->n === null ? null : SdkClient::intValue($data->n)) : SdkNotGiven::Value),
             responseFormat: (property_exists($data, "response_format") ? ($data->response_format === null ? null : SdkClient::hydrateStringEnumOrString($data->response_format, CreateImageVariationRequestResponseFormatEnum::class)) : SdkNotGiven::Value),
             size: (property_exists($data, "size") ? ($data->size === null ? null : SdkClient::hydrateStringEnumOrString($data->size, CreateImageVariationRequestSizeEnum::class)) : SdkNotGiven::Value),
-            user: (property_exists($data, "user") ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
         );
     }
 }

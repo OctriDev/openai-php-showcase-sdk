@@ -163,8 +163,8 @@ class BetaResponseLogProbTopLogprobsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            token: (property_exists($data, "token") ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
-            logprob: (property_exists($data, "logprob") ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
+            token: (property_exists($data, "token") && $data->token !== null ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
+            logprob: (property_exists($data, "logprob") && $data->logprob !== null ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
         );
     }
 }
@@ -238,7 +238,7 @@ class BetaResponseLogProb implements \JsonSerializable
         return new self(
             token: SdkClient::stringValue($data->token),
             logprob: SdkClient::floatValue($data->logprob),
-            topLogprobs: (property_exists($data, "top_logprobs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaResponseLogProbTopLogprobsItem::class), SdkClient::arrayValue($data->top_logprobs))) : SdkNotGiven::Value),
+            topLogprobs: (property_exists($data, "top_logprobs") && $data->top_logprobs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaResponseLogProbTopLogprobsItem::class), SdkClient::arrayValue($data->top_logprobs))) : SdkNotGiven::Value),
         );
     }
 }

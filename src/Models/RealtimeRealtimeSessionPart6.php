@@ -8,6 +8,91 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
+ * Optional object value serialized in the `input` wire field.
+ */
+class RealtimeSessionCreateRequestGAAudioInput implements \JsonSerializable
+{
+    /**
+     * The format of the input audio.
+     *
+     * @var RealtimeAudioFormats|SdkNotGiven
+     */
+    public readonly RealtimeAudioFormats|SdkNotGiven $format;
+    /**
+     * Configuration for input audio transcription, defaults to off and can be set to `null` to turn off once on. Input audio transcription is not native to the model, since the model consumes audio directly. Transcription runs asynchronously through [the /audio/transcriptions endpoint](https://developers.openai.com/api/reference/resources/audio/subresources/transcriptions/methods/create) and should be treated as guidance of input audio content rather than precisely what the model heard. The client can optionally set the language and prompt for transcription, these offer additional guidance to the transcription service.
+     *
+     * @var AudioTranscription|SdkNotGiven
+     */
+    public readonly AudioTranscription|SdkNotGiven $transcription;
+    /**
+     * Configuration for input audio noise reduction. This can be set to `null` to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
+     *
+     * @var RealtimeSessionCreateRequestGAAudioInputNoiseReduction|SdkNotGiven
+     */
+    public readonly RealtimeSessionCreateRequestGAAudioInputNoiseReduction|SdkNotGiven $noiseReduction;
+    /**
+     * Configuration for turn detection, ether Server VAD or Semantic VAD. This can be set to `null` to turn off, in which case the client must manually trigger model response. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech. Semantic VAD is more advanced and uses a turn detection model (in conjunction with VAD) to semantically estimate whether the user has finished speaking, then dynamically sets a timeout based on this probability. For example, if user audio trails off with "uhhm", the model will score a low probability of turn end and wait longer for the user to continue speaking. This can be useful for more natural conversations, but may have a higher latency. For `gpt-realtime-whisper` transcription sessions, turn detection must be set to `null`; VAD is not supported.
+     *
+     * @var RealtimeTurnDetection|null|SdkNotGiven
+     */
+    public readonly RealtimeTurnDetection|null|SdkNotGiven $turnDetection;
+
+    /**
+     * @param RealtimeAudioFormats|SdkNotGiven $format
+     * @param AudioTranscription|SdkNotGiven $transcription
+     * @param RealtimeSessionCreateRequestGAAudioInputNoiseReduction|SdkNotGiven $noiseReduction
+     * @param RealtimeTurnDetection|null|SdkNotGiven $turnDetection
+     */
+    public function __construct(
+        RealtimeAudioFormats|SdkNotGiven $format = SdkNotGiven::Value,
+        AudioTranscription|SdkNotGiven $transcription = SdkNotGiven::Value,
+        RealtimeSessionCreateRequestGAAudioInputNoiseReduction|SdkNotGiven $noiseReduction = SdkNotGiven::Value,
+        RealtimeTurnDetection|null|SdkNotGiven $turnDetection = SdkNotGiven::Value,
+    ) {
+        $this->format = $format;
+        $this->transcription = $transcription;
+        $this->noiseReduction = $noiseReduction;
+        $this->turnDetection = $turnDetection;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+        ];
+        if ($this->format !== SdkNotGiven::Value) {
+            $values["format"] = $this->format;
+        }
+        if ($this->transcription !== SdkNotGiven::Value) {
+            $values["transcription"] = $this->transcription;
+        }
+        if ($this->noiseReduction !== SdkNotGiven::Value) {
+            $values["noise_reduction"] = $this->noiseReduction;
+        }
+        if ($this->turnDetection !== SdkNotGiven::Value) {
+            $values["turn_detection"] = $this->turnDetection;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        return new self(
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
+            transcription: (property_exists($data, "transcription") && $data->transcription !== null ? SdkClient::hydrateClass($data->transcription, AudioTranscription::class) : SdkNotGiven::Value),
+            noiseReduction: (property_exists($data, "noise_reduction") && $data->noise_reduction !== null ? SdkClient::hydrateClass($data->noise_reduction, RealtimeSessionCreateRequestGAAudioInputNoiseReduction::class) : SdkNotGiven::Value),
+            turnDetection: (property_exists($data, "turn_detection") ? ($data->turn_detection === null ? null : SdkClient::hydrateUnionAs($data->turn_detection, RealtimeTurnDetection::class, [RealtimeTurnDetectionVariant0::class, RealtimeTurnDetectionVariant1::class], "type", ["server_vad" => RealtimeTurnDetectionVariant0::class, "semantic_vad" => RealtimeTurnDetectionVariant1::class], UnknownRealtimeTurnDetection::class)) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
  * Custom voice reference.
  */
 class RealtimeSessionCreateRequestGAAudioOutputVoiceVariant1 implements \JsonSerializable
@@ -119,9 +204,9 @@ class RealtimeSessionCreateRequestGAAudioOutput implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
-            voice: (property_exists($data, "voice") ? (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, RealtimeSessionCreateRequestGAAudioOutputVoiceVariant1::class) : (is_string($data->voice) ? SdkClient::stringValue($data->voice) : SdkClient::hydrateClass($data->voice, RealtimeSessionCreateRequestGAAudioOutputVoiceVariant1::class))) : SdkNotGiven::Value),
-            speed: (property_exists($data, "speed") ? SdkClient::floatValue($data->speed) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, RealtimeAudioFormats::class, [RealtimeAudioFormatsVariant0::class, RealtimeAudioFormatsVariant1::class, RealtimeAudioFormatsVariant2::class], null, []) : SdkNotGiven::Value),
+            voice: (property_exists($data, "voice") && $data->voice !== null ? (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, RealtimeSessionCreateRequestGAAudioOutputVoiceVariant1::class) : (is_string($data->voice) ? SdkClient::stringValue($data->voice) : SdkClient::hydrateClass($data->voice, RealtimeSessionCreateRequestGAAudioOutputVoiceVariant1::class))) : SdkNotGiven::Value),
+            speed: (property_exists($data, "speed") && $data->speed !== null ? SdkClient::floatValue($data->speed) : SdkNotGiven::Value),
         );
     }
 }
@@ -179,8 +264,8 @@ class RealtimeSessionCreateRequestGAAudio implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            input: (property_exists($data, "input") ? SdkClient::hydrateClass($data->input, RealtimeSessionCreateRequestGAAudioInput::class) : SdkNotGiven::Value),
-            output: (property_exists($data, "output") ? SdkClient::hydrateClass($data->output, RealtimeSessionCreateRequestGAAudioOutput::class) : SdkNotGiven::Value),
+            input: (property_exists($data, "input") && $data->input !== null ? SdkClient::hydrateClass($data->input, RealtimeSessionCreateRequestGAAudioInput::class) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? SdkClient::hydrateClass($data->output, RealtimeSessionCreateRequestGAAudioOutput::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -220,166 +305,6 @@ final readonly class RealtimeSessionCreateRequestGAIncludeItemEnum implements Sd
 final readonly class RealtimeSessionCreateRequestGATracingEnum implements SdkOpenEnum
 {
     public const AUTO = "auto";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * Granular configuration for tracing.
- */
-class RealtimeSessionCreateRequestGATracingTracingConfiguration implements \JsonSerializable
-{
-    /**
-     * The name of the workflow to attach to this trace. This is used to name the trace in the Traces Dashboard.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $workflowName;
-    /**
-     * The group id to attach to this trace to enable filtering and grouping in the Traces Dashboard.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $groupId;
-    /**
-     * The arbitrary metadata to attach to this trace to enable filtering in the Traces Dashboard.
-     *
-     * @var array<array-key,mixed>|SdkNotGiven
-     */
-    public readonly array|SdkNotGiven $metadata;
-
-    /**
-     * @param string|SdkNotGiven $workflowName
-     * @param string|SdkNotGiven $groupId
-     * @param array<array-key,mixed>|SdkNotGiven $metadata
-     */
-    public function __construct(
-        string|SdkNotGiven $workflowName = SdkNotGiven::Value,
-        string|SdkNotGiven $groupId = SdkNotGiven::Value,
-        array|SdkNotGiven $metadata = SdkNotGiven::Value,
-    ) {
-        $this->workflowName = $workflowName;
-        $this->groupId = $groupId;
-        $this->metadata = $metadata;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-        ];
-        if ($this->workflowName !== SdkNotGiven::Value) {
-            $values["workflow_name"] = $this->workflowName;
-        }
-        if ($this->groupId !== SdkNotGiven::Value) {
-            $values["group_id"] = $this->groupId;
-        }
-        if ($this->metadata !== SdkNotGiven::Value) {
-            $values["metadata"] = $this->metadata;
-        }
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        return new self(
-            workflowName: (property_exists($data, "workflow_name") ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
-            groupId: (property_exists($data, "group_id") ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
-            metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
-        );
-    }
-}
-
-/**
- * Optional enumerated value serialized in the `max_output_tokens` wire field.
- */
-final readonly class RealtimeSessionCreateRequestGAMaxOutputTokensEnum implements SdkOpenEnum
-{
-    public const INF = "inf";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * The truncation strategy to use for the session. `auto` is the default truncation strategy. `disabled` will disable truncation and emit errors when the conversation exceeds the input token limit.
- */
-final readonly class RealtimeSessionCreateRequestGATruncationEnum implements SdkOpenEnum
-{
-    public const AUTO = "auto";
-    public const DISABLED = "disabled";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * Use retention ratio truncation.
- */
-final readonly class RealtimeSessionCreateRequestGATruncationRetentionRatioTruncationTypeEnum implements SdkOpenEnum
-{
-    public const RETENTION_RATIO = "retention_ratio";
     private function __construct(public string $value) {}
     public static function from(string|int $value): static
     {

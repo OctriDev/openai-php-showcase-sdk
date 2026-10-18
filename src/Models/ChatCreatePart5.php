@@ -117,9 +117,9 @@ class CreateChatCompletionRequest implements \JsonSerializable
     /**
      * An object specifying the format that the model must output. Setting to `{ "type": "json_schema", "json_schema": {...} }` enables Structured Outputs which ensures the model will match your supplied JSON schema. Learn more in the [Structured Outputs guide](https://developers.openai.com/api/docs/guides/structured-outputs). Setting to `{ "type": "json_object" }` enables the older JSON mode, which ensures the message the model generates is valid JSON. Using `json_schema` is preferred for models that support it.
      *
-     * @var ResponseFormat|SdkNotGiven
+     * @var ResponseFormatText|ResponseFormatJsonSchema|ResponseFormatJsonObject|SdkNotGiven
      */
-    public readonly ResponseFormat|SdkNotGiven $responseFormat;
+    public readonly ResponseFormatText|ResponseFormatJsonSchema|ResponseFormatJsonObject|SdkNotGiven $responseFormat;
     /**
      * Parameters for audio output. Required when audio output is requested with `modalities: ["audio"]`. [Learn more](https://developers.openai.com/api/docs/guides/audio).
      *
@@ -191,7 +191,7 @@ class CreateChatCompletionRequest implements \JsonSerializable
     /**
      * A list of tools the model may call. You can provide either [custom tools](https://developers.openai.com/api/docs/guides/function-calling#custom-tools) or [function tools](https://developers.openai.com/api/docs/guides/function-calling).
      *
-     * @var list<ToolsItem>|SdkNotGiven
+     * @var list<ChatCompletionTool|CustomToolChatCompletions>|SdkNotGiven
      */
     public readonly array|SdkNotGiven $tools;
     /**
@@ -239,7 +239,7 @@ class CreateChatCompletionRequest implements \JsonSerializable
      * @param float|null|SdkNotGiven $frequencyPenalty
      * @param float|null|SdkNotGiven $presencePenalty
      * @param CreateChatCompletionRequestWebSearchOptions|SdkNotGiven $webSearchOptions
-     * @param ResponseFormat|SdkNotGiven $responseFormat
+     * @param ResponseFormatText|ResponseFormatJsonSchema|ResponseFormatJsonObject|SdkNotGiven $responseFormat
      * @param CreateChatCompletionRequestAudio|null|SdkNotGiven $audio
      * @param bool|null|SdkNotGiven $store
      * @param ModerationParam|null|SdkNotGiven $moderation
@@ -252,7 +252,7 @@ class CreateChatCompletionRequest implements \JsonSerializable
      * @param PredictionContent|null|SdkNotGiven $prediction
      * @param int|null|SdkNotGiven $seed
      * @param ChatCompletionStreamOptions|null|SdkNotGiven $streamOptions
-     * @param list<ToolsItem>|SdkNotGiven $tools
+     * @param list<ChatCompletionTool|CustomToolChatCompletions>|SdkNotGiven $tools
      * @param CreateChatCompletionRequestToolChoiceEnum|string|ChatCompletionAllowedToolsChoice|ChatCompletionNamedToolChoice|ChatCompletionNamedToolChoiceCustom|SdkNotGiven $toolChoice
      * @param bool|SdkNotGiven $parallelToolCalls
      * @param CreateChatCompletionRequestFunctionCallEnum|string|ChatCompletionFunctionCallOption|SdkNotGiven $functionCall
@@ -278,7 +278,7 @@ class CreateChatCompletionRequest implements \JsonSerializable
         float|null|SdkNotGiven $frequencyPenalty = SdkNotGiven::Value,
         float|null|SdkNotGiven $presencePenalty = SdkNotGiven::Value,
         CreateChatCompletionRequestWebSearchOptions|SdkNotGiven $webSearchOptions = SdkNotGiven::Value,
-        ResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value,
+        ResponseFormatText|ResponseFormatJsonSchema|ResponseFormatJsonObject|SdkNotGiven $responseFormat = SdkNotGiven::Value,
         CreateChatCompletionRequestAudio|null|SdkNotGiven $audio = SdkNotGiven::Value,
         bool|null|SdkNotGiven $store = SdkNotGiven::Value,
         ModerationParam|null|SdkNotGiven $moderation = SdkNotGiven::Value,
@@ -476,7 +476,7 @@ class CreateChatCompletionRequest implements \JsonSerializable
             safetyIdentifier: (property_exists($data, "safety_identifier") ? ($data->safety_identifier === null ? null : SdkClient::stringValue($data->safety_identifier)) : SdkNotGiven::Value),
             promptCacheKey: (property_exists($data, "prompt_cache_key") ? ($data->prompt_cache_key === null ? null : SdkClient::stringValue($data->prompt_cache_key)) : SdkNotGiven::Value),
             promptCacheRetention: (property_exists($data, "prompt_cache_retention") ? ($data->prompt_cache_retention === null ? null : SdkClient::hydrateEnum($data->prompt_cache_retention, CreateChatCompletionRequestPromptCacheRetentionEnum::class)) : SdkNotGiven::Value),
-            promptCacheOptions: (property_exists($data, "prompt_cache_options") ? SdkClient::hydrateClass($data->prompt_cache_options, PromptCacheOptionsParam::class) : SdkNotGiven::Value),
+            promptCacheOptions: (property_exists($data, "prompt_cache_options") && $data->prompt_cache_options !== null ? SdkClient::hydrateClass($data->prompt_cache_options, PromptCacheOptionsParam::class) : SdkNotGiven::Value),
             serviceTier: (property_exists($data, "service_tier") ? ($data->service_tier === null ? null : SdkClient::hydrateEnum($data->service_tier, CreateChatCompletionRequestServiceTierEnum::class)) : SdkNotGiven::Value),
             modalities: (property_exists($data, "modalities") ? ($data->modalities === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, CreateChatCompletionRequestModalitiesItemEnum::class), SdkClient::arrayValue($data->modalities)))) : SdkNotGiven::Value),
             verbosity: (property_exists($data, "verbosity") ? ($data->verbosity === null ? null : SdkClient::hydrateEnum($data->verbosity, CreateChatCompletionRequestVerbosityEnum::class)) : SdkNotGiven::Value),
@@ -484,8 +484,8 @@ class CreateChatCompletionRequest implements \JsonSerializable
             maxCompletionTokens: (property_exists($data, "max_completion_tokens") ? ($data->max_completion_tokens === null ? null : SdkClient::intValue($data->max_completion_tokens)) : SdkNotGiven::Value),
             frequencyPenalty: (property_exists($data, "frequency_penalty") ? ($data->frequency_penalty === null ? null : SdkClient::floatValue($data->frequency_penalty)) : SdkNotGiven::Value),
             presencePenalty: (property_exists($data, "presence_penalty") ? ($data->presence_penalty === null ? null : SdkClient::floatValue($data->presence_penalty)) : SdkNotGiven::Value),
-            webSearchOptions: (property_exists($data, "web_search_options") ? SdkClient::hydrateClass($data->web_search_options, CreateChatCompletionRequestWebSearchOptions::class) : SdkNotGiven::Value),
-            responseFormat: (property_exists($data, "response_format") ? SdkClient::hydrateUnionAs($data->response_format, ResponseFormat::class, [ResponseFormatText::class, ResponseFormatJsonSchema::class, ResponseFormatJsonObject::class], "type", ["text" => ResponseFormatText::class, "json_schema" => ResponseFormatJsonSchema::class, "json_object" => ResponseFormatJsonObject::class], UnknownResponseFormat::class) : SdkNotGiven::Value),
+            webSearchOptions: (property_exists($data, "web_search_options") && $data->web_search_options !== null ? SdkClient::hydrateClass($data->web_search_options, CreateChatCompletionRequestWebSearchOptions::class) : SdkNotGiven::Value),
+            responseFormat: (property_exists($data, "response_format") && $data->response_format !== null ? SdkClient::hydrateUnion($data->response_format, [ResponseFormatText::class, ResponseFormatJsonSchema::class, ResponseFormatJsonObject::class], "type", ["text" => ResponseFormatText::class, "json_schema" => ResponseFormatJsonSchema::class, "json_object" => ResponseFormatJsonObject::class]) : SdkNotGiven::Value),
             audio: (property_exists($data, "audio") ? ($data->audio === null ? null : SdkClient::hydrateClass($data->audio, CreateChatCompletionRequestAudio::class)) : SdkNotGiven::Value),
             store: (property_exists($data, "store") ? ($data->store === null ? null : SdkClient::boolValue($data->store)) : SdkNotGiven::Value),
             moderation: (property_exists($data, "moderation") ? ($data->moderation === null ? null : SdkClient::hydrateClass($data->moderation, ModerationParam::class)) : SdkNotGiven::Value),
@@ -498,11 +498,11 @@ class CreateChatCompletionRequest implements \JsonSerializable
             prediction: (property_exists($data, "prediction") ? ($data->prediction === null ? null : SdkClient::hydrateClass($data->prediction, PredictionContent::class)) : SdkNotGiven::Value),
             seed: (property_exists($data, "seed") ? ($data->seed === null ? null : SdkClient::intValue($data->seed)) : SdkNotGiven::Value),
             streamOptions: (property_exists($data, "stream_options") ? ($data->stream_options === null ? null : SdkClient::hydrateClass($data->stream_options, ChatCompletionStreamOptions::class)) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ToolsItem::class, [ChatCompletionTool::class, CustomToolChatCompletions::class], "type", ["function" => ChatCompletionTool::class, "custom" => CustomToolChatCompletions::class], UnknownToolsItem::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
-            toolChoice: (property_exists($data, "tool_choice") ? (is_object($data->tool_choice) ? SdkClient::hydrateUnion($data->tool_choice, [ChatCompletionAllowedToolsChoice::class, ChatCompletionNamedToolChoice::class, ChatCompletionNamedToolChoiceCustom::class], "type", ["allowed_tools" => ChatCompletionAllowedToolsChoice::class, "function" => ChatCompletionNamedToolChoice::class, "custom" => ChatCompletionNamedToolChoiceCustom::class]) : (is_string($data->tool_choice) ? SdkClient::hydrateStringEnumOrString($data->tool_choice, CreateChatCompletionRequestToolChoiceEnum::class) : SdkClient::hydrateUnion($data->tool_choice, [ChatCompletionAllowedToolsChoice::class, ChatCompletionNamedToolChoice::class, ChatCompletionNamedToolChoiceCustom::class], "type", ["allowed_tools" => ChatCompletionAllowedToolsChoice::class, "function" => ChatCompletionNamedToolChoice::class, "custom" => ChatCompletionNamedToolChoiceCustom::class]))) : SdkNotGiven::Value),
-            parallelToolCalls: (property_exists($data, "parallel_tool_calls") ? SdkClient::boolValue($data->parallel_tool_calls) : SdkNotGiven::Value),
-            functionCall: (property_exists($data, "function_call") ? (is_object($data->function_call) ? SdkClient::hydrateClass($data->function_call, ChatCompletionFunctionCallOption::class) : (is_string($data->function_call) ? SdkClient::hydrateStringEnumOrString($data->function_call, CreateChatCompletionRequestFunctionCallEnum::class) : SdkClient::hydrateClass($data->function_call, ChatCompletionFunctionCallOption::class))) : SdkNotGiven::Value),
-            functions: (property_exists($data, "functions") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionFunctions::class), SdkClient::arrayValue($data->functions))) : SdkNotGiven::Value),
+            tools: (property_exists($data, "tools") && $data->tools !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnion($item, [ChatCompletionTool::class, CustomToolChatCompletions::class], "type", ["function" => ChatCompletionTool::class, "custom" => CustomToolChatCompletions::class]), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
+            toolChoice: (property_exists($data, "tool_choice") && $data->tool_choice !== null ? (is_object($data->tool_choice) ? SdkClient::hydrateUnion($data->tool_choice, [ChatCompletionAllowedToolsChoice::class, ChatCompletionNamedToolChoice::class, ChatCompletionNamedToolChoiceCustom::class], "type", ["allowed_tools" => ChatCompletionAllowedToolsChoice::class, "function" => ChatCompletionNamedToolChoice::class, "custom" => ChatCompletionNamedToolChoiceCustom::class]) : (is_string($data->tool_choice) ? SdkClient::hydrateStringEnumOrString($data->tool_choice, CreateChatCompletionRequestToolChoiceEnum::class) : SdkClient::hydrateUnion($data->tool_choice, [ChatCompletionAllowedToolsChoice::class, ChatCompletionNamedToolChoice::class, ChatCompletionNamedToolChoiceCustom::class], "type", ["allowed_tools" => ChatCompletionAllowedToolsChoice::class, "function" => ChatCompletionNamedToolChoice::class, "custom" => ChatCompletionNamedToolChoiceCustom::class]))) : SdkNotGiven::Value),
+            parallelToolCalls: (property_exists($data, "parallel_tool_calls") && $data->parallel_tool_calls !== null ? SdkClient::boolValue($data->parallel_tool_calls) : SdkNotGiven::Value),
+            functionCall: (property_exists($data, "function_call") && $data->function_call !== null ? (is_object($data->function_call) ? SdkClient::hydrateClass($data->function_call, ChatCompletionFunctionCallOption::class) : (is_string($data->function_call) ? SdkClient::hydrateStringEnumOrString($data->function_call, CreateChatCompletionRequestFunctionCallEnum::class) : SdkClient::hydrateClass($data->function_call, ChatCompletionFunctionCallOption::class))) : SdkNotGiven::Value),
+            functions: (property_exists($data, "functions") && $data->functions !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionFunctions::class), SdkClient::arrayValue($data->functions))) : SdkNotGiven::Value),
         );
     }
 }

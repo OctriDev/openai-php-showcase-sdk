@@ -152,11 +152,11 @@ class FunctionToolCall implements InputItem, Item, OutputItem, ItemField, \JsonS
             callId: SdkClient::stringValue($data->call_id),
             name: SdkClient::stringValue($data->name),
             arguments: SdkClient::stringValue($data->arguments),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, ToolCallCaller::class, [DirectToolCallCaller::class, ProgramToolCallCaller::class], "type", ["direct" => DirectToolCallCaller::class, "program" => ProgramToolCallCaller::class], UnknownToolCallCaller::class)) : SdkNotGiven::Value),
-            namespace_: (property_exists($data, "namespace") ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, FunctionToolCallStatusEnum::class) : SdkNotGiven::Value),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            namespace_: (property_exists($data, "namespace") && $data->namespace !== null ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, FunctionToolCallStatusEnum::class) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
         );
     }
 }
@@ -329,12 +329,12 @@ class FunctionToolCallOutput implements ItemField, \JsonSerializable
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionToolCallOutputTypeEnum::class),
             output: (is_array($data->output) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, FunctionAndCustomToolCallOutput::class, [InputTextContent::class, InputImageContent::class, InputFileContent::class], "type", ["input_text" => InputTextContent::class, "input_image" => InputImageContent::class, "input_file" => InputFileContent::class], UnknownFunctionAndCustomToolCallOutput::class), SdkClient::arrayValue($data->output))) : SdkClient::stringValue($data->output)),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            callId: (property_exists($data, "call_id") ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            namespace_: (property_exists($data, "namespace") ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            callId: (property_exists($data, "call_id") && $data->call_id !== null ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            namespace_: (property_exists($data, "namespace") && $data->namespace !== null ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, ToolCallCallerParam::class, [DirectToolCallCallerParam::class, ProgramToolCallCallerParam::class], "type", ["direct" => DirectToolCallCallerParam::class, "program" => ProgramToolCallCallerParam::class], UnknownToolCallCallerParam::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, FunctionToolCallOutputStatusEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, FunctionToolCallOutputStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

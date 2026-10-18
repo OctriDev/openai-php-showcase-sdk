@@ -138,7 +138,7 @@ class LiveInitialAssistantMessageItemParam implements LiveInitialItem, \JsonSeri
             role: SdkClient::hydrateEnum($data->role, LiveInitialAssistantMessageItemParamRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, LiveInitialAssistantMessageItemParamContentItem::class, [LiveInitialTextContentPartParam::class, LiveInitialOutputTextContentPartParam::class], "type", ["text" => LiveInitialTextContentPartParam::class, "output_text" => LiveInitialOutputTextContentPartParam::class], UnknownLiveInitialAssistantMessageItemParamContentItem::class), SdkClient::arrayValue($data->content))),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, LiveInitialAssistantMessageItemParamTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, LiveInitialAssistantMessageItemParamTypeEnum::class) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? ($data->status === null ? null : SdkClient::hydrateStringEnumOrString($data->status, LiveInitialMessageStatus::class)) : SdkNotGiven::Value),
         );
     }
@@ -275,7 +275,7 @@ class LiveInitialDeveloperMessageItemParam implements LiveInitialItem, \JsonSeri
             role: SdkClient::hydrateEnum($data->role, LiveInitialDeveloperMessageItemParamRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveInitialInputTextContentPartParam::class), SdkClient::arrayValue($data->content))),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, LiveInitialDeveloperMessageItemParamTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, LiveInitialDeveloperMessageItemParamTypeEnum::class) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? ($data->status === null ? null : SdkClient::hydrateStringEnumOrString($data->status, LiveInitialMessageStatus::class)) : SdkNotGiven::Value),
         );
     }
@@ -365,7 +365,7 @@ class LiveInitialInputTextContentPartParam implements \JsonSerializable
         }
         return new self(
             text: SdkClient::stringValue($data->text),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, LiveInitialInputTextContentPartParamTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, LiveInitialInputTextContentPartParamTypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }

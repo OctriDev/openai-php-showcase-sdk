@@ -87,7 +87,7 @@ class ResponsesServerEventVariant10 implements ResponsesServerEvent, \JsonSerial
             type: SdkClient::hydrateEnum($data->type, ResponsesServerEventVariant10TypeEnum::class),
             response: SdkClient::hydrateClass($data->response, Response::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -222,7 +222,7 @@ class ResponsesServerEventVariant11 implements ResponsesServerEvent, \JsonSerial
             contentIndex: SdkClient::intValue($data->content_index),
             part: SdkClient::hydrateUnionAs($data->part, OutputContent::class, [OutputTextContent::class, RefusalContent::class, ReasoningTextContent::class], "type", ["output_text" => OutputTextContent::class, "refusal" => RefusalContent::class, "reasoning_text" => ReasoningTextContent::class], UnknownOutputContent::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -357,7 +357,7 @@ class ResponsesServerEventVariant12 implements ResponsesServerEvent, \JsonSerial
             contentIndex: SdkClient::intValue($data->content_index),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             part: SdkClient::hydrateUnionAs($data->part, OutputContent::class, [OutputTextContent::class, RefusalContent::class, ReasoningTextContent::class], "type", ["output_text" => OutputTextContent::class, "refusal" => RefusalContent::class, "reasoning_text" => ReasoningTextContent::class], UnknownOutputContent::class),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

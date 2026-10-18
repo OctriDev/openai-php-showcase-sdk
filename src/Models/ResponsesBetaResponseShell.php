@@ -126,7 +126,7 @@ class BetaResponseShellCallCommandAddedStreamingEvent implements BetaResponseStr
             outputIndex: SdkClient::intValue($data->output_index),
             commandIndex: SdkClient::intValue($data->command_index),
             command: SdkClient::stringValue($data->command),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -262,8 +262,8 @@ class BetaResponseShellCallCommandDeltaStreamingEvent implements BetaResponseStr
             outputIndex: SdkClient::intValue($data->output_index),
             commandIndex: SdkClient::intValue($data->command_index),
             delta: SdkClient::stringValue($data->delta),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
-            obfuscation: (property_exists($data, "obfuscation") ? SdkClient::stringValue($data->obfuscation) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            obfuscation: (property_exists($data, "obfuscation") && $data->obfuscation !== null ? SdkClient::stringValue($data->obfuscation) : SdkNotGiven::Value),
         );
     }
 }

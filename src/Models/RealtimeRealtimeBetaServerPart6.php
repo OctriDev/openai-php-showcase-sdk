@@ -322,10 +322,10 @@ class RealtimeBetaServerEventRateLimitsUpdatedRateLimitsItem implements \JsonSer
     public static function fromObject(object $data): self
     {
         return new self(
-            name: (property_exists($data, "name") ? SdkClient::hydrateStringEnumOrString($data->name, RealtimeBetaServerEventRateLimitsUpdatedRateLimitsItemNameEnum::class) : SdkNotGiven::Value),
-            limit: (property_exists($data, "limit") ? SdkClient::intValue($data->limit) : SdkNotGiven::Value),
-            remaining: (property_exists($data, "remaining") ? SdkClient::intValue($data->remaining) : SdkNotGiven::Value),
-            resetSeconds: (property_exists($data, "reset_seconds") ? SdkClient::floatValue($data->reset_seconds) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::hydrateStringEnumOrString($data->name, RealtimeBetaServerEventRateLimitsUpdatedRateLimitsItemNameEnum::class) : SdkNotGiven::Value),
+            limit: (property_exists($data, "limit") && $data->limit !== null ? SdkClient::intValue($data->limit) : SdkNotGiven::Value),
+            remaining: (property_exists($data, "remaining") && $data->remaining !== null ? SdkClient::intValue($data->remaining) : SdkNotGiven::Value),
+            resetSeconds: (property_exists($data, "reset_seconds") && $data->reset_seconds !== null ? SdkClient::floatValue($data->reset_seconds) : SdkNotGiven::Value),
         );
     }
 }

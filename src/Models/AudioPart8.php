@@ -100,9 +100,9 @@ class TranscriptTextDoneEvent implements CreateTranscriptionResponseStreamEvent,
         return new self(
             type: SdkClient::hydrateEnum($data->type, TranscriptTextDoneEventTypeEnum::class),
             text: SdkClient::stringValue($data->text),
-            languages: (property_exists($data, "languages") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionLanguage::class), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
-            logprobs: (property_exists($data, "logprobs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptTextDoneEventLogprobsItem::class), SdkClient::arrayValue($data->logprobs))) : SdkNotGiven::Value),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateClass($data->usage, TranscriptTextUsageTokens::class) : SdkNotGiven::Value),
+            languages: (property_exists($data, "languages") && $data->languages !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionLanguage::class), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
+            logprobs: (property_exists($data, "logprobs") && $data->logprobs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptTextDoneEventLogprobsItem::class), SdkClient::arrayValue($data->logprobs))) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, TranscriptTextUsageTokens::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -362,8 +362,8 @@ class TranscriptTextUsageTokensInputTokenDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            textTokens: (property_exists($data, "text_tokens") ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
-            audioTokens: (property_exists($data, "audio_tokens") ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
+            textTokens: (property_exists($data, "text_tokens") && $data->text_tokens !== null ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
+            audioTokens: (property_exists($data, "audio_tokens") && $data->audio_tokens !== null ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
         );
     }
 }

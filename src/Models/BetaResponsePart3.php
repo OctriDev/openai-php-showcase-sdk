@@ -76,7 +76,7 @@ class BetaResponseSteerFailedEventSteer implements \JsonSerializable
         return new self(
             previousResponseId: SdkClient::stringValue($data->previous_response_id),
             input: (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaResponseSteerInputItem::class, [BetaUserMessageItemParam::class, BetaFunctionCallOutputItemParam::class], "type", ["message" => BetaUserMessageItemParam::class, "function_call_output" => BetaFunctionCallOutputItemParam::class], UnknownBetaResponseSteerInputItem::class), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input)),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -282,7 +282,7 @@ class BetaResponseSteerFailedEvent implements BetaResponsesServerEvent, \JsonSer
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             steer: SdkClient::hydrateClass($data->steer, BetaResponseSteerFailedEventSteer::class),
             error: SdkClient::hydrateClass($data->error, BetaResponseSteerFailedEventError::class),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

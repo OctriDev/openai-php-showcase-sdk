@@ -72,9 +72,9 @@ class FileUploadParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
-            maxFileSize: (property_exists($data, "max_file_size") ? SdkClient::intValue($data->max_file_size) : SdkNotGiven::Value),
-            maxFiles: (property_exists($data, "max_files") ? SdkClient::intValue($data->max_files) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            maxFileSize: (property_exists($data, "max_file_size") && $data->max_file_size !== null ? SdkClient::intValue($data->max_file_size) : SdkNotGiven::Value),
+            maxFiles: (property_exists($data, "max_files") && $data->max_files !== null ? SdkClient::intValue($data->max_files) : SdkNotGiven::Value),
         );
     }
 }
@@ -132,8 +132,8 @@ class HistoryParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
-            recentThreads: (property_exists($data, "recent_threads") ? SdkClient::intValue($data->recent_threads) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            recentThreads: (property_exists($data, "recent_threads") && $data->recent_threads !== null ? SdkClient::intValue($data->recent_threads) : SdkNotGiven::Value),
         );
     }
 }
@@ -179,7 +179,7 @@ class RateLimitsParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            maxRequestsPer1Minute: (property_exists($data, "max_requests_per_1_minute") ? SdkClient::intValue($data->max_requests_per_1_minute) : SdkNotGiven::Value),
+            maxRequestsPer1Minute: (property_exists($data, "max_requests_per_1_minute") && $data->max_requests_per_1_minute !== null ? SdkClient::intValue($data->max_requests_per_1_minute) : SdkNotGiven::Value),
         );
     }
 }
@@ -263,9 +263,9 @@ class WorkflowParam implements \JsonSerializable
         }
         return new self(
             id: SdkClient::stringValue($data->id),
-            version: (property_exists($data, "version") ? SdkClient::stringValue($data->version) : SdkNotGiven::Value),
-            stateVariables: (property_exists($data, "state_variables") ? SdkClient::mapValues(SdkClient::stringMapValue($data->state_variables), static fn($item) => (is_bool($item) ? SdkClient::boolValue($item) : (is_int($item) ? SdkClient::intValue($item) : (is_float($item) ? SdkClient::floatValue($item) : SdkClient::stringValue($item))))) : SdkNotGiven::Value),
-            tracing: (property_exists($data, "tracing") ? SdkClient::hydrateClass($data->tracing, WorkflowTracingParam::class) : SdkNotGiven::Value),
+            version: (property_exists($data, "version") && $data->version !== null ? SdkClient::stringValue($data->version) : SdkNotGiven::Value),
+            stateVariables: (property_exists($data, "state_variables") && $data->state_variables !== null ? SdkClient::mapValues(SdkClient::stringMapValue($data->state_variables), static fn($item) => (is_bool($item) ? SdkClient::boolValue($item) : (is_int($item) ? SdkClient::intValue($item) : (is_float($item) ? SdkClient::floatValue($item) : SdkClient::stringValue($item))))) : SdkNotGiven::Value),
+            tracing: (property_exists($data, "tracing") && $data->tracing !== null ? SdkClient::hydrateClass($data->tracing, WorkflowTracingParam::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -311,7 +311,7 @@ class WorkflowTracingParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
         );
     }
 }

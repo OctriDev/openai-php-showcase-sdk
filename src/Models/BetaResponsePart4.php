@@ -118,7 +118,7 @@ class BetaResponseSteerPendingEvent implements BetaResponsesServerEvent, \JsonSe
             steer: SdkClient::hydrateClass($data->steer, BetaResponseSteerPendingEventSteer::class),
             reason: SdkClient::stringValue($data->reason),
             requiredInput: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaResponseSteerRequiredInput::class, [BetaResponseSteerRequiredInputVariant0::class, BetaResponseSteerRequiredInputVariant1::class, BetaResponseSteerRequiredInputVariant2::class, BetaResponseSteerRequiredInputVariant3::class, BetaResponseSteerRequiredInputVariant4::class, BetaResponseSteerRequiredInputVariant5::class, BetaResponseSteerRequiredInputVariant6::class], "type", ["function_call_output" => BetaResponseSteerRequiredInputVariant0::class, "custom_tool_call_output" => BetaResponseSteerRequiredInputVariant1::class, "computer_call_output" => BetaResponseSteerRequiredInputVariant2::class, "shell_call_output" => BetaResponseSteerRequiredInputVariant3::class, "apply_patch_call_output" => BetaResponseSteerRequiredInputVariant4::class, "tool_search_output" => BetaResponseSteerRequiredInputVariant5::class, "mcp_approval_response" => BetaResponseSteerRequiredInputVariant6::class], UnknownBetaResponseSteerRequiredInput::class), SdkClient::arrayValue($data->required_input))),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

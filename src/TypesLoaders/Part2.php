@@ -5,7 +5,6 @@
 
 declare(strict_types=1);
 
-require_once dirname(__DIR__) . '/Models/RealtimeRealtimeBetaServerPart8.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeBetaServerPart9.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeBetaServerPart10.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeBetaServerPart11.php';
@@ -62,6 +61,7 @@ require_once dirname(__DIR__) . '/Models/RealtimeRealtimeSessionPart10.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeSessionPart11.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeSessionPart12.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeSessionPart13.php';
+require_once dirname(__DIR__) . '/Models/RealtimeRealtimeSessionPart14.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeTranscription.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeTranscriptionPart2.php';
 require_once dirname(__DIR__) . '/Models/RealtimeRealtimeTranscriptionPart3.php';
@@ -359,6 +359,7 @@ require_once dirname(__DIR__) . '/Models/SharedModel.php';
 require_once dirname(__DIR__) . '/Models/SharedModeration.php';
 require_once dirname(__DIR__) . '/Models/SharedNamespace.php';
 require_once dirname(__DIR__) . '/Models/SharedOutput.php';
+require_once dirname(__DIR__) . '/Models/SharedPermission.php';
 require_once dirname(__DIR__) . '/Models/SharedProgram.php';
 require_once dirname(__DIR__) . '/Models/SharedProgramPart2.php';
 require_once dirname(__DIR__) . '/Models/SharedPrompt.php';
@@ -374,7 +375,6 @@ require_once dirname(__DIR__) . '/Models/SharedToolPart3.php';
 require_once dirname(__DIR__) . '/Models/SharedToolPart4.php';
 require_once dirname(__DIR__) . '/Models/SharedUser.php';
 require_once dirname(__DIR__) . '/Models/SharedUserPart2.php';
-require_once dirname(__DIR__) . '/Models/SharedVoice.php';
 require_once dirname(__DIR__) . '/Models/SharedWeb.php';
 require_once dirname(__DIR__) . '/Models/SharedWebPart2.php';
 require_once dirname(__DIR__) . '/Models/SharedWebPart3.php';

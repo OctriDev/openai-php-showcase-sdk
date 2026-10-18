@@ -121,12 +121,12 @@ class CreateEvalResponsesRunDataSourceSamplingParams implements \JsonSerializabl
     {
         return new self(
             reasoningEffort: (property_exists($data, "reasoning_effort") ? ($data->reasoning_effort === null ? null : SdkClient::hydrateEnum($data->reasoning_effort, CreateEvalResponsesRunDataSourceSamplingParamsReasoningEffortEnum::class)) : SdkNotGiven::Value),
-            temperature: (property_exists($data, "temperature") ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
-            maxCompletionTokens: (property_exists($data, "max_completion_tokens") ? SdkClient::intValue($data->max_completion_tokens) : SdkNotGiven::Value),
-            topP: (property_exists($data, "top_p") ? SdkClient::floatValue($data->top_p) : SdkNotGiven::Value),
-            seed: (property_exists($data, "seed") ? SdkClient::intValue($data->seed) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, Tool::class, [FunctionTool::class, FileSearchTool::class, ComputerTool::class, ComputerUsePreviewTool::class, WebSearchTool::class, MCPTool::class, CodeInterpreterTool::class, ProgrammaticToolCallingParam::class, ImageGenTool::class, LocalShellToolParam::class, FunctionShellToolParam::class, CustomToolParam::class, NamespaceToolParam::class, ToolSearchToolParam::class, WebSearchPreviewTool::class, ApplyPatchToolParam::class], "type", ["function" => FunctionTool::class, "file_search" => FileSearchTool::class, "computer" => ComputerTool::class, "computer_use_preview" => ComputerUsePreviewTool::class, "web_search" => WebSearchTool::class, "web_search_2025_08_26" => WebSearchTool::class, "mcp" => MCPTool::class, "code_interpreter" => CodeInterpreterTool::class, "programmatic_tool_calling" => ProgrammaticToolCallingParam::class, "image_generation" => ImageGenTool::class, "local_shell" => LocalShellToolParam::class, "shell" => FunctionShellToolParam::class, "custom" => CustomToolParam::class, "namespace" => NamespaceToolParam::class, "tool_search" => ToolSearchToolParam::class, "web_search_preview" => WebSearchPreviewTool::class, "web_search_preview_2025_03_11" => WebSearchPreviewTool::class, "apply_patch" => ApplyPatchToolParam::class], UnknownTool::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
-            text: (property_exists($data, "text") ? SdkClient::hydrateClass($data->text, CreateEvalResponsesRunDataSourceSamplingParamsText::class) : SdkNotGiven::Value),
+            temperature: (property_exists($data, "temperature") && $data->temperature !== null ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
+            maxCompletionTokens: (property_exists($data, "max_completion_tokens") && $data->max_completion_tokens !== null ? SdkClient::intValue($data->max_completion_tokens) : SdkNotGiven::Value),
+            topP: (property_exists($data, "top_p") && $data->top_p !== null ? SdkClient::floatValue($data->top_p) : SdkNotGiven::Value),
+            seed: (property_exists($data, "seed") && $data->seed !== null ? SdkClient::intValue($data->seed) : SdkNotGiven::Value),
+            tools: (property_exists($data, "tools") && $data->tools !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, Tool::class, [FunctionTool::class, FileSearchTool::class, ComputerTool::class, ComputerUsePreviewTool::class, WebSearchTool::class, MCPTool::class, CodeInterpreterTool::class, ProgrammaticToolCallingParam::class, ImageGenTool::class, LocalShellToolParam::class, FunctionShellToolParam::class, CustomToolParam::class, NamespaceToolParam::class, ToolSearchToolParam::class, WebSearchPreviewTool::class, ApplyPatchToolParam::class], "type", ["function" => FunctionTool::class, "file_search" => FileSearchTool::class, "computer" => ComputerTool::class, "computer_use_preview" => ComputerUsePreviewTool::class, "web_search" => WebSearchTool::class, "web_search_2025_08_26" => WebSearchTool::class, "mcp" => MCPTool::class, "code_interpreter" => CodeInterpreterTool::class, "programmatic_tool_calling" => ProgrammaticToolCallingParam::class, "image_generation" => ImageGenTool::class, "local_shell" => LocalShellToolParam::class, "shell" => FunctionShellToolParam::class, "custom" => CustomToolParam::class, "namespace" => NamespaceToolParam::class, "tool_search" => ToolSearchToolParam::class, "web_search_preview" => WebSearchPreviewTool::class, "web_search_preview_2025_03_11" => WebSearchPreviewTool::class, "apply_patch" => ApplyPatchToolParam::class], UnknownTool::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::hydrateClass($data->text, CreateEvalResponsesRunDataSourceSamplingParamsText::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -224,9 +224,9 @@ class CreateEvalResponsesRunDataSource implements CreateEvalRunRequestDataSource
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalResponsesRunDataSourceTypeEnum::class),
             source: SdkClient::hydrateUnionAs($data->source, CreateEvalResponsesRunDataSourceSource::class, [EvalJsonlFileContentSource::class, EvalJsonlFileIdSource::class, EvalResponsesSource::class], "type", ["file_content" => EvalJsonlFileContentSource::class, "file_id" => EvalJsonlFileIdSource::class, "responses" => EvalResponsesSource::class], UnknownCreateEvalResponsesRunDataSourceSource::class),
-            inputMessages: (property_exists($data, "input_messages") ? SdkClient::hydrateUnionAs($data->input_messages, CreateEvalResponsesRunDataSourceInputMessages::class, [CreateEvalResponsesRunDataSourceInputMessagesVariant0::class, CreateEvalResponsesRunDataSourceInputMessagesVariant1::class], null, []) : SdkNotGiven::Value),
-            samplingParams: (property_exists($data, "sampling_params") ? SdkClient::hydrateClass($data->sampling_params, CreateEvalResponsesRunDataSourceSamplingParams::class) : SdkNotGiven::Value),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            inputMessages: (property_exists($data, "input_messages") && $data->input_messages !== null ? SdkClient::hydrateUnionAs($data->input_messages, CreateEvalResponsesRunDataSourceInputMessages::class, [CreateEvalResponsesRunDataSourceInputMessagesVariant0::class, CreateEvalResponsesRunDataSourceInputMessagesVariant1::class], null, []) : SdkNotGiven::Value),
+            samplingParams: (property_exists($data, "sampling_params") && $data->sampling_params !== null ? SdkClient::hydrateClass($data->sampling_params, CreateEvalResponsesRunDataSourceSamplingParams::class) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
         );
     }
 }
@@ -237,6 +237,67 @@ class CreateEvalResponsesRunDataSource implements CreateEvalRunRequestDataSource
 enum CreateEvalResponsesRunDataSourceInputMessagesVariant0TypeEnum: string implements SdkWireEnum
 {
     case TEMPLATE = "template";
+}
+
+/**
+ * Required object value serialized in the `template[]` wire field.
+ */
+class CreateEvalResponsesRunDataSourceInputMessagesVariant0TemplateItemChatMessage implements \JsonSerializable
+{
+    /**
+     * The role of the message (e.g. "system", "assistant", "user").
+     *
+     * @var string
+     */
+    public readonly string $role;
+    /**
+     * The content of the message.
+     *
+     * @var string
+     */
+    public readonly string $content;
+
+    /**
+     * @param string $role
+     * @param string $content
+     */
+    public function __construct(
+        string $role,
+        string $content,
+    ) {
+        $this->role = $role;
+        $this->content = $content;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "role" => $this->role,
+            "content" => $this->content,
+        ];
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
+        return new self(
+            role: SdkClient::stringValue($data->role),
+            content: SdkClient::stringValue($data->content),
+        );
+    }
 }
 
 class CreateEvalResponsesRunDataSourceInputMessagesVariant0 implements CreateEvalResponsesRunDataSourceInputMessages, \JsonSerializable
@@ -250,13 +311,13 @@ class CreateEvalResponsesRunDataSourceInputMessagesVariant0 implements CreateEva
     /**
      * A list of chat messages forming the prompt or context. May include variable references to the `item` namespace, ie {{item.name}}.
      *
-     * @var list<TemplateItem2>
+     * @var list<CreateEvalResponsesRunDataSourceInputMessagesVariant0TemplateItemChatMessage|EvalItem>
      */
     public readonly array $template;
 
     /**
      * @param CreateEvalResponsesRunDataSourceInputMessagesVariant0TypeEnum $type
-     * @param list<TemplateItem2> $template
+     * @param list<CreateEvalResponsesRunDataSourceInputMessagesVariant0TemplateItemChatMessage|EvalItem> $template
      */
     public function __construct(
         CreateEvalResponsesRunDataSourceInputMessagesVariant0TypeEnum $type,
@@ -292,73 +353,7 @@ class CreateEvalResponsesRunDataSourceInputMessagesVariant0 implements CreateEva
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalResponsesRunDataSourceInputMessagesVariant0TypeEnum::class),
-            template: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, TemplateItem2::class, [EvalItem::class], null, []), SdkClient::arrayValue($data->template))),
-        );
-    }
-}
-
-/**
- * The type of input messages. Always `item_reference`.
- */
-enum CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum: string implements SdkWireEnum
-{
-    case ITEM_REFERENCE = "item_reference";
-}
-
-class CreateEvalResponsesRunDataSourceInputMessagesVariant1 implements CreateEvalResponsesRunDataSourceInputMessages, \JsonSerializable
-{
-    /**
-     * The type of input messages. Always `item_reference`.
-     *
-     * @var CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum
-     */
-    public readonly CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum $type;
-    /**
-     * A reference to a variable in the `item` namespace. Ie, "item.name"
-     *
-     * @var string
-     */
-    public readonly string $itemReference;
-
-    /**
-     * @param CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum $type
-     * @param string $itemReference
-     */
-    public function __construct(
-        CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum $type,
-        string $itemReference,
-    ) {
-        $this->type = $type;
-        $this->itemReference = $itemReference;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "type" => $this->type,
-            "item_reference" => $this->itemReference,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_reference") || $data->item_reference === null) {
-            throw new SdkValidationError("item_reference", 'required', "Required property 'item_reference' is missing or null");
-        }
-        return new self(
-            type: SdkClient::hydrateEnum($data->type, CreateEvalResponsesRunDataSourceInputMessagesVariant1TypeEnum::class),
-            itemReference: SdkClient::stringValue($data->item_reference),
+            template: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateEvalResponsesRunDataSourceInputMessagesVariant0TemplateItemChatMessage::class, [EvalItem::class], null, []), SdkClient::arrayValue($data->template))),
         );
     }
 }

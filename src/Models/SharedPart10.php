@@ -8,36 +8,6 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
- * Typed representation of the `RankerVersionType` API schema.
- */
-final readonly class RankerVersionType implements SdkOpenEnum
-{
-    public const AUTO = "auto";
-    public const DEFAULT_2024_11_15 = "default-2024-11-15";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
  * Typed representation of the `RankingOptions` API schema.
  */
 class RankingOptions implements \JsonSerializable
@@ -102,9 +72,9 @@ class RankingOptions implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            ranker: (property_exists($data, "ranker") ? SdkClient::hydrateStringEnumOrString($data->ranker, RankerVersionType::class) : SdkNotGiven::Value),
-            scoreThreshold: (property_exists($data, "score_threshold") ? SdkClient::floatValue($data->score_threshold) : SdkNotGiven::Value),
-            hybridSearch: (property_exists($data, "hybrid_search") ? SdkClient::hydrateClass($data->hybrid_search, HybridSearchOptions::class) : SdkNotGiven::Value),
+            ranker: (property_exists($data, "ranker") && $data->ranker !== null ? SdkClient::hydrateStringEnumOrString($data->ranker, RankerVersionType::class) : SdkNotGiven::Value),
+            scoreThreshold: (property_exists($data, "score_threshold") && $data->score_threshold !== null ? SdkClient::floatValue($data->score_threshold) : SdkNotGiven::Value),
+            hybridSearch: (property_exists($data, "hybrid_search") && $data->hybrid_search !== null ? SdkClient::hydrateClass($data->hybrid_search, HybridSearchOptions::class) : SdkNotGiven::Value),
         );
     }
 }

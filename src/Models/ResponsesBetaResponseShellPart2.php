@@ -118,7 +118,7 @@ class BetaResponseShellCallCommandDoneStreamingEvent implements BetaResponseStre
             outputIndex: SdkClient::intValue($data->output_index),
             commandIndex: SdkClient::intValue($data->command_index),
             command: SdkClient::stringValue($data->command),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -256,7 +256,7 @@ class BetaResponseShellCallOutputContentDeltaStreamingEvent implements BetaRespo
             outputIndex: SdkClient::intValue($data->output_index),
             commandIndex: SdkClient::intValue($data->command_index),
             delta: SdkClient::hydrateClass($data->delta, BetaShellCallOutputDelta::class),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }

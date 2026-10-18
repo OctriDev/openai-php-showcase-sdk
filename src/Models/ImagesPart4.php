@@ -233,13 +233,13 @@ class EditImageBodyJsonParam implements \JsonSerializable
             images: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ImageRefParam::class), SdkClient::arrayValue($data->images))),
             prompt: SdkClient::stringValue($data->prompt),
             model: (property_exists($data, "model") ? ($data->model === null ? null : SdkClient::stringValue($data->model)) : SdkNotGiven::Value),
-            mask: (property_exists($data, "mask") ? SdkClient::hydrateClass($data->mask, ImageRefParam::class) : SdkNotGiven::Value),
+            mask: (property_exists($data, "mask") && $data->mask !== null ? SdkClient::hydrateClass($data->mask, ImageRefParam::class) : SdkNotGiven::Value),
             n: (property_exists($data, "n") ? ($data->n === null ? null : SdkClient::intValue($data->n)) : SdkNotGiven::Value),
             quality: (property_exists($data, "quality") ? ($data->quality === null ? null : SdkClient::hydrateEnum($data->quality, EditImageBodyJsonParamQualityEnum::class)) : SdkNotGiven::Value),
             inputFidelity: (property_exists($data, "input_fidelity") ? ($data->input_fidelity === null ? null : SdkClient::hydrateEnum($data->input_fidelity, EditImageBodyJsonParamInputFidelityEnum::class)) : SdkNotGiven::Value),
             size: (property_exists($data, "size") ? ($data->size === null ? null : SdkClient::stringValue($data->size)) : SdkNotGiven::Value),
             safetyIdentifier: (property_exists($data, "safety_identifier") ? ($data->safety_identifier === null ? null : SdkClient::stringValue($data->safety_identifier)) : SdkNotGiven::Value),
-            user: (property_exists($data, "user") ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::stringValue($data->user) : SdkNotGiven::Value),
             outputFormat: (property_exists($data, "output_format") ? ($data->output_format === null ? null : SdkClient::hydrateEnum($data->output_format, EditImageBodyJsonParamOutputFormatEnum::class)) : SdkNotGiven::Value),
             outputCompression: (property_exists($data, "output_compression") ? ($data->output_compression === null ? null : SdkClient::intValue($data->output_compression)) : SdkNotGiven::Value),
             moderation: (property_exists($data, "moderation") ? ($data->moderation === null ? null : SdkClient::hydrateEnum($data->moderation, EditImageBodyJsonParamModerationEnum::class)) : SdkNotGiven::Value),
@@ -315,9 +315,9 @@ class Image implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            b64Json: (property_exists($data, "b64_json") ? SdkClient::stringValue($data->b64_json) : SdkNotGiven::Value),
-            url: (property_exists($data, "url") ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
-            revisedPrompt: (property_exists($data, "revised_prompt") ? SdkClient::stringValue($data->revised_prompt) : SdkNotGiven::Value),
+            b64Json: (property_exists($data, "b64_json") && $data->b64_json !== null ? SdkClient::stringValue($data->b64_json) : SdkNotGiven::Value),
+            url: (property_exists($data, "url") && $data->url !== null ? SdkClient::stringValue($data->url) : SdkNotGiven::Value),
+            revisedPrompt: (property_exists($data, "revised_prompt") && $data->revised_prompt !== null ? SdkClient::stringValue($data->revised_prompt) : SdkNotGiven::Value),
         );
     }
 }

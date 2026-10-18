@@ -209,7 +209,7 @@ class WebhookResponseCancelled implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             data: SdkClient::hydrateClass($data->data, WebhookResponseCancelledData::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, WebhookResponseCancelledTypeEnum::class),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, WebhookResponseCancelledObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, WebhookResponseCancelledObjectEnum::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -94,8 +94,8 @@ class ResponseFormatJsonSchemaJsonSchema implements \JsonSerializable
         }
         return new self(
             name: SdkClient::stringValue($data->name),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            schema: (property_exists($data, "schema") ? SdkClient::stringMapValue($data->schema) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            schema: (property_exists($data, "schema") && $data->schema !== null ? SdkClient::stringMapValue($data->schema) : SdkNotGiven::Value),
             strict: (property_exists($data, "strict") ? ($data->strict === null ? null : SdkClient::boolValue($data->strict)) : SdkNotGiven::Value),
         );
     }
@@ -104,7 +104,7 @@ class ResponseFormatJsonSchemaJsonSchema implements \JsonSerializable
 /**
  * JSON Schema response format. Used to generate structured JSON responses. Learn more about [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs).
  */
-class ResponseFormatJsonSchema implements ResponseFormat, CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat, \JsonSerializable
+class ResponseFormatJsonSchema implements CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat, \JsonSerializable
 {
     /**
      * The type of response format being defined. Always `json_schema`.
@@ -173,7 +173,7 @@ enum ResponseFormatTextTypeEnum: string implements SdkWireEnum
 /**
  * Default response format. Used to generate text responses.
  */
-class ResponseFormatText implements TextResponseFormatConfiguration, ResponseFormat, CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat, \JsonSerializable
+class ResponseFormatText implements TextResponseFormatConfiguration, CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat, \JsonSerializable
 {
     /**
      * The type of response format being defined. Always `text`.

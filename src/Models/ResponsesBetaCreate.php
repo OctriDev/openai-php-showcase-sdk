@@ -57,8 +57,8 @@ class BetaCreateModelResponsePropertiesVariant1 implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            promptCacheOptions: (property_exists($data, "prompt_cache_options") ? SdkClient::hydrateClass($data->prompt_cache_options, BetaPromptCacheOptionsParam::class) : SdkNotGiven::Value),
-            topLogprobs: (property_exists($data, "top_logprobs") ? SdkClient::intValue($data->top_logprobs) : SdkNotGiven::Value),
+            promptCacheOptions: (property_exists($data, "prompt_cache_options") && $data->prompt_cache_options !== null ? SdkClient::hydrateClass($data->prompt_cache_options, BetaPromptCacheOptionsParam::class) : SdkNotGiven::Value),
+            topLogprobs: (property_exists($data, "top_logprobs") && $data->top_logprobs !== null ? SdkClient::intValue($data->top_logprobs) : SdkNotGiven::Value),
         );
     }
 }
@@ -228,14 +228,14 @@ class BetaCreateModelResponseProperties implements \JsonSerializable
     {
         return new self(
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
-            topLogprobs: (property_exists($data, "top_logprobs") ? SdkClient::intValue($data->top_logprobs) : SdkNotGiven::Value),
+            topLogprobs: (property_exists($data, "top_logprobs") && $data->top_logprobs !== null ? SdkClient::intValue($data->top_logprobs) : SdkNotGiven::Value),
             temperature: (property_exists($data, "temperature") ? ($data->temperature === null ? null : SdkClient::floatValue($data->temperature)) : SdkNotGiven::Value),
             topP: (property_exists($data, "top_p") ? ($data->top_p === null ? null : SdkClient::floatValue($data->top_p)) : SdkNotGiven::Value),
             user: (property_exists($data, "user") ? ($data->user === null ? null : SdkClient::stringValue($data->user)) : SdkNotGiven::Value),
             safetyIdentifier: (property_exists($data, "safety_identifier") ? ($data->safety_identifier === null ? null : SdkClient::stringValue($data->safety_identifier)) : SdkNotGiven::Value),
             promptCacheKey: (property_exists($data, "prompt_cache_key") ? ($data->prompt_cache_key === null ? null : SdkClient::stringValue($data->prompt_cache_key)) : SdkNotGiven::Value),
             promptCacheRetention: (property_exists($data, "prompt_cache_retention") ? ($data->prompt_cache_retention === null ? null : SdkClient::hydrateEnum($data->prompt_cache_retention, BetaCreateModelResponsePropertiesPromptCacheRetentionEnum::class)) : SdkNotGiven::Value),
-            promptCacheOptions: (property_exists($data, "prompt_cache_options") ? SdkClient::hydrateClass($data->prompt_cache_options, BetaPromptCacheOptionsParam::class) : SdkNotGiven::Value),
+            promptCacheOptions: (property_exists($data, "prompt_cache_options") && $data->prompt_cache_options !== null ? SdkClient::hydrateClass($data->prompt_cache_options, BetaPromptCacheOptionsParam::class) : SdkNotGiven::Value),
         );
     }
 }

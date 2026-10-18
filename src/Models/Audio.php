@@ -41,7 +41,10 @@ final readonly class AudioResponseFormat implements SdkOpenEnum
     }
 }
 
-final readonly class CreateSpeechRequestVoiceEnum implements SdkOpenEnum
+/**
+ * Required enumerated value serialized in the `voice` wire field.
+ */
+final readonly class CreateSpeechRequestVoiceModelEnum implements SdkOpenEnum
 {
     public const FABLE = "fable";
     public const ONYX = "onyx";
@@ -72,7 +75,7 @@ final readonly class CreateSpeechRequestVoiceEnum implements SdkOpenEnum
 /**
  * Custom voice reference.
  */
-class CreateSpeechRequestVoiceVariant1 implements \JsonSerializable
+class CreateSpeechRequestVoiceModelVariant2 implements \JsonSerializable
 {
     /**
      * The custom voice ID, e.g. `voice_1234`.
@@ -206,9 +209,9 @@ class CreateSpeechRequest implements \JsonSerializable
     /**
      * The voice to use when generating the audio. Supported built-in voices are `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `onyx`, `nova`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. You may also provide a custom voice object with an `id`, for example `{ "id": "voice_1234" }`. Previews of the voices are available in the [Text to speech guide](https://developers.openai.com/api/docs/guides/text-to-speech#voice-options). Custom voices must be created from audio samples.
      *
-     * @var string|CreateSpeechRequestVoiceEnum|CreateSpeechRequestVoiceVariant1
+     * @var string|CreateSpeechRequestVoiceModelEnum|CreateSpeechRequestVoiceModelVariant2
      */
-    public readonly string|CreateSpeechRequestVoiceEnum|CreateSpeechRequestVoiceVariant1 $voice;
+    public readonly string|CreateSpeechRequestVoiceModelEnum|CreateSpeechRequestVoiceModelVariant2 $voice;
     /**
      * The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
      *
@@ -231,7 +234,7 @@ class CreateSpeechRequest implements \JsonSerializable
     /**
      * @param string $model
      * @param string $input
-     * @param string|CreateSpeechRequestVoiceEnum|CreateSpeechRequestVoiceVariant1 $voice
+     * @param string|CreateSpeechRequestVoiceModelEnum|CreateSpeechRequestVoiceModelVariant2 $voice
      * @param string|SdkNotGiven $instructions
      * @param CreateSpeechRequestResponseFormatEnum|string|SdkNotGiven $responseFormat
      * @param float|SdkNotGiven $speed
@@ -240,7 +243,7 @@ class CreateSpeechRequest implements \JsonSerializable
     public function __construct(
         string $model,
         string $input,
-        string|CreateSpeechRequestVoiceEnum|CreateSpeechRequestVoiceVariant1 $voice,
+        string|CreateSpeechRequestVoiceModelEnum|CreateSpeechRequestVoiceModelVariant2 $voice,
         string|SdkNotGiven $instructions = SdkNotGiven::Value,
         CreateSpeechRequestResponseFormatEnum|string|SdkNotGiven $responseFormat = SdkNotGiven::Value,
         float|SdkNotGiven $speed = SdkNotGiven::Value,
@@ -298,11 +301,11 @@ class CreateSpeechRequest implements \JsonSerializable
         return new self(
             model: SdkClient::stringValue($data->model),
             input: SdkClient::stringValue($data->input),
-            voice: (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, CreateSpeechRequestVoiceVariant1::class) : (is_string($data->voice) ? SdkClient::hydrateStringEnumOrString($data->voice, CreateSpeechRequestVoiceEnum::class) : SdkClient::hydrateClass($data->voice, CreateSpeechRequestVoiceVariant1::class))),
-            instructions: (property_exists($data, "instructions") ? SdkClient::stringValue($data->instructions) : SdkNotGiven::Value),
-            responseFormat: (property_exists($data, "response_format") ? SdkClient::hydrateStringEnumOrString($data->response_format, CreateSpeechRequestResponseFormatEnum::class) : SdkNotGiven::Value),
-            speed: (property_exists($data, "speed") ? SdkClient::floatValue($data->speed) : SdkNotGiven::Value),
-            streamFormat: (property_exists($data, "stream_format") ? SdkClient::hydrateStringEnumOrString($data->stream_format, CreateSpeechRequestStreamFormatEnum::class) : SdkNotGiven::Value),
+            voice: (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, CreateSpeechRequestVoiceModelVariant2::class) : (is_string($data->voice) ? SdkClient::hydrateStringEnumOrString($data->voice, CreateSpeechRequestVoiceModelEnum::class) : SdkClient::hydrateClass($data->voice, CreateSpeechRequestVoiceModelVariant2::class))),
+            instructions: (property_exists($data, "instructions") && $data->instructions !== null ? SdkClient::stringValue($data->instructions) : SdkNotGiven::Value),
+            responseFormat: (property_exists($data, "response_format") && $data->response_format !== null ? SdkClient::hydrateStringEnumOrString($data->response_format, CreateSpeechRequestResponseFormatEnum::class) : SdkNotGiven::Value),
+            speed: (property_exists($data, "speed") && $data->speed !== null ? SdkClient::floatValue($data->speed) : SdkNotGiven::Value),
+            streamFormat: (property_exists($data, "stream_format") && $data->stream_format !== null ? SdkClient::hydrateStringEnumOrString($data->stream_format, CreateSpeechRequestStreamFormatEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -340,7 +343,7 @@ final readonly class CreateTranscriptionRequestTimestampGranularitiesItemEnum im
 /**
  * Automatically set chunking parameters based on the audio. Must be set to `"auto"`.
  */
-final readonly class CreateTranscriptionRequestChunkingStrategyEnum implements SdkOpenEnum
+final readonly class CreateTranscriptionRequestChunkingStrategyModelEnum implements SdkOpenEnum
 {
     public const AUTO = "auto";
     private function __construct(public string $value) {}

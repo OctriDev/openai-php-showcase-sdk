@@ -62,7 +62,7 @@ class RealtimeTranslationClientSecretCreateRequest implements \JsonSerializable
         }
         return new self(
             session: SdkClient::hydrateClass($data->session, RealtimeTranslationSessionCreateRequest::class),
-            expiresAfter: (property_exists($data, "expires_after") ? SdkClient::hydrateClass($data->expires_after, RealtimeTranslationClientSecretCreateRequestExpiresAfter::class) : SdkNotGiven::Value),
+            expiresAfter: (property_exists($data, "expires_after") && $data->expires_after !== null ? SdkClient::hydrateClass($data->expires_after, RealtimeTranslationClientSecretCreateRequestExpiresAfter::class) : SdkNotGiven::Value),
         );
     }
 }

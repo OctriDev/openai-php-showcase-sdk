@@ -90,7 +90,7 @@ class LiveSessionStarted implements LiveSidebandServerEvent, LiveServerEvent2, \
             type: SdkClient::hydrateEnum($data->type, LiveSessionStartedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
             session: SdkClient::hydrateClass($data->session, LiveSessionResourceParam::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -268,7 +268,7 @@ class LiveSessionUpdated implements LiveSidebandServerEvent, LiveServerEvent2, \
             type: SdkClient::hydrateEnum($data->type, LiveSessionUpdatedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
             session: SdkClient::hydrateClass($data->session, LiveSessionResourceParam::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }

@@ -92,7 +92,7 @@ class FileSearchRankingOptions implements \JsonSerializable
         }
         return new self(
             scoreThreshold: SdkClient::floatValue($data->score_threshold),
-            ranker: (property_exists($data, "ranker") ? SdkClient::hydrateStringEnumOrString($data->ranker, FileSearchRanker::class) : SdkNotGiven::Value),
+            ranker: (property_exists($data, "ranker") && $data->ranker !== null ? SdkClient::hydrateStringEnumOrString($data->ranker, FileSearchRanker::class) : SdkNotGiven::Value),
         );
     }
 }

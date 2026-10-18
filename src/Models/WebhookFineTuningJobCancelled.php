@@ -209,7 +209,7 @@ class WebhookFineTuningJobCancelled implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             data: SdkClient::hydrateClass($data->data, WebhookFineTuningJobCancelledData::class),
             type: SdkClient::hydrateStringEnumOrString($data->type, WebhookFineTuningJobCancelledTypeEnum::class),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, WebhookFineTuningJobCancelledObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, WebhookFineTuningJobCancelledObjectEnum::class) : SdkNotGiven::Value),
         );
     }
 }

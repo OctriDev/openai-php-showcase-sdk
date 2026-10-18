@@ -144,7 +144,7 @@ class UpdateAgentParams implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
             reasoning: (property_exists($data, "reasoning") ? ($data->reasoning === null ? null : SdkClient::hydrateClass($data->reasoning, ReasoningParam::class)) : SdkNotGiven::Value),
             text: (property_exists($data, "text") ? ($data->text === null ? null : SdkClient::hydrateClass($data->text, TextParam::class)) : SdkNotGiven::Value),
             serviceTier: (property_exists($data, "service_tier") ? ($data->service_tier === null ? null : SdkClient::hydrateStringEnumOrString($data->service_tier, ServiceTierParam::class)) : SdkNotGiven::Value),
@@ -223,7 +223,7 @@ class UpdateAgentSessionParams implements \JsonSerializable
     {
         return new self(
             spendControl: (property_exists($data, "spend_control") ? ($data->spend_control === null ? null : SdkClient::hydrateClass($data->spend_control, SessionSpendControlParam::class)) : SdkNotGiven::Value),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, UpdateSessionAgentParam::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, UpdateSessionAgentParam::class) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );
     }

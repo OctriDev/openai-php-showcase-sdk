@@ -73,7 +73,7 @@ class BetaCustomToolCallResourceVariant1 implements \JsonSerializable
         return new self(
             id: SdkClient::stringValue($data->id),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallStatus::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -261,9 +261,9 @@ class BetaCustomToolCallResource implements BetaItemResource, \JsonSerializable
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaFunctionCallStatus::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCaller::class, [BetaDirectToolCallCaller::class, BetaProgramToolCallCaller::class], "type", ["direct" => BetaDirectToolCallCaller::class, "program" => BetaProgramToolCallCaller::class], UnknownBetaToolCallCaller::class)) : SdkNotGiven::Value),
-            namespace_: (property_exists($data, "namespace") ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            namespace_: (property_exists($data, "namespace") && $data->namespace !== null ? SdkClient::stringValue($data->namespace) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

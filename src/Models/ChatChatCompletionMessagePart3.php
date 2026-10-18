@@ -336,8 +336,8 @@ class ChatCompletionMessageToolCallChunkFunction implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            arguments: (property_exists($data, "arguments") ? SdkClient::stringValue($data->arguments) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            arguments: (property_exists($data, "arguments") && $data->arguments !== null ? SdkClient::stringValue($data->arguments) : SdkNotGiven::Value),
         );
     }
 }

@@ -62,7 +62,7 @@ class LiveDecisionChoiceParam implements \JsonSerializable
         }
         return new self(
             value: (is_bool($data->value) ? SdkClient::boolValue($data->value) : SdkClient::stringValue($data->value)),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
         );
     }
 }
@@ -158,7 +158,7 @@ class LiveDecisionChoiceQuestionParam implements LiveDecisionQuestion, \JsonSeri
             type: SdkClient::hydrateEnum($data->type, LiveDecisionChoiceQuestionParamTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
             choices: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveDecisionChoiceParam::class), SdkClient::arrayValue($data->choices))),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }

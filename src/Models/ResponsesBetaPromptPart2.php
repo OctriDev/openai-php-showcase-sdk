@@ -90,7 +90,7 @@ class BetaPromptCacheMissDiagnosticsBody implements BetaPromptCacheDiagnostics, 
             type: SdkClient::hydrateEnum($data->type, BetaPromptCacheMissDiagnosticsBodyTypeEnum::class),
             reason: SdkClient::hydrateStringEnumOrString($data->reason, BetaCacheMissReasonTypeEnum::class),
             cacheMissedTokens: SdkClient::intValue($data->cache_missed_tokens),
-            comparisonReusableTokens: (property_exists($data, "comparison_reusable_tokens") ? SdkClient::intValue($data->comparison_reusable_tokens) : SdkNotGiven::Value),
+            comparisonReusableTokens: (property_exists($data, "comparison_reusable_tokens") && $data->comparison_reusable_tokens !== null ? SdkClient::intValue($data->comparison_reusable_tokens) : SdkNotGiven::Value),
         );
     }
 }
@@ -252,8 +252,8 @@ class BetaPromptCacheOptionsParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            ttl: (property_exists($data, "ttl") ? SdkClient::hydrateStringEnumOrString($data->ttl, BetaPromptCacheTTLEnum::class) : SdkNotGiven::Value),
-            mode: (property_exists($data, "mode") ? SdkClient::hydrateStringEnumOrString($data->mode, BetaPromptCacheModeEnum::class) : SdkNotGiven::Value),
+            ttl: (property_exists($data, "ttl") && $data->ttl !== null ? SdkClient::hydrateStringEnumOrString($data->ttl, BetaPromptCacheTTLEnum::class) : SdkNotGiven::Value),
+            mode: (property_exists($data, "mode") && $data->mode !== null ? SdkClient::hydrateStringEnumOrString($data->mode, BetaPromptCacheModeEnum::class) : SdkNotGiven::Value),
         );
     }
 }

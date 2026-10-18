@@ -48,7 +48,7 @@ class PublicRotateSecretBody implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            keepOldSecretActiveFor24Hours: (property_exists($data, "keep_old_secret_active_for_24_hours") ? SdkClient::boolValue($data->keep_old_secret_active_for_24_hours) : SdkNotGiven::Value),
+            keepOldSecretActiveFor24Hours: (property_exists($data, "keep_old_secret_active_for_24_hours") && $data->keep_old_secret_active_for_24_hours !== null ? SdkClient::boolValue($data->keep_old_secret_active_for_24_hours) : SdkNotGiven::Value),
         );
     }
 }

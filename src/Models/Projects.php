@@ -171,7 +171,7 @@ class Project implements \JsonSerializable
             archivedAt: (property_exists($data, "archived_at") ? ($data->archived_at === null ? null : SdkClient::intValue($data->archived_at)) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? ($data->status === null ? null : SdkClient::stringValue($data->status)) : SdkNotGiven::Value),
             externalKeyId: (property_exists($data, "external_key_id") ? ($data->external_key_id === null ? null : SdkClient::stringValue($data->external_key_id)) : SdkNotGiven::Value),
-            residency: (property_exists($data, "residency") ? SdkClient::hydrateStringEnumOrString($data->residency, PublicProjectResidency::class) : SdkNotGiven::Value),
+            residency: (property_exists($data, "residency") && $data->residency !== null ? SdkClient::hydrateStringEnumOrString($data->residency, PublicProjectResidency::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -330,9 +330,9 @@ class ProjectApiKeyOwner implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, ProjectApiKeyOwnerTypeEnum::class) : SdkNotGiven::Value),
-            user: (property_exists($data, "user") ? SdkClient::hydrateClass($data->user, ProjectApiKeyOwnerUser::class) : SdkNotGiven::Value),
-            serviceAccount: (property_exists($data, "service_account") ? SdkClient::hydrateClass($data->service_account, ProjectApiKeyOwnerServiceAccount::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, ProjectApiKeyOwnerTypeEnum::class) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::hydrateClass($data->user, ProjectApiKeyOwnerUser::class) : SdkNotGiven::Value),
+            serviceAccount: (property_exists($data, "service_account") && $data->service_account !== null ? SdkClient::hydrateClass($data->service_account, ProjectApiKeyOwnerServiceAccount::class) : SdkNotGiven::Value),
         );
     }
 }

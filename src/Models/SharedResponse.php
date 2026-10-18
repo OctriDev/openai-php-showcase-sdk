@@ -162,7 +162,7 @@ class ResponseConfigurationUpdate implements ConversationItem, ItemResource, \Js
         return new self(
             id: SdkClient::stringValue($data->id),
             type: SdkClient::hydrateEnum($data->type, ResponseConfigurationUpdateTypeEnum::class),
-            reasoning: (property_exists($data, "reasoning") ? SdkClient::hydrateClass($data->reasoning, ResponseConfigurationUpdateReasoning::class) : SdkNotGiven::Value),
+            reasoning: (property_exists($data, "reasoning") && $data->reasoning !== null ? SdkClient::hydrateClass($data->reasoning, ResponseConfigurationUpdateReasoning::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -321,7 +321,7 @@ class ResponseConfigurationUpdateItemParam implements InputItem, Item, \JsonSeri
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseConfigurationUpdateItemParamTypeEnum::class),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
-            reasoning: (property_exists($data, "reasoning") ? SdkClient::hydrateClass($data->reasoning, ResponseConfigurationUpdateItemParamReasoning::class) : SdkNotGiven::Value),
+            reasoning: (property_exists($data, "reasoning") && $data->reasoning !== null ? SdkClient::hydrateClass($data->reasoning, ResponseConfigurationUpdateItemParamReasoning::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -337,7 +337,7 @@ enum ResponseFormatJsonObjectTypeEnum: string implements SdkWireEnum
 /**
  * JSON object response format. An older method of generating JSON responses. Using `json_schema` is recommended for models that support it. Note that the model will not generate JSON without a system or user message instructing it to do so.
  */
-class ResponseFormatJsonObject implements TextResponseFormatConfiguration, ResponseFormat, CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat, \JsonSerializable
+class ResponseFormatJsonObject implements TextResponseFormatConfiguration, CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat, \JsonSerializable
 {
     /**
      * The type of response format being defined. Always `json_object`.

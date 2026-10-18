@@ -148,12 +148,12 @@ class CreateFineTuningJobRequest implements \JsonSerializable
         return new self(
             model: SdkClient::stringValue($data->model),
             trainingFile: SdkClient::stringValue($data->training_file),
-            hyperparameters: (property_exists($data, "hyperparameters") ? SdkClient::hydrateClass($data->hyperparameters, CreateFineTuningJobRequestHyperparameters::class) : SdkNotGiven::Value),
+            hyperparameters: (property_exists($data, "hyperparameters") && $data->hyperparameters !== null ? SdkClient::hydrateClass($data->hyperparameters, CreateFineTuningJobRequestHyperparameters::class) : SdkNotGiven::Value),
             suffix: (property_exists($data, "suffix") ? ($data->suffix === null ? null : SdkClient::stringValue($data->suffix)) : SdkNotGiven::Value),
             validationFile: (property_exists($data, "validation_file") ? ($data->validation_file === null ? null : SdkClient::stringValue($data->validation_file)) : SdkNotGiven::Value),
             integrations: (property_exists($data, "integrations") ? ($data->integrations === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateFineTuningJobRequestIntegrationsItem::class), SdkClient::arrayValue($data->integrations)))) : SdkNotGiven::Value),
             seed: (property_exists($data, "seed") ? ($data->seed === null ? null : SdkClient::intValue($data->seed)) : SdkNotGiven::Value),
-            method: (property_exists($data, "method") ? SdkClient::hydrateClass($data->method, FineTuneMethod::class) : SdkNotGiven::Value),
+            method: (property_exists($data, "method") && $data->method !== null ? SdkClient::hydrateClass($data->method, FineTuneMethod::class) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );
     }

@@ -132,9 +132,9 @@ class MisalignmentErrorDetailsResource implements \JsonSerializable
     {
         return new self(
             reviewTarget: (property_exists($data, "review_target") ? ($data->review_target === null ? null : SdkClient::stringValue($data->review_target)) : SdkNotGiven::Value),
-            errorType: (property_exists($data, "error_type") ? SdkClient::stringValue($data->error_type) : SdkNotGiven::Value),
-            detailedExplanation: (property_exists($data, "detailed_explanation") ? SdkClient::stringValue($data->detailed_explanation) : SdkNotGiven::Value),
-            steer: (property_exists($data, "steer") ? SdkClient::hydrateClass($data->steer, _MisalignmentSteer::class) : SdkNotGiven::Value),
+            errorType: (property_exists($data, "error_type") && $data->error_type !== null ? SdkClient::stringValue($data->error_type) : SdkNotGiven::Value),
+            detailedExplanation: (property_exists($data, "detailed_explanation") && $data->detailed_explanation !== null ? SdkClient::stringValue($data->detailed_explanation) : SdkNotGiven::Value),
+            steer: (property_exists($data, "steer") && $data->steer !== null ? SdkClient::hydrateClass($data->steer, _MisalignmentSteer::class) : SdkNotGiven::Value),
         );
     }
 }

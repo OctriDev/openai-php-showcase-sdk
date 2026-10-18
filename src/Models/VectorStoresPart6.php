@@ -219,7 +219,7 @@ class VectorStoreFileObject implements \JsonSerializable
             vectorStoreId: SdkClient::stringValue($data->vector_store_id),
             status: SdkClient::hydrateStringEnumOrString($data->status, VectorStoreFileObjectStatusEnum::class),
             lastError: ($data->last_error === null ? null : SdkClient::hydrateClass($data->last_error, VectorStoreFileObjectLastError::class)),
-            chunkingStrategy: (property_exists($data, "chunking_strategy") ? SdkClient::hydrateUnionAs($data->chunking_strategy, VectorStoreFileObjectChunkingStrategy::class, [StaticChunkingStrategyResponseParam::class, OtherChunkingStrategyResponseParam::class], "type", ["static" => StaticChunkingStrategyResponseParam::class, "other" => OtherChunkingStrategyResponseParam::class], UnknownVectorStoreFileObjectChunkingStrategy::class) : SdkNotGiven::Value),
+            chunkingStrategy: (property_exists($data, "chunking_strategy") && $data->chunking_strategy !== null ? SdkClient::hydrateUnionAs($data->chunking_strategy, VectorStoreFileObjectChunkingStrategy::class, [StaticChunkingStrategyResponseParam::class, OtherChunkingStrategyResponseParam::class], "type", ["static" => StaticChunkingStrategyResponseParam::class, "other" => OtherChunkingStrategyResponseParam::class], UnknownVectorStoreFileObjectChunkingStrategy::class) : SdkNotGiven::Value),
             attributes: (property_exists($data, "attributes") ? ($data->attributes === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->attributes), static fn($item) => (is_bool($item) ? SdkClient::boolValue($item) : (is_float($item) || is_int($item) ? SdkClient::floatValue($item) : SdkClient::stringValue($item))))) : SdkNotGiven::Value),
         );
     }

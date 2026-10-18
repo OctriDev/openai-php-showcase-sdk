@@ -98,7 +98,7 @@ class RealtimeMCPListTools implements RealtimeConversationItem, \JsonSerializabl
             type: SdkClient::hydrateEnum($data->type, RealtimeMCPListToolsTypeEnum::class),
             serverLabel: SdkClient::stringValue($data->server_label),
             tools: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, MCPListToolsTool::class), SdkClient::arrayValue($data->tools))),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
         );
     }
 }
@@ -186,12 +186,139 @@ class RealtimeMCPProtocolError implements RealtimeMCPToolCallError, \JsonSeriali
     }
 }
 
-/**
- * Use retention ratio truncation.
- */
-final readonly class RealtimeTruncationVariant1TypeEnum implements SdkOpenEnum
+class RealtimeTurnDetectionVariant0 implements RealtimeTurnDetection, \JsonSerializable
 {
-    public const RETENTION_RATIO = "retention_ratio";
+    /**
+     * Type of turn detection, `server_vad` to turn on simple Server VAD.
+     *
+     * @var string
+     */
+    public readonly string $type;
+    /**
+     * Used only for `server_vad` mode. Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments.
+     *
+     * @var float|SdkNotGiven
+     */
+    public readonly float|SdkNotGiven $threshold;
+    /**
+     * Used only for `server_vad` mode. Amount of audio to include before the VAD detected speech (in milliseconds). Defaults to 300ms.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $prefixPaddingMs;
+    /**
+     * Used only for `server_vad` mode. Duration of silence to detect speech stop (in milliseconds). Defaults to 500ms. With shorter values the model will respond more quickly, but may jump in on short pauses from the user.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $silenceDurationMs;
+    /**
+     * Whether or not to automatically generate a response when a VAD stop event occurs. If `interrupt_response` is set to `false` this may fail to create a response if the model is already responding. If both `create_response` and `interrupt_response` are set to `false`, the model will never respond automatically but VAD events will still be emitted.
+     *
+     * @var bool|SdkNotGiven
+     */
+    public readonly bool|SdkNotGiven $createResponse;
+    /**
+     * Whether or not to automatically interrupt (cancel) any ongoing response with output to the default conversation (i.e. `conversation` of `auto`) when a VAD start event occurs. If `true` then the response will be cancelled, otherwise it will continue until complete. If both `create_response` and `interrupt_response` are set to `false`, the model will never respond automatically but VAD events will still be emitted.
+     *
+     * @var bool|SdkNotGiven
+     */
+    public readonly bool|SdkNotGiven $interruptResponse;
+    /**
+     * Optional API value serialized in the `idle_timeout_ms` wire field.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $idleTimeoutMs;
+
+    /**
+     * @param string $type
+     * @param float|SdkNotGiven $threshold
+     * @param int|SdkNotGiven $prefixPaddingMs
+     * @param int|SdkNotGiven $silenceDurationMs
+     * @param bool|SdkNotGiven $createResponse
+     * @param bool|SdkNotGiven $interruptResponse
+     * @param int|null|SdkNotGiven $idleTimeoutMs
+     */
+    public function __construct(
+        string $type,
+        float|SdkNotGiven $threshold = SdkNotGiven::Value,
+        int|SdkNotGiven $prefixPaddingMs = SdkNotGiven::Value,
+        int|SdkNotGiven $silenceDurationMs = SdkNotGiven::Value,
+        bool|SdkNotGiven $createResponse = SdkNotGiven::Value,
+        bool|SdkNotGiven $interruptResponse = SdkNotGiven::Value,
+        int|null|SdkNotGiven $idleTimeoutMs = SdkNotGiven::Value,
+    ) {
+        Validation::validateConst("type", $type, "server_vad");
+        $this->type = $type;
+        $this->threshold = $threshold;
+        $this->prefixPaddingMs = $prefixPaddingMs;
+        $this->silenceDurationMs = $silenceDurationMs;
+        $this->createResponse = $createResponse;
+        $this->interruptResponse = $interruptResponse;
+        $this->idleTimeoutMs = $idleTimeoutMs;
+    }
+
+    /** @return array<array-key, mixed> */
+    public function toArray(): array
+    {
+        $values = [
+            "type" => $this->type,
+        ];
+        if ($this->threshold !== SdkNotGiven::Value) {
+            $values["threshold"] = $this->threshold;
+        }
+        if ($this->prefixPaddingMs !== SdkNotGiven::Value) {
+            $values["prefix_padding_ms"] = $this->prefixPaddingMs;
+        }
+        if ($this->silenceDurationMs !== SdkNotGiven::Value) {
+            $values["silence_duration_ms"] = $this->silenceDurationMs;
+        }
+        if ($this->createResponse !== SdkNotGiven::Value) {
+            $values["create_response"] = $this->createResponse;
+        }
+        if ($this->interruptResponse !== SdkNotGiven::Value) {
+            $values["interrupt_response"] = $this->interruptResponse;
+        }
+        if ($this->idleTimeoutMs !== SdkNotGiven::Value) {
+            $values["idle_timeout_ms"] = $this->idleTimeoutMs;
+        }
+        return $values;
+    }
+
+    /** @return object */
+    public function jsonSerialize(): object
+    {
+        return (object) $this->toArray();
+    }
+
+    public static function fromObject(object $data): self
+    {
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        Validation::validateConst("type", $data->type, "server_vad");
+        return new self(
+            type: SdkClient::stringValue($data->type),
+            threshold: (property_exists($data, "threshold") && $data->threshold !== null ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
+            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
+            silenceDurationMs: (property_exists($data, "silence_duration_ms") && $data->silence_duration_ms !== null ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
+            createResponse: (property_exists($data, "create_response") && $data->create_response !== null ? SdkClient::boolValue($data->create_response) : SdkNotGiven::Value),
+            interruptResponse: (property_exists($data, "interrupt_response") && $data->interrupt_response !== null ? SdkClient::boolValue($data->interrupt_response) : SdkNotGiven::Value),
+            idleTimeoutMs: (property_exists($data, "idle_timeout_ms") ? ($data->idle_timeout_ms === null ? null : SdkClient::intValue($data->idle_timeout_ms)) : SdkNotGiven::Value),
+        );
+    }
+}
+
+/**
+ * Used only for `semantic_vad` mode. The eagerness of the model to respond. `low` will wait longer for the user to continue speaking, `high` will respond more quickly. `auto` is the default and is equivalent to `medium`. `low`, `medium`, and `high` have max timeouts of 8s, 4s, and 2s respectively.
+ */
+final readonly class RealtimeTurnDetectionVariant1EagernessEnum implements SdkOpenEnum
+{
+    public const LOW = "low";
+    public const MEDIUM = "medium";
+    public const HIGH = "high";
+    public const AUTO = "auto";
     private function __construct(public string $value) {}
     public static function from(string|int $value): static
     {
@@ -212,122 +339,5 @@ final readonly class RealtimeTruncationVariant1TypeEnum implements SdkOpenEnum
     public function __toString(): string
     {
         return (string) $this->value;
-    }
-}
-
-/**
- * Optional custom token limits for this truncation strategy. If not provided, the model's default token limits will be used.
- */
-class RealtimeTruncationVariant1TokenLimits implements \JsonSerializable
-{
-    /**
-     * Maximum tokens allowed in the conversation after instructions (which including tool definitions). For example, setting this to 5,000 would mean that truncation would occur when the conversation exceeds 5,000 tokens after instructions. This cannot be higher than the model's context window size minus the maximum output tokens.
-     *
-     * @var int|SdkNotGiven
-     */
-    public readonly int|SdkNotGiven $postInstructions;
-
-    /**
-     * @param int|SdkNotGiven $postInstructions
-     */
-    public function __construct(
-        int|SdkNotGiven $postInstructions = SdkNotGiven::Value,
-    ) {
-        $this->postInstructions = $postInstructions;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-        ];
-        if ($this->postInstructions !== SdkNotGiven::Value) {
-            $values["post_instructions"] = $this->postInstructions;
-        }
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        return new self(
-            postInstructions: (property_exists($data, "post_instructions") ? SdkClient::intValue($data->post_instructions) : SdkNotGiven::Value),
-        );
-    }
-}
-
-class RealtimeTruncationVariant1 implements \JsonSerializable
-{
-    /**
-     * Use retention ratio truncation.
-     *
-     * @var RealtimeTruncationVariant1TypeEnum|string
-     */
-    public readonly RealtimeTruncationVariant1TypeEnum|string $type;
-    /**
-     * Fraction of post-instruction conversation tokens to retain (`0.0` - `1.0`) when the conversation exceeds the input token limit. Setting this to `0.8` means that messages will be dropped until 80% of the maximum allowed tokens are used. This helps reduce the frequency of truncations and improve cache rates.
-     *
-     * @var float
-     */
-    public readonly float $retentionRatio;
-    /**
-     * Optional custom token limits for this truncation strategy. If not provided, the model's default token limits will be used.
-     *
-     * @var RealtimeTruncationVariant1TokenLimits|SdkNotGiven
-     */
-    public readonly RealtimeTruncationVariant1TokenLimits|SdkNotGiven $tokenLimits;
-
-    /**
-     * @param RealtimeTruncationVariant1TypeEnum|string $type
-     * @param float $retentionRatio
-     * @param RealtimeTruncationVariant1TokenLimits|SdkNotGiven $tokenLimits
-     */
-    public function __construct(
-        RealtimeTruncationVariant1TypeEnum|string $type,
-        float $retentionRatio,
-        RealtimeTruncationVariant1TokenLimits|SdkNotGiven $tokenLimits = SdkNotGiven::Value,
-    ) {
-        $this->type = $type;
-        $this->retentionRatio = $retentionRatio;
-        $this->tokenLimits = $tokenLimits;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "type" => $this->type,
-            "retention_ratio" => $this->retentionRatio,
-        ];
-        if ($this->tokenLimits !== SdkNotGiven::Value) {
-            $values["token_limits"] = $this->tokenLimits;
-        }
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "retention_ratio") || $data->retention_ratio === null) {
-            throw new SdkValidationError("retention_ratio", 'required', "Required property 'retention_ratio' is missing or null");
-        }
-        return new self(
-            type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeTruncationVariant1TypeEnum::class),
-            retentionRatio: SdkClient::floatValue($data->retention_ratio),
-            tokenLimits: (property_exists($data, "token_limits") ? SdkClient::hydrateClass($data->token_limits, RealtimeTruncationVariant1TokenLimits::class) : SdkNotGiven::Value),
-        );
     }
 }

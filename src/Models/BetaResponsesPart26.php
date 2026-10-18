@@ -100,7 +100,7 @@ class BetaResponsesServerEventVariant55 implements BetaResponsesServerEvent, \Js
             response: SdkClient::hydrateClass($data->response, BetaResponse::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -234,7 +234,7 @@ class BetaResponsesServerEventVariant56 implements BetaResponsesServerEvent, \Js
             itemId: SdkClient::stringValue($data->item_id),
             delta: SdkClient::stringValue($data->delta),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -368,7 +368,7 @@ class BetaResponsesServerEventVariant57 implements BetaResponsesServerEvent, \Js
             itemId: SdkClient::stringValue($data->item_id),
             input: SdkClient::stringValue($data->input),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

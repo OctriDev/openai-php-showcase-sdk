@@ -314,7 +314,7 @@ class Batch implements \JsonSerializable
             completionWindow: SdkClient::stringValue($data->completion_window),
             status: SdkClient::hydrateStringEnumOrString($data->status, BatchStatusEnum::class),
             createdAt: SdkClient::intValue($data->created_at),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
             errors: (property_exists($data, "errors") ? ($data->errors === null ? null : SdkClient::hydrateClass($data->errors, BatchErrors::class)) : SdkNotGiven::Value),
             outputFileId: (property_exists($data, "output_file_id") ? ($data->output_file_id === null ? null : SdkClient::stringValue($data->output_file_id)) : SdkNotGiven::Value),
             errorFileId: (property_exists($data, "error_file_id") ? ($data->error_file_id === null ? null : SdkClient::stringValue($data->error_file_id)) : SdkNotGiven::Value),
@@ -326,8 +326,8 @@ class Batch implements \JsonSerializable
             expiredAt: (property_exists($data, "expired_at") ? ($data->expired_at === null ? null : SdkClient::intValue($data->expired_at)) : SdkNotGiven::Value),
             cancellingAt: (property_exists($data, "cancelling_at") ? ($data->cancelling_at === null ? null : SdkClient::intValue($data->cancelling_at)) : SdkNotGiven::Value),
             cancelledAt: (property_exists($data, "cancelled_at") ? ($data->cancelled_at === null ? null : SdkClient::intValue($data->cancelled_at)) : SdkNotGiven::Value),
-            requestCounts: (property_exists($data, "request_counts") ? SdkClient::hydrateClass($data->request_counts, BatchRequestCounts::class) : SdkNotGiven::Value),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateClass($data->usage, BatchUsage::class) : SdkNotGiven::Value),
+            requestCounts: (property_exists($data, "request_counts") && $data->request_counts !== null ? SdkClient::hydrateClass($data->request_counts, BatchRequestCounts::class) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, BatchUsage::class) : SdkNotGiven::Value),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );
     }

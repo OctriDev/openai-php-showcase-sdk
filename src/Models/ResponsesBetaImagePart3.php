@@ -189,7 +189,7 @@ class BetaImageGenToolCall implements BetaInputItem, BetaItem, BetaItemResource,
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaImageGenToolCallStatusEnum::class),
             result: ($data->result === null ? null : SdkClient::stringValue($data->result)),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            error: (property_exists($data, "error") ? SdkClient::hydrateClass($data->error, BetaImageGenToolCallError::class) : SdkNotGiven::Value),
+            error: (property_exists($data, "error") && $data->error !== null ? SdkClient::hydrateClass($data->error, BetaImageGenToolCallError::class) : SdkNotGiven::Value),
             size: (property_exists($data, "size") ? ($data->size === null ? null : SdkClient::stringValue($data->size)) : SdkNotGiven::Value),
             quality: (property_exists($data, "quality") ? ($data->quality === null ? null : SdkClient::hydrateEnum($data->quality, BetaImageGenToolCallQualityEnum::class)) : SdkNotGiven::Value),
             action: (property_exists($data, "action") ? ($data->action === null ? null : SdkClient::hydrateStringEnumOrString($data->action, BetaImageGenActionEnum::class)) : SdkNotGiven::Value),
@@ -297,7 +297,7 @@ class BetaImageGenToolCallError implements \JsonSerializable
             type: SdkClient::stringValue($data->type),
             message: SdkClient::stringValue($data->message),
             param: ($data->param === null ? null : SdkClient::stringValue($data->param)),
-            moderationDetails: (property_exists($data, "moderation_details") ? SdkClient::hydrateClass($data->moderation_details, BetaImageGenToolCallModerationDetails::class) : SdkNotGiven::Value),
+            moderationDetails: (property_exists($data, "moderation_details") && $data->moderation_details !== null ? SdkClient::hydrateClass($data->moderation_details, BetaImageGenToolCallModerationDetails::class) : SdkNotGiven::Value),
         );
     }
 }

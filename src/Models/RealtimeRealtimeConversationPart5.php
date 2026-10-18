@@ -96,11 +96,11 @@ class RealtimeConversationItemWithReferenceContentItem implements \JsonSerializa
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeConversationItemWithReferenceContentItemTypeEnum::class) : SdkNotGiven::Value),
-            text: (property_exists($data, "text") ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            audio: (property_exists($data, "audio") ? SdkClient::stringValue($data->audio) : SdkNotGiven::Value),
-            transcript: (property_exists($data, "transcript") ? SdkClient::stringValue($data->transcript) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeConversationItemWithReferenceContentItemTypeEnum::class) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::stringValue($data->audio) : SdkNotGiven::Value),
+            transcript: (property_exists($data, "transcript") && $data->transcript !== null ? SdkClient::stringValue($data->transcript) : SdkNotGiven::Value),
         );
     }
 }
@@ -254,16 +254,16 @@ class RealtimeConversationItemWithReference implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeConversationItemWithReferenceTypeEnum::class) : SdkNotGiven::Value),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeConversationItemWithReferenceObjectEnum::class) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeConversationItemWithReferenceStatusEnum::class) : SdkNotGiven::Value),
-            role: (property_exists($data, "role") ? SdkClient::hydrateStringEnumOrString($data->role, RealtimeConversationItemWithReferenceRoleEnum::class) : SdkNotGiven::Value),
-            content: (property_exists($data, "content") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RealtimeConversationItemWithReferenceContentItem::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
-            callId: (property_exists($data, "call_id") ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
-            arguments: (property_exists($data, "arguments") ? SdkClient::stringValue($data->arguments) : SdkNotGiven::Value),
-            output: (property_exists($data, "output") ? SdkClient::stringValue($data->output) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeConversationItemWithReferenceTypeEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeConversationItemWithReferenceObjectEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeConversationItemWithReferenceStatusEnum::class) : SdkNotGiven::Value),
+            role: (property_exists($data, "role") && $data->role !== null ? SdkClient::hydrateStringEnumOrString($data->role, RealtimeConversationItemWithReferenceRoleEnum::class) : SdkNotGiven::Value),
+            content: (property_exists($data, "content") && $data->content !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RealtimeConversationItemWithReferenceContentItem::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
+            callId: (property_exists($data, "call_id") && $data->call_id !== null ? SdkClient::stringValue($data->call_id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            arguments: (property_exists($data, "arguments") && $data->arguments !== null ? SdkClient::stringValue($data->arguments) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? SdkClient::stringValue($data->output) : SdkNotGiven::Value),
         );
     }
 }

@@ -126,7 +126,7 @@ class BetaProgram implements BetaItemResource, BetaItemField, BetaOutputItem, \J
             callId: SdkClient::stringValue($data->call_id),
             code: SdkClient::stringValue($data->code),
             fingerprint: SdkClient::stringValue($data->fingerprint),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -374,7 +374,7 @@ class BetaProgramOutput implements BetaItemResource, BetaItemField, BetaOutputIt
             callId: SdkClient::stringValue($data->call_id),
             result: SdkClient::stringValue($data->result),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaProgramOutputStatus::class),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }

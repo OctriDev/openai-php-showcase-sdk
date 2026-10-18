@@ -96,7 +96,7 @@ class WebSearchApproximateLocation implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, WebSearchApproximateLocationTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, WebSearchApproximateLocationTypeEnum::class) : SdkNotGiven::Value),
             country: (property_exists($data, "country") ? ($data->country === null ? null : SdkClient::stringValue($data->country)) : SdkNotGiven::Value),
             region: (property_exists($data, "region") ? ($data->region === null ? null : SdkClient::stringValue($data->region)) : SdkNotGiven::Value),
             city: (property_exists($data, "city") ? ($data->city === null ? null : SdkClient::stringValue($data->city)) : SdkNotGiven::Value),
@@ -227,8 +227,8 @@ class WebSearchPreviewTool implements Tool, ToolSearchOutputTool, \JsonSerializa
         return new self(
             type: SdkClient::hydrateEnum($data->type, WebSearchPreviewToolTypeEnum::class),
             userLocation: (property_exists($data, "user_location") ? ($data->user_location === null ? null : SdkClient::hydrateClass($data->user_location, ApproximateLocation::class)) : SdkNotGiven::Value),
-            searchContextSize: (property_exists($data, "search_context_size") ? SdkClient::hydrateStringEnumOrString($data->search_context_size, SearchContextSize::class) : SdkNotGiven::Value),
-            searchContentTypes: (property_exists($data, "search_content_types") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, SearchContentType::class), SdkClient::arrayValue($data->search_content_types))) : SdkNotGiven::Value),
+            searchContextSize: (property_exists($data, "search_context_size") && $data->search_context_size !== null ? SdkClient::hydrateStringEnumOrString($data->search_context_size, SearchContextSize::class) : SdkNotGiven::Value),
+            searchContentTypes: (property_exists($data, "search_content_types") && $data->search_content_types !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, SearchContentType::class), SdkClient::arrayValue($data->search_content_types))) : SdkNotGiven::Value),
         );
     }
 }

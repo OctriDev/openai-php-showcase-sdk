@@ -103,7 +103,7 @@ class CreateBatchRequest implements \JsonSerializable
             endpoint: SdkClient::hydrateStringEnumOrString($data->endpoint, CreateBatchRequestEndpointEnum::class),
             completionWindow: SdkClient::hydrateStringEnumOrString($data->completion_window, CreateBatchRequestCompletionWindowEnum::class),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
-            outputExpiresAfter: (property_exists($data, "output_expires_after") ? SdkClient::hydrateClass($data->output_expires_after, BatchFileExpirationAfter::class) : SdkNotGiven::Value),
+            outputExpiresAfter: (property_exists($data, "output_expires_after") && $data->output_expires_after !== null ? SdkClient::hydrateClass($data->output_expires_after, BatchFileExpirationAfter::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -232,8 +232,8 @@ class ListBatchesResponse implements \JsonSerializable
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Batch::class), SdkClient::arrayValue($data->data))),
             hasMore: SdkClient::boolValue($data->has_more),
             object_: SdkClient::hydrateStringEnumOrString($data->object, ListBatchesResponseObjectEnum::class),
-            firstId: (property_exists($data, "first_id") ? SdkClient::stringValue($data->first_id) : SdkNotGiven::Value),
-            lastId: (property_exists($data, "last_id") ? SdkClient::stringValue($data->last_id) : SdkNotGiven::Value),
+            firstId: (property_exists($data, "first_id") && $data->first_id !== null ? SdkClient::stringValue($data->first_id) : SdkNotGiven::Value),
+            lastId: (property_exists($data, "last_id") && $data->last_id !== null ? SdkClient::stringValue($data->last_id) : SdkNotGiven::Value),
         );
     }
 }

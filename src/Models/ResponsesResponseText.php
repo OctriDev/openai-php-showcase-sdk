@@ -366,7 +366,7 @@ class ResponseTextParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, TextResponseFormatConfiguration::class, [ResponseFormatText::class, TextResponseFormatJsonSchema::class, ResponseFormatJsonObject::class], "type", ["text" => ResponseFormatText::class, "json_schema" => TextResponseFormatJsonSchema::class, "json_object" => ResponseFormatJsonObject::class], UnknownTextResponseFormatConfiguration::class) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, TextResponseFormatConfiguration::class, [ResponseFormatText::class, TextResponseFormatJsonSchema::class, ResponseFormatJsonObject::class], "type", ["text" => ResponseFormatText::class, "json_schema" => TextResponseFormatJsonSchema::class, "json_object" => ResponseFormatJsonObject::class], UnknownTextResponseFormatConfiguration::class) : SdkNotGiven::Value),
             verbosity: (property_exists($data, "verbosity") ? ($data->verbosity === null ? null : SdkClient::hydrateEnum($data->verbosity, ResponseTextParamVerbosityEnum::class)) : SdkNotGiven::Value),
         );
     }

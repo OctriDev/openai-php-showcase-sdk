@@ -96,8 +96,8 @@ class LiveOutputAudioDelta implements LiveServerEvent2, \JsonSerializable
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveOutputAudioDeltaTypeEnum::class),
             delta: SdkClient::stringValue($data->delta),
-            startMs: (property_exists($data, "start_ms") ? SdkClient::intValue($data->start_ms) : SdkNotGiven::Value),
-            endMs: (property_exists($data, "end_ms") ? SdkClient::intValue($data->end_ms) : SdkNotGiven::Value),
+            startMs: (property_exists($data, "start_ms") && $data->start_ms !== null ? SdkClient::intValue($data->start_ms) : SdkNotGiven::Value),
+            endMs: (property_exists($data, "end_ms") && $data->end_ms !== null ? SdkClient::intValue($data->end_ms) : SdkNotGiven::Value),
         );
     }
 }
@@ -179,7 +179,7 @@ class LiveOutputAudioFixturePlayed implements LiveSidebandServerEvent, LiveServe
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveOutputAudioFixturePlayedTypeEnum::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -261,7 +261,7 @@ class LiveOutputAudioFixturePlaying implements LiveSidebandServerEvent, LiveServ
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveOutputAudioFixturePlayingTypeEnum::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }

@@ -101,7 +101,7 @@ class MessageContentImageFileObjectImageFile implements \JsonSerializable
         }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, MessageContentImageFileObjectImageFileDetailEnum::class) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, MessageContentImageFileObjectImageFileDetailEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -261,7 +261,7 @@ class MessageContentImageUrlObjectImageUrl implements \JsonSerializable
         }
         return new self(
             url: SdkClient::stringValue($data->url),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, MessageContentImageUrlObjectImageUrlDetailEnum::class) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, MessageContentImageUrlObjectImageUrlDetailEnum::class) : SdkNotGiven::Value),
         );
     }
 }

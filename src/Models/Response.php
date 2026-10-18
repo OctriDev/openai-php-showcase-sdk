@@ -205,9 +205,9 @@ class ResponseWsError implements ResponsesServerEvent, \JsonSerializable
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseWsErrorTypeEnum::class),
             error: SdkClient::hydrateClass($data->error, ErrorPayload::class),
-            status: (property_exists($data, "status") ? SdkClient::intValue($data->status) : SdkNotGiven::Value),
-            sequenceNumber: (property_exists($data, "sequence_number") ? SdkClient::intValue($data->sequence_number) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::intValue($data->status) : SdkNotGiven::Value),
+            sequenceNumber: (property_exists($data, "sequence_number") && $data->sequence_number !== null ? SdkClient::intValue($data->sequence_number) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

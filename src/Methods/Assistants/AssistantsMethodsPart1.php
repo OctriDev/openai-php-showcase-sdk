@@ -299,7 +299,7 @@ trait AssistantsMethodsPart1
     {
         foreach (SdkClient::stream(
             'POST',
-            '/threads/runs',
+            "/threads/runs",
             config: $clientConfig,
             body: ['assistant_id' => $assistantId, 'stream' => $stream, 'thread' => $thread, 'model' => $model, 'instructions' => $instructions, 'tools' => $tools, 'tool_resources' => $toolResources, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'max_prompt_tokens' => $maxPromptTokens, 'max_completion_tokens' => $maxCompletionTokens, 'truncation_strategy' => $truncationStrategy, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls, 'response_format' => $responseFormat],
             contentType: 'application/json',
@@ -313,7 +313,7 @@ trait AssistantsMethodsPart1
                 return;
             }
             $_decoded = SdkClient::decodeStreamPayload($_ev->data, false);
-            yield SdkClient::decodedEvent($_ev->data, static fn() => SdkClient::hydrateUnionAs($_decoded, AssistantStreamEvent::class, [ThreadStreamEvent::class, RunStreamEvent::class, RunStepStreamEvent::class, MessageStreamEvent::class, ErrorEvent::class, DoneEvent::class], "event", ["error" => ErrorEvent::class, "done" => DoneEvent::class], UnknownAssistantStreamEvent::class));
+            yield SdkClient::decodedEvent($_ev->data, static fn() => SdkClient::hydrateUnionAs($_decoded, AssistantStreamEvent::class, [ThreadStreamEvent::class, RunStreamEventThreadRunCreated::class, RunStreamEventThreadRunQueued::class, RunStreamEventThreadRunInProgress::class, RunStreamEventThreadRunRequiresAction::class, RunStreamEventThreadRunCompleted::class, RunStreamEventThreadRunIncomplete::class, RunStreamEventThreadRunFailed::class, RunStreamEventThreadRunCancelling::class, RunStreamEventThreadRunCancelled::class, RunStreamEventThreadRunExpired::class, RunStepStreamEventThreadRunStepCreated::class, RunStepStreamEventThreadRunStepInProgress::class, RunStepStreamEventThreadRunStepDelta::class, RunStepStreamEventThreadRunStepCompleted::class, RunStepStreamEventThreadRunStepFailed::class, RunStepStreamEventThreadRunStepCancelled::class, RunStepStreamEventThreadRunStepExpired::class, MessageStreamEventThreadMessageCreated::class, MessageStreamEventThreadMessageInProgress::class, MessageStreamEventThreadMessageDelta::class, MessageStreamEventThreadMessageCompleted::class, MessageStreamEventThreadMessageIncomplete::class, ErrorEvent::class, DoneEvent::class], "event", ["error" => ErrorEvent::class, "done" => DoneEvent::class, "thread.created" => ThreadStreamEvent::class], UnknownAssistantStreamEvent::class));
         }
     }
     /**

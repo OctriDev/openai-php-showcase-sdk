@@ -212,7 +212,7 @@ class Reasoning implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            mode: (property_exists($data, "mode") ? SdkClient::stringValue($data->mode) : SdkNotGiven::Value),
+            mode: (property_exists($data, "mode") && $data->mode !== null ? SdkClient::stringValue($data->mode) : SdkNotGiven::Value),
             effort: (property_exists($data, "effort") ? ($data->effort === null ? null : SdkClient::hydrateEnum($data->effort, ReasoningEffortModelEnum::class)) : SdkNotGiven::Value),
             summary: (property_exists($data, "summary") ? ($data->summary === null ? null : SdkClient::hydrateEnum($data->summary, ReasoningSummaryEnum::class)) : SdkNotGiven::Value),
             context: (property_exists($data, "context") ? ($data->context === null ? null : SdkClient::hydrateEnum($data->context, ReasoningContextEnum::class)) : SdkNotGiven::Value),

@@ -125,7 +125,7 @@ class RealtimeSessionCreateRequestInputAudioTranscription implements \JsonSerial
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
         );
     }
 }
@@ -133,7 +133,7 @@ class RealtimeSessionCreateRequestInputAudioTranscription implements \JsonSerial
 /**
  * Default tracing mode for the session.
  */
-final readonly class RealtimeSessionCreateRequestTracingEnum implements SdkOpenEnum
+final readonly class RealtimeSessionCreateRequestTracingModelEnum implements SdkOpenEnum
 {
     public const AUTO = "auto";
     private function __construct(public string $value) {}
@@ -162,7 +162,7 @@ final readonly class RealtimeSessionCreateRequestTracingEnum implements SdkOpenE
 /**
  * Granular configuration for tracing.
  */
-class RealtimeSessionCreateRequestTracingTracingConfiguration implements \JsonSerializable
+class RealtimeSessionCreateRequestTracingModelTracingConfiguration implements \JsonSerializable
 {
     /**
      * The name of the workflow to attach to this trace. This is used to name the trace in the traces dashboard.
@@ -224,9 +224,9 @@ class RealtimeSessionCreateRequestTracingTracingConfiguration implements \JsonSe
     public static function fromObject(object $data): self
     {
         return new self(
-            workflowName: (property_exists($data, "workflow_name") ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
-            groupId: (property_exists($data, "group_id") ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
-            metadata: (property_exists($data, "metadata") ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
+            workflowName: (property_exists($data, "workflow_name") && $data->workflow_name !== null ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
+            groupId: (property_exists($data, "group_id") && $data->group_id !== null ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
         );
     }
 }
@@ -308,10 +308,10 @@ class RealtimeSessionCreateRequestTurnDetection implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            threshold: (property_exists($data, "threshold") ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
-            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
-            silenceDurationMs: (property_exists($data, "silence_duration_ms") ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            threshold: (property_exists($data, "threshold") && $data->threshold !== null ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
+            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
+            silenceDurationMs: (property_exists($data, "silence_duration_ms") && $data->silence_duration_ms !== null ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
         );
     }
 }

@@ -237,7 +237,7 @@ class ResponseShellCallCommandDeltaStreamingEvent implements ResponseStreamEvent
             outputIndex: SdkClient::intValue($data->output_index),
             commandIndex: SdkClient::intValue($data->command_index),
             delta: SdkClient::stringValue($data->delta),
-            obfuscation: (property_exists($data, "obfuscation") ? SdkClient::stringValue($data->obfuscation) : SdkNotGiven::Value),
+            obfuscation: (property_exists($data, "obfuscation") && $data->obfuscation !== null ? SdkClient::stringValue($data->obfuscation) : SdkNotGiven::Value),
         );
     }
 }

@@ -359,7 +359,7 @@ class LiveSessionClosed implements LiveSidebandServerEvent, LiveServerEvent2, \J
             reason: SdkClient::hydrateStringEnumUnion($data->reason, [LiveSessionClosedReasonEnum::class, LiveSessionClosedReasonEnum::class]),
             session: SdkClient::hydrateClass($data->session, LiveSessionResourceParam::class),
             usage: SdkClient::hydrateClass($data->usage, LiveSessionUsage::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }

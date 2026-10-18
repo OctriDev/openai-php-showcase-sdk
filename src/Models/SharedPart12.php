@@ -347,7 +347,7 @@ class WebhookEndpointWithSecretResource implements \JsonSerializable
             eventTypes: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->event_types))),
             signingSecretHint: ($data->signing_secret_hint === null ? null : SdkClient::stringValue($data->signing_secret_hint)),
             signingSecret: SdkClient::stringValue($data->signing_secret),
-            updatedAt: (property_exists($data, "updated_at") ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
+            updatedAt: (property_exists($data, "updated_at") && $data->updated_at !== null ? SdkClient::intValue($data->updated_at) : SdkNotGiven::Value),
         );
     }
 }

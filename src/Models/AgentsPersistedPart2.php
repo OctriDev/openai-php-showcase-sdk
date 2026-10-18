@@ -62,7 +62,7 @@ class PersistedAgentToolConfigParamProgrammaticToolCalling implements PersistedA
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolConfigParamProgrammaticToolCallingTypeEnum::class),
-            enabled: (property_exists($data, "enabled") ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
+            enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
         );
     }
 }

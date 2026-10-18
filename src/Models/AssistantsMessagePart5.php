@@ -60,8 +60,8 @@ class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation implement
     public static function fromObject(object $data): self
     {
         return new self(
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
-            quote: (property_exists($data, "quote") ? SdkClient::stringValue($data->quote) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            quote: (property_exists($data, "quote") && $data->quote !== null ? SdkClient::stringValue($data->quote) : SdkNotGiven::Value),
         );
     }
 }
@@ -171,10 +171,10 @@ class MessageDeltaContentTextAnnotationsFileCitationObject implements MessageDel
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum::class),
-            text: (property_exists($data, "text") ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
-            fileCitation: (property_exists($data, "file_citation") ? SdkClient::hydrateClass($data->file_citation, MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation::class) : SdkNotGiven::Value),
-            startIndex: (property_exists($data, "start_index") ? SdkClient::intValue($data->start_index) : SdkNotGiven::Value),
-            endIndex: (property_exists($data, "end_index") ? SdkClient::intValue($data->end_index) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
+            fileCitation: (property_exists($data, "file_citation") && $data->file_citation !== null ? SdkClient::hydrateClass($data->file_citation, MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation::class) : SdkNotGiven::Value),
+            startIndex: (property_exists($data, "start_index") && $data->start_index !== null ? SdkClient::intValue($data->start_index) : SdkNotGiven::Value),
+            endIndex: (property_exists($data, "end_index") && $data->end_index !== null ? SdkClient::intValue($data->end_index) : SdkNotGiven::Value),
         );
     }
 }
@@ -228,7 +228,7 @@ class MessageDeltaContentTextAnnotationsFilePathObjectFilePath implements \JsonS
     public static function fromObject(object $data): self
     {
         return new self(
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -338,10 +338,10 @@ class MessageDeltaContentTextAnnotationsFilePathObject implements MessageDeltaCo
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum::class),
-            text: (property_exists($data, "text") ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
-            filePath: (property_exists($data, "file_path") ? SdkClient::hydrateClass($data->file_path, MessageDeltaContentTextAnnotationsFilePathObjectFilePath::class) : SdkNotGiven::Value),
-            startIndex: (property_exists($data, "start_index") ? SdkClient::intValue($data->start_index) : SdkNotGiven::Value),
-            endIndex: (property_exists($data, "end_index") ? SdkClient::intValue($data->end_index) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::stringValue($data->text) : SdkNotGiven::Value),
+            filePath: (property_exists($data, "file_path") && $data->file_path !== null ? SdkClient::hydrateClass($data->file_path, MessageDeltaContentTextAnnotationsFilePathObjectFilePath::class) : SdkNotGiven::Value),
+            startIndex: (property_exists($data, "start_index") && $data->start_index !== null ? SdkClient::intValue($data->start_index) : SdkNotGiven::Value),
+            endIndex: (property_exists($data, "end_index") && $data->end_index !== null ? SdkClient::intValue($data->end_index) : SdkNotGiven::Value),
         );
     }
 }

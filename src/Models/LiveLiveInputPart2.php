@@ -76,7 +76,7 @@ class LiveInputAudioUnmuted implements LiveSidebandServerEvent, LiveServerEvent2
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, LiveInputAudioUnmutedTypeEnum::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -268,7 +268,7 @@ class LiveInputTranscriptDelta implements LiveSidebandServerEvent, LiveServerEve
             endMs: SdkClient::intValue($data->end_ms),
             delta: SdkClient::stringValue($data->delta),
             type: SdkClient::hydrateEnum($data->type, LiveInputTranscriptDeltaTypeEnum::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }

@@ -154,8 +154,8 @@ class BetaResponsesServerEventVariant30 implements BetaResponsesServerEvent, \Js
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             part: SdkClient::hydrateClass($data->part, BetaResponsesServerEventVariant30Part::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, BetaResponsesServerEventVariant30StatusEnum::class) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, BetaResponsesServerEventVariant30StatusEnum::class) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -303,7 +303,7 @@ class BetaResponsesServerEventVariant31 implements BetaResponsesServerEvent, \Js
             delta: SdkClient::stringValue($data->delta),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            streamId: (property_exists($data, "stream_id") ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
+            streamId: (property_exists($data, "stream_id") && $data->stream_id !== null ? SdkClient::stringValue($data->stream_id) : SdkNotGiven::Value),
         );
     }
 }

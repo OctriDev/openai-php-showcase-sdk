@@ -67,32 +67,6 @@ class LiveSessionCloseParam implements LiveClientEvent, LiveForkClientEvent, Liv
     }
 }
 
-final readonly class LiveSessionCreateParamsModelEnum implements SdkOpenEnum
-{
-    public const GPT_LIVE_1 = "gpt-live-1";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
 /**
  * Initial configuration for a Live session, including its model, conversation instructions, audio, and delegated task handling.
  */
@@ -101,9 +75,9 @@ class LiveSessionCreateParams implements \JsonSerializable
     /**
      * The Live model. Required in the session configuration for every transport; do not pass it as a URL query parameter.
      *
-     * @var string|LiveSessionCreateParamsModelEnum
+     * @var string
      */
-    public readonly string|LiveSessionCreateParamsModelEnum $model;
+    public readonly string $model;
     /**
      * Optional `string` value serialized in the `instructions` wire field.
      *
@@ -148,7 +122,7 @@ class LiveSessionCreateParams implements \JsonSerializable
     public readonly LiveClientConfigParam|SdkNotGiven $client;
 
     /**
-     * @param string|LiveSessionCreateParamsModelEnum $model
+     * @param string $model
      * @param string|null|SdkNotGiven $instructions
      * @param list<LiveInitialItem>|SdkNotGiven $input
      * @param LiveInitialSessionAudioParam|SdkNotGiven $audio
@@ -158,7 +132,7 @@ class LiveSessionCreateParams implements \JsonSerializable
      * @param LiveClientConfigParam|SdkNotGiven $client
      */
     public function __construct(
-        string|LiveSessionCreateParamsModelEnum $model,
+        string $model,
         string|null|SdkNotGiven $instructions = SdkNotGiven::Value,
         array|SdkNotGiven $input = SdkNotGiven::Value,
         LiveInitialSessionAudioParam|SdkNotGiven $audio = SdkNotGiven::Value,
@@ -219,14 +193,14 @@ class LiveSessionCreateParams implements \JsonSerializable
             throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
         }
         return new self(
-            model: SdkClient::hydrateStringEnumOrString($data->model, LiveSessionCreateParamsModelEnum::class),
+            model: SdkClient::stringValue($data->model),
             instructions: (property_exists($data, "instructions") ? ($data->instructions === null ? null : SdkClient::stringValue($data->instructions)) : SdkNotGiven::Value),
-            input: (property_exists($data, "input") ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, LiveInitialItem::class, [LiveInitialDeveloperMessageItemParam::class, LiveInitialUserMessageItemParam::class, LiveInitialAssistantMessageItemParam::class], "role", ["developer" => LiveInitialDeveloperMessageItemParam::class, "user" => LiveInitialUserMessageItemParam::class, "assistant" => LiveInitialAssistantMessageItemParam::class], UnknownLiveInitialItem::class), SdkClient::arrayValue($data->input))) : SdkNotGiven::Value),
-            audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, LiveInitialSessionAudioParam::class) : SdkNotGiven::Value),
+            input: (property_exists($data, "input") && $data->input !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, LiveInitialItem::class, [LiveInitialDeveloperMessageItemParam::class, LiveInitialUserMessageItemParam::class, LiveInitialAssistantMessageItemParam::class], "role", ["developer" => LiveInitialDeveloperMessageItemParam::class, "user" => LiveInitialUserMessageItemParam::class, "assistant" => LiveInitialAssistantMessageItemParam::class], UnknownLiveInitialItem::class), SdkClient::arrayValue($data->input))) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::hydrateClass($data->audio, LiveInitialSessionAudioParam::class) : SdkNotGiven::Value),
             delegation: (property_exists($data, "delegation") ? ($data->delegation === null ? null : SdkClient::hydrateUnionAs($data->delegation, LiveSessionCreateParamsDelegation::class, [LiveClientDelegationParam::class, LiveResponsesDelegationParam::class, LiveDecisionsDelegationParam2::class], "type", ["client" => LiveClientDelegationParam::class, "responses" => LiveResponsesDelegationParam::class, "decisions" => LiveDecisionsDelegationParam2::class], UnknownLiveSessionCreateParamsDelegation::class)) : SdkNotGiven::Value),
-            triggers: (property_exists($data, "triggers") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveDecisionTriggerInputParam2::class), SdkClient::arrayValue($data->triggers))) : SdkNotGiven::Value),
-            store: (property_exists($data, "store") ? SdkClient::boolValue($data->store) : SdkNotGiven::Value),
-            client: (property_exists($data, "client") ? SdkClient::hydrateClass($data->client, LiveClientConfigParam::class) : SdkNotGiven::Value),
+            triggers: (property_exists($data, "triggers") && $data->triggers !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveDecisionTriggerInputParam2::class), SdkClient::arrayValue($data->triggers))) : SdkNotGiven::Value),
+            store: (property_exists($data, "store") && $data->store !== null ? SdkClient::boolValue($data->store) : SdkNotGiven::Value),
+            client: (property_exists($data, "client") && $data->client !== null ? SdkClient::hydrateClass($data->client, LiveClientConfigParam::class) : SdkNotGiven::Value),
         );
     }
 }

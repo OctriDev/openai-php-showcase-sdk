@@ -108,11 +108,11 @@ class ChatCompletionStreamResponseDelta implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, ChatCompletionStreamResponseDeltaAudio::class) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::hydrateClass($data->audio, ChatCompletionStreamResponseDeltaAudio::class) : SdkNotGiven::Value),
             content: (property_exists($data, "content") ? ($data->content === null ? null : SdkClient::stringValue($data->content)) : SdkNotGiven::Value),
-            functionCall: (property_exists($data, "function_call") ? SdkClient::hydrateClass($data->function_call, ChatCompletionStreamResponseDeltaFunctionCall::class) : SdkNotGiven::Value),
-            toolCalls: (property_exists($data, "tool_calls") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionMessageToolCallChunk::class), SdkClient::arrayValue($data->tool_calls))) : SdkNotGiven::Value),
-            role: (property_exists($data, "role") ? SdkClient::hydrateStringEnumOrString($data->role, ChatCompletionStreamResponseDeltaRoleEnum::class) : SdkNotGiven::Value),
+            functionCall: (property_exists($data, "function_call") && $data->function_call !== null ? SdkClient::hydrateClass($data->function_call, ChatCompletionStreamResponseDeltaFunctionCall::class) : SdkNotGiven::Value),
+            toolCalls: (property_exists($data, "tool_calls") && $data->tool_calls !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionMessageToolCallChunk::class), SdkClient::arrayValue($data->tool_calls))) : SdkNotGiven::Value),
+            role: (property_exists($data, "role") && $data->role !== null ? SdkClient::hydrateStringEnumOrString($data->role, ChatCompletionStreamResponseDeltaRoleEnum::class) : SdkNotGiven::Value),
             refusal: (property_exists($data, "refusal") ? ($data->refusal === null ? null : SdkClient::stringValue($data->refusal)) : SdkNotGiven::Value),
         );
     }

@@ -221,8 +221,8 @@ class ContainerResourceExpiresAfter implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            anchor: (property_exists($data, "anchor") ? SdkClient::hydrateStringEnumOrString($data->anchor, ContainerResourceExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
-            minutes: (property_exists($data, "minutes") ? SdkClient::intValue($data->minutes) : SdkNotGiven::Value),
+            anchor: (property_exists($data, "anchor") && $data->anchor !== null ? SdkClient::hydrateStringEnumOrString($data->anchor, ContainerResourceExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
+            minutes: (property_exists($data, "minutes") && $data->minutes !== null ? SdkClient::intValue($data->minutes) : SdkNotGiven::Value),
         );
     }
 }
@@ -344,7 +344,7 @@ class ContainerResourceNetworkPolicy implements \JsonSerializable
         }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ContainerResourceNetworkPolicyTypeEnum::class),
-            allowedDomains: (property_exists($data, "allowed_domains") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains))) : SdkNotGiven::Value),
+            allowedDomains: (property_exists($data, "allowed_domains") && $data->allowed_domains !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_domains))) : SdkNotGiven::Value),
         );
     }
 }

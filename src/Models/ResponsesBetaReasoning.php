@@ -212,7 +212,7 @@ class BetaReasoning implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            mode: (property_exists($data, "mode") ? SdkClient::stringValue($data->mode) : SdkNotGiven::Value),
+            mode: (property_exists($data, "mode") && $data->mode !== null ? SdkClient::stringValue($data->mode) : SdkNotGiven::Value),
             effort: (property_exists($data, "effort") ? ($data->effort === null ? null : SdkClient::hydrateEnum($data->effort, BetaReasoningEffortModelEnum::class)) : SdkNotGiven::Value),
             summary: (property_exists($data, "summary") ? ($data->summary === null ? null : SdkClient::hydrateEnum($data->summary, BetaReasoningSummaryEnum::class)) : SdkNotGiven::Value),
             context: (property_exists($data, "context") ? ($data->context === null ? null : SdkClient::hydrateEnum($data->context, BetaReasoningContextEnum::class)) : SdkNotGiven::Value),
@@ -381,8 +381,8 @@ class BetaReasoningItem implements BetaInputItem, BetaItem, BetaItemResource, Be
             summary: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaSummaryTextContent::class), SdkClient::arrayValue($data->summary))),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
             encryptedContent: (property_exists($data, "encrypted_content") ? ($data->encrypted_content === null ? null : SdkClient::stringValue($data->encrypted_content)) : SdkNotGiven::Value),
-            content: (property_exists($data, "content") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaReasoningTextContent::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, BetaReasoningItemStatusEnum::class) : SdkNotGiven::Value),
+            content: (property_exists($data, "content") && $data->content !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaReasoningTextContent::class), SdkClient::arrayValue($data->content))) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, BetaReasoningItemStatusEnum::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -72,9 +72,9 @@ class CreateTranscriptionResponseJsonLogprobsItem implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            token: (property_exists($data, "token") ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
-            logprob: (property_exists($data, "logprob") ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
-            bytes: (property_exists($data, "bytes") ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->bytes))) : SdkNotGiven::Value),
+            token: (property_exists($data, "token") && $data->token !== null ? SdkClient::stringValue($data->token) : SdkNotGiven::Value),
+            logprob: (property_exists($data, "logprob") && $data->logprob !== null ? SdkClient::floatValue($data->logprob) : SdkNotGiven::Value),
+            bytes: (property_exists($data, "bytes") && $data->bytes !== null ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->bytes))) : SdkNotGiven::Value),
         );
     }
 }
@@ -82,7 +82,7 @@ class CreateTranscriptionResponseJsonLogprobsItem implements \JsonSerializable
 /**
  * Represents a transcription response returned by model, based on the provided input.
  */
-class CreateTranscriptionResponseJson implements \JsonSerializable
+class CreateTranscriptionResponseJson implements CreateTranscriptionResponse, \JsonSerializable
 {
     /**
      * The transcribed text.
@@ -158,9 +158,9 @@ class CreateTranscriptionResponseJson implements \JsonSerializable
         }
         return new self(
             text: SdkClient::stringValue($data->text),
-            languages: (property_exists($data, "languages") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionLanguage::class), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
-            logprobs: (property_exists($data, "logprobs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateTranscriptionResponseJsonLogprobsItem::class), SdkClient::arrayValue($data->logprobs))) : SdkNotGiven::Value),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateUnionAs($data->usage, CreateTranscriptionResponseJsonUsage::class, [TranscriptTextUsageTokens::class, TranscriptTextUsageDuration::class], "type", ["tokens" => TranscriptTextUsageTokens::class, "duration" => TranscriptTextUsageDuration::class], UnknownCreateTranscriptionResponseJsonUsage::class) : SdkNotGiven::Value),
+            languages: (property_exists($data, "languages") && $data->languages !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionLanguage::class), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),
+            logprobs: (property_exists($data, "logprobs") && $data->logprobs !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CreateTranscriptionResponseJsonLogprobsItem::class), SdkClient::arrayValue($data->logprobs))) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateUnionAs($data->usage, CreateTranscriptionResponseJsonUsage::class, [TranscriptTextUsageTokens::class, TranscriptTextUsageDuration::class], "type", ["tokens" => TranscriptTextUsageTokens::class, "duration" => TranscriptTextUsageDuration::class], UnknownCreateTranscriptionResponseJsonUsage::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -168,7 +168,7 @@ class CreateTranscriptionResponseJson implements \JsonSerializable
 /**
  * Represents a verbose json transcription response returned by model, based on the provided input.
  */
-class CreateTranscriptionResponseVerboseJson implements \JsonSerializable
+class CreateTranscriptionResponseVerboseJson implements CreateTranscriptionResponse, \JsonSerializable
 {
     /**
      * The language of the input audio.
@@ -272,9 +272,9 @@ class CreateTranscriptionResponseVerboseJson implements \JsonSerializable
             language: SdkClient::stringValue($data->language),
             duration: SdkClient::floatValue($data->duration),
             text: SdkClient::stringValue($data->text),
-            words: (property_exists($data, "words") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionWord::class), SdkClient::arrayValue($data->words))) : SdkNotGiven::Value),
-            segments: (property_exists($data, "segments") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionSegment::class), SdkClient::arrayValue($data->segments))) : SdkNotGiven::Value),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateClass($data->usage, TranscriptTextUsageDuration::class) : SdkNotGiven::Value),
+            words: (property_exists($data, "words") && $data->words !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionWord::class), SdkClient::arrayValue($data->words))) : SdkNotGiven::Value),
+            segments: (property_exists($data, "segments") && $data->segments !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionSegment::class), SdkClient::arrayValue($data->segments))) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, TranscriptTextUsageDuration::class) : SdkNotGiven::Value),
         );
     }
 }

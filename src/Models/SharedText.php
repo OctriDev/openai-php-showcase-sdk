@@ -179,7 +179,7 @@ class TextResponseFormatJsonSchema implements TextResponseFormatConfiguration, \
             type: SdkClient::hydrateEnum($data->type, TextResponseFormatJsonSchemaTypeEnum::class),
             name: SdkClient::stringValue($data->name),
             schema: SdkClient::stringMapValue($data->schema),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
             strict: (property_exists($data, "strict") ? ($data->strict === null ? null : SdkClient::boolValue($data->strict)) : SdkNotGiven::Value),
         );
     }

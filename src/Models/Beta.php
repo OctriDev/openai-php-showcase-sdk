@@ -116,8 +116,8 @@ class BetaErrorPayload implements \JsonSerializable
             code: ($data->code === null ? null : SdkClient::stringValue($data->code)),
             message: SdkClient::stringValue($data->message),
             param: ($data->param === null ? null : SdkClient::stringValue($data->param)),
-            headers: (property_exists($data, "headers") ? SdkClient::mapValues(SdkClient::stringMapValue($data->headers), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
-            misalignment: (property_exists($data, "misalignment") ? SdkClient::hydrateClass($data->misalignment, BetaMisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
+            headers: (property_exists($data, "headers") && $data->headers !== null ? SdkClient::mapValues(SdkClient::stringMapValue($data->headers), static fn($item) => SdkClient::stringValue($item)) : SdkNotGiven::Value),
+            misalignment: (property_exists($data, "misalignment") && $data->misalignment !== null ? SdkClient::hydrateClass($data->misalignment, BetaMisalignmentErrorDetailsResource::class) : SdkNotGiven::Value),
         );
     }
 }

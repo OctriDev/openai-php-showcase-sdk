@@ -109,7 +109,7 @@ class CreateSkillVersionBody implements \JsonSerializable
         }
         return new self(
             files: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->files))),
-            default_: (property_exists($data, "default") ? SdkClient::boolValue($data->default) : SdkNotGiven::Value),
+            default_: (property_exists($data, "default") && $data->default !== null ? SdkClient::boolValue($data->default) : SdkNotGiven::Value),
         );
     }
 }

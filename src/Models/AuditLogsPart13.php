@@ -60,8 +60,8 @@ class AuditLogWorkloadIdentityProviderUpdated implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            changesRequested: (property_exists($data, "changes_requested") ? SdkClient::stringMapValue($data->changes_requested) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            changesRequested: (property_exists($data, "changes_requested") && $data->changes_requested !== null ? SdkClient::stringMapValue($data->changes_requested) : SdkNotGiven::Value),
         );
     }
 }
@@ -119,8 +119,8 @@ class AuditLogWorkloadIdentityProviderDeleted implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }
@@ -190,9 +190,9 @@ class AuditLogWorkloadIdentityProviderMappingCreated implements \JsonSerializabl
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            identityProviderId: (property_exists($data, "identity_provider_id") ? SdkClient::stringValue($data->identity_provider_id) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") ? SdkClient::stringMapValue($data->data) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            identityProviderId: (property_exists($data, "identity_provider_id") && $data->identity_provider_id !== null ? SdkClient::stringValue($data->identity_provider_id) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") && $data->data !== null ? SdkClient::stringMapValue($data->data) : SdkNotGiven::Value),
         );
     }
 }
@@ -262,9 +262,9 @@ class AuditLogWorkloadIdentityProviderMappingUpdated implements \JsonSerializabl
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            identityProviderId: (property_exists($data, "identity_provider_id") ? SdkClient::stringValue($data->identity_provider_id) : SdkNotGiven::Value),
-            changesRequested: (property_exists($data, "changes_requested") ? SdkClient::stringMapValue($data->changes_requested) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            identityProviderId: (property_exists($data, "identity_provider_id") && $data->identity_provider_id !== null ? SdkClient::stringValue($data->identity_provider_id) : SdkNotGiven::Value),
+            changesRequested: (property_exists($data, "changes_requested") && $data->changes_requested !== null ? SdkClient::stringMapValue($data->changes_requested) : SdkNotGiven::Value),
         );
     }
 }
@@ -346,10 +346,10 @@ class AuditLogWorkloadIdentityProviderMappingDeleted implements \JsonSerializabl
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            identityProviderId: (property_exists($data, "identity_provider_id") ? SdkClient::stringValue($data->identity_provider_id) : SdkNotGiven::Value),
-            projectId: (property_exists($data, "project_id") ? SdkClient::stringValue($data->project_id) : SdkNotGiven::Value),
-            serviceAccountId: (property_exists($data, "service_account_id") ? SdkClient::stringValue($data->service_account_id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            identityProviderId: (property_exists($data, "identity_provider_id") && $data->identity_provider_id !== null ? SdkClient::stringValue($data->identity_provider_id) : SdkNotGiven::Value),
+            projectId: (property_exists($data, "project_id") && $data->project_id !== null ? SdkClient::stringValue($data->project_id) : SdkNotGiven::Value),
+            serviceAccountId: (property_exists($data, "service_account_id") && $data->service_account_id !== null ? SdkClient::stringValue($data->service_account_id) : SdkNotGiven::Value),
         );
     }
 }

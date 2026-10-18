@@ -112,7 +112,7 @@ class LiveDelegationCreated implements LiveSidebandServerEvent, LiveServerEvent2
             type: SdkClient::hydrateEnum($data->type, LiveDelegationCreatedTypeEnum::class),
             offsetMs: SdkClient::intValue($data->offset_ms),
             delegation: SdkClient::hydrateClass($data->delegation, LiveDelegationItem::class),
-            clientEventId: (property_exists($data, "client_event_id") ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
+            clientEventId: (property_exists($data, "client_event_id") && $data->client_event_id !== null ? SdkClient::stringValue($data->client_event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -255,7 +255,7 @@ class LiveDelegationItem implements \JsonSerializable
             id: SdkClient::stringValue($data->id),
             type: SdkClient::hydrateStringEnumOrString($data->type, LiveDelegationItemTypeEnum::class),
             target: SdkClient::hydrateStringEnumUnion($data->target, [LiveDelegationItemTargetEnum::class, LiveDelegationItemTargetEnum::class]),
-            responseId: (property_exists($data, "response_id") ? SdkClient::stringValue($data->response_id) : SdkNotGiven::Value),
+            responseId: (property_exists($data, "response_id") && $data->response_id !== null ? SdkClient::stringValue($data->response_id) : SdkNotGiven::Value),
         );
     }
 }

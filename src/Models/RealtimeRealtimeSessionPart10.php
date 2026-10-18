@@ -8,132 +8,42 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
- * A Realtime session configuration object.
+ * Granular configuration for tracing.
  */
-class RealtimeSessionCreateResponse implements \JsonSerializable
+class RealtimeSessionCreateResponseTracingModelTracingConfiguration implements \JsonSerializable
 {
     /**
-     * Unique identifier for the session that looks like `sess_1234567890abcdef`.
+     * The name of the workflow to attach to this trace. This is used to name the trace in the traces dashboard.
      *
      * @var string|SdkNotGiven
      */
-    public readonly string|SdkNotGiven $id;
+    public readonly string|SdkNotGiven $workflowName;
     /**
-     * The object type. Always `realtime.session`.
+     * The group id to attach to this trace to enable filtering and grouping in the traces dashboard.
      *
      * @var string|SdkNotGiven
      */
-    public readonly string|SdkNotGiven $object_;
+    public readonly string|SdkNotGiven $groupId;
     /**
-     * Expiration timestamp for the session, in seconds since epoch.
+     * The arbitrary metadata to attach to this trace to enable filtering in the traces dashboard.
      *
-     * @var int|SdkNotGiven
+     * @var array<array-key,mixed>|SdkNotGiven
      */
-    public readonly int|SdkNotGiven $expiresAt;
-    /**
-     * Additional fields to include in server outputs. - `item.input_audio_transcription.logprobs`: Include logprobs for input audio transcription.
-     *
-     * @var list<RealtimeSessionCreateResponseIncludeItemEnum|string>|SdkNotGiven
-     */
-    public readonly array|SdkNotGiven $include_;
-    /**
-     * The Realtime model used for this session.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $model;
-    /**
-     * The set of modalities the model can respond with. To disable audio, set this to ["text"].
-     *
-     * @var list<RealtimeSessionCreateResponseOutputModalitiesItemEnum|string>|SdkNotGiven
-     */
-    public readonly array|SdkNotGiven $outputModalities;
-    /**
-     * The default system instructions (i.e. system message) prepended to model calls. This field allows the client to guide the model on desired responses. The model can be instructed on response content and format, (e.g. "be extremely succinct", "act friendly", "here are examples of good responses") and on audio behavior (e.g. "talk quickly", "inject emotion into your voice", "laugh frequently"). The instructions are not guaranteed to be followed by the model, but they provide guidance to the model on the desired behavior. Note that the server sets default instructions which will be used if this field is not set and are visible in the `session.created` event at the start of the session.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $instructions;
-    /**
-     * Configuration for input and output audio for the session.
-     *
-     * @var RealtimeSessionCreateResponseAudio|SdkNotGiven
-     */
-    public readonly RealtimeSessionCreateResponseAudio|SdkNotGiven $audio;
-    /**
-     * Configuration options for tracing. Set to null to disable tracing. Once tracing is enabled for a session, the configuration cannot be modified. `auto` will create a trace for the session with default values for the workflow name, group id, and metadata.
-     *
-     * @var RealtimeSessionCreateResponseTracingEnum|string|RealtimeSessionCreateResponseTracingTracingConfiguration|SdkNotGiven
-     */
-    public readonly RealtimeSessionCreateResponseTracingEnum|string|RealtimeSessionCreateResponseTracingTracingConfiguration|SdkNotGiven $tracing;
-    /**
-     * Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.
-     *
-     * @var RealtimeSessionCreateResponseTurnDetection|null|SdkNotGiven
-     */
-    public readonly RealtimeSessionCreateResponseTurnDetection|null|SdkNotGiven $turnDetection;
-    /**
-     * Tools (functions) available to the model.
-     *
-     * @var list<RealtimeFunctionTool>|SdkNotGiven
-     */
-    public readonly array|SdkNotGiven $tools;
-    /**
-     * How the model chooses tools. Options are `auto`, `none`, `required`, or specify a function.
-     *
-     * @var string|SdkNotGiven
-     */
-    public readonly string|SdkNotGiven $toolChoice;
-    /**
-     * Maximum number of output tokens for a single assistant response, inclusive of tool calls. Provide an integer between 1 and 4096 to limit output tokens, or `inf` for the maximum available tokens for a given model. Defaults to `inf`.
-     *
-     * @var int|RealtimeSessionCreateResponseMaxOutputTokensEnum|string|SdkNotGiven
-     */
-    public readonly int|RealtimeSessionCreateResponseMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens;
+    public readonly array|SdkNotGiven $metadata;
 
     /**
-     * @param string|SdkNotGiven $id
-     * @param string|SdkNotGiven $object_
-     * @param int|SdkNotGiven $expiresAt
-     * @param list<RealtimeSessionCreateResponseIncludeItemEnum|string>|SdkNotGiven $include_
-     * @param string|SdkNotGiven $model
-     * @param list<RealtimeSessionCreateResponseOutputModalitiesItemEnum|string>|SdkNotGiven $outputModalities
-     * @param string|SdkNotGiven $instructions
-     * @param RealtimeSessionCreateResponseAudio|SdkNotGiven $audio
-     * @param RealtimeSessionCreateResponseTracingEnum|string|RealtimeSessionCreateResponseTracingTracingConfiguration|SdkNotGiven $tracing
-     * @param RealtimeSessionCreateResponseTurnDetection|null|SdkNotGiven $turnDetection
-     * @param list<RealtimeFunctionTool>|SdkNotGiven $tools
-     * @param string|SdkNotGiven $toolChoice
-     * @param int|RealtimeSessionCreateResponseMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens
+     * @param string|SdkNotGiven $workflowName
+     * @param string|SdkNotGiven $groupId
+     * @param array<array-key,mixed>|SdkNotGiven $metadata
      */
     public function __construct(
-        string|SdkNotGiven $id = SdkNotGiven::Value,
-        string|SdkNotGiven $object_ = SdkNotGiven::Value,
-        int|SdkNotGiven $expiresAt = SdkNotGiven::Value,
-        array|SdkNotGiven $include_ = SdkNotGiven::Value,
-        string|SdkNotGiven $model = SdkNotGiven::Value,
-        array|SdkNotGiven $outputModalities = SdkNotGiven::Value,
-        string|SdkNotGiven $instructions = SdkNotGiven::Value,
-        RealtimeSessionCreateResponseAudio|SdkNotGiven $audio = SdkNotGiven::Value,
-        RealtimeSessionCreateResponseTracingEnum|string|RealtimeSessionCreateResponseTracingTracingConfiguration|SdkNotGiven $tracing = SdkNotGiven::Value,
-        RealtimeSessionCreateResponseTurnDetection|null|SdkNotGiven $turnDetection = SdkNotGiven::Value,
-        array|SdkNotGiven $tools = SdkNotGiven::Value,
-        string|SdkNotGiven $toolChoice = SdkNotGiven::Value,
-        int|RealtimeSessionCreateResponseMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens = SdkNotGiven::Value,
+        string|SdkNotGiven $workflowName = SdkNotGiven::Value,
+        string|SdkNotGiven $groupId = SdkNotGiven::Value,
+        array|SdkNotGiven $metadata = SdkNotGiven::Value,
     ) {
-        $this->id = $id;
-        $this->object_ = $object_;
-        $this->expiresAt = $expiresAt;
-        $this->include_ = $include_;
-        $this->model = $model;
-        $this->outputModalities = $outputModalities;
-        $this->instructions = $instructions;
-        $this->audio = $audio;
-        $this->tracing = $tracing;
-        $this->turnDetection = $turnDetection;
-        $this->tools = $tools;
-        $this->toolChoice = $toolChoice;
-        $this->maxOutputTokens = $maxOutputTokens;
+        $this->workflowName = $workflowName;
+        $this->groupId = $groupId;
+        $this->metadata = $metadata;
     }
 
     /** @return array<array-key, mixed> */
@@ -141,44 +51,14 @@ class RealtimeSessionCreateResponse implements \JsonSerializable
     {
         $values = [
         ];
-        if ($this->id !== SdkNotGiven::Value) {
-            $values["id"] = $this->id;
+        if ($this->workflowName !== SdkNotGiven::Value) {
+            $values["workflow_name"] = $this->workflowName;
         }
-        if ($this->object_ !== SdkNotGiven::Value) {
-            $values["object"] = $this->object_;
+        if ($this->groupId !== SdkNotGiven::Value) {
+            $values["group_id"] = $this->groupId;
         }
-        if ($this->expiresAt !== SdkNotGiven::Value) {
-            $values["expires_at"] = $this->expiresAt;
-        }
-        if ($this->include_ !== SdkNotGiven::Value) {
-            $values["include"] = $this->include_;
-        }
-        if ($this->model !== SdkNotGiven::Value) {
-            $values["model"] = $this->model;
-        }
-        if ($this->outputModalities !== SdkNotGiven::Value) {
-            $values["output_modalities"] = $this->outputModalities;
-        }
-        if ($this->instructions !== SdkNotGiven::Value) {
-            $values["instructions"] = $this->instructions;
-        }
-        if ($this->audio !== SdkNotGiven::Value) {
-            $values["audio"] = $this->audio;
-        }
-        if ($this->tracing !== SdkNotGiven::Value) {
-            $values["tracing"] = $this->tracing;
-        }
-        if ($this->turnDetection !== SdkNotGiven::Value) {
-            $values["turn_detection"] = $this->turnDetection;
-        }
-        if ($this->tools !== SdkNotGiven::Value) {
-            $values["tools"] = $this->tools;
-        }
-        if ($this->toolChoice !== SdkNotGiven::Value) {
-            $values["tool_choice"] = $this->toolChoice;
-        }
-        if ($this->maxOutputTokens !== SdkNotGiven::Value) {
-            $values["max_output_tokens"] = $this->maxOutputTokens;
+        if ($this->metadata !== SdkNotGiven::Value) {
+            $values["metadata"] = $this->metadata;
         }
         return $values;
     }
@@ -192,109 +72,59 @@ class RealtimeSessionCreateResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
-            object_: (property_exists($data, "object") ? SdkClient::stringValue($data->object) : SdkNotGiven::Value),
-            expiresAt: (property_exists($data, "expires_at") ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
-            include_: (property_exists($data, "include") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeSessionCreateResponseIncludeItemEnum::class), SdkClient::arrayValue($data->include))) : SdkNotGiven::Value),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            outputModalities: (property_exists($data, "output_modalities") ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeSessionCreateResponseOutputModalitiesItemEnum::class), SdkClient::arrayValue($data->output_modalities))) : SdkNotGiven::Value),
-            instructions: (property_exists($data, "instructions") ? SdkClient::stringValue($data->instructions) : SdkNotGiven::Value),
-            audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, RealtimeSessionCreateResponseAudio::class) : SdkNotGiven::Value),
-            tracing: (property_exists($data, "tracing") ? (is_object($data->tracing) ? SdkClient::hydrateClass($data->tracing, RealtimeSessionCreateResponseTracingTracingConfiguration::class) : (is_string($data->tracing) ? SdkClient::hydrateStringEnumOrString($data->tracing, RealtimeSessionCreateResponseTracingEnum::class) : SdkClient::hydrateClass($data->tracing, RealtimeSessionCreateResponseTracingTracingConfiguration::class))) : SdkNotGiven::Value),
-            turnDetection: (property_exists($data, "turn_detection") ? ($data->turn_detection === null ? null : SdkClient::hydrateClass($data->turn_detection, RealtimeSessionCreateResponseTurnDetection::class)) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RealtimeFunctionTool::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
-            toolChoice: (property_exists($data, "tool_choice") ? SdkClient::stringValue($data->tool_choice) : SdkNotGiven::Value),
-            maxOutputTokens: (property_exists($data, "max_output_tokens") ? (is_int($data->max_output_tokens) ? SdkClient::intValue($data->max_output_tokens) : SdkClient::hydrateStringEnumOrString($data->max_output_tokens, RealtimeSessionCreateResponseMaxOutputTokensEnum::class)) : SdkNotGiven::Value),
+            workflowName: (property_exists($data, "workflow_name") && $data->workflow_name !== null ? SdkClient::stringValue($data->workflow_name) : SdkNotGiven::Value),
+            groupId: (property_exists($data, "group_id") && $data->group_id !== null ? SdkClient::stringValue($data->group_id) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),
         );
     }
 }
 
 /**
- * The type of session to create. Always `realtime` for the Realtime API.
+ * Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.
  */
-enum RealtimeSessionCreateResponseGATypeEnum: string implements SdkWireEnum
-{
-    case REALTIME = "realtime";
-}
-
-/**
- * The object type. Always `realtime.session`.
- */
-final readonly class RealtimeSessionCreateResponseGAObjectEnum implements SdkOpenEnum
-{
-    public const REALTIME_SESSION = "realtime.session";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * Required enumerated value serialized in the `output_modalities[]` wire field.
- */
-final readonly class RealtimeSessionCreateResponseGAOutputModalitiesItemEnum implements SdkOpenEnum
-{
-    public const TEXT = "text";
-    public const AUDIO = "audio";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * Configuration for input audio noise reduction. This can be set to `null` to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.
- */
-class RealtimeSessionCreateResponseGAAudioInputNoiseReduction implements \JsonSerializable
+class RealtimeSessionCreateResponseTurnDetection implements \JsonSerializable
 {
     /**
-     * Type of noise reduction. `near_field` is for close-talking microphones such as headphones, `far_field` is for far-field microphones such as laptop or conference room microphones.
+     * Type of turn detection, only `server_vad` is currently supported.
      *
-     * @var NoiseReductionType|string|SdkNotGiven
+     * @var string|SdkNotGiven
      */
-    public readonly NoiseReductionType|string|SdkNotGiven $type;
+    public readonly string|SdkNotGiven $type;
+    /**
+     * Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments.
+     *
+     * @var float|SdkNotGiven
+     */
+    public readonly float|SdkNotGiven $threshold;
+    /**
+     * Amount of audio to include before the VAD detected speech (in milliseconds). Defaults to 300ms.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $prefixPaddingMs;
+    /**
+     * Duration of silence to detect speech stop (in milliseconds). Defaults to 500ms. With shorter values the model will respond more quickly, but may jump in on short pauses from the user.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $silenceDurationMs;
 
     /**
-     * @param NoiseReductionType|string|SdkNotGiven $type
+     * @param string|SdkNotGiven $type
+     * @param float|SdkNotGiven $threshold
+     * @param int|SdkNotGiven $prefixPaddingMs
+     * @param int|SdkNotGiven $silenceDurationMs
      */
     public function __construct(
-        NoiseReductionType|string|SdkNotGiven $type = SdkNotGiven::Value,
+        string|SdkNotGiven $type = SdkNotGiven::Value,
+        float|SdkNotGiven $threshold = SdkNotGiven::Value,
+        int|SdkNotGiven $prefixPaddingMs = SdkNotGiven::Value,
+        int|SdkNotGiven $silenceDurationMs = SdkNotGiven::Value,
     ) {
         $this->type = $type;
+        $this->threshold = $threshold;
+        $this->prefixPaddingMs = $prefixPaddingMs;
+        $this->silenceDurationMs = $silenceDurationMs;
     }
 
     /** @return array<array-key, mixed> */
@@ -305,6 +135,15 @@ class RealtimeSessionCreateResponseGAAudioInputNoiseReduction implements \JsonSe
         if ($this->type !== SdkNotGiven::Value) {
             $values["type"] = $this->type;
         }
+        if ($this->threshold !== SdkNotGiven::Value) {
+            $values["threshold"] = $this->threshold;
+        }
+        if ($this->prefixPaddingMs !== SdkNotGiven::Value) {
+            $values["prefix_padding_ms"] = $this->prefixPaddingMs;
+        }
+        if ($this->silenceDurationMs !== SdkNotGiven::Value) {
+            $values["silence_duration_ms"] = $this->silenceDurationMs;
+        }
         return $values;
     }
 
@@ -317,7 +156,39 @@ class RealtimeSessionCreateResponseGAAudioInputNoiseReduction implements \JsonSe
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, NoiseReductionType::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            threshold: (property_exists($data, "threshold") && $data->threshold !== null ? SdkClient::floatValue($data->threshold) : SdkNotGiven::Value),
+            prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),
+            silenceDurationMs: (property_exists($data, "silence_duration_ms") && $data->silence_duration_ms !== null ? SdkClient::intValue($data->silence_duration_ms) : SdkNotGiven::Value),
         );
+    }
+}
+
+/**
+ * Optional enumerated value serialized in the `max_output_tokens` wire field.
+ */
+final readonly class RealtimeSessionCreateResponseMaxOutputTokensEnum implements SdkOpenEnum
+{
+    public const INF = "inf";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
     }
 }

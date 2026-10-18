@@ -62,7 +62,7 @@ class UploadCertificateRequest implements \JsonSerializable
         }
         return new self(
             certificate: SdkClient::stringValue($data->certificate),
-            name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
+            name: (property_exists($data, "name") && $data->name !== null ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
         );
     }
 }

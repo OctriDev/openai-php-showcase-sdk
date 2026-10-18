@@ -161,12 +161,12 @@ class CreateEvalCompletionsRunDataSourceSamplingParams implements \JsonSerializa
     {
         return new self(
             reasoningEffort: (property_exists($data, "reasoning_effort") ? ($data->reasoning_effort === null ? null : SdkClient::hydrateEnum($data->reasoning_effort, CreateEvalCompletionsRunDataSourceSamplingParamsReasoningEffortEnum::class)) : SdkNotGiven::Value),
-            temperature: (property_exists($data, "temperature") ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
-            maxCompletionTokens: (property_exists($data, "max_completion_tokens") ? SdkClient::intValue($data->max_completion_tokens) : SdkNotGiven::Value),
-            topP: (property_exists($data, "top_p") ? SdkClient::floatValue($data->top_p) : SdkNotGiven::Value),
-            seed: (property_exists($data, "seed") ? SdkClient::intValue($data->seed) : SdkNotGiven::Value),
-            responseFormat: (property_exists($data, "response_format") ? SdkClient::hydrateUnionAs($data->response_format, CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat::class, [ResponseFormatText::class, ResponseFormatJsonSchema::class, ResponseFormatJsonObject::class], "type", ["text" => ResponseFormatText::class, "json_schema" => ResponseFormatJsonSchema::class, "json_object" => ResponseFormatJsonObject::class], UnknownCreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat::class) : SdkNotGiven::Value),
-            tools: (property_exists($data, "tools") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionTool::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
+            temperature: (property_exists($data, "temperature") && $data->temperature !== null ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
+            maxCompletionTokens: (property_exists($data, "max_completion_tokens") && $data->max_completion_tokens !== null ? SdkClient::intValue($data->max_completion_tokens) : SdkNotGiven::Value),
+            topP: (property_exists($data, "top_p") && $data->top_p !== null ? SdkClient::floatValue($data->top_p) : SdkNotGiven::Value),
+            seed: (property_exists($data, "seed") && $data->seed !== null ? SdkClient::intValue($data->seed) : SdkNotGiven::Value),
+            responseFormat: (property_exists($data, "response_format") && $data->response_format !== null ? SdkClient::hydrateUnionAs($data->response_format, CreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat::class, [ResponseFormatText::class, ResponseFormatJsonSchema::class, ResponseFormatJsonObject::class], "type", ["text" => ResponseFormatText::class, "json_schema" => ResponseFormatJsonSchema::class, "json_object" => ResponseFormatJsonObject::class], UnknownCreateEvalCompletionsRunDataSourceSamplingParamsResponseFormat::class) : SdkNotGiven::Value),
+            tools: (property_exists($data, "tools") && $data->tools !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ChatCompletionTool::class), SdkClient::arrayValue($data->tools))) : SdkNotGiven::Value),
         );
     }
 }
@@ -264,9 +264,9 @@ class CreateEvalCompletionsRunDataSource implements CreateEvalRunRequestDataSour
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalCompletionsRunDataSourceTypeEnum::class),
             source: SdkClient::hydrateUnionAs($data->source, CreateEvalCompletionsRunDataSourceSource::class, [EvalJsonlFileContentSource::class, EvalJsonlFileIdSource::class, EvalStoredCompletionsSource::class], "type", ["file_content" => EvalJsonlFileContentSource::class, "file_id" => EvalJsonlFileIdSource::class, "stored_completions" => EvalStoredCompletionsSource::class], UnknownCreateEvalCompletionsRunDataSourceSource::class),
-            inputMessages: (property_exists($data, "input_messages") ? SdkClient::hydrateUnionAs($data->input_messages, CreateEvalCompletionsRunDataSourceInputMessages::class, [CreateEvalCompletionsRunDataSourceInputMessagesVariant0::class, CreateEvalCompletionsRunDataSourceInputMessagesVariant1::class], null, []) : SdkNotGiven::Value),
-            samplingParams: (property_exists($data, "sampling_params") ? SdkClient::hydrateClass($data->sampling_params, CreateEvalCompletionsRunDataSourceSamplingParams::class) : SdkNotGiven::Value),
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            inputMessages: (property_exists($data, "input_messages") && $data->input_messages !== null ? SdkClient::hydrateUnionAs($data->input_messages, CreateEvalCompletionsRunDataSourceInputMessages::class, [CreateEvalCompletionsRunDataSourceInputMessagesVariant0::class, CreateEvalCompletionsRunDataSourceInputMessagesVariant1::class], null, []) : SdkNotGiven::Value),
+            samplingParams: (property_exists($data, "sampling_params") && $data->sampling_params !== null ? SdkClient::hydrateClass($data->sampling_params, CreateEvalCompletionsRunDataSourceSamplingParams::class) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
         );
     }
 }
@@ -290,13 +290,13 @@ class CreateEvalCompletionsRunDataSourceInputMessagesVariant0 implements CreateE
     /**
      * A list of chat messages forming the prompt or context. May include variable references to the `item` namespace, ie {{item.name}}.
      *
-     * @var list<TemplateItem>
+     * @var list<EasyInputMessage|EvalItem>
      */
     public readonly array $template;
 
     /**
      * @param CreateEvalCompletionsRunDataSourceInputMessagesVariant0TypeEnum $type
-     * @param list<TemplateItem> $template
+     * @param list<EasyInputMessage|EvalItem> $template
      */
     public function __construct(
         CreateEvalCompletionsRunDataSourceInputMessagesVariant0TypeEnum $type,
@@ -332,7 +332,7 @@ class CreateEvalCompletionsRunDataSourceInputMessagesVariant0 implements CreateE
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalCompletionsRunDataSourceInputMessagesVariant0TypeEnum::class),
-            template: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, TemplateItem::class, [EasyInputMessage::class, EvalItem::class], null, []), SdkClient::arrayValue($data->template))),
+            template: array_values(array_map(static fn($item) => SdkClient::hydrateUnion($item, [EasyInputMessage::class, EvalItem::class], null, []), SdkClient::arrayValue($data->template))),
         );
     }
 }

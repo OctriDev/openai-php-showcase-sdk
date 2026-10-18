@@ -332,8 +332,8 @@ class MessageDeltaContentImageFileObjectImageFile implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, MessageDeltaContentImageFileObjectImageFileDetailEnum::class) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, MessageDeltaContentImageFileObjectImageFileDetailEnum::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -114,8 +114,8 @@ class RealtimeBetaServerEventConversationItemInputAudioTranscriptionDelta implem
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaServerEventConversationItemInputAudioTranscriptionDeltaTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
-            contentIndex: (property_exists($data, "content_index") ? SdkClient::intValue($data->content_index) : SdkNotGiven::Value),
-            delta: (property_exists($data, "delta") ? SdkClient::stringValue($data->delta) : SdkNotGiven::Value),
+            contentIndex: (property_exists($data, "content_index") && $data->content_index !== null ? SdkClient::intValue($data->content_index) : SdkNotGiven::Value),
+            delta: (property_exists($data, "delta") && $data->delta !== null ? SdkClient::stringValue($data->delta) : SdkNotGiven::Value),
             logprobs: (property_exists($data, "logprobs") ? ($data->logprobs === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LogProbProperties::class), SdkClient::arrayValue($data->logprobs)))) : SdkNotGiven::Value),
         );
     }
@@ -227,10 +227,10 @@ class RealtimeBetaServerEventConversationItemInputAudioTranscriptionFailedError 
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            code: (property_exists($data, "code") ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
-            message: (property_exists($data, "message") ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
-            param: (property_exists($data, "param") ? SdkClient::stringValue($data->param) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
+            code: (property_exists($data, "code") && $data->code !== null ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
+            message: (property_exists($data, "message") && $data->message !== null ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
+            param: (property_exists($data, "param") && $data->param !== null ? SdkClient::stringValue($data->param) : SdkNotGiven::Value),
         );
     }
 }

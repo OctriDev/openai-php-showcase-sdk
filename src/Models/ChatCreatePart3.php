@@ -296,7 +296,7 @@ class CreateChatCompletionRequestWebSearchOptions implements \JsonSerializable
     {
         return new self(
             userLocation: (property_exists($data, "user_location") ? ($data->user_location === null ? null : SdkClient::hydrateClass($data->user_location, CreateChatCompletionRequestWebSearchOptionsUserLocation::class)) : SdkNotGiven::Value),
-            searchContextSize: (property_exists($data, "search_context_size") ? SdkClient::hydrateStringEnumOrString($data->search_context_size, WebSearchContextSize::class) : SdkNotGiven::Value),
+            searchContextSize: (property_exists($data, "search_context_size") && $data->search_context_size !== null ? SdkClient::hydrateStringEnumOrString($data->search_context_size, WebSearchContextSize::class) : SdkNotGiven::Value),
         );
     }
 }

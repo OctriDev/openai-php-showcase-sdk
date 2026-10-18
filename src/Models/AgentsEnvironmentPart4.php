@@ -334,7 +334,7 @@ class EnvironmentTemplateResource implements \JsonSerializable
             desktop: SdkClient::hydrateClass($data->desktop, DesktopResource::class),
             capabilityDirectories: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->capability_directories))),
             skills: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, HostedTemplateSkillResource::class, [HostedTemplateSkillResourceSkillReference::class, HostedTemplateSkillResourceInline::class], "type", ["skill_reference" => HostedTemplateSkillResourceSkillReference::class, "inline" => HostedTemplateSkillResourceInline::class], UnknownHostedTemplateSkillResource::class), SdkClient::arrayValue($data->skills))),
-            plugins: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, HostedPluginResource::class), SdkClient::arrayValue($data->plugins))),
+            plugins: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, HostedPluginResourceInline::class), SdkClient::arrayValue($data->plugins))),
             files: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, HostedTemplateFileResource::class, [HostedTemplateFileResourceFileId::class, HostedTemplateFileResourceInline::class], "type", ["file_id" => HostedTemplateFileResourceFileId::class, "inline" => HostedTemplateFileResourceInline::class], UnknownHostedTemplateFileResource::class), SdkClient::arrayValue($data->files))),
         );
     }

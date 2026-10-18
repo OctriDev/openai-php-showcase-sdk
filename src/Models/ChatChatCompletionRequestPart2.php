@@ -250,7 +250,7 @@ class ChatCompletionRequestMessageContentPartAudio implements ChatCompletionRequ
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionRequestMessageContentPartAudioTypeEnum::class),
             inputAudio: SdkClient::hydrateClass($data->input_audio, ChatCompletionRequestMessageContentPartAudioInputAudio::class),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -328,9 +328,9 @@ class ChatCompletionRequestMessageContentPartFileFile implements \JsonSerializab
     public static function fromObject(object $data): self
     {
         return new self(
-            filename: (property_exists($data, "filename") ? SdkClient::stringValue($data->filename) : SdkNotGiven::Value),
-            fileData: (property_exists($data, "file_data") ? SdkClient::stringValue($data->file_data) : SdkNotGiven::Value),
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            filename: (property_exists($data, "filename") && $data->filename !== null ? SdkClient::stringValue($data->filename) : SdkNotGiven::Value),
+            fileData: (property_exists($data, "file_data") && $data->file_data !== null ? SdkClient::stringValue($data->file_data) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
         );
     }
 }

@@ -9,6 +9,18 @@ namespace octridev_openai;
 
 trait SdkClientMethodsPart4
 {
+    /** Whether the caller configured the credential this scheme reads. */
+    private static function hasCredential(?ClientAuthConfig $auth, string $scheme): bool
+    {
+        if ($auth === null) {
+            return false;
+        }
+
+        return match ($scheme) {
+            "ApiKeyAuth" => $auth->apiKeyAuth !== null,"AdminApiKeyAuth" => $auth->adminApiKeyAuth !== null,default => false,
+        };
+    }
+
     /**
      * Chooses the security alternative this call will satisfy.
      *
@@ -121,7 +133,9 @@ trait SdkClientMethodsPart4
             return $body;
         }
         [$name, $value, $streaming] = $selector;
-        $wire = self::normalizeJson($body);
+        // A wire-keyed array keeps its values: a multipart file or part
+        // normalized to JSON was sent as text (OpenAI's transcription upload).
+        $wire = is_array($body) ? $body : self::normalizeJson($body);
         if (!is_array($wire) || ($wire !== [] && array_is_list($wire))) {
             return $body;
         }
@@ -290,59 +304,5 @@ trait SdkClientMethodsPart4
             return (string) $value;
         }
         return json_encode(self::normalizeJson($value, true), JSON_THROW_ON_ERROR);
-    }
-
-    /**
-     * Builds schema-aware multipart data, including repeated file fields.
-     * @param array<string, mixed> $fields
-     */
-    private static function encodeMultipart(array $fields, string $boundary): string
-    {
-        $out = '';
-        $append = function (string $key, mixed $value) use (&$append, &$out, $boundary): void {
-            $contentType = null;
-            if ($value instanceof SdkMultipartPart) {
-                $contentType = $value->contentType;
-                $value = $value->value;
-            }
-            if ($value === SdkNotGiven::Value) {
-                return;
-            }
-            if (is_array($value) && array_is_list($value)) {
-                foreach ($value as $item) {
-                    $append($key, $item);
-                }
-                return;
-            }
-            $safeKey = addcslashes($key, "\\\"");
-            $disposition = "Content-Disposition: form-data; name=\"{$safeKey}\"";
-            if ($value instanceof SdkUploadFile) {
-                $safeFilename = addcslashes($value->filename, "\\\"");
-                $disposition .= "; filename=\"{$safeFilename}\"";
-                $contentType = $value->contentType;
-                $payload = $value->data;
-            } elseif (
-                $contentType !== null ||
-                is_array($value) ||
-                (is_object($value) && !($value instanceof \BackedEnum) && !($value instanceof SdkOpenEnum))
-            ) {
-                $contentType ??= 'application/json';
-                $payload = json_encode(self::normalizeJson($value, true), JSON_THROW_ON_ERROR);
-            } elseif ($value === null) {
-                $payload = 'null';
-            } else {
-                $payload = self::scalarString($value);
-            }
-            $out .= "--{$boundary}\r\n{$disposition}\r\n";
-            if ($contentType !== null) {
-                $out .= "Content-Type: {$contentType}\r\n";
-            }
-            $out .= "\r\n{$payload}\r\n";
-        };
-        foreach ($fields as $key => $value) {
-            $append((string) $key, $value);
-        }
-        $out .= "--{$boundary}--\r\n";
-        return $out;
     }
 }

@@ -323,8 +323,8 @@ class CreateContainerFileBody implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            fileId: (property_exists($data, "file_id") ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
-            file: (property_exists($data, "file") ? SdkClient::stringValue($data->file) : SdkNotGiven::Value),
+            fileId: (property_exists($data, "file_id") && $data->file_id !== null ? SdkClient::stringValue($data->file_id) : SdkNotGiven::Value),
+            file: (property_exists($data, "file") && $data->file !== null ? SdkClient::stringValue($data->file) : SdkNotGiven::Value),
         );
     }
 }

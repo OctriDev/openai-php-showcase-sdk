@@ -124,10 +124,10 @@ class BetaCustomToolParam implements BetaTool, BetaToolSearchOutputTool, BetaToo
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCustomToolParamTypeEnum::class),
             name: SdkClient::stringValue($data->name),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, BetaCustomToolParamFormat::class, [BetaCustomTextFormatParam::class, BetaCustomGrammarFormatParam::class], "type", ["text" => BetaCustomTextFormatParam::class, "grammar" => BetaCustomGrammarFormatParam::class], UnknownBetaCustomToolParamFormat::class) : SdkNotGiven::Value),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, BetaCustomToolParamFormat::class, [BetaCustomTextFormatParam::class, BetaCustomGrammarFormatParam::class], "type", ["text" => BetaCustomTextFormatParam::class, "grammar" => BetaCustomGrammarFormatParam::class], UnknownBetaCustomToolParamFormat::class) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
             allowedCallers: (property_exists($data, "allowed_callers") ? ($data->allowed_callers === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, BetaCallableToolAllowedCaller::class), SdkClient::arrayValue($data->allowed_callers)))) : SdkNotGiven::Value),
         );
     }

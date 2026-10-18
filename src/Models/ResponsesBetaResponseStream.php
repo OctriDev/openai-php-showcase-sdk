@@ -48,7 +48,7 @@ class BetaResponseStreamOptions implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            includeObfuscation: (property_exists($data, "include_obfuscation") ? SdkClient::boolValue($data->include_obfuscation) : SdkNotGiven::Value),
+            includeObfuscation: (property_exists($data, "include_obfuscation") && $data->include_obfuscation !== null ? SdkClient::boolValue($data->include_obfuscation) : SdkNotGiven::Value),
         );
     }
 }

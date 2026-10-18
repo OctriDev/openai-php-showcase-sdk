@@ -140,10 +140,10 @@ class BetaApplyPatchToolCallOutput implements BetaItemResource, BetaItemField, B
             id: SdkClient::stringValue($data->id),
             callId: SdkClient::stringValue($data->call_id),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaApplyPatchCallOutputStatus::class),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, BetaToolCallCaller::class, [BetaDirectToolCallCaller::class, BetaProgramToolCallCaller::class], "type", ["direct" => BetaDirectToolCallCaller::class, "program" => BetaProgramToolCallCaller::class], UnknownBetaToolCallCaller::class)) : SdkNotGiven::Value),
             output: (property_exists($data, "output") ? ($data->output === null ? null : SdkClient::stringValue($data->output)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

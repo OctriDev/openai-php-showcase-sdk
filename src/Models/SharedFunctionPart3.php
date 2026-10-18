@@ -184,7 +184,7 @@ class FunctionShellCallOutput implements ConversationItem, ItemResource, OutputI
             output: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, FunctionShellCallOutputContent::class), SdkClient::arrayValue($data->output))),
             maxOutputLength: ($data->max_output_length === null ? null : SdkClient::intValue($data->max_output_length)),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, ToolCallCaller::class, [DirectToolCallCaller::class, ProgramToolCallCaller::class], "type", ["direct" => DirectToolCallCaller::class, "program" => ProgramToolCallCaller::class], UnknownToolCallCaller::class)) : SdkNotGiven::Value),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }
@@ -272,7 +272,7 @@ class FunctionShellCallOutputContent implements \JsonSerializable
             stdout: SdkClient::stringValue($data->stdout),
             stderr: SdkClient::stringValue($data->stderr),
             outcome: SdkClient::hydrateUnionAs($data->outcome, FunctionShellCallOutputContentOutcome::class, [FunctionShellCallOutputTimeoutOutcome::class, FunctionShellCallOutputExitOutcome::class], "type", ["timeout" => FunctionShellCallOutputTimeoutOutcome::class, "exit" => FunctionShellCallOutputExitOutcome::class], UnknownFunctionShellCallOutputContentOutcome::class),
-            createdBy: (property_exists($data, "created_by") ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
+            createdBy: (property_exists($data, "created_by") && $data->created_by !== null ? SdkClient::stringValue($data->created_by) : SdkNotGiven::Value),
         );
     }
 }

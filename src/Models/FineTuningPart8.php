@@ -120,13 +120,13 @@ class FineTuningJobCheckpointMetrics implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            step: (property_exists($data, "step") ? SdkClient::floatValue($data->step) : SdkNotGiven::Value),
-            trainLoss: (property_exists($data, "train_loss") ? SdkClient::floatValue($data->train_loss) : SdkNotGiven::Value),
-            trainMeanTokenAccuracy: (property_exists($data, "train_mean_token_accuracy") ? SdkClient::floatValue($data->train_mean_token_accuracy) : SdkNotGiven::Value),
-            validLoss: (property_exists($data, "valid_loss") ? SdkClient::floatValue($data->valid_loss) : SdkNotGiven::Value),
-            validMeanTokenAccuracy: (property_exists($data, "valid_mean_token_accuracy") ? SdkClient::floatValue($data->valid_mean_token_accuracy) : SdkNotGiven::Value),
-            fullValidLoss: (property_exists($data, "full_valid_loss") ? SdkClient::floatValue($data->full_valid_loss) : SdkNotGiven::Value),
-            fullValidMeanTokenAccuracy: (property_exists($data, "full_valid_mean_token_accuracy") ? SdkClient::floatValue($data->full_valid_mean_token_accuracy) : SdkNotGiven::Value),
+            step: (property_exists($data, "step") && $data->step !== null ? SdkClient::floatValue($data->step) : SdkNotGiven::Value),
+            trainLoss: (property_exists($data, "train_loss") && $data->train_loss !== null ? SdkClient::floatValue($data->train_loss) : SdkNotGiven::Value),
+            trainMeanTokenAccuracy: (property_exists($data, "train_mean_token_accuracy") && $data->train_mean_token_accuracy !== null ? SdkClient::floatValue($data->train_mean_token_accuracy) : SdkNotGiven::Value),
+            validLoss: (property_exists($data, "valid_loss") && $data->valid_loss !== null ? SdkClient::floatValue($data->valid_loss) : SdkNotGiven::Value),
+            validMeanTokenAccuracy: (property_exists($data, "valid_mean_token_accuracy") && $data->valid_mean_token_accuracy !== null ? SdkClient::floatValue($data->valid_mean_token_accuracy) : SdkNotGiven::Value),
+            fullValidLoss: (property_exists($data, "full_valid_loss") && $data->full_valid_loss !== null ? SdkClient::floatValue($data->full_valid_loss) : SdkNotGiven::Value),
+            fullValidMeanTokenAccuracy: (property_exists($data, "full_valid_mean_token_accuracy") && $data->full_valid_mean_token_accuracy !== null ? SdkClient::floatValue($data->full_valid_mean_token_accuracy) : SdkNotGiven::Value),
         );
     }
 }

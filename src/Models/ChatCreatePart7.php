@@ -407,9 +407,9 @@ class CreateChatCompletionStreamResponse implements \JsonSerializable
             created: SdkClient::intValue($data->created),
             model: SdkClient::stringValue($data->model),
             object_: SdkClient::hydrateStringEnumOrString($data->object, CreateChatCompletionStreamResponseObjectEnum::class),
-            obfuscation: (property_exists($data, "obfuscation") ? SdkClient::stringValue($data->obfuscation) : SdkNotGiven::Value),
+            obfuscation: (property_exists($data, "obfuscation") && $data->obfuscation !== null ? SdkClient::stringValue($data->obfuscation) : SdkNotGiven::Value),
             serviceTier: (property_exists($data, "service_tier") ? ($data->service_tier === null ? null : SdkClient::hydrateEnum($data->service_tier, CreateChatCompletionStreamResponseServiceTierEnum::class)) : SdkNotGiven::Value),
-            systemFingerprint: (property_exists($data, "system_fingerprint") ? SdkClient::stringValue($data->system_fingerprint) : SdkNotGiven::Value),
+            systemFingerprint: (property_exists($data, "system_fingerprint") && $data->system_fingerprint !== null ? SdkClient::stringValue($data->system_fingerprint) : SdkNotGiven::Value),
             usage: (property_exists($data, "usage") ? ($data->usage === null ? null : SdkClient::hydrateClass($data->usage, CompletionUsage::class)) : SdkNotGiven::Value),
             moderation: (property_exists($data, "moderation") ? ($data->moderation === null ? null : SdkClient::hydrateClass($data->moderation, ChatCompletionModeration::class)) : SdkNotGiven::Value),
         );

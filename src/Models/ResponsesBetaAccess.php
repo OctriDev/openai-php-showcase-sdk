@@ -95,7 +95,7 @@ class BetaAccessProgramsParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            cyber: (property_exists($data, "cyber") ? SdkClient::hydrateStringEnumOrString($data->cyber, BetaCyberAccessProgramEnum::class) : SdkNotGiven::Value),
+            cyber: (property_exists($data, "cyber") && $data->cyber !== null ? SdkClient::hydrateStringEnumOrString($data->cyber, BetaCyberAccessProgramEnum::class) : SdkNotGiven::Value),
         );
     }
 }

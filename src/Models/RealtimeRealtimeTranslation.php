@@ -84,7 +84,7 @@ class RealtimeTranslationClientEventInputAudioBufferAppend implements RealtimeTr
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeTranslationClientEventInputAudioBufferAppendTypeEnum::class),
             audio: SdkClient::stringValue($data->audio),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -152,7 +152,7 @@ class RealtimeTranslationClientEventSessionClose implements RealtimeTranslationC
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeTranslationClientEventSessionCloseTypeEnum::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -234,7 +234,7 @@ class RealtimeTranslationClientEventSessionUpdate implements RealtimeTranslation
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeTranslationClientEventSessionUpdateTypeEnum::class),
             session: SdkClient::hydrateClass($data->session, RealtimeTranslationSessionUpdateRequest::class),
-            eventId: (property_exists($data, "event_id") ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
+            eventId: (property_exists($data, "event_id") && $data->event_id !== null ? SdkClient::stringValue($data->event_id) : SdkNotGiven::Value),
         );
     }
 }
@@ -321,8 +321,8 @@ class RealtimeTranslationClientSecretCreateRequestExpiresAfter implements \JsonS
     public static function fromObject(object $data): self
     {
         return new self(
-            anchor: (property_exists($data, "anchor") ? SdkClient::hydrateStringEnumOrString($data->anchor, RealtimeTranslationClientSecretCreateRequestExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
-            seconds: (property_exists($data, "seconds") ? SdkClient::intValue($data->seconds) : SdkNotGiven::Value),
+            anchor: (property_exists($data, "anchor") && $data->anchor !== null ? SdkClient::hydrateStringEnumOrString($data->anchor, RealtimeTranslationClientSecretCreateRequestExpiresAfterAnchorEnum::class) : SdkNotGiven::Value),
+            seconds: (property_exists($data, "seconds") && $data->seconds !== null ? SdkClient::intValue($data->seconds) : SdkNotGiven::Value),
         );
     }
 }

@@ -60,8 +60,8 @@ class RealtimeTranslationSessionCreateRequestAudio implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            input: (property_exists($data, "input") ? SdkClient::hydrateClass($data->input, RealtimeTranslationSessionCreateRequestAudioInput::class) : SdkNotGiven::Value),
-            output: (property_exists($data, "output") ? SdkClient::hydrateClass($data->output, RealtimeTranslationSessionCreateRequestAudioOutput::class) : SdkNotGiven::Value),
+            input: (property_exists($data, "input") && $data->input !== null ? SdkClient::hydrateClass($data->input, RealtimeTranslationSessionCreateRequestAudioInput::class) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? SdkClient::hydrateClass($data->output, RealtimeTranslationSessionCreateRequestAudioOutput::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -121,7 +121,7 @@ class RealtimeTranslationSessionCreateRequest implements \JsonSerializable
         }
         return new self(
             model: SdkClient::stringValue($data->model),
-            audio: (property_exists($data, "audio") ? SdkClient::hydrateClass($data->audio, RealtimeTranslationSessionCreateRequestAudio::class) : SdkNotGiven::Value),
+            audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::hydrateClass($data->audio, RealtimeTranslationSessionCreateRequestAudio::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -320,7 +320,7 @@ class RealtimeTranslationSessionUpdateRequestAudioOutput implements \JsonSeriali
     public static function fromObject(object $data): self
     {
         return new self(
-            language: (property_exists($data, "language") ? SdkClient::stringValue($data->language) : SdkNotGiven::Value),
+            language: (property_exists($data, "language") && $data->language !== null ? SdkClient::stringValue($data->language) : SdkNotGiven::Value),
         );
     }
 }

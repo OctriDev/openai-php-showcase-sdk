@@ -98,10 +98,10 @@ class BetaWebSearchTool implements BetaTool, BetaToolSearchOutputTool, \JsonSeri
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaWebSearchToolTypeEnum::class),
-            externalWebAccess: (property_exists($data, "external_web_access") ? SdkClient::boolValue($data->external_web_access) : SdkNotGiven::Value),
+            externalWebAccess: (property_exists($data, "external_web_access") && $data->external_web_access !== null ? SdkClient::boolValue($data->external_web_access) : SdkNotGiven::Value),
             filters: (property_exists($data, "filters") ? ($data->filters === null ? null : SdkClient::hydrateClass($data->filters, BetaWebSearchToolFilters::class)) : SdkNotGiven::Value),
             userLocation: (property_exists($data, "user_location") ? ($data->user_location === null ? null : SdkClient::hydrateClass($data->user_location, BetaWebSearchApproximateLocation::class)) : SdkNotGiven::Value),
-            searchContextSize: (property_exists($data, "search_context_size") ? SdkClient::hydrateStringEnumOrString($data->search_context_size, BetaWebSearchToolSearchContextSizeEnum::class) : SdkNotGiven::Value),
+            searchContextSize: (property_exists($data, "search_context_size") && $data->search_context_size !== null ? SdkClient::hydrateStringEnumOrString($data->search_context_size, BetaWebSearchToolSearchContextSizeEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -210,7 +210,7 @@ class BetaWebSearchToolCall implements BetaInputItem, BetaItem, BetaItemResource
             type: SdkClient::hydrateEnum($data->type, BetaWebSearchToolCallTypeEnum::class),
             status: SdkClient::hydrateStringEnumOrString($data->status, BetaWebSearchCallStatus::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, BetaAgentTag::class)) : SdkNotGiven::Value),
-            action: (property_exists($data, "action") ? SdkClient::hydrateUnionAs($data->action, BetaWebSearchToolCallAction::class, [BetaWebSearchActionSearch::class, BetaWebSearchActionOpenPage::class, BetaWebSearchActionFind::class], "type", ["search" => BetaWebSearchActionSearch::class, "open_page" => BetaWebSearchActionOpenPage::class, "find_in_page" => BetaWebSearchActionFind::class], UnknownBetaWebSearchToolCallAction::class) : SdkNotGiven::Value),
+            action: (property_exists($data, "action") && $data->action !== null ? SdkClient::hydrateUnionAs($data->action, BetaWebSearchToolCallAction::class, [BetaWebSearchActionSearch::class, BetaWebSearchActionOpenPage::class, BetaWebSearchActionFind::class], "type", ["search" => BetaWebSearchActionSearch::class, "open_page" => BetaWebSearchActionOpenPage::class, "find_in_page" => BetaWebSearchActionFind::class], UnknownBetaWebSearchToolCallAction::class) : SdkNotGiven::Value),
         );
     }
 }

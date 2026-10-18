@@ -164,7 +164,7 @@ class UpdateEnvironmentTemplateParams implements \JsonSerializable
             env: (property_exists($data, "env") ? ($data->env === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->env), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
             capabilityDirectories: (property_exists($data, "capability_directories") ? ($data->capability_directories === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->capability_directories)))) : SdkNotGiven::Value),
             skills: (property_exists($data, "skills") ? ($data->skills === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, HostedSkillParam::class, [HostedSkillParamSkillReference::class, HostedSkillParamInline::class], "type", ["skill_reference" => HostedSkillParamSkillReference::class, "inline" => HostedSkillParamInline::class], UnknownHostedSkillParam::class), SdkClient::arrayValue($data->skills)))) : SdkNotGiven::Value),
-            plugins: (property_exists($data, "plugins") ? ($data->plugins === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, HostedPluginParam::class), SdkClient::arrayValue($data->plugins)))) : SdkNotGiven::Value),
+            plugins: (property_exists($data, "plugins") ? ($data->plugins === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, HostedPluginParamInline::class), SdkClient::arrayValue($data->plugins)))) : SdkNotGiven::Value),
             files: (property_exists($data, "files") ? ($data->files === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, HostedEnvironmentFileParam::class, [HostedEnvironmentFileParamFileId::class, HostedEnvironmentFileParamInline::class], "type", ["file_id" => HostedEnvironmentFileParamFileId::class, "inline" => HostedEnvironmentFileParamInline::class], UnknownHostedEnvironmentFileParam::class), SdkClient::arrayValue($data->files)))) : SdkNotGiven::Value),
         );
     }
@@ -235,8 +235,8 @@ class UpdateSessionAgentParam implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            model: (property_exists($data, "model") ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
-            reasoning: (property_exists($data, "reasoning") ? SdkClient::hydrateClass($data->reasoning, UpdateSessionReasoningParam::class) : SdkNotGiven::Value),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            reasoning: (property_exists($data, "reasoning") && $data->reasoning !== null ? SdkClient::hydrateClass($data->reasoning, UpdateSessionReasoningParam::class) : SdkNotGiven::Value),
             serviceTier: (property_exists($data, "service_tier") ? ($data->service_tier === null ? null : SdkClient::hydrateStringEnumOrString($data->service_tier, ServiceTierParam::class)) : SdkNotGiven::Value),
         );
     }

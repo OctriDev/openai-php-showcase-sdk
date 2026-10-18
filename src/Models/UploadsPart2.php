@@ -158,7 +158,7 @@ class Upload implements \JsonSerializable
             purpose: SdkClient::stringValue($data->purpose),
             status: SdkClient::hydrateStringEnumOrString($data->status, UploadStatusEnum::class),
             expiresAt: SdkClient::intValue($data->expires_at),
-            object_: (property_exists($data, "object") ? SdkClient::hydrateStringEnumOrString($data->object, UploadObjectEnum::class) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, UploadObjectEnum::class) : SdkNotGiven::Value),
             file: (property_exists($data, "file") ? ($data->file === null ? null : SdkClient::hydrateClass($data->file, OpenAIFile::class)) : SdkNotGiven::Value),
         );
     }

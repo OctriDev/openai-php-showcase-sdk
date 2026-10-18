@@ -70,7 +70,7 @@ class BetaLocalEnvironmentParam implements BetaFunctionShellToolParamEnvironment
         }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaLocalEnvironmentParamTypeEnum::class),
-            skills: (property_exists($data, "skills") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaLocalSkillParam::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
+            skills: (property_exists($data, "skills") && $data->skills !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaLocalSkillParam::class), SdkClient::arrayValue($data->skills))) : SdkNotGiven::Value),
         );
     }
 }

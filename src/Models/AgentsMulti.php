@@ -62,7 +62,7 @@ class MultiAgentConfigCurrentParam implements \JsonSerializable
         }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
-            maxConcurrentSubagents: (property_exists($data, "max_concurrent_subagents") ? SdkClient::intValue($data->max_concurrent_subagents) : SdkNotGiven::Value),
+            maxConcurrentSubagents: (property_exists($data, "max_concurrent_subagents") && $data->max_concurrent_subagents !== null ? SdkClient::intValue($data->max_concurrent_subagents) : SdkNotGiven::Value),
         );
     }
 }

@@ -173,7 +173,7 @@ class BetaAgentMessage implements BetaItemResource, BetaItemField, BetaOutputIte
             author: SdkClient::stringValue($data->author),
             recipient: SdkClient::stringValue($data->recipient),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, BetaAgentMessageContentItem::class, [BetaInputTextContent::class, BetaOutputTextContent::class, BetaTextContent::class, BetaSummaryTextContent::class, BetaReasoningTextContent::class, BetaRefusalContent::class, BetaInputImageContent::class, BetaComputerScreenshotContent::class, BetaInputFileContent::class, BetaEncryptedContent::class], "type", ["input_text" => BetaInputTextContent::class, "output_text" => BetaOutputTextContent::class, "text" => BetaTextContent::class, "summary_text" => BetaSummaryTextContent::class, "reasoning_text" => BetaReasoningTextContent::class, "refusal" => BetaRefusalContent::class, "input_image" => BetaInputImageContent::class, "computer_screenshot" => BetaComputerScreenshotContent::class, "input_file" => BetaInputFileContent::class, "encrypted_content" => BetaEncryptedContent::class], UnknownBetaAgentMessageContentItem::class), SdkClient::arrayValue($data->content))),
-            agent: (property_exists($data, "agent") ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
+            agent: (property_exists($data, "agent") && $data->agent !== null ? SdkClient::hydrateClass($data->agent, BetaAgentTag::class) : SdkNotGiven::Value),
         );
     }
 }

@@ -102,7 +102,7 @@ class CustomToolCallOutput implements ConversationItem, InputItem, Item, ItemFie
             type: SdkClient::hydrateEnum($data->type, CustomToolCallOutputTypeEnum::class),
             callId: SdkClient::stringValue($data->call_id),
             output: (is_array($data->output) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, FunctionAndCustomToolCallOutput::class, [InputTextContent::class, InputImageContent::class, InputFileContent::class], "type", ["input_text" => InputTextContent::class, "input_image" => InputImageContent::class, "input_file" => InputFileContent::class], UnknownFunctionAndCustomToolCallOutput::class), SdkClient::arrayValue($data->output))) : SdkClient::stringValue($data->output)),
-            id: (property_exists($data, "id") ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
             caller: (property_exists($data, "caller") ? ($data->caller === null ? null : SdkClient::hydrateUnionAs($data->caller, ToolCallCallerParam::class, [DirectToolCallCallerParam::class, ProgramToolCallCallerParam::class], "type", ["direct" => DirectToolCallCallerParam::class, "program" => ProgramToolCallCallerParam::class], UnknownToolCallCallerParam::class)) : SdkNotGiven::Value),
         );
     }
@@ -233,10 +233,10 @@ class CustomToolParam implements Tool, ToolSearchOutputTool, NamespaceToolParamT
         return new self(
             type: SdkClient::hydrateEnum($data->type, CustomToolParamTypeEnum::class),
             name: SdkClient::stringValue($data->name),
-            async: (property_exists($data, "async") ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
-            description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
-            format: (property_exists($data, "format") ? SdkClient::hydrateUnionAs($data->format, CustomToolParamFormat::class, [CustomTextFormatParam::class, CustomGrammarFormatParam::class], "type", ["text" => CustomTextFormatParam::class, "grammar" => CustomGrammarFormatParam::class], UnknownCustomToolParamFormat::class) : SdkNotGiven::Value),
-            deferLoading: (property_exists($data, "defer_loading") ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
+            async: (property_exists($data, "async") && $data->async !== null ? SdkClient::boolValue($data->async) : SdkNotGiven::Value),
+            description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
+            format: (property_exists($data, "format") && $data->format !== null ? SdkClient::hydrateUnionAs($data->format, CustomToolParamFormat::class, [CustomTextFormatParam::class, CustomGrammarFormatParam::class], "type", ["text" => CustomTextFormatParam::class, "grammar" => CustomGrammarFormatParam::class], UnknownCustomToolParamFormat::class) : SdkNotGiven::Value),
+            deferLoading: (property_exists($data, "defer_loading") && $data->defer_loading !== null ? SdkClient::boolValue($data->defer_loading) : SdkNotGiven::Value),
             allowedCallers: (property_exists($data, "allowed_callers") ? ($data->allowed_callers === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, CallableToolAllowedCaller::class), SdkClient::arrayValue($data->allowed_callers)))) : SdkNotGiven::Value),
         );
     }

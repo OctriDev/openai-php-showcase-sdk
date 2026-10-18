@@ -140,7 +140,7 @@ class AssistantsNamedToolChoice implements \JsonSerializable
         }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, AssistantsNamedToolChoiceTypeEnum::class),
-            function_: (property_exists($data, "function") ? SdkClient::hydrateClass($data->function, AssistantsNamedToolChoiceFunction::class) : SdkNotGiven::Value),
+            function_: (property_exists($data, "function") && $data->function !== null ? SdkClient::hydrateClass($data->function, AssistantsNamedToolChoiceFunction::class) : SdkNotGiven::Value),
         );
     }
 }

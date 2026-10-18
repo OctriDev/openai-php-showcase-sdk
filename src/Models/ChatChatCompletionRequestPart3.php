@@ -76,7 +76,7 @@ class ChatCompletionRequestMessageContentPartFile implements ChatCompletionReque
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionRequestMessageContentPartFileTypeEnum::class),
             file: SdkClient::hydrateClass($data->file, ChatCompletionRequestMessageContentPartFileFile::class),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -176,7 +176,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrl implements \JsonSeria
         }
         return new self(
             url: SdkClient::stringValue($data->url),
-            detail: (property_exists($data, "detail") ? SdkClient::hydrateStringEnumOrString($data->detail, ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum::class) : SdkNotGiven::Value),
+            detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum::class) : SdkNotGiven::Value),
         );
     }
 }
@@ -250,7 +250,7 @@ class ChatCompletionRequestMessageContentPartImage implements ChatCompletionRequ
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionRequestMessageContentPartImageTypeEnum::class),
             imageUrl: SdkClient::hydrateClass($data->image_url, ChatCompletionRequestMessageContentPartImageImageUrl::class),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointParam::class) : SdkNotGiven::Value),
         );
     }
 }

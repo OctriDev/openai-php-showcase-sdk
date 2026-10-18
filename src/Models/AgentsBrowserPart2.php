@@ -103,7 +103,7 @@ class BrowserAuthenticationRequestItemResource implements SessionTurnItemResourc
         return new self(
             turnId: SdkClient::stringValue($data->turn_id),
             requestId: SdkClient::stringValue($data->request_id),
-            request: SdkClient::hydrateClass($data->request, BrowserAuthenticationHistoryRequestKindResource::class),
+            request: SdkClient::hydrateClass($data->request, BrowserAuthenticationHistoryRequestKindResourceBrowserAuthentication::class),
             id: SdkClient::stringValue($data->id),
             type: SdkClient::hydrateEnum($data->type, BrowserAuthenticationRequestItemResourceTypeEnum::class),
         );

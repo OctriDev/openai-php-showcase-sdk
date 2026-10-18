@@ -21,14 +21,14 @@ class AudioNamespace
      *
      * @param string $model
      * @param string $input
-     * @param string|CreateSpeechVoiceEnum $voice
+     * @param string|array<array-key,mixed> $voice
      * @param string|SdkNotGiven $instructions
      * @param CreateSpeechResponseFormat|SdkNotGiven $responseFormat
      * @param float|SdkNotGiven $speed
      * @param CreateSpeechStreamFormat|SdkNotGiven $streamFormat
      * @return string
      */
-    public function createSpeech(string $model, string $input, string|CreateSpeechVoiceEnum|CreateSpeechVoiceVariant1 $voice, string|SdkNotGiven $instructions = SdkNotGiven::Value, CreateSpeechResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $speed = SdkNotGiven::Value, CreateSpeechStreamFormat|SdkNotGiven $streamFormat = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): string
+    public function createSpeech(string $model, string $input, string|array $voice, string|SdkNotGiven $instructions = SdkNotGiven::Value, CreateSpeechResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $speed = SdkNotGiven::Value, CreateSpeechStreamFormat|SdkNotGiven $streamFormat = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): string
     {
         return Audio::createSpeech($this->clientConfig, $model, $input, $voice, $instructions, $responseFormat, $speed, $streamFormat, $requestOptions);
     }
@@ -39,7 +39,7 @@ class AudioNamespace
      *
      * @param string $model
      * @param string $input
-     * @param string|CreateSpeechStreamVoiceEnum $voice
+     * @param string|array<array-key,mixed> $voice
      * @param string|SdkNotGiven $instructions
      * @param CreateSpeechStreamResponseFormat|SdkNotGiven $responseFormat
      * @param float|SdkNotGiven $speed
@@ -47,7 +47,7 @@ class AudioNamespace
      * @return \Generator<int,
      *   CreateSpeechResponseStreamEvent>
      */
-    public function createSpeechStream(string $model, string $input, string|CreateSpeechStreamVoiceEnum|CreateSpeechStreamVoiceVariant1 $voice, string|SdkNotGiven $instructions = SdkNotGiven::Value, CreateSpeechStreamResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $speed = SdkNotGiven::Value, CreateSpeechStreamStreamFormat|SdkNotGiven $streamFormat = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    public function createSpeechStream(string $model, string $input, string|array $voice, string|SdkNotGiven $instructions = SdkNotGiven::Value, CreateSpeechStreamResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $speed = SdkNotGiven::Value, CreateSpeechStreamStreamFormat|SdkNotGiven $streamFormat = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
     {
         return Audio::createSpeechStream($this->clientConfig, $model, $input, $voice, $instructions, $responseFormat, $speed, $streamFormat, $requestOptions);
     }
@@ -67,12 +67,12 @@ class AudioNamespace
      * @param list<TranscriptionInclude|string>|SdkNotGiven $include
      * @param list<string>|SdkNotGiven $timestampGranularities
      * @param bool|null|SdkNotGiven $stream
-     * @param CreateTranscriptionChunkingStrategyEnum|VadConfig|null|SdkNotGiven $chunkingStrategy
+     * @param VadConfig|null|SdkNotGiven $chunkingStrategy
      * @param list<string>|SdkNotGiven $knownSpeakerNames
      * @param list<string>|SdkNotGiven $knownSpeakerReferences
-     * @return CreateTranscriptionResponseJson|CreateTranscriptionResponseDiarizedJson|CreateTranscriptionResponseVerboseJson
+     * @return CreateTranscriptionResponse
      */
-    public function createTranscription(SdkUploadFile $file, string $model, string|SdkNotGiven $language = SdkNotGiven::Value, array|SdkNotGiven $languages = SdkNotGiven::Value, array|SdkNotGiven $keywords = SdkNotGiven::Value, string|SdkNotGiven $prompt = SdkNotGiven::Value, AudioResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value, bool|null|SdkNotGiven $stream = SdkNotGiven::Value, CreateTranscriptionChunkingStrategyEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateTranscriptionResponseJson|CreateTranscriptionResponseDiarizedJson|CreateTranscriptionResponseVerboseJson
+    public function createTranscription(SdkUploadFile $file, string $model, string|SdkNotGiven $language = SdkNotGiven::Value, array|SdkNotGiven $languages = SdkNotGiven::Value, array|SdkNotGiven $keywords = SdkNotGiven::Value, string|SdkNotGiven $prompt = SdkNotGiven::Value, AudioResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value, bool|null|SdkNotGiven $stream = SdkNotGiven::Value, string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateTranscriptionResponse
     {
         return Audio::createTranscription($this->clientConfig, $file, $model, $language, $languages, $keywords, $prompt, $responseFormat, $temperature, $include, $timestampGranularities, $stream, $chunkingStrategy, $knownSpeakerNames, $knownSpeakerReferences, $requestOptions);
     }
@@ -92,13 +92,13 @@ class AudioNamespace
      * @param float|SdkNotGiven $temperature
      * @param list<TranscriptionInclude|string>|SdkNotGiven $include
      * @param list<string>|SdkNotGiven $timestampGranularities
-     * @param CreateTranscriptionStreamChunkingStrategyEnum|VadConfig|null|SdkNotGiven $chunkingStrategy
+     * @param VadConfig|null|SdkNotGiven $chunkingStrategy
      * @param list<string>|SdkNotGiven $knownSpeakerNames
      * @param list<string>|SdkNotGiven $knownSpeakerReferences
      * @return \Generator<int,
      *   CreateTranscriptionResponseStreamEvent>
      */
-    public function createTranscriptionStream(SdkUploadFile $file, string $model, bool|null $stream, string|SdkNotGiven $language = SdkNotGiven::Value, array|SdkNotGiven $languages = SdkNotGiven::Value, array|SdkNotGiven $keywords = SdkNotGiven::Value, string|SdkNotGiven $prompt = SdkNotGiven::Value, AudioResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value, CreateTranscriptionStreamChunkingStrategyEnum|string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
+    public function createTranscriptionStream(SdkUploadFile $file, string $model, bool|null $stream, string|SdkNotGiven $language = SdkNotGiven::Value, array|SdkNotGiven $languages = SdkNotGiven::Value, array|SdkNotGiven $keywords = SdkNotGiven::Value, string|SdkNotGiven $prompt = SdkNotGiven::Value, AudioResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, array|SdkNotGiven $include = SdkNotGiven::Value, array|SdkNotGiven $timestampGranularities = SdkNotGiven::Value, string|VadConfig|null|SdkNotGiven $chunkingStrategy = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerNames = SdkNotGiven::Value, array|SdkNotGiven $knownSpeakerReferences = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): \Generator
     {
         return Audio::createTranscriptionStream($this->clientConfig, $file, $model, $stream, $language, $languages, $keywords, $prompt, $responseFormat, $temperature, $include, $timestampGranularities, $chunkingStrategy, $knownSpeakerNames, $knownSpeakerReferences, $requestOptions);
     }
@@ -112,9 +112,9 @@ class AudioNamespace
      * @param string|SdkNotGiven $prompt
      * @param CreateTranslationResponseFormat|SdkNotGiven $responseFormat
      * @param float|SdkNotGiven $temperature
-     * @return CreateTranslationResponseJson|CreateTranslationResponseVerboseJson
+     * @return CreateTranslationResponse
      */
-    public function createTranslation(SdkUploadFile $file, string $model, string|SdkNotGiven $prompt = SdkNotGiven::Value, CreateTranslationResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateTranslationResponseJson|CreateTranslationResponseVerboseJson
+    public function createTranslation(SdkUploadFile $file, string $model, string|SdkNotGiven $prompt = SdkNotGiven::Value, CreateTranslationResponseFormat|SdkNotGiven $responseFormat = SdkNotGiven::Value, float|SdkNotGiven $temperature = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): CreateTranslationResponse
     {
         return Audio::createTranslation($this->clientConfig, $file, $model, $prompt, $responseFormat, $temperature, $requestOptions);
     }

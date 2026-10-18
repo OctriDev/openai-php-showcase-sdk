@@ -103,9 +103,9 @@ class CertificateCertificateDetails implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            validAt: (property_exists($data, "valid_at") ? SdkClient::intValue($data->valid_at) : SdkNotGiven::Value),
-            expiresAt: (property_exists($data, "expires_at") ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
-            content: (property_exists($data, "content") ? SdkClient::stringValue($data->content) : SdkNotGiven::Value),
+            validAt: (property_exists($data, "valid_at") && $data->valid_at !== null ? SdkClient::intValue($data->valid_at) : SdkNotGiven::Value),
+            expiresAt: (property_exists($data, "expires_at") && $data->expires_at !== null ? SdkClient::intValue($data->expires_at) : SdkNotGiven::Value),
+            content: (property_exists($data, "content") && $data->content !== null ? SdkClient::stringValue($data->content) : SdkNotGiven::Value),
         );
     }
 }
@@ -221,7 +221,7 @@ class Certificate implements \JsonSerializable
             name: ($data->name === null ? null : SdkClient::stringValue($data->name)),
             createdAt: SdkClient::intValue($data->created_at),
             certificateDetails: SdkClient::hydrateClass($data->certificate_details, CertificateCertificateDetails::class),
-            active: (property_exists($data, "active") ? SdkClient::boolValue($data->active) : SdkNotGiven::Value),
+            active: (property_exists($data, "active") && $data->active !== null ? SdkClient::boolValue($data->active) : SdkNotGiven::Value),
         );
     }
 }

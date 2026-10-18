@@ -186,9 +186,9 @@ class CreateFineTuningJobHyperparameters implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            batchSize: (property_exists($data, "batch_size") ? (is_int($data->batch_size) ? SdkClient::intValue($data->batch_size) : SdkClient::hydrateStringEnumOrString($data->batch_size, CreateFineTuningJobHyperparametersBatchSizeEnum::class)) : SdkNotGiven::Value),
-            learningRateMultiplier: (property_exists($data, "learning_rate_multiplier") ? (is_float($data->learning_rate_multiplier) || is_int($data->learning_rate_multiplier) ? SdkClient::floatValue($data->learning_rate_multiplier) : SdkClient::hydrateStringEnumOrString($data->learning_rate_multiplier, CreateFineTuningJobHyperparametersLearningRateMultiplierEnum::class)) : SdkNotGiven::Value),
-            nEpochs: (property_exists($data, "n_epochs") ? (is_int($data->n_epochs) ? SdkClient::intValue($data->n_epochs) : SdkClient::hydrateStringEnumOrString($data->n_epochs, CreateFineTuningJobHyperparametersNEpochsEnum::class)) : SdkNotGiven::Value),
+            batchSize: (property_exists($data, "batch_size") && $data->batch_size !== null ? (is_int($data->batch_size) ? SdkClient::intValue($data->batch_size) : SdkClient::hydrateStringEnumOrString($data->batch_size, CreateFineTuningJobHyperparametersBatchSizeEnum::class)) : SdkNotGiven::Value),
+            learningRateMultiplier: (property_exists($data, "learning_rate_multiplier") && $data->learning_rate_multiplier !== null ? (is_float($data->learning_rate_multiplier) || is_int($data->learning_rate_multiplier) ? SdkClient::floatValue($data->learning_rate_multiplier) : SdkClient::hydrateStringEnumOrString($data->learning_rate_multiplier, CreateFineTuningJobHyperparametersLearningRateMultiplierEnum::class)) : SdkNotGiven::Value),
+            nEpochs: (property_exists($data, "n_epochs") && $data->n_epochs !== null ? (is_int($data->n_epochs) ? SdkClient::intValue($data->n_epochs) : SdkClient::hydrateStringEnumOrString($data->n_epochs, CreateFineTuningJobHyperparametersNEpochsEnum::class)) : SdkNotGiven::Value),
         );
     }
 }

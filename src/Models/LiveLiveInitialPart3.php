@@ -101,7 +101,7 @@ class LiveInitialUserMessageItemParam implements LiveInitialItem, \JsonSerializa
             role: SdkClient::hydrateEnum($data->role, LiveInitialUserMessageItemParamRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveInitialInputTextContentPartParam::class), SdkClient::arrayValue($data->content))),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, LiveInitialUserMessageItemParamTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, LiveInitialUserMessageItemParamTypeEnum::class) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? ($data->status === null ? null : SdkClient::hydrateStringEnumOrString($data->status, LiveInitialMessageStatus::class)) : SdkNotGiven::Value),
         );
     }

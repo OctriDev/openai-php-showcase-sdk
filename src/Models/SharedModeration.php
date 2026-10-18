@@ -353,7 +353,7 @@ class ModerationResultBody implements ModerationInput, ModerationOutput, \JsonSe
             flagged: SdkClient::boolValue($data->flagged),
             categories: SdkClient::mapValues(SdkClient::stringMapValue($data->categories), static fn($item) => SdkClient::boolValue($item)),
             categoryScores: SdkClient::mapValues(SdkClient::stringMapValue($data->category_scores), static fn($item) => SdkClient::floatValue($item)),
-            categoryAppliedInputTypes: SdkClient::mapValues(SdkClient::stringMapValue($data->category_applied_input_types), static fn($item) => array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, ModerationInputType::class), SdkClient::arrayValue($item)))),
+            categoryAppliedInputTypes: SdkClient::mapValues(SdkClient::stringMapValue($data->category_applied_input_types), static fn($item) => array_values(array_map(static fn($item2) => SdkClient::hydrateStringEnumOrString($item2, ModerationInputType::class), SdkClient::arrayValue($item)))),
         );
     }
 }

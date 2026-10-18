@@ -371,7 +371,7 @@ class ComputerScreenshotContent implements MessageContentItem, \JsonSerializable
             imageUrl: ($data->image_url === null ? null : SdkClient::stringValue($data->image_url)),
             fileId: ($data->file_id === null ? null : SdkClient::stringValue($data->file_id)),
             detail: SdkClient::hydrateStringEnumOrString($data->detail, ImageDetail::class),
-            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
+            promptCacheBreakpoint: (property_exists($data, "prompt_cache_breakpoint") && $data->prompt_cache_breakpoint !== null ? SdkClient::hydrateClass($data->prompt_cache_breakpoint, PromptCacheBreakpointConfig::class) : SdkNotGiven::Value),
         );
     }
 }

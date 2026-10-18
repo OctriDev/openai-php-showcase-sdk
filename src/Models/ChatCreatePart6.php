@@ -411,8 +411,8 @@ class CreateChatCompletionResponse implements \JsonSerializable
             object_: SdkClient::hydrateStringEnumOrString($data->object, CreateChatCompletionResponseObjectEnum::class),
             metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
             serviceTier: (property_exists($data, "service_tier") ? ($data->service_tier === null ? null : SdkClient::hydrateEnum($data->service_tier, CreateChatCompletionResponseServiceTierEnum::class)) : SdkNotGiven::Value),
-            systemFingerprint: (property_exists($data, "system_fingerprint") ? SdkClient::stringValue($data->system_fingerprint) : SdkNotGiven::Value),
-            usage: (property_exists($data, "usage") ? SdkClient::hydrateClass($data->usage, CompletionUsage::class) : SdkNotGiven::Value),
+            systemFingerprint: (property_exists($data, "system_fingerprint") && $data->system_fingerprint !== null ? SdkClient::stringValue($data->system_fingerprint) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, CompletionUsage::class) : SdkNotGiven::Value),
             moderation: (property_exists($data, "moderation") ? ($data->moderation === null ? null : SdkClient::hydrateClass($data->moderation, ChatCompletionModeration::class)) : SdkNotGiven::Value),
         );
     }

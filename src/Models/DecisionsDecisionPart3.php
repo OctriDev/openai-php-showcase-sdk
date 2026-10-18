@@ -216,7 +216,7 @@ class DecisionInputMessage implements DecisionInputItem, \JsonSerializable
             role: SdkClient::hydrateStringEnumOrString($data->role, DecisionInputMessageRoleEnum::class),
             content: (is_array($data->content) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, DecisionInputContentPartsItem::class, [DecisionInputText::class, DecisionInputImage::class, DecisionInputOutputText::class, DecisionInputRefusal::class], "type", ["input_text" => DecisionInputText::class, "input_image" => DecisionInputImage::class, "output_text" => DecisionInputOutputText::class, "refusal" => DecisionInputRefusal::class], UnknownDecisionInputContentPartsItem::class), SdkClient::arrayValue($data->content))) : SdkClient::stringValue($data->content)),
             phase: (property_exists($data, "phase") ? ($data->phase === null ? null : SdkClient::hydrateStringEnumOrString($data->phase, MessagePhaseParam::class)) : SdkNotGiven::Value),
-            type: (property_exists($data, "type") ? SdkClient::hydrateEnum($data->type, DecisionInputMessageTypeEnum::class) : SdkNotGiven::Value),
+            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateEnum($data->type, DecisionInputMessageTypeEnum::class) : SdkNotGiven::Value),
         );
     }
 }

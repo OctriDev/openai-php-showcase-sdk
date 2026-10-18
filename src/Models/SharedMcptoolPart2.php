@@ -156,7 +156,7 @@ class MCPToolCall implements ConversationItem, InputItem, Item, ItemResource, Ou
             arguments: SdkClient::stringValue($data->arguments),
             output: (property_exists($data, "output") ? ($data->output === null ? null : SdkClient::stringValue($data->output)) : SdkNotGiven::Value),
             error: (property_exists($data, "error") ? ($data->error === null ? null : SdkClient::hydrateUnionAs($data->error, MCPToolCallError::class, [MCPProtocolError::class, MCPToolExecutionError::class, HTTPError::class], "type", ["mcp_protocol_error" => MCPProtocolError::class, "mcp_tool_execution_error" => MCPToolExecutionError::class, "http_error" => HTTPError::class], UnknownMCPToolCallError::class)) : SdkNotGiven::Value),
-            status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, MCPToolCallStatus::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, MCPToolCallStatus::class) : SdkNotGiven::Value),
             approvalRequestId: (property_exists($data, "approval_request_id") ? ($data->approval_request_id === null ? null : SdkClient::stringValue($data->approval_request_id)) : SdkNotGiven::Value),
         );
     }
@@ -317,8 +317,8 @@ class MCPToolFilter implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            toolNames: (property_exists($data, "tool_names") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tool_names))) : SdkNotGiven::Value),
-            readOnly: (property_exists($data, "read_only") ? SdkClient::boolValue($data->read_only) : SdkNotGiven::Value),
+            toolNames: (property_exists($data, "tool_names") && $data->tool_names !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tool_names))) : SdkNotGiven::Value),
+            readOnly: (property_exists($data, "read_only") && $data->read_only !== null ? SdkClient::boolValue($data->read_only) : SdkNotGiven::Value),
         );
     }
 }
