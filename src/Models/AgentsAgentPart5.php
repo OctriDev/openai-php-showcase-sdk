@@ -115,30 +115,14 @@ class AgentToolResourceMcp implements AgentToolResource, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "server_label") || $data->server_label === null) {
-            throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null");
-        }
-        if (!property_exists($data, "credential_id")) {
-            throw new SdkValidationError("credential_id", 'required', "Missing required property 'credential_id'");
-        }
-        if (!property_exists($data, "transport") || $data->transport === null) {
-            throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null");
-        }
-        if (!property_exists($data, "request_metadata") || $data->request_metadata === null) {
-            throw new SdkValidationError("request_metadata", 'required', "Required property 'request_metadata' is missing or null");
-        }
-        if (!property_exists($data, "allowed_tools")) {
-            throw new SdkValidationError("allowed_tools", 'required', "Missing required property 'allowed_tools'");
-        }
-        if (!property_exists($data, "required") || $data->required === null) {
-            throw new SdkValidationError("required", 'required', "Required property 'required' is missing or null");
-        }
-        if (!property_exists($data, "connection_origin") || $data->connection_origin === null) {
-            throw new SdkValidationError("connection_origin", 'required', "Required property 'connection_origin' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "server_label") || $data->server_label === null) { throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null"); }
+        if (!property_exists($data, "credential_id")) { throw new SdkValidationError("credential_id", 'required', "Missing required property 'credential_id'"); }
+        if (!property_exists($data, "transport") || $data->transport === null) { throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null"); }
+        if (!property_exists($data, "request_metadata") || $data->request_metadata === null) { throw new SdkValidationError("request_metadata", 'required', "Required property 'request_metadata' is missing or null"); }
+        if (!property_exists($data, "allowed_tools")) { throw new SdkValidationError("allowed_tools", 'required', "Missing required property 'allowed_tools'"); }
+        if (!property_exists($data, "required") || $data->required === null) { throw new SdkValidationError("required", 'required', "Required property 'required' is missing or null"); }
+        if (!property_exists($data, "connection_origin") || $data->connection_origin === null) { throw new SdkValidationError("connection_origin", 'required', "Required property 'connection_origin' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolResourceMcpTypeEnum::class),
             serverLabel: SdkClient::stringValue($data->server_label),
@@ -208,12 +192,8 @@ class AgentToolResourceProgrammaticToolCalling implements AgentToolResource, \Js
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "enabled") || $data->enabled === null) {
-            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolResourceProgrammaticToolCallingTypeEnum::class),
             enabled: SdkClient::boolValue($data->enabled),
@@ -307,21 +287,11 @@ class AgentToolResourceWebSearch implements AgentToolResource, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "mode") || $data->mode === null) {
-            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
-        }
-        if (!property_exists($data, "context_size") || $data->context_size === null) {
-            throw new SdkValidationError("context_size", 'required', "Required property 'context_size' is missing or null");
-        }
-        if (!property_exists($data, "allowed_domains")) {
-            throw new SdkValidationError("allowed_domains", 'required', "Missing required property 'allowed_domains'");
-        }
-        if (!property_exists($data, "location")) {
-            throw new SdkValidationError("location", 'required', "Missing required property 'location'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
+        if (!property_exists($data, "context_size") || $data->context_size === null) { throw new SdkValidationError("context_size", 'required', "Required property 'context_size' is missing or null"); }
+        if (!property_exists($data, "allowed_domains")) { throw new SdkValidationError("allowed_domains", 'required', "Missing required property 'allowed_domains'"); }
+        if (!property_exists($data, "location")) { throw new SdkValidationError("location", 'required', "Missing required property 'location'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolResourceWebSearchTypeEnum::class),
             mode: SdkClient::hydrateStringEnumOrString($data->mode, WebSearchModeResource::class),

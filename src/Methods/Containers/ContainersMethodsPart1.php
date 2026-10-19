@@ -23,7 +23,7 @@ trait ContainersMethodsPart1
     public static function listContainers(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, ListContainersOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $name = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ContainerListResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/containers", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'name' => new SdkQueryValue($name, "form", true)], returnType: ContainerListResource::class, decoder: 'json', operationId: 'listContainers', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/containers", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'name' => new SdkQueryValue($name, "form", true)], returnType: ContainerListResource::class, decoder: 'json', operationId: 'listContainers', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ContainerListResource::class));
     }
 
@@ -111,7 +111,7 @@ trait ContainersMethodsPart1
     public static function createContainer(ClientConfig $clientConfig, string $name, array|SdkNotGiven $fileIds = SdkNotGiven::Value, CreateContainerExpiresAfter|SdkNotGiven $expiresAfter = SdkNotGiven::Value, array|SdkNotGiven $skills = SdkNotGiven::Value, CreateContainerMemoryLimit|SdkNotGiven $memoryLimit = SdkNotGiven::Value, CreateContainerBodyNetworkPolicy|SdkNotGiven $networkPolicy = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ContainerResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/containers", $clientConfig, body: ['name' => $name, 'file_ids' => $fileIds, 'expires_after' => $expiresAfter, 'skills' => $skills, 'memory_limit' => $memoryLimit, 'network_policy' => $networkPolicy], returnType: ContainerResource::class, decoder: 'json', operationId: 'createContainer', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/containers", $clientConfig, body: ['name' => $name, 'file_ids' => $fileIds, 'expires_after' => $expiresAfter, 'skills' => $skills, 'memory_limit' => $memoryLimit, 'network_policy' => $networkPolicy], returnType: ContainerResource::class, decoder: 'json', operationId: 'createContainer', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ContainerResource::class));
     }
 
@@ -127,7 +127,7 @@ trait ContainersMethodsPart1
     public static function retrieveContainer(ClientConfig $clientConfig, string $containerId, ?RequestOptions $requestOptions = null): ContainerResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/containers/" . SdkClient::encodePathSegment($containerId) . "", $clientConfig, returnType: ContainerResource::class, decoder: 'json', operationId: 'retrieveContainer', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/containers/" . SdkClient::encodePathSegment($containerId) . "", $clientConfig, returnType: ContainerResource::class, decoder: 'json', operationId: 'retrieveContainer', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ContainerResource::class));
     }
 
@@ -143,7 +143,7 @@ trait ContainersMethodsPart1
     public static function deleteContainer(ClientConfig $clientConfig, string $containerId, ?RequestOptions $requestOptions = null): DeleteContainerResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/containers/" . SdkClient::encodePathSegment($containerId) . "", $clientConfig, returnType: DeleteContainerResponse::class, decoder: 'json', operationId: 'deleteContainer', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/containers/" . SdkClient::encodePathSegment($containerId) . "", $clientConfig, returnType: DeleteContainerResponse::class, decoder: 'json', operationId: 'deleteContainer', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteContainerResponse::class));
     }
 
@@ -162,7 +162,7 @@ trait ContainersMethodsPart1
     public static function createContainerFile(ClientConfig $clientConfig, string $containerId, string|SdkNotGiven $fileId = SdkNotGiven::Value, string|SdkNotGiven $file = SdkNotGiven::Value, string|SdkNotGiven $contentType = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ContainerFileResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files", $clientConfig, body: new SdkFormValue(['file_id' => $fileId, 'file' => $file], ['file']), contentType: SdkClient::bodyContentType($contentType, null, 'application/json'), returnType: ContainerFileResource::class, decoder: 'json', operationId: 'createContainerFile', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files", $clientConfig, body: new SdkFormValue(['file_id' => $fileId, 'file' => $file], ['file']), contentType: SdkClient::bodyContentType($contentType, null, 'application/json'), returnType: ContainerFileResource::class, decoder: 'json', operationId: 'createContainerFile', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ContainerFileResource::class));
     }
 
@@ -181,7 +181,7 @@ trait ContainersMethodsPart1
     public static function listContainerFiles(ClientConfig $clientConfig, string $containerId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListContainerFilesOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ContainerFileListResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: ContainerFileListResource::class, decoder: 'json', operationId: 'listContainerFiles', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: ContainerFileListResource::class, decoder: 'json', operationId: 'listContainerFiles', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ContainerFileListResource::class));
     }
 
@@ -265,7 +265,7 @@ trait ContainersMethodsPart1
     public static function retrieveContainerFile(ClientConfig $clientConfig, string $containerId, string $fileId, ?RequestOptions $requestOptions = null): ContainerFileResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: ContainerFileResource::class, decoder: 'json', operationId: 'retrieveContainerFile', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: ContainerFileResource::class, decoder: 'json', operationId: 'retrieveContainerFile', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ContainerFileResource::class));
     }
 
@@ -282,7 +282,7 @@ trait ContainersMethodsPart1
     public static function deleteContainerFile(ClientConfig $clientConfig, string $containerId, string $fileId, ?RequestOptions $requestOptions = null): DeleteContainerFileResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: DeleteContainerFileResponse::class, decoder: 'json', operationId: 'deleteContainerFile', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files/" . SdkClient::encodePathSegment($fileId) . "", $clientConfig, returnType: DeleteContainerFileResponse::class, decoder: 'json', operationId: 'deleteContainerFile', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteContainerFileResponse::class));
     }
 
@@ -299,7 +299,7 @@ trait ContainersMethodsPart1
     public static function retrieveContainerFileContent(ClientConfig $clientConfig, string $containerId, string $fileId, ?RequestOptions $requestOptions = null): string
     {
 
-        $sdkResponse = SdkClient::request('GET', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files/" . SdkClient::encodePathSegment($fileId) . "/content", $clientConfig, decoder: 'bytes', operationId: 'retrieveContainerFileContent', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/containers/" . SdkClient::encodePathSegment($containerId) . "/files/" . SdkClient::encodePathSegment($fileId) . "/content", $clientConfig, decoder: 'bytes', operationId: 'retrieveContainerFileContent', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::stringValue($sdkResponse->data));
     }
 }

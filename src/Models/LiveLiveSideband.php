@@ -91,9 +91,7 @@ class LiveSidebandPathParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "session_id") || $data->session_id === null) {
-            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
-        }
+        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
         return new self(
             sessionId: SdkClient::stringValue($data->session_id),
         );

@@ -45,9 +45,7 @@ class PersistedAgentToolResourceToolSearch implements PersistedAgentToolResource
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolResourceToolSearchTypeEnum::class),
         );
@@ -140,21 +138,11 @@ class PersistedAgentToolResourceWebSearch implements PersistedAgentToolResource,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "mode") || $data->mode === null) {
-            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
-        }
-        if (!property_exists($data, "context_size") || $data->context_size === null) {
-            throw new SdkValidationError("context_size", 'required', "Required property 'context_size' is missing or null");
-        }
-        if (!property_exists($data, "allowed_domains")) {
-            throw new SdkValidationError("allowed_domains", 'required', "Missing required property 'allowed_domains'");
-        }
-        if (!property_exists($data, "location")) {
-            throw new SdkValidationError("location", 'required', "Missing required property 'location'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
+        if (!property_exists($data, "context_size") || $data->context_size === null) { throw new SdkValidationError("context_size", 'required', "Required property 'context_size' is missing or null"); }
+        if (!property_exists($data, "allowed_domains")) { throw new SdkValidationError("allowed_domains", 'required', "Missing required property 'allowed_domains'"); }
+        if (!property_exists($data, "location")) { throw new SdkValidationError("location", 'required', "Missing required property 'location'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedAgentToolResourceWebSearchTypeEnum::class),
             mode: SdkClient::hydrateStringEnumOrString($data->mode, WebSearchModeResource::class),
@@ -233,12 +221,8 @@ class PersistedMcpTransportConfigParamHttp implements PersistedMcpTransportConfi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "server_url") || $data->server_url === null) {
-            throw new SdkValidationError("server_url", 'required', "Required property 'server_url' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "server_url") || $data->server_url === null) { throw new SdkValidationError("server_url", 'required', "Required property 'server_url' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedMcpTransportConfigParamHttpTypeEnum::class),
             serverUrl: SdkClient::stringValue($data->server_url),
@@ -337,15 +321,9 @@ class PersistedMcpTransportConfigParamStdio implements PersistedMcpTransportConf
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "command") || $data->command === null) {
-            throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null");
-        }
-        if (!property_exists($data, "cwd") || $data->cwd === null) {
-            throw new SdkValidationError("cwd", 'required', "Required property 'cwd' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "command") || $data->command === null) { throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null"); }
+        if (!property_exists($data, "cwd") || $data->cwd === null) { throw new SdkValidationError("cwd", 'required', "Required property 'cwd' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, PersistedMcpTransportConfigParamStdioTypeEnum::class),
             command: SdkClient::stringValue($data->command),

@@ -95,24 +95,12 @@ class TranscriptionDiarizedSegment implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "start") || $data->start === null) {
-            throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null");
-        }
-        if (!property_exists($data, "end") || $data->end === null) {
-            throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
-        if (!property_exists($data, "speaker") || $data->speaker === null) {
-            throw new SdkValidationError("speaker", 'required', "Required property 'speaker' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "start") || $data->start === null) { throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null"); }
+        if (!property_exists($data, "end") || $data->end === null) { throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "speaker") || $data->speaker === null) { throw new SdkValidationError("speaker", 'required', "Required property 'speaker' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, TranscriptionDiarizedSegmentTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -131,26 +119,11 @@ final readonly class TranscriptionInclude implements SdkOpenEnum
 {
     public const LOGPROBS = "logprobs";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -191,9 +164,7 @@ class TranscriptionLanguage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "code") || $data->code === null) {
-            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
-        }
+        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
         return new self(
             code: SdkClient::stringValue($data->code),
         );
@@ -328,36 +299,16 @@ class TranscriptionSegment implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "seek") || $data->seek === null) {
-            throw new SdkValidationError("seek", 'required', "Required property 'seek' is missing or null");
-        }
-        if (!property_exists($data, "start") || $data->start === null) {
-            throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null");
-        }
-        if (!property_exists($data, "end") || $data->end === null) {
-            throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
-        if (!property_exists($data, "tokens") || $data->tokens === null) {
-            throw new SdkValidationError("tokens", 'required', "Required property 'tokens' is missing or null");
-        }
-        if (!property_exists($data, "temperature") || $data->temperature === null) {
-            throw new SdkValidationError("temperature", 'required', "Required property 'temperature' is missing or null");
-        }
-        if (!property_exists($data, "avg_logprob") || $data->avg_logprob === null) {
-            throw new SdkValidationError("avg_logprob", 'required', "Required property 'avg_logprob' is missing or null");
-        }
-        if (!property_exists($data, "compression_ratio") || $data->compression_ratio === null) {
-            throw new SdkValidationError("compression_ratio", 'required', "Required property 'compression_ratio' is missing or null");
-        }
-        if (!property_exists($data, "no_speech_prob") || $data->no_speech_prob === null) {
-            throw new SdkValidationError("no_speech_prob", 'required', "Required property 'no_speech_prob' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "seek") || $data->seek === null) { throw new SdkValidationError("seek", 'required', "Required property 'seek' is missing or null"); }
+        if (!property_exists($data, "start") || $data->start === null) { throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null"); }
+        if (!property_exists($data, "end") || $data->end === null) { throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "tokens") || $data->tokens === null) { throw new SdkValidationError("tokens", 'required', "Required property 'tokens' is missing or null"); }
+        if (!property_exists($data, "temperature") || $data->temperature === null) { throw new SdkValidationError("temperature", 'required', "Required property 'temperature' is missing or null"); }
+        if (!property_exists($data, "avg_logprob") || $data->avg_logprob === null) { throw new SdkValidationError("avg_logprob", 'required', "Required property 'avg_logprob' is missing or null"); }
+        if (!property_exists($data, "compression_ratio") || $data->compression_ratio === null) { throw new SdkValidationError("compression_ratio", 'required', "Required property 'compression_ratio' is missing or null"); }
+        if (!property_exists($data, "no_speech_prob") || $data->no_speech_prob === null) { throw new SdkValidationError("no_speech_prob", 'required', "Required property 'no_speech_prob' is missing or null"); }
         return new self(
             id: SdkClient::intValue($data->id),
             seek: SdkClient::intValue($data->seek),

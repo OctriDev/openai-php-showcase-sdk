@@ -75,12 +75,8 @@ class LiveMCPToolChoiceParam implements LiveAllowedToolsChoiceParamToolsItem, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "server_label") || $data->server_label === null) {
-            throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "server_label") || $data->server_label === null) { throw new SdkValidationError("server_label", 'required', "Required property 'server_label' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveMCPToolChoiceParamTypeEnum::class),
             serverLabel: SdkClient::stringValue($data->server_label),
@@ -135,9 +131,7 @@ class LiveMCPToolInputParam implements LiveResponsesDelegationSettingsInputParam
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveMCPToolInputParamTypeEnum::class),
         );

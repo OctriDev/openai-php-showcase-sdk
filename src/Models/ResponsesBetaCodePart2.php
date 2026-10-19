@@ -107,24 +107,12 @@ class BetaCodeInterpreterToolCall implements BetaInputItem, BetaItem, BetaItemRe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "container_id") || $data->container_id === null) {
-            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
-        }
-        if (!property_exists($data, "code")) {
-            throw new SdkValidationError("code", 'required', "Missing required property 'code'");
-        }
-        if (!property_exists($data, "outputs")) {
-            throw new SdkValidationError("outputs", 'required', "Missing required property 'outputs'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
+        if (!property_exists($data, "code")) { throw new SdkValidationError("code", 'required', "Missing required property 'code'"); }
+        if (!property_exists($data, "outputs")) { throw new SdkValidationError("outputs", 'required', "Missing required property 'outputs'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCodeInterpreterToolCallTypeEnum::class),
             id: SdkClient::stringValue($data->id),

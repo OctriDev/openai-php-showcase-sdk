@@ -85,21 +85,11 @@ class McpOauthRefreshResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "token_endpoint") || $data->token_endpoint === null) {
-            throw new SdkValidationError("token_endpoint", 'required', "Required property 'token_endpoint' is missing or null");
-        }
-        if (!property_exists($data, "client_id") || $data->client_id === null) {
-            throw new SdkValidationError("client_id", 'required', "Required property 'client_id' is missing or null");
-        }
-        if (!property_exists($data, "resource")) {
-            throw new SdkValidationError("resource", 'required', "Missing required property 'resource'");
-        }
-        if (!property_exists($data, "scope")) {
-            throw new SdkValidationError("scope", 'required', "Missing required property 'scope'");
-        }
-        if (!property_exists($data, "token_endpoint_auth") || $data->token_endpoint_auth === null) {
-            throw new SdkValidationError("token_endpoint_auth", 'required', "Required property 'token_endpoint_auth' is missing or null");
-        }
+        if (!property_exists($data, "token_endpoint") || $data->token_endpoint === null) { throw new SdkValidationError("token_endpoint", 'required', "Required property 'token_endpoint' is missing or null"); }
+        if (!property_exists($data, "client_id") || $data->client_id === null) { throw new SdkValidationError("client_id", 'required', "Required property 'client_id' is missing or null"); }
+        if (!property_exists($data, "resource")) { throw new SdkValidationError("resource", 'required', "Missing required property 'resource'"); }
+        if (!property_exists($data, "scope")) { throw new SdkValidationError("scope", 'required', "Missing required property 'scope'"); }
+        if (!property_exists($data, "token_endpoint_auth") || $data->token_endpoint_auth === null) { throw new SdkValidationError("token_endpoint_auth", 'required', "Required property 'token_endpoint_auth' is missing or null"); }
         return new self(
             tokenEndpoint: SdkClient::stringValue($data->token_endpoint),
             clientId: SdkClient::stringValue($data->client_id),
@@ -156,9 +146,7 @@ class McpOauthTokenEndpointAuthResourceClientSecretBasic implements McpOauthToke
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, McpOauthTokenEndpointAuthResourceClientSecretBasicTypeEnum::class),
         );
@@ -211,9 +199,7 @@ class McpOauthTokenEndpointAuthResourceClientSecretPost implements McpOauthToken
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, McpOauthTokenEndpointAuthResourceClientSecretPostTypeEnum::class),
         );
@@ -266,9 +252,7 @@ class McpOauthTokenEndpointAuthResourceNone implements McpOauthTokenEndpointAuth
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, McpOauthTokenEndpointAuthResourceNoneTypeEnum::class),
         );

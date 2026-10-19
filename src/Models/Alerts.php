@@ -17,26 +17,11 @@ final readonly class SafetyAlertErrorType implements SdkOpenEnum
     public const POTENTIALLY_UNINTENDED_DESTRUCTIVE_ACTIVITY = "potentially_unintended_destructive_activity";
     public const OTHER = "other";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -46,26 +31,11 @@ final readonly class SafetyAlertResourceObjectEnum implements SdkOpenEnum
 {
     public const SAFETY_ALERT = "safety.alert";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -198,33 +168,15 @@ class SafetyAlertResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "request_id") || $data->request_id === null) {
-            throw new SdkValidationError("request_id", 'required', "Required property 'request_id' is missing or null");
-        }
-        if (!property_exists($data, "response_id") || $data->response_id === null) {
-            throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "request_paused") || $data->request_paused === null) {
-            throw new SdkValidationError("request_paused", 'required', "Required property 'request_paused' is missing or null");
-        }
-        if (!property_exists($data, "error_type") || $data->error_type === null) {
-            throw new SdkValidationError("error_type", 'required', "Required property 'error_type' is missing or null");
-        }
-        if (!property_exists($data, "reason")) {
-            throw new SdkValidationError("reason", 'required', "Missing required property 'reason'");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "request_id") || $data->request_id === null) { throw new SdkValidationError("request_id", 'required', "Required property 'request_id' is missing or null"); }
+        if (!property_exists($data, "response_id") || $data->response_id === null) { throw new SdkValidationError("response_id", 'required', "Required property 'response_id' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "request_paused") || $data->request_paused === null) { throw new SdkValidationError("request_paused", 'required', "Required property 'request_paused' is missing or null"); }
+        if (!property_exists($data, "error_type") || $data->error_type === null) { throw new SdkValidationError("error_type", 'required', "Required property 'error_type' is missing or null"); }
+        if (!property_exists($data, "reason")) { throw new SdkValidationError("reason", 'required', "Missing required property 'reason'"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, SafetyAlertResourceObjectEnum::class),

@@ -12,26 +12,11 @@ final readonly class ListCertificatesForOrganizationOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class ListCertificatesForProjectOrder implements SdkOpenEnum
@@ -39,26 +24,11 @@ final readonly class ListCertificatesForProjectOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class Certificates
@@ -76,7 +46,7 @@ class Certificates
     public static function listCertificatesForOrganization(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, ListCertificatesForOrganizationOrder|SdkNotGiven $order = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListCertificatesResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/certificates", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ListCertificatesResponse::class, decoder: 'json', operationId: 'listCertificatesForOrganization', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/certificates", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ListCertificatesResponse::class, decoder: 'json', operationId: 'listCertificatesForOrganization', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListCertificatesResponse::class));
     }
 
@@ -161,7 +131,7 @@ class Certificates
     public static function uploadCertificate(ClientConfig $clientConfig, string $certificate, string|SdkNotGiven $name = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Certificate
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/certificates", $clientConfig, body: ['certificate' => $certificate, 'name' => $name], returnType: Certificate::class, decoder: 'json', operationId: 'uploadCertificate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/certificates", $clientConfig, body: ['certificate' => $certificate, 'name' => $name], returnType: Certificate::class, decoder: 'json', operationId: 'uploadCertificate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Certificate::class));
     }
 
@@ -179,7 +149,7 @@ class Certificates
 
         Validation::validateItems('certificate_ids', $certificateIds, min: 1, max: 10);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/certificates/activate", $clientConfig, body: ['certificate_ids' => $certificateIds], returnType: OrganizationCertificateActivationResponse::class, decoder: 'json', operationId: 'activateCertificatesForOrganization', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/certificates/activate", $clientConfig, body: ['certificate_ids' => $certificateIds], returnType: OrganizationCertificateActivationResponse::class, decoder: 'json', operationId: 'activateCertificatesForOrganization', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationCertificateActivationResponse::class));
     }
 
@@ -197,7 +167,7 @@ class Certificates
 
         Validation::validateItems('certificate_ids', $certificateIds, min: 1, max: 10);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/certificates/deactivate", $clientConfig, body: ['certificate_ids' => $certificateIds], returnType: OrganizationCertificateDeactivationResponse::class, decoder: 'json', operationId: 'deactivateCertificatesForOrganization', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/certificates/deactivate", $clientConfig, body: ['certificate_ids' => $certificateIds], returnType: OrganizationCertificateDeactivationResponse::class, decoder: 'json', operationId: 'deactivateCertificatesForOrganization', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationCertificateDeactivationResponse::class));
     }
 
@@ -214,7 +184,7 @@ class Certificates
     public static function getCertificate(ClientConfig $clientConfig, string $certificateId, array|SdkNotGiven $include = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Certificate
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/certificates/" . SdkClient::encodePathSegment($certificateId) . "", $clientConfig, query: ['include' => new SdkQueryValue($include, "form", true)], returnType: Certificate::class, decoder: 'json', operationId: 'getCertificate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/certificates/" . SdkClient::encodePathSegment($certificateId) . "", $clientConfig, query: ['include' => new SdkQueryValue($include, "form", true)], returnType: Certificate::class, decoder: 'json', operationId: 'getCertificate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Certificate::class));
     }
 
@@ -231,7 +201,7 @@ class Certificates
     public static function modifyCertificate(ClientConfig $clientConfig, string $certificateId, string|SdkNotGiven $name = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Certificate
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/certificates/" . SdkClient::encodePathSegment($certificateId) . "", $clientConfig, body: ['name' => $name], returnType: Certificate::class, decoder: 'json', operationId: 'modifyCertificate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/certificates/" . SdkClient::encodePathSegment($certificateId) . "", $clientConfig, body: ['name' => $name], returnType: Certificate::class, decoder: 'json', operationId: 'modifyCertificate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Certificate::class));
     }
 
@@ -247,7 +217,7 @@ class Certificates
     public static function deleteCertificate(ClientConfig $clientConfig, string $certificateId, ?RequestOptions $requestOptions = null): DeleteCertificateResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/certificates/" . SdkClient::encodePathSegment($certificateId) . "", $clientConfig, returnType: DeleteCertificateResponse::class, decoder: 'json', operationId: 'deleteCertificate', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/certificates/" . SdkClient::encodePathSegment($certificateId) . "", $clientConfig, returnType: DeleteCertificateResponse::class, decoder: 'json', operationId: 'deleteCertificate', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteCertificateResponse::class));
     }
 
@@ -266,7 +236,7 @@ class Certificates
     public static function listCertificatesForProject(ClientConfig $clientConfig, string $projectId, int|SdkNotGiven $limit = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, ListCertificatesForProjectOrder|SdkNotGiven $order = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListProjectCertificatesResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/certificates", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ListProjectCertificatesResponse::class, decoder: 'json', operationId: 'listCertificatesForProject', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/certificates", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ListProjectCertificatesResponse::class, decoder: 'json', operationId: 'listCertificatesForProject', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListProjectCertificatesResponse::class));
     }
 
@@ -355,7 +325,7 @@ class Certificates
 
         Validation::validateItems('certificate_ids', $certificateIds, min: 1, max: 10);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/certificates/activate", $clientConfig, body: ['certificate_ids' => $certificateIds], returnType: OrganizationProjectCertificateActivationResponse::class, decoder: 'json', operationId: 'activateCertificatesForProject', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/certificates/activate", $clientConfig, body: ['certificate_ids' => $certificateIds], returnType: OrganizationProjectCertificateActivationResponse::class, decoder: 'json', operationId: 'activateCertificatesForProject', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationProjectCertificateActivationResponse::class));
     }
 
@@ -374,7 +344,7 @@ class Certificates
 
         Validation::validateItems('certificate_ids', $certificateIds, min: 1, max: 10);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/certificates/deactivate", $clientConfig, body: ['certificate_ids' => $certificateIds], returnType: OrganizationProjectCertificateDeactivationResponse::class, decoder: 'json', operationId: 'deactivateCertificatesForProject', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/certificates/deactivate", $clientConfig, body: ['certificate_ids' => $certificateIds], returnType: OrganizationProjectCertificateDeactivationResponse::class, decoder: 'json', operationId: 'deactivateCertificatesForProject', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationProjectCertificateDeactivationResponse::class));
     }
 }

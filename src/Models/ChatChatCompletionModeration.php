@@ -55,12 +55,8 @@ class ChatCompletionModeration implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input") || $data->input === null) {
-            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
-        }
-        if (!property_exists($data, "output") || $data->output === null) {
-            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
-        }
+        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
+        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
         return new self(
             input: SdkClient::hydrateUnionAs($data->input, ChatCompletionModerationInput::class, [ChatCompletionModerationResults::class, ChatCompletionModerationError::class], "type", ["moderation_results" => ChatCompletionModerationResults::class, "error" => ChatCompletionModerationError::class], UnknownChatCompletionModerationInput::class),
             output: SdkClient::hydrateUnionAs($data->output, ChatCompletionModerationOutput::class, [ChatCompletionModerationResults::class, ChatCompletionModerationError::class], "type", ["moderation_results" => ChatCompletionModerationResults::class, "error" => ChatCompletionModerationError::class], UnknownChatCompletionModerationOutput::class),
@@ -134,15 +130,9 @@ class ChatCompletionModerationError implements ChatCompletionModerationInput, Ch
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "code") || $data->code === null) {
-            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
-        }
-        if (!property_exists($data, "message") || $data->message === null) {
-            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
+        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionModerationErrorTypeEnum::class),
             code: SdkClient::stringValue($data->code),
@@ -217,15 +207,9 @@ class ChatCompletionModerationResults implements ChatCompletionModerationInput, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "results") || $data->results === null) {
-            throw new SdkValidationError("results", 'required', "Required property 'results' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "results") || $data->results === null) { throw new SdkValidationError("results", 'required', "Required property 'results' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionModerationResultsTypeEnum::class),
             model: SdkClient::stringValue($data->model),

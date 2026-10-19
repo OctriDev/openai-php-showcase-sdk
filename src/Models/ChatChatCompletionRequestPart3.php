@@ -67,12 +67,8 @@ class ChatCompletionRequestMessageContentPartFile implements ChatCompletionReque
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "file") || $data->file === null) {
-            throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "file") || $data->file === null) { throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionRequestMessageContentPartFileTypeEnum::class),
             file: SdkClient::hydrateClass($data->file, ChatCompletionRequestMessageContentPartFileFile::class),
@@ -99,26 +95,11 @@ final readonly class ChatCompletionRequestMessageContentPartImageImageUrlDetailE
     public const HIGH = "high";
     public const ORIGINAL = "original";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -171,9 +152,7 @@ class ChatCompletionRequestMessageContentPartImageImageUrl implements \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "url") || $data->url === null) {
-            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
-        }
+        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
         return new self(
             url: SdkClient::stringValue($data->url),
             detail: (property_exists($data, "detail") && $data->detail !== null ? SdkClient::hydrateStringEnumOrString($data->detail, ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum::class) : SdkNotGiven::Value),
@@ -241,12 +220,8 @@ class ChatCompletionRequestMessageContentPartImage implements ChatCompletionRequ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "image_url") || $data->image_url === null) {
-            throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "image_url") || $data->image_url === null) { throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionRequestMessageContentPartImageTypeEnum::class),
             imageUrl: SdkClient::hydrateClass($data->image_url, ChatCompletionRequestMessageContentPartImageImageUrl::class),
@@ -311,12 +286,8 @@ class ChatCompletionRequestMessageContentPartRefusal implements ChatCompletionRe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "refusal") || $data->refusal === null) {
-            throw new SdkValidationError("refusal", 'required', "Required property 'refusal' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "refusal") || $data->refusal === null) { throw new SdkValidationError("refusal", 'required', "Required property 'refusal' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionRequestMessageContentPartRefusalTypeEnum::class),
             refusal: SdkClient::stringValue($data->refusal),

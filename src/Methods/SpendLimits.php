@@ -11,104 +11,44 @@ final readonly class UpdateSpendLimitsOrganizationCurrency implements SdkOpenEnu
 {
     public const USD = "USD";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class UpdateSpendLimitsOrganizationInterval implements SdkOpenEnum
 {
     public const MONTH = "month";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class UpdateSpendLimitsProjectCurrency implements SdkOpenEnum
 {
     public const USD = "USD";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class UpdateSpendLimitsProjectInterval implements SdkOpenEnum
 {
     public const MONTH = "month";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class SpendLimits
@@ -123,7 +63,7 @@ class SpendLimits
     public static function retrieveSpendLimitsOrganization(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): OrganizationSpendLimitResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/spend_limit", $clientConfig, returnType: OrganizationSpendLimitResource::class, decoder: 'json', operationId: 'retrieveSpendLimitsOrganization', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/spend_limit", $clientConfig, returnType: OrganizationSpendLimitResource::class, decoder: 'json', operationId: 'retrieveSpendLimitsOrganization', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationSpendLimitResource::class));
     }
 
@@ -143,7 +83,7 @@ class SpendLimits
 
         Validation::validateRange('threshold_amount', $thresholdAmount, min: 1);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/spend_limit", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval], returnType: OrganizationSpendLimitResource::class, decoder: 'json', operationId: 'updateSpendLimitsOrganization', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/spend_limit", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval], returnType: OrganizationSpendLimitResource::class, decoder: 'json', operationId: 'updateSpendLimitsOrganization', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationSpendLimitResource::class));
     }
 
@@ -158,7 +98,7 @@ class SpendLimits
     public static function deleteSpendLimitsOrganization(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): OrganizationSpendLimitDeletedResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/spend_limit", $clientConfig, returnType: OrganizationSpendLimitDeletedResource::class, decoder: 'json', operationId: 'deleteSpendLimitsOrganization', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/spend_limit", $clientConfig, returnType: OrganizationSpendLimitDeletedResource::class, decoder: 'json', operationId: 'deleteSpendLimitsOrganization', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationSpendLimitDeletedResource::class));
     }
 
@@ -174,7 +114,7 @@ class SpendLimits
     public static function retrieveSpendLimitsProject(ClientConfig $clientConfig, string $projectId, ?RequestOptions $requestOptions = null): ProjectSpendLimitResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_limit", $clientConfig, returnType: ProjectSpendLimitResource::class, decoder: 'json', operationId: 'retrieveSpendLimitsProject', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_limit", $clientConfig, returnType: ProjectSpendLimitResource::class, decoder: 'json', operationId: 'retrieveSpendLimitsProject', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendLimitResource::class));
     }
 
@@ -190,7 +130,7 @@ class SpendLimits
     public static function deleteSpendLimitsProject(ClientConfig $clientConfig, string $projectId, ?RequestOptions $requestOptions = null): ProjectSpendLimitDeletedResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_limit", $clientConfig, returnType: ProjectSpendLimitDeletedResource::class, decoder: 'json', operationId: 'deleteSpendLimitsProject', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_limit", $clientConfig, returnType: ProjectSpendLimitDeletedResource::class, decoder: 'json', operationId: 'deleteSpendLimitsProject', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendLimitDeletedResource::class));
     }
 
@@ -211,7 +151,7 @@ class SpendLimits
 
         Validation::validateRange('threshold_amount', $thresholdAmount, min: 1);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_limit", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval], returnType: ProjectSpendLimitResource::class, decoder: 'json', operationId: 'updateSpendLimitsProject', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_limit", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval], returnType: ProjectSpendLimitResource::class, decoder: 'json', operationId: 'updateSpendLimitsProject', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendLimitResource::class));
     }
 }

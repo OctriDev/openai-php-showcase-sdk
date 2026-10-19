@@ -67,12 +67,8 @@ class InputMessageParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role") || $data->role === null) {
-            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
-        }
-        if (!property_exists($data, "content") || $data->content === null) {
-            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
-        }
+        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
         return new self(
             role: SdkClient::hydrateStringEnumOrString($data->role, InputMessageParamRoleEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, InputContentParam::class, [InputContentParamInputText::class, InputContentParamInputImage::class], "type", ["input_text" => InputContentParamInputText::class, "input_image" => InputContentParamInputImage::class], UnknownInputContentParam::class), SdkClient::arrayValue($data->content))),
@@ -119,9 +115,7 @@ class InputTokensDetailsResource2 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) {
-            throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null");
-        }
+        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) { throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null"); }
         return new self(
             cachedTokens: SdkClient::intValue($data->cached_tokens),
         );

@@ -75,18 +75,10 @@ class CreateVaultCredentialAuthParamEnvironmentVariable implements CreateVaultCr
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "secret_name") || $data->secret_name === null) {
-            throw new SdkValidationError("secret_name", 'required', "Required property 'secret_name' is missing or null");
-        }
-        if (!property_exists($data, "secret_value") || $data->secret_value === null) {
-            throw new SdkValidationError("secret_value", 'required', "Required property 'secret_value' is missing or null");
-        }
-        if (!property_exists($data, "networking") || $data->networking === null) {
-            throw new SdkValidationError("networking", 'required', "Required property 'networking' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "secret_name") || $data->secret_name === null) { throw new SdkValidationError("secret_name", 'required', "Required property 'secret_name' is missing or null"); }
+        if (!property_exists($data, "secret_value") || $data->secret_value === null) { throw new SdkValidationError("secret_value", 'required', "Required property 'secret_value' is missing or null"); }
+        if (!property_exists($data, "networking") || $data->networking === null) { throw new SdkValidationError("networking", 'required', "Required property 'networking' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateVaultCredentialAuthParamEnvironmentVariableTypeEnum::class),
             secretName: SdkClient::stringValue($data->secret_name),
@@ -186,15 +178,9 @@ class CreateVaultCredentialAuthParamMcpOauth implements CreateVaultCredentialAut
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "mcp_server_url") || $data->mcp_server_url === null) {
-            throw new SdkValidationError("mcp_server_url", 'required', "Required property 'mcp_server_url' is missing or null");
-        }
-        if (!property_exists($data, "access_token") || $data->access_token === null) {
-            throw new SdkValidationError("access_token", 'required', "Required property 'access_token' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "mcp_server_url") || $data->mcp_server_url === null) { throw new SdkValidationError("mcp_server_url", 'required', "Required property 'mcp_server_url' is missing or null"); }
+        if (!property_exists($data, "access_token") || $data->access_token === null) { throw new SdkValidationError("access_token", 'required', "Required property 'access_token' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateVaultCredentialAuthParamMcpOauthTypeEnum::class),
             mcpServerUrl: SdkClient::stringValue($data->mcp_server_url),
@@ -271,15 +257,9 @@ class CreateVaultCredentialAuthParamStaticBearer implements CreateVaultCredentia
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "mcp_server_url") || $data->mcp_server_url === null) {
-            throw new SdkValidationError("mcp_server_url", 'required', "Required property 'mcp_server_url' is missing or null");
-        }
-        if (!property_exists($data, "token") || $data->token === null) {
-            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "mcp_server_url") || $data->mcp_server_url === null) { throw new SdkValidationError("mcp_server_url", 'required', "Required property 'mcp_server_url' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateVaultCredentialAuthParamStaticBearerTypeEnum::class),
             mcpServerUrl: SdkClient::stringValue($data->mcp_server_url),
@@ -348,12 +328,8 @@ class CreateVaultCredentialParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "auth") || $data->auth === null) {
-            throw new SdkValidationError("auth", 'required', "Required property 'auth' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "auth") || $data->auth === null) { throw new SdkValidationError("auth", 'required', "Required property 'auth' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             auth: SdkClient::hydrateUnionAs($data->auth, CreateVaultCredentialAuthParam::class, [CreateVaultCredentialAuthParamMcpOauth::class, CreateVaultCredentialAuthParamStaticBearer::class, CreateVaultCredentialAuthParamEnvironmentVariable::class], "type", ["mcp_oauth" => CreateVaultCredentialAuthParamMcpOauth::class, "static_bearer" => CreateVaultCredentialAuthParamStaticBearer::class, "environment_variable" => CreateVaultCredentialAuthParamEnvironmentVariable::class], UnknownCreateVaultCredentialAuthParam::class),

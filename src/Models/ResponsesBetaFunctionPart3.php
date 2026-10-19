@@ -131,24 +131,12 @@ class BetaFunctionShellCallOutput implements BetaItemResource, BetaItemField, Be
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "output") || $data->output === null) {
-            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
-        }
-        if (!property_exists($data, "max_output_length")) {
-            throw new SdkValidationError("max_output_length", 'required', "Missing required property 'max_output_length'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
+        if (!property_exists($data, "max_output_length")) { throw new SdkValidationError("max_output_length", 'required', "Missing required property 'max_output_length'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaFunctionShellCallOutputTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -233,15 +221,9 @@ class BetaFunctionShellCallOutputContent implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "stdout") || $data->stdout === null) {
-            throw new SdkValidationError("stdout", 'required', "Required property 'stdout' is missing or null");
-        }
-        if (!property_exists($data, "stderr") || $data->stderr === null) {
-            throw new SdkValidationError("stderr", 'required', "Required property 'stderr' is missing or null");
-        }
-        if (!property_exists($data, "outcome") || $data->outcome === null) {
-            throw new SdkValidationError("outcome", 'required', "Required property 'outcome' is missing or null");
-        }
+        if (!property_exists($data, "stdout") || $data->stdout === null) { throw new SdkValidationError("stdout", 'required', "Required property 'stdout' is missing or null"); }
+        if (!property_exists($data, "stderr") || $data->stderr === null) { throw new SdkValidationError("stderr", 'required', "Required property 'stderr' is missing or null"); }
+        if (!property_exists($data, "outcome") || $data->outcome === null) { throw new SdkValidationError("outcome", 'required', "Required property 'outcome' is missing or null"); }
         return new self(
             stdout: SdkClient::stringValue($data->stdout),
             stderr: SdkClient::stringValue($data->stderr),
@@ -309,15 +291,9 @@ class BetaFunctionShellCallOutputContentParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "stdout") || $data->stdout === null) {
-            throw new SdkValidationError("stdout", 'required', "Required property 'stdout' is missing or null");
-        }
-        if (!property_exists($data, "stderr") || $data->stderr === null) {
-            throw new SdkValidationError("stderr", 'required', "Required property 'stderr' is missing or null");
-        }
-        if (!property_exists($data, "outcome") || $data->outcome === null) {
-            throw new SdkValidationError("outcome", 'required', "Required property 'outcome' is missing or null");
-        }
+        if (!property_exists($data, "stdout") || $data->stdout === null) { throw new SdkValidationError("stdout", 'required', "Required property 'stdout' is missing or null"); }
+        if (!property_exists($data, "stderr") || $data->stderr === null) { throw new SdkValidationError("stderr", 'required', "Required property 'stderr' is missing or null"); }
+        if (!property_exists($data, "outcome") || $data->outcome === null) { throw new SdkValidationError("outcome", 'required', "Required property 'outcome' is missing or null"); }
         return new self(
             stdout: SdkClient::stringValue($data->stdout),
             stderr: SdkClient::stringValue($data->stderr),

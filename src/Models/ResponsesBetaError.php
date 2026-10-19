@@ -87,18 +87,10 @@ class BetaError implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "code")) {
-            throw new SdkValidationError("code", 'required', "Missing required property 'code'");
-        }
-        if (!property_exists($data, "message") || $data->message === null) {
-            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
-        }
-        if (!property_exists($data, "param")) {
-            throw new SdkValidationError("param", 'required', "Missing required property 'param'");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "code")) { throw new SdkValidationError("code", 'required', "Missing required property 'code'"); }
+        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
+        if (!property_exists($data, "param")) { throw new SdkValidationError("param", 'required', "Missing required property 'param'"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             code: ($data->code === null ? null : SdkClient::stringValue($data->code)),
             message: SdkClient::stringValue($data->message),
@@ -147,9 +139,7 @@ class BetaErrorResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "error") || $data->error === null) {
-            throw new SdkValidationError("error", 'required', "Required property 'error' is missing or null");
-        }
+        if (!property_exists($data, "error") || $data->error === null) { throw new SdkValidationError("error", 'required', "Required property 'error' is missing or null"); }
         return new self(
             error: SdkClient::hydrateClass($data->error, BetaError::class),
         );

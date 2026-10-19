@@ -85,15 +85,9 @@ class CompactionBody implements ConversationItem, ItemResource, OutputItem, Item
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) {
-            throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) { throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CompactionBodyTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -171,12 +165,8 @@ class CompactionSummaryItemParam implements InputItem, Item, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) {
-            throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) { throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CompactionSummaryItemParamTypeEnum::class),
             encryptedContent: SdkClient::stringValue($data->encrypted_content),
@@ -243,9 +233,7 @@ class CompactionTriggerItemParam implements InputItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CompactionTriggerItemParamTypeEnum::class),
             id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),

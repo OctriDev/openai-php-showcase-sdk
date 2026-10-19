@@ -83,18 +83,10 @@ class SessionRequiredActionResourceComputerUseApprovalRequest implements Session
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
-            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
-        }
-        if (!property_exists($data, "request_id") || $data->request_id === null) {
-            throw new SdkValidationError("request_id", 'required', "Required property 'request_id' is missing or null");
-        }
-        if (!property_exists($data, "request") || $data->request === null) {
-            throw new SdkValidationError("request", 'required', "Required property 'request' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
+        if (!property_exists($data, "request_id") || $data->request_id === null) { throw new SdkValidationError("request_id", 'required', "Required property 'request_id' is missing or null"); }
+        if (!property_exists($data, "request") || $data->request === null) { throw new SdkValidationError("request", 'required', "Required property 'request' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionRequiredActionResourceComputerUseApprovalRequestTypeEnum::class),
             turnId: SdkClient::stringValue($data->turn_id),
@@ -160,12 +152,8 @@ class SessionRequiredActionResourceEnvironmentConnection implements SessionRequi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "environment_id") || $data->environment_id === null) {
-            throw new SdkValidationError("environment_id", 'required', "Required property 'environment_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "environment_id") || $data->environment_id === null) { throw new SdkValidationError("environment_id", 'required', "Required property 'environment_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionRequiredActionResourceEnvironmentConnectionTypeEnum::class),
             environmentId: SdkClient::stringValue($data->environment_id),
@@ -259,21 +247,11 @@ class SessionRequiredActionResourceFunctionCall implements SessionRequiredAction
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
-            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
-        }
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "arguments")) {
-            throw new SdkValidationError("arguments", 'required', "Missing required property 'arguments'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "arguments")) { throw new SdkValidationError("arguments", 'required', "Missing required property 'arguments'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionRequiredActionResourceFunctionCallTypeEnum::class),
             turnId: SdkClient::stringValue($data->turn_id),

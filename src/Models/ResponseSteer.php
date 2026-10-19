@@ -63,12 +63,8 @@ class ResponseSteerAcceptedEventSteer implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "previous_response_id") || $data->previous_response_id === null) {
-            throw new SdkValidationError("previous_response_id", 'required', "Required property 'previous_response_id' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "previous_response_id") || $data->previous_response_id === null) { throw new SdkValidationError("previous_response_id", 'required', "Required property 'previous_response_id' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             previousResponseId: SdkClient::stringValue($data->previous_response_id),
@@ -146,15 +142,9 @@ class ResponseSteerAcceptedEvent implements ResponsesServerEvent, \JsonSerializa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
-        if (!property_exists($data, "steer") || $data->steer === null) {
-            throw new SdkValidationError("steer", 'required', "Required property 'steer' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "steer") || $data->steer === null) { throw new SdkValidationError("steer", 'required', "Required property 'steer' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseSteerAcceptedEventTypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
@@ -230,15 +220,9 @@ class ResponseSteerEvent implements ResponsesClientEvent, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "previous_response_id") || $data->previous_response_id === null) {
-            throw new SdkValidationError("previous_response_id", 'required', "Required property 'previous_response_id' is missing or null");
-        }
-        if (!property_exists($data, "input") || $data->input === null) {
-            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "previous_response_id") || $data->previous_response_id === null) { throw new SdkValidationError("previous_response_id", 'required', "Required property 'previous_response_id' is missing or null"); }
+        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseSteerEventTypeEnum::class),
             previousResponseId: SdkClient::stringValue($data->previous_response_id),
@@ -315,12 +299,8 @@ class ResponseSteerFailedEventSteer implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "previous_response_id") || $data->previous_response_id === null) {
-            throw new SdkValidationError("previous_response_id", 'required', "Required property 'previous_response_id' is missing or null");
-        }
-        if (!property_exists($data, "input") || $data->input === null) {
-            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
-        }
+        if (!property_exists($data, "previous_response_id") || $data->previous_response_id === null) { throw new SdkValidationError("previous_response_id", 'required', "Required property 'previous_response_id' is missing or null"); }
+        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
         return new self(
             previousResponseId: SdkClient::stringValue($data->previous_response_id),
             input: (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ResponseSteerInputItem::class, [UserMessageItemParam::class, FunctionCallOutputItemParam::class], "type", ["message" => UserMessageItemParam::class, "function_call_output" => FunctionCallOutputItemParam::class], UnknownResponseSteerInputItem::class), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input)),
@@ -336,24 +316,9 @@ final readonly class ResponseSteerFailedEventErrorTypeEnum implements SdkOpenEnu
 {
     public const INVALID_REQUEST_ERROR = "invalid_request_error";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

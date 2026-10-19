@@ -65,15 +65,9 @@ class RunCompletionUsage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "completion_tokens") || $data->completion_tokens === null) {
-            throw new SdkValidationError("completion_tokens", 'required', "Required property 'completion_tokens' is missing or null");
-        }
-        if (!property_exists($data, "prompt_tokens") || $data->prompt_tokens === null) {
-            throw new SdkValidationError("prompt_tokens", 'required', "Required property 'prompt_tokens' is missing or null");
-        }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
-            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
-        }
+        if (!property_exists($data, "completion_tokens") || $data->completion_tokens === null) { throw new SdkValidationError("completion_tokens", 'required', "Required property 'completion_tokens' is missing or null"); }
+        if (!property_exists($data, "prompt_tokens") || $data->prompt_tokens === null) { throw new SdkValidationError("prompt_tokens", 'required', "Required property 'prompt_tokens' is missing or null"); }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
         return new self(
             completionTokens: SdkClient::intValue($data->completion_tokens),
             promptTokens: SdkClient::intValue($data->prompt_tokens),
@@ -89,26 +83,11 @@ final readonly class RunObjectObjectEnum implements SdkOpenEnum
 {
     public const THREAD_RUN = "thread.run";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -126,26 +105,11 @@ final readonly class RunObjectStatusEnum implements SdkOpenEnum
     public const INCOMPLETE = "incomplete";
     public const EXPIRED = "expired";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -155,26 +119,11 @@ final readonly class RunObjectRequiredActionTypeEnum implements SdkOpenEnum
 {
     public const SUBMIT_TOOL_OUTPUTS = "submit_tool_outputs";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -215,9 +164,7 @@ class RunObjectRequiredActionSubmitToolOutputs implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "tool_calls") || $data->tool_calls === null) {
-            throw new SdkValidationError("tool_calls", 'required', "Required property 'tool_calls' is missing or null");
-        }
+        if (!property_exists($data, "tool_calls") || $data->tool_calls === null) { throw new SdkValidationError("tool_calls", 'required', "Required property 'tool_calls' is missing or null"); }
         return new self(
             toolCalls: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, RunToolCallObject::class), SdkClient::arrayValue($data->tool_calls))),
         );
@@ -272,12 +219,8 @@ class RunObjectRequiredAction implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "submit_tool_outputs") || $data->submit_tool_outputs === null) {
-            throw new SdkValidationError("submit_tool_outputs", 'required', "Required property 'submit_tool_outputs' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "submit_tool_outputs") || $data->submit_tool_outputs === null) { throw new SdkValidationError("submit_tool_outputs", 'required', "Required property 'submit_tool_outputs' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RunObjectRequiredActionTypeEnum::class),
             submitToolOutputs: SdkClient::hydrateClass($data->submit_tool_outputs, RunObjectRequiredActionSubmitToolOutputs::class),
@@ -294,26 +237,11 @@ final readonly class RunObjectLastErrorCodeEnum implements SdkOpenEnum
     public const RATE_LIMIT_EXCEEDED = "rate_limit_exceeded";
     public const INVALID_PROMPT = "invalid_prompt";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -364,12 +292,8 @@ class RunObjectLastError implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "code") || $data->code === null) {
-            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
-        }
-        if (!property_exists($data, "message") || $data->message === null) {
-            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
-        }
+        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
+        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
         return new self(
             code: SdkClient::hydrateStringEnumOrString($data->code, RunObjectLastErrorCodeEnum::class),
             message: SdkClient::stringValue($data->message),
@@ -385,24 +309,9 @@ final readonly class RunObjectIncompleteDetailsReasonEnum implements SdkOpenEnum
     public const MAX_COMPLETION_TOKENS = "max_completion_tokens";
     public const MAX_PROMPT_TOKENS = "max_prompt_tokens";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

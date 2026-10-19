@@ -65,15 +65,9 @@ class TranscriptionWord implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "word") || $data->word === null) {
-            throw new SdkValidationError("word", 'required', "Required property 'word' is missing or null");
-        }
-        if (!property_exists($data, "start") || $data->start === null) {
-            throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null");
-        }
-        if (!property_exists($data, "end") || $data->end === null) {
-            throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null");
-        }
+        if (!property_exists($data, "word") || $data->word === null) { throw new SdkValidationError("word", 'required', "Required property 'word' is missing or null"); }
+        if (!property_exists($data, "start") || $data->start === null) { throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null"); }
+        if (!property_exists($data, "end") || $data->end === null) { throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null"); }
         return new self(
             word: SdkClient::stringValue($data->word),
             start: SdkClient::floatValue($data->start),
@@ -234,12 +228,8 @@ class TranscriptTextDeltaEvent implements CreateTranscriptionResponseStreamEvent
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "delta") || $data->delta === null) {
-            throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "delta") || $data->delta === null) { throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TranscriptTextDeltaEventTypeEnum::class),
             delta: SdkClient::stringValue($data->delta),

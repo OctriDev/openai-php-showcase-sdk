@@ -55,12 +55,8 @@ class BetaCoordParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "x") || $data->x === null) {
-            throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null");
-        }
-        if (!property_exists($data, "y") || $data->y === null) {
-            throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null");
-        }
+        if (!property_exists($data, "x") || $data->x === null) { throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null"); }
+        if (!property_exists($data, "y") || $data->y === null) { throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null"); }
         return new self(
             x: SdkClient::intValue($data->x),
             y: SdkClient::intValue($data->y),
@@ -77,26 +73,11 @@ final readonly class BetaCyberAccessProgramEnum implements SdkOpenEnum
     public const DAYBREAK_BLUE = "daybreak_blue";
     public const DAYBREAK_RED = "daybreak_red";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -109,26 +90,11 @@ final readonly class BetaDetailEnum implements SdkOpenEnum
     public const AUTO = "auto";
     public const ORIGINAL = "original";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -207,18 +173,10 @@ class BetaDoubleClickAction implements BetaComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "x") || $data->x === null) {
-            throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null");
-        }
-        if (!property_exists($data, "y") || $data->y === null) {
-            throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null");
-        }
-        if (!property_exists($data, "keys")) {
-            throw new SdkValidationError("keys", 'required', "Missing required property 'keys'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "x") || $data->x === null) { throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null"); }
+        if (!property_exists($data, "y") || $data->y === null) { throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null"); }
+        if (!property_exists($data, "keys")) { throw new SdkValidationError("keys", 'required', "Missing required property 'keys'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaDoubleClickActionTypeEnum::class),
             x: SdkClient::intValue($data->x),
@@ -296,12 +254,8 @@ class BetaDragParam implements BetaComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaDragParamTypeEnum::class),
             path: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BetaCoordParam::class), SdkClient::arrayValue($data->path))),
@@ -320,26 +274,11 @@ final readonly class BetaEasyInputMessageRoleEnum implements SdkOpenEnum
     public const SYSTEM = "system";
     public const DEVELOPER = "developer";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**

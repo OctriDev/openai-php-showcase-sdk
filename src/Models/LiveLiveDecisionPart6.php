@@ -65,15 +65,9 @@ class LiveDecisionTriggerInputParam2 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_type") || $data->event_type === null) {
-            throw new SdkValidationError("event_type", 'required', "Required property 'event_type' is missing or null");
-        }
-        if (!property_exists($data, "decisions") || $data->decisions === null) {
-            throw new SdkValidationError("decisions", 'required', "Required property 'decisions' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_type") || $data->event_type === null) { throw new SdkValidationError("event_type", 'required', "Required property 'event_type' is missing or null"); }
+        if (!property_exists($data, "decisions") || $data->decisions === null) { throw new SdkValidationError("decisions", 'required', "Required property 'decisions' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, LiveDecisionTriggerInputParam2TypeEnum::class),
             eventType: SdkClient::hydrateStringEnumOrString($data->event_type, LiveDecisionTriggerInputParam2EventTypeEnum::class),

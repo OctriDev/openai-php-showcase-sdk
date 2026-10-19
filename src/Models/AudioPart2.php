@@ -199,12 +199,8 @@ class CreateTranscriptionRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file") || $data->file === null) {
-            throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
+        if (!property_exists($data, "file") || $data->file === null) { throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
         return new self(
             file: SdkClient::stringValue($data->file),
             model: SdkClient::stringValue($data->model),
@@ -231,26 +227,11 @@ final readonly class CreateTranscriptionResponseDiarizedJsonTaskEnum implements 
 {
     public const TRANSCRIBE = "transcribe";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -333,18 +314,10 @@ class CreateTranscriptionResponseDiarizedJson implements CreateTranscriptionResp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "task") || $data->task === null) {
-            throw new SdkValidationError("task", 'required', "Required property 'task' is missing or null");
-        }
-        if (!property_exists($data, "duration") || $data->duration === null) {
-            throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
-        if (!property_exists($data, "segments") || $data->segments === null) {
-            throw new SdkValidationError("segments", 'required', "Required property 'segments' is missing or null");
-        }
+        if (!property_exists($data, "task") || $data->task === null) { throw new SdkValidationError("task", 'required', "Required property 'task' is missing or null"); }
+        if (!property_exists($data, "duration") || $data->duration === null) { throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "segments") || $data->segments === null) { throw new SdkValidationError("segments", 'required', "Required property 'segments' is missing or null"); }
         return new self(
             task: SdkClient::hydrateStringEnumOrString($data->task, CreateTranscriptionResponseDiarizedJsonTaskEnum::class),
             duration: SdkClient::floatValue($data->duration),

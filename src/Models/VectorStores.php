@@ -53,9 +53,7 @@ class AutoChunkingStrategyRequestParam implements ChunkingStrategyRequestParam, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AutoChunkingStrategyRequestParamTypeEnum::class),
         );
@@ -209,9 +207,7 @@ class CreateVectorStoreFileRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
             chunkingStrategy: (property_exists($data, "chunking_strategy") && $data->chunking_strategy !== null ? SdkClient::hydrateUnionAs($data->chunking_strategy, ChunkingStrategyRequestParam::class, [AutoChunkingStrategyRequestParam::class, StaticChunkingStrategyRequestParam::class], "type", ["auto" => AutoChunkingStrategyRequestParam::class, "static" => StaticChunkingStrategyRequestParam::class], UnknownChunkingStrategyRequestParam::class) : SdkNotGiven::Value),
@@ -338,24 +334,9 @@ final readonly class DeleteVectorStoreFileResponseObjectEnum implements SdkOpenE
 {
     public const VECTOR_STORE_FILE_DELETED = "vector_store.file.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

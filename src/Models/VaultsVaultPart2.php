@@ -63,12 +63,8 @@ class VaultCredentialNetworkingParamLimited implements VaultCredentialNetworking
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "allowed_hosts") || $data->allowed_hosts === null) {
-            throw new SdkValidationError("allowed_hosts", 'required', "Required property 'allowed_hosts' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "allowed_hosts") || $data->allowed_hosts === null) { throw new SdkValidationError("allowed_hosts", 'required', "Required property 'allowed_hosts' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialNetworkingParamLimitedTypeEnum::class),
             allowedHosts: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_hosts))),
@@ -122,9 +118,7 @@ class VaultCredentialNetworkingParamUnrestricted implements VaultCredentialNetwo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialNetworkingParamUnrestrictedTypeEnum::class),
         );
@@ -187,12 +181,8 @@ class VaultCredentialNetworkingResourceLimited implements VaultCredentialNetwork
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "allowed_hosts") || $data->allowed_hosts === null) {
-            throw new SdkValidationError("allowed_hosts", 'required', "Required property 'allowed_hosts' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "allowed_hosts") || $data->allowed_hosts === null) { throw new SdkValidationError("allowed_hosts", 'required', "Required property 'allowed_hosts' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialNetworkingResourceLimitedTypeEnum::class),
             allowedHosts: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_hosts))),
@@ -246,9 +236,7 @@ class VaultCredentialNetworkingResourceUnrestricted implements VaultCredentialNe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialNetworkingResourceUnrestrictedTypeEnum::class),
         );
@@ -262,24 +250,9 @@ final readonly class VaultCredentialResourceObjectEnum implements SdkOpenEnum
 {
     public const VAULT_CREDENTIAL = "vault.credential";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

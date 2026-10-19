@@ -222,15 +222,9 @@ class BetaResponseQueuedEvent implements BetaResponseStreamEvent, \JsonSerializa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "response") || $data->response === null) {
-            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseQueuedEventTypeEnum::class),
             response: SdkClient::hydrateClass($data->response, BetaResponse::class),
@@ -288,12 +282,8 @@ class BetaResponseUsageInputTokensDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) {
-            throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null");
-        }
-        if (!property_exists($data, "cache_write_tokens") || $data->cache_write_tokens === null) {
-            throw new SdkValidationError("cache_write_tokens", 'required', "Required property 'cache_write_tokens' is missing or null");
-        }
+        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) { throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null"); }
+        if (!property_exists($data, "cache_write_tokens") || $data->cache_write_tokens === null) { throw new SdkValidationError("cache_write_tokens", 'required', "Required property 'cache_write_tokens' is missing or null"); }
         return new self(
             cachedTokens: SdkClient::intValue($data->cached_tokens),
             cacheWriteTokens: SdkClient::intValue($data->cache_write_tokens),
@@ -339,9 +329,7 @@ class BetaResponseUsageOutputTokensDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "reasoning_tokens") || $data->reasoning_tokens === null) {
-            throw new SdkValidationError("reasoning_tokens", 'required', "Required property 'reasoning_tokens' is missing or null");
-        }
+        if (!property_exists($data, "reasoning_tokens") || $data->reasoning_tokens === null) { throw new SdkValidationError("reasoning_tokens", 'required', "Required property 'reasoning_tokens' is missing or null"); }
         return new self(
             reasoningTokens: SdkClient::intValue($data->reasoning_tokens),
         );

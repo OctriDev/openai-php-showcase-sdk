@@ -23,7 +23,7 @@ class Videos
     public static function createVideo(ClientConfig $clientConfig, CreateVideoJsonBody|CreateVideoMultipartBody|SdkNotGiven $body = SdkNotGiven::Value, string|SdkNotGiven $contentType = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): VideoResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/videos", $clientConfig, body: SdkClient::formValue($body, [CreateVideoMultipartBody::class => []]), contentType: SdkClient::bodyContentType($contentType, $body, 'application/json'), returnType: VideoResource::class, decoder: 'json', operationId: 'createVideo', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/videos", $clientConfig, body: SdkClient::formValue($body, [CreateVideoMultipartBody::class => []]), contentType: SdkClient::bodyContentType($contentType, $body, 'application/json'), returnType: VideoResource::class, decoder: 'json', operationId: 'createVideo', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VideoResource::class));
     }
 
@@ -47,7 +47,7 @@ class Videos
             Validation::validateRange('limit', $limit, min: 0, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/videos", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: VideoListResource::class, decoder: 'json', operationId: 'listVideos', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/videos", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: VideoListResource::class, decoder: 'json', operationId: 'listVideos', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VideoListResource::class));
     }
 
@@ -140,7 +140,7 @@ class Videos
 
         Validation::validateLength('name', $name, min: 1, max: 80);
 
-        $sdkResponse = SdkClient::request('POST', "/videos/characters", $clientConfig, body: ['video' => $video, 'name' => $name], contentType: 'multipart/form-data', returnType: VideoCharacterResource::class, decoder: 'json', operationId: 'createVideoCharacter', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 504 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/videos/characters", $clientConfig, body: ['video' => $video, 'name' => $name], contentType: 'multipart/form-data', returnType: VideoCharacterResource::class, decoder: 'json', operationId: 'createVideoCharacter', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 504 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VideoCharacterResource::class));
     }
 
@@ -158,7 +158,7 @@ class Videos
     public static function getVideoCharacter(ClientConfig $clientConfig, string $characterId, ?RequestOptions $requestOptions = null): VideoCharacterResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/videos/characters/" . SdkClient::encodePathSegment($characterId) . "", $clientConfig, returnType: VideoCharacterResource::class, decoder: 'json', operationId: 'getVideoCharacter', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/videos/characters/" . SdkClient::encodePathSegment($characterId) . "", $clientConfig, returnType: VideoCharacterResource::class, decoder: 'json', operationId: 'getVideoCharacter', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VideoCharacterResource::class));
     }
 
@@ -177,7 +177,7 @@ class Videos
     public static function createVideoEdit(ClientConfig $clientConfig, CreateVideoEditJsonBody|CreateVideoEditMultipartBody|SdkNotGiven $body = SdkNotGiven::Value, string|SdkNotGiven $contentType = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): VideoResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/videos/edits", $clientConfig, body: SdkClient::formValue($body, [CreateVideoEditMultipartBody::class => []]), contentType: SdkClient::bodyContentType($contentType, $body, 'application/json'), returnType: VideoResource::class, decoder: 'json', operationId: 'createVideoEdit', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/videos/edits", $clientConfig, body: SdkClient::formValue($body, [CreateVideoEditMultipartBody::class => []]), contentType: SdkClient::bodyContentType($contentType, $body, 'application/json'), returnType: VideoResource::class, decoder: 'json', operationId: 'createVideoEdit', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VideoResource::class));
     }
 
@@ -196,7 +196,7 @@ class Videos
     public static function createVideoExtend(ClientConfig $clientConfig, CreateVideoExtendJsonBody|CreateVideoExtendMultipartBody|SdkNotGiven $body = SdkNotGiven::Value, string|SdkNotGiven $contentType = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): VideoResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/videos/extensions", $clientConfig, body: SdkClient::formValue($body, [CreateVideoExtendMultipartBody::class => []]), contentType: SdkClient::bodyContentType($contentType, $body, 'application/json'), returnType: VideoResource::class, decoder: 'json', operationId: 'createVideoExtend', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/videos/extensions", $clientConfig, body: SdkClient::formValue($body, [CreateVideoExtendMultipartBody::class => []]), contentType: SdkClient::bodyContentType($contentType, $body, 'application/json'), returnType: VideoResource::class, decoder: 'json', operationId: 'createVideoExtend', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VideoResource::class));
     }
 
@@ -214,7 +214,7 @@ class Videos
     public static function getVideo(ClientConfig $clientConfig, string $videoId, ?RequestOptions $requestOptions = null): VideoResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/videos/" . SdkClient::encodePathSegment($videoId) . "", $clientConfig, returnType: VideoResource::class, decoder: 'json', operationId: 'getVideo', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/videos/" . SdkClient::encodePathSegment($videoId) . "", $clientConfig, returnType: VideoResource::class, decoder: 'json', operationId: 'getVideo', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VideoResource::class));
     }
 
@@ -232,7 +232,7 @@ class Videos
     public static function deleteVideo(ClientConfig $clientConfig, string $videoId, ?RequestOptions $requestOptions = null): DeletedVideoResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/videos/" . SdkClient::encodePathSegment($videoId) . "", $clientConfig, returnType: DeletedVideoResource::class, decoder: 'json', operationId: 'deleteVideo', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/videos/" . SdkClient::encodePathSegment($videoId) . "", $clientConfig, returnType: DeletedVideoResource::class, decoder: 'json', operationId: 'deleteVideo', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedVideoResource::class));
     }
 
@@ -251,7 +251,7 @@ class Videos
     public static function retrieveVideoContent(ClientConfig $clientConfig, string $videoId, VideoContentVariant|SdkNotGiven $variant = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): string
     {
 
-        $sdkResponse = SdkClient::request('GET', "/videos/" . SdkClient::encodePathSegment($videoId) . "/content", $clientConfig, query: ['variant' => new SdkQueryValue($variant, "form", true)], decoder: 'bytes', operationId: 'retrieveVideoContent', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/videos/" . SdkClient::encodePathSegment($videoId) . "/content", $clientConfig, query: ['variant' => new SdkQueryValue($variant, "form", true)], decoder: 'bytes', operationId: 'retrieveVideoContent', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::stringValue($sdkResponse->data));
     }
 
@@ -273,7 +273,7 @@ class Videos
 
         Validation::validateLength('prompt', $prompt, min: 1, max: 32000);
 
-        $sdkResponse = SdkClient::request('POST', "/videos/" . SdkClient::encodePathSegment($videoId) . "/remix", $clientConfig, body: ['prompt' => $prompt], contentType: SdkClient::bodyContentType($contentType, null, 'application/json'), returnType: VideoResource::class, decoder: 'json', operationId: 'createVideoRemix', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/videos/" . SdkClient::encodePathSegment($videoId) . "/remix", $clientConfig, body: ['prompt' => $prompt], contentType: SdkClient::bodyContentType($contentType, null, 'application/json'), returnType: VideoResource::class, decoder: 'json', operationId: 'createVideoRemix', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VideoResource::class));
     }
 }

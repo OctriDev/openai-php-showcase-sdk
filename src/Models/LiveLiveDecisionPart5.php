@@ -77,15 +77,9 @@ class LiveDecisionScoreQuestionParam implements LiveDecisionQuestion, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "instructions") || $data->instructions === null) {
-            throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null");
-        }
-        if (!property_exists($data, "levels") || $data->levels === null) {
-            throw new SdkValidationError("levels", 'required', "Required property 'levels' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "instructions") || $data->instructions === null) { throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null"); }
+        if (!property_exists($data, "levels") || $data->levels === null) { throw new SdkValidationError("levels", 'required', "Required property 'levels' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveDecisionScoreQuestionParamTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
@@ -102,26 +96,11 @@ final readonly class LiveDecisionStoredInputItemParamTypeEnum implements SdkOpen
 {
     public const MESSAGE = "message";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -131,26 +110,11 @@ final readonly class LiveDecisionStoredInputItemParamRoleEnum implements SdkOpen
 {
     public const USER = "user";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -223,15 +187,9 @@ class LiveDecisionStoredInputItemParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "role") || $data->role === null) {
-            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
-        }
-        if (!property_exists($data, "content") || $data->content === null) {
-            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             role: SdkClient::hydrateStringEnumOrString($data->role, LiveDecisionStoredInputItemParamRoleEnum::class),
@@ -248,26 +206,11 @@ final readonly class LiveDecisionTriggerInputParamTypeEnum implements SdkOpenEnu
 {
     public const DECISIONS = "decisions";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -278,26 +221,11 @@ final readonly class LiveDecisionTriggerInputParamEventTypeEnum implements SdkOp
     public const SESSION_INPUT_TRANSCRIPT_DELTA = "session.input_transcript.delta";
     public const SESSION_OUTPUT_TRANSCRIPT_DELTA = "session.output_transcript.delta";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -358,15 +286,9 @@ class LiveDecisionTriggerInputParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_type") || $data->event_type === null) {
-            throw new SdkValidationError("event_type", 'required', "Required property 'event_type' is missing or null");
-        }
-        if (!property_exists($data, "decisions") || $data->decisions === null) {
-            throw new SdkValidationError("decisions", 'required', "Required property 'decisions' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_type") || $data->event_type === null) { throw new SdkValidationError("event_type", 'required', "Required property 'event_type' is missing or null"); }
+        if (!property_exists($data, "decisions") || $data->decisions === null) { throw new SdkValidationError("decisions", 'required', "Required property 'decisions' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, LiveDecisionTriggerInputParamTypeEnum::class),
             eventType: SdkClient::hydrateStringEnumOrString($data->event_type, LiveDecisionTriggerInputParamEventTypeEnum::class),
@@ -382,26 +304,11 @@ final readonly class LiveDecisionTriggerInputParam2TypeEnum implements SdkOpenEn
 {
     public const DECISIONS = "decisions";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -412,24 +319,9 @@ final readonly class LiveDecisionTriggerInputParam2EventTypeEnum implements SdkO
     public const SESSION_INPUT_TRANSCRIPT_DELTA = "session.input_transcript.delta";
     public const SESSION_OUTPUT_TRANSCRIPT_DELTA = "session.output_transcript.delta";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

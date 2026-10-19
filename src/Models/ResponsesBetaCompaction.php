@@ -97,15 +97,9 @@ class BetaCompactionBody implements BetaItemResource, BetaItemField, BetaOutputI
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) {
-            throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) { throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCompactionBodyTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -196,12 +190,8 @@ class BetaCompactionSummaryItemParam implements BetaInputItem, BetaItem, \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) {
-            throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) { throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCompactionSummaryItemParamTypeEnum::class),
             encryptedContent: SdkClient::stringValue($data->encrypted_content),
@@ -281,9 +271,7 @@ class BetaCompactionTriggerItemParam implements BetaInputItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCompactionTriggerItemParamTypeEnum::class),
             agent: (property_exists($data, "agent") ? ($data->agent === null ? null : SdkClient::hydrateClass($data->agent, Beta_AgentTagParam::class)) : SdkNotGiven::Value),

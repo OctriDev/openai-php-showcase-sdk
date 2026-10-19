@@ -63,12 +63,8 @@ class BetaCodeInterpreterOutputImage implements BetaCodeInterpreterToolCallOutpu
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "url") || $data->url === null) {
-            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCodeInterpreterOutputImageTypeEnum::class),
             url: SdkClient::stringValue($data->url),
@@ -132,12 +128,8 @@ class BetaCodeInterpreterOutputLogs implements BetaCodeInterpreterToolCallOutput
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "logs") || $data->logs === null) {
-            throw new SdkValidationError("logs", 'required', "Required property 'logs' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "logs") || $data->logs === null) { throw new SdkValidationError("logs", 'required', "Required property 'logs' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCodeInterpreterOutputLogsTypeEnum::class),
             logs: SdkClient::stringValue($data->logs),
@@ -213,12 +205,8 @@ class BetaCodeInterpreterTool implements BetaTool, BetaToolSearchOutputTool, \Js
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "container") || $data->container === null) {
-            throw new SdkValidationError("container", 'required', "Required property 'container' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "container") || $data->container === null) { throw new SdkValidationError("container", 'required', "Required property 'container' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCodeInterpreterToolTypeEnum::class),
             container: (is_object($data->container) ? SdkClient::hydrateClass($data->container, BetaAutoCodeInterpreterToolParam::class) : (is_string($data->container) ? SdkClient::stringValue($data->container) : SdkClient::hydrateClass($data->container, BetaAutoCodeInterpreterToolParam::class))),
@@ -246,24 +234,9 @@ final readonly class BetaCodeInterpreterToolCallStatusEnum implements SdkOpenEnu
     public const INTERPRETING = "interpreting";
     public const FAILED = "failed";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

@@ -12,26 +12,11 @@ final readonly class CostsResultApiSourceEnum implements SdkOpenEnum
     public const AGENTS_API = "agents_api";
     public const UNLABELED = "unlabeled";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -235,9 +220,7 @@ class CostsResult implements UsageTimeBucketResultsItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, CostsResultObjectEnum::class),
             apiSource: (property_exists($data, "api_source") ? ($data->api_source === null ? null : SdkClient::hydrateEnum($data->api_source, CostsResultApiSourceEnum::class)) : SdkNotGiven::Value),

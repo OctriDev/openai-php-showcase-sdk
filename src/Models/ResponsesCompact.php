@@ -14,26 +14,11 @@ final readonly class CompactResourceObjectEnum implements SdkOpenEnum
 {
     public const RESPONSE_COMPACTION = "response.compaction";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -114,21 +99,11 @@ class CompactResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "output") || $data->output === null) {
-            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "usage") || $data->usage === null) {
-            throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "usage") || $data->usage === null) { throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, CompactResourceObjectEnum::class),
@@ -162,26 +137,11 @@ final readonly class CompactResponseMethodPublicBodyModelEnum implements SdkOpen
     public const GPT_5_6_CYBER = "gpt-5.6-cyber";
     public const GPT_ROSALIND_RESEARCH = "gpt-rosalind-research";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -306,9 +266,7 @@ class CompactResponseMethodPublicBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model")) {
-            throw new SdkValidationError("model", 'required', "Missing required property 'model'");
-        }
+        if (!property_exists($data, "model")) { throw new SdkValidationError("model", 'required', "Missing required property 'model'"); }
         return new self(
             model: ($data->model === null ? null : SdkClient::hydrateStringEnumOrString($data->model, CompactResponseMethodPublicBodyModelEnum::class)),
             input: (property_exists($data, "input") ? ($data->input === null ? null : (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, InputItem::class, [EasyInputMessage::class, InputMessage::class, OutputMessage::class, FileSearchToolCall::class, ComputerToolCall::class, ComputerCallOutputItemParam::class, WebSearchToolCall::class, FunctionToolCall::class, FunctionCallOutputItemParam::class, ToolSearchCallItemParam::class, ToolSearchOutputItemParam::class, AdditionalToolsItemParam::class, ResponseConfigurationUpdateItemParam::class, ReasoningItem::class, CompactionSummaryItemParam::class, ImageGenToolCall::class, CodeInterpreterToolCall::class, LocalShellToolCall::class, LocalShellToolCallOutput::class, FunctionShellCallItemParam::class, FunctionShellCallOutputItemParam::class, ApplyPatchToolCallItemParam::class, ApplyPatchToolCallOutputItemParam::class, MCPListTools::class, MCPApprovalRequest::class, MCPApprovalResponse::class, MCPToolCall::class, CustomToolCallOutput::class, CustomToolCall::class, CompactionTriggerItemParam::class, ItemReferenceParam::class, ProgramItemParam::class, ProgramOutputItemParam::class], "type", ["file_search_call" => FileSearchToolCall::class, "computer_call" => ComputerToolCall::class, "computer_call_output" => ComputerCallOutputItemParam::class, "web_search_call" => WebSearchToolCall::class, "function_call" => FunctionToolCall::class, "function_call_output" => FunctionCallOutputItemParam::class, "tool_search_call" => ToolSearchCallItemParam::class, "tool_search_output" => ToolSearchOutputItemParam::class, "additional_tools" => AdditionalToolsItemParam::class, "configuration_update" => ResponseConfigurationUpdateItemParam::class, "reasoning" => ReasoningItem::class, "compaction" => CompactionSummaryItemParam::class, "image_generation_call" => ImageGenToolCall::class, "code_interpreter_call" => CodeInterpreterToolCall::class, "local_shell_call" => LocalShellToolCall::class, "local_shell_call_output" => LocalShellToolCallOutput::class, "shell_call" => FunctionShellCallItemParam::class, "shell_call_output" => FunctionShellCallOutputItemParam::class, "apply_patch_call" => ApplyPatchToolCallItemParam::class, "apply_patch_call_output" => ApplyPatchToolCallOutputItemParam::class, "mcp_list_tools" => MCPListTools::class, "mcp_approval_request" => MCPApprovalRequest::class, "mcp_approval_response" => MCPApprovalResponse::class, "mcp_call" => MCPToolCall::class, "custom_tool_call_output" => CustomToolCallOutput::class, "custom_tool_call" => CustomToolCall::class, "compaction_trigger" => CompactionTriggerItemParam::class, "program" => ProgramItemParam::class, "program_output" => ProgramOutputItemParam::class]), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input))) : SdkNotGiven::Value),

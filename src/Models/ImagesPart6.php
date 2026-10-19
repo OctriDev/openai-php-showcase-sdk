@@ -115,30 +115,14 @@ class ImageEditPartialImageEvent implements ImageEditStreamEvent, \JsonSerializa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "b64_json") || $data->b64_json === null) {
-            throw new SdkValidationError("b64_json", 'required', "Required property 'b64_json' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "size") || $data->size === null) {
-            throw new SdkValidationError("size", 'required', "Required property 'size' is missing or null");
-        }
-        if (!property_exists($data, "quality") || $data->quality === null) {
-            throw new SdkValidationError("quality", 'required', "Required property 'quality' is missing or null");
-        }
-        if (!property_exists($data, "background") || $data->background === null) {
-            throw new SdkValidationError("background", 'required', "Required property 'background' is missing or null");
-        }
-        if (!property_exists($data, "output_format") || $data->output_format === null) {
-            throw new SdkValidationError("output_format", 'required', "Required property 'output_format' is missing or null");
-        }
-        if (!property_exists($data, "partial_image_index") || $data->partial_image_index === null) {
-            throw new SdkValidationError("partial_image_index", 'required', "Required property 'partial_image_index' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "b64_json") || $data->b64_json === null) { throw new SdkValidationError("b64_json", 'required', "Required property 'b64_json' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "size") || $data->size === null) { throw new SdkValidationError("size", 'required', "Required property 'size' is missing or null"); }
+        if (!property_exists($data, "quality") || $data->quality === null) { throw new SdkValidationError("quality", 'required', "Required property 'quality' is missing or null"); }
+        if (!property_exists($data, "background") || $data->background === null) { throw new SdkValidationError("background", 'required', "Required property 'background' is missing or null"); }
+        if (!property_exists($data, "output_format") || $data->output_format === null) { throw new SdkValidationError("output_format", 'required', "Required property 'output_format' is missing or null"); }
+        if (!property_exists($data, "partial_image_index") || $data->partial_image_index === null) { throw new SdkValidationError("partial_image_index", 'required', "Required property 'partial_image_index' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ImageEditPartialImageEventTypeEnum::class),
             b64Json: SdkClient::stringValue($data->b64_json),
@@ -172,26 +156,11 @@ final readonly class ImageGenCompletedEventQualityEnum implements SdkOpenEnum
     public const MAX = "max";
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -203,26 +172,11 @@ final readonly class ImageGenCompletedEventBackgroundEnum implements SdkOpenEnum
     public const OPAQUE = "opaque";
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -234,26 +188,11 @@ final readonly class ImageGenCompletedEventOutputFormatEnum implements SdkOpenEn
     public const WEBP = "webp";
     public const JPEG = "jpeg";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -376,30 +315,14 @@ class ImageGenCompletedEvent implements ImageGenStreamEvent, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "b64_json") || $data->b64_json === null) {
-            throw new SdkValidationError("b64_json", 'required', "Required property 'b64_json' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "size") || $data->size === null) {
-            throw new SdkValidationError("size", 'required', "Required property 'size' is missing or null");
-        }
-        if (!property_exists($data, "quality") || $data->quality === null) {
-            throw new SdkValidationError("quality", 'required', "Required property 'quality' is missing or null");
-        }
-        if (!property_exists($data, "background") || $data->background === null) {
-            throw new SdkValidationError("background", 'required', "Required property 'background' is missing or null");
-        }
-        if (!property_exists($data, "output_format") || $data->output_format === null) {
-            throw new SdkValidationError("output_format", 'required', "Required property 'output_format' is missing or null");
-        }
-        if (!property_exists($data, "usage") || $data->usage === null) {
-            throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "b64_json") || $data->b64_json === null) { throw new SdkValidationError("b64_json", 'required', "Required property 'b64_json' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "size") || $data->size === null) { throw new SdkValidationError("size", 'required', "Required property 'size' is missing or null"); }
+        if (!property_exists($data, "quality") || $data->quality === null) { throw new SdkValidationError("quality", 'required', "Required property 'quality' is missing or null"); }
+        if (!property_exists($data, "background") || $data->background === null) { throw new SdkValidationError("background", 'required', "Required property 'background' is missing or null"); }
+        if (!property_exists($data, "output_format") || $data->output_format === null) { throw new SdkValidationError("output_format", 'required', "Required property 'output_format' is missing or null"); }
+        if (!property_exists($data, "usage") || $data->usage === null) { throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ImageGenCompletedEventTypeEnum::class),
             b64Json: SdkClient::stringValue($data->b64_json),

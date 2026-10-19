@@ -87,12 +87,8 @@ class RealtimeClientEventConversationItemCreate implements RealtimeClientEvent, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item") || $data->item === null) {
-            throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item") || $data->item === null) { throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventConversationItemCreateTypeEnum::class),
             item: SdkClient::hydrateUnionAs($data->item, RealtimeConversationItem::class, [RealtimeConversationItemMessageSystem::class, RealtimeConversationItemMessageUser::class, RealtimeConversationItemMessageAssistant::class, RealtimeConversationItemFunctionCall::class, RealtimeConversationItemFunctionCallOutput::class, RealtimeMCPApprovalResponse::class, RealtimeMCPListTools::class, RealtimeMCPToolCall::class, RealtimeMCPApprovalRequest::class], "type", ["function_call" => RealtimeConversationItemFunctionCall::class, "function_call_output" => RealtimeConversationItemFunctionCallOutput::class, "mcp_approval_response" => RealtimeMCPApprovalResponse::class, "mcp_list_tools" => RealtimeMCPListTools::class, "mcp_call" => RealtimeMCPToolCall::class, "mcp_approval_request" => RealtimeMCPApprovalRequest::class], UnknownRealtimeConversationItem::class),
@@ -170,12 +166,8 @@ class RealtimeClientEventConversationItemDelete implements RealtimeClientEvent, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventConversationItemDeleteTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -252,12 +244,8 @@ class RealtimeClientEventConversationItemRetrieve implements RealtimeClientEvent
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeClientEventConversationItemRetrieveTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),

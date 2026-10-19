@@ -65,15 +65,9 @@ class RealtimeServerEventInputAudioBufferDtmfEventReceived implements RealtimeSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event") || $data->event === null) {
-            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
-        }
-        if (!property_exists($data, "received_at") || $data->received_at === null) {
-            throw new SdkValidationError("received_at", 'required', "Required property 'received_at' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
+        if (!property_exists($data, "received_at") || $data->received_at === null) { throw new SdkValidationError("received_at", 'required', "Required property 'received_at' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventInputAudioBufferDtmfEventReceivedTypeEnum::class),
             event: SdkClient::stringValue($data->event),
@@ -158,18 +152,10 @@ class RealtimeServerEventInputAudioBufferSpeechStarted implements RealtimeServer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "audio_start_ms") || $data->audio_start_ms === null) {
-            throw new SdkValidationError("audio_start_ms", 'required', "Required property 'audio_start_ms' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "audio_start_ms") || $data->audio_start_ms === null) { throw new SdkValidationError("audio_start_ms", 'required', "Required property 'audio_start_ms' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum::class),
@@ -255,18 +241,10 @@ class RealtimeServerEventInputAudioBufferSpeechStopped implements RealtimeServer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "audio_end_ms") || $data->audio_end_ms === null) {
-            throw new SdkValidationError("audio_end_ms", 'required', "Required property 'audio_end_ms' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "audio_end_ms") || $data->audio_end_ms === null) { throw new SdkValidationError("audio_end_ms", 'required', "Required property 'audio_end_ms' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
         return new self(
             eventId: SdkClient::stringValue($data->event_id),
             type: SdkClient::hydrateEnum($data->type, RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum::class),

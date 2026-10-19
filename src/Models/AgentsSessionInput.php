@@ -53,9 +53,7 @@ class SessionInputParamAgentSessionInputCancel implements SessionInputParam, \Js
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionInputParamAgentSessionInputCancelTypeEnum::class),
         );
@@ -128,15 +126,9 @@ class SessionInputParamAgentSessionInputComputerUseApprovalRequestResult impleme
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "request_id") || $data->request_id === null) {
-            throw new SdkValidationError("request_id", 'required', "Required property 'request_id' is missing or null");
-        }
-        if (!property_exists($data, "response") || $data->response === null) {
-            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "request_id") || $data->request_id === null) { throw new SdkValidationError("request_id", 'required', "Required property 'request_id' is missing or null"); }
+        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionInputParamAgentSessionInputComputerUseApprovalRequestResultTypeEnum::class),
             requestId: SdkClient::stringValue($data->request_id),
@@ -201,12 +193,8 @@ class SessionInputParamAgentSessionInputMessage implements SessionInputParam, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "input") || $data->input === null) {
-            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionInputParamAgentSessionInputMessageTypeEnum::class),
             input: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, InputMessageParam::class), SdkClient::arrayValue($data->input))),
@@ -314,18 +302,10 @@ class SessionInputParamAgentSessionInputToolResult implements SessionInputParam,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
-            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
-        }
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "success") || $data->success === null) {
-            throw new SdkValidationError("success", 'required', "Required property 'success' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "success") || $data->success === null) { throw new SdkValidationError("success", 'required', "Required property 'success' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionInputParamAgentSessionInputToolResultTypeEnum::class),
             turnId: SdkClient::stringValue($data->turn_id),

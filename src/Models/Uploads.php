@@ -45,9 +45,7 @@ class AddUploadPartRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
         return new self(
             data: SdkClient::stringValue($data->data),
         );
@@ -104,9 +102,7 @@ class CompleteUploadRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "part_ids") || $data->part_ids === null) {
-            throw new SdkValidationError("part_ids", 'required', "Required property 'part_ids' is missing or null");
-        }
+        if (!property_exists($data, "part_ids") || $data->part_ids === null) { throw new SdkValidationError("part_ids", 'required', "Required property 'part_ids' is missing or null"); }
         return new self(
             partIds: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->part_ids))),
             md5: (property_exists($data, "md5") && $data->md5 !== null ? SdkClient::stringValue($data->md5) : SdkNotGiven::Value),
@@ -124,26 +120,11 @@ final readonly class CreateUploadRequestPurposeEnum implements SdkOpenEnum
     public const FINE_TUNE = "fine-tune";
     public const VISION = "vision";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -226,18 +207,10 @@ class CreateUploadRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "filename") || $data->filename === null) {
-            throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null");
-        }
-        if (!property_exists($data, "purpose") || $data->purpose === null) {
-            throw new SdkValidationError("purpose", 'required', "Required property 'purpose' is missing or null");
-        }
-        if (!property_exists($data, "bytes") || $data->bytes === null) {
-            throw new SdkValidationError("bytes", 'required', "Required property 'bytes' is missing or null");
-        }
-        if (!property_exists($data, "mime_type") || $data->mime_type === null) {
-            throw new SdkValidationError("mime_type", 'required', "Required property 'mime_type' is missing or null");
-        }
+        if (!property_exists($data, "filename") || $data->filename === null) { throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null"); }
+        if (!property_exists($data, "purpose") || $data->purpose === null) { throw new SdkValidationError("purpose", 'required', "Required property 'purpose' is missing or null"); }
+        if (!property_exists($data, "bytes") || $data->bytes === null) { throw new SdkValidationError("bytes", 'required', "Required property 'bytes' is missing or null"); }
+        if (!property_exists($data, "mime_type") || $data->mime_type === null) { throw new SdkValidationError("mime_type", 'required', "Required property 'mime_type' is missing or null"); }
         return new self(
             filename: SdkClient::stringValue($data->filename),
             purpose: SdkClient::hydrateStringEnumOrString($data->purpose, CreateUploadRequestPurposeEnum::class),
@@ -258,26 +231,11 @@ final readonly class UploadStatusEnum implements SdkOpenEnum
     public const CANCELLED = "cancelled";
     public const EXPIRED = "expired";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -287,24 +245,9 @@ final readonly class UploadObjectEnum implements SdkOpenEnum
 {
     public const UPLOAD = "upload";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

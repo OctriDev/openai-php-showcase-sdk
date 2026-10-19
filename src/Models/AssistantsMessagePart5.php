@@ -162,12 +162,8 @@ class MessageDeltaContentTextAnnotationsFileCitationObject implements MessageDel
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "index") || $data->index === null) {
-            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum::class),
@@ -329,12 +325,8 @@ class MessageDeltaContentTextAnnotationsFilePathObject implements MessageDeltaCo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "index") || $data->index === null) {
-            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum::class),

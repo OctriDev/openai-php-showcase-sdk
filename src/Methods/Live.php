@@ -21,7 +21,7 @@ class Live
     public static function createLive(ClientConfig $clientConfig, LiveMediaSessionCreateParams $session, LiveSessionCreateRequestTransportRequest $transport, ?RequestOptions $requestOptions = null): LiveSessionCreateResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/live/sessions", $clientConfig, body: ['session' => $session, 'transport' => $transport], returnType: LiveSessionCreateResponse::class, decoder: 'json', operationId: 'createLive', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 413 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 504 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/live/sessions", $clientConfig, body: ['session' => $session, 'transport' => $transport], returnType: LiveSessionCreateResponse::class, decoder: 'json', operationId: 'createLive', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 413 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 504 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, LiveSessionCreateResponse::class));
     }
 
@@ -37,7 +37,7 @@ class Live
     public static function acceptLiveSession(ClientConfig $clientConfig, string $sessionId, LiveCallAcceptSession $session, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/accept", $clientConfig, body: ['session' => $session], decoder: 'empty', operationId: 'acceptLiveSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
+        return SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/accept", $clientConfig, body: ['session' => $session], decoder: 'empty', operationId: 'acceptLiveSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
     }
 
 
@@ -54,7 +54,7 @@ class Live
     public static function forkLiveSession(ClientConfig $clientConfig, string $sessionId, LiveWebRTCTransport $transport, LiveMediaSessionForkParams|SdkNotGiven $session = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): LiveCreateResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/fork", $clientConfig, body: ['transport' => $transport, 'session' => $session], returnType: LiveCreateResponse::class, decoder: 'json', operationId: 'forkLiveSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 413 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/fork", $clientConfig, body: ['transport' => $transport, 'session' => $session], returnType: LiveCreateResponse::class, decoder: 'json', operationId: 'forkLiveSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 413 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, LiveCreateResponse::class));
     }
 
@@ -69,7 +69,7 @@ class Live
     public static function hangupLiveSession(ClientConfig $clientConfig, string $sessionId, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/hangup", $clientConfig, decoder: 'empty', operationId: 'hangupLiveSession', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
+        return SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/hangup", $clientConfig, decoder: 'empty', operationId: 'hangupLiveSession', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
     }
 
 
@@ -87,7 +87,7 @@ class Live
         Validation::validateLength('target_uri', $targetUri, min: 1);
         Validation::validatePattern('target_uri', $targetUri, '\\S');
 
-        return SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/refer", $clientConfig, body: ['target_uri' => $targetUri], decoder: 'empty', operationId: 'referLiveSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
+        return SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/refer", $clientConfig, body: ['target_uri' => $targetUri], decoder: 'empty', operationId: 'referLiveSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
     }
 
 
@@ -104,7 +104,7 @@ class Live
 
         Validation::validateRange('status_code', $statusCode, min: 300, max: 699);
 
-        return SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/reject", $clientConfig, body: ['status_code' => $statusCode], decoder: 'empty', operationId: 'rejectLiveSession', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
+        return SdkClient::request('POST', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/reject", $clientConfig, body: ['status_code' => $statusCode], decoder: 'empty', operationId: 'rejectLiveSession', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
     }
 
 
@@ -121,7 +121,7 @@ class Live
 
         Validation::validatePattern('session_id', $sessionId, '^live_[A-Za-z0-9_-]{1,128}$');
 
-        $sdkResponse = SdkClient::request('GET', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/content", $clientConfig, decoder: 'bytes', operationId: 'downloadLiveRecording', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/live/sessions/" . SdkClient::encodePathSegment($sessionId) . "/content", $clientConfig, decoder: 'bytes', operationId: 'downloadLiveRecording', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::stringValue($sdkResponse->data));
     }
 }

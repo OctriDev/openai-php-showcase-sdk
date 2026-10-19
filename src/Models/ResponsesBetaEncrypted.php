@@ -63,12 +63,8 @@ class BetaEncryptedContent implements BetaAgentMessageContentItem, BetaMessageCo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) {
-            throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) { throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaEncryptedContentTypeEnum::class),
             encryptedContent: SdkClient::stringValue($data->encrypted_content),
@@ -132,12 +128,8 @@ class BetaEncryptedContentParam implements BetaAgentMessageItemParamContentItem,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) {
-            throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) { throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaEncryptedContentParamTypeEnum::class),
             encryptedContent: SdkClient::stringValue($data->encrypted_content),

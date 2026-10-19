@@ -64,12 +64,8 @@ class CompoundFilter implements Filters, CompoundFilterFiltersItem, VectorStoreS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "filters") || $data->filters === null) {
-            throw new SdkValidationError("filters", 'required', "Required property 'filters' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "filters") || $data->filters === null) { throw new SdkValidationError("filters", 'required', "Required property 'filters' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CompoundFilterTypeEnum::class),
             filters: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CompoundFilterFiltersItem::class, [ComparisonFilter::class, CompoundFilter::class], "type", ["eq" => ComparisonFilter::class, "ne" => ComparisonFilter::class, "gt" => ComparisonFilter::class, "gte" => ComparisonFilter::class, "lt" => ComparisonFilter::class, "lte" => ComparisonFilter::class, "in" => ComparisonFilter::class, "nin" => ComparisonFilter::class, "and" => CompoundFilter::class, "or" => CompoundFilter::class], UnknownCompoundFilterFiltersItem::class), SdkClient::arrayValue($data->filters))),

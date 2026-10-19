@@ -95,24 +95,12 @@ class BetaModerationResultBody implements BetaModerationInput, BetaModerationOut
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "flagged") || $data->flagged === null) {
-            throw new SdkValidationError("flagged", 'required', "Required property 'flagged' is missing or null");
-        }
-        if (!property_exists($data, "categories") || $data->categories === null) {
-            throw new SdkValidationError("categories", 'required', "Required property 'categories' is missing or null");
-        }
-        if (!property_exists($data, "category_scores") || $data->category_scores === null) {
-            throw new SdkValidationError("category_scores", 'required', "Required property 'category_scores' is missing or null");
-        }
-        if (!property_exists($data, "category_applied_input_types") || $data->category_applied_input_types === null) {
-            throw new SdkValidationError("category_applied_input_types", 'required', "Required property 'category_applied_input_types' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "flagged") || $data->flagged === null) { throw new SdkValidationError("flagged", 'required', "Required property 'flagged' is missing or null"); }
+        if (!property_exists($data, "categories") || $data->categories === null) { throw new SdkValidationError("categories", 'required', "Required property 'categories' is missing or null"); }
+        if (!property_exists($data, "category_scores") || $data->category_scores === null) { throw new SdkValidationError("category_scores", 'required', "Required property 'category_scores' is missing or null"); }
+        if (!property_exists($data, "category_applied_input_types") || $data->category_applied_input_types === null) { throw new SdkValidationError("category_applied_input_types", 'required', "Required property 'category_applied_input_types' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaModerationResultBodyTypeEnum::class),
             model: SdkClient::stringValue($data->model),
