@@ -65,7 +65,9 @@ class LiveLocalEnvironmentParam implements LiveHostedShellToolInputParamEnvironm
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveLocalEnvironmentParamTypeEnum::class),
             skills: (property_exists($data, "skills") ? ($data->skills === null ? null : array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, LiveLocalSkillParam::class), SdkClient::arrayValue($data->skills)))) : SdkNotGiven::Value),
@@ -131,9 +133,15 @@ class LiveLocalSkillParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "description") || $data->description === null) { throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null"); }
-        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "description") || $data->description === null) {
+            throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null");
+        }
+        if (!property_exists($data, "path") || $data->path === null) {
+            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
+        }
         return new self(
             name: SdkClient::stringValue($data->name),
             description: SdkClient::stringValue($data->description),

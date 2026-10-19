@@ -85,11 +85,21 @@ class GraderTextSimilarity implements FineTuneReinforcementMethodGrader, RunGrad
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
-        if (!property_exists($data, "reference") || $data->reference === null) { throw new SdkValidationError("reference", 'required', "Required property 'reference' is missing or null"); }
-        if (!property_exists($data, "evaluation_metric") || $data->evaluation_metric === null) { throw new SdkValidationError("evaluation_metric", 'required', "Required property 'evaluation_metric' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
+        if (!property_exists($data, "reference") || $data->reference === null) {
+            throw new SdkValidationError("reference", 'required', "Required property 'reference' is missing or null");
+        }
+        if (!property_exists($data, "evaluation_metric") || $data->evaluation_metric === null) {
+            throw new SdkValidationError("evaluation_metric", 'required', "Required property 'evaluation_metric' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, GraderTextSimilarityTypeEnum::class),
             name: SdkClient::stringValue($data->name),

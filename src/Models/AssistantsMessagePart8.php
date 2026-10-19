@@ -55,8 +55,12 @@ class MessageRequestContentTextObject implements CreateMessageRequestContentItem
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, MessageRequestContentTextObjectTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -110,8 +114,12 @@ class MessageStreamEventThreadMessageCreated implements AssistantStreamEvent, Me
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, MessageStreamEventThreadMessageCreatedEventEnum::class),
             data: SdkClient::hydrateClass($data->data, MessageObject::class),
@@ -165,8 +173,12 @@ class MessageStreamEventThreadMessageInProgress implements AssistantStreamEvent,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, MessageStreamEventThreadMessageInProgressEventEnum::class),
             data: SdkClient::hydrateClass($data->data, MessageObject::class),
@@ -220,8 +232,12 @@ class MessageStreamEventThreadMessageDelta implements AssistantStreamEvent, Mess
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, MessageStreamEventThreadMessageDeltaEventEnum::class),
             data: SdkClient::hydrateClass($data->data, MessageDeltaObject::class),
@@ -275,8 +291,12 @@ class MessageStreamEventThreadMessageCompleted implements AssistantStreamEvent, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, MessageStreamEventThreadMessageCompletedEventEnum::class),
             data: SdkClient::hydrateClass($data->data, MessageObject::class),
@@ -330,8 +350,12 @@ class MessageStreamEventThreadMessageIncomplete implements AssistantStreamEvent,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, MessageStreamEventThreadMessageIncompleteEventEnum::class),
             data: SdkClient::hydrateClass($data->data, MessageObject::class),

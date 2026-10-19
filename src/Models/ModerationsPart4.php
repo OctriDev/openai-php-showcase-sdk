@@ -14,11 +14,26 @@ final readonly class CreateModerationResponseResultsItemCategoryAppliedInputType
 {
     public const TEXT = "text";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -29,11 +44,26 @@ final readonly class CreateModerationResponseResultsItemCategoryAppliedInputType
     public const TEXT = "text";
     public const IMAGE = "image";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -44,11 +74,26 @@ final readonly class CreateModerationResponseResultsItemCategoryAppliedInputType
     public const TEXT = "text";
     public const IMAGE = "image";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -209,19 +254,45 @@ class CreateModerationResponseResultsItemCategoryAppliedInputTypes implements \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "hate") || $data->hate === null) { throw new SdkValidationError("hate", 'required', "Required property 'hate' is missing or null"); }
-        if (!property_exists($data, "hate/threatening") || get_object_vars($data)["hate/threatening"] === null) { throw new SdkValidationError("hate/threatening", 'required', "Required property 'hate/threatening' is missing or null"); }
-        if (!property_exists($data, "harassment") || $data->harassment === null) { throw new SdkValidationError("harassment", 'required', "Required property 'harassment' is missing or null"); }
-        if (!property_exists($data, "harassment/threatening") || get_object_vars($data)["harassment/threatening"] === null) { throw new SdkValidationError("harassment/threatening", 'required', "Required property 'harassment/threatening' is missing or null"); }
-        if (!property_exists($data, "illicit") || $data->illicit === null) { throw new SdkValidationError("illicit", 'required', "Required property 'illicit' is missing or null"); }
-        if (!property_exists($data, "illicit/violent") || get_object_vars($data)["illicit/violent"] === null) { throw new SdkValidationError("illicit/violent", 'required', "Required property 'illicit/violent' is missing or null"); }
-        if (!property_exists($data, "self-harm") || get_object_vars($data)["self-harm"] === null) { throw new SdkValidationError("self-harm", 'required', "Required property 'self-harm' is missing or null"); }
-        if (!property_exists($data, "self-harm/intent") || get_object_vars($data)["self-harm/intent"] === null) { throw new SdkValidationError("self-harm/intent", 'required', "Required property 'self-harm/intent' is missing or null"); }
-        if (!property_exists($data, "self-harm/instructions") || get_object_vars($data)["self-harm/instructions"] === null) { throw new SdkValidationError("self-harm/instructions", 'required', "Required property 'self-harm/instructions' is missing or null"); }
-        if (!property_exists($data, "sexual") || $data->sexual === null) { throw new SdkValidationError("sexual", 'required', "Required property 'sexual' is missing or null"); }
-        if (!property_exists($data, "sexual/minors") || get_object_vars($data)["sexual/minors"] === null) { throw new SdkValidationError("sexual/minors", 'required', "Required property 'sexual/minors' is missing or null"); }
-        if (!property_exists($data, "violence") || $data->violence === null) { throw new SdkValidationError("violence", 'required', "Required property 'violence' is missing or null"); }
-        if (!property_exists($data, "violence/graphic") || get_object_vars($data)["violence/graphic"] === null) { throw new SdkValidationError("violence/graphic", 'required', "Required property 'violence/graphic' is missing or null"); }
+        if (!property_exists($data, "hate") || $data->hate === null) {
+            throw new SdkValidationError("hate", 'required', "Required property 'hate' is missing or null");
+        }
+        if (!property_exists($data, "hate/threatening") || get_object_vars($data)["hate/threatening"] === null) {
+            throw new SdkValidationError("hate/threatening", 'required', "Required property 'hate/threatening' is missing or null");
+        }
+        if (!property_exists($data, "harassment") || $data->harassment === null) {
+            throw new SdkValidationError("harassment", 'required', "Required property 'harassment' is missing or null");
+        }
+        if (!property_exists($data, "harassment/threatening") || get_object_vars($data)["harassment/threatening"] === null) {
+            throw new SdkValidationError("harassment/threatening", 'required', "Required property 'harassment/threatening' is missing or null");
+        }
+        if (!property_exists($data, "illicit") || $data->illicit === null) {
+            throw new SdkValidationError("illicit", 'required', "Required property 'illicit' is missing or null");
+        }
+        if (!property_exists($data, "illicit/violent") || get_object_vars($data)["illicit/violent"] === null) {
+            throw new SdkValidationError("illicit/violent", 'required', "Required property 'illicit/violent' is missing or null");
+        }
+        if (!property_exists($data, "self-harm") || get_object_vars($data)["self-harm"] === null) {
+            throw new SdkValidationError("self-harm", 'required', "Required property 'self-harm' is missing or null");
+        }
+        if (!property_exists($data, "self-harm/intent") || get_object_vars($data)["self-harm/intent"] === null) {
+            throw new SdkValidationError("self-harm/intent", 'required', "Required property 'self-harm/intent' is missing or null");
+        }
+        if (!property_exists($data, "self-harm/instructions") || get_object_vars($data)["self-harm/instructions"] === null) {
+            throw new SdkValidationError("self-harm/instructions", 'required', "Required property 'self-harm/instructions' is missing or null");
+        }
+        if (!property_exists($data, "sexual") || $data->sexual === null) {
+            throw new SdkValidationError("sexual", 'required', "Required property 'sexual' is missing or null");
+        }
+        if (!property_exists($data, "sexual/minors") || get_object_vars($data)["sexual/minors"] === null) {
+            throw new SdkValidationError("sexual/minors", 'required', "Required property 'sexual/minors' is missing or null");
+        }
+        if (!property_exists($data, "violence") || $data->violence === null) {
+            throw new SdkValidationError("violence", 'required', "Required property 'violence' is missing or null");
+        }
+        if (!property_exists($data, "violence/graphic") || get_object_vars($data)["violence/graphic"] === null) {
+            throw new SdkValidationError("violence/graphic", 'required', "Required property 'violence/graphic' is missing or null");
+        }
         return new self(
             hate: array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, CreateModerationResponseResultsItemCategoryAppliedInputTypesHateItemEnum::class), SdkClient::arrayValue($data->hate))),
             hateThreatening: array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, CreateModerationResponseResultsItemCategoryAppliedInputTypesHateThreateningItemEnum::class), SdkClient::arrayValue(get_object_vars($data)["hate/threatening"]))),
@@ -308,10 +379,18 @@ class CreateModerationResponseResultsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "flagged") || $data->flagged === null) { throw new SdkValidationError("flagged", 'required', "Required property 'flagged' is missing or null"); }
-        if (!property_exists($data, "categories") || $data->categories === null) { throw new SdkValidationError("categories", 'required', "Required property 'categories' is missing or null"); }
-        if (!property_exists($data, "category_scores") || $data->category_scores === null) { throw new SdkValidationError("category_scores", 'required', "Required property 'category_scores' is missing or null"); }
-        if (!property_exists($data, "category_applied_input_types") || $data->category_applied_input_types === null) { throw new SdkValidationError("category_applied_input_types", 'required', "Required property 'category_applied_input_types' is missing or null"); }
+        if (!property_exists($data, "flagged") || $data->flagged === null) {
+            throw new SdkValidationError("flagged", 'required', "Required property 'flagged' is missing or null");
+        }
+        if (!property_exists($data, "categories") || $data->categories === null) {
+            throw new SdkValidationError("categories", 'required', "Required property 'categories' is missing or null");
+        }
+        if (!property_exists($data, "category_scores") || $data->category_scores === null) {
+            throw new SdkValidationError("category_scores", 'required', "Required property 'category_scores' is missing or null");
+        }
+        if (!property_exists($data, "category_applied_input_types") || $data->category_applied_input_types === null) {
+            throw new SdkValidationError("category_applied_input_types", 'required', "Required property 'category_applied_input_types' is missing or null");
+        }
         return new self(
             flagged: SdkClient::boolValue($data->flagged),
             categories: SdkClient::hydrateClass($data->categories, CreateModerationResponseResultsItemCategories::class),

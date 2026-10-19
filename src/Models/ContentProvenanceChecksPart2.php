@@ -75,10 +75,18 @@ class SynthIDProvenanceResult implements ProvenanceResourceResultsItem, \JsonSer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "outcome") || $data->outcome === null) { throw new SdkValidationError("outcome", 'required', "Required property 'outcome' is missing or null"); }
-        if (!property_exists($data, "model")) { throw new SdkValidationError("model", 'required', "Missing required property 'model'"); }
-        if (!property_exists($data, "generated_at")) { throw new SdkValidationError("generated_at", 'required', "Missing required property 'generated_at'"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "outcome") || $data->outcome === null) {
+            throw new SdkValidationError("outcome", 'required', "Required property 'outcome' is missing or null");
+        }
+        if (!property_exists($data, "model")) {
+            throw new SdkValidationError("model", 'required', "Missing required property 'model'");
+        }
+        if (!property_exists($data, "generated_at")) {
+            throw new SdkValidationError("generated_at", 'required', "Missing required property 'generated_at'");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SynthIDProvenanceResultTypeEnum::class),
             outcome: SdkClient::hydrateStringEnumOrString($data->outcome, ProvenanceDetectionResultApi::class),

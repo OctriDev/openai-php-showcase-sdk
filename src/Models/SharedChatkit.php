@@ -75,10 +75,18 @@ class ChatkitWorkflow implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "version")) { throw new SdkValidationError("version", 'required', "Missing required property 'version'"); }
-        if (!property_exists($data, "state_variables")) { throw new SdkValidationError("state_variables", 'required', "Missing required property 'state_variables'"); }
-        if (!property_exists($data, "tracing") || $data->tracing === null) { throw new SdkValidationError("tracing", 'required', "Required property 'tracing' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "version")) {
+            throw new SdkValidationError("version", 'required', "Missing required property 'version'");
+        }
+        if (!property_exists($data, "state_variables")) {
+            throw new SdkValidationError("state_variables", 'required', "Missing required property 'state_variables'");
+        }
+        if (!property_exists($data, "tracing") || $data->tracing === null) {
+            throw new SdkValidationError("tracing", 'required', "Required property 'tracing' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             version: ($data->version === null ? null : SdkClient::stringValue($data->version)),
@@ -126,7 +134,9 @@ class ChatkitWorkflowTracing implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
+        if (!property_exists($data, "enabled") || $data->enabled === null) {
+            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
+        }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
         );

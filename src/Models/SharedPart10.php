@@ -135,8 +135,12 @@ class RefusalContent implements Content, OutputContent, OutputMessageContent, Me
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "refusal") || $data->refusal === null) { throw new SdkValidationError("refusal", 'required', "Required property 'refusal' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "refusal") || $data->refusal === null) {
+            throw new SdkValidationError("refusal", 'required', "Required property 'refusal' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RefusalContentTypeEnum::class),
             refusal: SdkClient::stringValue($data->refusal),
@@ -190,7 +194,9 @@ class ScreenshotParam implements ComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ScreenshotParamTypeEnum::class),
         );
@@ -295,11 +301,21 @@ class ScrollParam implements ComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "x") || $data->x === null) { throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null"); }
-        if (!property_exists($data, "y") || $data->y === null) { throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null"); }
-        if (!property_exists($data, "scroll_x") || $data->scroll_x === null) { throw new SdkValidationError("scroll_x", 'required', "Required property 'scroll_x' is missing or null"); }
-        if (!property_exists($data, "scroll_y") || $data->scroll_y === null) { throw new SdkValidationError("scroll_y", 'required', "Required property 'scroll_y' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "x") || $data->x === null) {
+            throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null");
+        }
+        if (!property_exists($data, "y") || $data->y === null) {
+            throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null");
+        }
+        if (!property_exists($data, "scroll_x") || $data->scroll_x === null) {
+            throw new SdkValidationError("scroll_x", 'required', "Required property 'scroll_x' is missing or null");
+        }
+        if (!property_exists($data, "scroll_y") || $data->scroll_y === null) {
+            throw new SdkValidationError("scroll_y", 'required', "Required property 'scroll_y' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ScrollParamTypeEnum::class),
             x: SdkClient::intValue($data->x),

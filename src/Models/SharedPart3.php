@@ -285,9 +285,15 @@ class CompletionUsage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "completion_tokens") || $data->completion_tokens === null) { throw new SdkValidationError("completion_tokens", 'required', "Required property 'completion_tokens' is missing or null"); }
-        if (!property_exists($data, "prompt_tokens") || $data->prompt_tokens === null) { throw new SdkValidationError("prompt_tokens", 'required', "Required property 'prompt_tokens' is missing or null"); }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
+        if (!property_exists($data, "completion_tokens") || $data->completion_tokens === null) {
+            throw new SdkValidationError("completion_tokens", 'required', "Required property 'completion_tokens' is missing or null");
+        }
+        if (!property_exists($data, "prompt_tokens") || $data->prompt_tokens === null) {
+            throw new SdkValidationError("prompt_tokens", 'required', "Required property 'prompt_tokens' is missing or null");
+        }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
+            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
+        }
         return new self(
             completionTokens: SdkClient::intValue($data->completion_tokens),
             promptTokens: SdkClient::intValue($data->prompt_tokens),
@@ -346,8 +352,12 @@ class CoordParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "x") || $data->x === null) { throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null"); }
-        if (!property_exists($data, "y") || $data->y === null) { throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null"); }
+        if (!property_exists($data, "x") || $data->x === null) {
+            throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null");
+        }
+        if (!property_exists($data, "y") || $data->y === null) {
+            throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null");
+        }
         return new self(
             x: SdkClient::intValue($data->x),
             y: SdkClient::intValue($data->y),

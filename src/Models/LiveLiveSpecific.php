@@ -53,7 +53,9 @@ class LiveSpecificApplyPatchParam implements LiveAllowedToolsChoiceParamToolsIte
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificApplyPatchParamTypeEnum::class),
         );
@@ -106,7 +108,9 @@ class LiveSpecificCodeInterpreterParam implements LiveAllowedToolsChoiceParamToo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificCodeInterpreterParamTypeEnum::class),
         );
@@ -159,7 +163,9 @@ class LiveSpecificComputerParam implements LiveAllowedToolsChoiceParamToolsItem,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificComputerParamTypeEnum::class),
         );
@@ -222,8 +228,12 @@ class LiveSpecificCustomToolParam implements LiveAllowedToolsChoiceParamToolsIte
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificCustomToolParamTypeEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -277,7 +287,9 @@ class LiveSpecificFileSearchParam implements LiveAllowedToolsChoiceParamToolsIte
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificFileSearchParamTypeEnum::class),
         );
@@ -330,7 +342,9 @@ class LiveSpecificFunctionShellParam implements LiveAllowedToolsChoiceParamTools
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSpecificFunctionShellParamTypeEnum::class),
         );

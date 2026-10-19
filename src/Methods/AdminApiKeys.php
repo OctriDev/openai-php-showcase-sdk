@@ -12,22 +12,52 @@ final readonly class ListAdminApiKeysOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class DeleteAdminApiKeysResponseObjectEnum implements SdkOpenEnum
 {
     public const ORGANIZATION_ADMIN_API_KEY_DELETED = "organization.admin_api_key.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class DeleteAdminApiKeysResponse implements \JsonSerializable
@@ -73,9 +103,15 @@ class DeleteAdminApiKeysResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "deleted") || $data->deleted === null) {
+            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, DeleteAdminApiKeysResponseObjectEnum::class),
@@ -99,7 +135,7 @@ class AdminApiKeys
     public static function listAdminApiKeys(ClientConfig $clientConfig, string|null|SdkNotGiven $after = SdkNotGiven::Value, ListAdminApiKeysOrder|SdkNotGiven $order = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ApiKeyList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/admin_api_keys", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ApiKeyList::class, decoder: 'json', operationId: 'listAdminApiKeys', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/admin_api_keys", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ApiKeyList::class, decoder: 'json', operationId: 'listAdminApiKeys', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ApiKeyList::class));
     }
 
@@ -188,7 +224,7 @@ class AdminApiKeys
             Validation::validateRange('expires_in_seconds', $expiresInSeconds, min: 1, max: 31536000);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/organization/admin_api_keys", $clientConfig, body: ['name' => $name, 'expires_in_seconds' => $expiresInSeconds], returnType: AdminApiKeyCreateResponse::class, decoder: 'json', operationId: 'createAdminApiKeys', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/admin_api_keys", $clientConfig, body: ['name' => $name, 'expires_in_seconds' => $expiresInSeconds], returnType: AdminApiKeyCreateResponse::class, decoder: 'json', operationId: 'createAdminApiKeys', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AdminApiKeyCreateResponse::class));
     }
 
@@ -204,7 +240,7 @@ class AdminApiKeys
     public static function retrieveAdminApiKeys(ClientConfig $clientConfig, string $keyId, ?RequestOptions $requestOptions = null): AdminApiKey
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/admin_api_keys/" . SdkClient::encodePathSegment($keyId) . "", $clientConfig, returnType: AdminApiKey::class, decoder: 'json', operationId: 'retrieveAdminApiKeys', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/admin_api_keys/" . SdkClient::encodePathSegment($keyId) . "", $clientConfig, returnType: AdminApiKey::class, decoder: 'json', operationId: 'retrieveAdminApiKeys', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AdminApiKey::class));
     }
 
@@ -220,7 +256,7 @@ class AdminApiKeys
     public static function deleteAdminApiKeys(ClientConfig $clientConfig, string $keyId, ?RequestOptions $requestOptions = null): DeleteAdminApiKeysResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/admin_api_keys/" . SdkClient::encodePathSegment($keyId) . "", $clientConfig, returnType: DeleteAdminApiKeysResponse::class, decoder: 'json', operationId: 'deleteAdminApiKeys', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/admin_api_keys/" . SdkClient::encodePathSegment($keyId) . "", $clientConfig, returnType: DeleteAdminApiKeysResponse::class, decoder: 'json', operationId: 'deleteAdminApiKeys', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteAdminApiKeysResponse::class));
     }
 }

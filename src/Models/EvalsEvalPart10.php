@@ -135,16 +135,36 @@ class EvalRunOutputItemSample implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
-        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
-        if (!property_exists($data, "finish_reason") || $data->finish_reason === null) { throw new SdkValidationError("finish_reason", 'required', "Required property 'finish_reason' is missing or null"); }
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
-        if (!property_exists($data, "usage") || $data->usage === null) { throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null"); }
-        if (!property_exists($data, "error")) { throw new SdkValidationError("error", 'required', "Missing required property 'error'"); }
-        if (!property_exists($data, "temperature") || $data->temperature === null) { throw new SdkValidationError("temperature", 'required', "Required property 'temperature' is missing or null"); }
-        if (!property_exists($data, "max_completion_tokens") || $data->max_completion_tokens === null) { throw new SdkValidationError("max_completion_tokens", 'required', "Required property 'max_completion_tokens' is missing or null"); }
-        if (!property_exists($data, "top_p") || $data->top_p === null) { throw new SdkValidationError("top_p", 'required', "Required property 'top_p' is missing or null"); }
-        if (!property_exists($data, "seed") || $data->seed === null) { throw new SdkValidationError("seed", 'required', "Required property 'seed' is missing or null"); }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
+        if (!property_exists($data, "output") || $data->output === null) {
+            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
+        }
+        if (!property_exists($data, "finish_reason") || $data->finish_reason === null) {
+            throw new SdkValidationError("finish_reason", 'required', "Required property 'finish_reason' is missing or null");
+        }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "usage") || $data->usage === null) {
+            throw new SdkValidationError("usage", 'required', "Required property 'usage' is missing or null");
+        }
+        if (!property_exists($data, "error")) {
+            throw new SdkValidationError("error", 'required', "Missing required property 'error'");
+        }
+        if (!property_exists($data, "temperature") || $data->temperature === null) {
+            throw new SdkValidationError("temperature", 'required', "Required property 'temperature' is missing or null");
+        }
+        if (!property_exists($data, "max_completion_tokens") || $data->max_completion_tokens === null) {
+            throw new SdkValidationError("max_completion_tokens", 'required', "Required property 'max_completion_tokens' is missing or null");
+        }
+        if (!property_exists($data, "top_p") || $data->top_p === null) {
+            throw new SdkValidationError("top_p", 'required', "Required property 'top_p' is missing or null");
+        }
+        if (!property_exists($data, "seed") || $data->seed === null) {
+            throw new SdkValidationError("seed", 'required', "Required property 'seed' is missing or null");
+        }
         return new self(
             input: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EvalRunOutputItemSampleInputItem::class), SdkClient::arrayValue($data->input))),
             output: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EvalRunOutputItemSampleOutputItem::class), SdkClient::arrayValue($data->output))),
@@ -288,16 +308,36 @@ class EvalRunOutputItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "run_id") || $data->run_id === null) { throw new SdkValidationError("run_id", 'required', "Required property 'run_id' is missing or null"); }
-        if (!property_exists($data, "eval_id") || $data->eval_id === null) { throw new SdkValidationError("eval_id", 'required', "Required property 'eval_id' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "datasource_item_id") || $data->datasource_item_id === null) { throw new SdkValidationError("datasource_item_id", 'required', "Required property 'datasource_item_id' is missing or null"); }
-        if (!property_exists($data, "datasource_item") || $data->datasource_item === null) { throw new SdkValidationError("datasource_item", 'required', "Required property 'datasource_item' is missing or null"); }
-        if (!property_exists($data, "results") || $data->results === null) { throw new SdkValidationError("results", 'required', "Required property 'results' is missing or null"); }
-        if (!property_exists($data, "sample") || $data->sample === null) { throw new SdkValidationError("sample", 'required', "Required property 'sample' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "run_id") || $data->run_id === null) {
+            throw new SdkValidationError("run_id", 'required', "Required property 'run_id' is missing or null");
+        }
+        if (!property_exists($data, "eval_id") || $data->eval_id === null) {
+            throw new SdkValidationError("eval_id", 'required', "Required property 'eval_id' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "datasource_item_id") || $data->datasource_item_id === null) {
+            throw new SdkValidationError("datasource_item_id", 'required', "Required property 'datasource_item_id' is missing or null");
+        }
+        if (!property_exists($data, "datasource_item") || $data->datasource_item === null) {
+            throw new SdkValidationError("datasource_item", 'required', "Required property 'datasource_item' is missing or null");
+        }
+        if (!property_exists($data, "results") || $data->results === null) {
+            throw new SdkValidationError("results", 'required', "Required property 'results' is missing or null");
+        }
+        if (!property_exists($data, "sample") || $data->sample === null) {
+            throw new SdkValidationError("sample", 'required', "Required property 'sample' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, EvalRunOutputItemObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -320,9 +360,24 @@ final readonly class EvalRunOutputItemListObjectEnum implements SdkOpenEnum
 {
     public const LIST = "list";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

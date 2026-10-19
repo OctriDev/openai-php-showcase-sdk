@@ -55,8 +55,12 @@ class TextResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "format") || $data->format === null) { throw new SdkValidationError("format", 'required', "Required property 'format' is missing or null"); }
-        if (!property_exists($data, "verbosity") || $data->verbosity === null) { throw new SdkValidationError("verbosity", 'required', "Required property 'verbosity' is missing or null"); }
+        if (!property_exists($data, "format") || $data->format === null) {
+            throw new SdkValidationError("format", 'required', "Required property 'format' is missing or null");
+        }
+        if (!property_exists($data, "verbosity") || $data->verbosity === null) {
+            throw new SdkValidationError("verbosity", 'required', "Required property 'verbosity' is missing or null");
+        }
         return new self(
             format: SdkClient::hydrateUnionAs($data->format, TextFormatResource::class, [TextFormatResourceText::class, TextFormatResourceJsonSchema::class], "type", ["text" => TextFormatResourceText::class, "json_schema" => TextFormatResourceJsonSchema::class], UnknownTextFormatResource::class),
             verbosity: SdkClient::hydrateStringEnumOrString($data->verbosity, VerbosityResource::class),

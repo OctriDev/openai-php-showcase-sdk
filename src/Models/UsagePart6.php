@@ -75,10 +75,18 @@ class UsageResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
-        if (!property_exists($data, "next_page")) { throw new SdkValidationError("next_page", 'required', "Missing required property 'next_page'"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "has_more") || $data->has_more === null) {
+            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
+        }
+        if (!property_exists($data, "next_page")) {
+            throw new SdkValidationError("next_page", 'required', "Missing required property 'next_page'");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, UsageResponseObjectEnum::class),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, UsageTimeBucket::class), SdkClient::arrayValue($data->data))),
@@ -95,11 +103,26 @@ final readonly class UsageTimeBucketObjectEnum implements SdkOpenEnum
 {
     public const BUCKET = "bucket";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -170,10 +193,18 @@ class UsageTimeBucket implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "start_time") || $data->start_time === null) { throw new SdkValidationError("start_time", 'required', "Required property 'start_time' is missing or null"); }
-        if (!property_exists($data, "end_time") || $data->end_time === null) { throw new SdkValidationError("end_time", 'required', "Required property 'end_time' is missing or null"); }
-        if (!property_exists($data, "results") || $data->results === null) { throw new SdkValidationError("results", 'required', "Required property 'results' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "start_time") || $data->start_time === null) {
+            throw new SdkValidationError("start_time", 'required', "Required property 'start_time' is missing or null");
+        }
+        if (!property_exists($data, "end_time") || $data->end_time === null) {
+            throw new SdkValidationError("end_time", 'required', "Required property 'end_time' is missing or null");
+        }
+        if (!property_exists($data, "results") || $data->results === null) {
+            throw new SdkValidationError("results", 'required', "Required property 'results' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, UsageTimeBucketObjectEnum::class),
             startTime: SdkClient::intValue($data->start_time),
@@ -251,8 +282,12 @@ class UsageVectorStoresResult implements UsageTimeBucketResultsItem, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "usage_bytes") || $data->usage_bytes === null) { throw new SdkValidationError("usage_bytes", 'required', "Required property 'usage_bytes' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "usage_bytes") || $data->usage_bytes === null) {
+            throw new SdkValidationError("usage_bytes", 'required', "Required property 'usage_bytes' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateEnum($data->object, UsageVectorStoresResultObjectEnum::class),
             usageBytes: SdkClient::intValue($data->usage_bytes),
@@ -266,11 +301,26 @@ final readonly class UsageWebSearchCallsResultApiSourceEnum implements SdkOpenEn
     public const AGENTS_API = "agents_api";
     public const UNLABELED = "unlabeled";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**

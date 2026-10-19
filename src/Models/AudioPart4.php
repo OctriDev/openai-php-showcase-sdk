@@ -91,8 +91,12 @@ class CreateTranslationRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file") || $data->file === null) { throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null"); }
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "file") || $data->file === null) {
+            throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null");
+        }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
         return new self(
             file: SdkClient::stringValue($data->file),
             model: SdkClient::stringValue($data->model),
@@ -141,7 +145,9 @@ class CreateTranslationResponseJson implements CreateTranslationResponse, \JsonS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             text: SdkClient::stringValue($data->text),
         );
@@ -218,9 +224,15 @@ class CreateTranslationResponseVerboseJson implements CreateTranslationResponse,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "language") || $data->language === null) { throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null"); }
-        if (!property_exists($data, "duration") || $data->duration === null) { throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "language") || $data->language === null) {
+            throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null");
+        }
+        if (!property_exists($data, "duration") || $data->duration === null) {
+            throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             language: SdkClient::stringValue($data->language),
             duration: SdkClient::floatValue($data->duration),
@@ -288,9 +300,15 @@ class CreateVoiceConsentRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "recording") || $data->recording === null) { throw new SdkValidationError("recording", 'required', "Required property 'recording' is missing or null"); }
-        if (!property_exists($data, "language") || $data->language === null) { throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "recording") || $data->recording === null) {
+            throw new SdkValidationError("recording", 'required', "Required property 'recording' is missing or null");
+        }
+        if (!property_exists($data, "language") || $data->language === null) {
+            throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null");
+        }
         return new self(
             name: SdkClient::stringValue($data->name),
             recording: SdkClient::stringValue($data->recording),
