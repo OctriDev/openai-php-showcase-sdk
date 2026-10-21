@@ -63,8 +63,12 @@ class VaultCredentialNetworkingParamLimited implements VaultCredentialNetworking
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "allowed_hosts") || $data->allowed_hosts === null) { throw new SdkValidationError("allowed_hosts", 'required', "Required property 'allowed_hosts' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "allowed_hosts") || $data->allowed_hosts === null) {
+            throw new SdkValidationError("allowed_hosts", 'required', "Required property 'allowed_hosts' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialNetworkingParamLimitedTypeEnum::class),
             allowedHosts: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_hosts))),
@@ -118,7 +122,9 @@ class VaultCredentialNetworkingParamUnrestricted implements VaultCredentialNetwo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialNetworkingParamUnrestrictedTypeEnum::class),
         );

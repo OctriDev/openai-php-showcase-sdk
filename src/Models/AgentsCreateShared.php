@@ -123,14 +123,30 @@ class CreateSubagentCallItemResource implements SessionTurnItemResource, AgentOu
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "agent_id") || $data->agent_id === null) { throw new SdkValidationError("agent_id", 'required', "Required property 'agent_id' is missing or null"); }
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
-        if (!property_exists($data, "model")) { throw new SdkValidationError("model", 'required', "Missing required property 'model'"); }
-        if (!property_exists($data, "reasoning_effort")) { throw new SdkValidationError("reasoning_effort", 'required', "Missing required property 'reasoning_effort'"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
+            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "agent_id") || $data->agent_id === null) {
+            throw new SdkValidationError("agent_id", 'required', "Required property 'agent_id' is missing or null");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
+        if (!property_exists($data, "model")) {
+            throw new SdkValidationError("model", 'required', "Missing required property 'model'");
+        }
+        if (!property_exists($data, "reasoning_effort")) {
+            throw new SdkValidationError("reasoning_effort", 'required', "Missing required property 'reasoning_effort'");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateSubagentCallItemResourceTypeEnum::class),
             id: SdkClient::stringValue($data->id),

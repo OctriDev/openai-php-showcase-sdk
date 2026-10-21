@@ -85,11 +85,21 @@ class BrowserAuthenticationRequestItemResource implements SessionTurnItemResourc
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
-        if (!property_exists($data, "request_id") || $data->request_id === null) { throw new SdkValidationError("request_id", 'required', "Required property 'request_id' is missing or null"); }
-        if (!property_exists($data, "request") || $data->request === null) { throw new SdkValidationError("request", 'required', "Required property 'request' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
+            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
+        }
+        if (!property_exists($data, "request_id") || $data->request_id === null) {
+            throw new SdkValidationError("request_id", 'required', "Required property 'request_id' is missing or null");
+        }
+        if (!property_exists($data, "request") || $data->request === null) {
+            throw new SdkValidationError("request", 'required', "Required property 'request' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             turnId: SdkClient::stringValue($data->turn_id),
             requestId: SdkClient::stringValue($data->request_id),

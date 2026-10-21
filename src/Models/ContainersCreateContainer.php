@@ -14,11 +14,26 @@ final readonly class CreateContainerBodyExpiresAfterAnchorEnum implements SdkOpe
 {
     public const LAST_ACTIVE_AT = "last_active_at";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -69,8 +84,12 @@ class CreateContainerBodyExpiresAfter implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "anchor") || $data->anchor === null) { throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null"); }
-        if (!property_exists($data, "minutes") || $data->minutes === null) { throw new SdkValidationError("minutes", 'required', "Required property 'minutes' is missing or null"); }
+        if (!property_exists($data, "anchor") || $data->anchor === null) {
+            throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null");
+        }
+        if (!property_exists($data, "minutes") || $data->minutes === null) {
+            throw new SdkValidationError("minutes", 'required', "Required property 'minutes' is missing or null");
+        }
         return new self(
             anchor: SdkClient::hydrateStringEnumOrString($data->anchor, CreateContainerBodyExpiresAfterAnchorEnum::class),
             minutes: SdkClient::intValue($data->minutes),
@@ -88,11 +107,26 @@ final readonly class CreateContainerBodyMemoryLimitEnum implements SdkOpenEnum
     public const _16G = "16g";
     public const _64G = "64g";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -193,7 +227,9 @@ class CreateContainerBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
         return new self(
             name: SdkClient::stringValue($data->name),
             fileIds: (property_exists($data, "file_ids") && $data->file_ids !== null ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->file_ids))) : SdkNotGiven::Value),

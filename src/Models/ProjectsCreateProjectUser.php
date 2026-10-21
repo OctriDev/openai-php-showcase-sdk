@@ -69,7 +69,9 @@ class ProjectUserCreateRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
         return new self(
             role: SdkClient::stringValue($data->role),
             userId: (property_exists($data, "user_id") ? ($data->user_id === null ? null : SdkClient::stringValue($data->user_id)) : SdkNotGiven::Value),

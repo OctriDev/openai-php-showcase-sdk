@@ -14,11 +14,26 @@ final readonly class CodeInterpreterFileOutputTypeEnum implements SdkOpenEnum
 {
     public const FILES = "files";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -69,8 +84,12 @@ class CodeInterpreterFileOutputFilesItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "mime_type") || $data->mime_type === null) { throw new SdkValidationError("mime_type", 'required', "Required property 'mime_type' is missing or null"); }
-        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
+        if (!property_exists($data, "mime_type") || $data->mime_type === null) {
+            throw new SdkValidationError("mime_type", 'required', "Required property 'mime_type' is missing or null");
+        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) {
+            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
+        }
         return new self(
             mimeType: SdkClient::stringValue($data->mime_type),
             fileId: SdkClient::stringValue($data->file_id),
@@ -126,8 +145,12 @@ class CodeInterpreterFileOutput implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "files") || $data->files === null) { throw new SdkValidationError("files", 'required', "Required property 'files' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "files") || $data->files === null) {
+            throw new SdkValidationError("files", 'required', "Required property 'files' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, CodeInterpreterFileOutputTypeEnum::class),
             files: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CodeInterpreterFileOutputFilesItem::class), SdkClient::arrayValue($data->files))),
@@ -142,11 +165,26 @@ final readonly class CodeInterpreterTextOutputTypeEnum implements SdkOpenEnum
 {
     public const LOGS = "logs";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -197,8 +235,12 @@ class CodeInterpreterTextOutput implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "logs") || $data->logs === null) { throw new SdkValidationError("logs", 'required', "Required property 'logs' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "logs") || $data->logs === null) {
+            throw new SdkValidationError("logs", 'required', "Required property 'logs' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, CodeInterpreterTextOutputTypeEnum::class),
             logs: SdkClient::stringValue($data->logs),

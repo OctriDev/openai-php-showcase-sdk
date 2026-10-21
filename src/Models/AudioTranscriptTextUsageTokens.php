@@ -87,10 +87,18 @@ class TranscriptTextUsageTokens implements CreateTranscriptionResponseDiarizedJs
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) { throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null"); }
-        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) { throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null"); }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) {
+            throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null");
+        }
+        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) {
+            throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null");
+        }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
+            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TranscriptTextUsageTokensTypeEnum::class),
             inputTokens: SdkClient::intValue($data->input_tokens),
@@ -108,11 +116,26 @@ final readonly class VadConfigTypeEnum implements SdkOpenEnum
 {
     public const SERVER_VAD = "server_vad";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -189,7 +212,9 @@ class VadConfig implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, VadConfigTypeEnum::class),
             prefixPaddingMs: (property_exists($data, "prefix_padding_ms") && $data->prefix_padding_ms !== null ? SdkClient::intValue($data->prefix_padding_ms) : SdkNotGiven::Value),

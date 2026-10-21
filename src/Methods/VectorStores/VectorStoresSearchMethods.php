@@ -29,7 +29,7 @@ trait VectorStoresSearchMethods
             Validation::validateRange('max_num_results', $maxNumResults, min: 1, max: 50);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "/search", $clientConfig, body: ['query' => $query, 'rewrite_query' => $rewriteQuery, 'max_num_results' => $maxNumResults, 'filters' => $filters, 'ranking_options' => $rankingOptions], returnType: VectorStoreSearchResultsPage::class, decoder: 'json', operationId: 'searchVectorStore', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "/search", $clientConfig, body: ['query' => $query, 'rewrite_query' => $rewriteQuery, 'max_num_results' => $maxNumResults, 'filters' => $filters, 'ranking_options' => $rankingOptions], returnType: VectorStoreSearchResultsPage::class, decoder: 'json', operationId: 'searchVectorStore', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VectorStoreSearchResultsPage::class));
     }
 }

@@ -125,13 +125,27 @@ class BetaResponseTextDeltaEvent implements BetaResponseStreamEvent, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
-        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
-        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
-        if (!property_exists($data, "delta") || $data->delta === null) { throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
-        if (!property_exists($data, "logprobs") || $data->logprobs === null) { throw new SdkValidationError("logprobs", 'required', "Required property 'logprobs' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
+        if (!property_exists($data, "output_index") || $data->output_index === null) {
+            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
+        }
+        if (!property_exists($data, "content_index") || $data->content_index === null) {
+            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
+        }
+        if (!property_exists($data, "delta") || $data->delta === null) {
+            throw new SdkValidationError("delta", 'required', "Required property 'delta' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
+        if (!property_exists($data, "logprobs") || $data->logprobs === null) {
+            throw new SdkValidationError("logprobs", 'required', "Required property 'logprobs' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseTextDeltaEventTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -263,13 +277,27 @@ class BetaResponseTextDoneEvent implements BetaResponseStreamEvent, \JsonSeriali
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
-        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
-        if (!property_exists($data, "content_index") || $data->content_index === null) { throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
-        if (!property_exists($data, "logprobs") || $data->logprobs === null) { throw new SdkValidationError("logprobs", 'required', "Required property 'logprobs' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
+        if (!property_exists($data, "output_index") || $data->output_index === null) {
+            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
+        }
+        if (!property_exists($data, "content_index") || $data->content_index === null) {
+            throw new SdkValidationError("content_index", 'required', "Required property 'content_index' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
+            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
+        }
+        if (!property_exists($data, "logprobs") || $data->logprobs === null) {
+            throw new SdkValidationError("logprobs", 'required', "Required property 'logprobs' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseTextDoneEventTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -289,9 +317,24 @@ final readonly class BetaResponseTextParamVerbosityEnum implements SdkOpenEnum
     public const MEDIUM = "medium";
     public const HIGH = "high";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

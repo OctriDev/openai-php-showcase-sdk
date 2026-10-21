@@ -45,7 +45,9 @@ class FunctionShellCallOutputTimeoutOutcomeParam implements FunctionShellCallOut
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionShellCallOutputTimeoutOutcomeParamTypeEnum::class),
         );
@@ -61,11 +63,26 @@ final readonly class FunctionShellCallStatus implements SdkOpenEnum
     public const COMPLETED = "completed";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -138,7 +155,9 @@ class FunctionShellToolParam implements Tool, ToolSearchOutputTool, \JsonSeriali
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionShellToolParamTypeEnum::class),
             environment: (property_exists($data, "environment") ? ($data->environment === null ? null : SdkClient::hydrateUnionAs($data->environment, FunctionShellToolParamEnvironment::class, [ContainerAutoParam::class, LocalEnvironmentParam::class, ContainerReferenceParam::class], "type", ["container_auto" => ContainerAutoParam::class, "local" => LocalEnvironmentParam::class, "container_reference" => ContainerReferenceParam::class], UnknownFunctionShellToolParamEnvironment::class)) : SdkNotGiven::Value),
@@ -283,10 +302,18 @@ class FunctionTool implements Tool, ToolSearchOutputTool, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "parameters")) { throw new SdkValidationError("parameters", 'required', "Missing required property 'parameters'"); }
-        if (!property_exists($data, "strict")) { throw new SdkValidationError("strict", 'required', "Missing required property 'strict'"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "parameters")) {
+            throw new SdkValidationError("parameters", 'required', "Missing required property 'parameters'");
+        }
+        if (!property_exists($data, "strict")) {
+            throw new SdkValidationError("strict", 'required', "Missing required property 'strict'");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionToolTypeEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -318,9 +345,24 @@ final readonly class FunctionToolCallStatusEnum implements SdkOpenEnum
     public const COMPLETED = "completed";
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

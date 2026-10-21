@@ -127,8 +127,12 @@ class ImageGenInputUsageDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "text_tokens") || $data->text_tokens === null) { throw new SdkValidationError("text_tokens", 'required', "Required property 'text_tokens' is missing or null"); }
-        if (!property_exists($data, "image_tokens") || $data->image_tokens === null) { throw new SdkValidationError("image_tokens", 'required', "Required property 'image_tokens' is missing or null"); }
+        if (!property_exists($data, "text_tokens") || $data->text_tokens === null) {
+            throw new SdkValidationError("text_tokens", 'required', "Required property 'text_tokens' is missing or null");
+        }
+        if (!property_exists($data, "image_tokens") || $data->image_tokens === null) {
+            throw new SdkValidationError("image_tokens", 'required', "Required property 'image_tokens' is missing or null");
+        }
         return new self(
             textTokens: SdkClient::intValue($data->text_tokens),
             imageTokens: SdkClient::intValue($data->image_tokens),
@@ -184,8 +188,12 @@ class ImageGenOutputTokensDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "image_tokens") || $data->image_tokens === null) { throw new SdkValidationError("image_tokens", 'required', "Required property 'image_tokens' is missing or null"); }
-        if (!property_exists($data, "text_tokens") || $data->text_tokens === null) { throw new SdkValidationError("text_tokens", 'required', "Required property 'text_tokens' is missing or null"); }
+        if (!property_exists($data, "image_tokens") || $data->image_tokens === null) {
+            throw new SdkValidationError("image_tokens", 'required', "Required property 'image_tokens' is missing or null");
+        }
+        if (!property_exists($data, "text_tokens") || $data->text_tokens === null) {
+            throw new SdkValidationError("text_tokens", 'required', "Required property 'text_tokens' is missing or null");
+        }
         return new self(
             imageTokens: SdkClient::intValue($data->image_tokens),
             textTokens: SdkClient::intValue($data->text_tokens),
@@ -273,10 +281,18 @@ class ImageGenUsage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) { throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null"); }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
-        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) { throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null"); }
-        if (!property_exists($data, "input_tokens_details") || $data->input_tokens_details === null) { throw new SdkValidationError("input_tokens_details", 'required', "Required property 'input_tokens_details' is missing or null"); }
+        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) {
+            throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null");
+        }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
+            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
+        }
+        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) {
+            throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null");
+        }
+        if (!property_exists($data, "input_tokens_details") || $data->input_tokens_details === null) {
+            throw new SdkValidationError("input_tokens_details", 'required', "Required property 'input_tokens_details' is missing or null");
+        }
         return new self(
             inputTokens: SdkClient::intValue($data->input_tokens),
             totalTokens: SdkClient::intValue($data->total_tokens),
@@ -295,11 +311,26 @@ final readonly class ImagesResponseBackgroundEnum implements SdkOpenEnum
     public const TRANSPARENT = "transparent";
     public const OPAQUE = "opaque";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -311,11 +342,26 @@ final readonly class ImagesResponseOutputFormatEnum implements SdkOpenEnum
     public const WEBP = "webp";
     public const JPEG = "jpeg";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -329,9 +375,24 @@ final readonly class ImagesResponseQualityEnum implements SdkOpenEnum
     public const XHIGH = "xhigh";
     public const MAX = "max";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

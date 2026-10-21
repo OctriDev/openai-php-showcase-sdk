@@ -79,8 +79,12 @@ class CreateEvalRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "data_source_config") || $data->data_source_config === null) { throw new SdkValidationError("data_source_config", 'required', "Required property 'data_source_config' is missing or null"); }
-        if (!property_exists($data, "testing_criteria") || $data->testing_criteria === null) { throw new SdkValidationError("testing_criteria", 'required', "Required property 'testing_criteria' is missing or null"); }
+        if (!property_exists($data, "data_source_config") || $data->data_source_config === null) {
+            throw new SdkValidationError("data_source_config", 'required', "Required property 'data_source_config' is missing or null");
+        }
+        if (!property_exists($data, "testing_criteria") || $data->testing_criteria === null) {
+            throw new SdkValidationError("testing_criteria", 'required', "Required property 'testing_criteria' is missing or null");
+        }
         return new self(
             dataSourceConfig: SdkClient::hydrateUnionAs($data->data_source_config, CreateEvalRequestDataSourceConfig::class, [CreateEvalCustomDataSourceConfig::class, CreateEvalLogsDataSourceConfig::class, CreateEvalStoredCompletionsDataSourceConfig::class], "type", ["custom" => CreateEvalCustomDataSourceConfig::class, "logs" => CreateEvalLogsDataSourceConfig::class, "stored_completions" => CreateEvalStoredCompletionsDataSourceConfig::class], UnknownCreateEvalRequestDataSourceConfig::class),
             testingCriteria: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, CreateEvalRequestTestingCriteriaItem::class, [CreateEvalLabelModelGrader::class, EvalGraderStringCheck::class, EvalGraderTextSimilarity::class, EvalGraderPython::class, EvalGraderScoreModel::class], "type", ["label_model" => CreateEvalLabelModelGrader::class, "string_check" => EvalGraderStringCheck::class, "text_similarity" => EvalGraderTextSimilarity::class, "python" => EvalGraderPython::class, "score_model" => EvalGraderScoreModel::class], UnknownCreateEvalRequestTestingCriteriaItem::class), SdkClient::arrayValue($data->testing_criteria))),
@@ -148,7 +152,9 @@ class CreateEvalStoredCompletionsDataSourceConfig implements CreateEvalRequestDa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalStoredCompletionsDataSourceConfigTypeEnum::class),
             metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),

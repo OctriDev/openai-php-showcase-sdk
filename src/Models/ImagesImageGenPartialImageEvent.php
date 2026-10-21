@@ -115,14 +115,30 @@ class ImageGenPartialImageEvent implements ImageGenStreamEvent, \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "b64_json") || $data->b64_json === null) { throw new SdkValidationError("b64_json", 'required', "Required property 'b64_json' is missing or null"); }
-        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
-        if (!property_exists($data, "size") || $data->size === null) { throw new SdkValidationError("size", 'required', "Required property 'size' is missing or null"); }
-        if (!property_exists($data, "quality") || $data->quality === null) { throw new SdkValidationError("quality", 'required', "Required property 'quality' is missing or null"); }
-        if (!property_exists($data, "background") || $data->background === null) { throw new SdkValidationError("background", 'required', "Required property 'background' is missing or null"); }
-        if (!property_exists($data, "output_format") || $data->output_format === null) { throw new SdkValidationError("output_format", 'required', "Required property 'output_format' is missing or null"); }
-        if (!property_exists($data, "partial_image_index") || $data->partial_image_index === null) { throw new SdkValidationError("partial_image_index", 'required', "Required property 'partial_image_index' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "b64_json") || $data->b64_json === null) {
+            throw new SdkValidationError("b64_json", 'required', "Required property 'b64_json' is missing or null");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "size") || $data->size === null) {
+            throw new SdkValidationError("size", 'required', "Required property 'size' is missing or null");
+        }
+        if (!property_exists($data, "quality") || $data->quality === null) {
+            throw new SdkValidationError("quality", 'required', "Required property 'quality' is missing or null");
+        }
+        if (!property_exists($data, "background") || $data->background === null) {
+            throw new SdkValidationError("background", 'required', "Required property 'background' is missing or null");
+        }
+        if (!property_exists($data, "output_format") || $data->output_format === null) {
+            throw new SdkValidationError("output_format", 'required', "Required property 'output_format' is missing or null");
+        }
+        if (!property_exists($data, "partial_image_index") || $data->partial_image_index === null) {
+            throw new SdkValidationError("partial_image_index", 'required', "Required property 'partial_image_index' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ImageGenPartialImageEventTypeEnum::class),
             b64Json: SdkClient::stringValue($data->b64_json),

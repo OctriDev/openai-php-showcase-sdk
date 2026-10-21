@@ -73,9 +73,15 @@ class LiveSIPTransport implements LiveSessionCreateRequestTransport, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "destination") || $data->destination === null) { throw new SdkValidationError("destination", 'required', "Required property 'destination' is missing or null"); }
-        if (!property_exists($data, "trunk") || $data->trunk === null) { throw new SdkValidationError("trunk", 'required', "Required property 'trunk' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "destination") || $data->destination === null) {
+            throw new SdkValidationError("destination", 'required', "Required property 'destination' is missing or null");
+        }
+        if (!property_exists($data, "trunk") || $data->trunk === null) {
+            throw new SdkValidationError("trunk", 'required', "Required property 'trunk' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSIPTransportTypeEnum::class),
             destination: SdkClient::stringValue($data->destination),
@@ -150,9 +156,15 @@ class LiveSIPTransportRequest implements LiveSessionCreateRequestTransportReques
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "destination") || $data->destination === null) { throw new SdkValidationError("destination", 'required', "Required property 'destination' is missing or null"); }
-        if (!property_exists($data, "trunk") || $data->trunk === null) { throw new SdkValidationError("trunk", 'required', "Required property 'trunk' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "destination") || $data->destination === null) {
+            throw new SdkValidationError("destination", 'required', "Required property 'destination' is missing or null");
+        }
+        if (!property_exists($data, "trunk") || $data->trunk === null) {
+            throw new SdkValidationError("trunk", 'required', "Required property 'trunk' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveSIPTransportRequestTypeEnum::class),
             destination: SdkClient::stringValue($data->destination),

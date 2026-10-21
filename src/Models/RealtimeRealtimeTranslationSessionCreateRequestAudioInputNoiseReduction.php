@@ -45,7 +45,9 @@ class RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction implements
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, NoiseReductionType::class),
         );
@@ -266,7 +268,9 @@ class RealtimeTranslationSessionCreateRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
         return new self(
             model: SdkClient::stringValue($data->model),
             audio: (property_exists($data, "audio") && $data->audio !== null ? SdkClient::hydrateClass($data->audio, RealtimeTranslationSessionCreateRequestAudio::class) : SdkNotGiven::Value),

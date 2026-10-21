@@ -19,11 +19,26 @@ final readonly class CreateFileRequestPurposeEnum implements SdkOpenEnum
     public const USER_DATA = "user_data";
     public const EVALS = "evals";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -86,8 +101,12 @@ class CreateFileRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file") || $data->file === null) { throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null"); }
-        if (!property_exists($data, "purpose") || $data->purpose === null) { throw new SdkValidationError("purpose", 'required', "Required property 'purpose' is missing or null"); }
+        if (!property_exists($data, "file") || $data->file === null) {
+            throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null");
+        }
+        if (!property_exists($data, "purpose") || $data->purpose === null) {
+            throw new SdkValidationError("purpose", 'required', "Required property 'purpose' is missing or null");
+        }
         return new self(
             file: SdkClient::stringValue($data->file),
             purpose: SdkClient::hydrateStringEnumOrString($data->purpose, CreateFileRequestPurposeEnum::class),

@@ -28,7 +28,7 @@ trait SpendAlertsMethods
             Validation::validateRange('limit', $limit, min: 0, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ProjectSpendAlertListResource::class, decoder: 'json', operationId: 'listProjectSpendAlerts', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ProjectSpendAlertListResource::class, decoder: 'json', operationId: 'listProjectSpendAlerts', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendAlertListResource::class));
     }
 
@@ -122,7 +122,7 @@ trait SpendAlertsMethods
 
         Validation::validateRange('threshold_amount', $thresholdAmount, min: 0);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval, 'notification_channel' => $notificationChannel], returnType: ProjectSpendAlert::class, decoder: 'json', operationId: 'createProjectSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval, 'notification_channel' => $notificationChannel], returnType: ProjectSpendAlert::class, decoder: 'json', operationId: 'createProjectSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendAlert::class));
     }
 
@@ -139,7 +139,7 @@ trait SpendAlertsMethods
     public static function retrieveProjectSpendAlert(ClientConfig $clientConfig, string $projectId, string $alertId, ?RequestOptions $requestOptions = null): ProjectSpendAlert
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts/" . SdkClient::encodePathSegment($alertId) . "", $clientConfig, returnType: ProjectSpendAlert::class, decoder: 'json', operationId: 'retrieveProjectSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts/" . SdkClient::encodePathSegment($alertId) . "", $clientConfig, returnType: ProjectSpendAlert::class, decoder: 'json', operationId: 'retrieveProjectSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendAlert::class));
     }
 
@@ -162,7 +162,7 @@ trait SpendAlertsMethods
 
         Validation::validateRange('threshold_amount', $thresholdAmount, min: 0);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts/" . SdkClient::encodePathSegment($alertId) . "", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval, 'notification_channel' => $notificationChannel], returnType: ProjectSpendAlert::class, decoder: 'json', operationId: 'updateProjectSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts/" . SdkClient::encodePathSegment($alertId) . "", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval, 'notification_channel' => $notificationChannel], returnType: ProjectSpendAlert::class, decoder: 'json', operationId: 'updateProjectSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendAlert::class));
     }
 
@@ -179,7 +179,7 @@ trait SpendAlertsMethods
     public static function deleteProjectSpendAlert(ClientConfig $clientConfig, string $projectId, string $alertId, ?RequestOptions $requestOptions = null): ProjectSpendAlertDeletedResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts/" . SdkClient::encodePathSegment($alertId) . "", $clientConfig, returnType: ProjectSpendAlertDeletedResource::class, decoder: 'json', operationId: 'deleteProjectSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_alerts/" . SdkClient::encodePathSegment($alertId) . "", $clientConfig, returnType: ProjectSpendAlertDeletedResource::class, decoder: 'json', operationId: 'deleteProjectSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendAlertDeletedResource::class));
     }
 
@@ -202,7 +202,7 @@ trait SpendAlertsMethods
             Validation::validateRange('limit', $limit, min: 0, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization/spend_alerts", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: OrganizationSpendAlertListResource::class, decoder: 'json', operationId: 'listOrganizationSpendAlerts', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/spend_alerts", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: OrganizationSpendAlertListResource::class, decoder: 'json', operationId: 'listOrganizationSpendAlerts', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationSpendAlertListResource::class));
     }
 
@@ -293,7 +293,7 @@ trait SpendAlertsMethods
 
         Validation::validateRange('threshold_amount', $thresholdAmount, min: 0);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/spend_alerts", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval, 'notification_channel' => $notificationChannel], returnType: OrganizationSpendAlert::class, decoder: 'json', operationId: 'createOrganizationSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/spend_alerts", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval, 'notification_channel' => $notificationChannel], returnType: OrganizationSpendAlert::class, decoder: 'json', operationId: 'createOrganizationSpendAlert', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationSpendAlert::class));
     }
 
@@ -309,7 +309,7 @@ trait SpendAlertsMethods
     public static function retrieveOrganizationSpendAlert(ClientConfig $clientConfig, string $alertId, ?RequestOptions $requestOptions = null): OrganizationSpendAlert
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/spend_alerts/" . SdkClient::encodePathSegment($alertId) . "", $clientConfig, returnType: OrganizationSpendAlert::class, decoder: 'json', operationId: 'retrieveOrganizationSpendAlert', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/spend_alerts/" . SdkClient::encodePathSegment($alertId) . "", $clientConfig, returnType: OrganizationSpendAlert::class, decoder: 'json', operationId: 'retrieveOrganizationSpendAlert', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, OrganizationSpendAlert::class));
     }
 }

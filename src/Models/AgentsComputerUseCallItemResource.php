@@ -95,12 +95,24 @@ class ComputerUseCallItemResource implements SessionTurnItemResource, AgentOutpu
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
-        if (!property_exists($data, "title")) { throw new SdkValidationError("title", 'required', "Missing required property 'title'"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "output")) { throw new SdkValidationError("output", 'required', "Missing required property 'output'"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
+            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
+        }
+        if (!property_exists($data, "title")) {
+            throw new SdkValidationError("title", 'required', "Missing required property 'title'");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "output")) {
+            throw new SdkValidationError("output", 'required', "Missing required property 'output'");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ComputerUseCallItemResourceTypeEnum::class),
             id: SdkClient::stringValue($data->id),

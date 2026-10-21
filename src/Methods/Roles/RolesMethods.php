@@ -26,7 +26,7 @@ trait RolesMethods
             Validation::validateRange('limit', $limit, min: 0, max: 1000);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization/roles", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: PublicRoleListResource::class, decoder: 'json', operationId: 'listRoles', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/roles", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: PublicRoleListResource::class, decoder: 'json', operationId: 'listRoles', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PublicRoleListResource::class));
     }
 
@@ -112,7 +112,7 @@ trait RolesMethods
     public static function createRole(ClientConfig $clientConfig, string $roleName, array $permissions, string|null|SdkNotGiven $description = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Role
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/roles", $clientConfig, body: ['role_name' => $roleName, 'permissions' => $permissions, 'description' => $description], returnType: Role::class, decoder: 'json', operationId: 'createRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/roles", $clientConfig, body: ['role_name' => $roleName, 'permissions' => $permissions, 'description' => $description], returnType: Role::class, decoder: 'json', operationId: 'createRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Role::class));
     }
 
@@ -128,7 +128,7 @@ trait RolesMethods
     public static function retrieveRole(ClientConfig $clientConfig, string $roleId, ?RequestOptions $requestOptions = null): Role
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: Role::class, decoder: 'json', operationId: 'retrieveRole', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: Role::class, decoder: 'json', operationId: 'retrieveRole', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Role::class));
     }
 
@@ -147,7 +147,7 @@ trait RolesMethods
     public static function updateRole(ClientConfig $clientConfig, string $roleId, array|null|SdkNotGiven $permissions = SdkNotGiven::Value, string|null|SdkNotGiven $description = SdkNotGiven::Value, string|null|SdkNotGiven $roleName = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Role
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, body: ['permissions' => $permissions, 'description' => $description, 'role_name' => $roleName], returnType: Role::class, decoder: 'json', operationId: 'updateRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, body: ['permissions' => $permissions, 'description' => $description, 'role_name' => $roleName], returnType: Role::class, decoder: 'json', operationId: 'updateRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Role::class));
     }
 
@@ -163,7 +163,7 @@ trait RolesMethods
     public static function deleteRole(ClientConfig $clientConfig, string $roleId, ?RequestOptions $requestOptions = null): RoleDeletedResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: RoleDeletedResource::class, decoder: 'json', operationId: 'deleteRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: RoleDeletedResource::class, decoder: 'json', operationId: 'deleteRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleDeletedResource::class));
     }
 
@@ -186,7 +186,7 @@ trait RolesMethods
             Validation::validateRange('limit', $limit, min: 0, max: 1000);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/projects/" . SdkClient::encodePathSegment($projectId) . "/roles", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: PublicRoleListResource::class, decoder: 'json', operationId: 'listRolesProjectRoles', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/projects/" . SdkClient::encodePathSegment($projectId) . "/roles", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: PublicRoleListResource::class, decoder: 'json', operationId: 'listRolesProjectRoles', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, PublicRoleListResource::class));
     }
 
@@ -275,7 +275,7 @@ trait RolesMethods
     public static function createRolesProjectRole(ClientConfig $clientConfig, string $projectId, string $roleName, array $permissions, string|null|SdkNotGiven $description = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Role
     {
 
-        $sdkResponse = SdkClient::request('POST', "/projects/" . SdkClient::encodePathSegment($projectId) . "/roles", $clientConfig, body: ['role_name' => $roleName, 'permissions' => $permissions, 'description' => $description], returnType: Role::class, decoder: 'json', operationId: 'createRolesProjectRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/projects/" . SdkClient::encodePathSegment($projectId) . "/roles", $clientConfig, body: ['role_name' => $roleName, 'permissions' => $permissions, 'description' => $description], returnType: Role::class, decoder: 'json', operationId: 'createRolesProjectRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Role::class));
     }
 
@@ -292,7 +292,7 @@ trait RolesMethods
     public static function retrieveRolesProjectRole(ClientConfig $clientConfig, string $projectId, string $roleId, ?RequestOptions $requestOptions = null): Role
     {
 
-        $sdkResponse = SdkClient::request('GET', "/projects/" . SdkClient::encodePathSegment($projectId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: Role::class, decoder: 'json', operationId: 'retrieveRolesProjectRole', requestOptions: $requestOptions, errors: [403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/projects/" . SdkClient::encodePathSegment($projectId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: Role::class, decoder: 'json', operationId: 'retrieveRolesProjectRole', requestOptions: $requestOptions, errors: [403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Role::class));
     }
 
@@ -312,7 +312,7 @@ trait RolesMethods
     public static function updateRolesProjectRole(ClientConfig $clientConfig, string $projectId, string $roleId, array|null|SdkNotGiven $permissions = SdkNotGiven::Value, string|null|SdkNotGiven $description = SdkNotGiven::Value, string|null|SdkNotGiven $roleName = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Role
     {
 
-        $sdkResponse = SdkClient::request('POST', "/projects/" . SdkClient::encodePathSegment($projectId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, body: ['permissions' => $permissions, 'description' => $description, 'role_name' => $roleName], returnType: Role::class, decoder: 'json', operationId: 'updateRolesProjectRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/projects/" . SdkClient::encodePathSegment($projectId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, body: ['permissions' => $permissions, 'description' => $description, 'role_name' => $roleName], returnType: Role::class, decoder: 'json', operationId: 'updateRolesProjectRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Role::class));
     }
 }

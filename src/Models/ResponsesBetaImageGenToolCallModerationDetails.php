@@ -55,8 +55,12 @@ class BetaImageGenToolCallModerationDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "moderation_stage") || $data->moderation_stage === null) { throw new SdkValidationError("moderation_stage", 'required', "Required property 'moderation_stage' is missing or null"); }
-        if (!property_exists($data, "categories") || $data->categories === null) { throw new SdkValidationError("categories", 'required', "Required property 'categories' is missing or null"); }
+        if (!property_exists($data, "moderation_stage") || $data->moderation_stage === null) {
+            throw new SdkValidationError("moderation_stage", 'required', "Required property 'moderation_stage' is missing or null");
+        }
+        if (!property_exists($data, "categories") || $data->categories === null) {
+            throw new SdkValidationError("categories", 'required', "Required property 'categories' is missing or null");
+        }
         return new self(
             moderationStage: SdkClient::hydrateStringEnumOrString($data->moderation_stage, BetaImageGenToolCallModerationDetailsModerationStageEnum::class),
             categories: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->categories))),
@@ -73,9 +77,24 @@ final readonly class BetaImageOutputFormat implements SdkOpenEnum
     public const WEBP = "webp";
     public const JPEG = "jpeg";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

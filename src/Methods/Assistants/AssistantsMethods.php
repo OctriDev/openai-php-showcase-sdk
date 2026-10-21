@@ -25,7 +25,7 @@ trait AssistantsMethods
     public static function listAssistants(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, ListAssistantsOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListAssistantsResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/assistants", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ListAssistantsResponse::class, decoder: 'json', operationId: 'listAssistants', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/assistants", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ListAssistantsResponse::class, decoder: 'json', operationId: 'listAssistants', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListAssistantsResponse::class));
     }
 
@@ -128,7 +128,7 @@ trait AssistantsMethods
             Validation::validateItems('tools', $tools, max: 128);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/assistants", $clientConfig, body: ['model' => $model, 'name' => $name, 'description' => $description, 'instructions' => $instructions, 'reasoning_effort' => $reasoningEffort, 'tools' => $tools, 'tool_resources' => $toolResources, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'response_format' => $responseFormat], returnType: AssistantObject::class, decoder: 'json', operationId: 'createAssistant', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/assistants", $clientConfig, body: ['model' => $model, 'name' => $name, 'description' => $description, 'instructions' => $instructions, 'reasoning_effort' => $reasoningEffort, 'tools' => $tools, 'tool_resources' => $toolResources, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'response_format' => $responseFormat], returnType: AssistantObject::class, decoder: 'json', operationId: 'createAssistant', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AssistantObject::class));
     }
 
@@ -146,7 +146,7 @@ trait AssistantsMethods
     public static function getAssistant(ClientConfig $clientConfig, string $assistantId, ?RequestOptions $requestOptions = null): AssistantObject
     {
 
-        $sdkResponse = SdkClient::request('GET', "/assistants/" . SdkClient::encodePathSegment($assistantId) . "", $clientConfig, returnType: AssistantObject::class, decoder: 'json', operationId: 'getAssistant', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/assistants/" . SdkClient::encodePathSegment($assistantId) . "", $clientConfig, returnType: AssistantObject::class, decoder: 'json', operationId: 'getAssistant', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AssistantObject::class));
     }
 
@@ -179,7 +179,7 @@ trait AssistantsMethods
             Validation::validateItems('tools', $tools, max: 128);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/assistants/" . SdkClient::encodePathSegment($assistantId) . "", $clientConfig, body: ['model' => $model, 'reasoning_effort' => $reasoningEffort, 'name' => $name, 'description' => $description, 'instructions' => $instructions, 'tools' => $tools, 'tool_resources' => $toolResources, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'response_format' => $responseFormat], returnType: AssistantObject::class, decoder: 'json', operationId: 'modifyAssistant', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/assistants/" . SdkClient::encodePathSegment($assistantId) . "", $clientConfig, body: ['model' => $model, 'reasoning_effort' => $reasoningEffort, 'name' => $name, 'description' => $description, 'instructions' => $instructions, 'tools' => $tools, 'tool_resources' => $toolResources, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'response_format' => $responseFormat], returnType: AssistantObject::class, decoder: 'json', operationId: 'modifyAssistant', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AssistantObject::class));
     }
 
@@ -197,7 +197,7 @@ trait AssistantsMethods
     public static function deleteAssistant(ClientConfig $clientConfig, string $assistantId, ?RequestOptions $requestOptions = null): DeleteAssistantResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/assistants/" . SdkClient::encodePathSegment($assistantId) . "", $clientConfig, returnType: DeleteAssistantResponse::class, decoder: 'json', operationId: 'deleteAssistant', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/assistants/" . SdkClient::encodePathSegment($assistantId) . "", $clientConfig, returnType: DeleteAssistantResponse::class, decoder: 'json', operationId: 'deleteAssistant', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteAssistantResponse::class));
     }
 }

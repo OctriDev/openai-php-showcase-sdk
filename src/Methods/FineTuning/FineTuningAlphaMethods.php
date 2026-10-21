@@ -22,7 +22,7 @@ trait FineTuningAlphaMethods
     public static function runGrader(ClientConfig $clientConfig, RunGraderRequestGrader $grader, string $modelSample, array|SdkNotGiven $item = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): RunGraderResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/fine_tuning/alpha/graders/run", $clientConfig, body: ['grader' => $grader, 'model_sample' => $modelSample, 'item' => $item], returnType: RunGraderResponse::class, decoder: 'json', operationId: 'runGrader', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/fine_tuning/alpha/graders/run", $clientConfig, body: ['grader' => $grader, 'model_sample' => $modelSample, 'item' => $item], returnType: RunGraderResponse::class, decoder: 'json', operationId: 'runGrader', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RunGraderResponse::class));
     }
 
@@ -38,7 +38,7 @@ trait FineTuningAlphaMethods
     public static function validateGrader(ClientConfig $clientConfig, ValidateGraderRequestGrader $grader, ?RequestOptions $requestOptions = null): ValidateGraderResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/fine_tuning/alpha/graders/validate", $clientConfig, body: ['grader' => $grader], returnType: ValidateGraderResponse::class, decoder: 'json', operationId: 'validateGrader', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/fine_tuning/alpha/graders/validate", $clientConfig, body: ['grader' => $grader], returnType: ValidateGraderResponse::class, decoder: 'json', operationId: 'validateGrader', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ValidateGraderResponse::class));
     }
 }

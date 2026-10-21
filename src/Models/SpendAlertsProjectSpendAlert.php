@@ -95,12 +95,24 @@ class ProjectSpendAlert implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "threshold_amount") || $data->threshold_amount === null) { throw new SdkValidationError("threshold_amount", 'required', "Required property 'threshold_amount' is missing or null"); }
-        if (!property_exists($data, "currency") || $data->currency === null) { throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null"); }
-        if (!property_exists($data, "interval") || $data->interval === null) { throw new SdkValidationError("interval", 'required', "Required property 'interval' is missing or null"); }
-        if (!property_exists($data, "notification_channel") || $data->notification_channel === null) { throw new SdkValidationError("notification_channel", 'required', "Required property 'notification_channel' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "threshold_amount") || $data->threshold_amount === null) {
+            throw new SdkValidationError("threshold_amount", 'required', "Required property 'threshold_amount' is missing or null");
+        }
+        if (!property_exists($data, "currency") || $data->currency === null) {
+            throw new SdkValidationError("currency", 'required', "Required property 'currency' is missing or null");
+        }
+        if (!property_exists($data, "interval") || $data->interval === null) {
+            throw new SdkValidationError("interval", 'required', "Required property 'interval' is missing or null");
+        }
+        if (!property_exists($data, "notification_channel") || $data->notification_channel === null) {
+            throw new SdkValidationError("notification_channel", 'required', "Required property 'notification_channel' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, ProjectSpendAlertObjectEnum::class),
@@ -119,11 +131,26 @@ final readonly class SpendAlertNotificationChannelTypeEnum implements SdkOpenEnu
 {
     public const EMAIL = "email";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -186,8 +213,12 @@ class SpendAlertNotificationChannel implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "recipients") || $data->recipients === null) { throw new SdkValidationError("recipients", 'required', "Required property 'recipients' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "recipients") || $data->recipients === null) {
+            throw new SdkValidationError("recipients", 'required', "Required property 'recipients' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, SpendAlertNotificationChannelTypeEnum::class),
             recipients: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->recipients))),

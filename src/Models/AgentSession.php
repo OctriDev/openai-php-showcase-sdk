@@ -55,8 +55,12 @@ class AgentSessionActionRequiredPayloadResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "required_action") || $data->required_action === null) { throw new SdkValidationError("required_action", 'required', "Required property 'required_action' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "required_action") || $data->required_action === null) {
+            throw new SdkValidationError("required_action", 'required', "Required property 'required_action' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             requiredAction: SdkClient::hydrateClass($data->required_action, AgentSessionRequiredActionPayloadResource::class),
@@ -102,7 +106,9 @@ class AgentSessionConnectPayloadResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "remote_url") || $data->remote_url === null) { throw new SdkValidationError("remote_url", 'required', "Required property 'remote_url' is missing or null"); }
+        if (!property_exists($data, "remote_url") || $data->remote_url === null) {
+            throw new SdkValidationError("remote_url", 'required', "Required property 'remote_url' is missing or null");
+        }
         return new self(
             remoteUrl: SdkClient::stringValue($data->remote_url),
         );
@@ -181,8 +187,12 @@ class AgentSessionCreatedPayloadResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "environment_type") || $data->environment_type === null) { throw new SdkValidationError("environment_type", 'required', "Required property 'environment_type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "environment_type") || $data->environment_type === null) {
+            throw new SdkValidationError("environment_type", 'required', "Required property 'environment_type' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             environmentType: SdkClient::stringValue($data->environment_type),
@@ -252,8 +262,12 @@ class AgentSessionEnvironmentPayloadResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "environment_type") || $data->environment_type === null) { throw new SdkValidationError("environment_type", 'required', "Required property 'environment_type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "environment_type") || $data->environment_type === null) {
+            throw new SdkValidationError("environment_type", 'required', "Required property 'environment_type' is missing or null");
+        }
         return new self(
             id: SdkClient::stringValue($data->id),
             environmentType: SdkClient::stringValue($data->environment_type),
@@ -300,7 +314,9 @@ class AgentSessionRequiredActionPayloadResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, AgentSessionRequiredActionTypeResource::class),
         );
@@ -316,9 +332,24 @@ final readonly class AgentSessionRequiredActionTypeResource implements SdkOpenEn
     public const FUNCTION_CALL = "function_call";
     public const ENVIRONMENT_CONNECTION = "environment_connection";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

@@ -45,7 +45,9 @@ class CreateFineTuningCheckpointPermissionRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "project_ids") || $data->project_ids === null) { throw new SdkValidationError("project_ids", 'required', "Required property 'project_ids' is missing or null"); }
+        if (!property_exists($data, "project_ids") || $data->project_ids === null) {
+            throw new SdkValidationError("project_ids", 'required', "Required property 'project_ids' is missing or null");
+        }
         return new self(
             projectIds: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->project_ids))),
         );

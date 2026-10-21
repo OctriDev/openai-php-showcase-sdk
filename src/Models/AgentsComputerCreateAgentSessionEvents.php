@@ -71,8 +71,12 @@ class ComputerUseApprovalResponseParamBrowserAuthenticationCancelParam implement
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "action") || $data->action === null) { throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "action") || $data->action === null) {
+            throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamTypeEnum::class),
             action: SdkClient::hydrateEnum($data->action, ComputerUseApprovalResponseParamBrowserAuthenticationCancelParamActionEnum::class),
@@ -166,9 +170,15 @@ class ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParam implement
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "action") || $data->action === null) { throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null"); }
-        if (!property_exists($data, "fields") || $data->fields === null) { throw new SdkValidationError("fields", 'required', "Required property 'fields' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "action") || $data->action === null) {
+            throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null");
+        }
+        if (!property_exists($data, "fields") || $data->fields === null) {
+            throw new SdkValidationError("fields", 'required', "Required property 'fields' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamTypeEnum::class),
             action: SdkClient::hydrateEnum($data->action, ComputerUseApprovalResponseParamBrowserAuthenticationSubmitParamActionEnum::class),
@@ -234,8 +244,12 @@ class ComputerUseApprovalResponseParamBrowserOriginAccessParam implements Comput
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "decision") || $data->decision === null) { throw new SdkValidationError("decision", 'required', "Required property 'decision' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "decision") || $data->decision === null) {
+            throw new SdkValidationError("decision", 'required', "Required property 'decision' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ComputerUseApprovalResponseParamBrowserOriginAccessParamTypeEnum::class),
             decision: SdkClient::hydrateStringEnumOrString($data->decision, BrowserOriginAccessDecisionParam::class),

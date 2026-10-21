@@ -14,11 +14,26 @@ final readonly class EvalRunObjectEnum implements SdkOpenEnum
 {
     public const EVAL_RUN = "eval.run";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -89,10 +104,18 @@ class EvalRunResultCounts implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "total") || $data->total === null) { throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null"); }
-        if (!property_exists($data, "errored") || $data->errored === null) { throw new SdkValidationError("errored", 'required', "Required property 'errored' is missing or null"); }
-        if (!property_exists($data, "failed") || $data->failed === null) { throw new SdkValidationError("failed", 'required', "Required property 'failed' is missing or null"); }
-        if (!property_exists($data, "passed") || $data->passed === null) { throw new SdkValidationError("passed", 'required', "Required property 'passed' is missing or null"); }
+        if (!property_exists($data, "total") || $data->total === null) {
+            throw new SdkValidationError("total", 'required', "Required property 'total' is missing or null");
+        }
+        if (!property_exists($data, "errored") || $data->errored === null) {
+            throw new SdkValidationError("errored", 'required', "Required property 'errored' is missing or null");
+        }
+        if (!property_exists($data, "failed") || $data->failed === null) {
+            throw new SdkValidationError("failed", 'required', "Required property 'failed' is missing or null");
+        }
+        if (!property_exists($data, "passed") || $data->passed === null) {
+            throw new SdkValidationError("passed", 'required', "Required property 'passed' is missing or null");
+        }
         return new self(
             total: SdkClient::intValue($data->total),
             errored: SdkClient::intValue($data->errored),
@@ -190,12 +213,24 @@ class EvalRunPerModelUsageItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model_name") || $data->model_name === null) { throw new SdkValidationError("model_name", 'required', "Required property 'model_name' is missing or null"); }
-        if (!property_exists($data, "invocation_count") || $data->invocation_count === null) { throw new SdkValidationError("invocation_count", 'required', "Required property 'invocation_count' is missing or null"); }
-        if (!property_exists($data, "prompt_tokens") || $data->prompt_tokens === null) { throw new SdkValidationError("prompt_tokens", 'required', "Required property 'prompt_tokens' is missing or null"); }
-        if (!property_exists($data, "completion_tokens") || $data->completion_tokens === null) { throw new SdkValidationError("completion_tokens", 'required', "Required property 'completion_tokens' is missing or null"); }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
-        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) { throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null"); }
+        if (!property_exists($data, "model_name") || $data->model_name === null) {
+            throw new SdkValidationError("model_name", 'required', "Required property 'model_name' is missing or null");
+        }
+        if (!property_exists($data, "invocation_count") || $data->invocation_count === null) {
+            throw new SdkValidationError("invocation_count", 'required', "Required property 'invocation_count' is missing or null");
+        }
+        if (!property_exists($data, "prompt_tokens") || $data->prompt_tokens === null) {
+            throw new SdkValidationError("prompt_tokens", 'required', "Required property 'prompt_tokens' is missing or null");
+        }
+        if (!property_exists($data, "completion_tokens") || $data->completion_tokens === null) {
+            throw new SdkValidationError("completion_tokens", 'required', "Required property 'completion_tokens' is missing or null");
+        }
+        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) {
+            throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null");
+        }
+        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) {
+            throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null");
+        }
         return new self(
             modelName: SdkClient::stringValue($data->model_name),
             invocationCount: SdkClient::intValue($data->invocation_count),
@@ -265,9 +300,15 @@ class EvalRunPerTestingCriteriaResultsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "testing_criteria") || $data->testing_criteria === null) { throw new SdkValidationError("testing_criteria", 'required', "Required property 'testing_criteria' is missing or null"); }
-        if (!property_exists($data, "passed") || $data->passed === null) { throw new SdkValidationError("passed", 'required', "Required property 'passed' is missing or null"); }
-        if (!property_exists($data, "failed") || $data->failed === null) { throw new SdkValidationError("failed", 'required', "Required property 'failed' is missing or null"); }
+        if (!property_exists($data, "testing_criteria") || $data->testing_criteria === null) {
+            throw new SdkValidationError("testing_criteria", 'required', "Required property 'testing_criteria' is missing or null");
+        }
+        if (!property_exists($data, "passed") || $data->passed === null) {
+            throw new SdkValidationError("passed", 'required', "Required property 'passed' is missing or null");
+        }
+        if (!property_exists($data, "failed") || $data->failed === null) {
+            throw new SdkValidationError("failed", 'required', "Required property 'failed' is missing or null");
+        }
         return new self(
             testingCriteria: SdkClient::stringValue($data->testing_criteria),
             passed: SdkClient::intValue($data->passed),

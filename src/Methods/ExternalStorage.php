@@ -27,7 +27,7 @@ class ExternalStorage
             Validation::validateRange('limit', $limit, min: 1, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization/external_storage", $clientConfig, query: ['project_id' => new SdkQueryValue($projectId, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ExternalStorageListResource::class, decoder: 'json', operationId: 'listExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/external_storage", $clientConfig, query: ['project_id' => new SdkQueryValue($projectId, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: ExternalStorageListResource::class, decoder: 'json', operationId: 'listExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ExternalStorageListResource::class));
     }
 
@@ -114,7 +114,7 @@ class ExternalStorage
     public static function createExternalStorage(ClientConfig $clientConfig, string $projectId, CreateExternalStorageBodyProvider $provider, ?RequestOptions $requestOptions = null): ExternalStorageResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/external_storage", $clientConfig, body: ['project_id' => $projectId, 'provider' => $provider], returnType: ExternalStorageResponse::class, decoder: 'json', operationId: 'createExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/external_storage", $clientConfig, body: ['project_id' => $projectId, 'provider' => $provider], returnType: ExternalStorageResponse::class, decoder: 'json', operationId: 'createExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ExternalStorageResponse::class));
     }
 
@@ -130,7 +130,7 @@ class ExternalStorage
     public static function retrieveExternalStorage(ClientConfig $clientConfig, string $externalStorageId, ?RequestOptions $requestOptions = null): ExternalStorageResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/external_storage/" . SdkClient::encodePathSegment($externalStorageId) . "", $clientConfig, returnType: ExternalStorageResponse::class, decoder: 'json', operationId: 'retrieveExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/external_storage/" . SdkClient::encodePathSegment($externalStorageId) . "", $clientConfig, returnType: ExternalStorageResponse::class, decoder: 'json', operationId: 'retrieveExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ExternalStorageResponse::class));
     }
 
@@ -146,7 +146,7 @@ class ExternalStorage
     public static function deleteExternalStorage(ClientConfig $clientConfig, string $externalStorageId, ?RequestOptions $requestOptions = null): ExternalStorageDeletedResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/external_storage/" . SdkClient::encodePathSegment($externalStorageId) . "", $clientConfig, returnType: ExternalStorageDeletedResource::class, decoder: 'json', operationId: 'deleteExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/external_storage/" . SdkClient::encodePathSegment($externalStorageId) . "", $clientConfig, returnType: ExternalStorageDeletedResource::class, decoder: 'json', operationId: 'deleteExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ExternalStorageDeletedResource::class));
     }
 
@@ -162,7 +162,7 @@ class ExternalStorage
     public static function validateExternalStorage(ClientConfig $clientConfig, string $externalStorageId, ?RequestOptions $requestOptions = null): ExternalStorageResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/external_storage/" . SdkClient::encodePathSegment($externalStorageId) . "/validate", $clientConfig, returnType: ExternalStorageResponse::class, decoder: 'json', operationId: 'validateExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/external_storage/" . SdkClient::encodePathSegment($externalStorageId) . "/validate", $clientConfig, returnType: ExternalStorageResponse::class, decoder: 'json', operationId: 'validateExternalStorage', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ExternalStorageResponse::class));
     }
 }
