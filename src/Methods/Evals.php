@@ -9,6 +9,6 @@ namespace octridev_openai;
 
 class Evals
 {
-    use EvalsMethodsPart1;
-    use EvalsMethodsPart2;
+    use EvalsMethods;
+    use EvalsRunsMethods;
 }

@@ -9,6 +9,6 @@ namespace octridev_openai;
 
 class SpendAlerts
 {
-    use SpendAlertsMethodsPart1;
-    use SpendAlertsMethodsPart2;
+    use SpendAlertsMethods;
+    use SpendAlertsUpdateOrganizationSpendAlertMethods;
 }

@@ -8,145 +8,159 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
- * The object type, which is always `organization.user`
+ * Represents an individual `user` within an organization.
  */
-final readonly class UserObjectEnum implements SdkOpenEnum
-{
-    public const ORGANIZATION_USER = "organization.user";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * Required enumerated value serialized in the `object` wire field.
- */
-final readonly class UserUserObjectEnum implements SdkOpenEnum
-{
-    public const USER = "user";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * Nested user details.
- */
-class UserUser implements \JsonSerializable
+class User implements \JsonSerializable
 {
     /**
-     * Required enumerated value serialized in the `object` wire field.
+     * The object type, which is always `organization.user`
      *
-     * @var UserUserObjectEnum|string
+     * @var UserObjectEnum|string
      */
-    public readonly UserUserObjectEnum|string $object_;
+    public readonly UserObjectEnum|string $object_;
     /**
-     * Required `string` value serialized in the `id` wire field.
+     * The identifier, which can be referenced in API endpoints
      *
      * @var string
      */
     public readonly string $id;
     /**
-     * Optional `string` value serialized in the `email` wire field.
-     *
-     * @var string|null|SdkNotGiven
-     */
-    public readonly string|null|SdkNotGiven $email;
-    /**
-     * Optional `string` value serialized in the `name` wire field.
+     * The name of the user
      *
      * @var string|null|SdkNotGiven
      */
     public readonly string|null|SdkNotGiven $name;
     /**
-     * Optional `string` value serialized in the `picture` wire field.
+     * The email address of the user
      *
      * @var string|null|SdkNotGiven
      */
-    public readonly string|null|SdkNotGiven $picture;
+    public readonly string|null|SdkNotGiven $email;
     /**
-     * Optional `boolean` value serialized in the `enabled` wire field.
+     * `owner` or `reader`
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $role;
+    /**
+     * The Unix timestamp (in seconds) of when the user was added.
+     *
+     * @var int
+     */
+    public readonly int $addedAt;
+    /**
+     * Whether this is the organization's default user.
+     *
+     * @var bool|SdkNotGiven
+     */
+    public readonly bool|SdkNotGiven $isDefault;
+    /**
+     * The Unix timestamp (in seconds) of when the user was created.
+     *
+     * @var int|SdkNotGiven
+     */
+    public readonly int|SdkNotGiven $created;
+    /**
+     * Nested user details.
+     *
+     * @var UserUser|SdkNotGiven
+     */
+    public readonly UserUser|SdkNotGiven $user;
+    /**
+     * Whether the user is a service account.
+     *
+     * @var bool|SdkNotGiven
+     */
+    public readonly bool|SdkNotGiven $isServiceAccount;
+    /**
+     * Whether the user is an authorized purchaser for Scale Tier.
      *
      * @var bool|null|SdkNotGiven
      */
-    public readonly bool|null|SdkNotGiven $enabled;
+    public readonly bool|null|SdkNotGiven $isScaleTierAuthorizedPurchaser;
     /**
-     * Optional `boolean` value serialized in the `banned` wire field.
+     * Whether the user is managed through SCIM.
      *
-     * @var bool|null|SdkNotGiven
+     * @var bool|SdkNotGiven
      */
-    public readonly bool|null|SdkNotGiven $banned;
+    public readonly bool|SdkNotGiven $isScimManaged;
     /**
-     * Optional API value serialized in the `banned_at` wire field.
+     * The Unix timestamp (in seconds) of the user's last API key usage.
      *
      * @var int|null|SdkNotGiven
      */
-    public readonly int|null|SdkNotGiven $bannedAt;
+    public readonly int|null|SdkNotGiven $apiKeyLastUsedAt;
+    /**
+     * The technical level metadata for the user.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $technicalLevel;
+    /**
+     * The developer persona metadata for the user.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $developerPersona;
+    /**
+     * Projects associated with the user, if included.
+     *
+     * @var UserProjects|null|SdkNotGiven
+     */
+    public readonly UserProjects|null|SdkNotGiven $projects;
 
     /**
-     * @param UserUserObjectEnum|string $object_
+     * @param UserObjectEnum|string $object_
      * @param string $id
-     * @param string|null|SdkNotGiven $email
+     * @param int $addedAt
      * @param string|null|SdkNotGiven $name
-     * @param string|null|SdkNotGiven $picture
-     * @param bool|null|SdkNotGiven $enabled
-     * @param bool|null|SdkNotGiven $banned
-     * @param int|null|SdkNotGiven $bannedAt
+     * @param string|null|SdkNotGiven $email
+     * @param string|null|SdkNotGiven $role
+     * @param bool|SdkNotGiven $isDefault
+     * @param int|SdkNotGiven $created
+     * @param UserUser|SdkNotGiven $user
+     * @param bool|SdkNotGiven $isServiceAccount
+     * @param bool|null|SdkNotGiven $isScaleTierAuthorizedPurchaser
+     * @param bool|SdkNotGiven $isScimManaged
+     * @param int|null|SdkNotGiven $apiKeyLastUsedAt
+     * @param string|null|SdkNotGiven $technicalLevel
+     * @param string|null|SdkNotGiven $developerPersona
+     * @param UserProjects|null|SdkNotGiven $projects
      */
     public function __construct(
-        UserUserObjectEnum|string $object_,
+        UserObjectEnum|string $object_,
         string $id,
-        string|null|SdkNotGiven $email = SdkNotGiven::Value,
+        int $addedAt,
         string|null|SdkNotGiven $name = SdkNotGiven::Value,
-        string|null|SdkNotGiven $picture = SdkNotGiven::Value,
-        bool|null|SdkNotGiven $enabled = SdkNotGiven::Value,
-        bool|null|SdkNotGiven $banned = SdkNotGiven::Value,
-        int|null|SdkNotGiven $bannedAt = SdkNotGiven::Value,
+        string|null|SdkNotGiven $email = SdkNotGiven::Value,
+        string|null|SdkNotGiven $role = SdkNotGiven::Value,
+        bool|SdkNotGiven $isDefault = SdkNotGiven::Value,
+        int|SdkNotGiven $created = SdkNotGiven::Value,
+        UserUser|SdkNotGiven $user = SdkNotGiven::Value,
+        bool|SdkNotGiven $isServiceAccount = SdkNotGiven::Value,
+        bool|null|SdkNotGiven $isScaleTierAuthorizedPurchaser = SdkNotGiven::Value,
+        bool|SdkNotGiven $isScimManaged = SdkNotGiven::Value,
+        int|null|SdkNotGiven $apiKeyLastUsedAt = SdkNotGiven::Value,
+        string|null|SdkNotGiven $technicalLevel = SdkNotGiven::Value,
+        string|null|SdkNotGiven $developerPersona = SdkNotGiven::Value,
+        UserProjects|null|SdkNotGiven $projects = SdkNotGiven::Value,
     ) {
         $this->object_ = $object_;
         $this->id = $id;
-        $this->email = $email;
+        $this->addedAt = $addedAt;
         $this->name = $name;
-        $this->picture = $picture;
-        $this->enabled = $enabled;
-        $this->banned = $banned;
-        $this->bannedAt = $bannedAt;
+        $this->email = $email;
+        $this->role = $role;
+        $this->isDefault = $isDefault;
+        $this->created = $created;
+        $this->user = $user;
+        $this->isServiceAccount = $isServiceAccount;
+        $this->isScaleTierAuthorizedPurchaser = $isScaleTierAuthorizedPurchaser;
+        $this->isScimManaged = $isScimManaged;
+        $this->apiKeyLastUsedAt = $apiKeyLastUsedAt;
+        $this->technicalLevel = $technicalLevel;
+        $this->developerPersona = $developerPersona;
+        $this->projects = $projects;
     }
 
     /** @return array<array-key, mixed> */
@@ -155,24 +169,46 @@ class UserUser implements \JsonSerializable
         $values = [
             "object" => $this->object_,
             "id" => $this->id,
+            "added_at" => $this->addedAt,
         ];
-        if ($this->email !== SdkNotGiven::Value) {
-            $values["email"] = $this->email;
-        }
         if ($this->name !== SdkNotGiven::Value) {
             $values["name"] = $this->name;
         }
-        if ($this->picture !== SdkNotGiven::Value) {
-            $values["picture"] = $this->picture;
+        if ($this->email !== SdkNotGiven::Value) {
+            $values["email"] = $this->email;
         }
-        if ($this->enabled !== SdkNotGiven::Value) {
-            $values["enabled"] = $this->enabled;
+        if ($this->role !== SdkNotGiven::Value) {
+            $values["role"] = $this->role;
         }
-        if ($this->banned !== SdkNotGiven::Value) {
-            $values["banned"] = $this->banned;
+        if ($this->isDefault !== SdkNotGiven::Value) {
+            $values["is_default"] = $this->isDefault;
         }
-        if ($this->bannedAt !== SdkNotGiven::Value) {
-            $values["banned_at"] = $this->bannedAt;
+        if ($this->created !== SdkNotGiven::Value) {
+            $values["created"] = $this->created;
+        }
+        if ($this->user !== SdkNotGiven::Value) {
+            $values["user"] = $this->user;
+        }
+        if ($this->isServiceAccount !== SdkNotGiven::Value) {
+            $values["is_service_account"] = $this->isServiceAccount;
+        }
+        if ($this->isScaleTierAuthorizedPurchaser !== SdkNotGiven::Value) {
+            $values["is_scale_tier_authorized_purchaser"] = $this->isScaleTierAuthorizedPurchaser;
+        }
+        if ($this->isScimManaged !== SdkNotGiven::Value) {
+            $values["is_scim_managed"] = $this->isScimManaged;
+        }
+        if ($this->apiKeyLastUsedAt !== SdkNotGiven::Value) {
+            $values["api_key_last_used_at"] = $this->apiKeyLastUsedAt;
+        }
+        if ($this->technicalLevel !== SdkNotGiven::Value) {
+            $values["technical_level"] = $this->technicalLevel;
+        }
+        if ($this->developerPersona !== SdkNotGiven::Value) {
+            $values["developer_persona"] = $this->developerPersona;
+        }
+        if ($this->projects !== SdkNotGiven::Value) {
+            $values["projects"] = $this->projects;
         }
         return $values;
     }
@@ -191,25 +227,36 @@ class UserUser implements \JsonSerializable
         if (!property_exists($data, "id") || $data->id === null) {
             throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
         }
+        if (!property_exists($data, "added_at") || $data->added_at === null) {
+            throw new SdkValidationError("added_at", 'required', "Required property 'added_at' is missing or null");
+        }
         return new self(
-            object_: SdkClient::hydrateStringEnumOrString($data->object, UserUserObjectEnum::class),
+            object_: SdkClient::hydrateStringEnumOrString($data->object, UserObjectEnum::class),
             id: SdkClient::stringValue($data->id),
-            email: (property_exists($data, "email") ? ($data->email === null ? null : SdkClient::stringValue($data->email)) : SdkNotGiven::Value),
+            addedAt: SdkClient::intValue($data->added_at),
             name: (property_exists($data, "name") ? ($data->name === null ? null : SdkClient::stringValue($data->name)) : SdkNotGiven::Value),
-            picture: (property_exists($data, "picture") ? ($data->picture === null ? null : SdkClient::stringValue($data->picture)) : SdkNotGiven::Value),
-            enabled: (property_exists($data, "enabled") ? ($data->enabled === null ? null : SdkClient::boolValue($data->enabled)) : SdkNotGiven::Value),
-            banned: (property_exists($data, "banned") ? ($data->banned === null ? null : SdkClient::boolValue($data->banned)) : SdkNotGiven::Value),
-            bannedAt: (property_exists($data, "banned_at") ? ($data->banned_at === null ? null : SdkClient::intValue($data->banned_at)) : SdkNotGiven::Value),
+            email: (property_exists($data, "email") ? ($data->email === null ? null : SdkClient::stringValue($data->email)) : SdkNotGiven::Value),
+            role: (property_exists($data, "role") ? ($data->role === null ? null : SdkClient::stringValue($data->role)) : SdkNotGiven::Value),
+            isDefault: (property_exists($data, "is_default") && $data->is_default !== null ? SdkClient::boolValue($data->is_default) : SdkNotGiven::Value),
+            created: (property_exists($data, "created") && $data->created !== null ? SdkClient::intValue($data->created) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") && $data->user !== null ? SdkClient::hydrateClass($data->user, UserUser::class) : SdkNotGiven::Value),
+            isServiceAccount: (property_exists($data, "is_service_account") && $data->is_service_account !== null ? SdkClient::boolValue($data->is_service_account) : SdkNotGiven::Value),
+            isScaleTierAuthorizedPurchaser: (property_exists($data, "is_scale_tier_authorized_purchaser") ? ($data->is_scale_tier_authorized_purchaser === null ? null : SdkClient::boolValue($data->is_scale_tier_authorized_purchaser)) : SdkNotGiven::Value),
+            isScimManaged: (property_exists($data, "is_scim_managed") && $data->is_scim_managed !== null ? SdkClient::boolValue($data->is_scim_managed) : SdkNotGiven::Value),
+            apiKeyLastUsedAt: (property_exists($data, "api_key_last_used_at") ? ($data->api_key_last_used_at === null ? null : SdkClient::intValue($data->api_key_last_used_at)) : SdkNotGiven::Value),
+            technicalLevel: (property_exists($data, "technical_level") ? ($data->technical_level === null ? null : SdkClient::stringValue($data->technical_level)) : SdkNotGiven::Value),
+            developerPersona: (property_exists($data, "developer_persona") ? ($data->developer_persona === null ? null : SdkClient::stringValue($data->developer_persona)) : SdkNotGiven::Value),
+            projects: (property_exists($data, "projects") ? ($data->projects === null ? null : SdkClient::hydrateClass($data->projects, UserProjects::class)) : SdkNotGiven::Value),
         );
     }
 }
 
 /**
- * Required enumerated value serialized in the `object` wire field.
+ * Always `user.role`.
  */
-final readonly class UserProjectsObjectEnum implements SdkOpenEnum
+final readonly class UserRoleAssignmentObjectEnum implements SdkOpenEnum
 {
-    public const LIST = "list";
+    public const USER_ROLE = "user.role";
     private function __construct(public string $value) {}
     public static function from(string|int $value): static
     {
@@ -234,41 +281,41 @@ final readonly class UserProjectsObjectEnum implements SdkOpenEnum
 }
 
 /**
- * Required object value serialized in the `data[]` wire field.
+ * Role assignment linking a user to a role.
  */
-class UserProjectsDataItem implements \JsonSerializable
+class UserRoleAssignment implements \JsonSerializable
 {
     /**
-     * Optional `string` value serialized in the `id` wire field.
+     * Always `user.role`.
      *
-     * @var string|null|SdkNotGiven
+     * @var UserRoleAssignmentObjectEnum|string
      */
-    public readonly string|null|SdkNotGiven $id;
+    public readonly UserRoleAssignmentObjectEnum|string $object_;
     /**
-     * Optional `string` value serialized in the `name` wire field.
+     * Represents an individual `user` within an organization.
      *
-     * @var string|null|SdkNotGiven
+     * @var User
      */
-    public readonly string|null|SdkNotGiven $name;
+    public readonly User $user;
     /**
-     * Optional `string` value serialized in the `role` wire field.
+     * Details about a role that can be assigned through the public Roles API.
      *
-     * @var string|null|SdkNotGiven
+     * @var Role
      */
-    public readonly string|null|SdkNotGiven $role;
+    public readonly Role $role;
 
     /**
-     * @param string|null|SdkNotGiven $id
-     * @param string|null|SdkNotGiven $name
-     * @param string|null|SdkNotGiven $role
+     * @param UserRoleAssignmentObjectEnum|string $object_
+     * @param User $user
+     * @param Role $role
      */
     public function __construct(
-        string|null|SdkNotGiven $id = SdkNotGiven::Value,
-        string|null|SdkNotGiven $name = SdkNotGiven::Value,
-        string|null|SdkNotGiven $role = SdkNotGiven::Value,
+        UserRoleAssignmentObjectEnum|string $object_,
+        User $user,
+        Role $role,
     ) {
-        $this->id = $id;
-        $this->name = $name;
+        $this->object_ = $object_;
+        $this->user = $user;
         $this->role = $role;
     }
 
@@ -276,71 +323,9 @@ class UserProjectsDataItem implements \JsonSerializable
     public function toArray(): array
     {
         $values = [
-        ];
-        if ($this->id !== SdkNotGiven::Value) {
-            $values["id"] = $this->id;
-        }
-        if ($this->name !== SdkNotGiven::Value) {
-            $values["name"] = $this->name;
-        }
-        if ($this->role !== SdkNotGiven::Value) {
-            $values["role"] = $this->role;
-        }
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        return new self(
-            id: (property_exists($data, "id") ? ($data->id === null ? null : SdkClient::stringValue($data->id)) : SdkNotGiven::Value),
-            name: (property_exists($data, "name") ? ($data->name === null ? null : SdkClient::stringValue($data->name)) : SdkNotGiven::Value),
-            role: (property_exists($data, "role") ? ($data->role === null ? null : SdkClient::stringValue($data->role)) : SdkNotGiven::Value),
-        );
-    }
-}
-
-/**
- * Projects associated with the user, if included.
- */
-class UserProjects implements \JsonSerializable
-{
-    /**
-     * Required enumerated value serialized in the `object` wire field.
-     *
-     * @var UserProjectsObjectEnum|string
-     */
-    public readonly UserProjectsObjectEnum|string $object_;
-    /**
-     * Required array value serialized in the `data` wire field.
-     *
-     * @var list<UserProjectsDataItem>
-     */
-    public readonly array $data;
-
-    /**
-     * @param UserProjectsObjectEnum|string $object_
-     * @param list<UserProjectsDataItem> $data
-     */
-    public function __construct(
-        UserProjectsObjectEnum|string $object_,
-        array $data,
-    ) {
-        $this->object_ = $object_;
-        $this->data = $data;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
             "object" => $this->object_,
-            "data" => $this->data,
+            "user" => $this->user,
+            "role" => $this->role,
         ];
         return $values;
     }
@@ -356,12 +341,16 @@ class UserProjects implements \JsonSerializable
         if (!property_exists($data, "object") || $data->object === null) {
             throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
         }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        if (!property_exists($data, "user") || $data->user === null) {
+            throw new SdkValidationError("user", 'required', "Required property 'user' is missing or null");
+        }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
         }
         return new self(
-            object_: SdkClient::hydrateStringEnumOrString($data->object, UserProjectsObjectEnum::class),
-            data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, UserProjectsDataItem::class), SdkClient::arrayValue($data->data))),
+            object_: SdkClient::hydrateStringEnumOrString($data->object, UserRoleAssignmentObjectEnum::class),
+            user: SdkClient::hydrateClass($data->user, User::class),
+            role: SdkClient::hydrateClass($data->role, Role::class),
         );
     }
 }

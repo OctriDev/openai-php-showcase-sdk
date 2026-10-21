@@ -9,6 +9,9 @@ namespace octridev_openai;
 
 class Responses
 {
-    use ResponsesMethodsPart1;
-    use ResponsesMethodsPart2;
+    use ResponsesMethods;
+    use ResponsesCancelMethods;
+    use ResponsesInputItemsMethods;
+    use ResponsesInputTokensMethods;
+    use ResponsesCompactMethods;
 }

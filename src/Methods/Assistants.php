@@ -9,7 +9,8 @@ namespace octridev_openai;
 
 class Assistants
 {
-    use AssistantsMethodsPart1;
-    use AssistantsMethodsPart2;
-    use AssistantsMethodsPart3;
+    use AssistantsMethods;
+    use AssistantsThreadsMethods;
+    use AssistantsDeleteMessageMethods;
+    use AssistantsListRunStepsMethods;
 }

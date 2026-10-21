@@ -8,168 +8,132 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
- * The object type, must be `realtime.response`.
+ * The response resource.
  */
-final readonly class RealtimeBetaResponseObjectEnum implements SdkOpenEnum
-{
-    public const REALTIME_RESPONSE = "realtime.response";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * The final status of the response (`completed`, `cancelled`, `failed`, or `incomplete`, `in_progress`).
- */
-final readonly class RealtimeBetaResponseStatusEnum implements SdkOpenEnum
-{
-    public const COMPLETED = "completed";
-    public const CANCELLED = "cancelled";
-    public const FAILED = "failed";
-    public const INCOMPLETE = "incomplete";
-    public const IN_PROGRESS = "in_progress";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * The type of error that caused the response to fail, corresponding with the `status` field (`completed`, `cancelled`, `incomplete`, `failed`).
- */
-final readonly class RealtimeBetaResponseStatusDetailsTypeEnum implements SdkOpenEnum
-{
-    public const COMPLETED = "completed";
-    public const CANCELLED = "cancelled";
-    public const FAILED = "failed";
-    public const INCOMPLETE = "incomplete";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * The reason the Response did not complete. For a `cancelled` Response, one of `turn_detected` (the server VAD detected a new start of speech) or `client_cancelled` (the client sent a cancel event). For an `incomplete` Response, one of `max_output_tokens` or `content_filter` (the server-side safety filter activated and cut off the response).
- */
-final readonly class RealtimeBetaResponseStatusDetailsReasonEnum implements SdkOpenEnum
-{
-    public const TURN_DETECTED = "turn_detected";
-    public const CLIENT_CANCELLED = "client_cancelled";
-    public const MAX_OUTPUT_TOKENS = "max_output_tokens";
-    public const CONTENT_FILTER = "content_filter";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * A description of the error that caused the response to fail, populated when the `status` is `failed`.
- */
-class RealtimeBetaResponseStatusDetailsError implements \JsonSerializable
+class RealtimeBetaResponse implements \JsonSerializable
 {
     /**
-     * The type of error.
+     * The unique ID of the response.
      *
      * @var string|SdkNotGiven
      */
-    public readonly string|SdkNotGiven $type;
+    public readonly string|SdkNotGiven $id;
     /**
-     * Error code, if any.
+     * The object type, must be `realtime.response`.
+     *
+     * @var RealtimeBetaResponseObjectEnum|string|SdkNotGiven
+     */
+    public readonly RealtimeBetaResponseObjectEnum|string|SdkNotGiven $object_;
+    /**
+     * The final status of the response (`completed`, `cancelled`, `failed`, or `incomplete`, `in_progress`).
+     *
+     * @var RealtimeBetaResponseStatusEnum|string|SdkNotGiven
+     */
+    public readonly RealtimeBetaResponseStatusEnum|string|SdkNotGiven $status;
+    /**
+     * Additional details about the status.
+     *
+     * @var RealtimeBetaResponseStatusDetails|SdkNotGiven
+     */
+    public readonly RealtimeBetaResponseStatusDetails|SdkNotGiven $statusDetails;
+    /**
+     * The list of output items generated by the response.
+     *
+     * @var list<RealtimeConversationItem>|SdkNotGiven
+     */
+    public readonly array|SdkNotGiven $output;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
+     *
+     * @var array<string,string>|null|SdkNotGiven
+     */
+    public readonly array|null|SdkNotGiven $metadata;
+    /**
+     * Usage statistics for the Response, this will correspond to billing. A Realtime API session will maintain a conversation context and append new Items to the Conversation, thus output from previous turns (text and audio tokens) will become the input for later turns.
+     *
+     * @var RealtimeBetaResponseUsage|SdkNotGiven
+     */
+    public readonly RealtimeBetaResponseUsage|SdkNotGiven $usage;
+    /**
+     * Which conversation the response is added to, determined by the `conversation` field in the `response.create` event. If `auto`, the response will be added to the default conversation and the value of `conversation_id` will be an id like `conv_1234`. If `none`, the response will not be added to any conversation and the value of `conversation_id` will be `null`. If responses are being triggered by server VAD, the response will be added to the default conversation, thus the `conversation_id` will be an id like `conv_1234`.
      *
      * @var string|SdkNotGiven
      */
-    public readonly string|SdkNotGiven $code;
+    public readonly string|SdkNotGiven $conversationId;
     /**
-     * A human-readable error message.
+     * The voice the model used to respond. Current voice options are `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, and `verse`.
      *
      * @var string|SdkNotGiven
      */
-    public readonly string|SdkNotGiven $message;
+    public readonly string|SdkNotGiven $voice;
+    /**
+     * The set of modalities the model used to respond. If there are multiple modalities, the model will pick one, for example if `modalities` is `["text", "audio"]`, the model could be responding in either text or audio.
+     *
+     * @var list<RealtimeBetaResponseModalitiesItemEnum|string>|SdkNotGiven
+     */
+    public readonly array|SdkNotGiven $modalities;
+    /**
+     * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
+     *
+     * @var RealtimeBetaResponseOutputAudioFormatEnum|string|SdkNotGiven
+     */
+    public readonly RealtimeBetaResponseOutputAudioFormatEnum|string|SdkNotGiven $outputAudioFormat;
+    /**
+     * Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
+     *
+     * @var float|SdkNotGiven
+     */
+    public readonly float|SdkNotGiven $temperature;
+    /**
+     * Maximum number of output tokens for a single assistant response, inclusive of tool calls, that was used in this response.
+     *
+     * @var int|RealtimeBetaResponseMaxOutputTokensEnum|string|SdkNotGiven
+     */
+    public readonly int|RealtimeBetaResponseMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens;
 
     /**
-     * @param string|SdkNotGiven $type
-     * @param string|SdkNotGiven $code
-     * @param string|SdkNotGiven $message
+     * @param string|SdkNotGiven $id
+     * @param RealtimeBetaResponseObjectEnum|string|SdkNotGiven $object_
+     * @param RealtimeBetaResponseStatusEnum|string|SdkNotGiven $status
+     * @param RealtimeBetaResponseStatusDetails|SdkNotGiven $statusDetails
+     * @param list<RealtimeConversationItem>|SdkNotGiven $output
+     * @param array<string,string>|null|SdkNotGiven $metadata
+     * @param RealtimeBetaResponseUsage|SdkNotGiven $usage
+     * @param string|SdkNotGiven $conversationId
+     * @param string|SdkNotGiven $voice
+     * @param list<RealtimeBetaResponseModalitiesItemEnum|string>|SdkNotGiven $modalities
+     * @param RealtimeBetaResponseOutputAudioFormatEnum|string|SdkNotGiven $outputAudioFormat
+     * @param float|SdkNotGiven $temperature
+     * @param int|RealtimeBetaResponseMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens
      */
     public function __construct(
-        string|SdkNotGiven $type = SdkNotGiven::Value,
-        string|SdkNotGiven $code = SdkNotGiven::Value,
-        string|SdkNotGiven $message = SdkNotGiven::Value,
+        string|SdkNotGiven $id = SdkNotGiven::Value,
+        RealtimeBetaResponseObjectEnum|string|SdkNotGiven $object_ = SdkNotGiven::Value,
+        RealtimeBetaResponseStatusEnum|string|SdkNotGiven $status = SdkNotGiven::Value,
+        RealtimeBetaResponseStatusDetails|SdkNotGiven $statusDetails = SdkNotGiven::Value,
+        array|SdkNotGiven $output = SdkNotGiven::Value,
+        array|null|SdkNotGiven $metadata = SdkNotGiven::Value,
+        RealtimeBetaResponseUsage|SdkNotGiven $usage = SdkNotGiven::Value,
+        string|SdkNotGiven $conversationId = SdkNotGiven::Value,
+        string|SdkNotGiven $voice = SdkNotGiven::Value,
+        array|SdkNotGiven $modalities = SdkNotGiven::Value,
+        RealtimeBetaResponseOutputAudioFormatEnum|string|SdkNotGiven $outputAudioFormat = SdkNotGiven::Value,
+        float|SdkNotGiven $temperature = SdkNotGiven::Value,
+        int|RealtimeBetaResponseMaxOutputTokensEnum|string|SdkNotGiven $maxOutputTokens = SdkNotGiven::Value,
     ) {
-        $this->type = $type;
-        $this->code = $code;
-        $this->message = $message;
+        $this->id = $id;
+        $this->object_ = $object_;
+        $this->status = $status;
+        $this->statusDetails = $statusDetails;
+        $this->output = $output;
+        $this->metadata = $metadata;
+        $this->usage = $usage;
+        $this->conversationId = $conversationId;
+        $this->voice = $voice;
+        $this->modalities = $modalities;
+        $this->outputAudioFormat = $outputAudioFormat;
+        $this->temperature = $temperature;
+        $this->maxOutputTokens = $maxOutputTokens;
     }
 
     /** @return array<array-key, mixed> */
@@ -177,14 +141,44 @@ class RealtimeBetaResponseStatusDetailsError implements \JsonSerializable
     {
         $values = [
         ];
-        if ($this->type !== SdkNotGiven::Value) {
-            $values["type"] = $this->type;
+        if ($this->id !== SdkNotGiven::Value) {
+            $values["id"] = $this->id;
         }
-        if ($this->code !== SdkNotGiven::Value) {
-            $values["code"] = $this->code;
+        if ($this->object_ !== SdkNotGiven::Value) {
+            $values["object"] = $this->object_;
         }
-        if ($this->message !== SdkNotGiven::Value) {
-            $values["message"] = $this->message;
+        if ($this->status !== SdkNotGiven::Value) {
+            $values["status"] = $this->status;
+        }
+        if ($this->statusDetails !== SdkNotGiven::Value) {
+            $values["status_details"] = $this->statusDetails;
+        }
+        if ($this->output !== SdkNotGiven::Value) {
+            $values["output"] = $this->output;
+        }
+        if ($this->metadata !== SdkNotGiven::Value) {
+            $values["metadata"] = $this->metadata;
+        }
+        if ($this->usage !== SdkNotGiven::Value) {
+            $values["usage"] = $this->usage;
+        }
+        if ($this->conversationId !== SdkNotGiven::Value) {
+            $values["conversation_id"] = $this->conversationId;
+        }
+        if ($this->voice !== SdkNotGiven::Value) {
+            $values["voice"] = $this->voice;
+        }
+        if ($this->modalities !== SdkNotGiven::Value) {
+            $values["modalities"] = $this->modalities;
+        }
+        if ($this->outputAudioFormat !== SdkNotGiven::Value) {
+            $values["output_audio_format"] = $this->outputAudioFormat;
+        }
+        if ($this->temperature !== SdkNotGiven::Value) {
+            $values["temperature"] = $this->temperature;
+        }
+        if ($this->maxOutputTokens !== SdkNotGiven::Value) {
+            $values["max_output_tokens"] = $this->maxOutputTokens;
         }
         return $values;
     }
@@ -198,66 +192,80 @@ class RealtimeBetaResponseStatusDetailsError implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            code: (property_exists($data, "code") && $data->code !== null ? SdkClient::stringValue($data->code) : SdkNotGiven::Value),
-            message: (property_exists($data, "message") && $data->message !== null ? SdkClient::stringValue($data->message) : SdkNotGiven::Value),
+            id: (property_exists($data, "id") && $data->id !== null ? SdkClient::stringValue($data->id) : SdkNotGiven::Value),
+            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::hydrateStringEnumOrString($data->object, RealtimeBetaResponseObjectEnum::class) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, RealtimeBetaResponseStatusEnum::class) : SdkNotGiven::Value),
+            statusDetails: (property_exists($data, "status_details") && $data->status_details !== null ? SdkClient::hydrateClass($data->status_details, RealtimeBetaResponseStatusDetails::class) : SdkNotGiven::Value),
+            output: (property_exists($data, "output") && $data->output !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RealtimeConversationItem::class, [RealtimeConversationItemMessageSystem::class, RealtimeConversationItemMessageUser::class, RealtimeConversationItemMessageAssistant::class, RealtimeConversationItemFunctionCall::class, RealtimeConversationItemFunctionCallOutput::class, RealtimeMCPApprovalResponse::class, RealtimeMCPListTools::class, RealtimeMCPToolCall::class, RealtimeMCPApprovalRequest::class], "type", ["function_call" => RealtimeConversationItemFunctionCall::class, "function_call_output" => RealtimeConversationItemFunctionCallOutput::class, "mcp_approval_response" => RealtimeMCPApprovalResponse::class, "mcp_list_tools" => RealtimeMCPListTools::class, "mcp_call" => RealtimeMCPToolCall::class, "mcp_approval_request" => RealtimeMCPApprovalRequest::class], UnknownRealtimeConversationItem::class), SdkClient::arrayValue($data->output))) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, RealtimeBetaResponseUsage::class) : SdkNotGiven::Value),
+            conversationId: (property_exists($data, "conversation_id") && $data->conversation_id !== null ? SdkClient::stringValue($data->conversation_id) : SdkNotGiven::Value),
+            voice: (property_exists($data, "voice") && $data->voice !== null ? SdkClient::stringValue($data->voice) : SdkNotGiven::Value),
+            modalities: (property_exists($data, "modalities") && $data->modalities !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeBetaResponseModalitiesItemEnum::class), SdkClient::arrayValue($data->modalities))) : SdkNotGiven::Value),
+            outputAudioFormat: (property_exists($data, "output_audio_format") && $data->output_audio_format !== null ? SdkClient::hydrateStringEnumOrString($data->output_audio_format, RealtimeBetaResponseOutputAudioFormatEnum::class) : SdkNotGiven::Value),
+            temperature: (property_exists($data, "temperature") && $data->temperature !== null ? SdkClient::floatValue($data->temperature) : SdkNotGiven::Value),
+            maxOutputTokens: (property_exists($data, "max_output_tokens") && $data->max_output_tokens !== null ? (is_int($data->max_output_tokens) ? SdkClient::intValue($data->max_output_tokens) : SdkClient::hydrateStringEnumOrString($data->max_output_tokens, RealtimeBetaResponseMaxOutputTokensEnum::class)) : SdkNotGiven::Value),
         );
     }
 }
 
 /**
- * Additional details about the status.
+ * Required enumerated value serialized in the `modalities[]` wire field.
  */
-class RealtimeBetaResponseStatusDetails implements \JsonSerializable
+final readonly class RealtimeBetaResponseCreateParamsModalitiesItemEnum implements SdkOpenEnum
+{
+    public const TEXT = "text";
+    public const AUDIO = "audio";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+}
+
+/**
+ * Custom voice reference.
+ */
+class RealtimeBetaResponseCreateParamsVoiceVariant1 implements \JsonSerializable
 {
     /**
-     * The type of error that caused the response to fail, corresponding with the `status` field (`completed`, `cancelled`, `incomplete`, `failed`).
+     * The custom voice ID, e.g. `voice_1234`.
      *
-     * @var RealtimeBetaResponseStatusDetailsTypeEnum|string|SdkNotGiven
+     * @var string
      */
-    public readonly RealtimeBetaResponseStatusDetailsTypeEnum|string|SdkNotGiven $type;
-    /**
-     * The reason the Response did not complete. For a `cancelled` Response, one of `turn_detected` (the server VAD detected a new start of speech) or `client_cancelled` (the client sent a cancel event). For an `incomplete` Response, one of `max_output_tokens` or `content_filter` (the server-side safety filter activated and cut off the response).
-     *
-     * @var RealtimeBetaResponseStatusDetailsReasonEnum|string|SdkNotGiven
-     */
-    public readonly RealtimeBetaResponseStatusDetailsReasonEnum|string|SdkNotGiven $reason;
-    /**
-     * A description of the error that caused the response to fail, populated when the `status` is `failed`.
-     *
-     * @var RealtimeBetaResponseStatusDetailsError|SdkNotGiven
-     */
-    public readonly RealtimeBetaResponseStatusDetailsError|SdkNotGiven $error;
+    public readonly string $id;
 
     /**
-     * @param RealtimeBetaResponseStatusDetailsTypeEnum|string|SdkNotGiven $type
-     * @param RealtimeBetaResponseStatusDetailsReasonEnum|string|SdkNotGiven $reason
-     * @param RealtimeBetaResponseStatusDetailsError|SdkNotGiven $error
+     * @param string $id
      */
     public function __construct(
-        RealtimeBetaResponseStatusDetailsTypeEnum|string|SdkNotGiven $type = SdkNotGiven::Value,
-        RealtimeBetaResponseStatusDetailsReasonEnum|string|SdkNotGiven $reason = SdkNotGiven::Value,
-        RealtimeBetaResponseStatusDetailsError|SdkNotGiven $error = SdkNotGiven::Value,
+        string $id,
     ) {
-        $this->type = $type;
-        $this->reason = $reason;
-        $this->error = $error;
+        $this->id = $id;
     }
 
     /** @return array<array-key, mixed> */
     public function toArray(): array
     {
         $values = [
+            "id" => $this->id,
         ];
-        if ($this->type !== SdkNotGiven::Value) {
-            $values["type"] = $this->type;
-        }
-        if ($this->reason !== SdkNotGiven::Value) {
-            $values["reason"] = $this->reason;
-        }
-        if ($this->error !== SdkNotGiven::Value) {
-            $values["error"] = $this->error;
-        }
         return $values;
     }
 
@@ -269,82 +277,71 @@ class RealtimeBetaResponseStatusDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
         return new self(
-            type: (property_exists($data, "type") && $data->type !== null ? SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaResponseStatusDetailsTypeEnum::class) : SdkNotGiven::Value),
-            reason: (property_exists($data, "reason") && $data->reason !== null ? SdkClient::hydrateStringEnumOrString($data->reason, RealtimeBetaResponseStatusDetailsReasonEnum::class) : SdkNotGiven::Value),
-            error: (property_exists($data, "error") && $data->error !== null ? SdkClient::hydrateClass($data->error, RealtimeBetaResponseStatusDetailsError::class) : SdkNotGiven::Value),
+            id: SdkClient::stringValue($data->id),
         );
     }
 }
 
 /**
- * Details about the cached tokens used as input for the Response.
+ * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
  */
-class RealtimeBetaResponseUsageInputTokenDetailsCachedTokensDetails implements \JsonSerializable
+final readonly class RealtimeBetaResponseCreateParamsOutputAudioFormatEnum implements SdkOpenEnum
 {
-    /**
-     * The number of cached text tokens used as input for the Response.
-     *
-     * @var int|SdkNotGiven
-     */
-    public readonly int|SdkNotGiven $textTokens;
-    /**
-     * The number of cached image tokens used as input for the Response.
-     *
-     * @var int|SdkNotGiven
-     */
-    public readonly int|SdkNotGiven $imageTokens;
-    /**
-     * The number of cached audio tokens used as input for the Response.
-     *
-     * @var int|SdkNotGiven
-     */
-    public readonly int|SdkNotGiven $audioTokens;
-
-    /**
-     * @param int|SdkNotGiven $textTokens
-     * @param int|SdkNotGiven $imageTokens
-     * @param int|SdkNotGiven $audioTokens
-     */
-    public function __construct(
-        int|SdkNotGiven $textTokens = SdkNotGiven::Value,
-        int|SdkNotGiven $imageTokens = SdkNotGiven::Value,
-        int|SdkNotGiven $audioTokens = SdkNotGiven::Value,
-    ) {
-        $this->textTokens = $textTokens;
-        $this->imageTokens = $imageTokens;
-        $this->audioTokens = $audioTokens;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
+    public const PCM16 = "pcm16";
+    public const G711_ULAW = "g711_ulaw";
+    public const G711_ALAW = "g711_alaw";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
     {
-        $values = [
-        ];
-        if ($this->textTokens !== SdkNotGiven::Value) {
-            $values["text_tokens"] = $this->textTokens;
-        }
-        if ($this->imageTokens !== SdkNotGiven::Value) {
-            $values["image_tokens"] = $this->imageTokens;
-        }
-        if ($this->audioTokens !== SdkNotGiven::Value) {
-            $values["audio_tokens"] = $this->audioTokens;
-        }
-        return $values;
+        return new self((string) $value);
     }
-
-    /** @return object */
-    public function jsonSerialize(): object
+    public static function tryFrom(string|int|null $value): ?static
     {
-        return (object) $this->toArray();
+        return $value === null ? null : self::from($value);
     }
-
-    public static function fromObject(object $data): self
+    public function getValue(): string
     {
-        return new self(
-            textTokens: (property_exists($data, "text_tokens") && $data->text_tokens !== null ? SdkClient::intValue($data->text_tokens) : SdkNotGiven::Value),
-            imageTokens: (property_exists($data, "image_tokens") && $data->image_tokens !== null ? SdkClient::intValue($data->image_tokens) : SdkNotGiven::Value),
-            audioTokens: (property_exists($data, "audio_tokens") && $data->audio_tokens !== null ? SdkClient::intValue($data->audio_tokens) : SdkNotGiven::Value),
-        );
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+}
+
+/**
+ * The type of the tool, i.e. `function`.
+ */
+final readonly class RealtimeBetaResponseCreateParamsToolsItemTypeEnum implements SdkOpenEnum
+{
+    public const FUNCTION = "function";
+    private function __construct(public string $value) {}
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
     }
 }

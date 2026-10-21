@@ -9,5 +9,5 @@ namespace octridev_openai;
 
 class Realtime
 {
-    use RealtimeMethodsPart1;
+    use RealtimeMethods;
 }

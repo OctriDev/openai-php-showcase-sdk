@@ -7,188 +7,436 @@ declare(strict_types=1);
 
 namespace octridev_openai;
 
-final readonly class ResponseVariant2ServiceTierEnum implements SdkOpenEnum
-{
-    public const AUTO = "auto";
-    public const DEFAULT = "default";
-    public const FLEX = "flex";
-    public const SCALE = "scale";
-    public const PRIORITY = "priority";
-    public const FAST = "fast";
-    public const ULTRAFAST = "ultrafast";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-final readonly class ResponseVariant2TruncationEnum implements SdkOpenEnum
-{
-    public const AUTO = "auto";
-    public const DISABLED = "disabled";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
 /**
- * The object type of this resource - always set to `response`.
+ * Typed representation of the `Response` API schema.
  */
-final readonly class ResponseVariant2ObjectEnum implements SdkOpenEnum
-{
-    public const RESPONSE = "response";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.
- */
-final readonly class ResponseVariant2StatusEnum implements SdkOpenEnum
-{
-    public const COMPLETED = "completed";
-    public const FAILED = "failed";
-    public const IN_PROGRESS = "in_progress";
-    public const CANCELLED = "cancelled";
-    public const QUEUED = "queued";
-    public const INCOMPLETE = "incomplete";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * The reason why the response is incomplete. `steered` means the response stopped at a safe output boundary after a WebSocket `response.steer` event. The server can then create a successor response automatically with the queued input.
- */
-final readonly class ResponseVariant2IncompleteDetailsReasonEnum implements SdkOpenEnum
-{
-    public const MAX_OUTPUT_TOKENS = "max_output_tokens";
-    public const MAX_MESSAGES = "max_messages";
-    public const CONTENT_FILTER = "content_filter";
-    public const STEERED = "steered";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
-}
-
-/**
- * Details about why the response is incomplete.
- */
-class ResponseVariant2IncompleteDetails implements \JsonSerializable
+class Response implements \JsonSerializable
 {
     /**
-     * The reason why the response is incomplete. `steered` means the response stopped at a safe output boundary after a WebSocket `response.steer` event. The server can then create a successor response automatically with the queued input.
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
      *
-     * @var ResponseVariant2IncompleteDetailsReasonEnum|string|SdkNotGiven
+     * @var array<string,string>|null
      */
-    public readonly ResponseVariant2IncompleteDetailsReasonEnum|string|SdkNotGiven $reason;
+    public readonly array|null $metadata;
+    /**
+     * Optional API value serialized in the `top_logprobs` wire field.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $topLogprobs;
+    /**
+     * Optional API value serialized in the `temperature` wire field.
+     *
+     * @var float|null
+     */
+    public readonly float|null $temperature;
+    /**
+     * Optional API value serialized in the `top_p` wire field.
+     *
+     * @var float|null
+     */
+    public readonly float|null $topP;
+    /**
+     * This field is being replaced by `safety_identifier` and `prompt_cache_key`. Use `prompt_cache_key` instead to maintain caching optimizations. A stable identifier for your end-users. Used to boost cache hit rates by better bucketing similar requests and to help OpenAI detect and prevent abuse. [Learn more](https://developers.openai.com/api/docs/guides/safety-best-practices#implement-safety-identifiers).
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $user;
+    /**
+     * Optional API value serialized in the `safety_identifier` wire field.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $safetyIdentifier;
+    /**
+     * Optional `string` value serialized in the `prompt_cache_key` wire field.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $promptCacheKey;
+    /**
+     * Optional API value serialized in the `prompt_cache_retention` wire field.
+     *
+     * @var ResponsePromptCacheRetentionEnum|null|SdkNotGiven
+     */
+    public readonly ResponsePromptCacheRetentionEnum|null|SdkNotGiven $promptCacheRetention;
+    /**
+     * Optional `string` value serialized in the `previous_response_id` wire field.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $previousResponseId;
+    /**
+     * Model ID used to generate the response, like `gpt-6-astra`. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the [model guide](https://developers.openai.com/api/docs/models) to browse and compare available models.
+     *
+     * @var string|ResponseModelEnum
+     */
+    public readonly string|ResponseModelEnum $model;
+    /**
+     * Optional `boolean` value serialized in the `background` wire field.
+     *
+     * @var bool|null|SdkNotGiven
+     */
+    public readonly bool|null|SdkNotGiven $background;
+    /**
+     * Optional `integer` value serialized in the `max_tool_calls` wire field.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $maxToolCalls;
+    /**
+     * Configuration options for a text response from the model. Can be plain text or structured JSON data. Learn more: - [Text inputs and outputs](https://developers.openai.com/api/docs/guides/text) - [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)
+     *
+     * @var ResponseTextParam|SdkNotGiven
+     */
+    public readonly ResponseTextParam|SdkNotGiven $text;
+    /**
+     * An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter. We support the following categories of tools: - **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities, like [web search](https://developers.openai.com/api/docs/guides/tools-web-search) or [file search](https://developers.openai.com/api/docs/guides/tools-file-search). Learn more about [built-in tools](https://developers.openai.com/api/docs/guides/tools). - **MCP Tools**: Integrations with third-party systems via custom MCP servers or predefined connectors such as Google Drive and SharePoint. Learn more about [MCP Tools](https://developers.openai.com/api/docs/guides/tools-connectors-mcp). - **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code with strongly typed arguments and outputs. Learn more about [function calling](https://developers.openai.com/api/docs/guides/function-calling). You can also use custom tools to call your own code.
+     *
+     * @var list<Tool>
+     */
+    public readonly array $tools;
+    /**
+     * How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call.
+     *
+     * @var ToolChoiceOptions|ToolChoiceAllowed|ToolChoiceTypes|ToolChoiceFunction|ToolChoiceMCP|ToolChoiceCustom|SpecificProgrammaticToolCallingParam|SpecificApplyPatchParam|SpecificFunctionShellParam
+     */
+    public readonly ToolChoiceOptions|ToolChoiceAllowed|ToolChoiceTypes|ToolChoiceFunction|ToolChoiceMCP|ToolChoiceCustom|SpecificProgrammaticToolCallingParam|SpecificApplyPatchParam|SpecificFunctionShellParam $toolChoice;
+    /**
+     * Reference to a prompt template and its variables. [Learn more](https://developers.openai.com/api/docs/guides/text?api-mode=responses#version-prompts-in-code).
+     *
+     * @var Prompt|null|SdkNotGiven
+     */
+    public readonly Prompt|null|SdkNotGiven $prompt;
+    /**
+     * Optional API value serialized in the `service_tier` wire field.
+     *
+     * @var ResponseServiceTierEnum|null|SdkNotGiven
+     */
+    public readonly ResponseServiceTierEnum|null|SdkNotGiven $serviceTier;
+    /**
+     * Optional API value serialized in the `truncation` wire field.
+     *
+     * @var ResponseTruncationEnum|null|SdkNotGiven
+     */
+    public readonly ResponseTruncationEnum|null|SdkNotGiven $truncation;
+    /**
+     * Unique identifier for this Response.
+     *
+     * @var string
+     */
+    public readonly string $id;
+    /**
+     * The object type of this resource - always set to `response`.
+     *
+     * @var ResponseObjectEnum|string
+     */
+    public readonly ResponseObjectEnum|string $object_;
+    /**
+     * The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.
+     *
+     * @var ResponseStatusEnum|string|SdkNotGiven
+     */
+    public readonly ResponseStatusEnum|string|SdkNotGiven $status;
+    /**
+     * Required API value serialized in the `access_programs` wire field.
+     *
+     * @var AccessProgramsBody|null
+     */
+    public readonly AccessProgramsBody|null $accessPrograms;
+    /**
+     * Unix timestamp (in seconds) of when this Response was created.
+     *
+     * @var float
+     */
+    public readonly float $createdAt;
+    /**
+     * Optional API value serialized in the `completed_at` wire field.
+     *
+     * @var float|null|SdkNotGiven
+     */
+    public readonly float|null|SdkNotGiven $completedAt;
+    /**
+     * An error object returned when the model fails to generate a Response.
+     *
+     * @var ResponseError|null
+     */
+    public readonly ResponseError|null $error;
+    /**
+     * Details about why the response is incomplete.
+     *
+     * @var ResponseIncompleteDetails|null
+     */
+    public readonly ResponseIncompleteDetails|null $incompleteDetails;
+    /**
+     * An array of content items generated by the model. - The length and order of items in the `output` array is dependent on the model's response. - Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs.
+     *
+     * @var list<OutputItem>
+     */
+    public readonly array $output;
+    /**
+     * Optional API value serialized in the `reasoning` wire field.
+     *
+     * @var Reasoning|null|SdkNotGiven
+     */
+    public readonly Reasoning|null|SdkNotGiven $reasoning;
+    /**
+     * A system (or developer) message inserted into the model's context. When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses.
+     *
+     * @var string|list<InputItem>|null
+     */
+    public readonly string|array|null $instructions;
+    /**
+     * Optional API value serialized in the `output_text` wire field.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $outputText;
+    /**
+     * Optional API value serialized in the `usage` wire field.
+     *
+     * @var ResponseUsage|null|SdkNotGiven
+     */
+    public readonly ResponseUsage|null|SdkNotGiven $usage;
+    /**
+     * The prompt-caching options that were applied to the response. Supported for `gpt-5.6` and later models.
+     *
+     * @var PromptCacheOptions|SdkNotGiven
+     */
+    public readonly PromptCacheOptions|SdkNotGiven $promptCacheOptions;
+    /**
+     * Prompt cache diagnostics requested for this response.
+     *
+     * @var PromptCacheDiagnostics|SdkNotGiven
+     */
+    public readonly PromptCacheDiagnostics|SdkNotGiven $promptCacheDiagnostics;
+    /**
+     * Optional API value serialized in the `moderation` wire field.
+     *
+     * @var Moderation|null|SdkNotGiven
+     */
+    public readonly Moderation|null|SdkNotGiven $moderation;
+    /**
+     * Whether to allow the model to run tool calls in parallel.
+     *
+     * @var bool
+     */
+    public readonly bool $parallelToolCalls;
+    /**
+     * Optional API value serialized in the `conversation` wire field.
+     *
+     * @var ResponseConversation|null|SdkNotGiven
+     */
+    public readonly ResponseConversation|null|SdkNotGiven $conversation;
+    /**
+     * Optional `integer` value serialized in the `max_output_tokens` wire field.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $maxOutputTokens;
 
     /**
-     * @param ResponseVariant2IncompleteDetailsReasonEnum|string|SdkNotGiven $reason
+     * @param array<string,string>|null $metadata
+     * @param float|null $temperature
+     * @param float|null $topP
+     * @param string|ResponseModelEnum $model
+     * @param list<Tool> $tools
+     * @param ToolChoiceOptions|ToolChoiceAllowed|ToolChoiceTypes|ToolChoiceFunction|ToolChoiceMCP|ToolChoiceCustom|SpecificProgrammaticToolCallingParam|SpecificApplyPatchParam|SpecificFunctionShellParam $toolChoice
+     * @param string $id
+     * @param ResponseObjectEnum|string $object_
+     * @param AccessProgramsBody|null $accessPrograms
+     * @param float $createdAt
+     * @param ResponseError|null $error
+     * @param ResponseIncompleteDetails|null $incompleteDetails
+     * @param list<OutputItem> $output
+     * @param string|list<InputItem>|null $instructions
+     * @param bool $parallelToolCalls
+     * @param int|null|SdkNotGiven $topLogprobs
+     * @param string|null|SdkNotGiven $user
+     * @param string|null|SdkNotGiven $safetyIdentifier
+     * @param string|null|SdkNotGiven $promptCacheKey
+     * @param ResponsePromptCacheRetentionEnum|null|SdkNotGiven $promptCacheRetention
+     * @param string|null|SdkNotGiven $previousResponseId
+     * @param bool|null|SdkNotGiven $background
+     * @param int|null|SdkNotGiven $maxToolCalls
+     * @param ResponseTextParam|SdkNotGiven $text
+     * @param Prompt|null|SdkNotGiven $prompt
+     * @param ResponseServiceTierEnum|null|SdkNotGiven $serviceTier
+     * @param ResponseTruncationEnum|null|SdkNotGiven $truncation
+     * @param ResponseStatusEnum|string|SdkNotGiven $status
+     * @param float|null|SdkNotGiven $completedAt
+     * @param Reasoning|null|SdkNotGiven $reasoning
+     * @param string|null|SdkNotGiven $outputText
+     * @param ResponseUsage|null|SdkNotGiven $usage
+     * @param PromptCacheOptions|SdkNotGiven $promptCacheOptions
+     * @param PromptCacheDiagnostics|SdkNotGiven $promptCacheDiagnostics
+     * @param Moderation|null|SdkNotGiven $moderation
+     * @param ResponseConversation|null|SdkNotGiven $conversation
+     * @param int|null|SdkNotGiven $maxOutputTokens
      */
     public function __construct(
-        ResponseVariant2IncompleteDetailsReasonEnum|string|SdkNotGiven $reason = SdkNotGiven::Value,
+        array|null $metadata,
+        float|null $temperature,
+        float|null $topP,
+        string|ResponseModelEnum $model,
+        array $tools,
+        ToolChoiceOptions|ToolChoiceAllowed|ToolChoiceTypes|ToolChoiceFunction|ToolChoiceMCP|ToolChoiceCustom|SpecificProgrammaticToolCallingParam|SpecificApplyPatchParam|SpecificFunctionShellParam $toolChoice,
+        string $id,
+        ResponseObjectEnum|string $object_,
+        AccessProgramsBody|null $accessPrograms,
+        float $createdAt,
+        ResponseError|null $error,
+        ResponseIncompleteDetails|null $incompleteDetails,
+        array $output,
+        string|array|null $instructions,
+        bool $parallelToolCalls,
+        int|null|SdkNotGiven $topLogprobs = SdkNotGiven::Value,
+        string|null|SdkNotGiven $user = SdkNotGiven::Value,
+        string|null|SdkNotGiven $safetyIdentifier = SdkNotGiven::Value,
+        string|null|SdkNotGiven $promptCacheKey = SdkNotGiven::Value,
+        ResponsePromptCacheRetentionEnum|null|SdkNotGiven $promptCacheRetention = SdkNotGiven::Value,
+        string|null|SdkNotGiven $previousResponseId = SdkNotGiven::Value,
+        bool|null|SdkNotGiven $background = SdkNotGiven::Value,
+        int|null|SdkNotGiven $maxToolCalls = SdkNotGiven::Value,
+        ResponseTextParam|SdkNotGiven $text = SdkNotGiven::Value,
+        Prompt|null|SdkNotGiven $prompt = SdkNotGiven::Value,
+        ResponseServiceTierEnum|null|SdkNotGiven $serviceTier = SdkNotGiven::Value,
+        ResponseTruncationEnum|null|SdkNotGiven $truncation = SdkNotGiven::Value,
+        ResponseStatusEnum|string|SdkNotGiven $status = SdkNotGiven::Value,
+        float|null|SdkNotGiven $completedAt = SdkNotGiven::Value,
+        Reasoning|null|SdkNotGiven $reasoning = SdkNotGiven::Value,
+        string|null|SdkNotGiven $outputText = SdkNotGiven::Value,
+        ResponseUsage|null|SdkNotGiven $usage = SdkNotGiven::Value,
+        PromptCacheOptions|SdkNotGiven $promptCacheOptions = SdkNotGiven::Value,
+        PromptCacheDiagnostics|SdkNotGiven $promptCacheDiagnostics = SdkNotGiven::Value,
+        Moderation|null|SdkNotGiven $moderation = SdkNotGiven::Value,
+        ResponseConversation|null|SdkNotGiven $conversation = SdkNotGiven::Value,
+        int|null|SdkNotGiven $maxOutputTokens = SdkNotGiven::Value,
     ) {
-        $this->reason = $reason;
+        $this->metadata = $metadata;
+        $this->temperature = $temperature;
+        $this->topP = $topP;
+        $this->model = $model;
+        $this->tools = $tools;
+        $this->toolChoice = $toolChoice;
+        $this->id = $id;
+        $this->object_ = $object_;
+        $this->accessPrograms = $accessPrograms;
+        $this->createdAt = $createdAt;
+        $this->error = $error;
+        $this->incompleteDetails = $incompleteDetails;
+        $this->output = $output;
+        $this->instructions = $instructions;
+        $this->parallelToolCalls = $parallelToolCalls;
+        $this->topLogprobs = $topLogprobs;
+        $this->user = $user;
+        $this->safetyIdentifier = $safetyIdentifier;
+        $this->promptCacheKey = $promptCacheKey;
+        $this->promptCacheRetention = $promptCacheRetention;
+        $this->previousResponseId = $previousResponseId;
+        $this->background = $background;
+        $this->maxToolCalls = $maxToolCalls;
+        $this->text = $text;
+        $this->prompt = $prompt;
+        $this->serviceTier = $serviceTier;
+        $this->truncation = $truncation;
+        $this->status = $status;
+        $this->completedAt = $completedAt;
+        $this->reasoning = $reasoning;
+        $this->outputText = $outputText;
+        $this->usage = $usage;
+        $this->promptCacheOptions = $promptCacheOptions;
+        $this->promptCacheDiagnostics = $promptCacheDiagnostics;
+        $this->moderation = $moderation;
+        $this->conversation = $conversation;
+        $this->maxOutputTokens = $maxOutputTokens;
     }
 
     /** @return array<array-key, mixed> */
     public function toArray(): array
     {
         $values = [
+            "metadata" => $this->metadata,
+            "temperature" => $this->temperature,
+            "top_p" => $this->topP,
+            "model" => $this->model,
+            "tools" => $this->tools,
+            "tool_choice" => $this->toolChoice,
+            "id" => $this->id,
+            "object" => $this->object_,
+            "access_programs" => $this->accessPrograms,
+            "created_at" => $this->createdAt,
+            "error" => $this->error,
+            "incomplete_details" => $this->incompleteDetails,
+            "output" => $this->output,
+            "instructions" => $this->instructions,
+            "parallel_tool_calls" => $this->parallelToolCalls,
         ];
-        if ($this->reason !== SdkNotGiven::Value) {
-            $values["reason"] = $this->reason;
+        if ($this->topLogprobs !== SdkNotGiven::Value) {
+            $values["top_logprobs"] = $this->topLogprobs;
+        }
+        if ($this->user !== SdkNotGiven::Value) {
+            $values["user"] = $this->user;
+        }
+        if ($this->safetyIdentifier !== SdkNotGiven::Value) {
+            $values["safety_identifier"] = $this->safetyIdentifier;
+        }
+        if ($this->promptCacheKey !== SdkNotGiven::Value) {
+            $values["prompt_cache_key"] = $this->promptCacheKey;
+        }
+        if ($this->promptCacheRetention !== SdkNotGiven::Value) {
+            $values["prompt_cache_retention"] = $this->promptCacheRetention;
+        }
+        if ($this->previousResponseId !== SdkNotGiven::Value) {
+            $values["previous_response_id"] = $this->previousResponseId;
+        }
+        if ($this->background !== SdkNotGiven::Value) {
+            $values["background"] = $this->background;
+        }
+        if ($this->maxToolCalls !== SdkNotGiven::Value) {
+            $values["max_tool_calls"] = $this->maxToolCalls;
+        }
+        if ($this->text !== SdkNotGiven::Value) {
+            $values["text"] = $this->text;
+        }
+        if ($this->prompt !== SdkNotGiven::Value) {
+            $values["prompt"] = $this->prompt;
+        }
+        if ($this->serviceTier !== SdkNotGiven::Value) {
+            $values["service_tier"] = $this->serviceTier;
+        }
+        if ($this->truncation !== SdkNotGiven::Value) {
+            $values["truncation"] = $this->truncation;
+        }
+        if ($this->status !== SdkNotGiven::Value) {
+            $values["status"] = $this->status;
+        }
+        if ($this->completedAt !== SdkNotGiven::Value) {
+            $values["completed_at"] = $this->completedAt;
+        }
+        if ($this->reasoning !== SdkNotGiven::Value) {
+            $values["reasoning"] = $this->reasoning;
+        }
+        if ($this->outputText !== SdkNotGiven::Value) {
+            $values["output_text"] = $this->outputText;
+        }
+        if ($this->usage !== SdkNotGiven::Value) {
+            $values["usage"] = $this->usage;
+        }
+        if ($this->promptCacheOptions !== SdkNotGiven::Value) {
+            $values["prompt_cache_options"] = $this->promptCacheOptions;
+        }
+        if ($this->promptCacheDiagnostics !== SdkNotGiven::Value) {
+            $values["prompt_cache_diagnostics"] = $this->promptCacheDiagnostics;
+        }
+        if ($this->moderation !== SdkNotGiven::Value) {
+            $values["moderation"] = $this->moderation;
+        }
+        if ($this->conversation !== SdkNotGiven::Value) {
+            $values["conversation"] = $this->conversation;
+        }
+        if ($this->maxOutputTokens !== SdkNotGiven::Value) {
+            $values["max_output_tokens"] = $this->maxOutputTokens;
         }
         return $values;
     }
@@ -201,8 +449,89 @@ class ResponseVariant2IncompleteDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
+        if (!property_exists($data, "metadata")) {
+            throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'");
+        }
+        if (!property_exists($data, "temperature")) {
+            throw new SdkValidationError("temperature", 'required', "Missing required property 'temperature'");
+        }
+        if (!property_exists($data, "top_p")) {
+            throw new SdkValidationError("top_p", 'required', "Missing required property 'top_p'");
+        }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "tools") || $data->tools === null) {
+            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
+        }
+        if (!property_exists($data, "tool_choice") || $data->tool_choice === null) {
+            throw new SdkValidationError("tool_choice", 'required', "Required property 'tool_choice' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "access_programs")) {
+            throw new SdkValidationError("access_programs", 'required', "Missing required property 'access_programs'");
+        }
+        if (!property_exists($data, "created_at") || $data->created_at === null) {
+            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
+        }
+        if (!property_exists($data, "error")) {
+            throw new SdkValidationError("error", 'required', "Missing required property 'error'");
+        }
+        if (!property_exists($data, "incomplete_details")) {
+            throw new SdkValidationError("incomplete_details", 'required', "Missing required property 'incomplete_details'");
+        }
+        if (!property_exists($data, "output") || $data->output === null) {
+            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
+        }
+        if (!property_exists($data, "instructions")) {
+            throw new SdkValidationError("instructions", 'required', "Missing required property 'instructions'");
+        }
+        if (!property_exists($data, "parallel_tool_calls") || $data->parallel_tool_calls === null) {
+            throw new SdkValidationError("parallel_tool_calls", 'required', "Required property 'parallel_tool_calls' is missing or null");
+        }
         return new self(
-            reason: (property_exists($data, "reason") && $data->reason !== null ? SdkClient::hydrateStringEnumOrString($data->reason, ResponseVariant2IncompleteDetailsReasonEnum::class) : SdkNotGiven::Value),
+            metadata: ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))),
+            temperature: ($data->temperature === null ? null : SdkClient::floatValue($data->temperature)),
+            topP: ($data->top_p === null ? null : SdkClient::floatValue($data->top_p)),
+            model: SdkClient::hydrateStringEnumOrString($data->model, ResponseModelEnum::class),
+            tools: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, Tool::class, [FunctionTool::class, FileSearchTool::class, ComputerTool::class, ComputerUsePreviewTool::class, WebSearchTool::class, MCPTool::class, CodeInterpreterTool::class, ProgrammaticToolCallingParam::class, ImageGenTool::class, LocalShellToolParam::class, FunctionShellToolParam::class, CustomToolParam::class, NamespaceToolParam::class, ToolSearchToolParam::class, WebSearchPreviewTool::class, ApplyPatchToolParam::class], "type", ["function" => FunctionTool::class, "file_search" => FileSearchTool::class, "computer" => ComputerTool::class, "computer_use_preview" => ComputerUsePreviewTool::class, "web_search" => WebSearchTool::class, "web_search_2025_08_26" => WebSearchTool::class, "mcp" => MCPTool::class, "code_interpreter" => CodeInterpreterTool::class, "programmatic_tool_calling" => ProgrammaticToolCallingParam::class, "image_generation" => ImageGenTool::class, "local_shell" => LocalShellToolParam::class, "shell" => FunctionShellToolParam::class, "custom" => CustomToolParam::class, "namespace" => NamespaceToolParam::class, "tool_search" => ToolSearchToolParam::class, "web_search_preview" => WebSearchPreviewTool::class, "web_search_preview_2025_03_11" => WebSearchPreviewTool::class, "apply_patch" => ApplyPatchToolParam::class], UnknownTool::class), SdkClient::arrayValue($data->tools))),
+            toolChoice: (is_object($data->tool_choice) ? SdkClient::hydrateUnion($data->tool_choice, [ToolChoiceAllowed::class, ToolChoiceTypes::class, ToolChoiceFunction::class, ToolChoiceMCP::class, ToolChoiceCustom::class, SpecificProgrammaticToolCallingParam::class, SpecificApplyPatchParam::class, SpecificFunctionShellParam::class], "type", ["allowed_tools" => ToolChoiceAllowed::class, "file_search" => ToolChoiceTypes::class, "web_search_preview" => ToolChoiceTypes::class, "computer" => ToolChoiceTypes::class, "computer_use_preview" => ToolChoiceTypes::class, "computer_use" => ToolChoiceTypes::class, "web_search_preview_2025_03_11" => ToolChoiceTypes::class, "image_generation" => ToolChoiceTypes::class, "code_interpreter" => ToolChoiceTypes::class, "function" => ToolChoiceFunction::class, "mcp" => ToolChoiceMCP::class, "custom" => ToolChoiceCustom::class, "programmatic_tool_calling" => SpecificProgrammaticToolCallingParam::class, "apply_patch" => SpecificApplyPatchParam::class, "shell" => SpecificFunctionShellParam::class]) : (is_string($data->tool_choice) ? SdkClient::hydrateEnum($data->tool_choice, ToolChoiceOptions::class) : SdkClient::hydrateUnion($data->tool_choice, [ToolChoiceAllowed::class, ToolChoiceTypes::class, ToolChoiceFunction::class, ToolChoiceMCP::class, ToolChoiceCustom::class, SpecificProgrammaticToolCallingParam::class, SpecificApplyPatchParam::class, SpecificFunctionShellParam::class], "type", ["allowed_tools" => ToolChoiceAllowed::class, "file_search" => ToolChoiceTypes::class, "web_search_preview" => ToolChoiceTypes::class, "computer" => ToolChoiceTypes::class, "computer_use_preview" => ToolChoiceTypes::class, "computer_use" => ToolChoiceTypes::class, "web_search_preview_2025_03_11" => ToolChoiceTypes::class, "image_generation" => ToolChoiceTypes::class, "code_interpreter" => ToolChoiceTypes::class, "function" => ToolChoiceFunction::class, "mcp" => ToolChoiceMCP::class, "custom" => ToolChoiceCustom::class, "programmatic_tool_calling" => SpecificProgrammaticToolCallingParam::class, "apply_patch" => SpecificApplyPatchParam::class, "shell" => SpecificFunctionShellParam::class]))),
+            id: SdkClient::stringValue($data->id),
+            object_: SdkClient::hydrateStringEnumOrString($data->object, ResponseObjectEnum::class),
+            accessPrograms: ($data->access_programs === null ? null : SdkClient::hydrateClass($data->access_programs, AccessProgramsBody::class)),
+            createdAt: SdkClient::floatValue($data->created_at),
+            error: ($data->error === null ? null : SdkClient::hydrateClass($data->error, ResponseError::class)),
+            incompleteDetails: ($data->incomplete_details === null ? null : SdkClient::hydrateClass($data->incomplete_details, ResponseIncompleteDetails::class)),
+            output: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, OutputItem::class, [OutputMessage::class, FileSearchToolCall::class, FunctionToolCall::class, FunctionToolCallOutputResource::class, WebSearchToolCall::class, ComputerToolCall::class, ComputerToolCallOutputResource::class, ReasoningItem::class, Program::class, ProgramOutput::class, ToolSearchCall::class, ToolSearchOutput::class, AdditionalTools::class, CompactionBody::class, ImageGenToolCall::class, CodeInterpreterToolCall::class, LocalShellToolCall::class, LocalShellToolCallOutput::class, FunctionShellCall::class, FunctionShellCallOutput::class, ApplyPatchToolCall::class, ApplyPatchToolCallOutput::class, MCPToolCall::class, MCPListTools::class, MCPApprovalRequest::class, MCPApprovalResponseResource::class, CustomToolCall::class, CustomToolCallOutputResource::class], "type", ["message" => OutputMessage::class, "file_search_call" => FileSearchToolCall::class, "function_call" => FunctionToolCall::class, "function_call_output" => FunctionToolCallOutputResource::class, "web_search_call" => WebSearchToolCall::class, "computer_call" => ComputerToolCall::class, "computer_call_output" => ComputerToolCallOutputResource::class, "reasoning" => ReasoningItem::class, "program" => Program::class, "program_output" => ProgramOutput::class, "tool_search_call" => ToolSearchCall::class, "tool_search_output" => ToolSearchOutput::class, "additional_tools" => AdditionalTools::class, "compaction" => CompactionBody::class, "image_generation_call" => ImageGenToolCall::class, "code_interpreter_call" => CodeInterpreterToolCall::class, "local_shell_call" => LocalShellToolCall::class, "local_shell_call_output" => LocalShellToolCallOutput::class, "shell_call" => FunctionShellCall::class, "shell_call_output" => FunctionShellCallOutput::class, "apply_patch_call" => ApplyPatchToolCall::class, "apply_patch_call_output" => ApplyPatchToolCallOutput::class, "mcp_call" => MCPToolCall::class, "mcp_list_tools" => MCPListTools::class, "mcp_approval_request" => MCPApprovalRequest::class, "mcp_approval_response" => MCPApprovalResponseResource::class, "custom_tool_call" => CustomToolCall::class, "custom_tool_call_output" => CustomToolCallOutputResource::class], UnknownOutputItem::class), SdkClient::arrayValue($data->output))),
+            instructions: ($data->instructions === null ? null : (is_array($data->instructions) ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, InputItem::class, [EasyInputMessage::class, InputMessage::class, OutputMessage::class, FileSearchToolCall::class, ComputerToolCall::class, ComputerCallOutputItemParam::class, WebSearchToolCall::class, FunctionToolCall::class, FunctionCallOutputItemParam::class, ToolSearchCallItemParam::class, ToolSearchOutputItemParam::class, AdditionalToolsItemParam::class, ResponseConfigurationUpdateItemParam::class, ReasoningItem::class, CompactionSummaryItemParam::class, ImageGenToolCall::class, CodeInterpreterToolCall::class, LocalShellToolCall::class, LocalShellToolCallOutput::class, FunctionShellCallItemParam::class, FunctionShellCallOutputItemParam::class, ApplyPatchToolCallItemParam::class, ApplyPatchToolCallOutputItemParam::class, MCPListTools::class, MCPApprovalRequest::class, MCPApprovalResponse::class, MCPToolCall::class, CustomToolCallOutput::class, CustomToolCall::class, CompactionTriggerItemParam::class, ItemReferenceParam::class, ProgramItemParam::class, ProgramOutputItemParam::class], "type", ["file_search_call" => FileSearchToolCall::class, "computer_call" => ComputerToolCall::class, "computer_call_output" => ComputerCallOutputItemParam::class, "web_search_call" => WebSearchToolCall::class, "function_call" => FunctionToolCall::class, "function_call_output" => FunctionCallOutputItemParam::class, "tool_search_call" => ToolSearchCallItemParam::class, "tool_search_output" => ToolSearchOutputItemParam::class, "additional_tools" => AdditionalToolsItemParam::class, "configuration_update" => ResponseConfigurationUpdateItemParam::class, "reasoning" => ReasoningItem::class, "compaction" => CompactionSummaryItemParam::class, "image_generation_call" => ImageGenToolCall::class, "code_interpreter_call" => CodeInterpreterToolCall::class, "local_shell_call" => LocalShellToolCall::class, "local_shell_call_output" => LocalShellToolCallOutput::class, "shell_call" => FunctionShellCallItemParam::class, "shell_call_output" => FunctionShellCallOutputItemParam::class, "apply_patch_call" => ApplyPatchToolCallItemParam::class, "apply_patch_call_output" => ApplyPatchToolCallOutputItemParam::class, "mcp_list_tools" => MCPListTools::class, "mcp_approval_request" => MCPApprovalRequest::class, "mcp_approval_response" => MCPApprovalResponse::class, "mcp_call" => MCPToolCall::class, "custom_tool_call_output" => CustomToolCallOutput::class, "custom_tool_call" => CustomToolCall::class, "compaction_trigger" => CompactionTriggerItemParam::class, "program" => ProgramItemParam::class, "program_output" => ProgramOutputItemParam::class]), SdkClient::arrayValue($data->instructions))) : SdkClient::stringValue($data->instructions))),
+            parallelToolCalls: SdkClient::boolValue($data->parallel_tool_calls),
+            topLogprobs: (property_exists($data, "top_logprobs") ? ($data->top_logprobs === null ? null : SdkClient::intValue($data->top_logprobs)) : SdkNotGiven::Value),
+            user: (property_exists($data, "user") ? ($data->user === null ? null : SdkClient::stringValue($data->user)) : SdkNotGiven::Value),
+            safetyIdentifier: (property_exists($data, "safety_identifier") ? ($data->safety_identifier === null ? null : SdkClient::stringValue($data->safety_identifier)) : SdkNotGiven::Value),
+            promptCacheKey: (property_exists($data, "prompt_cache_key") ? ($data->prompt_cache_key === null ? null : SdkClient::stringValue($data->prompt_cache_key)) : SdkNotGiven::Value),
+            promptCacheRetention: (property_exists($data, "prompt_cache_retention") ? ($data->prompt_cache_retention === null ? null : SdkClient::hydrateEnum($data->prompt_cache_retention, ResponsePromptCacheRetentionEnum::class)) : SdkNotGiven::Value),
+            previousResponseId: (property_exists($data, "previous_response_id") ? ($data->previous_response_id === null ? null : SdkClient::stringValue($data->previous_response_id)) : SdkNotGiven::Value),
+            background: (property_exists($data, "background") ? ($data->background === null ? null : SdkClient::boolValue($data->background)) : SdkNotGiven::Value),
+            maxToolCalls: (property_exists($data, "max_tool_calls") ? ($data->max_tool_calls === null ? null : SdkClient::intValue($data->max_tool_calls)) : SdkNotGiven::Value),
+            text: (property_exists($data, "text") && $data->text !== null ? SdkClient::hydrateClass($data->text, ResponseTextParam::class) : SdkNotGiven::Value),
+            prompt: (property_exists($data, "prompt") ? ($data->prompt === null ? null : SdkClient::hydrateClass($data->prompt, Prompt::class)) : SdkNotGiven::Value),
+            serviceTier: (property_exists($data, "service_tier") ? ($data->service_tier === null ? null : SdkClient::hydrateEnum($data->service_tier, ResponseServiceTierEnum::class)) : SdkNotGiven::Value),
+            truncation: (property_exists($data, "truncation") ? ($data->truncation === null ? null : SdkClient::hydrateEnum($data->truncation, ResponseTruncationEnum::class)) : SdkNotGiven::Value),
+            status: (property_exists($data, "status") && $data->status !== null ? SdkClient::hydrateStringEnumOrString($data->status, ResponseStatusEnum::class) : SdkNotGiven::Value),
+            completedAt: (property_exists($data, "completed_at") ? ($data->completed_at === null ? null : SdkClient::floatValue($data->completed_at)) : SdkNotGiven::Value),
+            reasoning: (property_exists($data, "reasoning") ? ($data->reasoning === null ? null : SdkClient::hydrateClass($data->reasoning, Reasoning::class)) : SdkNotGiven::Value),
+            outputText: (property_exists($data, "output_text") ? ($data->output_text === null ? null : SdkClient::stringValue($data->output_text)) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") ? ($data->usage === null ? null : SdkClient::hydrateClass($data->usage, ResponseUsage::class)) : SdkNotGiven::Value),
+            promptCacheOptions: (property_exists($data, "prompt_cache_options") && $data->prompt_cache_options !== null ? SdkClient::hydrateClass($data->prompt_cache_options, PromptCacheOptions::class) : SdkNotGiven::Value),
+            promptCacheDiagnostics: (property_exists($data, "prompt_cache_diagnostics") && $data->prompt_cache_diagnostics !== null ? SdkClient::hydrateUnionAs($data->prompt_cache_diagnostics, PromptCacheDiagnostics::class, [PromptCacheMissDiagnosticsBody::class, PromptCacheHitDiagnosticsBody::class, PromptCacheComparisonResponseNotFoundDiagnosticsBody::class, PromptCacheUnavailableDiagnosticsBody::class], "type", ["cache_miss" => PromptCacheMissDiagnosticsBody::class, "cache_hit" => PromptCacheHitDiagnosticsBody::class, "comparison_response_not_found" => PromptCacheComparisonResponseNotFoundDiagnosticsBody::class, "unavailable" => PromptCacheUnavailableDiagnosticsBody::class], UnknownPromptCacheDiagnostics::class) : SdkNotGiven::Value),
+            moderation: (property_exists($data, "moderation") ? ($data->moderation === null ? null : SdkClient::hydrateClass($data->moderation, Moderation::class)) : SdkNotGiven::Value),
+            conversation: (property_exists($data, "conversation") ? ($data->conversation === null ? null : SdkClient::hydrateClass($data->conversation, ResponseConversation::class)) : SdkNotGiven::Value),
+            maxOutputTokens: (property_exists($data, "max_output_tokens") ? ($data->max_output_tokens === null ? null : SdkClient::intValue($data->max_output_tokens)) : SdkNotGiven::Value),
         );
     }
 }

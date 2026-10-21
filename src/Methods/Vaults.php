@@ -9,6 +9,6 @@ namespace octridev_openai;
 
 class Vaults
 {
-    use VaultsMethodsPart1;
-    use VaultsMethodsPart2;
+    use VaultsMethods;
+    use VaultsCredentialsMethods;
 }

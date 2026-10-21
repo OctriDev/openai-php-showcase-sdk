@@ -9,6 +9,7 @@ namespace octridev_openai;
 
 class FineTuning
 {
-    use FineTuningMethodsPart1;
-    use FineTuningMethodsPart2;
+    use FineTuningAlphaMethods;
+    use FineTuningCheckpointsMethods;
+    use FineTuningJobsMethods;
 }
