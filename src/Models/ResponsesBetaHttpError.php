@@ -65,9 +65,15 @@ class BetaHTTPError implements BetaMCPToolCallError, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
-        if (!property_exists($data, "message") || $data->message === null) { throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "code") || $data->code === null) {
+            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
+        }
+        if (!property_exists($data, "message") || $data->message === null) {
+            throw new SdkValidationError("message", 'required', "Required property 'message' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaHTTPErrorTypeEnum::class),
             code: SdkClient::intValue($data->code),
@@ -124,8 +130,12 @@ class BetaHybridSearchOptions implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "embedding_weight") || $data->embedding_weight === null) { throw new SdkValidationError("embedding_weight", 'required', "Required property 'embedding_weight' is missing or null"); }
-        if (!property_exists($data, "text_weight") || $data->text_weight === null) { throw new SdkValidationError("text_weight", 'required', "Required property 'text_weight' is missing or null"); }
+        if (!property_exists($data, "embedding_weight") || $data->embedding_weight === null) {
+            throw new SdkValidationError("embedding_weight", 'required', "Required property 'embedding_weight' is missing or null");
+        }
+        if (!property_exists($data, "text_weight") || $data->text_weight === null) {
+            throw new SdkValidationError("text_weight", 'required', "Required property 'text_weight' is missing or null");
+        }
         return new self(
             embeddingWeight: SdkClient::floatValue($data->embedding_weight),
             textWeight: SdkClient::floatValue($data->text_weight),
@@ -147,11 +157,26 @@ final readonly class BetaIncludeEnum implements SdkOpenEnum
     public const REASONING_ENCRYPTED_CONTENT = "reasoning.encrypted_content";
     public const MESSAGE_OUTPUT_TEXT_LOGPROBS = "message.output_text.logprobs";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -210,8 +235,12 @@ class BetaKeyPressAction implements BetaComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "keys") || $data->keys === null) { throw new SdkValidationError("keys", 'required', "Required property 'keys' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "keys") || $data->keys === null) {
+            throw new SdkValidationError("keys", 'required', "Required property 'keys' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaKeyPressActionTypeEnum::class),
             keys: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->keys))),
@@ -287,10 +316,18 @@ class BetaLogProb implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
-        if (!property_exists($data, "logprob") || $data->logprob === null) { throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null"); }
-        if (!property_exists($data, "bytes") || $data->bytes === null) { throw new SdkValidationError("bytes", 'required', "Required property 'bytes' is missing or null"); }
-        if (!property_exists($data, "top_logprobs") || $data->top_logprobs === null) { throw new SdkValidationError("top_logprobs", 'required', "Required property 'top_logprobs' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) {
+            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
+        }
+        if (!property_exists($data, "logprob") || $data->logprob === null) {
+            throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null");
+        }
+        if (!property_exists($data, "bytes") || $data->bytes === null) {
+            throw new SdkValidationError("bytes", 'required', "Required property 'bytes' is missing or null");
+        }
+        if (!property_exists($data, "top_logprobs") || $data->top_logprobs === null) {
+            throw new SdkValidationError("top_logprobs", 'required', "Required property 'top_logprobs' is missing or null");
+        }
         return new self(
             token: SdkClient::stringValue($data->token),
             logprob: SdkClient::floatValue($data->logprob),

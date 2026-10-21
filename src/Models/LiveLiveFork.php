@@ -91,7 +91,9 @@ class LiveForkPathParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
+        if (!property_exists($data, "session_id") || $data->session_id === null) {
+            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
+        }
         return new self(
             sessionId: SdkClient::stringValue($data->session_id),
         );
@@ -148,7 +150,9 @@ class LiveForkRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "transport") || $data->transport === null) { throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null"); }
+        if (!property_exists($data, "transport") || $data->transport === null) {
+            throw new SdkValidationError("transport", 'required', "Required property 'transport' is missing or null");
+        }
         return new self(
             transport: SdkClient::hydrateClass($data->transport, LiveWebRTCTransport::class),
             session: (property_exists($data, "session") && $data->session !== null ? SdkClient::hydrateClass($data->session, LiveMediaSessionForkParams::class) : SdkNotGiven::Value),
@@ -309,8 +313,12 @@ class LiveForkSessionStartEvent implements LiveForkClientEvent, \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "session") || $data->session === null) { throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "session") || $data->session === null) {
+            throw new SdkValidationError("session", 'required', "Required property 'session' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveForkSessionStartEventTypeEnum::class),
             session: SdkClient::hydrateClass($data->session, LiveForkSessionConfigParam::class),

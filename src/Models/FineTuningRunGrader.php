@@ -67,8 +67,12 @@ class RunGraderRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "grader") || $data->grader === null) { throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null"); }
-        if (!property_exists($data, "model_sample") || $data->model_sample === null) { throw new SdkValidationError("model_sample", 'required', "Required property 'model_sample' is missing or null"); }
+        if (!property_exists($data, "grader") || $data->grader === null) {
+            throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null");
+        }
+        if (!property_exists($data, "model_sample") || $data->model_sample === null) {
+            throw new SdkValidationError("model_sample", 'required', "Required property 'model_sample' is missing or null");
+        }
         return new self(
             grader: SdkClient::hydrateUnionAs($data->grader, RunGraderRequestGrader::class, [GraderStringCheck::class, GraderTextSimilarity::class, GraderPython::class, GraderScoreModel::class, GraderMulti::class], "type", ["string_check" => GraderStringCheck::class, "text_similarity" => GraderTextSimilarity::class, "python" => GraderPython::class, "score_model" => GraderScoreModel::class, "multi" => GraderMulti::class], UnknownRunGraderRequestGrader::class),
             modelSample: SdkClient::stringValue($data->model_sample),
@@ -245,20 +249,48 @@ class RunGraderResponseMetadataErrors implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "formula_parse_error") || $data->formula_parse_error === null) { throw new SdkValidationError("formula_parse_error", 'required', "Required property 'formula_parse_error' is missing or null"); }
-        if (!property_exists($data, "sample_parse_error") || $data->sample_parse_error === null) { throw new SdkValidationError("sample_parse_error", 'required', "Required property 'sample_parse_error' is missing or null"); }
-        if (!property_exists($data, "truncated_observation_error") || $data->truncated_observation_error === null) { throw new SdkValidationError("truncated_observation_error", 'required', "Required property 'truncated_observation_error' is missing or null"); }
-        if (!property_exists($data, "unresponsive_reward_error") || $data->unresponsive_reward_error === null) { throw new SdkValidationError("unresponsive_reward_error", 'required', "Required property 'unresponsive_reward_error' is missing or null"); }
-        if (!property_exists($data, "invalid_variable_error") || $data->invalid_variable_error === null) { throw new SdkValidationError("invalid_variable_error", 'required', "Required property 'invalid_variable_error' is missing or null"); }
-        if (!property_exists($data, "other_error") || $data->other_error === null) { throw new SdkValidationError("other_error", 'required', "Required property 'other_error' is missing or null"); }
-        if (!property_exists($data, "python_grader_server_error") || $data->python_grader_server_error === null) { throw new SdkValidationError("python_grader_server_error", 'required', "Required property 'python_grader_server_error' is missing or null"); }
-        if (!property_exists($data, "python_grader_server_error_type")) { throw new SdkValidationError("python_grader_server_error_type", 'required', "Missing required property 'python_grader_server_error_type'"); }
-        if (!property_exists($data, "python_grader_runtime_error") || $data->python_grader_runtime_error === null) { throw new SdkValidationError("python_grader_runtime_error", 'required', "Required property 'python_grader_runtime_error' is missing or null"); }
-        if (!property_exists($data, "python_grader_runtime_error_details")) { throw new SdkValidationError("python_grader_runtime_error_details", 'required', "Missing required property 'python_grader_runtime_error_details'"); }
-        if (!property_exists($data, "model_grader_server_error") || $data->model_grader_server_error === null) { throw new SdkValidationError("model_grader_server_error", 'required', "Required property 'model_grader_server_error' is missing or null"); }
-        if (!property_exists($data, "model_grader_refusal_error") || $data->model_grader_refusal_error === null) { throw new SdkValidationError("model_grader_refusal_error", 'required', "Required property 'model_grader_refusal_error' is missing or null"); }
-        if (!property_exists($data, "model_grader_parse_error") || $data->model_grader_parse_error === null) { throw new SdkValidationError("model_grader_parse_error", 'required', "Required property 'model_grader_parse_error' is missing or null"); }
-        if (!property_exists($data, "model_grader_server_error_details")) { throw new SdkValidationError("model_grader_server_error_details", 'required', "Missing required property 'model_grader_server_error_details'"); }
+        if (!property_exists($data, "formula_parse_error") || $data->formula_parse_error === null) {
+            throw new SdkValidationError("formula_parse_error", 'required', "Required property 'formula_parse_error' is missing or null");
+        }
+        if (!property_exists($data, "sample_parse_error") || $data->sample_parse_error === null) {
+            throw new SdkValidationError("sample_parse_error", 'required', "Required property 'sample_parse_error' is missing or null");
+        }
+        if (!property_exists($data, "truncated_observation_error") || $data->truncated_observation_error === null) {
+            throw new SdkValidationError("truncated_observation_error", 'required', "Required property 'truncated_observation_error' is missing or null");
+        }
+        if (!property_exists($data, "unresponsive_reward_error") || $data->unresponsive_reward_error === null) {
+            throw new SdkValidationError("unresponsive_reward_error", 'required', "Required property 'unresponsive_reward_error' is missing or null");
+        }
+        if (!property_exists($data, "invalid_variable_error") || $data->invalid_variable_error === null) {
+            throw new SdkValidationError("invalid_variable_error", 'required', "Required property 'invalid_variable_error' is missing or null");
+        }
+        if (!property_exists($data, "other_error") || $data->other_error === null) {
+            throw new SdkValidationError("other_error", 'required', "Required property 'other_error' is missing or null");
+        }
+        if (!property_exists($data, "python_grader_server_error") || $data->python_grader_server_error === null) {
+            throw new SdkValidationError("python_grader_server_error", 'required', "Required property 'python_grader_server_error' is missing or null");
+        }
+        if (!property_exists($data, "python_grader_server_error_type")) {
+            throw new SdkValidationError("python_grader_server_error_type", 'required', "Missing required property 'python_grader_server_error_type'");
+        }
+        if (!property_exists($data, "python_grader_runtime_error") || $data->python_grader_runtime_error === null) {
+            throw new SdkValidationError("python_grader_runtime_error", 'required', "Required property 'python_grader_runtime_error' is missing or null");
+        }
+        if (!property_exists($data, "python_grader_runtime_error_details")) {
+            throw new SdkValidationError("python_grader_runtime_error_details", 'required', "Missing required property 'python_grader_runtime_error_details'");
+        }
+        if (!property_exists($data, "model_grader_server_error") || $data->model_grader_server_error === null) {
+            throw new SdkValidationError("model_grader_server_error", 'required', "Required property 'model_grader_server_error' is missing or null");
+        }
+        if (!property_exists($data, "model_grader_refusal_error") || $data->model_grader_refusal_error === null) {
+            throw new SdkValidationError("model_grader_refusal_error", 'required', "Required property 'model_grader_refusal_error' is missing or null");
+        }
+        if (!property_exists($data, "model_grader_parse_error") || $data->model_grader_parse_error === null) {
+            throw new SdkValidationError("model_grader_parse_error", 'required', "Required property 'model_grader_parse_error' is missing or null");
+        }
+        if (!property_exists($data, "model_grader_server_error_details")) {
+            throw new SdkValidationError("model_grader_server_error_details", 'required', "Missing required property 'model_grader_server_error_details'");
+        }
         return new self(
             formulaParseError: SdkClient::boolValue($data->formula_parse_error),
             sampleParseError: SdkClient::boolValue($data->sample_parse_error),

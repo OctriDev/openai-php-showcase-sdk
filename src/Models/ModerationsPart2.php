@@ -165,19 +165,45 @@ class CreateModerationResponseResultsItemCategories implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "hate") || $data->hate === null) { throw new SdkValidationError("hate", 'required', "Required property 'hate' is missing or null"); }
-        if (!property_exists($data, "hate/threatening") || get_object_vars($data)["hate/threatening"] === null) { throw new SdkValidationError("hate/threatening", 'required', "Required property 'hate/threatening' is missing or null"); }
-        if (!property_exists($data, "harassment") || $data->harassment === null) { throw new SdkValidationError("harassment", 'required', "Required property 'harassment' is missing or null"); }
-        if (!property_exists($data, "harassment/threatening") || get_object_vars($data)["harassment/threatening"] === null) { throw new SdkValidationError("harassment/threatening", 'required', "Required property 'harassment/threatening' is missing or null"); }
-        if (!property_exists($data, "illicit")) { throw new SdkValidationError("illicit", 'required', "Missing required property 'illicit'"); }
-        if (!property_exists($data, "illicit/violent")) { throw new SdkValidationError("illicit/violent", 'required', "Missing required property 'illicit/violent'"); }
-        if (!property_exists($data, "self-harm") || get_object_vars($data)["self-harm"] === null) { throw new SdkValidationError("self-harm", 'required', "Required property 'self-harm' is missing or null"); }
-        if (!property_exists($data, "self-harm/intent") || get_object_vars($data)["self-harm/intent"] === null) { throw new SdkValidationError("self-harm/intent", 'required', "Required property 'self-harm/intent' is missing or null"); }
-        if (!property_exists($data, "self-harm/instructions") || get_object_vars($data)["self-harm/instructions"] === null) { throw new SdkValidationError("self-harm/instructions", 'required', "Required property 'self-harm/instructions' is missing or null"); }
-        if (!property_exists($data, "sexual") || $data->sexual === null) { throw new SdkValidationError("sexual", 'required', "Required property 'sexual' is missing or null"); }
-        if (!property_exists($data, "sexual/minors") || get_object_vars($data)["sexual/minors"] === null) { throw new SdkValidationError("sexual/minors", 'required', "Required property 'sexual/minors' is missing or null"); }
-        if (!property_exists($data, "violence") || $data->violence === null) { throw new SdkValidationError("violence", 'required', "Required property 'violence' is missing or null"); }
-        if (!property_exists($data, "violence/graphic") || get_object_vars($data)["violence/graphic"] === null) { throw new SdkValidationError("violence/graphic", 'required', "Required property 'violence/graphic' is missing or null"); }
+        if (!property_exists($data, "hate") || $data->hate === null) {
+            throw new SdkValidationError("hate", 'required', "Required property 'hate' is missing or null");
+        }
+        if (!property_exists($data, "hate/threatening") || get_object_vars($data)["hate/threatening"] === null) {
+            throw new SdkValidationError("hate/threatening", 'required', "Required property 'hate/threatening' is missing or null");
+        }
+        if (!property_exists($data, "harassment") || $data->harassment === null) {
+            throw new SdkValidationError("harassment", 'required', "Required property 'harassment' is missing or null");
+        }
+        if (!property_exists($data, "harassment/threatening") || get_object_vars($data)["harassment/threatening"] === null) {
+            throw new SdkValidationError("harassment/threatening", 'required', "Required property 'harassment/threatening' is missing or null");
+        }
+        if (!property_exists($data, "illicit")) {
+            throw new SdkValidationError("illicit", 'required', "Missing required property 'illicit'");
+        }
+        if (!property_exists($data, "illicit/violent")) {
+            throw new SdkValidationError("illicit/violent", 'required', "Missing required property 'illicit/violent'");
+        }
+        if (!property_exists($data, "self-harm") || get_object_vars($data)["self-harm"] === null) {
+            throw new SdkValidationError("self-harm", 'required', "Required property 'self-harm' is missing or null");
+        }
+        if (!property_exists($data, "self-harm/intent") || get_object_vars($data)["self-harm/intent"] === null) {
+            throw new SdkValidationError("self-harm/intent", 'required', "Required property 'self-harm/intent' is missing or null");
+        }
+        if (!property_exists($data, "self-harm/instructions") || get_object_vars($data)["self-harm/instructions"] === null) {
+            throw new SdkValidationError("self-harm/instructions", 'required', "Required property 'self-harm/instructions' is missing or null");
+        }
+        if (!property_exists($data, "sexual") || $data->sexual === null) {
+            throw new SdkValidationError("sexual", 'required', "Required property 'sexual' is missing or null");
+        }
+        if (!property_exists($data, "sexual/minors") || get_object_vars($data)["sexual/minors"] === null) {
+            throw new SdkValidationError("sexual/minors", 'required', "Required property 'sexual/minors' is missing or null");
+        }
+        if (!property_exists($data, "violence") || $data->violence === null) {
+            throw new SdkValidationError("violence", 'required', "Required property 'violence' is missing or null");
+        }
+        if (!property_exists($data, "violence/graphic") || get_object_vars($data)["violence/graphic"] === null) {
+            throw new SdkValidationError("violence/graphic", 'required', "Required property 'violence/graphic' is missing or null");
+        }
         return new self(
             hate: SdkClient::boolValue($data->hate),
             hateThreatening: SdkClient::boolValue(get_object_vars($data)["hate/threatening"]),

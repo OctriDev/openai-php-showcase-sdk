@@ -57,7 +57,9 @@ class CompleteUploadRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "part_ids") || $data->part_ids === null) { throw new SdkValidationError("part_ids", 'required', "Required property 'part_ids' is missing or null"); }
+        if (!property_exists($data, "part_ids") || $data->part_ids === null) {
+            throw new SdkValidationError("part_ids", 'required', "Required property 'part_ids' is missing or null");
+        }
         return new self(
             partIds: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->part_ids))),
             md5: (property_exists($data, "md5") && $data->md5 !== null ? SdkClient::stringValue($data->md5) : SdkNotGiven::Value),

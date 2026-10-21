@@ -63,8 +63,12 @@ class CodeInterpreterOutputImage implements CodeInterpreterToolCallOutputsItem, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "url") || $data->url === null) {
+            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CodeInterpreterOutputImageTypeEnum::class),
             url: SdkClient::stringValue($data->url),
@@ -128,8 +132,12 @@ class CodeInterpreterOutputLogs implements CodeInterpreterToolCallOutputsItem, \
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "logs") || $data->logs === null) { throw new SdkValidationError("logs", 'required', "Required property 'logs' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "logs") || $data->logs === null) {
+            throw new SdkValidationError("logs", 'required', "Required property 'logs' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CodeInterpreterOutputLogsTypeEnum::class),
             logs: SdkClient::stringValue($data->logs),
@@ -205,8 +213,12 @@ class CodeInterpreterTool implements Tool, ToolSearchOutputTool, \JsonSerializab
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "container") || $data->container === null) { throw new SdkValidationError("container", 'required', "Required property 'container' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "container") || $data->container === null) {
+            throw new SdkValidationError("container", 'required', "Required property 'container' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CodeInterpreterToolTypeEnum::class),
             container: (is_object($data->container) ? SdkClient::hydrateClass($data->container, AutoCodeInterpreterToolParam::class) : (is_string($data->container) ? SdkClient::stringValue($data->container) : SdkClient::hydrateClass($data->container, AutoCodeInterpreterToolParam::class))),
@@ -234,11 +246,26 @@ final readonly class CodeInterpreterToolCallStatusEnum implements SdkOpenEnum
     public const INTERPRETING = "interpreting";
     public const FAILED = "failed";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -329,12 +356,24 @@ class CodeInterpreterToolCall implements ConversationItem, InputItem, Item, Item
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
-        if (!property_exists($data, "code")) { throw new SdkValidationError("code", 'required', "Missing required property 'code'"); }
-        if (!property_exists($data, "outputs")) { throw new SdkValidationError("outputs", 'required', "Missing required property 'outputs'"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "container_id") || $data->container_id === null) {
+            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
+        }
+        if (!property_exists($data, "code")) {
+            throw new SdkValidationError("code", 'required', "Missing required property 'code'");
+        }
+        if (!property_exists($data, "outputs")) {
+            throw new SdkValidationError("outputs", 'required', "Missing required property 'outputs'");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CodeInterpreterToolCallTypeEnum::class),
             id: SdkClient::stringValue($data->id),

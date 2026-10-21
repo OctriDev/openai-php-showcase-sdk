@@ -73,9 +73,15 @@ class BetaCustomGrammarFormatParam implements BetaCustomToolParamFormat, \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "syntax") || $data->syntax === null) { throw new SdkValidationError("syntax", 'required', "Required property 'syntax' is missing or null"); }
-        if (!property_exists($data, "definition") || $data->definition === null) { throw new SdkValidationError("definition", 'required', "Required property 'definition' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "syntax") || $data->syntax === null) {
+            throw new SdkValidationError("syntax", 'required', "Required property 'syntax' is missing or null");
+        }
+        if (!property_exists($data, "definition") || $data->definition === null) {
+            throw new SdkValidationError("definition", 'required', "Required property 'definition' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCustomGrammarFormatParamTypeEnum::class),
             syntax: SdkClient::hydrateStringEnumOrString($data->syntax, BetaGrammarSyntax1::class),
@@ -130,7 +136,9 @@ class BetaCustomTextFormatParam implements BetaCustomToolParamFormat, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCustomTextFormatParamTypeEnum::class),
         );
@@ -273,10 +281,18 @@ class BetaCustomToolCall implements BetaInputItem, BetaItem, BetaItemField, Beta
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) {
+            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaCustomToolCallTypeEnum::class),
             callId: SdkClient::stringValue($data->call_id),

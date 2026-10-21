@@ -223,8 +223,12 @@ class EditImageBodyJsonParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "images") || $data->images === null) { throw new SdkValidationError("images", 'required', "Required property 'images' is missing or null"); }
-        if (!property_exists($data, "prompt") || $data->prompt === null) { throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null"); }
+        if (!property_exists($data, "images") || $data->images === null) {
+            throw new SdkValidationError("images", 'required', "Required property 'images' is missing or null");
+        }
+        if (!property_exists($data, "prompt") || $data->prompt === null) {
+            throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null");
+        }
         return new self(
             images: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ImageRefParam::class), SdkClient::arrayValue($data->images))),
             prompt: SdkClient::stringValue($data->prompt),
@@ -338,9 +342,24 @@ final readonly class ImageEditCompletedEventQualityEnum implements SdkOpenEnum
     public const MAX = "max";
     public const AUTO = "auto";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

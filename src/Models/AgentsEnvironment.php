@@ -75,10 +75,18 @@ class EnvironmentFileListResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
-        if (!property_exists($data, "next")) { throw new SdkValidationError("next", 'required', "Missing required property 'next'"); }
-        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
+        if (!property_exists($data, "next")) {
+            throw new SdkValidationError("next", 'required', "Missing required property 'next'");
+        }
+        if (!property_exists($data, "has_more") || $data->has_more === null) {
+            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, EnvironmentFilePageObjectResource::class),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EnvironmentFileResource::class), SdkClient::arrayValue($data->data))),
@@ -95,11 +103,26 @@ final readonly class EnvironmentFilePageObjectResource implements SdkOpenEnum
 {
     public const PAGE = "page";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -109,11 +132,26 @@ final readonly class EnvironmentFileResourceObjectEnum implements SdkOpenEnum
 {
     public const AGENT_ENVIRONMENT_FILE = "agent.environment.file";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -184,10 +222,18 @@ class EnvironmentFileResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "environment_id") || $data->environment_id === null) { throw new SdkValidationError("environment_id", 'required', "Required property 'environment_id' is missing or null"); }
-        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
-        if (!property_exists($data, "size_bytes") || $data->size_bytes === null) { throw new SdkValidationError("size_bytes", 'required', "Required property 'size_bytes' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "environment_id") || $data->environment_id === null) {
+            throw new SdkValidationError("environment_id", 'required', "Required property 'environment_id' is missing or null");
+        }
+        if (!property_exists($data, "path") || $data->path === null) {
+            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
+        }
+        if (!property_exists($data, "size_bytes") || $data->size_bytes === null) {
+            throw new SdkValidationError("size_bytes", 'required', "Required property 'size_bytes' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, EnvironmentFileResourceObjectEnum::class),
             environmentId: SdkClient::stringValue($data->environment_id),
@@ -327,9 +373,15 @@ class EnvironmentPackagesResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "python") || $data->python === null) { throw new SdkValidationError("python", 'required', "Required property 'python' is missing or null"); }
-        if (!property_exists($data, "system") || $data->system === null) { throw new SdkValidationError("system", 'required', "Required property 'system' is missing or null"); }
-        if (!property_exists($data, "npm") || $data->npm === null) { throw new SdkValidationError("npm", 'required', "Required property 'npm' is missing or null"); }
+        if (!property_exists($data, "python") || $data->python === null) {
+            throw new SdkValidationError("python", 'required', "Required property 'python' is missing or null");
+        }
+        if (!property_exists($data, "system") || $data->system === null) {
+            throw new SdkValidationError("system", 'required', "Required property 'system' is missing or null");
+        }
+        if (!property_exists($data, "npm") || $data->npm === null) {
+            throw new SdkValidationError("npm", 'required', "Required property 'npm' is missing or null");
+        }
         return new self(
             python: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->python))),
             system: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->system))),

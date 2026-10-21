@@ -65,9 +65,15 @@ class LiveSIPTrunk implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "provider_url") || $data->provider_url === null) { throw new SdkValidationError("provider_url", 'required', "Required property 'provider_url' is missing or null"); }
-        if (!property_exists($data, "auth") || $data->auth === null) { throw new SdkValidationError("auth", 'required', "Required property 'auth' is missing or null"); }
-        if (!property_exists($data, "caller_number") || $data->caller_number === null) { throw new SdkValidationError("caller_number", 'required', "Required property 'caller_number' is missing or null"); }
+        if (!property_exists($data, "provider_url") || $data->provider_url === null) {
+            throw new SdkValidationError("provider_url", 'required', "Required property 'provider_url' is missing or null");
+        }
+        if (!property_exists($data, "auth") || $data->auth === null) {
+            throw new SdkValidationError("auth", 'required', "Required property 'auth' is missing or null");
+        }
+        if (!property_exists($data, "caller_number") || $data->caller_number === null) {
+            throw new SdkValidationError("caller_number", 'required', "Required property 'caller_number' is missing or null");
+        }
         return new self(
             providerUrl: SdkClient::stringValue($data->provider_url),
             auth: SdkClient::hydrateClass($data->auth, LiveSIPTrunkAuth::class),
@@ -83,11 +89,26 @@ final readonly class LiveSIPTrunkAuthTypeEnum implements SdkOpenEnum
 {
     public const DIGEST = "digest";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -138,8 +159,12 @@ class LiveSIPTrunkAuth implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "username") || $data->username === null) { throw new SdkValidationError("username", 'required', "Required property 'username' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "username") || $data->username === null) {
+            throw new SdkValidationError("username", 'required', "Required property 'username' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, LiveSIPTrunkAuthTypeEnum::class),
             username: SdkClient::stringValue($data->username),
@@ -154,11 +179,26 @@ final readonly class LiveSIPTrunkAuthRequestTypeEnum implements SdkOpenEnum
 {
     public const DIGEST = "digest";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -219,9 +259,15 @@ class LiveSIPTrunkAuthRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "username") || $data->username === null) { throw new SdkValidationError("username", 'required', "Required property 'username' is missing or null"); }
-        if (!property_exists($data, "password") || $data->password === null) { throw new SdkValidationError("password", 'required', "Required property 'password' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "username") || $data->username === null) {
+            throw new SdkValidationError("username", 'required', "Required property 'username' is missing or null");
+        }
+        if (!property_exists($data, "password") || $data->password === null) {
+            throw new SdkValidationError("password", 'required', "Required property 'password' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, LiveSIPTrunkAuthRequestTypeEnum::class),
             username: SdkClient::stringValue($data->username),
@@ -288,9 +334,15 @@ class LiveSIPTrunkRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "provider_url") || $data->provider_url === null) { throw new SdkValidationError("provider_url", 'required', "Required property 'provider_url' is missing or null"); }
-        if (!property_exists($data, "auth") || $data->auth === null) { throw new SdkValidationError("auth", 'required', "Required property 'auth' is missing or null"); }
-        if (!property_exists($data, "caller_number") || $data->caller_number === null) { throw new SdkValidationError("caller_number", 'required', "Required property 'caller_number' is missing or null"); }
+        if (!property_exists($data, "provider_url") || $data->provider_url === null) {
+            throw new SdkValidationError("provider_url", 'required', "Required property 'provider_url' is missing or null");
+        }
+        if (!property_exists($data, "auth") || $data->auth === null) {
+            throw new SdkValidationError("auth", 'required', "Required property 'auth' is missing or null");
+        }
+        if (!property_exists($data, "caller_number") || $data->caller_number === null) {
+            throw new SdkValidationError("caller_number", 'required', "Required property 'caller_number' is missing or null");
+        }
         return new self(
             providerUrl: SdkClient::stringValue($data->provider_url),
             auth: SdkClient::hydrateClass($data->auth, LiveSIPTrunkAuthRequest::class),

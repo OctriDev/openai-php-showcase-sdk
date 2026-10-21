@@ -215,7 +215,9 @@ class LiveResponsesDelegationUpdateParam implements LiveSessionUpdateParamsDeleg
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveResponsesDelegationUpdateParamTypeEnum::class),
             responses: (property_exists($data, "responses") && $data->responses !== null ? SdkClient::hydrateClass($data->responses, LiveResponsesDelegationSettingsUpdateInputParam::class) : SdkNotGiven::Value),

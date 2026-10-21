@@ -15,11 +15,26 @@ final readonly class ChatCompletionAllowedToolsModeEnum implements SdkOpenEnum
     public const AUTO = "auto";
     public const REQUIRED = "required";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -70,8 +85,12 @@ class ChatCompletionAllowedTools implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
-        if (!property_exists($data, "tools") || $data->tools === null) { throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null"); }
+        if (!property_exists($data, "mode") || $data->mode === null) {
+            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
+        }
+        if (!property_exists($data, "tools") || $data->tools === null) {
+            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
+        }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, ChatCompletionAllowedToolsModeEnum::class),
             tools: array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->tools))),
@@ -135,8 +154,12 @@ class ChatCompletionAllowedToolsChoice implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "allowed_tools") || $data->allowed_tools === null) { throw new SdkValidationError("allowed_tools", 'required', "Required property 'allowed_tools' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "allowed_tools") || $data->allowed_tools === null) {
+            throw new SdkValidationError("allowed_tools", 'required', "Required property 'allowed_tools' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionAllowedToolsChoiceTypeEnum::class),
             allowedTools: SdkClient::hydrateClass($data->allowed_tools, ChatCompletionAllowedTools::class),

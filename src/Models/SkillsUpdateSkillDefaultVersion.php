@@ -45,7 +45,9 @@ class SetDefaultSkillVersionBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "default_version") || $data->default_version === null) { throw new SdkValidationError("default_version", 'required', "Required property 'default_version' is missing or null"); }
+        if (!property_exists($data, "default_version") || $data->default_version === null) {
+            throw new SdkValidationError("default_version", 'required', "Required property 'default_version' is missing or null");
+        }
         return new self(
             defaultVersion: SdkClient::stringValue($data->default_version),
         );

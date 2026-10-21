@@ -93,11 +93,21 @@ class AnswerResourceChoice implements AnswerResource, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name")) { throw new SdkValidationError("name", 'required', "Missing required property 'name'"); }
-        if (!property_exists($data, "choice") || $data->choice === null) { throw new SdkValidationError("choice", 'required', "Required property 'choice' is missing or null"); }
-        if (!property_exists($data, "probabilities") || $data->probabilities === null) { throw new SdkValidationError("probabilities", 'required', "Required property 'probabilities' is missing or null"); }
-        if (!property_exists($data, "confidence") || $data->confidence === null) { throw new SdkValidationError("confidence", 'required', "Required property 'confidence' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name")) {
+            throw new SdkValidationError("name", 'required', "Missing required property 'name'");
+        }
+        if (!property_exists($data, "choice") || $data->choice === null) {
+            throw new SdkValidationError("choice", 'required', "Required property 'choice' is missing or null");
+        }
+        if (!property_exists($data, "probabilities") || $data->probabilities === null) {
+            throw new SdkValidationError("probabilities", 'required', "Required property 'probabilities' is missing or null");
+        }
+        if (!property_exists($data, "confidence") || $data->confidence === null) {
+            throw new SdkValidationError("confidence", 'required', "Required property 'confidence' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AnswerResourceChoiceTypeEnum::class),
             name: ($data->name === null ? null : SdkClient::stringValue($data->name)),
@@ -174,9 +184,15 @@ class AnswerResourcePredicate implements AnswerResource, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name")) { throw new SdkValidationError("name", 'required', "Missing required property 'name'"); }
-        if (!property_exists($data, "probability") || $data->probability === null) { throw new SdkValidationError("probability", 'required', "Required property 'probability' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name")) {
+            throw new SdkValidationError("name", 'required', "Missing required property 'name'");
+        }
+        if (!property_exists($data, "probability") || $data->probability === null) {
+            throw new SdkValidationError("probability", 'required', "Required property 'probability' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AnswerResourcePredicateTypeEnum::class),
             name: ($data->name === null ? null : SdkClient::stringValue($data->name)),
@@ -241,8 +257,12 @@ class AnswerResourceRefusal implements AnswerResource, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name")) { throw new SdkValidationError("name", 'required', "Missing required property 'name'"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name")) {
+            throw new SdkValidationError("name", 'required', "Missing required property 'name'");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AnswerResourceRefusalTypeEnum::class),
             name: ($data->name === null ? null : SdkClient::stringValue($data->name)),
@@ -336,11 +356,21 @@ class AnswerResourceScore implements AnswerResource, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name")) { throw new SdkValidationError("name", 'required', "Missing required property 'name'"); }
-        if (!property_exists($data, "score") || $data->score === null) { throw new SdkValidationError("score", 'required', "Required property 'score' is missing or null"); }
-        if (!property_exists($data, "probabilities") || $data->probabilities === null) { throw new SdkValidationError("probabilities", 'required', "Required property 'probabilities' is missing or null"); }
-        if (!property_exists($data, "confidence") || $data->confidence === null) { throw new SdkValidationError("confidence", 'required', "Required property 'confidence' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name")) {
+            throw new SdkValidationError("name", 'required', "Missing required property 'name'");
+        }
+        if (!property_exists($data, "score") || $data->score === null) {
+            throw new SdkValidationError("score", 'required', "Required property 'score' is missing or null");
+        }
+        if (!property_exists($data, "probabilities") || $data->probabilities === null) {
+            throw new SdkValidationError("probabilities", 'required', "Required property 'probabilities' is missing or null");
+        }
+        if (!property_exists($data, "confidence") || $data->confidence === null) {
+            throw new SdkValidationError("confidence", 'required', "Required property 'confidence' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AnswerResourceScoreTypeEnum::class),
             name: ($data->name === null ? null : SdkClient::stringValue($data->name)),

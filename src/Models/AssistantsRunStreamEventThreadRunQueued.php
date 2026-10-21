@@ -48,8 +48,12 @@ class RunStreamEventThreadRunQueued implements AssistantStreamEvent, RunStreamEv
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, RunStreamEventThreadRunQueuedEventEnum::class),
             data: SdkClient::hydrateClass($data->data, RunObject::class),
@@ -103,8 +107,12 @@ class RunStreamEventThreadRunInProgress implements AssistantStreamEvent, RunStre
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, RunStreamEventThreadRunInProgressEventEnum::class),
             data: SdkClient::hydrateClass($data->data, RunObject::class),
@@ -158,8 +166,12 @@ class RunStreamEventThreadRunRequiresAction implements AssistantStreamEvent, Run
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, RunStreamEventThreadRunRequiresActionEventEnum::class),
             data: SdkClient::hydrateClass($data->data, RunObject::class),
@@ -213,8 +225,12 @@ class RunStreamEventThreadRunCompleted implements AssistantStreamEvent, RunStrea
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, RunStreamEventThreadRunCompletedEventEnum::class),
             data: SdkClient::hydrateClass($data->data, RunObject::class),
@@ -268,8 +284,12 @@ class RunStreamEventThreadRunIncomplete implements AssistantStreamEvent, RunStre
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, RunStreamEventThreadRunIncompleteEventEnum::class),
             data: SdkClient::hydrateClass($data->data, RunObject::class),
@@ -323,8 +343,12 @@ class RunStreamEventThreadRunFailed implements AssistantStreamEvent, RunStreamEv
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
-        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "event") || $data->event === null) {
+            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
+        }
+        if (!property_exists($data, "data") || $data->data === null) {
+            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
+        }
         return new self(
             event: SdkClient::hydrateEnum($data->event, RunStreamEventThreadRunFailedEventEnum::class),
             data: SdkClient::hydrateClass($data->data, RunObject::class),

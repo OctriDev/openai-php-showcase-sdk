@@ -42,7 +42,9 @@ class EvalGraderTextSimilarityVariant1 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "pass_threshold") || $data->pass_threshold === null) { throw new SdkValidationError("pass_threshold", 'required', "Required property 'pass_threshold' is missing or null"); }
+        if (!property_exists($data, "pass_threshold") || $data->pass_threshold === null) {
+            throw new SdkValidationError("pass_threshold", 'required', "Required property 'pass_threshold' is missing or null");
+        }
         return new self(
             passThreshold: SdkClient::floatValue($data->pass_threshold),
         );
@@ -74,11 +76,26 @@ final readonly class EvalGraderTextSimilarityEvaluationMetricEnum implements Sdk
     public const ROUGE_5 = "rouge_5";
     public const ROUGE_L = "rouge_l";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -169,12 +186,24 @@ class EvalGraderTextSimilarity implements CreateEvalRequestTestingCriteriaItem, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
-        if (!property_exists($data, "reference") || $data->reference === null) { throw new SdkValidationError("reference", 'required', "Required property 'reference' is missing or null"); }
-        if (!property_exists($data, "evaluation_metric") || $data->evaluation_metric === null) { throw new SdkValidationError("evaluation_metric", 'required', "Required property 'evaluation_metric' is missing or null"); }
-        if (!property_exists($data, "pass_threshold") || $data->pass_threshold === null) { throw new SdkValidationError("pass_threshold", 'required', "Required property 'pass_threshold' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
+        if (!property_exists($data, "reference") || $data->reference === null) {
+            throw new SdkValidationError("reference", 'required', "Required property 'reference' is missing or null");
+        }
+        if (!property_exists($data, "evaluation_metric") || $data->evaluation_metric === null) {
+            throw new SdkValidationError("evaluation_metric", 'required', "Required property 'evaluation_metric' is missing or null");
+        }
+        if (!property_exists($data, "pass_threshold") || $data->pass_threshold === null) {
+            throw new SdkValidationError("pass_threshold", 'required', "Required property 'pass_threshold' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EvalGraderTextSimilarityTypeEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -244,7 +273,9 @@ class EvalJsonlFileContentSourceContentItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "item") || $data->item === null) { throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null"); }
+        if (!property_exists($data, "item") || $data->item === null) {
+            throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null");
+        }
         return new self(
             item: SdkClient::stringMapValue($data->item),
             sample: (property_exists($data, "sample") && $data->sample !== null ? SdkClient::stringMapValue($data->sample) : SdkNotGiven::Value),
@@ -300,8 +331,12 @@ class EvalJsonlFileContentSource implements CreateEvalCompletionsRunDataSourceSo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "content") || $data->content === null) {
+            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EvalJsonlFileContentSourceTypeEnum::class),
             content: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, EvalJsonlFileContentSourceContentItem::class), SdkClient::arrayValue($data->content))),

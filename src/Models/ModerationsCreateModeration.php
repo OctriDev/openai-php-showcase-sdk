@@ -57,7 +57,9 @@ class CreateModerationRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
+        if (!property_exists($data, "input") || $data->input === null) {
+            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
+        }
         return new self(
             input: (is_array($data->input) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->input))) : SdkClient::stringValue($data->input)),
             model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
@@ -111,7 +113,9 @@ class CreateModerationRequestInputItemVariant0ImageUrl implements \JsonSerializa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
+        if (!property_exists($data, "url") || $data->url === null) {
+            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
+        }
         return new self(
             url: SdkClient::stringValue($data->url),
         );
@@ -163,8 +167,12 @@ class CreateModerationRequestInputItemVariant0 implements CreateModerationReques
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "image_url") || $data->image_url === null) { throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "image_url") || $data->image_url === null) {
+            throw new SdkValidationError("image_url", 'required', "Required property 'image_url' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateModerationRequestInputItemVariant0TypeEnum::class),
             imageUrl: SdkClient::hydrateClass($data->image_url, CreateModerationRequestInputItemVariant0ImageUrl::class),
@@ -225,8 +233,12 @@ class CreateModerationRequestInputItemVariant1 implements CreateModerationReques
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "text") || $data->text === null) {
+            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateModerationRequestInputItemVariant1TypeEnum::class),
             text: SdkClient::stringValue($data->text),

@@ -21,7 +21,7 @@ trait AssistantsDeleteMessageMethods
     public static function deleteMessage(ClientConfig $clientConfig, string $threadId, string $messageId, ?RequestOptions $requestOptions = null): DeleteMessageResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages/" . SdkClient::encodePathSegment($messageId) . "", $clientConfig, returnType: DeleteMessageResponse::class, decoder: 'json', operationId: 'deleteMessage', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages/" . SdkClient::encodePathSegment($messageId) . "", $clientConfig, returnType: DeleteMessageResponse::class, decoder: 'json', operationId: 'deleteMessage', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteMessageResponse::class));
     }
 
@@ -41,7 +41,7 @@ trait AssistantsDeleteMessageMethods
     public static function listRuns(ClientConfig $clientConfig, string $threadId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListRunsOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListRunsResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ListRunsResponse::class, decoder: 'json', operationId: 'listRuns', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ListRunsResponse::class, decoder: 'json', operationId: 'listRuns', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListRunsResponse::class));
     }
 
@@ -164,7 +164,7 @@ trait AssistantsDeleteMessageMethods
             Validation::validateRange('max_completion_tokens', $maxCompletionTokens, min: 256);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs", $clientConfig, query: ['include[]' => new SdkQueryValue($include, "form", true)], body: ['assistant_id' => $assistantId, 'model' => $model, 'reasoning_effort' => $reasoningEffort, 'instructions' => $instructions, 'additional_instructions' => $additionalInstructions, 'additional_messages' => $additionalMessages, 'tools' => $tools, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'stream' => $stream, 'max_prompt_tokens' => $maxPromptTokens, 'max_completion_tokens' => $maxCompletionTokens, 'truncation_strategy' => $truncationStrategy, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls, 'response_format' => $responseFormat], returnType: RunObject::class, decoder: 'json', operationId: 'createRun', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs", $clientConfig, query: ['include[]' => new SdkQueryValue($include, "form", true)], body: ['assistant_id' => $assistantId, 'model' => $model, 'reasoning_effort' => $reasoningEffort, 'instructions' => $instructions, 'additional_instructions' => $additionalInstructions, 'additional_messages' => $additionalMessages, 'tools' => $tools, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'stream' => $stream, 'max_prompt_tokens' => $maxPromptTokens, 'max_completion_tokens' => $maxCompletionTokens, 'truncation_strategy' => $truncationStrategy, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls, 'response_format' => $responseFormat], returnType: RunObject::class, decoder: 'json', operationId: 'createRun', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RunObject::class));
     }
 
@@ -203,15 +203,15 @@ trait AssistantsDeleteMessageMethods
             "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs",
             config: $clientConfig,
             query: [
-            'include[]' => new SdkQueryValue($include, "form", true),
-        ],
+                'include[]' => new SdkQueryValue($include, "form", true),
+            ],
             body: ['assistant_id' => $assistantId, 'stream' => $stream, 'model' => $model, 'reasoning_effort' => $reasoningEffort, 'instructions' => $instructions, 'additional_instructions' => $additionalInstructions, 'additional_messages' => $additionalMessages, 'tools' => $tools, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'max_prompt_tokens' => $maxPromptTokens, 'max_completion_tokens' => $maxCompletionTokens, 'truncation_strategy' => $truncationStrategy, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls, 'response_format' => $responseFormat],
             contentType: 'application/json',
             operationId: 'createRunStream',
             streamFormat: 'sse',
             streamMediaType: 'text/event-stream',
             requestOptions: $requestOptions,
-            errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]
+            errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)],
         ) as $_ev) {
             if ($_ev->data === '[DONE]') {
                 return;
@@ -232,7 +232,7 @@ trait AssistantsDeleteMessageMethods
     public static function getRun(ClientConfig $clientConfig, string $threadId, string $runId, ?RequestOptions $requestOptions = null): RunObject
     {
 
-        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs/" . SdkClient::encodePathSegment($runId) . "", $clientConfig, returnType: RunObject::class, decoder: 'json', operationId: 'getRun', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs/" . SdkClient::encodePathSegment($runId) . "", $clientConfig, returnType: RunObject::class, decoder: 'json', operationId: 'getRun', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RunObject::class));
     }
 
@@ -250,7 +250,7 @@ trait AssistantsDeleteMessageMethods
     public static function modifyRun(ClientConfig $clientConfig, string $threadId, string $runId, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): RunObject
     {
 
-        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs/" . SdkClient::encodePathSegment($runId) . "", $clientConfig, body: ['metadata' => $metadata], returnType: RunObject::class, decoder: 'json', operationId: 'modifyRun', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs/" . SdkClient::encodePathSegment($runId) . "", $clientConfig, body: ['metadata' => $metadata], returnType: RunObject::class, decoder: 'json', operationId: 'modifyRun', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RunObject::class));
     }
 
@@ -267,7 +267,7 @@ trait AssistantsDeleteMessageMethods
     public static function cancelRun(ClientConfig $clientConfig, string $threadId, string $runId, ?RequestOptions $requestOptions = null): RunObject
     {
 
-        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs/" . SdkClient::encodePathSegment($runId) . "/cancel", $clientConfig, returnType: RunObject::class, decoder: 'json', operationId: 'cancelRun', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/runs/" . SdkClient::encodePathSegment($runId) . "/cancel", $clientConfig, returnType: RunObject::class, decoder: 'json', operationId: 'cancelRun', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RunObject::class));
     }
 }

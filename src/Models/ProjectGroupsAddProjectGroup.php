@@ -55,8 +55,12 @@ class InviteProjectGroupBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "group_id") || $data->group_id === null) { throw new SdkValidationError("group_id", 'required', "Required property 'group_id' is missing or null"); }
-        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "group_id") || $data->group_id === null) {
+            throw new SdkValidationError("group_id", 'required', "Required property 'group_id' is missing or null");
+        }
+        if (!property_exists($data, "role") || $data->role === null) {
+            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
+        }
         return new self(
             groupId: SdkClient::stringValue($data->group_id),
             role: SdkClient::stringValue($data->role),

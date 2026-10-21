@@ -45,7 +45,9 @@ class HostedToolPermission implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
+        if (!property_exists($data, "enabled") || $data->enabled === null) {
+            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
+        }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
         );
@@ -90,7 +92,9 @@ class HostedToolPermissionUpdate implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
+        if (!property_exists($data, "enabled") || $data->enabled === null) {
+            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
+        }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
         );
@@ -175,11 +179,21 @@ class ProjectHostedToolPermissions implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file_search") || $data->file_search === null) { throw new SdkValidationError("file_search", 'required', "Required property 'file_search' is missing or null"); }
-        if (!property_exists($data, "web_search") || $data->web_search === null) { throw new SdkValidationError("web_search", 'required', "Required property 'web_search' is missing or null"); }
-        if (!property_exists($data, "image_generation") || $data->image_generation === null) { throw new SdkValidationError("image_generation", 'required', "Required property 'image_generation' is missing or null"); }
-        if (!property_exists($data, "mcp") || $data->mcp === null) { throw new SdkValidationError("mcp", 'required', "Required property 'mcp' is missing or null"); }
-        if (!property_exists($data, "code_interpreter") || $data->code_interpreter === null) { throw new SdkValidationError("code_interpreter", 'required', "Required property 'code_interpreter' is missing or null"); }
+        if (!property_exists($data, "file_search") || $data->file_search === null) {
+            throw new SdkValidationError("file_search", 'required', "Required property 'file_search' is missing or null");
+        }
+        if (!property_exists($data, "web_search") || $data->web_search === null) {
+            throw new SdkValidationError("web_search", 'required', "Required property 'web_search' is missing or null");
+        }
+        if (!property_exists($data, "image_generation") || $data->image_generation === null) {
+            throw new SdkValidationError("image_generation", 'required', "Required property 'image_generation' is missing or null");
+        }
+        if (!property_exists($data, "mcp") || $data->mcp === null) {
+            throw new SdkValidationError("mcp", 'required', "Required property 'mcp' is missing or null");
+        }
+        if (!property_exists($data, "code_interpreter") || $data->code_interpreter === null) {
+            throw new SdkValidationError("code_interpreter", 'required', "Required property 'code_interpreter' is missing or null");
+        }
         return new self(
             fileSearch: SdkClient::hydrateClass($data->file_search, HostedToolPermission::class),
             webSearch: SdkClient::hydrateClass($data->web_search, HostedToolPermission::class),

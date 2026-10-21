@@ -45,7 +45,9 @@ class AgentToolConfigParamToolSearch implements AgentToolConfigParam, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolConfigParamToolSearchTypeEnum::class),
         );
@@ -146,7 +148,9 @@ class AgentToolConfigParamWebSearch implements AgentToolConfigParam, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolConfigParamWebSearchTypeEnum::class),
             mode: (property_exists($data, "mode") ? ($data->mode === null ? null : SdkClient::hydrateStringEnumOrString($data->mode, WebSearchModeParam::class)) : SdkNotGiven::Value),
@@ -213,8 +217,12 @@ class AgentToolResourceComputerUse implements AgentToolResource, \JsonSerializab
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "include_screenshots") || $data->include_screenshots === null) { throw new SdkValidationError("include_screenshots", 'required', "Required property 'include_screenshots' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "include_screenshots") || $data->include_screenshots === null) {
+            throw new SdkValidationError("include_screenshots", 'required', "Required property 'include_screenshots' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolResourceComputerUseTypeEnum::class),
             includeScreenshots: SdkClient::boolValue($data->include_screenshots),
@@ -308,11 +316,21 @@ class AgentToolResourceFunction implements AgentToolResource, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
-        if (!property_exists($data, "description") || $data->description === null) { throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null"); }
-        if (!property_exists($data, "parameters") || $data->parameters === null) { throw new SdkValidationError("parameters", 'required', "Required property 'parameters' is missing or null"); }
-        if (!property_exists($data, "defer_loading") || $data->defer_loading === null) { throw new SdkValidationError("defer_loading", 'required', "Required property 'defer_loading' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
+        if (!property_exists($data, "description") || $data->description === null) {
+            throw new SdkValidationError("description", 'required', "Required property 'description' is missing or null");
+        }
+        if (!property_exists($data, "parameters") || $data->parameters === null) {
+            throw new SdkValidationError("parameters", 'required', "Required property 'parameters' is missing or null");
+        }
+        if (!property_exists($data, "defer_loading") || $data->defer_loading === null) {
+            throw new SdkValidationError("defer_loading", 'required', "Required property 'defer_loading' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolResourceFunctionTypeEnum::class),
             name: SdkClient::stringValue($data->name),

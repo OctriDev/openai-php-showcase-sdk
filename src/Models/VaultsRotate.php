@@ -137,7 +137,9 @@ class RotateMcpOauthTokenEndpointAuthParamClientSecretBasic implements RotateMcp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RotateMcpOauthTokenEndpointAuthParamClientSecretBasicTypeEnum::class),
             clientSecret: (property_exists($data, "client_secret") ? ($data->client_secret === null ? null : SdkClient::stringValue($data->client_secret)) : SdkNotGiven::Value),
@@ -203,7 +205,9 @@ class RotateMcpOauthTokenEndpointAuthParamClientSecretPost implements RotateMcpO
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RotateMcpOauthTokenEndpointAuthParamClientSecretPostTypeEnum::class),
             clientSecret: (property_exists($data, "client_secret") ? ($data->client_secret === null ? null : SdkClient::stringValue($data->client_secret)) : SdkNotGiven::Value),
@@ -267,8 +271,12 @@ class RotateVaultCredentialAuthParamEnvironmentVariable implements RotateVaultCr
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "secret_value") || $data->secret_value === null) { throw new SdkValidationError("secret_value", 'required', "Required property 'secret_value' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "secret_value") || $data->secret_value === null) {
+            throw new SdkValidationError("secret_value", 'required', "Required property 'secret_value' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RotateVaultCredentialAuthParamEnvironmentVariableTypeEnum::class),
             secretValue: SdkClient::stringValue($data->secret_value),

@@ -125,15 +125,33 @@ class CommandExecutionItemResource implements SessionTurnItemResource, AgentOutp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
-        if (!property_exists($data, "command") || $data->command === null) { throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null"); }
-        if (!property_exists($data, "cwd")) { throw new SdkValidationError("cwd", 'required', "Missing required property 'cwd'"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "output")) { throw new SdkValidationError("output", 'required', "Missing required property 'output'"); }
-        if (!property_exists($data, "exit_code")) { throw new SdkValidationError("exit_code", 'required', "Missing required property 'exit_code'"); }
-        if (!property_exists($data, "duration_ms")) { throw new SdkValidationError("duration_ms", 'required', "Missing required property 'duration_ms'"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
+            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
+        }
+        if (!property_exists($data, "command") || $data->command === null) {
+            throw new SdkValidationError("command", 'required', "Required property 'command' is missing or null");
+        }
+        if (!property_exists($data, "cwd")) {
+            throw new SdkValidationError("cwd", 'required', "Missing required property 'cwd'");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "output")) {
+            throw new SdkValidationError("output", 'required', "Missing required property 'output'");
+        }
+        if (!property_exists($data, "exit_code")) {
+            throw new SdkValidationError("exit_code", 'required', "Missing required property 'exit_code'");
+        }
+        if (!property_exists($data, "duration_ms")) {
+            throw new SdkValidationError("duration_ms", 'required', "Missing required property 'duration_ms'");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CommandExecutionItemResourceTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -204,8 +222,12 @@ class EncryptedContentResource implements AgentContentResource, \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) { throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "encrypted_content") || $data->encrypted_content === null) {
+            throw new SdkValidationError("encrypted_content", 'required', "Required property 'encrypted_content' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EncryptedContentResourceTypeEnum::class),
             encryptedContent: SdkClient::stringValue($data->encrypted_content),
@@ -309,12 +331,24 @@ class InterruptSubagentCallItemResource implements SessionTurnItemResource, Agen
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
-        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
-        if (!property_exists($data, "sender_agent_id") || $data->sender_agent_id === null) { throw new SdkValidationError("sender_agent_id", 'required', "Required property 'sender_agent_id' is missing or null"); }
-        if (!property_exists($data, "recipient_agent_id") || $data->recipient_agent_id === null) { throw new SdkValidationError("recipient_agent_id", 'required', "Required property 'recipient_agent_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
+            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
+        }
+        if (!property_exists($data, "status") || $data->status === null) {
+            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
+        }
+        if (!property_exists($data, "sender_agent_id") || $data->sender_agent_id === null) {
+            throw new SdkValidationError("sender_agent_id", 'required', "Required property 'sender_agent_id' is missing or null");
+        }
+        if (!property_exists($data, "recipient_agent_id") || $data->recipient_agent_id === null) {
+            throw new SdkValidationError("recipient_agent_id", 'required', "Required property 'recipient_agent_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, InterruptSubagentCallItemResourceTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -333,9 +367,24 @@ final readonly class PublicEnvironmentResourceObjectEnum implements SdkOpenEnum
 {
     public const AGENT_ENVIRONMENT = "agent.environment";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

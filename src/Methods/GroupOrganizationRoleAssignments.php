@@ -12,11 +12,26 @@ final readonly class ListGroupRoleAssignmentsOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class GroupOrganizationRoleAssignments
@@ -39,7 +54,7 @@ class GroupOrganizationRoleAssignments
             Validation::validateRange('limit', $limit, min: 0, max: 1000);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/roles", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: RoleListResource::class, decoder: 'json', operationId: 'listGroupRoleAssignments', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/roles", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: RoleListResource::class, decoder: 'json', operationId: 'listGroupRoleAssignments', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RoleListResource::class));
     }
 
@@ -126,7 +141,7 @@ class GroupOrganizationRoleAssignments
     public static function assignGroupRole(ClientConfig $clientConfig, string $groupId, string $roleId, ?RequestOptions $requestOptions = null): GroupRoleAssignment
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/roles", $clientConfig, body: ['role_id' => $roleId], returnType: GroupRoleAssignment::class, decoder: 'json', operationId: 'assignGroupRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/roles", $clientConfig, body: ['role_id' => $roleId], returnType: GroupRoleAssignment::class, decoder: 'json', operationId: 'assignGroupRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, GroupRoleAssignment::class));
     }
 
@@ -143,7 +158,7 @@ class GroupOrganizationRoleAssignments
     public static function retrieveGroupRole(ClientConfig $clientConfig, string $groupId, string $roleId, ?RequestOptions $requestOptions = null): AssignedRoleDetails
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: AssignedRoleDetails::class, decoder: 'json', operationId: 'retrieveGroupRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: AssignedRoleDetails::class, decoder: 'json', operationId: 'retrieveGroupRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, AssignedRoleDetails::class));
     }
 
@@ -160,7 +175,7 @@ class GroupOrganizationRoleAssignments
     public static function unassignGroupRole(ClientConfig $clientConfig, string $groupId, string $roleId, ?RequestOptions $requestOptions = null): DeletedRoleAssignmentResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: DeletedRoleAssignmentResource::class, decoder: 'json', operationId: 'unassignGroupRole', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/roles/" . SdkClient::encodePathSegment($roleId) . "", $clientConfig, returnType: DeletedRoleAssignmentResource::class, decoder: 'json', operationId: 'unassignGroupRole', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedRoleAssignmentResource::class));
     }
 }

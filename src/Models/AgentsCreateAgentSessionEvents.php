@@ -45,7 +45,9 @@ class CreateSessionEventsParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "events") || $data->events === null) { throw new SdkValidationError("events", 'required', "Required property 'events' is missing or null"); }
+        if (!property_exists($data, "events") || $data->events === null) {
+            throw new SdkValidationError("events", 'required', "Required property 'events' is missing or null");
+        }
         return new self(
             events: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, SessionInputParam::class, [SessionInputParamAgentSessionInputComputerUseApprovalRequestResult::class, SessionInputParamAgentSessionInputMessage::class, SessionInputParamAgentSessionInputCancel::class, SessionInputParamAgentSessionInputToolResult::class], "type", ["agent.session.input.computer_use_approval_request_result" => SessionInputParamAgentSessionInputComputerUseApprovalRequestResult::class, "agent.session.input.message" => SessionInputParamAgentSessionInputMessage::class, "agent.session.input.cancel" => SessionInputParamAgentSessionInputCancel::class, "agent.session.input.tool_result" => SessionInputParamAgentSessionInputToolResult::class], UnknownSessionInputParam::class), SdkClient::arrayValue($data->events))),
         );

@@ -14,11 +14,26 @@ final readonly class RealtimeBetaClientEventConversationItemCreateTypeEnum imple
 {
     public const CONVERSATION_ITEM_CREATE = "conversation.item.create";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -93,8 +108,12 @@ class RealtimeBetaClientEventConversationItemCreate implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item") || $data->item === null) { throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item") || $data->item === null) {
+            throw new SdkValidationError("item", 'required', "Required property 'item' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventConversationItemCreateTypeEnum::class),
             item: SdkClient::hydrateUnionAs($data->item, RealtimeConversationItem::class, [RealtimeConversationItemMessageSystem::class, RealtimeConversationItemMessageUser::class, RealtimeConversationItemMessageAssistant::class, RealtimeConversationItemFunctionCall::class, RealtimeConversationItemFunctionCallOutput::class, RealtimeMCPApprovalResponse::class, RealtimeMCPListTools::class, RealtimeMCPToolCall::class, RealtimeMCPApprovalRequest::class], "type", ["function_call" => RealtimeConversationItemFunctionCall::class, "function_call_output" => RealtimeConversationItemFunctionCallOutput::class, "mcp_approval_response" => RealtimeMCPApprovalResponse::class, "mcp_list_tools" => RealtimeMCPListTools::class, "mcp_call" => RealtimeMCPToolCall::class, "mcp_approval_request" => RealtimeMCPApprovalRequest::class], UnknownRealtimeConversationItem::class),
@@ -111,11 +130,26 @@ final readonly class RealtimeBetaClientEventConversationItemDeleteTypeEnum imple
 {
     public const CONVERSATION_ITEM_DELETE = "conversation.item.delete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -178,8 +212,12 @@ class RealtimeBetaClientEventConversationItemDelete implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventConversationItemDeleteTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -195,11 +233,26 @@ final readonly class RealtimeBetaClientEventConversationItemRetrieveTypeEnum imp
 {
     public const CONVERSATION_ITEM_RETRIEVE = "conversation.item.retrieve";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -262,8 +315,12 @@ class RealtimeBetaClientEventConversationItemRetrieve implements \JsonSerializab
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "item_id") || $data->item_id === null) {
+            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, RealtimeBetaClientEventConversationItemRetrieveTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -279,9 +336,24 @@ final readonly class RealtimeBetaClientEventConversationItemTruncateTypeEnum imp
 {
     public const CONVERSATION_ITEM_TRUNCATE = "conversation.item.truncate";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }

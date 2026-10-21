@@ -122,8 +122,12 @@ class ChatCompletionTool implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "function") || $data->function === null) { throw new SdkValidationError("function", 'required', "Required property 'function' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "function") || $data->function === null) {
+            throw new SdkValidationError("function", 'required', "Required property 'function' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionToolTypeEnum::class),
             function_: SdkClient::hydrateClass($data->function, FunctionObject::class),
@@ -169,7 +173,9 @@ class ChatSessionAutomaticThreadTitling implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
+        if (!property_exists($data, "enabled") || $data->enabled === null) {
+            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
+        }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
         );
@@ -234,9 +240,15 @@ class ChatSessionChatkitConfiguration implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "automatic_thread_titling") || $data->automatic_thread_titling === null) { throw new SdkValidationError("automatic_thread_titling", 'required', "Required property 'automatic_thread_titling' is missing or null"); }
-        if (!property_exists($data, "file_upload") || $data->file_upload === null) { throw new SdkValidationError("file_upload", 'required', "Required property 'file_upload' is missing or null"); }
-        if (!property_exists($data, "history") || $data->history === null) { throw new SdkValidationError("history", 'required', "Required property 'history' is missing or null"); }
+        if (!property_exists($data, "automatic_thread_titling") || $data->automatic_thread_titling === null) {
+            throw new SdkValidationError("automatic_thread_titling", 'required', "Required property 'automatic_thread_titling' is missing or null");
+        }
+        if (!property_exists($data, "file_upload") || $data->file_upload === null) {
+            throw new SdkValidationError("file_upload", 'required', "Required property 'file_upload' is missing or null");
+        }
+        if (!property_exists($data, "history") || $data->history === null) {
+            throw new SdkValidationError("history", 'required', "Required property 'history' is missing or null");
+        }
         return new self(
             automaticThreadTitling: SdkClient::hydrateClass($data->automatic_thread_titling, ChatSessionAutomaticThreadTitling::class),
             fileUpload: SdkClient::hydrateClass($data->file_upload, ChatSessionFileUpload::class),
@@ -303,9 +315,15 @@ class ChatSessionFileUpload implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
-        if (!property_exists($data, "max_file_size")) { throw new SdkValidationError("max_file_size", 'required', "Missing required property 'max_file_size'"); }
-        if (!property_exists($data, "max_files")) { throw new SdkValidationError("max_files", 'required', "Missing required property 'max_files'"); }
+        if (!property_exists($data, "enabled") || $data->enabled === null) {
+            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
+        }
+        if (!property_exists($data, "max_file_size")) {
+            throw new SdkValidationError("max_file_size", 'required', "Missing required property 'max_file_size'");
+        }
+        if (!property_exists($data, "max_files")) {
+            throw new SdkValidationError("max_files", 'required', "Missing required property 'max_files'");
+        }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
             maxFileSize: ($data->max_file_size === null ? null : SdkClient::intValue($data->max_file_size)),

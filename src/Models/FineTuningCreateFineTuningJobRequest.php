@@ -139,8 +139,12 @@ class CreateFineTuningJobRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
-        if (!property_exists($data, "training_file") || $data->training_file === null) { throw new SdkValidationError("training_file", 'required', "Required property 'training_file' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) {
+            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
+        }
+        if (!property_exists($data, "training_file") || $data->training_file === null) {
+            throw new SdkValidationError("training_file", 'required', "Required property 'training_file' is missing or null");
+        }
         return new self(
             model: SdkClient::stringValue($data->model),
             trainingFile: SdkClient::stringValue($data->training_file),

@@ -85,9 +85,15 @@ class QuestionParamChoice implements QuestionParam, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "instructions") || $data->instructions === null) { throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null"); }
-        if (!property_exists($data, "choices") || $data->choices === null) { throw new SdkValidationError("choices", 'required', "Required property 'choices' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "instructions") || $data->instructions === null) {
+            throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null");
+        }
+        if (!property_exists($data, "choices") || $data->choices === null) {
+            throw new SdkValidationError("choices", 'required', "Required property 'choices' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, QuestionParamChoiceTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
@@ -165,8 +171,12 @@ class QuestionParamPredicate implements QuestionParam, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "instructions") || $data->instructions === null) { throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "instructions") || $data->instructions === null) {
+            throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, QuestionParamPredicateTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),
@@ -253,9 +263,15 @@ class QuestionParamScore implements QuestionParam, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "instructions") || $data->instructions === null) { throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null"); }
-        if (!property_exists($data, "levels") || $data->levels === null) { throw new SdkValidationError("levels", 'required', "Required property 'levels' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "instructions") || $data->instructions === null) {
+            throw new SdkValidationError("instructions", 'required', "Required property 'instructions' is missing or null");
+        }
+        if (!property_exists($data, "levels") || $data->levels === null) {
+            throw new SdkValidationError("levels", 'required', "Required property 'levels' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, QuestionParamScoreTypeEnum::class),
             instructions: SdkClient::stringValue($data->instructions),

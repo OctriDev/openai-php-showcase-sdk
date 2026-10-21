@@ -57,7 +57,9 @@ class CreateAgentEnvironmentParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
+        if (!property_exists($data, "environment") || $data->environment === null) {
+            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
+        }
         return new self(
             environment: SdkClient::hydrateClass($data->environment, CreateEnvironmentParamOpenaiHosted::class),
             vaultIds: (property_exists($data, "vault_ids") ? ($data->vault_ids === null ? null : array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->vault_ids)))) : SdkNotGiven::Value),
@@ -231,7 +233,9 @@ class CreateEnvironmentParamOpenaiHosted implements CreateEnvironmentParam, \Jso
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEnvironmentParamOpenaiHostedTypeEnum::class),
             packages: (property_exists($data, "packages") ? ($data->packages === null ? null : SdkClient::hydrateClass($data->packages, EnvironmentPackagesParam::class)) : SdkNotGiven::Value),

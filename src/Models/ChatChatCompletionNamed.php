@@ -53,7 +53,9 @@ class ChatCompletionNamedToolChoiceFunction implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
         return new self(
             name: SdkClient::stringValue($data->name),
         );
@@ -108,8 +110,12 @@ class ChatCompletionNamedToolChoice implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "function") || $data->function === null) { throw new SdkValidationError("function", 'required', "Required property 'function' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "function") || $data->function === null) {
+            throw new SdkValidationError("function", 'required', "Required property 'function' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionNamedToolChoiceTypeEnum::class),
             function_: SdkClient::hydrateClass($data->function, ChatCompletionNamedToolChoiceFunction::class),
@@ -163,7 +169,9 @@ class ChatCompletionNamedToolChoiceCustomCustom implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) {
+            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
+        }
         return new self(
             name: SdkClient::stringValue($data->name),
         );
@@ -218,8 +226,12 @@ class ChatCompletionNamedToolChoiceCustom implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "custom") || $data->custom === null) { throw new SdkValidationError("custom", 'required', "Required property 'custom' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "custom") || $data->custom === null) {
+            throw new SdkValidationError("custom", 'required', "Required property 'custom' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ChatCompletionNamedToolChoiceCustomTypeEnum::class),
             custom: SdkClient::hydrateClass($data->custom, ChatCompletionNamedToolChoiceCustomCustom::class),

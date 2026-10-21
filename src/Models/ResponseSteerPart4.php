@@ -62,9 +62,15 @@ class ResponseSteerRequiredInputVariant5 implements ResponseSteerRequiredInput, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
-        if (!property_exists($data, "execution") || $data->execution === null) { throw new SdkValidationError("execution", 'required', "Required property 'execution' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) {
+            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
+        }
+        if (!property_exists($data, "execution") || $data->execution === null) {
+            throw new SdkValidationError("execution", 'required', "Required property 'execution' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseSteerRequiredInputVariant5TypeEnum::class),
             callId: SdkClient::stringValue($data->call_id),
@@ -126,8 +132,12 @@ class ResponseSteerRequiredInputVariant6 implements ResponseSteerRequiredInput, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
-        if (!property_exists($data, "approval_request_id") || $data->approval_request_id === null) { throw new SdkValidationError("approval_request_id", 'required', "Required property 'approval_request_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) {
+            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
+        }
+        if (!property_exists($data, "approval_request_id") || $data->approval_request_id === null) {
+            throw new SdkValidationError("approval_request_id", 'required', "Required property 'approval_request_id' is missing or null");
+        }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseSteerRequiredInputVariant6TypeEnum::class),
             approvalRequestId: SdkClient::stringValue($data->approval_request_id),

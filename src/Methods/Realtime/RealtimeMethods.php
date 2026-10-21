@@ -51,7 +51,7 @@ trait RealtimeMethods
 
         Validation::validateEnum('type', $type->value, ['realtime']);
 
-        return SdkClient::request('POST', "/realtime/calls/" . SdkClient::encodePathSegment($callId) . "/accept", $clientConfig, body: ['type' => $type, 'output_modalities' => $outputModalities, 'model' => $model, 'instructions' => $instructions, 'audio' => $audio, 'include' => $include, 'tracing' => $tracing, 'tools' => $tools, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls, 'reasoning' => $reasoning, 'max_output_tokens' => $maxOutputTokens, 'truncation' => $truncation, 'prompt' => $prompt], decoder: 'empty', operationId: 'acceptRealtimeCall', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
+        return SdkClient::request('POST', "/realtime/calls/" . SdkClient::encodePathSegment($callId) . "/accept", $clientConfig, body: ['type' => $type, 'output_modalities' => $outputModalities, 'model' => $model, 'instructions' => $instructions, 'audio' => $audio, 'include' => $include, 'tracing' => $tracing, 'tools' => $tools, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls, 'reasoning' => $reasoning, 'max_output_tokens' => $maxOutputTokens, 'truncation' => $truncation, 'prompt' => $prompt], decoder: 'empty', operationId: 'acceptRealtimeCall', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
     }
 
 
@@ -65,7 +65,7 @@ trait RealtimeMethods
     public static function hangupRealtimeCall(ClientConfig $clientConfig, string $callId, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('POST', "/realtime/calls/" . SdkClient::encodePathSegment($callId) . "/hangup", $clientConfig, decoder: 'empty', operationId: 'hangupRealtimeCall', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
+        return SdkClient::request('POST', "/realtime/calls/" . SdkClient::encodePathSegment($callId) . "/hangup", $clientConfig, decoder: 'empty', operationId: 'hangupRealtimeCall', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
     }
 
 
@@ -80,7 +80,7 @@ trait RealtimeMethods
     public static function referRealtimeCall(ClientConfig $clientConfig, string $callId, string $targetUri, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('POST', "/realtime/calls/" . SdkClient::encodePathSegment($callId) . "/refer", $clientConfig, body: ['target_uri' => $targetUri], decoder: 'empty', operationId: 'referRealtimeCall', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
+        return SdkClient::request('POST', "/realtime/calls/" . SdkClient::encodePathSegment($callId) . "/refer", $clientConfig, body: ['target_uri' => $targetUri], decoder: 'empty', operationId: 'referRealtimeCall', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
     }
 
 
@@ -95,7 +95,7 @@ trait RealtimeMethods
     public static function rejectRealtimeCall(ClientConfig $clientConfig, string $callId, int|SdkNotGiven $statusCode = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): mixed
     {
 
-        return SdkClient::request('POST', "/realtime/calls/" . SdkClient::encodePathSegment($callId) . "/reject", $clientConfig, body: ['status_code' => $statusCode], decoder: 'empty', operationId: 'rejectRealtimeCall', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
+        return SdkClient::request('POST', "/realtime/calls/" . SdkClient::encodePathSegment($callId) . "/reject", $clientConfig, body: ['status_code' => $statusCode], decoder: 'empty', operationId: 'rejectRealtimeCall', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)])->data;
     }
 
 
@@ -111,7 +111,7 @@ trait RealtimeMethods
     public static function createRealtimeClientSecret(ClientConfig $clientConfig, CreateRealtimeClientSecretExpiresAfter|SdkNotGiven $expiresAfter = SdkNotGiven::Value, RealtimeCreateClientSecretRequestSession|SdkNotGiven $session = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): RealtimeCreateClientSecretResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/realtime/client_secrets", $clientConfig, body: ['expires_after' => $expiresAfter, 'session' => $session], returnType: RealtimeCreateClientSecretResponse::class, decoder: 'json', operationId: 'createRealtimeClientSecret', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/realtime/client_secrets", $clientConfig, body: ['expires_after' => $expiresAfter, 'session' => $session], returnType: RealtimeCreateClientSecretResponse::class, decoder: 'json', operationId: 'createRealtimeClientSecret', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RealtimeCreateClientSecretResponse::class));
     }
 
@@ -183,7 +183,7 @@ trait RealtimeMethods
     public static function createRealtimeTranslationClientSecret(ClientConfig $clientConfig, RealtimeTranslationSessionCreateRequest $session, CreateRealtimeTranslationClientSecretExpiresAfter|SdkNotGiven $expiresAfter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): RealtimeTranslationClientSecretCreateResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/realtime/translations/client_secrets", $clientConfig, body: ['session' => $session, 'expires_after' => $expiresAfter], returnType: RealtimeTranslationClientSecretCreateResponse::class, decoder: 'json', operationId: 'createRealtimeTranslationClientSecret', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/realtime/translations/client_secrets", $clientConfig, body: ['session' => $session, 'expires_after' => $expiresAfter], returnType: RealtimeTranslationClientSecretCreateResponse::class, decoder: 'json', operationId: 'createRealtimeTranslationClientSecret', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RealtimeTranslationClientSecretCreateResponse::class));
     }
 }

@@ -93,7 +93,9 @@ class CreateVideoJsonBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "prompt") || $data->prompt === null) { throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null"); }
+        if (!property_exists($data, "prompt") || $data->prompt === null) {
+            throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null");
+        }
         return new self(
             prompt: SdkClient::stringValue($data->prompt),
             model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
@@ -190,7 +192,9 @@ class CreateVideoMultipartBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "prompt") || $data->prompt === null) { throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null"); }
+        if (!property_exists($data, "prompt") || $data->prompt === null) {
+            throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null");
+        }
         return new self(
             prompt: SdkClient::stringValue($data->prompt),
             model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
@@ -239,7 +243,9 @@ class CreateVideoRemixBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "prompt") || $data->prompt === null) { throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null"); }
+        if (!property_exists($data, "prompt") || $data->prompt === null) {
+            throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null");
+        }
         return new self(
             prompt: SdkClient::stringValue($data->prompt),
         );
@@ -253,11 +259,26 @@ final readonly class DeletedVideoResourceObjectEnum implements SdkOpenEnum
 {
     public const VIDEO_DELETED = "video.deleted";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -318,9 +339,15 @@ class DeletedVideoResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
-        if (!property_exists($data, "deleted") || $data->deleted === null) { throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null"); }
-        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) {
+            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
+        }
+        if (!property_exists($data, "deleted") || $data->deleted === null) {
+            throw new SdkValidationError("deleted", 'required', "Required property 'deleted' is missing or null");
+        }
+        if (!property_exists($data, "id") || $data->id === null) {
+            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
+        }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, DeletedVideoResourceObjectEnum::class),
             deleted: SdkClient::boolValue($data->deleted),
