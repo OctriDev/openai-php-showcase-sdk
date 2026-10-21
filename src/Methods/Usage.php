@@ -9,8 +9,16 @@ namespace octridev_openai;
 
 class Usage
 {
-    use UsageMethodsPart1;
-    use UsageMethodsPart2;
-    use UsageMethodsPart3;
-    use UsageMethodsPart4;
+    use UsageOrganizationMethods;
+    use UsageAudioSpeechesMethods;
+    use UsageAudioTranscriptionsMethods;
+    use UsageCodeInterpreterSessionsMethods;
+    use UsageCompletionsMethods;
+    use UsageEmbeddingsMethods;
+    use UsageFileSearchCallsMethods;
+    use UsageImagesMethods;
+    use UsageModerationsMethods;
+    use UsageVectorStoresMethods;
+    use UsageWebSearchCallsMethods;
+    use UsageDecisionsMethods;
 }

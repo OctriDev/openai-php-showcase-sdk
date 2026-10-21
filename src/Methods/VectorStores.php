@@ -9,6 +9,8 @@ namespace octridev_openai;
 
 class VectorStores
 {
-    use VectorStoresMethodsPart1;
-    use VectorStoresMethodsPart2;
+    use VectorStoresMethods;
+    use VectorStoresFileBatchesMethods;
+    use VectorStoresFilesMethods;
+    use VectorStoresSearchMethods;
 }

@@ -8,59 +8,271 @@ declare(strict_types=1);
 namespace octridev_openai;
 
 /**
- * The object type, which is always `batch`.
+ * Typed representation of the `Batch` API schema.
  */
-final readonly class BatchObjectEnum implements SdkOpenEnum
-{
-    public const BATCH = "batch";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
-}
-
-/**
- * Optional object value serialized in the `errors` wire field.
- */
-class BatchErrors implements \JsonSerializable
+class Batch implements \JsonSerializable
 {
     /**
-     * The object type, which is always `list`.
+     * Required `string` value serialized in the `id` wire field.
+     *
+     * @var string
+     */
+    public readonly string $id;
+    /**
+     * The object type, which is always `batch`.
+     *
+     * @var BatchObjectEnum|string
+     */
+    public readonly BatchObjectEnum|string $object_;
+    /**
+     * The OpenAI API endpoint used by the batch.
+     *
+     * @var string
+     */
+    public readonly string $endpoint;
+    /**
+     * Model ID used to process the batch, like `gpt-6-astra`. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the [model guide](https://developers.openai.com/api/docs/models) to browse and compare available models.
      *
      * @var string|SdkNotGiven
      */
-    public readonly string|SdkNotGiven $object_;
+    public readonly string|SdkNotGiven $model;
     /**
-     * Optional array value serialized in the `data` wire field.
+     * Optional object value serialized in the `errors` wire field.
      *
-     * @var list<BatchError>|SdkNotGiven
+     * @var BatchErrors|null|SdkNotGiven
      */
-    public readonly array|SdkNotGiven $data;
+    public readonly BatchErrors|null|SdkNotGiven $errors;
+    /**
+     * The ID of the input file for the batch.
+     *
+     * @var string
+     */
+    public readonly string $inputFileId;
+    /**
+     * The time frame within which the batch should be processed.
+     *
+     * @var string
+     */
+    public readonly string $completionWindow;
+    /**
+     * The current status of the batch.
+     *
+     * @var BatchStatusEnum|string
+     */
+    public readonly BatchStatusEnum|string $status;
+    /**
+     * The ID of the file containing the outputs of successfully executed requests.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $outputFileId;
+    /**
+     * The ID of the file containing the outputs of requests with errors.
+     *
+     * @var string|null|SdkNotGiven
+     */
+    public readonly string|null|SdkNotGiven $errorFileId;
+    /**
+     * The Unix timestamp (in seconds) for when the batch was created.
+     *
+     * @var int
+     */
+    public readonly int $createdAt;
+    /**
+     * The Unix timestamp (in seconds) for when the batch started processing.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $inProgressAt;
+    /**
+     * The Unix timestamp (in seconds) for when the batch will expire.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $expiresAt;
+    /**
+     * The Unix timestamp (in seconds) for when the batch started finalizing.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $finalizingAt;
+    /**
+     * The Unix timestamp (in seconds) for when the batch was completed.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $completedAt;
+    /**
+     * The Unix timestamp (in seconds) for when the batch failed.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $failedAt;
+    /**
+     * The Unix timestamp (in seconds) for when the batch expired.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $expiredAt;
+    /**
+     * The Unix timestamp (in seconds) for when the batch started cancelling.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $cancellingAt;
+    /**
+     * The Unix timestamp (in seconds) for when the batch was cancelled.
+     *
+     * @var int|null|SdkNotGiven
+     */
+    public readonly int|null|SdkNotGiven $cancelledAt;
+    /**
+     * The request counts for different statuses within the batch.
+     *
+     * @var BatchRequestCounts|SdkNotGiven
+     */
+    public readonly BatchRequestCounts|SdkNotGiven $requestCounts;
+    /**
+     * Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. Only populated on batches created after September 7, 2025.
+     *
+     * @var BatchUsage|SdkNotGiven
+     */
+    public readonly BatchUsage|SdkNotGiven $usage;
+    /**
+     * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters.
+     *
+     * @var array<string,string>|null|SdkNotGiven
+     */
+    public readonly array|null|SdkNotGiven $metadata;
 
     /**
-     * @param string|SdkNotGiven $object_
-     * @param list<BatchError>|SdkNotGiven $data
+     * @param string $id
+     * @param BatchObjectEnum|string $object_
+     * @param string $endpoint
+     * @param string $inputFileId
+     * @param string $completionWindow
+     * @param BatchStatusEnum|string $status
+     * @param int $createdAt
+     * @param string|SdkNotGiven $model
+     * @param BatchErrors|null|SdkNotGiven $errors
+     * @param string|null|SdkNotGiven $outputFileId
+     * @param string|null|SdkNotGiven $errorFileId
+     * @param int|null|SdkNotGiven $inProgressAt
+     * @param int|null|SdkNotGiven $expiresAt
+     * @param int|null|SdkNotGiven $finalizingAt
+     * @param int|null|SdkNotGiven $completedAt
+     * @param int|null|SdkNotGiven $failedAt
+     * @param int|null|SdkNotGiven $expiredAt
+     * @param int|null|SdkNotGiven $cancellingAt
+     * @param int|null|SdkNotGiven $cancelledAt
+     * @param BatchRequestCounts|SdkNotGiven $requestCounts
+     * @param BatchUsage|SdkNotGiven $usage
+     * @param array<string,string>|null|SdkNotGiven $metadata
      */
     public function __construct(
-        string|SdkNotGiven $object_ = SdkNotGiven::Value,
-        array|SdkNotGiven $data = SdkNotGiven::Value,
+        string $id,
+        BatchObjectEnum|string $object_,
+        string $endpoint,
+        string $inputFileId,
+        string $completionWindow,
+        BatchStatusEnum|string $status,
+        int $createdAt,
+        string|SdkNotGiven $model = SdkNotGiven::Value,
+        BatchErrors|null|SdkNotGiven $errors = SdkNotGiven::Value,
+        string|null|SdkNotGiven $outputFileId = SdkNotGiven::Value,
+        string|null|SdkNotGiven $errorFileId = SdkNotGiven::Value,
+        int|null|SdkNotGiven $inProgressAt = SdkNotGiven::Value,
+        int|null|SdkNotGiven $expiresAt = SdkNotGiven::Value,
+        int|null|SdkNotGiven $finalizingAt = SdkNotGiven::Value,
+        int|null|SdkNotGiven $completedAt = SdkNotGiven::Value,
+        int|null|SdkNotGiven $failedAt = SdkNotGiven::Value,
+        int|null|SdkNotGiven $expiredAt = SdkNotGiven::Value,
+        int|null|SdkNotGiven $cancellingAt = SdkNotGiven::Value,
+        int|null|SdkNotGiven $cancelledAt = SdkNotGiven::Value,
+        BatchRequestCounts|SdkNotGiven $requestCounts = SdkNotGiven::Value,
+        BatchUsage|SdkNotGiven $usage = SdkNotGiven::Value,
+        array|null|SdkNotGiven $metadata = SdkNotGiven::Value,
     ) {
+        $this->id = $id;
         $this->object_ = $object_;
-        $this->data = $data;
+        $this->endpoint = $endpoint;
+        $this->inputFileId = $inputFileId;
+        $this->completionWindow = $completionWindow;
+        $this->status = $status;
+        $this->createdAt = $createdAt;
+        $this->model = $model;
+        $this->errors = $errors;
+        $this->outputFileId = $outputFileId;
+        $this->errorFileId = $errorFileId;
+        $this->inProgressAt = $inProgressAt;
+        $this->expiresAt = $expiresAt;
+        $this->finalizingAt = $finalizingAt;
+        $this->completedAt = $completedAt;
+        $this->failedAt = $failedAt;
+        $this->expiredAt = $expiredAt;
+        $this->cancellingAt = $cancellingAt;
+        $this->cancelledAt = $cancelledAt;
+        $this->requestCounts = $requestCounts;
+        $this->usage = $usage;
+        $this->metadata = $metadata;
     }
 
     /** @return array<array-key, mixed> */
     public function toArray(): array
     {
         $values = [
+            "id" => $this->id,
+            "object" => $this->object_,
+            "endpoint" => $this->endpoint,
+            "input_file_id" => $this->inputFileId,
+            "completion_window" => $this->completionWindow,
+            "status" => $this->status,
+            "created_at" => $this->createdAt,
         ];
-        if ($this->object_ !== SdkNotGiven::Value) {
-            $values["object"] = $this->object_;
+        if ($this->model !== SdkNotGiven::Value) {
+            $values["model"] = $this->model;
         }
-        if ($this->data !== SdkNotGiven::Value) {
-            $values["data"] = $this->data;
+        if ($this->errors !== SdkNotGiven::Value) {
+            $values["errors"] = $this->errors;
+        }
+        if ($this->outputFileId !== SdkNotGiven::Value) {
+            $values["output_file_id"] = $this->outputFileId;
+        }
+        if ($this->errorFileId !== SdkNotGiven::Value) {
+            $values["error_file_id"] = $this->errorFileId;
+        }
+        if ($this->inProgressAt !== SdkNotGiven::Value) {
+            $values["in_progress_at"] = $this->inProgressAt;
+        }
+        if ($this->expiresAt !== SdkNotGiven::Value) {
+            $values["expires_at"] = $this->expiresAt;
+        }
+        if ($this->finalizingAt !== SdkNotGiven::Value) {
+            $values["finalizing_at"] = $this->finalizingAt;
+        }
+        if ($this->completedAt !== SdkNotGiven::Value) {
+            $values["completed_at"] = $this->completedAt;
+        }
+        if ($this->failedAt !== SdkNotGiven::Value) {
+            $values["failed_at"] = $this->failedAt;
+        }
+        if ($this->expiredAt !== SdkNotGiven::Value) {
+            $values["expired_at"] = $this->expiredAt;
+        }
+        if ($this->cancellingAt !== SdkNotGiven::Value) {
+            $values["cancelling_at"] = $this->cancellingAt;
+        }
+        if ($this->cancelledAt !== SdkNotGiven::Value) {
+            $values["cancelled_at"] = $this->cancelledAt;
+        }
+        if ($this->requestCounts !== SdkNotGiven::Value) {
+            $values["request_counts"] = $this->requestCounts;
+        }
+        if ($this->usage !== SdkNotGiven::Value) {
+            $values["usage"] = $this->usage;
+        }
+        if ($this->metadata !== SdkNotGiven::Value) {
+            $values["metadata"] = $this->metadata;
         }
         return $values;
     }
@@ -73,213 +285,36 @@ class BatchErrors implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "endpoint") || $data->endpoint === null) { throw new SdkValidationError("endpoint", 'required', "Required property 'endpoint' is missing or null"); }
+        if (!property_exists($data, "input_file_id") || $data->input_file_id === null) { throw new SdkValidationError("input_file_id", 'required', "Required property 'input_file_id' is missing or null"); }
+        if (!property_exists($data, "completion_window") || $data->completion_window === null) { throw new SdkValidationError("completion_window", 'required', "Required property 'completion_window' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
         return new self(
-            object_: (property_exists($data, "object") && $data->object !== null ? SdkClient::stringValue($data->object) : SdkNotGiven::Value),
-            data: (property_exists($data, "data") && $data->data !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BatchError::class), SdkClient::arrayValue($data->data))) : SdkNotGiven::Value),
-        );
-    }
-}
-
-/**
- * The current status of the batch.
- */
-final readonly class BatchStatusEnum implements SdkOpenEnum
-{
-    public const VALIDATING = "validating";
-    public const FAILED = "failed";
-    public const IN_PROGRESS = "in_progress";
-    public const FINALIZING = "finalizing";
-    public const COMPLETED = "completed";
-    public const EXPIRED = "expired";
-    public const CANCELLING = "cancelling";
-    public const CANCELLED = "cancelled";
-    private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
-}
-
-/**
- * A detailed breakdown of the input tokens.
- */
-class BatchUsageInputTokensDetails implements \JsonSerializable
-{
-    /**
-     * The number of tokens that were retrieved from the cache. [More on prompt caching](https://developers.openai.com/api/docs/guides/prompt-caching).
-     *
-     * @var int
-     */
-    public readonly int $cachedTokens;
-
-    /**
-     * @param int $cachedTokens
-     */
-    public function __construct(
-        int $cachedTokens,
-    ) {
-        $this->cachedTokens = $cachedTokens;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "cached_tokens" => $this->cachedTokens,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "cached_tokens") || $data->cached_tokens === null) { throw new SdkValidationError("cached_tokens", 'required', "Required property 'cached_tokens' is missing or null"); }
-        return new self(
-            cachedTokens: SdkClient::intValue($data->cached_tokens),
-        );
-    }
-}
-
-/**
- * A detailed breakdown of the output tokens.
- */
-class BatchUsageOutputTokensDetails implements \JsonSerializable
-{
-    /**
-     * The number of reasoning tokens.
-     *
-     * @var int
-     */
-    public readonly int $reasoningTokens;
-
-    /**
-     * @param int $reasoningTokens
-     */
-    public function __construct(
-        int $reasoningTokens,
-    ) {
-        $this->reasoningTokens = $reasoningTokens;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "reasoning_tokens" => $this->reasoningTokens,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "reasoning_tokens") || $data->reasoning_tokens === null) { throw new SdkValidationError("reasoning_tokens", 'required', "Required property 'reasoning_tokens' is missing or null"); }
-        return new self(
-            reasoningTokens: SdkClient::intValue($data->reasoning_tokens),
-        );
-    }
-}
-
-/**
- * Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. Only populated on batches created after September 7, 2025.
- */
-class BatchUsage implements \JsonSerializable
-{
-    /**
-     * The number of input tokens.
-     *
-     * @var int
-     */
-    public readonly int $inputTokens;
-    /**
-     * A detailed breakdown of the input tokens.
-     *
-     * @var BatchUsageInputTokensDetails
-     */
-    public readonly BatchUsageInputTokensDetails $inputTokensDetails;
-    /**
-     * The number of output tokens.
-     *
-     * @var int
-     */
-    public readonly int $outputTokens;
-    /**
-     * A detailed breakdown of the output tokens.
-     *
-     * @var BatchUsageOutputTokensDetails
-     */
-    public readonly BatchUsageOutputTokensDetails $outputTokensDetails;
-    /**
-     * The total number of tokens used.
-     *
-     * @var int
-     */
-    public readonly int $totalTokens;
-
-    /**
-     * @param int $inputTokens
-     * @param BatchUsageInputTokensDetails $inputTokensDetails
-     * @param int $outputTokens
-     * @param BatchUsageOutputTokensDetails $outputTokensDetails
-     * @param int $totalTokens
-     */
-    public function __construct(
-        int $inputTokens,
-        BatchUsageInputTokensDetails $inputTokensDetails,
-        int $outputTokens,
-        BatchUsageOutputTokensDetails $outputTokensDetails,
-        int $totalTokens,
-    ) {
-        $this->inputTokens = $inputTokens;
-        $this->inputTokensDetails = $inputTokensDetails;
-        $this->outputTokens = $outputTokens;
-        $this->outputTokensDetails = $outputTokensDetails;
-        $this->totalTokens = $totalTokens;
-    }
-
-    /** @return array<array-key, mixed> */
-    public function toArray(): array
-    {
-        $values = [
-            "input_tokens" => $this->inputTokens,
-            "input_tokens_details" => $this->inputTokensDetails,
-            "output_tokens" => $this->outputTokens,
-            "output_tokens_details" => $this->outputTokensDetails,
-            "total_tokens" => $this->totalTokens,
-        ];
-        return $values;
-    }
-
-    /** @return object */
-    public function jsonSerialize(): object
-    {
-        return (object) $this->toArray();
-    }
-
-    public static function fromObject(object $data): self
-    {
-        if (!property_exists($data, "input_tokens") || $data->input_tokens === null) { throw new SdkValidationError("input_tokens", 'required', "Required property 'input_tokens' is missing or null"); }
-        if (!property_exists($data, "input_tokens_details") || $data->input_tokens_details === null) { throw new SdkValidationError("input_tokens_details", 'required', "Required property 'input_tokens_details' is missing or null"); }
-        if (!property_exists($data, "output_tokens") || $data->output_tokens === null) { throw new SdkValidationError("output_tokens", 'required', "Required property 'output_tokens' is missing or null"); }
-        if (!property_exists($data, "output_tokens_details") || $data->output_tokens_details === null) { throw new SdkValidationError("output_tokens_details", 'required', "Required property 'output_tokens_details' is missing or null"); }
-        if (!property_exists($data, "total_tokens") || $data->total_tokens === null) { throw new SdkValidationError("total_tokens", 'required', "Required property 'total_tokens' is missing or null"); }
-        return new self(
-            inputTokens: SdkClient::intValue($data->input_tokens),
-            inputTokensDetails: SdkClient::hydrateClass($data->input_tokens_details, BatchUsageInputTokensDetails::class),
-            outputTokens: SdkClient::intValue($data->output_tokens),
-            outputTokensDetails: SdkClient::hydrateClass($data->output_tokens_details, BatchUsageOutputTokensDetails::class),
-            totalTokens: SdkClient::intValue($data->total_tokens),
+            id: SdkClient::stringValue($data->id),
+            object_: SdkClient::hydrateStringEnumOrString($data->object, BatchObjectEnum::class),
+            endpoint: SdkClient::stringValue($data->endpoint),
+            inputFileId: SdkClient::stringValue($data->input_file_id),
+            completionWindow: SdkClient::stringValue($data->completion_window),
+            status: SdkClient::hydrateStringEnumOrString($data->status, BatchStatusEnum::class),
+            createdAt: SdkClient::intValue($data->created_at),
+            model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
+            errors: (property_exists($data, "errors") ? ($data->errors === null ? null : SdkClient::hydrateClass($data->errors, BatchErrors::class)) : SdkNotGiven::Value),
+            outputFileId: (property_exists($data, "output_file_id") ? ($data->output_file_id === null ? null : SdkClient::stringValue($data->output_file_id)) : SdkNotGiven::Value),
+            errorFileId: (property_exists($data, "error_file_id") ? ($data->error_file_id === null ? null : SdkClient::stringValue($data->error_file_id)) : SdkNotGiven::Value),
+            inProgressAt: (property_exists($data, "in_progress_at") ? ($data->in_progress_at === null ? null : SdkClient::intValue($data->in_progress_at)) : SdkNotGiven::Value),
+            expiresAt: (property_exists($data, "expires_at") ? ($data->expires_at === null ? null : SdkClient::intValue($data->expires_at)) : SdkNotGiven::Value),
+            finalizingAt: (property_exists($data, "finalizing_at") ? ($data->finalizing_at === null ? null : SdkClient::intValue($data->finalizing_at)) : SdkNotGiven::Value),
+            completedAt: (property_exists($data, "completed_at") ? ($data->completed_at === null ? null : SdkClient::intValue($data->completed_at)) : SdkNotGiven::Value),
+            failedAt: (property_exists($data, "failed_at") ? ($data->failed_at === null ? null : SdkClient::intValue($data->failed_at)) : SdkNotGiven::Value),
+            expiredAt: (property_exists($data, "expired_at") ? ($data->expired_at === null ? null : SdkClient::intValue($data->expired_at)) : SdkNotGiven::Value),
+            cancellingAt: (property_exists($data, "cancelling_at") ? ($data->cancelling_at === null ? null : SdkClient::intValue($data->cancelling_at)) : SdkNotGiven::Value),
+            cancelledAt: (property_exists($data, "cancelled_at") ? ($data->cancelled_at === null ? null : SdkClient::intValue($data->cancelled_at)) : SdkNotGiven::Value),
+            requestCounts: (property_exists($data, "request_counts") && $data->request_counts !== null ? SdkClient::hydrateClass($data->request_counts, BatchRequestCounts::class) : SdkNotGiven::Value),
+            usage: (property_exists($data, "usage") && $data->usage !== null ? SdkClient::hydrateClass($data->usage, BatchUsage::class) : SdkNotGiven::Value),
+            metadata: (property_exists($data, "metadata") ? ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))) : SdkNotGiven::Value),
         );
     }
 }

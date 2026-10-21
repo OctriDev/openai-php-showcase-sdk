@@ -29,7 +29,7 @@ final readonly class UpdateSpendLimitsOrganizationInterval implements SdkOpenEnu
     public function __toString(): string { return (string) $this->value; }
 }
 
-final readonly class UpdateSpendLimitsProjectCurrency implements SdkOpenEnum
+final readonly class UpdateProjectSpendLimitCurrency implements SdkOpenEnum
 {
     public const USD = "USD";
     private function __construct(public string $value) {}
@@ -40,7 +40,7 @@ final readonly class UpdateSpendLimitsProjectCurrency implements SdkOpenEnum
     public function __toString(): string { return (string) $this->value; }
 }
 
-final readonly class UpdateSpendLimitsProjectInterval implements SdkOpenEnum
+final readonly class UpdateProjectSpendLimitInterval implements SdkOpenEnum
 {
     public const MONTH = "month";
     private function __construct(public string $value) {}
@@ -142,16 +142,16 @@ class SpendLimits
      *
      * @param string $projectId
      * @param int $thresholdAmount
-     * @param UpdateSpendLimitsProjectCurrency $currency
-     * @param UpdateSpendLimitsProjectInterval $interval
+     * @param UpdateProjectSpendLimitCurrency $currency
+     * @param UpdateProjectSpendLimitInterval $interval
      * @return ProjectSpendLimitResource
      */
-    public static function updateSpendLimitsProject(ClientConfig $clientConfig, string $projectId, int $thresholdAmount, UpdateSpendLimitsProjectCurrency $currency, UpdateSpendLimitsProjectInterval $interval, ?RequestOptions $requestOptions = null): ProjectSpendLimitResource
+    public static function updateProjectSpendLimit(ClientConfig $clientConfig, string $projectId, int $thresholdAmount, UpdateProjectSpendLimitCurrency $currency, UpdateProjectSpendLimitInterval $interval, ?RequestOptions $requestOptions = null): ProjectSpendLimitResource
     {
 
         Validation::validateRange('threshold_amount', $thresholdAmount, min: 1);
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_limit", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval], returnType: ProjectSpendLimitResource::class, decoder: 'json', operationId: 'updateSpendLimitsProject', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/spend_limit", $clientConfig, body: ['threshold_amount' => $thresholdAmount, 'currency' => $currency, 'interval' => $interval], returnType: ProjectSpendLimitResource::class, decoder: 'json', operationId: 'updateProjectSpendLimit', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ProjectSpendLimitResource::class));
     }
 }

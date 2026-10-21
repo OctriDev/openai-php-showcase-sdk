@@ -9,11 +9,12 @@ namespace octridev_openai;
 
 class Agents
 {
-    use AgentsMethodsPart1;
-    use AgentsMethodsPart2;
-    use AgentsMethodsPart3;
-    use AgentsMethodsPart4;
-    use AgentsMethodsPart5;
-    use AgentsMethodsPart6;
-    use AgentsMethodsPart7;
+    use AgentsEnvironmentsMethods;
+    use AgentsCreateAgentEnvironmentTemplateMethods;
+    use AgentsSessionsMethods;
+    use AgentsRetrieveAgentSessionSubagentTurnMethods;
+    use AgentsUpdateAgentSessionMethods;
+    use AgentsListAgentSessionItemsMethods;
+    use AgentsListAgentSessionTurnItemsMethods;
+    use AgentsMethods;
 }

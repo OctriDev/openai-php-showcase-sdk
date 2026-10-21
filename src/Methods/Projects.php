@@ -9,7 +9,11 @@ namespace octridev_openai;
 
 class Projects
 {
-    use ProjectsMethodsPart1;
-    use ProjectsMethodsPart2;
-    use ProjectsMethodsPart3;
+    use ProjectsMethods;
+    use ProjectsApiKeysMethods;
+    use ProjectsArchiveMethods;
+    use ProjectsModelPermissionsMethods;
+    use ProjectsRateLimitsMethods;
+    use ProjectsServiceAccountsMethods;
+    use ProjectsUsersMethods;
 }

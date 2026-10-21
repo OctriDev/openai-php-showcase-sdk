@@ -9,5 +9,5 @@ namespace octridev_openai;
 
 class Images
 {
-    use ImagesMethodsPart1;
+    use ImagesMethods;
 }

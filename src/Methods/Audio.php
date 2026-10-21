@@ -9,6 +9,9 @@ namespace octridev_openai;
 
 class Audio
 {
-    use AudioMethodsPart1;
-    use AudioMethodsPart2;
+    use AudioSpeechMethods;
+    use AudioTranscriptionsMethods;
+    use AudioTranslationsMethods;
+    use AudioVoiceConsentsMethods;
+    use AudioVoicesMethods;
 }

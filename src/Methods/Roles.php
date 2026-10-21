@@ -9,6 +9,6 @@ namespace octridev_openai;
 
 class Roles
 {
-    use RolesMethodsPart1;
-    use RolesMethodsPart2;
+    use RolesMethods;
+    use RolesDeleteRolesProjectRoleMethods;
 }

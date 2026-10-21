@@ -81,12 +81,12 @@ class SpendLimitsNamespace
      *
      * @param string $projectId
      * @param int $thresholdAmount
-     * @param UpdateSpendLimitsProjectCurrency $currency
-     * @param UpdateSpendLimitsProjectInterval $interval
+     * @param UpdateProjectSpendLimitCurrency $currency
+     * @param UpdateProjectSpendLimitInterval $interval
      * @return ProjectSpendLimitResource
      */
-    public function updateProject(string $projectId, int $thresholdAmount, UpdateSpendLimitsProjectCurrency $currency, UpdateSpendLimitsProjectInterval $interval, ?RequestOptions $requestOptions = null): ProjectSpendLimitResource
+    public function update(string $projectId, int $thresholdAmount, UpdateProjectSpendLimitCurrency $currency, UpdateProjectSpendLimitInterval $interval, ?RequestOptions $requestOptions = null): ProjectSpendLimitResource
     {
-        return SpendLimits::updateSpendLimitsProject($this->clientConfig, $projectId, $thresholdAmount, $currency, $interval, $requestOptions);
+        return SpendLimits::updateProjectSpendLimit($this->clientConfig, $projectId, $thresholdAmount, $currency, $interval, $requestOptions);
     }
 }

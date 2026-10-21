@@ -9,5 +9,5 @@ namespace octridev_openai;
 
 class Containers
 {
-    use ContainersMethodsPart1;
+    use ContainersMethods;
 }
