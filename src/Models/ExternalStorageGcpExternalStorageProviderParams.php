@@ -85,21 +85,11 @@ class GcpExternalStorageProviderParams implements CreateExternalStorageBodyProvi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "bucket") || $data->bucket === null) {
-            throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null");
-        }
-        if (!property_exists($data, "workload_identity_project_number") || $data->workload_identity_project_number === null) {
-            throw new SdkValidationError("workload_identity_project_number", 'required', "Required property 'workload_identity_project_number' is missing or null");
-        }
-        if (!property_exists($data, "workload_identity_pool_id") || $data->workload_identity_pool_id === null) {
-            throw new SdkValidationError("workload_identity_pool_id", 'required', "Required property 'workload_identity_pool_id' is missing or null");
-        }
-        if (!property_exists($data, "workload_identity_provider_id") || $data->workload_identity_provider_id === null) {
-            throw new SdkValidationError("workload_identity_provider_id", 'required', "Required property 'workload_identity_provider_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "bucket") || $data->bucket === null) { throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null"); }
+        if (!property_exists($data, "workload_identity_project_number") || $data->workload_identity_project_number === null) { throw new SdkValidationError("workload_identity_project_number", 'required', "Required property 'workload_identity_project_number' is missing or null"); }
+        if (!property_exists($data, "workload_identity_pool_id") || $data->workload_identity_pool_id === null) { throw new SdkValidationError("workload_identity_pool_id", 'required', "Required property 'workload_identity_pool_id' is missing or null"); }
+        if (!property_exists($data, "workload_identity_provider_id") || $data->workload_identity_provider_id === null) { throw new SdkValidationError("workload_identity_provider_id", 'required', "Required property 'workload_identity_provider_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, GcpExternalStorageProviderParamsTypeEnum::class),
             bucket: SdkClient::stringValue($data->bucket),
@@ -186,18 +176,10 @@ class OciExternalStorageProviderParams implements CreateExternalStorageBodyProvi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "tenancy_ocid") || $data->tenancy_ocid === null) {
-            throw new SdkValidationError("tenancy_ocid", 'required', "Required property 'tenancy_ocid' is missing or null");
-        }
-        if (!property_exists($data, "region") || $data->region === null) {
-            throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null");
-        }
-        if (!property_exists($data, "bucket") || $data->bucket === null) {
-            throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "tenancy_ocid") || $data->tenancy_ocid === null) { throw new SdkValidationError("tenancy_ocid", 'required', "Required property 'tenancy_ocid' is missing or null"); }
+        if (!property_exists($data, "region") || $data->region === null) { throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null"); }
+        if (!property_exists($data, "bucket") || $data->bucket === null) { throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, OciExternalStorageProviderParamsTypeEnum::class),
             tenancyOcid: SdkClient::stringValue($data->tenancy_ocid),

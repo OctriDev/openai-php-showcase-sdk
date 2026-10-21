@@ -57,9 +57,7 @@ class AgentToolConfigParamProgrammaticToolCalling implements AgentToolConfigPara
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolConfigParamProgrammaticToolCallingTypeEnum::class),
             enabled: (property_exists($data, "enabled") && $data->enabled !== null ? SdkClient::boolValue($data->enabled) : SdkNotGiven::Value),
@@ -113,9 +111,7 @@ class AgentToolConfigParamToolSearch implements AgentToolConfigParam, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolConfigParamToolSearchTypeEnum::class),
         );
@@ -216,9 +212,7 @@ class AgentToolConfigParamWebSearch implements AgentToolConfigParam, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AgentToolConfigParamWebSearchTypeEnum::class),
             mode: (property_exists($data, "mode") ? ($data->mode === null ? null : SdkClient::hydrateStringEnumOrString($data->mode, WebSearchModeParam::class)) : SdkNotGiven::Value),

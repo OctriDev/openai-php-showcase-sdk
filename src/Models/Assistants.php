@@ -22,26 +22,11 @@ final readonly class DoneEventDataEnum implements SdkOpenEnum
 {
     public const DONE = "[DONE]";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -92,12 +77,8 @@ class DoneEvent implements AssistantStreamEvent, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) {
-            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
-        }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
+        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
         return new self(
             event: SdkClient::hydrateEnum($data->event, DoneEventEventEnum::class),
             data: SdkClient::hydrateStringEnumOrString($data->data, DoneEventDataEnum::class),
@@ -161,12 +142,8 @@ class ErrorEvent implements AssistantStreamEvent, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "event") || $data->event === null) {
-            throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null");
-        }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
+        if (!property_exists($data, "event") || $data->event === null) { throw new SdkValidationError("event", 'required', "Required property 'event' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
         return new self(
             event: SdkClient::hydrateEnum($data->event, ErrorEventEventEnum::class),
             data: SdkClient::hydrateClass($data->data, Error3::class),
@@ -283,9 +260,7 @@ class SubmitToolOutputsRunRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "tool_outputs") || $data->tool_outputs === null) {
-            throw new SdkValidationError("tool_outputs", 'required', "Required property 'tool_outputs' is missing or null");
-        }
+        if (!property_exists($data, "tool_outputs") || $data->tool_outputs === null) { throw new SdkValidationError("tool_outputs", 'required', "Required property 'tool_outputs' is missing or null"); }
         return new self(
             toolOutputs: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SubmitToolOutputsRunRequestToolOutputsItem::class), SdkClient::arrayValue($data->tool_outputs))),
             stream: (property_exists($data, "stream") ? ($data->stream === null ? null : SdkClient::boolValue($data->stream)) : SdkNotGiven::Value),
@@ -301,26 +276,11 @@ final readonly class TruncationObjectTypeEnum implements SdkOpenEnum
     public const AUTO = "auto";
     public const LAST_MESSAGES = "last_messages";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -373,9 +333,7 @@ class TruncationObject implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, TruncationObjectTypeEnum::class),
             lastMessages: (property_exists($data, "last_messages") ? ($data->last_messages === null ? null : SdkClient::intValue($data->last_messages)) : SdkNotGiven::Value),

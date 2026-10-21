@@ -45,9 +45,7 @@ class MessageObjectIncompleteDetails implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "reason") || $data->reason === null) {
-            throw new SdkValidationError("reason", 'required', "Required property 'reason' is missing or null");
-        }
+        if (!property_exists($data, "reason") || $data->reason === null) { throw new SdkValidationError("reason", 'required', "Required property 'reason' is missing or null"); }
         return new self(
             reason: SdkClient::hydrateStringEnumOrString($data->reason, MessageObjectIncompleteDetailsReasonEnum::class),
         );
@@ -62,26 +60,11 @@ final readonly class MessageObjectRoleEnum implements SdkOpenEnum
     public const USER = "user";
     public const ASSISTANT = "assistant";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -311,48 +294,20 @@ class MessageObject implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "thread_id") || $data->thread_id === null) {
-            throw new SdkValidationError("thread_id", 'required', "Required property 'thread_id' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "incomplete_details")) {
-            throw new SdkValidationError("incomplete_details", 'required', "Missing required property 'incomplete_details'");
-        }
-        if (!property_exists($data, "completed_at")) {
-            throw new SdkValidationError("completed_at", 'required', "Missing required property 'completed_at'");
-        }
-        if (!property_exists($data, "incomplete_at")) {
-            throw new SdkValidationError("incomplete_at", 'required', "Missing required property 'incomplete_at'");
-        }
-        if (!property_exists($data, "role") || $data->role === null) {
-            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
-        }
-        if (!property_exists($data, "content") || $data->content === null) {
-            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
-        }
-        if (!property_exists($data, "assistant_id")) {
-            throw new SdkValidationError("assistant_id", 'required', "Missing required property 'assistant_id'");
-        }
-        if (!property_exists($data, "run_id")) {
-            throw new SdkValidationError("run_id", 'required', "Missing required property 'run_id'");
-        }
-        if (!property_exists($data, "attachments")) {
-            throw new SdkValidationError("attachments", 'required', "Missing required property 'attachments'");
-        }
-        if (!property_exists($data, "metadata")) {
-            throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "thread_id") || $data->thread_id === null) { throw new SdkValidationError("thread_id", 'required', "Required property 'thread_id' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "incomplete_details")) { throw new SdkValidationError("incomplete_details", 'required', "Missing required property 'incomplete_details'"); }
+        if (!property_exists($data, "completed_at")) { throw new SdkValidationError("completed_at", 'required', "Missing required property 'completed_at'"); }
+        if (!property_exists($data, "incomplete_at")) { throw new SdkValidationError("incomplete_at", 'required', "Missing required property 'incomplete_at'"); }
+        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
+        if (!property_exists($data, "assistant_id")) { throw new SdkValidationError("assistant_id", 'required', "Missing required property 'assistant_id'"); }
+        if (!property_exists($data, "run_id")) { throw new SdkValidationError("run_id", 'required', "Missing required property 'run_id'"); }
+        if (!property_exists($data, "attachments")) { throw new SdkValidationError("attachments", 'required', "Missing required property 'attachments'"); }
+        if (!property_exists($data, "metadata")) { throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, MessageObjectObjectEnum::class),

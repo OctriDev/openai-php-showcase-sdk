@@ -103,24 +103,12 @@ class AwsExternalStorageProviderResponse implements Provider, ExternalStorageRes
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "account_id") || $data->account_id === null) {
-            throw new SdkValidationError("account_id", 'required', "Required property 'account_id' is missing or null");
-        }
-        if (!property_exists($data, "region") || $data->region === null) {
-            throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null");
-        }
-        if (!property_exists($data, "bucket") || $data->bucket === null) {
-            throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null");
-        }
-        if (!property_exists($data, "role_arn") || $data->role_arn === null) {
-            throw new SdkValidationError("role_arn", 'required', "Required property 'role_arn' is missing or null");
-        }
-        if (!property_exists($data, "external_id") || $data->external_id === null) {
-            throw new SdkValidationError("external_id", 'required', "Required property 'external_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "account_id") || $data->account_id === null) { throw new SdkValidationError("account_id", 'required', "Required property 'account_id' is missing or null"); }
+        if (!property_exists($data, "region") || $data->region === null) { throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null"); }
+        if (!property_exists($data, "bucket") || $data->bucket === null) { throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null"); }
+        if (!property_exists($data, "role_arn") || $data->role_arn === null) { throw new SdkValidationError("role_arn", 'required', "Required property 'role_arn' is missing or null"); }
+        if (!property_exists($data, "external_id") || $data->external_id === null) { throw new SdkValidationError("external_id", 'required', "Required property 'external_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AwsExternalStorageProviderResponseTypeEnum::class),
             accountId: SdkClient::stringValue($data->account_id),
@@ -238,27 +226,13 @@ class AzureExternalStorageProviderResponse implements Provider, ExternalStorageR
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "tenant_id") || $data->tenant_id === null) {
-            throw new SdkValidationError("tenant_id", 'required', "Required property 'tenant_id' is missing or null");
-        }
-        if (!property_exists($data, "subscription_id") || $data->subscription_id === null) {
-            throw new SdkValidationError("subscription_id", 'required', "Required property 'subscription_id' is missing or null");
-        }
-        if (!property_exists($data, "resource_group") || $data->resource_group === null) {
-            throw new SdkValidationError("resource_group", 'required', "Required property 'resource_group' is missing or null");
-        }
-        if (!property_exists($data, "account_name") || $data->account_name === null) {
-            throw new SdkValidationError("account_name", 'required', "Required property 'account_name' is missing or null");
-        }
-        if (!property_exists($data, "container") || $data->container === null) {
-            throw new SdkValidationError("container", 'required', "Required property 'container' is missing or null");
-        }
-        if (!property_exists($data, "region") || $data->region === null) {
-            throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "tenant_id") || $data->tenant_id === null) { throw new SdkValidationError("tenant_id", 'required', "Required property 'tenant_id' is missing or null"); }
+        if (!property_exists($data, "subscription_id") || $data->subscription_id === null) { throw new SdkValidationError("subscription_id", 'required', "Required property 'subscription_id' is missing or null"); }
+        if (!property_exists($data, "resource_group") || $data->resource_group === null) { throw new SdkValidationError("resource_group", 'required', "Required property 'resource_group' is missing or null"); }
+        if (!property_exists($data, "account_name") || $data->account_name === null) { throw new SdkValidationError("account_name", 'required', "Required property 'account_name' is missing or null"); }
+        if (!property_exists($data, "container") || $data->container === null) { throw new SdkValidationError("container", 'required', "Required property 'container' is missing or null"); }
+        if (!property_exists($data, "region") || $data->region === null) { throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AzureExternalStorageProviderResponseTypeEnum::class),
             tenantId: SdkClient::stringValue($data->tenant_id),
@@ -279,26 +253,11 @@ final readonly class CallableToolAllowedCaller implements SdkOpenEnum
     public const DIRECT = "direct";
     public const PROGRAMMATIC = "programmatic";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -374,15 +333,9 @@ class ComparisonFilter implements Filters, CompoundFilterFiltersItem, VectorStor
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "key") || $data->key === null) {
-            throw new SdkValidationError("key", 'required', "Required property 'key' is missing or null");
-        }
-        if (!property_exists($data, "value") || $data->value === null) {
-            throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "key") || $data->key === null) { throw new SdkValidationError("key", 'required', "Required property 'key' is missing or null"); }
+        if (!property_exists($data, "value") || $data->value === null) { throw new SdkValidationError("value", 'required', "Required property 'value' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ComparisonFilterTypeEnum::class),
             key: SdkClient::stringValue($data->key),

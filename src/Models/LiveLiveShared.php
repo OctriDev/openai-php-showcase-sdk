@@ -53,9 +53,7 @@ class LiveApplyPatchToolInputParam implements LiveResponsesDelegationSettingsInp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveApplyPatchToolInputParamTypeEnum::class),
         );
@@ -108,9 +106,7 @@ class LiveCodeInterpreterToolInputParam implements LiveResponsesDelegationSettin
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveCodeInterpreterToolInputParamTypeEnum::class),
         );
@@ -163,9 +159,7 @@ class LiveComputerToolInputParam implements LiveResponsesDelegationSettingsInput
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, LiveComputerToolInputParamTypeEnum::class),
         );
@@ -177,10 +171,12 @@ class LiveComputerToolInputParam implements LiveResponsesDelegationSettingsInput
  */
 class LiveConnectParams implements \JsonSerializable
 {
+
     /**
      */
     public function __construct(
-    ) {}
+    ) {
+    }
 
     /** @return array<array-key, mixed> */
     public function toArray(): array
@@ -241,9 +237,7 @@ class LiveContextWindowUsage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "usage_ratio") || $data->usage_ratio === null) {
-            throw new SdkValidationError("usage_ratio", 'required', "Required property 'usage_ratio' is missing or null");
-        }
+        if (!property_exists($data, "usage_ratio") || $data->usage_ratio === null) { throw new SdkValidationError("usage_ratio", 'required', "Required property 'usage_ratio' is missing or null"); }
         return new self(
             usageRatio: SdkClient::floatValue($data->usage_ratio),
         );
@@ -257,26 +251,11 @@ final readonly class LiveDataChannelConfigParamAllowedClientEventsEnum implement
 {
     public const ALL = "all";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -286,26 +265,11 @@ final readonly class LiveDataChannelConfigParamAllowedServerEventsEnum implement
 {
     public const ALL = "all";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**

@@ -73,15 +73,9 @@ class HostedEnvironmentFileParamFileId implements HostedEnvironmentFileParam, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, HostedEnvironmentFileParamFileIdTypeEnum::class),
             fileId: SdkClient::stringValue($data->file_id),
@@ -156,15 +150,9 @@ class HostedEnvironmentFileParamInline implements HostedEnvironmentFileParam, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, HostedEnvironmentFileParamInlineTypeEnum::class),
             data: SdkClient::stringValue($data->data),
@@ -259,21 +247,11 @@ class HostedEnvironmentFileResourceFileId implements HostedEnvironmentFileResour
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
-        if (!property_exists($data, "size_bytes") || $data->size_bytes === null) {
-            throw new SdkValidationError("size_bytes", 'required', "Required property 'size_bytes' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
+        if (!property_exists($data, "size_bytes") || $data->size_bytes === null) { throw new SdkValidationError("size_bytes", 'required', "Required property 'size_bytes' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, HostedEnvironmentFileResourceFileIdTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -360,18 +338,10 @@ class HostedEnvironmentFileResourceInline implements HostedEnvironmentFileResour
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "path") || $data->path === null) {
-            throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null");
-        }
-        if (!property_exists($data, "size_bytes") || $data->size_bytes === null) {
-            throw new SdkValidationError("size_bytes", 'required', "Required property 'size_bytes' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "path") || $data->path === null) { throw new SdkValidationError("path", 'required', "Required property 'path' is missing or null"); }
+        if (!property_exists($data, "size_bytes") || $data->size_bytes === null) { throw new SdkValidationError("size_bytes", 'required', "Required property 'size_bytes' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, HostedEnvironmentFileResourceInlineTypeEnum::class),
             id: SdkClient::stringValue($data->id),

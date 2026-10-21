@@ -23,7 +23,7 @@ trait VectorStoresMethods
     public static function listVectorStores(ClientConfig $clientConfig, int|SdkNotGiven $limit = SdkNotGiven::Value, ListVectorStoresOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListVectorStoresResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/vector_stores", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ListVectorStoresResponse::class, decoder: 'json', operationId: 'listVectorStores', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/vector_stores", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true)], returnType: ListVectorStoresResponse::class, decoder: 'json', operationId: 'listVectorStores', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListVectorStoresResponse::class));
     }
 
@@ -115,7 +115,7 @@ trait VectorStoresMethods
             Validation::validateItems('file_ids', $fileIds, max: 500);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/vector_stores", $clientConfig, body: ['file_ids' => $fileIds, 'name' => $name, 'description' => $description, 'expires_after' => $expiresAfter, 'chunking_strategy' => $chunkingStrategy, 'metadata' => $metadata], returnType: VectorStoreObject::class, decoder: 'json', operationId: 'createVectorStore', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/vector_stores", $clientConfig, body: ['file_ids' => $fileIds, 'name' => $name, 'description' => $description, 'expires_after' => $expiresAfter, 'chunking_strategy' => $chunkingStrategy, 'metadata' => $metadata], returnType: VectorStoreObject::class, decoder: 'json', operationId: 'createVectorStore', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VectorStoreObject::class));
     }
 
@@ -131,7 +131,7 @@ trait VectorStoresMethods
     public static function getVectorStore(ClientConfig $clientConfig, string $vectorStoreId, ?RequestOptions $requestOptions = null): VectorStoreObject
     {
 
-        $sdkResponse = SdkClient::request('GET', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "", $clientConfig, returnType: VectorStoreObject::class, decoder: 'json', operationId: 'getVectorStore', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "", $clientConfig, returnType: VectorStoreObject::class, decoder: 'json', operationId: 'getVectorStore', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VectorStoreObject::class));
     }
 
@@ -150,7 +150,7 @@ trait VectorStoresMethods
     public static function modifyVectorStore(ClientConfig $clientConfig, string $vectorStoreId, string|null|SdkNotGiven $name = SdkNotGiven::Value, VectorStoreExpirationAfter|null|SdkNotGiven $expiresAfter = SdkNotGiven::Value, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): VectorStoreObject
     {
 
-        $sdkResponse = SdkClient::request('POST', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "", $clientConfig, body: ['name' => $name, 'expires_after' => $expiresAfter, 'metadata' => $metadata], returnType: VectorStoreObject::class, decoder: 'json', operationId: 'modifyVectorStore', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "", $clientConfig, body: ['name' => $name, 'expires_after' => $expiresAfter, 'metadata' => $metadata], returnType: VectorStoreObject::class, decoder: 'json', operationId: 'modifyVectorStore', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VectorStoreObject::class));
     }
 
@@ -166,7 +166,7 @@ trait VectorStoresMethods
     public static function deleteVectorStore(ClientConfig $clientConfig, string $vectorStoreId, ?RequestOptions $requestOptions = null): DeleteVectorStoreResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "", $clientConfig, returnType: DeleteVectorStoreResponse::class, decoder: 'json', operationId: 'deleteVectorStore', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/vector_stores/" . SdkClient::encodePathSegment($vectorStoreId) . "", $clientConfig, returnType: DeleteVectorStoreResponse::class, decoder: 'json', operationId: 'deleteVectorStore', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteVectorStoreResponse::class));
     }
 }

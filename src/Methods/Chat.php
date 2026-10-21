@@ -12,26 +12,11 @@ final readonly class ListChatCompletionsOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class GetChatCompletionMessagesOrder implements SdkOpenEnum
@@ -39,26 +24,11 @@ final readonly class GetChatCompletionMessagesOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class Chat
@@ -78,7 +48,7 @@ class Chat
     public static function listChatCompletions(ClientConfig $clientConfig, string|SdkNotGiven $model = SdkNotGiven::Value, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, ListChatCompletionsOrder|SdkNotGiven $order = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ChatCompletionList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/chat/completions", $clientConfig, query: ['model' => new SdkQueryValue($model, "form", true), 'metadata' => new SdkQueryValue($metadata, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ChatCompletionList::class, decoder: 'json', operationId: 'listChatCompletions', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/chat/completions", $clientConfig, query: ['model' => new SdkQueryValue($model, "form", true), 'metadata' => new SdkQueryValue($metadata, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ChatCompletionList::class, decoder: 'json', operationId: 'listChatCompletions', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ChatCompletionList::class));
     }
 
@@ -166,7 +136,7 @@ class Chat
     public static function createChatCompletion(ClientConfig $clientConfig, CreateChatCompletionRequest $body, ?RequestOptions $requestOptions = null): CreateChatCompletionResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/chat/completions", $clientConfig, body: $body, returnType: CreateChatCompletionResponse::class, decoder: 'json', operationId: 'createChatCompletion', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/chat/completions", $clientConfig, body: $body, returnType: CreateChatCompletionResponse::class, decoder: 'json', operationId: 'createChatCompletion', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CreateChatCompletionResponse::class));
     }
 
@@ -192,7 +162,7 @@ class Chat
             streamFormat: 'sse',
             streamMediaType: 'text/event-stream',
             requestOptions: $requestOptions,
-            errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 401 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)],
+            errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 401 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 503 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]
         ) as $_ev) {
             if ($_ev->data === '[DONE]') {
                 return;
@@ -212,7 +182,7 @@ class Chat
     public static function getChatCompletion(ClientConfig $clientConfig, string $completionId, ?RequestOptions $requestOptions = null): CreateChatCompletionResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/chat/completions/" . SdkClient::encodePathSegment($completionId) . "", $clientConfig, returnType: CreateChatCompletionResponse::class, decoder: 'json', operationId: 'getChatCompletion', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/chat/completions/" . SdkClient::encodePathSegment($completionId) . "", $clientConfig, returnType: CreateChatCompletionResponse::class, decoder: 'json', operationId: 'getChatCompletion', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CreateChatCompletionResponse::class));
     }
 
@@ -229,7 +199,7 @@ class Chat
     public static function updateChatCompletion(ClientConfig $clientConfig, string $completionId, ?array $metadata, ?RequestOptions $requestOptions = null): CreateChatCompletionResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/chat/completions/" . SdkClient::encodePathSegment($completionId) . "", $clientConfig, body: ['metadata' => $metadata], returnType: CreateChatCompletionResponse::class, decoder: 'json', operationId: 'updateChatCompletion', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/chat/completions/" . SdkClient::encodePathSegment($completionId) . "", $clientConfig, body: ['metadata' => $metadata], returnType: CreateChatCompletionResponse::class, decoder: 'json', operationId: 'updateChatCompletion', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, CreateChatCompletionResponse::class));
     }
 
@@ -245,7 +215,7 @@ class Chat
     public static function deleteChatCompletion(ClientConfig $clientConfig, string $completionId, ?RequestOptions $requestOptions = null): ChatCompletionDeleted
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/chat/completions/" . SdkClient::encodePathSegment($completionId) . "", $clientConfig, returnType: ChatCompletionDeleted::class, decoder: 'json', operationId: 'deleteChatCompletion', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/chat/completions/" . SdkClient::encodePathSegment($completionId) . "", $clientConfig, returnType: ChatCompletionDeleted::class, decoder: 'json', operationId: 'deleteChatCompletion', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ChatCompletionDeleted::class));
     }
 
@@ -264,7 +234,7 @@ class Chat
     public static function getChatCompletionMessages(ClientConfig $clientConfig, string $completionId, string|SdkNotGiven $after = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, GetChatCompletionMessagesOrder|SdkNotGiven $order = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ChatCompletionMessageList
     {
 
-        $sdkResponse = SdkClient::request('GET', "/chat/completions/" . SdkClient::encodePathSegment($completionId) . "/messages", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ChatCompletionMessageList::class, decoder: 'json', operationId: 'getChatCompletionMessages', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/chat/completions/" . SdkClient::encodePathSegment($completionId) . "/messages", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: ChatCompletionMessageList::class, decoder: 'json', operationId: 'getChatCompletionMessages', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ChatCompletionMessageList::class));
     }
 

@@ -449,51 +449,21 @@ class Response implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "metadata")) {
-            throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'");
-        }
-        if (!property_exists($data, "temperature")) {
-            throw new SdkValidationError("temperature", 'required', "Missing required property 'temperature'");
-        }
-        if (!property_exists($data, "top_p")) {
-            throw new SdkValidationError("top_p", 'required', "Missing required property 'top_p'");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "tools") || $data->tools === null) {
-            throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null");
-        }
-        if (!property_exists($data, "tool_choice") || $data->tool_choice === null) {
-            throw new SdkValidationError("tool_choice", 'required', "Required property 'tool_choice' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "access_programs")) {
-            throw new SdkValidationError("access_programs", 'required', "Missing required property 'access_programs'");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "error")) {
-            throw new SdkValidationError("error", 'required', "Missing required property 'error'");
-        }
-        if (!property_exists($data, "incomplete_details")) {
-            throw new SdkValidationError("incomplete_details", 'required', "Missing required property 'incomplete_details'");
-        }
-        if (!property_exists($data, "output") || $data->output === null) {
-            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
-        }
-        if (!property_exists($data, "instructions")) {
-            throw new SdkValidationError("instructions", 'required', "Missing required property 'instructions'");
-        }
-        if (!property_exists($data, "parallel_tool_calls") || $data->parallel_tool_calls === null) {
-            throw new SdkValidationError("parallel_tool_calls", 'required', "Required property 'parallel_tool_calls' is missing or null");
-        }
+        if (!property_exists($data, "metadata")) { throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'"); }
+        if (!property_exists($data, "temperature")) { throw new SdkValidationError("temperature", 'required', "Missing required property 'temperature'"); }
+        if (!property_exists($data, "top_p")) { throw new SdkValidationError("top_p", 'required', "Missing required property 'top_p'"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "tools") || $data->tools === null) { throw new SdkValidationError("tools", 'required', "Required property 'tools' is missing or null"); }
+        if (!property_exists($data, "tool_choice") || $data->tool_choice === null) { throw new SdkValidationError("tool_choice", 'required', "Required property 'tool_choice' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "access_programs")) { throw new SdkValidationError("access_programs", 'required', "Missing required property 'access_programs'"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "error")) { throw new SdkValidationError("error", 'required', "Missing required property 'error'"); }
+        if (!property_exists($data, "incomplete_details")) { throw new SdkValidationError("incomplete_details", 'required', "Missing required property 'incomplete_details'"); }
+        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
+        if (!property_exists($data, "instructions")) { throw new SdkValidationError("instructions", 'required', "Missing required property 'instructions'"); }
+        if (!property_exists($data, "parallel_tool_calls") || $data->parallel_tool_calls === null) { throw new SdkValidationError("parallel_tool_calls", 'required', "Required property 'parallel_tool_calls' is missing or null"); }
         return new self(
             metadata: ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))),
             temperature: ($data->temperature === null ? null : SdkClient::floatValue($data->temperature)),

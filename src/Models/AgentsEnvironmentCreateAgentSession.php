@@ -53,9 +53,7 @@ class EnvironmentParamNone implements EnvironmentParam, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EnvironmentParamNoneTypeEnum::class),
         );
@@ -252,9 +250,7 @@ class EnvironmentParamOpenaiHosted implements EnvironmentParam, \JsonSerializabl
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EnvironmentParamOpenaiHostedTypeEnum::class),
             packages: (property_exists($data, "packages") ? ($data->packages === null ? null : SdkClient::hydrateClass($data->packages, EnvironmentPackagesParam::class)) : SdkNotGiven::Value),
@@ -341,12 +337,8 @@ class EnvironmentParamSelfHosted implements EnvironmentParam, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "workspace_directory") || $data->workspace_directory === null) {
-            throw new SdkValidationError("workspace_directory", 'required', "Required property 'workspace_directory' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "workspace_directory") || $data->workspace_directory === null) { throw new SdkValidationError("workspace_directory", 'required', "Required property 'workspace_directory' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EnvironmentParamSelfHostedTypeEnum::class),
             workspaceDirectory: SdkClient::stringValue($data->workspace_directory),

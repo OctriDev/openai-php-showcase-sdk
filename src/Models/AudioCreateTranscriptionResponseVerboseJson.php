@@ -101,15 +101,9 @@ class CreateTranscriptionResponseVerboseJson implements CreateTranscriptionRespo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "language") || $data->language === null) {
-            throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null");
-        }
-        if (!property_exists($data, "duration") || $data->duration === null) {
-            throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
+        if (!property_exists($data, "language") || $data->language === null) { throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null"); }
+        if (!property_exists($data, "duration") || $data->duration === null) { throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
         return new self(
             language: SdkClient::stringValue($data->language),
             duration: SdkClient::floatValue($data->duration),
@@ -128,26 +122,11 @@ final readonly class TranscriptionDiarizedSegmentTypeEnum implements SdkOpenEnum
 {
     public const TRANSCRIPT_TEXT_SEGMENT = "transcript.text.segment";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -238,24 +217,12 @@ class TranscriptionDiarizedSegment implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "start") || $data->start === null) {
-            throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null");
-        }
-        if (!property_exists($data, "end") || $data->end === null) {
-            throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
-        if (!property_exists($data, "speaker") || $data->speaker === null) {
-            throw new SdkValidationError("speaker", 'required', "Required property 'speaker' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "start") || $data->start === null) { throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null"); }
+        if (!property_exists($data, "end") || $data->end === null) { throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "speaker") || $data->speaker === null) { throw new SdkValidationError("speaker", 'required', "Required property 'speaker' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, TranscriptionDiarizedSegmentTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -274,26 +241,11 @@ final readonly class TranscriptionInclude implements SdkOpenEnum
 {
     public const LOGPROBS = "logprobs";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -334,9 +286,7 @@ class TranscriptionLanguage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "code") || $data->code === null) {
-            throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null");
-        }
+        if (!property_exists($data, "code") || $data->code === null) { throw new SdkValidationError("code", 'required', "Required property 'code' is missing or null"); }
         return new self(
             code: SdkClient::stringValue($data->code),
         );

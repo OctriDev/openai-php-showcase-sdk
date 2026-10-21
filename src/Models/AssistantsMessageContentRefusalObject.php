@@ -55,12 +55,8 @@ class MessageContentRefusalObject implements MessageObjectContentItem, \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "refusal") || $data->refusal === null) {
-            throw new SdkValidationError("refusal", 'required', "Required property 'refusal' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "refusal") || $data->refusal === null) { throw new SdkValidationError("refusal", 'required', "Required property 'refusal' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, MessageContentRefusalObjectTypeEnum::class),
             refusal: SdkClient::stringValue($data->refusal),
@@ -114,9 +110,7 @@ class MessageContentTextAnnotationsFileCitationObjectFileCitation implements \Js
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
         );
@@ -201,21 +195,11 @@ class MessageContentTextAnnotationsFileCitationObject implements MessageContentT
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
-        if (!property_exists($data, "file_citation") || $data->file_citation === null) {
-            throw new SdkValidationError("file_citation", 'required', "Required property 'file_citation' is missing or null");
-        }
-        if (!property_exists($data, "start_index") || $data->start_index === null) {
-            throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null");
-        }
-        if (!property_exists($data, "end_index") || $data->end_index === null) {
-            throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "file_citation") || $data->file_citation === null) { throw new SdkValidationError("file_citation", 'required', "Required property 'file_citation' is missing or null"); }
+        if (!property_exists($data, "start_index") || $data->start_index === null) { throw new SdkValidationError("start_index", 'required', "Required property 'start_index' is missing or null"); }
+        if (!property_exists($data, "end_index") || $data->end_index === null) { throw new SdkValidationError("end_index", 'required', "Required property 'end_index' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, MessageContentTextAnnotationsFileCitationObjectTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -272,9 +256,7 @@ class MessageContentTextAnnotationsFilePathObjectFilePath implements \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
         );

@@ -14,26 +14,11 @@ final readonly class BatchFileExpirationAfterAnchorEnum implements SdkOpenEnum
 {
     public const CREATED_AT = "created_at";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -84,12 +69,8 @@ class BatchFileExpirationAfter implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "anchor") || $data->anchor === null) {
-            throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null");
-        }
-        if (!property_exists($data, "seconds") || $data->seconds === null) {
-            throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null");
-        }
+        if (!property_exists($data, "anchor") || $data->anchor === null) { throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null"); }
+        if (!property_exists($data, "seconds") || $data->seconds === null) { throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null"); }
         return new self(
             anchor: SdkClient::hydrateStringEnumOrString($data->anchor, BatchFileExpirationAfterAnchorEnum::class),
             seconds: SdkClient::intValue($data->seconds),
@@ -111,26 +92,11 @@ final readonly class CreateBatchRequestEndpointEnum implements SdkOpenEnum
     public const V1_IMAGES_EDITS = "/v1/images/edits";
     public const V1_VIDEOS = "/v1/videos";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -140,26 +106,11 @@ final readonly class CreateBatchRequestCompletionWindowEnum implements SdkOpenEn
 {
     public const _24H = "24h";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -244,15 +195,9 @@ class CreateBatchRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "input_file_id") || $data->input_file_id === null) {
-            throw new SdkValidationError("input_file_id", 'required', "Required property 'input_file_id' is missing or null");
-        }
-        if (!property_exists($data, "endpoint") || $data->endpoint === null) {
-            throw new SdkValidationError("endpoint", 'required', "Required property 'endpoint' is missing or null");
-        }
-        if (!property_exists($data, "completion_window") || $data->completion_window === null) {
-            throw new SdkValidationError("completion_window", 'required', "Required property 'completion_window' is missing or null");
-        }
+        if (!property_exists($data, "input_file_id") || $data->input_file_id === null) { throw new SdkValidationError("input_file_id", 'required', "Required property 'input_file_id' is missing or null"); }
+        if (!property_exists($data, "endpoint") || $data->endpoint === null) { throw new SdkValidationError("endpoint", 'required', "Required property 'endpoint' is missing or null"); }
+        if (!property_exists($data, "completion_window") || $data->completion_window === null) { throw new SdkValidationError("completion_window", 'required', "Required property 'completion_window' is missing or null"); }
         return new self(
             inputFileId: SdkClient::stringValue($data->input_file_id),
             endpoint: SdkClient::hydrateStringEnumOrString($data->endpoint, CreateBatchRequestEndpointEnum::class),

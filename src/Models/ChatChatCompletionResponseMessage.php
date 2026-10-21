@@ -115,12 +115,8 @@ class ChatCompletionResponseMessage implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "content")) {
-            throw new SdkValidationError("content", 'required', "Missing required property 'content'");
-        }
-        if (!property_exists($data, "role") || $data->role === null) {
-            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
-        }
+        if (!property_exists($data, "content")) { throw new SdkValidationError("content", 'required', "Missing required property 'content'"); }
+        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
         return new self(
             content: ($data->content === null ? null : SdkClient::stringValue($data->content)),
             role: SdkClient::hydrateStringEnumOrString($data->role, ChatCompletionResponseMessageRoleEnum::class),
@@ -145,26 +141,11 @@ final readonly class ChatCompletionRole implements SdkOpenEnum
     public const TOOL = "tool";
     public const FUNCTION = "function";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -225,15 +206,9 @@ class ChatCompletionTokenLogprobTopLogprobsItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "token") || $data->token === null) {
-            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
-        }
-        if (!property_exists($data, "logprob") || $data->logprob === null) {
-            throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null");
-        }
-        if (!property_exists($data, "bytes")) {
-            throw new SdkValidationError("bytes", 'required', "Missing required property 'bytes'");
-        }
+        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
+        if (!property_exists($data, "logprob") || $data->logprob === null) { throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null"); }
+        if (!property_exists($data, "bytes")) { throw new SdkValidationError("bytes", 'required', "Missing required property 'bytes'"); }
         return new self(
             token: SdkClient::stringValue($data->token),
             logprob: SdkClient::floatValue($data->logprob),
@@ -310,18 +285,10 @@ class ChatCompletionTokenLogprob implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "token") || $data->token === null) {
-            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
-        }
-        if (!property_exists($data, "logprob") || $data->logprob === null) {
-            throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null");
-        }
-        if (!property_exists($data, "bytes")) {
-            throw new SdkValidationError("bytes", 'required', "Missing required property 'bytes'");
-        }
-        if (!property_exists($data, "top_logprobs") || $data->top_logprobs === null) {
-            throw new SdkValidationError("top_logprobs", 'required', "Required property 'top_logprobs' is missing or null");
-        }
+        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
+        if (!property_exists($data, "logprob") || $data->logprob === null) { throw new SdkValidationError("logprob", 'required', "Required property 'logprob' is missing or null"); }
+        if (!property_exists($data, "bytes")) { throw new SdkValidationError("bytes", 'required', "Missing required property 'bytes'"); }
+        if (!property_exists($data, "top_logprobs") || $data->top_logprobs === null) { throw new SdkValidationError("top_logprobs", 'required', "Required property 'top_logprobs' is missing or null"); }
         return new self(
             token: SdkClient::stringValue($data->token),
             logprob: SdkClient::floatValue($data->logprob),

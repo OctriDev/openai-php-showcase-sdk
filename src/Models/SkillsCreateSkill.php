@@ -45,9 +45,7 @@ class CreateSkillBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "files") || $data->files === null) {
-            throw new SdkValidationError("files", 'required', "Required property 'files' is missing or null");
-        }
+        if (!property_exists($data, "files") || $data->files === null) { throw new SdkValidationError("files", 'required', "Required property 'files' is missing or null"); }
         return new self(
             files: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->files))),
         );

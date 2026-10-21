@@ -55,12 +55,8 @@ class BetaContainerReferenceResource implements BetaFunctionShellCallEnvironment
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "container_id") || $data->container_id === null) {
-            throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "container_id") || $data->container_id === null) { throw new SdkValidationError("container_id", 'required', "Required property 'container_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaContainerReferenceResourceTypeEnum::class),
             containerId: SdkClient::stringValue($data->container_id),

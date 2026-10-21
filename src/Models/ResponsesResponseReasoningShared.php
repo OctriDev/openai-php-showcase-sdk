@@ -22,26 +22,11 @@ final readonly class ResponseReasoningSummaryPartAddedEventPartTypeEnum implemen
 {
     public const SUMMARY_TEXT = "summary_text";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -92,12 +77,8 @@ class ResponseReasoningSummaryPartAddedEventPart implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ResponseReasoningSummaryPartAddedEventPartTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -193,24 +174,12 @@ class ResponseReasoningSummaryPartAddedEvent implements ResponseStreamEvent, \Js
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "summary_index") || $data->summary_index === null) {
-            throw new SdkValidationError("summary_index", 'required', "Required property 'summary_index' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
-        if (!property_exists($data, "part") || $data->part === null) {
-            throw new SdkValidationError("part", 'required', "Required property 'part' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "summary_index") || $data->summary_index === null) { throw new SdkValidationError("summary_index", 'required', "Required property 'summary_index' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "part") || $data->part === null) { throw new SdkValidationError("part", 'required', "Required property 'part' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseReasoningSummaryPartAddedEventTypeEnum::class),
             itemId: SdkClient::stringValue($data->item_id),
@@ -237,26 +206,11 @@ final readonly class ResponseReasoningSummaryPartDoneEventStatusEnum implements 
 {
     public const INCOMPLETE = "incomplete";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -266,26 +220,11 @@ final readonly class ResponseReasoningSummaryPartDoneEventPartTypeEnum implement
 {
     public const SUMMARY_TEXT = "summary_text";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -336,12 +275,8 @@ class ResponseReasoningSummaryPartDoneEventPart implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, ResponseReasoningSummaryPartDoneEventPartTypeEnum::class),
             text: SdkClient::stringValue($data->text),

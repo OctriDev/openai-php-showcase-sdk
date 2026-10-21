@@ -77,15 +77,9 @@ class MoveParam implements ComputerAction, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "x") || $data->x === null) {
-            throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null");
-        }
-        if (!property_exists($data, "y") || $data->y === null) {
-            throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "x") || $data->x === null) { throw new SdkValidationError("x", 'required', "Required property 'x' is missing or null"); }
+        if (!property_exists($data, "y") || $data->y === null) { throw new SdkValidationError("y", 'required', "Required property 'y' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, MoveParamTypeEnum::class),
             x: SdkClient::intValue($data->x),
@@ -171,18 +165,10 @@ class OciExternalStorageProviderResponse implements Provider, ExternalStorageRes
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "tenancy_ocid") || $data->tenancy_ocid === null) {
-            throw new SdkValidationError("tenancy_ocid", 'required', "Required property 'tenancy_ocid' is missing or null");
-        }
-        if (!property_exists($data, "region") || $data->region === null) {
-            throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null");
-        }
-        if (!property_exists($data, "bucket") || $data->bucket === null) {
-            throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "tenancy_ocid") || $data->tenancy_ocid === null) { throw new SdkValidationError("tenancy_ocid", 'required', "Required property 'tenancy_ocid' is missing or null"); }
+        if (!property_exists($data, "region") || $data->region === null) { throw new SdkValidationError("region", 'required', "Required property 'region' is missing or null"); }
+        if (!property_exists($data, "bucket") || $data->bucket === null) { throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, OciExternalStorageProviderResponseTypeEnum::class),
             tenancyOcid: SdkClient::stringValue($data->tenancy_ocid),
@@ -199,26 +185,11 @@ final readonly class OpenAIFileObjectEnum implements SdkOpenEnum
 {
     public const FILE = "file";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -235,26 +206,11 @@ final readonly class OpenAIFilePurposeEnum implements SdkOpenEnum
     public const VISION = "vision";
     public const USER_DATA = "user_data";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -266,24 +222,9 @@ final readonly class OpenAIFileStatusEnum implements SdkOpenEnum
     public const PROCESSED = "processed";
     public const ERROR = "error";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

@@ -129,9 +129,7 @@ class CreateAgentSessionParams implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "environment") || $data->environment === null) {
-            throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null");
-        }
+        if (!property_exists($data, "environment") || $data->environment === null) { throw new SdkValidationError("environment", 'required', "Required property 'environment' is missing or null"); }
         return new self(
             environment: SdkClient::hydrateUnionAs($data->environment, EnvironmentParam::class, [EnvironmentParamNone::class, EnvironmentParamOpenaiHosted::class, EnvironmentParamSelfHosted::class], "type", ["none" => EnvironmentParamNone::class, "openai_hosted" => EnvironmentParamOpenaiHosted::class, "self_hosted" => EnvironmentParamSelfHosted::class], UnknownEnvironmentParam::class),
             spendControl: (property_exists($data, "spend_control") ? ($data->spend_control === null ? null : SdkClient::hydrateClass($data->spend_control, SessionSpendControlParam::class)) : SdkNotGiven::Value),

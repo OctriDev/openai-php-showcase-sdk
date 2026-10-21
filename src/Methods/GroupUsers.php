@@ -12,26 +12,11 @@ final readonly class ListGroupUsersOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class GroupUsers
@@ -54,7 +39,7 @@ class GroupUsers
             Validation::validateRange('limit', $limit, min: 0, max: 1000);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/users", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: UserListResource::class, decoder: 'json', operationId: 'listGroupUsers', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 502 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/users", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'order' => new SdkQueryValue($order, "form", true)], returnType: UserListResource::class, decoder: 'json', operationId: 'listGroupUsers', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 502 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, UserListResource::class));
     }
 
@@ -141,7 +126,7 @@ class GroupUsers
     public static function addGroupUser(ClientConfig $clientConfig, string $groupId, string $userId, ?RequestOptions $requestOptions = null): GroupUserAssignment
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/users", $clientConfig, body: ['user_id' => $userId], returnType: GroupUserAssignment::class, decoder: 'json', operationId: 'addGroupUser', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/users", $clientConfig, body: ['user_id' => $userId], returnType: GroupUserAssignment::class, decoder: 'json', operationId: 'addGroupUser', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, GroupUserAssignment::class));
     }
 
@@ -158,7 +143,7 @@ class GroupUsers
     public static function retrieveGroupUser(ClientConfig $clientConfig, string $groupId, string $userId, ?RequestOptions $requestOptions = null): GroupMemberUser
     {
 
-        $sdkResponse = SdkClient::request('GET', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: GroupMemberUser::class, decoder: 'json', operationId: 'retrieveGroupUser', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: GroupMemberUser::class, decoder: 'json', operationId: 'retrieveGroupUser', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, GroupMemberUser::class));
     }
 
@@ -175,7 +160,7 @@ class GroupUsers
     public static function removeGroupUser(ClientConfig $clientConfig, string $groupId, string $userId, ?RequestOptions $requestOptions = null): GroupUserDeletedResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: GroupUserDeletedResource::class, decoder: 'json', operationId: 'removeGroupUser', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/organization/groups/" . SdkClient::encodePathSegment($groupId) . "/users/" . SdkClient::encodePathSegment($userId) . "", $clientConfig, returnType: GroupUserDeletedResource::class, decoder: 'json', operationId: 'removeGroupUser', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 409 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, GroupUserDeletedResource::class));
     }
 }

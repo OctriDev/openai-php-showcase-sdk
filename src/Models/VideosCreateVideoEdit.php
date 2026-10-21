@@ -55,12 +55,8 @@ class CreateVideoEditJsonBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "video") || $data->video === null) {
-            throw new SdkValidationError("video", 'required', "Required property 'video' is missing or null");
-        }
-        if (!property_exists($data, "prompt") || $data->prompt === null) {
-            throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null");
-        }
+        if (!property_exists($data, "video") || $data->video === null) { throw new SdkValidationError("video", 'required', "Required property 'video' is missing or null"); }
+        if (!property_exists($data, "prompt") || $data->prompt === null) { throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null"); }
         return new self(
             video: SdkClient::hydrateClass($data->video, VideoReferenceInputParam::class),
             prompt: SdkClient::stringValue($data->prompt),
@@ -116,12 +112,8 @@ class CreateVideoEditMultipartBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "video") || $data->video === null) {
-            throw new SdkValidationError("video", 'required', "Required property 'video' is missing or null");
-        }
-        if (!property_exists($data, "prompt") || $data->prompt === null) {
-            throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null");
-        }
+        if (!property_exists($data, "video") || $data->video === null) { throw new SdkValidationError("video", 'required', "Required property 'video' is missing or null"); }
+        if (!property_exists($data, "prompt") || $data->prompt === null) { throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null"); }
         return new self(
             video: (is_object($data->video) ? SdkClient::hydrateClass($data->video, VideoReferenceInputParam::class) : (is_string($data->video) ? SdkClient::stringValue($data->video) : SdkClient::hydrateClass($data->video, VideoReferenceInputParam::class))),
             prompt: SdkClient::stringValue($data->prompt),

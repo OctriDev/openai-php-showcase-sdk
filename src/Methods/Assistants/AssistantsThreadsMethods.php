@@ -22,7 +22,7 @@ trait AssistantsThreadsMethods
     public static function createThread(ClientConfig $clientConfig, array|SdkNotGiven $messages = SdkNotGiven::Value, CreateThreadToolResources|null|SdkNotGiven $toolResources = SdkNotGiven::Value, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ThreadObject
     {
 
-        $sdkResponse = SdkClient::request('POST', "/threads", $clientConfig, body: ['messages' => $messages, 'tool_resources' => $toolResources, 'metadata' => $metadata], returnType: ThreadObject::class, decoder: 'json', operationId: 'createThread', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/threads", $clientConfig, body: ['messages' => $messages, 'tool_resources' => $toolResources, 'metadata' => $metadata], returnType: ThreadObject::class, decoder: 'json', operationId: 'createThread', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ThreadObject::class));
     }
 
@@ -73,7 +73,7 @@ trait AssistantsThreadsMethods
             Validation::validateRange('max_completion_tokens', $maxCompletionTokens, min: 256);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/threads/runs", $clientConfig, body: ['assistant_id' => $assistantId, 'thread' => $thread, 'model' => $model, 'instructions' => $instructions, 'tools' => $tools, 'tool_resources' => $toolResources, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'stream' => $stream, 'max_prompt_tokens' => $maxPromptTokens, 'max_completion_tokens' => $maxCompletionTokens, 'truncation_strategy' => $truncationStrategy, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls, 'response_format' => $responseFormat], returnType: RunObject::class, decoder: 'json', operationId: 'createThreadAndRun', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/threads/runs", $clientConfig, body: ['assistant_id' => $assistantId, 'thread' => $thread, 'model' => $model, 'instructions' => $instructions, 'tools' => $tools, 'tool_resources' => $toolResources, 'metadata' => $metadata, 'temperature' => $temperature, 'top_p' => $topP, 'stream' => $stream, 'max_prompt_tokens' => $maxPromptTokens, 'max_completion_tokens' => $maxCompletionTokens, 'truncation_strategy' => $truncationStrategy, 'tool_choice' => $toolChoice, 'parallel_tool_calls' => $parallelToolCalls, 'response_format' => $responseFormat], returnType: RunObject::class, decoder: 'json', operationId: 'createThreadAndRun', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, RunObject::class));
     }
 
@@ -114,7 +114,7 @@ trait AssistantsThreadsMethods
             streamFormat: 'sse',
             streamMediaType: 'text/event-stream',
             requestOptions: $requestOptions,
-            errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)],
+            errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]
         ) as $_ev) {
             if ($_ev->data === '[DONE]') {
                 return;
@@ -134,7 +134,7 @@ trait AssistantsThreadsMethods
     public static function getThread(ClientConfig $clientConfig, string $threadId, ?RequestOptions $requestOptions = null): ThreadObject
     {
 
-        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, returnType: ThreadObject::class, decoder: 'json', operationId: 'getThread', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, returnType: ThreadObject::class, decoder: 'json', operationId: 'getThread', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ThreadObject::class));
     }
 
@@ -152,7 +152,7 @@ trait AssistantsThreadsMethods
     public static function modifyThread(ClientConfig $clientConfig, string $threadId, ModifyThreadToolResources|null|SdkNotGiven $toolResources = SdkNotGiven::Value, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ThreadObject
     {
 
-        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, body: ['tool_resources' => $toolResources, 'metadata' => $metadata], returnType: ThreadObject::class, decoder: 'json', operationId: 'modifyThread', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, body: ['tool_resources' => $toolResources, 'metadata' => $metadata], returnType: ThreadObject::class, decoder: 'json', operationId: 'modifyThread', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ThreadObject::class));
     }
 
@@ -168,7 +168,7 @@ trait AssistantsThreadsMethods
     public static function deleteThread(ClientConfig $clientConfig, string $threadId, ?RequestOptions $requestOptions = null): DeleteThreadResponse
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, returnType: DeleteThreadResponse::class, decoder: 'json', operationId: 'deleteThread', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/threads/" . SdkClient::encodePathSegment($threadId) . "", $clientConfig, returnType: DeleteThreadResponse::class, decoder: 'json', operationId: 'deleteThread', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeleteThreadResponse::class));
     }
 
@@ -189,7 +189,7 @@ trait AssistantsThreadsMethods
     public static function listMessages(ClientConfig $clientConfig, string $threadId, int|SdkNotGiven $limit = SdkNotGiven::Value, ListMessagesOrder|SdkNotGiven $order = SdkNotGiven::Value, string|SdkNotGiven $after = SdkNotGiven::Value, string|SdkNotGiven $before = SdkNotGiven::Value, string|SdkNotGiven $runId = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): ListMessagesResponse
     {
 
-        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true), 'run_id' => new SdkQueryValue($runId, "form", true)], returnType: ListMessagesResponse::class, decoder: 'json', operationId: 'listMessages', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'order' => new SdkQueryValue($order, "form", true), 'after' => new SdkQueryValue($after, "form", true), 'before' => new SdkQueryValue($before, "form", true), 'run_id' => new SdkQueryValue($runId, "form", true)], returnType: ListMessagesResponse::class, decoder: 'json', operationId: 'listMessages', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, ListMessagesResponse::class));
     }
 
@@ -280,7 +280,7 @@ trait AssistantsThreadsMethods
     public static function createMessage(ClientConfig $clientConfig, string $threadId, CreateMessageRole $role, string|array $content, array|null|SdkNotGiven $attachments = SdkNotGiven::Value, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): MessageObject
     {
 
-        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages", $clientConfig, body: ['role' => $role, 'content' => $content, 'attachments' => $attachments, 'metadata' => $metadata], returnType: MessageObject::class, decoder: 'json', operationId: 'createMessage', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages", $clientConfig, body: ['role' => $role, 'content' => $content, 'attachments' => $attachments, 'metadata' => $metadata], returnType: MessageObject::class, decoder: 'json', operationId: 'createMessage', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, MessageObject::class));
     }
 
@@ -297,7 +297,7 @@ trait AssistantsThreadsMethods
     public static function getMessage(ClientConfig $clientConfig, string $threadId, string $messageId, ?RequestOptions $requestOptions = null): MessageObject
     {
 
-        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages/" . SdkClient::encodePathSegment($messageId) . "", $clientConfig, returnType: MessageObject::class, decoder: 'json', operationId: 'getMessage', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages/" . SdkClient::encodePathSegment($messageId) . "", $clientConfig, returnType: MessageObject::class, decoder: 'json', operationId: 'getMessage', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, MessageObject::class));
     }
 
@@ -315,7 +315,7 @@ trait AssistantsThreadsMethods
     public static function modifyMessage(ClientConfig $clientConfig, string $threadId, string $messageId, array|null|SdkNotGiven $metadata = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): MessageObject
     {
 
-        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages/" . SdkClient::encodePathSegment($messageId) . "", $clientConfig, body: ['metadata' => $metadata], returnType: MessageObject::class, decoder: 'json', operationId: 'modifyMessage', requestOptions: $requestOptions, errors: [429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/threads/" . SdkClient::encodePathSegment($threadId) . "/messages/" . SdkClient::encodePathSegment($messageId) . "", $clientConfig, body: ['metadata' => $metadata], returnType: MessageObject::class, decoder: 'json', operationId: 'modifyMessage', requestOptions: $requestOptions, errors: [429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, MessageObject::class));
     }
 }

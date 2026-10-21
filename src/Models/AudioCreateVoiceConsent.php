@@ -65,15 +65,9 @@ class CreateVoiceConsentRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "recording") || $data->recording === null) {
-            throw new SdkValidationError("recording", 'required', "Required property 'recording' is missing or null");
-        }
-        if (!property_exists($data, "language") || $data->language === null) {
-            throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "recording") || $data->recording === null) { throw new SdkValidationError("recording", 'required', "Required property 'recording' is missing or null"); }
+        if (!property_exists($data, "language") || $data->language === null) { throw new SdkValidationError("language", 'required', "Required property 'language' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             recording: SdkClient::stringValue($data->recording),

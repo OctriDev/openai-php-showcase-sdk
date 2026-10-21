@@ -73,15 +73,9 @@ class VaultCredentialAuthResourceEnvironmentVariable implements VaultCredentialA
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "secret_name") || $data->secret_name === null) {
-            throw new SdkValidationError("secret_name", 'required', "Required property 'secret_name' is missing or null");
-        }
-        if (!property_exists($data, "networking") || $data->networking === null) {
-            throw new SdkValidationError("networking", 'required', "Required property 'networking' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "secret_name") || $data->secret_name === null) { throw new SdkValidationError("secret_name", 'required', "Required property 'secret_name' is missing or null"); }
+        if (!property_exists($data, "networking") || $data->networking === null) { throw new SdkValidationError("networking", 'required', "Required property 'networking' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialAuthResourceEnvironmentVariableTypeEnum::class),
             secretName: SdkClient::stringValue($data->secret_name),
@@ -166,18 +160,10 @@ class VaultCredentialAuthResourceMcpOauth implements VaultCredentialAuthResource
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "mcp_server_url") || $data->mcp_server_url === null) {
-            throw new SdkValidationError("mcp_server_url", 'required', "Required property 'mcp_server_url' is missing or null");
-        }
-        if (!property_exists($data, "expires_at")) {
-            throw new SdkValidationError("expires_at", 'required', "Missing required property 'expires_at'");
-        }
-        if (!property_exists($data, "refresh")) {
-            throw new SdkValidationError("refresh", 'required', "Missing required property 'refresh'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "mcp_server_url") || $data->mcp_server_url === null) { throw new SdkValidationError("mcp_server_url", 'required', "Required property 'mcp_server_url' is missing or null"); }
+        if (!property_exists($data, "expires_at")) { throw new SdkValidationError("expires_at", 'required', "Missing required property 'expires_at'"); }
+        if (!property_exists($data, "refresh")) { throw new SdkValidationError("refresh", 'required', "Missing required property 'refresh'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialAuthResourceMcpOauthTypeEnum::class),
             mcpServerUrl: SdkClient::stringValue($data->mcp_server_url),
@@ -243,12 +229,8 @@ class VaultCredentialAuthResourceStaticBearer implements VaultCredentialAuthReso
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "mcp_server_url") || $data->mcp_server_url === null) {
-            throw new SdkValidationError("mcp_server_url", 'required', "Required property 'mcp_server_url' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "mcp_server_url") || $data->mcp_server_url === null) { throw new SdkValidationError("mcp_server_url", 'required', "Required property 'mcp_server_url' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialAuthResourceStaticBearerTypeEnum::class),
             mcpServerUrl: SdkClient::stringValue($data->mcp_server_url),
@@ -312,12 +294,8 @@ class VaultCredentialNetworkingResourceLimited implements VaultCredentialNetwork
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "allowed_hosts") || $data->allowed_hosts === null) {
-            throw new SdkValidationError("allowed_hosts", 'required', "Required property 'allowed_hosts' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "allowed_hosts") || $data->allowed_hosts === null) { throw new SdkValidationError("allowed_hosts", 'required', "Required property 'allowed_hosts' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, VaultCredentialNetworkingResourceLimitedTypeEnum::class),
             allowedHosts: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->allowed_hosts))),

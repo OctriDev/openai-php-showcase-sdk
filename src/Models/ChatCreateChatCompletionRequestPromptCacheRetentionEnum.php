@@ -12,26 +12,11 @@ final readonly class CreateChatCompletionRequestPromptCacheRetentionEnum impleme
     public const IN_MEMORY = "in_memory";
     public const _24H = "24h";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class CreateChatCompletionRequestServiceTierEnum implements SdkOpenEnum
@@ -43,26 +28,11 @@ final readonly class CreateChatCompletionRequestServiceTierEnum implements SdkOp
     public const PRIORITY = "priority";
     public const FAST = "fast";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class CreateChatCompletionRequestModalitiesItemEnum implements SdkOpenEnum
@@ -70,26 +40,11 @@ final readonly class CreateChatCompletionRequestModalitiesItemEnum implements Sd
     public const TEXT = "text";
     public const AUDIO = "audio";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class CreateChatCompletionRequestVerbosityEnum implements SdkOpenEnum
@@ -98,26 +53,11 @@ final readonly class CreateChatCompletionRequestVerbosityEnum implements SdkOpen
     public const MEDIUM = "medium";
     public const HIGH = "high";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 final readonly class CreateChatCompletionRequestReasoningEffortEnum implements SdkOpenEnum
@@ -130,26 +70,11 @@ final readonly class CreateChatCompletionRequestReasoningEffortEnum implements S
     public const XHIGH = "xhigh";
     public const MAX = "max";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -159,26 +84,11 @@ final readonly class CreateChatCompletionRequestWebSearchOptionsUserLocationType
 {
     public const APPROXIMATE = "approximate";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -229,12 +139,8 @@ class CreateChatCompletionRequestWebSearchOptionsUserLocation implements \JsonSe
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "approximate") || $data->approximate === null) {
-            throw new SdkValidationError("approximate", 'required', "Required property 'approximate' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "approximate") || $data->approximate === null) { throw new SdkValidationError("approximate", 'required', "Required property 'approximate' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, CreateChatCompletionRequestWebSearchOptionsUserLocationTypeEnum::class),
             approximate: SdkClient::hydrateClass($data->approximate, WebSearchLocation::class),
@@ -339,9 +245,7 @@ class CreateChatCompletionRequestAudioVoiceVariant1 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
         );
@@ -360,26 +264,11 @@ final readonly class CreateChatCompletionRequestAudioFormatEnum implements SdkOp
     public const OPUS = "opus";
     public const PCM16 = "pcm16";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -430,12 +319,8 @@ class CreateChatCompletionRequestAudio implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "voice") || $data->voice === null) {
-            throw new SdkValidationError("voice", 'required', "Required property 'voice' is missing or null");
-        }
-        if (!property_exists($data, "format") || $data->format === null) {
-            throw new SdkValidationError("format", 'required', "Required property 'format' is missing or null");
-        }
+        if (!property_exists($data, "voice") || $data->voice === null) { throw new SdkValidationError("voice", 'required', "Required property 'voice' is missing or null"); }
+        if (!property_exists($data, "format") || $data->format === null) { throw new SdkValidationError("format", 'required', "Required property 'format' is missing or null"); }
         return new self(
             voice: (is_object($data->voice) ? SdkClient::hydrateClass($data->voice, CreateChatCompletionRequestAudioVoiceVariant1::class) : (is_string($data->voice) ? SdkClient::stringValue($data->voice) : SdkClient::hydrateClass($data->voice, CreateChatCompletionRequestAudioVoiceVariant1::class))),
             format: SdkClient::hydrateStringEnumOrString($data->format, CreateChatCompletionRequestAudioFormatEnum::class),
@@ -452,24 +337,9 @@ final readonly class CreateChatCompletionRequestToolChoiceEnum implements SdkOpe
     public const AUTO = "auto";
     public const REQUIRED = "required";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

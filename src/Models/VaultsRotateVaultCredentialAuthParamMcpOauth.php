@@ -81,9 +81,7 @@ class RotateVaultCredentialAuthParamMcpOauth implements RotateVaultCredentialAut
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RotateVaultCredentialAuthParamMcpOauthTypeEnum::class),
             accessToken: (property_exists($data, "access_token") ? ($data->access_token === null ? null : SdkClient::stringValue($data->access_token)) : SdkNotGiven::Value),
@@ -149,12 +147,8 @@ class RotateVaultCredentialAuthParamStaticBearer implements RotateVaultCredentia
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "token") || $data->token === null) {
-            throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "token") || $data->token === null) { throw new SdkValidationError("token", 'required', "Required property 'token' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RotateVaultCredentialAuthParamStaticBearerTypeEnum::class),
             token: SdkClient::stringValue($data->token),

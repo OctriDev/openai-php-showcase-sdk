@@ -103,24 +103,12 @@ class C2PAProvenanceResult implements ProvenanceResourceResultsItem, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "outcome") || $data->outcome === null) {
-            throw new SdkValidationError("outcome", 'required', "Required property 'outcome' is missing or null");
-        }
-        if (!property_exists($data, "validation_state") || $data->validation_state === null) {
-            throw new SdkValidationError("validation_state", 'required', "Required property 'validation_state' is missing or null");
-        }
-        if (!property_exists($data, "issuer")) {
-            throw new SdkValidationError("issuer", 'required', "Missing required property 'issuer'");
-        }
-        if (!property_exists($data, "model")) {
-            throw new SdkValidationError("model", 'required', "Missing required property 'model'");
-        }
-        if (!property_exists($data, "generated_at")) {
-            throw new SdkValidationError("generated_at", 'required', "Missing required property 'generated_at'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "outcome") || $data->outcome === null) { throw new SdkValidationError("outcome", 'required', "Required property 'outcome' is missing or null"); }
+        if (!property_exists($data, "validation_state") || $data->validation_state === null) { throw new SdkValidationError("validation_state", 'required', "Required property 'validation_state' is missing or null"); }
+        if (!property_exists($data, "issuer")) { throw new SdkValidationError("issuer", 'required', "Missing required property 'issuer'"); }
+        if (!property_exists($data, "model")) { throw new SdkValidationError("model", 'required', "Missing required property 'model'"); }
+        if (!property_exists($data, "generated_at")) { throw new SdkValidationError("generated_at", 'required', "Missing required property 'generated_at'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, C2PAProvenanceResultTypeEnum::class),
             outcome: SdkClient::hydrateStringEnumOrString($data->outcome, ProvenanceDetectionResultApi::class),
@@ -142,26 +130,11 @@ final readonly class C2PAValidationStateApi implements SdkOpenEnum
     public const INVALID = "invalid";
     public const NOT_PRESENT = "not_present";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -202,9 +175,7 @@ class CreateContentProvenanceBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file") || $data->file === null) {
-            throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null");
-        }
+        if (!property_exists($data, "file") || $data->file === null) { throw new SdkValidationError("file", 'required', "Required property 'file' is missing or null"); }
         return new self(
             file: SdkClient::stringValue($data->file),
         );
@@ -218,26 +189,11 @@ final readonly class ProvenanceCheckObject implements SdkOpenEnum
 {
     public const CONTENT_PROVENANCE_CHECK = "content_provenance_check";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -248,26 +204,11 @@ final readonly class ProvenanceDetectionResultApi implements SdkOpenEnum
     public const DETECTED = "detected";
     public const NOT_DETECTED = "not_detected";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -328,15 +269,9 @@ class ProvenanceResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "results") || $data->results === null) {
-            throw new SdkValidationError("results", 'required', "Required property 'results' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "results") || $data->results === null) { throw new SdkValidationError("results", 'required', "Required property 'results' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ProvenanceCheckObject::class),
             createdAt: SdkClient::intValue($data->created_at),

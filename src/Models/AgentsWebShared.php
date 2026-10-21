@@ -73,15 +73,9 @@ class WebSearchActionResourceFindInPage implements WebSearchActionResource, \Jso
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "url")) {
-            throw new SdkValidationError("url", 'required', "Missing required property 'url'");
-        }
-        if (!property_exists($data, "pattern")) {
-            throw new SdkValidationError("pattern", 'required', "Missing required property 'pattern'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "url")) { throw new SdkValidationError("url", 'required', "Missing required property 'url'"); }
+        if (!property_exists($data, "pattern")) { throw new SdkValidationError("pattern", 'required', "Missing required property 'pattern'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, WebSearchActionResourceFindInPageTypeEnum::class),
             url: ($data->url === null ? null : SdkClient::stringValue($data->url)),
@@ -146,12 +140,8 @@ class WebSearchActionResourceOpenPage implements WebSearchActionResource, \JsonS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "url")) {
-            throw new SdkValidationError("url", 'required', "Missing required property 'url'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "url")) { throw new SdkValidationError("url", 'required', "Missing required property 'url'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, WebSearchActionResourceOpenPageTypeEnum::class),
             url: ($data->url === null ? null : SdkClient::stringValue($data->url)),
@@ -205,9 +195,7 @@ class WebSearchActionResourceOther implements WebSearchActionResource, \JsonSeri
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, WebSearchActionResourceOtherTypeEnum::class),
         );
@@ -280,15 +268,9 @@ class WebSearchActionResourceSearch implements WebSearchActionResource, \JsonSer
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "query")) {
-            throw new SdkValidationError("query", 'required', "Missing required property 'query'");
-        }
-        if (!property_exists($data, "queries")) {
-            throw new SdkValidationError("queries", 'required', "Missing required property 'queries'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "query")) { throw new SdkValidationError("query", 'required', "Missing required property 'query'"); }
+        if (!property_exists($data, "queries")) { throw new SdkValidationError("queries", 'required', "Missing required property 'queries'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, WebSearchActionResourceSearchTypeEnum::class),
             query: ($data->query === null ? null : SdkClient::stringValue($data->query)),

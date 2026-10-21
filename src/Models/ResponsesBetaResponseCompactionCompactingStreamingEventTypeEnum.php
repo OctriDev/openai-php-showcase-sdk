@@ -95,18 +95,10 @@ class BetaResponseCompactionCompactingStreamingEvent implements BetaResponseStre
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
-        if (!property_exists($data, "output_index") || $data->output_index === null) {
-            throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null");
-        }
-        if (!property_exists($data, "item_id") || $data->item_id === null) {
-            throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "output_index") || $data->output_index === null) { throw new SdkValidationError("output_index", 'required', "Required property 'output_index' is missing or null"); }
+        if (!property_exists($data, "item_id") || $data->item_id === null) { throw new SdkValidationError("item_id", 'required', "Required property 'item_id' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseCompactionCompactingStreamingEventTypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
@@ -195,15 +187,9 @@ class BetaResponseCompletedEvent implements BetaResponseStreamEvent, \JsonSerial
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "response") || $data->response === null) {
-            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseCompletedEventTypeEnum::class),
             response: SdkClient::hydrateClass($data->response, BetaResponse::class),
@@ -251,9 +237,7 @@ class BetaResponseConversation implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
         );
@@ -338,15 +322,9 @@ class BetaResponseCreatedEvent implements BetaResponseStreamEvent, \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "response") || $data->response === null) {
-            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaResponseCreatedEventTypeEnum::class),
             response: SdkClient::hydrateClass($data->response, BetaResponse::class),

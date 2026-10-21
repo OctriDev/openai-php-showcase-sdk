@@ -77,9 +77,7 @@ class CustomToolChatCompletionsCustom implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             description: (property_exists($data, "description") && $data->description !== null ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
@@ -136,12 +134,8 @@ class CustomToolChatCompletions implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "custom") || $data->custom === null) {
-            throw new SdkValidationError("custom", 'required', "Required property 'custom' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "custom") || $data->custom === null) { throw new SdkValidationError("custom", 'required', "Required property 'custom' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CustomToolChatCompletionsTypeEnum::class),
             custom: SdkClient::hydrateClass($data->custom, CustomToolChatCompletionsCustom::class),
@@ -192,9 +186,7 @@ class CustomToolChatCompletionsCustomFormatVariant0 implements CustomToolChatCom
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CustomToolChatCompletionsCustomFormatVariant0TypeEnum::class),
         );
@@ -217,26 +209,11 @@ final readonly class CustomToolChatCompletionsCustomFormatVariant1GrammarSyntaxE
     public const LARK = "lark";
     public const REGEX = "regex";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -287,12 +264,8 @@ class CustomToolChatCompletionsCustomFormatVariant1Grammar implements \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "definition") || $data->definition === null) {
-            throw new SdkValidationError("definition", 'required', "Required property 'definition' is missing or null");
-        }
-        if (!property_exists($data, "syntax") || $data->syntax === null) {
-            throw new SdkValidationError("syntax", 'required', "Required property 'syntax' is missing or null");
-        }
+        if (!property_exists($data, "definition") || $data->definition === null) { throw new SdkValidationError("definition", 'required', "Required property 'definition' is missing or null"); }
+        if (!property_exists($data, "syntax") || $data->syntax === null) { throw new SdkValidationError("syntax", 'required', "Required property 'syntax' is missing or null"); }
         return new self(
             definition: SdkClient::stringValue($data->definition),
             syntax: SdkClient::hydrateStringEnumOrString($data->syntax, CustomToolChatCompletionsCustomFormatVariant1GrammarSyntaxEnum::class),
@@ -345,12 +318,8 @@ class CustomToolChatCompletionsCustomFormatVariant1 implements CustomToolChatCom
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "grammar") || $data->grammar === null) {
-            throw new SdkValidationError("grammar", 'required', "Required property 'grammar' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "grammar") || $data->grammar === null) { throw new SdkValidationError("grammar", 'required', "Required property 'grammar' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CustomToolChatCompletionsCustomFormatVariant1TypeEnum::class),
             grammar: SdkClient::hydrateClass($data->grammar, CustomToolChatCompletionsCustomFormatVariant1Grammar::class),

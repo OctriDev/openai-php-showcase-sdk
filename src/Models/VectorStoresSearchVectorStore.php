@@ -16,26 +16,11 @@ final readonly class VectorStoreSearchRequestRankingOptionsRankerEnum implements
     public const AUTO = "auto";
     public const DEFAULT_2024_11_15 = "default-2024-11-15";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -183,9 +168,7 @@ class VectorStoreSearchRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "query") || $data->query === null) {
-            throw new SdkValidationError("query", 'required', "Required property 'query' is missing or null");
-        }
+        if (!property_exists($data, "query") || $data->query === null) { throw new SdkValidationError("query", 'required', "Required property 'query' is missing or null"); }
         return new self(
             query: (is_array($data->query) ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->query))) : SdkClient::stringValue($data->query)),
             rewriteQuery: (property_exists($data, "rewrite_query") && $data->rewrite_query !== null ? SdkClient::boolValue($data->rewrite_query) : SdkNotGiven::Value),
@@ -203,26 +186,11 @@ final readonly class VectorStoreSearchResultContentObjectTypeEnum implements Sdk
 {
     public const TEXT = "text";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -273,12 +241,8 @@ class VectorStoreSearchResultContentObject implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
         return new self(
             type: SdkClient::hydrateStringEnumOrString($data->type, VectorStoreSearchResultContentObjectTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -364,21 +328,11 @@ class VectorStoreSearchResultItem implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
-        if (!property_exists($data, "filename") || $data->filename === null) {
-            throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null");
-        }
-        if (!property_exists($data, "score") || $data->score === null) {
-            throw new SdkValidationError("score", 'required', "Required property 'score' is missing or null");
-        }
-        if (!property_exists($data, "attributes")) {
-            throw new SdkValidationError("attributes", 'required', "Missing required property 'attributes'");
-        }
-        if (!property_exists($data, "content") || $data->content === null) {
-            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
-        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
+        if (!property_exists($data, "filename") || $data->filename === null) { throw new SdkValidationError("filename", 'required', "Required property 'filename' is missing or null"); }
+        if (!property_exists($data, "score") || $data->score === null) { throw new SdkValidationError("score", 'required', "Required property 'score' is missing or null"); }
+        if (!property_exists($data, "attributes")) { throw new SdkValidationError("attributes", 'required', "Missing required property 'attributes'"); }
+        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
             filename: SdkClient::stringValue($data->filename),

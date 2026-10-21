@@ -360,12 +360,8 @@ class CreateChatCompletionRequestVariant1 implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "messages") || $data->messages === null) {
-            throw new SdkValidationError("messages", 'required', "Required property 'messages' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
+        if (!property_exists($data, "messages") || $data->messages === null) { throw new SdkValidationError("messages", 'required', "Required property 'messages' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
         return new self(
             messages: array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, ChatCompletionRequestMessage::class, [ChatCompletionRequestDeveloperMessage::class, ChatCompletionRequestSystemMessage::class, ChatCompletionRequestUserMessage::class, ChatCompletionRequestAssistantMessage::class, ChatCompletionRequestToolMessage::class, ChatCompletionRequestFunctionMessage::class], "role", ["developer" => ChatCompletionRequestDeveloperMessage::class, "system" => ChatCompletionRequestSystemMessage::class, "user" => ChatCompletionRequestUserMessage::class, "assistant" => ChatCompletionRequestAssistantMessage::class, "tool" => ChatCompletionRequestToolMessage::class, "function" => ChatCompletionRequestFunctionMessage::class], UnknownChatCompletionRequestMessage::class), SdkClient::arrayValue($data->messages))),
             model: SdkClient::stringValue($data->model),

@@ -85,21 +85,11 @@ class SessionEventAgentSessionTurnCreated implements SessionEvent, \JsonSerializ
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "session_id") || $data->session_id === null) {
-            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
-        }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
-            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
-        }
-        if (!property_exists($data, "turn") || $data->turn === null) {
-            throw new SdkValidationError("turn", 'required', "Required property 'turn' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
+        if (!property_exists($data, "turn") || $data->turn === null) { throw new SdkValidationError("turn", 'required', "Required property 'turn' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionTurnCreatedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -206,24 +196,12 @@ class SessionEventAgentSessionTurnFailed implements SessionEvent, \JsonSerializa
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "session_id") || $data->session_id === null) {
-            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
-        }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
-            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
-        }
-        if (!property_exists($data, "turn") || $data->turn === null) {
-            throw new SdkValidationError("turn", 'required', "Required property 'turn' is missing or null");
-        }
-        if (!property_exists($data, "usage")) {
-            throw new SdkValidationError("usage", 'required', "Missing required property 'usage'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
+        if (!property_exists($data, "turn") || $data->turn === null) { throw new SdkValidationError("turn", 'required', "Required property 'turn' is missing or null"); }
+        if (!property_exists($data, "usage")) { throw new SdkValidationError("usage", 'required', "Missing required property 'usage'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionTurnFailedTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),
@@ -321,21 +299,11 @@ class SessionEventAgentSessionTurnInProgress implements SessionEvent, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "event_id") || $data->event_id === null) {
-            throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null");
-        }
-        if (!property_exists($data, "session_id") || $data->session_id === null) {
-            throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null");
-        }
-        if (!property_exists($data, "turn_id") || $data->turn_id === null) {
-            throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null");
-        }
-        if (!property_exists($data, "turn") || $data->turn === null) {
-            throw new SdkValidationError("turn", 'required', "Required property 'turn' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "event_id") || $data->event_id === null) { throw new SdkValidationError("event_id", 'required', "Required property 'event_id' is missing or null"); }
+        if (!property_exists($data, "session_id") || $data->session_id === null) { throw new SdkValidationError("session_id", 'required', "Required property 'session_id' is missing or null"); }
+        if (!property_exists($data, "turn_id") || $data->turn_id === null) { throw new SdkValidationError("turn_id", 'required', "Required property 'turn_id' is missing or null"); }
+        if (!property_exists($data, "turn") || $data->turn === null) { throw new SdkValidationError("turn", 'required', "Required property 'turn' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, SessionEventAgentSessionTurnInProgressTypeEnum::class),
             eventId: SdkClient::stringValue($data->event_id),

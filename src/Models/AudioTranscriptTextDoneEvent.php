@@ -91,12 +91,8 @@ class TranscriptTextDoneEvent implements CreateTranscriptionResponseStreamEvent,
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TranscriptTextDoneEventTypeEnum::class),
             text: SdkClient::stringValue($data->text),
@@ -203,24 +199,12 @@ class TranscriptTextSegmentEvent implements CreateTranscriptionResponseStreamEve
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "start") || $data->start === null) {
-            throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null");
-        }
-        if (!property_exists($data, "end") || $data->end === null) {
-            throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
-        if (!property_exists($data, "speaker") || $data->speaker === null) {
-            throw new SdkValidationError("speaker", 'required', "Required property 'speaker' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "start") || $data->start === null) { throw new SdkValidationError("start", 'required', "Required property 'start' is missing or null"); }
+        if (!property_exists($data, "end") || $data->end === null) { throw new SdkValidationError("end", 'required', "Required property 'end' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "speaker") || $data->speaker === null) { throw new SdkValidationError("speaker", 'required', "Required property 'speaker' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TranscriptTextSegmentEventTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -288,12 +272,8 @@ class TranscriptTextUsageDuration implements CreateTranscriptionResponseDiarized
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "seconds") || $data->seconds === null) {
-            throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "seconds") || $data->seconds === null) { throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, TranscriptTextUsageDurationTypeEnum::class),
             seconds: SdkClient::floatValue($data->seconds),

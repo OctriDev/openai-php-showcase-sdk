@@ -75,12 +75,8 @@ class CreateEvalCustomDataSourceConfig implements CreateEvalRequestDataSourceCon
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "item_schema") || $data->item_schema === null) {
-            throw new SdkValidationError("item_schema", 'required', "Required property 'item_schema' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "item_schema") || $data->item_schema === null) { throw new SdkValidationError("item_schema", 'required', "Required property 'item_schema' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalCustomDataSourceConfigTypeEnum::class),
             itemSchema: SdkClient::stringMapValue($data->item_schema),
@@ -134,12 +130,8 @@ class CreateEvalItemVariant0 implements CreateEvalItem, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "role") || $data->role === null) {
-            throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null");
-        }
-        if (!property_exists($data, "content") || $data->content === null) {
-            throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null");
-        }
+        if (!property_exists($data, "role") || $data->role === null) { throw new SdkValidationError("role", 'required', "Required property 'role' is missing or null"); }
+        if (!property_exists($data, "content") || $data->content === null) { throw new SdkValidationError("content", 'required', "Required property 'content' is missing or null"); }
         return new self(
             role: SdkClient::stringValue($data->role),
             content: SdkClient::stringValue($data->content),
@@ -243,24 +235,12 @@ class CreateEvalLabelModelGrader implements CreateEvalRequestTestingCriteriaItem
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "input") || $data->input === null) {
-            throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null");
-        }
-        if (!property_exists($data, "labels") || $data->labels === null) {
-            throw new SdkValidationError("labels", 'required', "Required property 'labels' is missing or null");
-        }
-        if (!property_exists($data, "passing_labels") || $data->passing_labels === null) {
-            throw new SdkValidationError("passing_labels", 'required', "Required property 'passing_labels' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "input") || $data->input === null) { throw new SdkValidationError("input", 'required', "Required property 'input' is missing or null"); }
+        if (!property_exists($data, "labels") || $data->labels === null) { throw new SdkValidationError("labels", 'required', "Required property 'labels' is missing or null"); }
+        if (!property_exists($data, "passing_labels") || $data->passing_labels === null) { throw new SdkValidationError("passing_labels", 'required', "Required property 'passing_labels' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalLabelModelGraderTypeEnum::class),
             name: SdkClient::stringValue($data->name),
@@ -330,9 +310,7 @@ class CreateEvalLogsDataSourceConfig implements CreateEvalRequestDataSourceConfi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateEvalLogsDataSourceConfigTypeEnum::class),
             metadata: (property_exists($data, "metadata") && $data->metadata !== null ? SdkClient::stringMapValue($data->metadata) : SdkNotGiven::Value),

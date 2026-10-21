@@ -116,9 +116,7 @@ class AssistantToolsFileSearch implements AssistantObjectToolsItem, RunObjectToo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AssistantToolsFileSearchTypeEnum::class),
             fileSearch: (property_exists($data, "file_search") && $data->file_search !== null ? SdkClient::hydrateClass($data->file_search, AssistantToolsFileSearchFileSearch::class) : SdkNotGiven::Value),
@@ -172,9 +170,7 @@ class AssistantToolsFileSearchTypeOnly implements MessageObjectAttachmentsItemTo
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AssistantToolsFileSearchTypeOnlyTypeEnum::class),
         );
@@ -237,12 +233,8 @@ class AssistantToolsFunction implements AssistantObjectToolsItem, RunObjectTools
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "function") || $data->function === null) {
-            throw new SdkValidationError("function", 'required', "Required property 'function' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "function") || $data->function === null) { throw new SdkValidationError("function", 'required', "Required property 'function' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AssistantToolsFunctionTypeEnum::class),
             function_: SdkClient::hydrateClass($data->function, FunctionObject::class),

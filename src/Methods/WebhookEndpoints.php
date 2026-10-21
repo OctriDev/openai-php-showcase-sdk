@@ -25,7 +25,7 @@ class WebhookEndpoints
             Validation::validateRange('limit', $limit, min: 1, max: 100);
         }
 
-        $sdkResponse = SdkClient::request('GET', "/webhook_endpoints", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: WebhookEndpointListResource::class, decoder: 'json', operationId: 'listWebhookEndpoints', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/webhook_endpoints", $clientConfig, query: ['limit' => new SdkQueryValue($limit, "form", true), 'after' => new SdkQueryValue($after, "form", true)], returnType: WebhookEndpointListResource::class, decoder: 'json', operationId: 'listWebhookEndpoints', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WebhookEndpointListResource::class));
     }
 
@@ -116,7 +116,7 @@ class WebhookEndpoints
 
         Validation::validateItems('event_types', $eventTypes, min: 1);
 
-        $sdkResponse = SdkClient::request('POST', "/webhook_endpoints", $clientConfig, body: ['name' => $name, 'url' => $url, 'event_types' => $eventTypes], returnType: WebhookEndpointWithSecretResource::class, decoder: 'json', operationId: 'createWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/webhook_endpoints", $clientConfig, body: ['name' => $name, 'url' => $url, 'event_types' => $eventTypes], returnType: WebhookEndpointWithSecretResource::class, decoder: 'json', operationId: 'createWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WebhookEndpointWithSecretResource::class));
     }
 
@@ -132,7 +132,7 @@ class WebhookEndpoints
     public static function retrieveWebhookEndpoint(ClientConfig $clientConfig, string $webhookEndpointId, ?RequestOptions $requestOptions = null): WebhookEndpointBody
     {
 
-        $sdkResponse = SdkClient::request('GET', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "", $clientConfig, returnType: WebhookEndpointBody::class, decoder: 'json', operationId: 'retrieveWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "", $clientConfig, returnType: WebhookEndpointBody::class, decoder: 'json', operationId: 'retrieveWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WebhookEndpointBody::class));
     }
 
@@ -164,7 +164,7 @@ class WebhookEndpoints
             Validation::validateItems('event_types', $eventTypes, min: 1);
         }
 
-        $sdkResponse = SdkClient::request('POST', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "", $clientConfig, body: ['name' => $name, 'url' => $url, 'event_types' => $eventTypes], returnType: WebhookEndpointBody::class, decoder: 'json', operationId: 'updateWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "", $clientConfig, body: ['name' => $name, 'url' => $url, 'event_types' => $eventTypes], returnType: WebhookEndpointBody::class, decoder: 'json', operationId: 'updateWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WebhookEndpointBody::class));
     }
 
@@ -180,7 +180,7 @@ class WebhookEndpoints
     public static function deleteWebhookEndpoint(ClientConfig $clientConfig, string $webhookEndpointId, ?RequestOptions $requestOptions = null): DeletedWebhookEndpointResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "", $clientConfig, returnType: DeletedWebhookEndpointResource::class, decoder: 'json', operationId: 'deleteWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "", $clientConfig, returnType: DeletedWebhookEndpointResource::class, decoder: 'json', operationId: 'deleteWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, DeletedWebhookEndpointResource::class));
     }
 
@@ -197,7 +197,7 @@ class WebhookEndpoints
     public static function rotateWebhookEndpointSigningSecret(ClientConfig $clientConfig, string $webhookEndpointId, bool|SdkNotGiven $keepOldSecretActiveFor24Hours = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): WebhookEndpointWithSecretResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "/rotate_secret", $clientConfig, body: ['keep_old_secret_active_for_24_hours' => $keepOldSecretActiveFor24Hours], returnType: WebhookEndpointWithSecretResource::class, decoder: 'json', operationId: 'rotateWebhookEndpointSigningSecret', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "/rotate_secret", $clientConfig, body: ['keep_old_secret_active_for_24_hours' => $keepOldSecretActiveFor24Hours], returnType: WebhookEndpointWithSecretResource::class, decoder: 'json', operationId: 'rotateWebhookEndpointSigningSecret', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WebhookEndpointWithSecretResource::class));
     }
 
@@ -214,7 +214,7 @@ class WebhookEndpoints
     public static function testWebhookEndpoint(ClientConfig $clientConfig, string $webhookEndpointId, ProjectEventTypeEnum $eventType, ?RequestOptions $requestOptions = null): WebhookEndpointTestResultResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "/test", $clientConfig, body: ['event_type' => $eventType], returnType: WebhookEndpointTestResultResource::class, decoder: 'json', operationId: 'testWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/webhook_endpoints/" . SdkClient::encodePathSegment($webhookEndpointId) . "/test", $clientConfig, body: ['event_type' => $eventType], returnType: WebhookEndpointTestResultResource::class, decoder: 'json', operationId: 'testWebhookEndpoint', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, WebhookEndpointTestResultResource::class));
     }
 }

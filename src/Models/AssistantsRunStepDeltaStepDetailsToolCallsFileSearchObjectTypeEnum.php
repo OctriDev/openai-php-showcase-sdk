@@ -85,15 +85,9 @@ class RunStepDeltaStepDetailsToolCallsFileSearchObject implements RunStepDeltaSt
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "index") || $data->index === null) {
-            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "file_search") || $data->file_search === null) {
-            throw new SdkValidationError("file_search", 'required', "Required property 'file_search' is missing or null");
-        }
+        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "file_search") || $data->file_search === null) { throw new SdkValidationError("file_search", 'required', "Required property 'file_search' is missing or null"); }
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum::class),
@@ -255,12 +249,8 @@ class RunStepDeltaStepDetailsToolCallsFunctionObject implements RunStepDeltaStep
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "index") || $data->index === null) {
-            throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "index") || $data->index === null) { throw new SdkValidationError("index", 'required', "Required property 'index' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             index: SdkClient::intValue($data->index),
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum::class),
@@ -328,9 +318,7 @@ class RunStepDeltaStepDetailsToolCallsObject implements RunStepDeltaObjectDeltaS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RunStepDeltaStepDetailsToolCallsObjectTypeEnum::class),
             toolCalls: (property_exists($data, "tool_calls") && $data->tool_calls !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateUnionAs($item, RunStepDeltaStepDetailsToolCallsObjectToolCallsItem::class, [RunStepDeltaStepDetailsToolCallsCodeObject::class, RunStepDeltaStepDetailsToolCallsFileSearchObject::class, RunStepDeltaStepDetailsToolCallsFunctionObject::class], "type", ["code_interpreter" => RunStepDeltaStepDetailsToolCallsCodeObject::class, "file_search" => RunStepDeltaStepDetailsToolCallsFileSearchObject::class, "function" => RunStepDeltaStepDetailsToolCallsFunctionObject::class], UnknownRunStepDeltaStepDetailsToolCallsObjectToolCallsItem::class), SdkClient::arrayValue($data->tool_calls))) : SdkNotGiven::Value),

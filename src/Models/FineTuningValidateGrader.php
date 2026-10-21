@@ -45,9 +45,7 @@ class ValidateGraderRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "grader") || $data->grader === null) {
-            throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null");
-        }
+        if (!property_exists($data, "grader") || $data->grader === null) { throw new SdkValidationError("grader", 'required', "Required property 'grader' is missing or null"); }
         return new self(
             grader: SdkClient::hydrateUnionAs($data->grader, ValidateGraderRequestGrader::class, [GraderStringCheck::class, GraderTextSimilarity::class, GraderPython::class, GraderScoreModel::class, GraderMulti::class], "type", ["string_check" => GraderStringCheck::class, "text_similarity" => GraderTextSimilarity::class, "python" => GraderPython::class, "score_model" => GraderScoreModel::class, "multi" => GraderMulti::class], UnknownValidateGraderRequestGrader::class),
         );

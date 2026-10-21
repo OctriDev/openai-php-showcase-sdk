@@ -201,9 +201,7 @@ class RealtimeSessionCreateRequestGA implements RealtimeClientEventSessionUpdate
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, RealtimeSessionCreateRequestGATypeEnum::class),
             outputModalities: (property_exists($data, "output_modalities") && $data->output_modalities !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateStringEnumOrString($item, RealtimeSessionCreateRequestGAOutputModalitiesItemEnum::class), SdkClient::arrayValue($data->output_modalities))) : SdkNotGiven::Value),

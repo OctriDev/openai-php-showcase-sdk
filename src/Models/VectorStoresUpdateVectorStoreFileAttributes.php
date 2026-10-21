@@ -45,9 +45,7 @@ class UpdateVectorStoreFileAttributesRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "attributes")) {
-            throw new SdkValidationError("attributes", 'required', "Missing required property 'attributes'");
-        }
+        if (!property_exists($data, "attributes")) { throw new SdkValidationError("attributes", 'required', "Missing required property 'attributes'"); }
         return new self(
             attributes: ($data->attributes === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->attributes), static fn($item) => (is_bool($item) ? SdkClient::boolValue($item) : (is_float($item) || is_int($item) ? SdkClient::floatValue($item) : SdkClient::stringValue($item))))),
         );

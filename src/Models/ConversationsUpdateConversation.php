@@ -45,9 +45,7 @@ class UpdateConversationBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "metadata")) {
-            throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'");
-        }
+        if (!property_exists($data, "metadata")) { throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'"); }
         return new self(
             metadata: ($data->metadata === null ? null : SdkClient::mapValues(SdkClient::stringMapValue($data->metadata), static fn($item) => SdkClient::stringValue($item))),
         );

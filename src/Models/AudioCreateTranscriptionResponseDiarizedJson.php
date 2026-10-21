@@ -87,18 +87,10 @@ class CreateTranscriptionResponseDiarizedJson implements CreateTranscriptionResp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "task") || $data->task === null) {
-            throw new SdkValidationError("task", 'required', "Required property 'task' is missing or null");
-        }
-        if (!property_exists($data, "duration") || $data->duration === null) {
-            throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null");
-        }
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
-        if (!property_exists($data, "segments") || $data->segments === null) {
-            throw new SdkValidationError("segments", 'required', "Required property 'segments' is missing or null");
-        }
+        if (!property_exists($data, "task") || $data->task === null) { throw new SdkValidationError("task", 'required', "Required property 'task' is missing or null"); }
+        if (!property_exists($data, "duration") || $data->duration === null) { throw new SdkValidationError("duration", 'required', "Required property 'duration' is missing or null"); }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
+        if (!property_exists($data, "segments") || $data->segments === null) { throw new SdkValidationError("segments", 'required', "Required property 'segments' is missing or null"); }
         return new self(
             task: SdkClient::hydrateStringEnumOrString($data->task, CreateTranscriptionResponseDiarizedJsonTaskEnum::class),
             duration: SdkClient::floatValue($data->duration),
@@ -255,9 +247,7 @@ class CreateTranscriptionResponseJson implements CreateTranscriptionResponse, \J
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "text") || $data->text === null) {
-            throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null");
-        }
+        if (!property_exists($data, "text") || $data->text === null) { throw new SdkValidationError("text", 'required', "Required property 'text' is missing or null"); }
         return new self(
             text: SdkClient::stringValue($data->text),
             languages: (property_exists($data, "languages") && $data->languages !== null ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, TranscriptionLanguage::class), SdkClient::arrayValue($data->languages))) : SdkNotGiven::Value),

@@ -93,9 +93,7 @@ class CreateVideoJsonBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "prompt") || $data->prompt === null) {
-            throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null");
-        }
+        if (!property_exists($data, "prompt") || $data->prompt === null) { throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null"); }
         return new self(
             prompt: SdkClient::stringValue($data->prompt),
             model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),
@@ -192,9 +190,7 @@ class CreateVideoMultipartBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "prompt") || $data->prompt === null) {
-            throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null");
-        }
+        if (!property_exists($data, "prompt") || $data->prompt === null) { throw new SdkValidationError("prompt", 'required', "Required property 'prompt' is missing or null"); }
         return new self(
             prompt: SdkClient::stringValue($data->prompt),
             model: (property_exists($data, "model") && $data->model !== null ? SdkClient::stringValue($data->model) : SdkNotGiven::Value),

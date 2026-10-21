@@ -22,7 +22,7 @@ trait AudioVoiceConsentsMethods
     public static function createVoiceConsent(ClientConfig $clientConfig, string $name, SdkUploadFile $recording, string $language, ?RequestOptions $requestOptions = null): VoiceConsentResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/audio/voice_consents", $clientConfig, body: ['name' => $name, 'recording' => $recording, 'language' => $language], contentType: 'multipart/form-data', returnType: VoiceConsentResource::class, decoder: 'json', operationId: 'createVoiceConsent', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/audio/voice_consents", $clientConfig, body: ['name' => $name, 'recording' => $recording, 'language' => $language], contentType: 'multipart/form-data', returnType: VoiceConsentResource::class, decoder: 'json', operationId: 'createVoiceConsent', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VoiceConsentResource::class));
     }
 
@@ -39,7 +39,7 @@ trait AudioVoiceConsentsMethods
     public static function listVoiceConsents(ClientConfig $clientConfig, string|SdkNotGiven $after = SdkNotGiven::Value, int|SdkNotGiven $limit = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): VoiceConsentListResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/audio/voice_consents", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: VoiceConsentListResource::class, decoder: 'json', operationId: 'listVoiceConsents', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/audio/voice_consents", $clientConfig, query: ['after' => new SdkQueryValue($after, "form", true), 'limit' => new SdkQueryValue($limit, "form", true)], returnType: VoiceConsentListResource::class, decoder: 'json', operationId: 'listVoiceConsents', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VoiceConsentListResource::class));
     }
 
@@ -121,7 +121,7 @@ trait AudioVoiceConsentsMethods
     public static function getVoiceConsent(ClientConfig $clientConfig, string $consentId, ?RequestOptions $requestOptions = null): VoiceConsentResource
     {
 
-        $sdkResponse = SdkClient::request('GET', "/audio/voice_consents/" . SdkClient::encodePathSegment($consentId) . "", $clientConfig, returnType: VoiceConsentResource::class, decoder: 'json', operationId: 'getVoiceConsent', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('GET', "/audio/voice_consents/" . SdkClient::encodePathSegment($consentId) . "", $clientConfig, returnType: VoiceConsentResource::class, decoder: 'json', operationId: 'getVoiceConsent', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VoiceConsentResource::class));
     }
 
@@ -138,7 +138,7 @@ trait AudioVoiceConsentsMethods
     public static function updateVoiceConsent(ClientConfig $clientConfig, string $consentId, string $name, ?RequestOptions $requestOptions = null): VoiceConsentResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/audio/voice_consents/" . SdkClient::encodePathSegment($consentId) . "", $clientConfig, body: ['name' => $name], returnType: VoiceConsentResource::class, decoder: 'json', operationId: 'updateVoiceConsent', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/audio/voice_consents/" . SdkClient::encodePathSegment($consentId) . "", $clientConfig, body: ['name' => $name], returnType: VoiceConsentResource::class, decoder: 'json', operationId: 'updateVoiceConsent', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VoiceConsentResource::class));
     }
 
@@ -154,7 +154,7 @@ trait AudioVoiceConsentsMethods
     public static function deleteVoiceConsent(ClientConfig $clientConfig, string $consentId, ?RequestOptions $requestOptions = null): VoiceConsentDeletedResource
     {
 
-        $sdkResponse = SdkClient::request('DELETE', "/audio/voice_consents/" . SdkClient::encodePathSegment($consentId) . "", $clientConfig, returnType: VoiceConsentDeletedResource::class, decoder: 'json', operationId: 'deleteVoiceConsent', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('DELETE', "/audio/voice_consents/" . SdkClient::encodePathSegment($consentId) . "", $clientConfig, returnType: VoiceConsentDeletedResource::class, decoder: 'json', operationId: 'deleteVoiceConsent', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VoiceConsentDeletedResource::class));
     }
 }

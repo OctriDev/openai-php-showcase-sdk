@@ -14,26 +14,11 @@ final readonly class CreateUploadPurpose implements SdkOpenEnum
     public const FINE_TUNE = "fine-tune";
     public const VISION = "vision";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 class Uploads
@@ -53,7 +38,7 @@ class Uploads
     public static function createUpload(ClientConfig $clientConfig, string $filename, CreateUploadPurpose $purpose, int $bytes, string $mimeType, FileExpirationAfter|SdkNotGiven $expiresAfter = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Upload
     {
 
-        $sdkResponse = SdkClient::request('POST', "/uploads", $clientConfig, body: ['filename' => $filename, 'purpose' => $purpose, 'bytes' => $bytes, 'mime_type' => $mimeType, 'expires_after' => $expiresAfter], returnType: Upload::class, decoder: 'json', operationId: 'createUpload', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/uploads", $clientConfig, body: ['filename' => $filename, 'purpose' => $purpose, 'bytes' => $bytes, 'mime_type' => $mimeType, 'expires_after' => $expiresAfter], returnType: Upload::class, decoder: 'json', operationId: 'createUpload', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Upload::class));
     }
 
@@ -69,7 +54,7 @@ class Uploads
     public static function cancelUpload(ClientConfig $clientConfig, string $uploadId, ?RequestOptions $requestOptions = null): Upload
     {
 
-        $sdkResponse = SdkClient::request('POST', "/uploads/" . SdkClient::encodePathSegment($uploadId) . "/cancel", $clientConfig, returnType: Upload::class, decoder: 'json', operationId: 'cancelUpload', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 410 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/uploads/" . SdkClient::encodePathSegment($uploadId) . "/cancel", $clientConfig, returnType: Upload::class, decoder: 'json', operationId: 'cancelUpload', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 410 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Upload::class));
     }
 
@@ -87,7 +72,7 @@ class Uploads
     public static function completeUpload(ClientConfig $clientConfig, string $uploadId, array $partIds, string|SdkNotGiven $md5 = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): Upload
     {
 
-        $sdkResponse = SdkClient::request('POST', "/uploads/" . SdkClient::encodePathSegment($uploadId) . "/complete", $clientConfig, body: ['part_ids' => $partIds, 'md5' => $md5], returnType: Upload::class, decoder: 'json', operationId: 'completeUpload', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 410 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/uploads/" . SdkClient::encodePathSegment($uploadId) . "/complete", $clientConfig, body: ['part_ids' => $partIds, 'md5' => $md5], returnType: Upload::class, decoder: 'json', operationId: 'completeUpload', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 410 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Upload::class));
     }
 
@@ -104,7 +89,7 @@ class Uploads
     public static function addUploadPart(ClientConfig $clientConfig, string $uploadId, SdkUploadFile $data, ?RequestOptions $requestOptions = null): UploadPart
     {
 
-        $sdkResponse = SdkClient::request('POST', "/uploads/" . SdkClient::encodePathSegment($uploadId) . "/parts", $clientConfig, body: ['data' => $data], contentType: 'multipart/form-data', returnType: UploadPart::class, decoder: 'json', operationId: 'addUploadPart', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 410 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/uploads/" . SdkClient::encodePathSegment($uploadId) . "/parts", $clientConfig, body: ['data' => $data], contentType: 'multipart/form-data', returnType: UploadPart::class, decoder: 'json', operationId: 'addUploadPart', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 410 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, UploadPart::class));
     }
 }

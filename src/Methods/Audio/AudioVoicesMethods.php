@@ -20,7 +20,7 @@ trait AudioVoicesMethods
     public static function createVoice(ClientConfig $clientConfig, CreateVoiceRequest $body, ?RequestOptions $requestOptions = null): VoiceResource
     {
 
-        $sdkResponse = SdkClient::request('POST', "/audio/voices", $clientConfig, body: $body, contentType: 'multipart/form-data', returnType: VoiceResource::class, decoder: 'json', operationId: 'createVoice', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/audio/voices", $clientConfig, body: $body, contentType: 'multipart/form-data', returnType: VoiceResource::class, decoder: 'json', operationId: 'createVoice', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 500 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, VoiceResource::class));
     }
 }

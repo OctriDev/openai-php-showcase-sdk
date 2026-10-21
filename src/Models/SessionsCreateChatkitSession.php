@@ -209,12 +209,8 @@ class CreateChatSessionBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "workflow") || $data->workflow === null) {
-            throw new SdkValidationError("workflow", 'required', "Required property 'workflow' is missing or null");
-        }
-        if (!property_exists($data, "user") || $data->user === null) {
-            throw new SdkValidationError("user", 'required', "Required property 'user' is missing or null");
-        }
+        if (!property_exists($data, "workflow") || $data->workflow === null) { throw new SdkValidationError("workflow", 'required', "Required property 'workflow' is missing or null"); }
+        if (!property_exists($data, "user") || $data->user === null) { throw new SdkValidationError("user", 'required', "Required property 'user' is missing or null"); }
         return new self(
             workflow: SdkClient::hydrateClass($data->workflow, WorkflowParam::class),
             user: SdkClient::stringValue($data->user),
@@ -232,26 +228,11 @@ final readonly class ExpiresAfterParamAnchorEnum implements SdkOpenEnum
 {
     public const CREATED_AT = "created_at";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -302,12 +283,8 @@ class ExpiresAfterParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "anchor") || $data->anchor === null) {
-            throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null");
-        }
-        if (!property_exists($data, "seconds") || $data->seconds === null) {
-            throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null");
-        }
+        if (!property_exists($data, "anchor") || $data->anchor === null) { throw new SdkValidationError("anchor", 'required', "Required property 'anchor' is missing or null"); }
+        if (!property_exists($data, "seconds") || $data->seconds === null) { throw new SdkValidationError("seconds", 'required', "Required property 'seconds' is missing or null"); }
         return new self(
             anchor: SdkClient::hydrateStringEnumOrString($data->anchor, ExpiresAfterParamAnchorEnum::class),
             seconds: SdkClient::intValue($data->seconds),

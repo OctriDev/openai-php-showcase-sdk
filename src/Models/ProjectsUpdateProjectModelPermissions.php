@@ -15,26 +15,11 @@ final readonly class ProjectModelPermissionsUpdateRequestModeEnum implements Sdk
     public const ALLOW_LIST = "allow_list";
     public const DENY_LIST = "deny_list";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -85,12 +70,8 @@ class ProjectModelPermissionsUpdateRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "mode") || $data->mode === null) {
-            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
-        }
-        if (!property_exists($data, "model_ids") || $data->model_ids === null) {
-            throw new SdkValidationError("model_ids", 'required', "Required property 'model_ids' is missing or null");
-        }
+        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
+        if (!property_exists($data, "model_ids") || $data->model_ids === null) { throw new SdkValidationError("model_ids", 'required', "Required property 'model_ids' is missing or null"); }
         return new self(
             mode: SdkClient::hydrateStringEnumOrString($data->mode, ProjectModelPermissionsUpdateRequestModeEnum::class),
             modelIds: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->model_ids))),

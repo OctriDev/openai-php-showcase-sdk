@@ -149,33 +149,15 @@ class VectorStoreObject implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "usage_bytes") || $data->usage_bytes === null) {
-            throw new SdkValidationError("usage_bytes", 'required', "Required property 'usage_bytes' is missing or null");
-        }
-        if (!property_exists($data, "file_counts") || $data->file_counts === null) {
-            throw new SdkValidationError("file_counts", 'required', "Required property 'file_counts' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "last_active_at")) {
-            throw new SdkValidationError("last_active_at", 'required', "Missing required property 'last_active_at'");
-        }
-        if (!property_exists($data, "metadata")) {
-            throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "usage_bytes") || $data->usage_bytes === null) { throw new SdkValidationError("usage_bytes", 'required', "Required property 'usage_bytes' is missing or null"); }
+        if (!property_exists($data, "file_counts") || $data->file_counts === null) { throw new SdkValidationError("file_counts", 'required', "Required property 'file_counts' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "last_active_at")) { throw new SdkValidationError("last_active_at", 'required', "Missing required property 'last_active_at'"); }
+        if (!property_exists($data, "metadata")) { throw new SdkValidationError("metadata", 'required', "Missing required property 'metadata'"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, VectorStoreObjectObjectEnum::class),

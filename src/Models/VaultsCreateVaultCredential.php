@@ -99,18 +99,10 @@ class CreateMcpOauthRefreshParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "token_endpoint") || $data->token_endpoint === null) {
-            throw new SdkValidationError("token_endpoint", 'required', "Required property 'token_endpoint' is missing or null");
-        }
-        if (!property_exists($data, "client_id") || $data->client_id === null) {
-            throw new SdkValidationError("client_id", 'required', "Required property 'client_id' is missing or null");
-        }
-        if (!property_exists($data, "refresh_token") || $data->refresh_token === null) {
-            throw new SdkValidationError("refresh_token", 'required', "Required property 'refresh_token' is missing or null");
-        }
-        if (!property_exists($data, "token_endpoint_auth") || $data->token_endpoint_auth === null) {
-            throw new SdkValidationError("token_endpoint_auth", 'required', "Required property 'token_endpoint_auth' is missing or null");
-        }
+        if (!property_exists($data, "token_endpoint") || $data->token_endpoint === null) { throw new SdkValidationError("token_endpoint", 'required', "Required property 'token_endpoint' is missing or null"); }
+        if (!property_exists($data, "client_id") || $data->client_id === null) { throw new SdkValidationError("client_id", 'required', "Required property 'client_id' is missing or null"); }
+        if (!property_exists($data, "refresh_token") || $data->refresh_token === null) { throw new SdkValidationError("refresh_token", 'required', "Required property 'refresh_token' is missing or null"); }
+        if (!property_exists($data, "token_endpoint_auth") || $data->token_endpoint_auth === null) { throw new SdkValidationError("token_endpoint_auth", 'required', "Required property 'token_endpoint_auth' is missing or null"); }
         return new self(
             tokenEndpoint: SdkClient::stringValue($data->token_endpoint),
             clientId: SdkClient::stringValue($data->client_id),
@@ -178,12 +170,8 @@ class CreateMcpOauthTokenEndpointAuthParamClientSecretBasic implements CreateMcp
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "client_secret") || $data->client_secret === null) {
-            throw new SdkValidationError("client_secret", 'required', "Required property 'client_secret' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "client_secret") || $data->client_secret === null) { throw new SdkValidationError("client_secret", 'required', "Required property 'client_secret' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateMcpOauthTokenEndpointAuthParamClientSecretBasicTypeEnum::class),
             clientSecret: SdkClient::stringValue($data->client_secret),
@@ -247,12 +235,8 @@ class CreateMcpOauthTokenEndpointAuthParamClientSecretPost implements CreateMcpO
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "client_secret") || $data->client_secret === null) {
-            throw new SdkValidationError("client_secret", 'required', "Required property 'client_secret' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "client_secret") || $data->client_secret === null) { throw new SdkValidationError("client_secret", 'required', "Required property 'client_secret' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateMcpOauthTokenEndpointAuthParamClientSecretPostTypeEnum::class),
             clientSecret: SdkClient::stringValue($data->client_secret),
@@ -306,9 +290,7 @@ class CreateMcpOauthTokenEndpointAuthParamNone implements CreateMcpOauthTokenEnd
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, CreateMcpOauthTokenEndpointAuthParamNoneTypeEnum::class),
         );

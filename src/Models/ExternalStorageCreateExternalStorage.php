@@ -73,15 +73,9 @@ class AwsExternalStorageProviderParams implements CreateExternalStorageBodyProvi
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "bucket") || $data->bucket === null) {
-            throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null");
-        }
-        if (!property_exists($data, "role_arn") || $data->role_arn === null) {
-            throw new SdkValidationError("role_arn", 'required', "Required property 'role_arn' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "bucket") || $data->bucket === null) { throw new SdkValidationError("bucket", 'required', "Required property 'bucket' is missing or null"); }
+        if (!property_exists($data, "role_arn") || $data->role_arn === null) { throw new SdkValidationError("role_arn", 'required', "Required property 'role_arn' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AwsExternalStorageProviderParamsTypeEnum::class),
             bucket: SdkClient::stringValue($data->bucket),
@@ -186,24 +180,12 @@ class AzureExternalStorageProviderParams implements CreateExternalStorageBodyPro
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "tenant_id") || $data->tenant_id === null) {
-            throw new SdkValidationError("tenant_id", 'required', "Required property 'tenant_id' is missing or null");
-        }
-        if (!property_exists($data, "subscription_id") || $data->subscription_id === null) {
-            throw new SdkValidationError("subscription_id", 'required', "Required property 'subscription_id' is missing or null");
-        }
-        if (!property_exists($data, "resource_group") || $data->resource_group === null) {
-            throw new SdkValidationError("resource_group", 'required', "Required property 'resource_group' is missing or null");
-        }
-        if (!property_exists($data, "account_name") || $data->account_name === null) {
-            throw new SdkValidationError("account_name", 'required', "Required property 'account_name' is missing or null");
-        }
-        if (!property_exists($data, "container") || $data->container === null) {
-            throw new SdkValidationError("container", 'required', "Required property 'container' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "tenant_id") || $data->tenant_id === null) { throw new SdkValidationError("tenant_id", 'required', "Required property 'tenant_id' is missing or null"); }
+        if (!property_exists($data, "subscription_id") || $data->subscription_id === null) { throw new SdkValidationError("subscription_id", 'required', "Required property 'subscription_id' is missing or null"); }
+        if (!property_exists($data, "resource_group") || $data->resource_group === null) { throw new SdkValidationError("resource_group", 'required', "Required property 'resource_group' is missing or null"); }
+        if (!property_exists($data, "account_name") || $data->account_name === null) { throw new SdkValidationError("account_name", 'required', "Required property 'account_name' is missing or null"); }
+        if (!property_exists($data, "container") || $data->container === null) { throw new SdkValidationError("container", 'required', "Required property 'container' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AzureExternalStorageProviderParamsTypeEnum::class),
             tenantId: SdkClient::stringValue($data->tenant_id),
@@ -263,12 +245,8 @@ class CreateExternalStorageBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "project_id") || $data->project_id === null) {
-            throw new SdkValidationError("project_id", 'required', "Required property 'project_id' is missing or null");
-        }
-        if (!property_exists($data, "provider") || $data->provider === null) {
-            throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null");
-        }
+        if (!property_exists($data, "project_id") || $data->project_id === null) { throw new SdkValidationError("project_id", 'required', "Required property 'project_id' is missing or null"); }
+        if (!property_exists($data, "provider") || $data->provider === null) { throw new SdkValidationError("provider", 'required', "Required property 'provider' is missing or null"); }
         return new self(
             projectId: SdkClient::stringValue($data->project_id),
             provider: SdkClient::hydrateUnionAs($data->provider, CreateExternalStorageBodyProvider::class, [AwsExternalStorageProviderParams::class, AzureExternalStorageProviderParams::class, GcpExternalStorageProviderParams::class, OciExternalStorageProviderParams::class], "type", ["aws" => AwsExternalStorageProviderParams::class, "azure" => AzureExternalStorageProviderParams::class, "gcp" => GcpExternalStorageProviderParams::class, "oci" => OciExternalStorageProviderParams::class], UnknownCreateExternalStorageBodyProvider::class),

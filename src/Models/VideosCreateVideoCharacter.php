@@ -55,12 +55,8 @@ class CreateVideoCharacterBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "video") || $data->video === null) {
-            throw new SdkValidationError("video", 'required', "Required property 'video' is missing or null");
-        }
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
+        if (!property_exists($data, "video") || $data->video === null) { throw new SdkValidationError("video", 'required', "Required property 'video' is missing or null"); }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
         return new self(
             video: SdkClient::stringValue($data->video),
             name: SdkClient::stringValue($data->name),

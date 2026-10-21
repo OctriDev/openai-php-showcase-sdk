@@ -14,26 +14,11 @@ final readonly class ProjectGroupObjectEnum implements SdkOpenEnum
 {
     public const PROJECT_GROUP = "project.group";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -44,26 +29,11 @@ final readonly class ProjectGroupGroupTypeEnum implements SdkOpenEnum
     public const GROUP = "group";
     public const TENANT_GROUP = "tenant_group";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -154,24 +124,12 @@ class ProjectGroup implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "project_id") || $data->project_id === null) {
-            throw new SdkValidationError("project_id", 'required', "Required property 'project_id' is missing or null");
-        }
-        if (!property_exists($data, "group_id") || $data->group_id === null) {
-            throw new SdkValidationError("group_id", 'required', "Required property 'group_id' is missing or null");
-        }
-        if (!property_exists($data, "group_name") || $data->group_name === null) {
-            throw new SdkValidationError("group_name", 'required', "Required property 'group_name' is missing or null");
-        }
-        if (!property_exists($data, "group_type") || $data->group_type === null) {
-            throw new SdkValidationError("group_type", 'required', "Required property 'group_type' is missing or null");
-        }
-        if (!property_exists($data, "created_at") || $data->created_at === null) {
-            throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "project_id") || $data->project_id === null) { throw new SdkValidationError("project_id", 'required', "Required property 'project_id' is missing or null"); }
+        if (!property_exists($data, "group_id") || $data->group_id === null) { throw new SdkValidationError("group_id", 'required', "Required property 'group_id' is missing or null"); }
+        if (!property_exists($data, "group_name") || $data->group_name === null) { throw new SdkValidationError("group_name", 'required', "Required property 'group_name' is missing or null"); }
+        if (!property_exists($data, "group_type") || $data->group_type === null) { throw new SdkValidationError("group_type", 'required', "Required property 'group_type' is missing or null"); }
+        if (!property_exists($data, "created_at") || $data->created_at === null) { throw new SdkValidationError("created_at", 'required', "Required property 'created_at' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ProjectGroupObjectEnum::class),
             projectId: SdkClient::stringValue($data->project_id),

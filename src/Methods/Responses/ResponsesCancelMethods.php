@@ -20,7 +20,7 @@ trait ResponsesCancelMethods
     public static function cancelResponse(ClientConfig $clientConfig, string $responseId, ?RequestOptions $requestOptions = null): Response
     {
 
-        $sdkResponse = SdkClient::request('POST', "/responses/" . SdkClient::encodePathSegment($responseId) . "/cancel", $clientConfig, returnType: Response::class, decoder: 'json', operationId: 'cancelResponse', requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/responses/" . SdkClient::encodePathSegment($responseId) . "/cancel", $clientConfig, returnType: Response::class, decoder: 'json', operationId: 'cancelResponse', requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Response::class));
     }
 
@@ -37,7 +37,7 @@ trait ResponsesCancelMethods
     public static function betaCancelResponse(ClientConfig $clientConfig, string $responseId, array|SdkNotGiven $openaiBeta = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): BetaResponse
     {
 
-        $sdkResponse = SdkClient::request('POST', "/responses/" . SdkClient::encodePathSegment($responseId) . "/cancel?beta=true", $clientConfig, returnType: BetaResponse::class, decoder: 'json', operationId: 'betaCancelResponse', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/responses/" . SdkClient::encodePathSegment($responseId) . "/cancel?beta=true", $clientConfig, returnType: BetaResponse::class, decoder: 'json', operationId: 'betaCancelResponse', extraHeaders: ["openai-beta" => SdkClient::headerValue($openaiBeta, false)], requestOptions: $requestOptions, errors: [404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, BetaErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, BetaResponse::class));
     }
 }

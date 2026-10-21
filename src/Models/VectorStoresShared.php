@@ -53,9 +53,7 @@ class AutoChunkingStrategyRequestParam implements ChunkingStrategyRequestParam, 
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, AutoChunkingStrategyRequestParamTypeEnum::class),
         );
@@ -124,9 +122,7 @@ class CreateVectorStoreFileRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "file_id") || $data->file_id === null) {
-            throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null");
-        }
+        if (!property_exists($data, "file_id") || $data->file_id === null) { throw new SdkValidationError("file_id", 'required', "Required property 'file_id' is missing or null"); }
         return new self(
             fileId: SdkClient::stringValue($data->file_id),
             chunkingStrategy: (property_exists($data, "chunking_strategy") && $data->chunking_strategy !== null ? SdkClient::hydrateUnionAs($data->chunking_strategy, ChunkingStrategyRequestParam::class, [AutoChunkingStrategyRequestParam::class, StaticChunkingStrategyRequestParam::class], "type", ["auto" => AutoChunkingStrategyRequestParam::class, "static" => StaticChunkingStrategyRequestParam::class], UnknownChunkingStrategyRequestParam::class) : SdkNotGiven::Value),
@@ -213,21 +209,11 @@ class ListVectorStoreFilesResponse implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "data") || $data->data === null) {
-            throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null");
-        }
-        if (!property_exists($data, "first_id") || $data->first_id === null) {
-            throw new SdkValidationError("first_id", 'required', "Required property 'first_id' is missing or null");
-        }
-        if (!property_exists($data, "last_id") || $data->last_id === null) {
-            throw new SdkValidationError("last_id", 'required', "Required property 'last_id' is missing or null");
-        }
-        if (!property_exists($data, "has_more") || $data->has_more === null) {
-            throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "data") || $data->data === null) { throw new SdkValidationError("data", 'required', "Required property 'data' is missing or null"); }
+        if (!property_exists($data, "first_id") || $data->first_id === null) { throw new SdkValidationError("first_id", 'required', "Required property 'first_id' is missing or null"); }
+        if (!property_exists($data, "last_id") || $data->last_id === null) { throw new SdkValidationError("last_id", 'required', "Required property 'last_id' is missing or null"); }
+        if (!property_exists($data, "has_more") || $data->has_more === null) { throw new SdkValidationError("has_more", 'required', "Required property 'has_more' is missing or null"); }
         return new self(
             object_: SdkClient::stringValue($data->object),
             data: array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, VectorStoreFileObject::class), SdkClient::arrayValue($data->data))),
@@ -284,9 +270,7 @@ class OtherChunkingStrategyResponseParam implements VectorStoreFileObjectChunkin
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, OtherChunkingStrategyResponseParamTypeEnum::class),
         );
@@ -341,12 +325,8 @@ class StaticChunkingStrategy implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "max_chunk_size_tokens") || $data->max_chunk_size_tokens === null) {
-            throw new SdkValidationError("max_chunk_size_tokens", 'required', "Required property 'max_chunk_size_tokens' is missing or null");
-        }
-        if (!property_exists($data, "chunk_overlap_tokens") || $data->chunk_overlap_tokens === null) {
-            throw new SdkValidationError("chunk_overlap_tokens", 'required', "Required property 'chunk_overlap_tokens' is missing or null");
-        }
+        if (!property_exists($data, "max_chunk_size_tokens") || $data->max_chunk_size_tokens === null) { throw new SdkValidationError("max_chunk_size_tokens", 'required', "Required property 'max_chunk_size_tokens' is missing or null"); }
+        if (!property_exists($data, "chunk_overlap_tokens") || $data->chunk_overlap_tokens === null) { throw new SdkValidationError("chunk_overlap_tokens", 'required', "Required property 'chunk_overlap_tokens' is missing or null"); }
         return new self(
             maxChunkSizeTokens: SdkClient::intValue($data->max_chunk_size_tokens),
             chunkOverlapTokens: SdkClient::intValue($data->chunk_overlap_tokens),

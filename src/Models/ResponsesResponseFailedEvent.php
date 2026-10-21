@@ -65,15 +65,9 @@ class ResponseFailedEvent implements ResponseStreamEvent, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
-        if (!property_exists($data, "response") || $data->response === null) {
-            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
+        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseFailedEventTypeEnum::class),
             sequenceNumber: SdkClient::intValue($data->sequence_number),
@@ -148,15 +142,9 @@ class ResponseIncompleteEvent implements ResponseStreamEvent, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "response") || $data->response === null) {
-            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseIncompleteEventTypeEnum::class),
             response: SdkClient::hydrateClass($data->response, Response::class),
@@ -231,15 +219,9 @@ class ResponseInProgressEvent implements ResponseStreamEvent, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "response") || $data->response === null) {
-            throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null");
-        }
-        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) {
-            throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "response") || $data->response === null) { throw new SdkValidationError("response", 'required', "Required property 'response' is missing or null"); }
+        if (!property_exists($data, "sequence_number") || $data->sequence_number === null) { throw new SdkValidationError("sequence_number", 'required', "Required property 'sequence_number' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, ResponseInProgressEventTypeEnum::class),
             response: SdkClient::hydrateClass($data->response, Response::class),

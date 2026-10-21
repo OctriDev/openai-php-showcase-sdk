@@ -20,7 +20,7 @@ trait ProjectsArchiveMethods
     public static function archiveProject(ClientConfig $clientConfig, string $projectId, ?RequestOptions $requestOptions = null): Project
     {
 
-        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/archive", $clientConfig, returnType: Project::class, decoder: 'json', operationId: 'archiveProject', requestOptions: $requestOptions, errors: [400 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn(mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
+        $sdkResponse = SdkClient::request('POST', "/organization/projects/" . SdkClient::encodePathSegment($projectId) . "/archive", $clientConfig, returnType: Project::class, decoder: 'json', operationId: 'archiveProject', requestOptions: $requestOptions, errors: [400 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 403 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, PermissionErrorResponse::class), 404 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class), 429 => static fn (mixed $value): mixed => SdkClient::hydrateClass($value, ErrorResponse::class)]);
         return SdkClient::decoded($sdkResponse, static fn() => SdkClient::typedData($sdkResponse, Project::class));
     }
 }

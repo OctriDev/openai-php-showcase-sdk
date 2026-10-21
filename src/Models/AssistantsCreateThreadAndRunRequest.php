@@ -225,9 +225,7 @@ class CreateThreadAndRunRequest implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "assistant_id") || $data->assistant_id === null) {
-            throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null");
-        }
+        if (!property_exists($data, "assistant_id") || $data->assistant_id === null) { throw new SdkValidationError("assistant_id", 'required', "Required property 'assistant_id' is missing or null"); }
         return new self(
             assistantId: SdkClient::stringValue($data->assistant_id),
             thread: (property_exists($data, "thread") && $data->thread !== null ? SdkClient::hydrateClass($data->thread, CreateThreadRequest::class) : SdkNotGiven::Value),

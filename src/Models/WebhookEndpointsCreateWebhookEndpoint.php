@@ -65,15 +65,9 @@ class PublicCreateEndpointBody implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "name") || $data->name === null) {
-            throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null");
-        }
-        if (!property_exists($data, "url") || $data->url === null) {
-            throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null");
-        }
-        if (!property_exists($data, "event_types") || $data->event_types === null) {
-            throw new SdkValidationError("event_types", 'required', "Required property 'event_types' is missing or null");
-        }
+        if (!property_exists($data, "name") || $data->name === null) { throw new SdkValidationError("name", 'required', "Required property 'name' is missing or null"); }
+        if (!property_exists($data, "url") || $data->url === null) { throw new SdkValidationError("url", 'required', "Required property 'url' is missing or null"); }
+        if (!property_exists($data, "event_types") || $data->event_types === null) { throw new SdkValidationError("event_types", 'required', "Required property 'event_types' is missing or null"); }
         return new self(
             name: SdkClient::stringValue($data->name),
             url: SdkClient::stringValue($data->url),

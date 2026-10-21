@@ -55,12 +55,8 @@ class ChatSessionHistory implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "enabled") || $data->enabled === null) {
-            throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null");
-        }
-        if (!property_exists($data, "recent_threads")) {
-            throw new SdkValidationError("recent_threads", 'required', "Missing required property 'recent_threads'");
-        }
+        if (!property_exists($data, "enabled") || $data->enabled === null) { throw new SdkValidationError("enabled", 'required', "Required property 'enabled' is missing or null"); }
+        if (!property_exists($data, "recent_threads")) { throw new SdkValidationError("recent_threads", 'required', "Missing required property 'recent_threads'"); }
         return new self(
             enabled: SdkClient::boolValue($data->enabled),
             recentThreads: ($data->recent_threads === null ? null : SdkClient::intValue($data->recent_threads)),
@@ -106,9 +102,7 @@ class ChatSessionRateLimits implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "max_requests_per_1_minute") || $data->max_requests_per_1_minute === null) {
-            throw new SdkValidationError("max_requests_per_1_minute", 'required', "Required property 'max_requests_per_1_minute' is missing or null");
-        }
+        if (!property_exists($data, "max_requests_per_1_minute") || $data->max_requests_per_1_minute === null) { throw new SdkValidationError("max_requests_per_1_minute", 'required', "Required property 'max_requests_per_1_minute' is missing or null"); }
         return new self(
             maxRequestsPer1Minute: SdkClient::intValue($data->max_requests_per_1_minute),
         );
@@ -122,26 +116,11 @@ final readonly class ChatSessionResourceObjectEnum implements SdkOpenEnum
 {
     public const CHATKIT_SESSION = "chatkit.session";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -272,36 +251,16 @@ class ChatSessionResource implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "expires_at") || $data->expires_at === null) {
-            throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null");
-        }
-        if (!property_exists($data, "client_secret") || $data->client_secret === null) {
-            throw new SdkValidationError("client_secret", 'required', "Required property 'client_secret' is missing or null");
-        }
-        if (!property_exists($data, "workflow") || $data->workflow === null) {
-            throw new SdkValidationError("workflow", 'required', "Required property 'workflow' is missing or null");
-        }
-        if (!property_exists($data, "user") || $data->user === null) {
-            throw new SdkValidationError("user", 'required', "Required property 'user' is missing or null");
-        }
-        if (!property_exists($data, "rate_limits") || $data->rate_limits === null) {
-            throw new SdkValidationError("rate_limits", 'required', "Required property 'rate_limits' is missing or null");
-        }
-        if (!property_exists($data, "max_requests_per_1_minute") || $data->max_requests_per_1_minute === null) {
-            throw new SdkValidationError("max_requests_per_1_minute", 'required', "Required property 'max_requests_per_1_minute' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "chatkit_configuration") || $data->chatkit_configuration === null) {
-            throw new SdkValidationError("chatkit_configuration", 'required', "Required property 'chatkit_configuration' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "expires_at") || $data->expires_at === null) { throw new SdkValidationError("expires_at", 'required', "Required property 'expires_at' is missing or null"); }
+        if (!property_exists($data, "client_secret") || $data->client_secret === null) { throw new SdkValidationError("client_secret", 'required', "Required property 'client_secret' is missing or null"); }
+        if (!property_exists($data, "workflow") || $data->workflow === null) { throw new SdkValidationError("workflow", 'required', "Required property 'workflow' is missing or null"); }
+        if (!property_exists($data, "user") || $data->user === null) { throw new SdkValidationError("user", 'required', "Required property 'user' is missing or null"); }
+        if (!property_exists($data, "rate_limits") || $data->rate_limits === null) { throw new SdkValidationError("rate_limits", 'required', "Required property 'rate_limits' is missing or null"); }
+        if (!property_exists($data, "max_requests_per_1_minute") || $data->max_requests_per_1_minute === null) { throw new SdkValidationError("max_requests_per_1_minute", 'required', "Required property 'max_requests_per_1_minute' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "chatkit_configuration") || $data->chatkit_configuration === null) { throw new SdkValidationError("chatkit_configuration", 'required', "Required property 'chatkit_configuration' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             object_: SdkClient::hydrateStringEnumOrString($data->object, ChatSessionResourceObjectEnum::class),
@@ -326,24 +285,9 @@ final readonly class ChatSessionStatus implements SdkOpenEnum
     public const EXPIRED = "expired";
     public const CANCELLED = "cancelled";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

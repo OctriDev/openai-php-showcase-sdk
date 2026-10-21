@@ -121,15 +121,9 @@ class BetaComputerCallOutputItemParam implements BetaInputItem, BetaItem, \JsonS
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "output") || $data->output === null) {
-            throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null");
-        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "output") || $data->output === null) { throw new SdkValidationError("output", 'required', "Required property 'output' is missing or null"); }
         return new self(
             callId: SdkClient::stringValue($data->call_id),
             type: SdkClient::hydrateEnum($data->type, BetaComputerCallOutputItemParamTypeEnum::class),
@@ -151,26 +145,11 @@ final readonly class BetaComputerCallOutputStatus implements SdkOpenEnum
     public const INCOMPLETE = "incomplete";
     public const FAILED = "failed";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -235,9 +214,7 @@ class BetaComputerCallSafetyCheckParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
         return new self(
             id: SdkClient::stringValue($data->id),
             code: (property_exists($data, "code") ? ($data->code === null ? null : SdkClient::stringValue($data->code)) : SdkNotGiven::Value),
@@ -257,26 +234,11 @@ final readonly class BetaComputerEnvironment implements SdkOpenEnum
     public const UBUNTU = "ubuntu";
     public const BROWSER = "browser";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -367,18 +329,10 @@ class BetaComputerScreenshotContent implements BetaAgentMessageContentItem, Beta
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "image_url")) {
-            throw new SdkValidationError("image_url", 'required', "Missing required property 'image_url'");
-        }
-        if (!property_exists($data, "file_id")) {
-            throw new SdkValidationError("file_id", 'required', "Missing required property 'file_id'");
-        }
-        if (!property_exists($data, "detail") || $data->detail === null) {
-            throw new SdkValidationError("detail", 'required', "Required property 'detail' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "image_url")) { throw new SdkValidationError("image_url", 'required', "Missing required property 'image_url'"); }
+        if (!property_exists($data, "file_id")) { throw new SdkValidationError("file_id", 'required', "Missing required property 'file_id'"); }
+        if (!property_exists($data, "detail") || $data->detail === null) { throw new SdkValidationError("detail", 'required', "Required property 'detail' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, BetaComputerScreenshotContentTypeEnum::class),
             imageUrl: ($data->image_url === null ? null : SdkClient::stringValue($data->image_url)),

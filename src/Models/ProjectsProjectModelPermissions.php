@@ -65,15 +65,9 @@ class ProjectModelPermissions implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "mode") || $data->mode === null) {
-            throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null");
-        }
-        if (!property_exists($data, "model_ids") || $data->model_ids === null) {
-            throw new SdkValidationError("model_ids", 'required', "Required property 'model_ids' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "mode") || $data->mode === null) { throw new SdkValidationError("mode", 'required', "Required property 'mode' is missing or null"); }
+        if (!property_exists($data, "model_ids") || $data->model_ids === null) { throw new SdkValidationError("model_ids", 'required', "Required property 'model_ids' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ProjectModelPermissionsObjectEnum::class),
             mode: SdkClient::hydrateStringEnumOrString($data->mode, ProjectModelPermissionsModeEnum::class),
@@ -89,26 +83,11 @@ final readonly class ProjectRateLimitObjectEnum implements SdkOpenEnum
 {
     public const PROJECT_RATE_LIMIT = "project.rate_limit";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -237,21 +216,11 @@ class ProjectRateLimit implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "object") || $data->object === null) {
-            throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "model") || $data->model === null) {
-            throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null");
-        }
-        if (!property_exists($data, "max_requests_per_1_minute") || $data->max_requests_per_1_minute === null) {
-            throw new SdkValidationError("max_requests_per_1_minute", 'required', "Required property 'max_requests_per_1_minute' is missing or null");
-        }
-        if (!property_exists($data, "max_tokens_per_1_minute") || $data->max_tokens_per_1_minute === null) {
-            throw new SdkValidationError("max_tokens_per_1_minute", 'required', "Required property 'max_tokens_per_1_minute' is missing or null");
-        }
+        if (!property_exists($data, "object") || $data->object === null) { throw new SdkValidationError("object", 'required', "Required property 'object' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "model") || $data->model === null) { throw new SdkValidationError("model", 'required', "Required property 'model' is missing or null"); }
+        if (!property_exists($data, "max_requests_per_1_minute") || $data->max_requests_per_1_minute === null) { throw new SdkValidationError("max_requests_per_1_minute", 'required', "Required property 'max_requests_per_1_minute' is missing or null"); }
+        if (!property_exists($data, "max_tokens_per_1_minute") || $data->max_tokens_per_1_minute === null) { throw new SdkValidationError("max_tokens_per_1_minute", 'required', "Required property 'max_tokens_per_1_minute' is missing or null"); }
         return new self(
             object_: SdkClient::hydrateStringEnumOrString($data->object, ProjectRateLimitObjectEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -273,26 +242,11 @@ final readonly class ProjectServiceAccountObjectEnum implements SdkOpenEnum
 {
     public const ORGANIZATION_PROJECT_SERVICE_ACCOUNT = "organization.project.service_account";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -304,24 +258,9 @@ final readonly class ProjectServiceAccountRoleEnum implements SdkOpenEnum
     public const MEMBER = "member";
     public const NONE = "none";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

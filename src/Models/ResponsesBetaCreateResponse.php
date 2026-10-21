@@ -57,9 +57,7 @@ class BetaContextManagementParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
         return new self(
             type: SdkClient::stringValue($data->type),
             compactThreshold: (property_exists($data, "compact_threshold") ? ($data->compact_threshold === null ? null : SdkClient::intValue($data->compact_threshold)) : SdkNotGiven::Value),

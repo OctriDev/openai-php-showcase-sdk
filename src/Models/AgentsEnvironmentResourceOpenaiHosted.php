@@ -137,33 +137,15 @@ class EnvironmentResourceOpenaiHosted implements EnvironmentResource, \JsonSeria
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "packages") || $data->packages === null) {
-            throw new SdkValidationError("packages", 'required', "Required property 'packages' is missing or null");
-        }
-        if (!property_exists($data, "network") || $data->network === null) {
-            throw new SdkValidationError("network", 'required', "Required property 'network' is missing or null");
-        }
-        if (!property_exists($data, "desktop") || $data->desktop === null) {
-            throw new SdkValidationError("desktop", 'required', "Required property 'desktop' is missing or null");
-        }
-        if (!property_exists($data, "capability_directories") || $data->capability_directories === null) {
-            throw new SdkValidationError("capability_directories", 'required', "Required property 'capability_directories' is missing or null");
-        }
-        if (!property_exists($data, "skills") || $data->skills === null) {
-            throw new SdkValidationError("skills", 'required', "Required property 'skills' is missing or null");
-        }
-        if (!property_exists($data, "plugins") || $data->plugins === null) {
-            throw new SdkValidationError("plugins", 'required', "Required property 'plugins' is missing or null");
-        }
-        if (!property_exists($data, "files") || $data->files === null) {
-            throw new SdkValidationError("files", 'required', "Required property 'files' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "packages") || $data->packages === null) { throw new SdkValidationError("packages", 'required', "Required property 'packages' is missing or null"); }
+        if (!property_exists($data, "network") || $data->network === null) { throw new SdkValidationError("network", 'required', "Required property 'network' is missing or null"); }
+        if (!property_exists($data, "desktop") || $data->desktop === null) { throw new SdkValidationError("desktop", 'required', "Required property 'desktop' is missing or null"); }
+        if (!property_exists($data, "capability_directories") || $data->capability_directories === null) { throw new SdkValidationError("capability_directories", 'required', "Required property 'capability_directories' is missing or null"); }
+        if (!property_exists($data, "skills") || $data->skills === null) { throw new SdkValidationError("skills", 'required', "Required property 'skills' is missing or null"); }
+        if (!property_exists($data, "plugins") || $data->plugins === null) { throw new SdkValidationError("plugins", 'required', "Required property 'plugins' is missing or null"); }
+        if (!property_exists($data, "files") || $data->files === null) { throw new SdkValidationError("files", 'required', "Required property 'files' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EnvironmentResourceOpenaiHostedTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -265,21 +247,11 @@ class EnvironmentResourceSelfHosted implements EnvironmentResource, \JsonSeriali
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "remote_url") || $data->remote_url === null) {
-            throw new SdkValidationError("remote_url", 'required', "Required property 'remote_url' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "workspace_directory") || $data->workspace_directory === null) {
-            throw new SdkValidationError("workspace_directory", 'required', "Required property 'workspace_directory' is missing or null");
-        }
-        if (!property_exists($data, "capability_directories") || $data->capability_directories === null) {
-            throw new SdkValidationError("capability_directories", 'required', "Required property 'capability_directories' is missing or null");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "remote_url") || $data->remote_url === null) { throw new SdkValidationError("remote_url", 'required', "Required property 'remote_url' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "workspace_directory") || $data->workspace_directory === null) { throw new SdkValidationError("workspace_directory", 'required', "Required property 'workspace_directory' is missing or null"); }
+        if (!property_exists($data, "capability_directories") || $data->capability_directories === null) { throw new SdkValidationError("capability_directories", 'required', "Required property 'capability_directories' is missing or null"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, EnvironmentResourceSelfHostedTypeEnum::class),
             remoteUrl: SdkClient::stringValue($data->remote_url),
@@ -303,26 +275,11 @@ final readonly class EnvironmentStatusResource implements SdkOpenEnum
     public const EXPIRED = "expired";
     public const FAILED = "failed";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }
 
 /**
@@ -332,24 +289,9 @@ final readonly class EnvironmentTemplateResourceObjectEnum implements SdkOpenEnu
 {
     public const AGENT_ENVIRONMENT_TEMPLATE = "agent.environment.template";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static
-    {
-        return new self((string) $value);
-    }
-    public static function tryFrom(string|int|null $value): ?static
-    {
-        return $value === null ? null : self::from($value);
-    }
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-    public function jsonSerialize(): string
-    {
-        return $this->value;
-    }
-    public function __toString(): string
-    {
-        return (string) $this->value;
-    }
+    public static function from(string|int $value): static { return new self((string) $value); }
+    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
+    public function getValue(): string { return $this->value; }
+    public function jsonSerialize(): string { return $this->value; }
+    public function __toString(): string { return (string) $this->value; }
 }

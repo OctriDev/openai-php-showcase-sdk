@@ -69,9 +69,7 @@ class FunctionShellActionParam implements \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "commands") || $data->commands === null) {
-            throw new SdkValidationError("commands", 'required', "Required property 'commands' is missing or null");
-        }
+        if (!property_exists($data, "commands") || $data->commands === null) { throw new SdkValidationError("commands", 'required', "Required property 'commands' is missing or null"); }
         return new self(
             commands: array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->commands))),
             timeoutMs: (property_exists($data, "timeout_ms") ? ($data->timeout_ms === null ? null : SdkClient::intValue($data->timeout_ms)) : SdkNotGiven::Value),
@@ -200,24 +198,12 @@ class FunctionShellCall implements ConversationItem, ItemResource, OutputItem, I
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "id") || $data->id === null) {
-            throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null");
-        }
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "action") || $data->action === null) {
-            throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null");
-        }
-        if (!property_exists($data, "status") || $data->status === null) {
-            throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null");
-        }
-        if (!property_exists($data, "environment")) {
-            throw new SdkValidationError("environment", 'required', "Missing required property 'environment'");
-        }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "id") || $data->id === null) { throw new SdkValidationError("id", 'required', "Required property 'id' is missing or null"); }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "action") || $data->action === null) { throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null"); }
+        if (!property_exists($data, "status") || $data->status === null) { throw new SdkValidationError("status", 'required', "Required property 'status' is missing or null"); }
+        if (!property_exists($data, "environment")) { throw new SdkValidationError("environment", 'required', "Missing required property 'environment'"); }
         return new self(
             type: SdkClient::hydrateEnum($data->type, FunctionShellCallTypeEnum::class),
             id: SdkClient::stringValue($data->id),
@@ -345,15 +331,9 @@ class FunctionShellCallItemParam implements InputItem, Item, \JsonSerializable
 
     public static function fromObject(object $data): self
     {
-        if (!property_exists($data, "call_id") || $data->call_id === null) {
-            throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null");
-        }
-        if (!property_exists($data, "type") || $data->type === null) {
-            throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null");
-        }
-        if (!property_exists($data, "action") || $data->action === null) {
-            throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null");
-        }
+        if (!property_exists($data, "call_id") || $data->call_id === null) { throw new SdkValidationError("call_id", 'required', "Required property 'call_id' is missing or null"); }
+        if (!property_exists($data, "type") || $data->type === null) { throw new SdkValidationError("type", 'required', "Required property 'type' is missing or null"); }
+        if (!property_exists($data, "action") || $data->action === null) { throw new SdkValidationError("action", 'required', "Required property 'action' is missing or null"); }
         return new self(
             callId: SdkClient::stringValue($data->call_id),
             type: SdkClient::hydrateEnum($data->type, FunctionShellCallItemParamTypeEnum::class),
